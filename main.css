@@ -180,6 +180,7 @@ footer.ops-footer .vw {
 
 .ipadContent {
   vertical-align: top;
+  margin-top: 11%;
 }
 .seed_shot {
   width: 98%;
@@ -201,30 +202,28 @@ hr {
 .subHeader {
   font-size: 1.8rem;
 }
-.dataFirstHeader {
-  margin-top: 5rem;
-}
+
 .dataFirstContent {
   vertical-align: top;
-  padding-top: 6rem;
+  padding-top: 12%;
 }
 
 .dataFirstImage img {
   width: 100%;
-  margin-left: 20%;
 }
 .techDetailsContent,   .dataFirstContent, .polymerContent {
   display: block;
 }
 .techDetailsContent {
   vertical-align: top;
-  padding-top: 1rem;
+  padding-top: 14%;
+  margin-bottom: 8%;
 }
 .polymerImage {
   display: block;
   vertical-align: top;
-  padding-top: 3rem;
-  margin-top: 2rem;
+  padding-top: 15%;
+  margin-bottom: 10%;
 }
 .white {
   color: #fff;
@@ -233,7 +232,15 @@ hr {
 .github {
   text-align: center;
 }
+.ipadImg img {
+  left: 0;
+  position: static;;
+}
 @media screen and (min-width: 769px) and (max-width: 1069px) {
+  .dataFirstImage img {
+    width: 100%;
+    margin-left: 20%;
+  }
   .techDetailsImage {
     width: 50%;
   }
@@ -243,7 +250,6 @@ hr {
   }
   .techDetailsContent {
     vertical-align: top;
-    padding-top: 7rem;
   }
   .techDetailsImage img{
     margin-left: 14%;
@@ -255,13 +261,14 @@ hr {
   }
   .polymerContent {
     margin-left: 10%;
-    padding-top: 7rem;
+    padding-top: 8%;
   }
   .ipadContent {
     width: 30%;
     vertical-align: top;
     position: relative;
     left: -8%;
+    margin-top: 11%;
   }
   .dataFirstImage {
     width: 52%;
@@ -317,6 +324,10 @@ hr {
 }
 
 @media screen and (min-width: 1070px) and (max-width: 1440px) {
+  .dataFirstImage img {
+    width: 100%;
+    margin-left: 20%;
+  }
   .techDetailsImage {
     width: 59%;
   }
@@ -326,7 +337,6 @@ hr {
   }
   .techDetailsContent {
     vertical-align: top;
-    padding-top: 7rem;
   }
   .techDetailsImage img{
     margin-left: 14%;
@@ -338,13 +348,14 @@ hr {
   }
   .polymerContent {
     margin-left: 10%;
-    padding-top: 7rem;
+    padding-top: 8%;
   }
   .ipadContent {
     width: 30%;
     vertical-align: top;
     position: relative;
     left: -8%;
+    margin-top: 11%;
   }
   .dataFirstImage {
     width: 52%;
@@ -461,15 +472,20 @@ hr {
   .list-inline--delimited {
     font-size: 1.3em;
   }
+  .ipadImg {
+    width: 58%;
+  }
+  .ipadImg img {
+    left: -27%;
+    position: relative;
+  }
 }
-.ipadImg {
-  width: 58%;
-}
-.ipadImg img {
-  left: -27%;
-  position: relative;
-}
+
 @media screen and (min-width: 1441px) {
+  .dataFirstImage img {
+    width: 100%;
+    margin-left: 20%;
+  }
   .ipadImg {
     width: 58%;
   }
@@ -486,7 +502,6 @@ hr {
   }
   .techDetailsContent {
     vertical-align: top;
-    padding-top: 7rem;
   }
   .techDetailsImage img{
     margin-left: 14%;
@@ -498,13 +513,14 @@ hr {
   }
   .polymerContent {
     margin-left: 10%;
-    padding-top: 7rem;
+    padding-top: 8%;
   }
   .ipadContent {
     width: 30%;
     vertical-align: top;
     position: relative;
     left: -8%;
+    margin-top: 11%;
   }
   .dataFirstImage {
     width: 52%;
