@@ -518,14 +518,7 @@ html {
     position: relative;
     min-height: 100%
 }
-body {
-    margin-bottom: 6.25rem
-}
-@media screen and (max-width: 44.9375em) {
-    body {
-        margin-bottom: 200px
-    }
-}
+
 footer {
   position: relative;
     height: 6.25rem;
