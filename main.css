@@ -206,7 +206,7 @@ hr {
 }
 .dataFirstContent {
   vertical-align: top;
-  padding-top: 3rem;
+  padding-top: 6rem;
 }
 
 .dataFirstImage img {
@@ -246,7 +246,7 @@ hr {
     padding-top: 7rem;
   }
   .techDetailsImage img{
-    margin-left: 42%;
+    margin-left: 14%;
   }
   .polymerImage {
     width: 40%;
@@ -318,7 +318,7 @@ hr {
 
 @media screen and (min-width: 1070px) and (max-width: 1440px) {
   .techDetailsImage {
-    width: 50%;
+    width: 59%;
   }
   .techDetailsContent,   .dataFirstContent, .polymerContent{
     width: 40%;
@@ -329,12 +329,12 @@ hr {
     padding-top: 7rem;
   }
   .techDetailsImage img{
-    margin-left: 42%;
+    margin-left: 14%;
   }
   .polymerImage {
     width: 40%;
     vertical-align: top;
-  padding-top: 3rem;
+  padding-top: 5rem;
   }
   .polymerContent {
     margin-left: 10%;
@@ -489,7 +489,7 @@ hr {
     padding-top: 7rem;
   }
   .techDetailsImage img{
-    margin-left: 42%;
+    margin-left: 14%;
   }
   .polymerImage {
     width: 40%;
