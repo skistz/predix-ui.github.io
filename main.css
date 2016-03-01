@@ -41,7 +41,7 @@
 
 .osp-hero {
   background:
-    url(predix_open-source_banner.jpg)
+    url(img/predix_open-source_banner.jpg)
     #1d5f11;
   background-size: cover;
   height: 318px;
@@ -50,6 +50,7 @@
 
 .osp-hero-container {
   padding: 90px 0 0 0;
+  text-align: center;
 }
 
 .osp-hero-title {
@@ -62,14 +63,15 @@
 .ops-hero-subtitle {
   font-size: 1.2em;
   font-family: "GE Inspira Sans";
-  color: #fff;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .osp-contents-container {
   width: 95%;
   padding-bottom: 60px;
-  margin: 0 auto;
+  margin: 2% auto 0 auto;
+
 }
 
 .osp-contents-container-text {
@@ -80,10 +82,10 @@
 
 .osp-cards-container {
   width: 100%;
-  min-height: 800px;
   margin: 0 auto;
-  overflow: hidden;
   background-color:#fff;
+  padding: 5rem 5%;
+  overflow: hidden;
 }
 
 .osp-card {
@@ -167,8 +169,109 @@ footer.ops-footer .vw {
 * End styles for mobile version
 */
 
-@media screen and (min-width: 769px) and (max-width: 1069px) {
+.platform {
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
 
+.ipadImg, .ipadContent, .dataFirstContent, .dataFirstImage, .techDetailsContent, .techDetailsImage, .polymerContent, .polymerImage {
+  display: inline-block;
+}
+
+.ipadContent {
+  vertical-align: top;
+}
+.seed_shot {
+  width: 98%;
+  margin: 0 auto 3% auto;
+}
+
+.seed_shot img, .techDetailsImage img, .ipadImg img, .polymerImage img, .ipadImg, .dataFirstImage, .techDetailsImage, .ipadContent {
+  width: 100%;
+}
+.seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
+  display: block;
+}
+hr {
+  margin: 2rem 0 4rem 0;
+}
+.subHeader {
+  font-size: 1.8rem;
+}
+.dataFirstHeader {
+  margin-top: 5rem;
+}
+.dataFirstContent {
+  vertical-align: top;
+  padding-top: 8rem;
+}
+
+.dataFirstImage img {
+  width: 100%;
+  margin-left: 20%;
+}
+.techDetailsContent,   .dataFirstContent, .polymerContent{
+  display: 'block';
+}
+.techDetailsContent {
+  vertical-align: top;
+  padding-top: 1rem;
+}
+.polymerImage {
+  display: block;
+  vertical-align: top;
+  padding-top: 3rem;
+  margin-top: 2rem;
+}
+.white {
+  color: #fff;
+}
+
+.github {
+  text-align: center;
+}
+@media screen and (min-width: 769px) and (max-width: 1069px) {
+  .techDetailsImage {
+    width: 50%;
+  }
+  .techDetailsContent,   .dataFirstContent, .polymerContent{
+    width: 40%;
+  }
+  .techDetailsContent {
+    vertical-align: top;
+    padding-top: 7rem;
+  }
+  .techDetailsImage img{
+    margin-left: 42%;
+  }
+  .polymerImage {
+    width: 40%;
+    vertical-align: top;
+  padding-top: 3rem;
+  }
+  .polymerContent {
+    margin-left: 10%;
+    padding-top: 7rem;
+  }
+  .ipadContent {
+    width: 30%;
+    vertical-align: top;
+    position: relative;
+    left: -8%;
+  }
+  .dataFirstImage {
+    width: 52%;
+  }
+  .ipadImg {
+    width: 58%;
+  }
+  .ipadImg img {
+    left: -27%;
+    position: relative;
+  }
+.seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
+    display: inline-block;
+  }
   .gray-bar a:link {
     color: #7e7e7e;
     font-family: "GE Inspira";
@@ -210,6 +313,47 @@ footer.ops-footer .vw {
 }
 
 @media screen and (min-width: 1070px) and (max-width: 1440px) {
+  .techDetailsImage {
+    width: 50%;
+  }
+  .techDetailsContent,   .dataFirstContent, .polymerContent{
+    width: 40%;
+  }
+  .techDetailsContent {
+    vertical-align: top;
+    padding-top: 7rem;
+  }
+  .techDetailsImage img{
+    margin-left: 42%;
+  }
+  .polymerImage {
+    width: 40%;
+    vertical-align: top;
+  padding-top: 3rem;
+  }
+  .polymerContent {
+    margin-left: 10%;
+    padding-top: 7rem;
+  }
+  .ipadContent {
+    width: 30%;
+    vertical-align: top;
+    position: relative;
+    left: -8%;
+  }
+  .dataFirstImage {
+    width: 52%;
+  }
+  .ipadImg {
+    width: 58%;
+  }
+  .ipadImg img {
+    left: -27%;
+    position: relative;
+  }
+  .seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
+    display: inline-block;
+  }
 
   .gray-bar {
     background-color: #333;
@@ -262,6 +406,7 @@ footer.ops-footer .vw {
   .osp-cards-container {
     width: 100%;
     margin: 0 auto;
+    padding: 5rem 5%;
     overflow: hidden;
   }
 
@@ -312,9 +457,48 @@ footer.ops-footer .vw {
     font-size: 1.3em;
   }
 }
-
+.ipadImg {
+  width: 58%;
+}
+.ipadImg img {
+  left: -27%;
+  position: relative;
+}
 @media screen and (min-width: 1441px) {
-
+  .techDetailsImage {
+    width: 50%;
+  }
+  .techDetailsContent,   .dataFirstContent, .polymerContent{
+    width: 40%;
+  }
+  .techDetailsContent {
+    vertical-align: top;
+    padding-top: 7rem;
+  }
+  .techDetailsImage img{
+    margin-left: 42%;
+  }
+  .polymerImage {
+    width: 40%;
+    vertical-align: top;
+  padding-top: 3rem;
+  }
+  .polymerContent {
+    margin-left: 10%;
+    padding-top: 7rem;
+  }
+  .ipadContent {
+    width: 30%;
+    vertical-align: top;
+    position: relative;
+    left: -8%;
+  }
+  .dataFirstImage {
+    width: 52%;
+  }
+  .seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
+    display: inline-block;
+  }
   .gray-bar {
     background-color: #333;
     min-height: 36px;
@@ -366,7 +550,8 @@ footer.ops-footer .vw {
 
   .osp-cards-container {
     width: 90%;
-    margin: 41px auto 0;
+    margin: 35px auto 0;
+    padding: 5rem 5%;
     overflow: hidden;
   }
 
