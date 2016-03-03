@@ -11,11 +11,14 @@
 }
 
 .gray-bar a:link {
-  color: #7e7e7e;
+  color: #7e7e7e !important;
   font-family: "GE Inspira";
   font-size: 1em;
   display: block;
   letter-spacing: 1px;
+}
+.gray-bar a:visited {
+  color: #7e7e7e !important
 }
 
 .gray-bar .lnk {
@@ -184,7 +187,7 @@ footer.ops-footer .vw {
 }
 .seed_shot {
   width: 98%;
-  margin: 0 auto 3% auto;
+  margin: 3% auto 3% auto;
 }
 
 .techDetailsImage img, .ipadImg img, .polymerImage img, .ipadImg, .dataFirstImage, .techDetailsImage, .ipadContent {
@@ -292,11 +295,15 @@ hr {
     display: inline-block;
   }
   .gray-bar a:link {
-    color: #7e7e7e;
+    color: #7e7e7e !important;
     font-family: "GE Inspira";
     font-size: 1em;
     display: block;
     letter-spacing: 1px;
+  }
+
+  .gray-bar a:visited {
+    color: #7e7e7e !important
   }
 
   .gray-bar .lnk {
@@ -385,11 +392,15 @@ hr {
   }
 
   .gray-bar a:link {
-    color: #7e7e7e;
+    color: #7e7e7e !important;
     font-family: "GE Inspira";
     font-size: 1em;
     display: block;
     letter-spacing: 1px;
+  }
+
+  .gray-bar a:visited {
+    color: #7e7e7e !important
   }
 
   .gray-bar .lnk {
@@ -542,11 +553,15 @@ hr {
   }
 
   .gray-bar a:link {
-    color: #7e7e7e;
+    color: #7e7e7e !important;
     font-family: "GE Inspira";
     font-size: 1em;
     display: block;
     letter-spacing: 1px;
+  }
+
+  .gray-bar a:visited {
+    color: #7e7e7e !important
   }
 
   .gray-bar .lnk {
