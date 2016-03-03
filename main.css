@@ -187,8 +187,11 @@ footer.ops-footer .vw {
   margin: 0 auto 3% auto;
 }
 
-.seed_shot img, .techDetailsImage img, .ipadImg img, .polymerImage img, .ipadImg, .dataFirstImage, .techDetailsImage, .ipadContent {
+.techDetailsImage img, .ipadImg img, .polymerImage img, .ipadImg, .dataFirstImage, .techDetailsImage, .ipadContent {
   width: 100%;
+}
+.seed_shot img {
+  width: 80%;
 }
 .ipadImg {
   width: 100%;
@@ -216,14 +219,14 @@ hr {
 }
 .techDetailsContent {
   vertical-align: top;
-  padding-top: 14%;
+  padding-top: 8%;
   margin-bottom: 8%;
 }
 .polymerImage {
   display: block;
   vertical-align: top;
   padding-top: 15%;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
 }
 .white {
   color: #fff;
@@ -349,7 +352,7 @@ hr {
   .polymerImage {
     width: 40%;
     vertical-align: top;
-  padding-top: 5rem;
+  padding-top: 6%;
   }
   .polymerContent {
     margin-left: 10%;
