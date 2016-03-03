@@ -247,6 +247,10 @@ hr {
    margin: 0 auto;
    font-size: 1.5rem;
 }
+.headerBottom {
+  max-width: 1000px;
+  margin: 0 auto;
+}
 @media screen and (min-width: 769px) and (max-width: 1069px) {
   .dataFirstImage img {
     width: 100%;
