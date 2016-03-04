@@ -4854,7 +4854,8 @@ a.link--plain:hover {
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  padding: 8px 10px;
+  padding: 13px 10px;
+  height: 74px;
   text-decoration: none;
   font-weight: 700;
   color: #3f4145;
