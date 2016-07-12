@@ -43,7 +43,11 @@
 }
 
 .osp-hero {
-  background: linear-gradient(to right, #1f7ca5, #10475b, #082428, #082428);
+  background: #10475b; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(90deg,#2886af,#092328 60%); /*Safari 5.1-6*/
+  background: -o-linear-gradient(90deg,#2886af,#092328 60%); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(90deg,#2886af,#092328 60%); /*Fx 3.6-15*/
+  background: linear-gradient(90deg,#2886af,#092328 60%); /*Standard*/
   background-size: cover;
   width: 100%;
 }
