@@ -1,0 +1,30 @@
+////
+/// PX-VIEWPORT-DESIGN
+/// Defines viewport parameters.
+/// @group px-viewport-design
+////
+
+/// @type Number [default] - Widest viewport
+$desk-wide-width    : 80rem !default;
+
+/// @type List | String - Array of different breakpoints
+$breakpoints: (
+    "palm"          "screen and (max-width: 47.9375rem)",
+    "lap"           "screen and (min-width: 48rem) and (max-width: 68.204166667rem)",
+    "lap-and-up"    "screen and (min-width: 48rem)",
+    "portable"      "screen and (max-width: 68.2rem)",
+    "desk"          "screen and (min-width: 68.266666667rem)",
+    "desk-wide"     "screen and (min-width: #{$desk-wide-width})",
+    "retina"        "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)"
+);
+
+.viewport {
+  width: 100%;
+  max-width: $desk-wide-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.viewport--full-height {
+  min-height: 100vh;
+}

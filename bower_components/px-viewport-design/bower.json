@@ -1,0 +1,27 @@
+{
+  "name": "px-viewport-design",
+  "version": "0.2.7",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "Viewport parameters for Predix Experience",
+  "main": "_base.viewport.scss",
+  "keywords": [
+    "viewport",
+    "px",
+    "sass"
+  ],
+  "license": "Apache 2",
+  "homepage": "https://github.com/PredixDev/px-viewport-design.git",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "inuit-responsive-tools": "~0.1.3"
+  }
+}
