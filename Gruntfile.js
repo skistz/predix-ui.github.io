@@ -23,8 +23,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'css/noprefix/px-demo-site-sketch.css': 'sass/px-demo-site-sketch.scss',
-                    'css/noprefix/px-demo-site.css': 'sass/px-demo-site-predix.scss'
+                    'css/noprefix/predix-ui.css': 'sass/predix-ui.scss'
                 }
             }
         },
