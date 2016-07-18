@@ -24,16 +24,15 @@
       </section>
 
       <!-- Hamburger Menu and view on github -->
-      <!-- <section class="white-bar flex flex--justify flex--middle">
-        <div class="">
+        <span class="hamburger_menu actionable actionable--action">
           <iron-icon icon="fa:fa-bars"></iron-icon>
-        </div>
-      </section> -->
-
-      <div class="" >
+        </span>
 
         <!-- side nav -->
-        <div class="side-nav">
+        <div class="side-nav side-nav__slide-out">
+          <span class="hamburger_menu-close">
+            <iron-icon icon="fa:fa-times"></iron-icon>
+          </span>
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
             <li><a class="nav-lnk" href="getting_started.html" target="iframe_a">Getting Started</a></li>
@@ -46,9 +45,9 @@
                 <ul>
                   <!-- <li><a class="nav-lnk" href="" target="iframe_a">Slider</a></li> -->
 
-                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-actionable-text-icons-design/" target="iframe_a">px-actionable-text-icons-design</a></li>
-                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-alert-label/px-alert-label/" target="iframe_a">px-alert-label</a></li>
-                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-box-design/" target="iframe_a">px-box-design</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-actionable-text-icons-design/" target="iframe_a">Actionable Text & Icons Design</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-alert-label/px-alert-label/" target="iframe_a">Alert Label</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-box-design/" target="iframe_a">Box Design</a></li>
                   <!-- buttons-design -->
                   <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
                         <div class="arrow-right"></div><div class="u-ml--">Buttons Design</div></a>
@@ -60,7 +59,6 @@
                         <li><a class="nav-lnk" href="" target="iframe_a">px-buttons-group-design</a></li>
                       </ul>
                     </iron-collapse>
-                  <li><a class="nav-lnk" href="" target="iframe_a">Data Table</a></li>
                   <li><a class="nav-lnk" href="" target="iframe_a">px-code-design</a></li>
                   <li><a class="nav-lnk" href="" target="iframe_a">px-colors-design</a></li>
                   <li><a class="nav-lnk" href="" target="iframe_a">px-headings-design</a></li>
@@ -141,6 +139,9 @@
           </ul>
         </div>
 
+        <!-- overlay -->
+        <div class="overlay"></div>
+
         <!-- iframe -->
         <div class="iframe__container">
           <iframe src="getting_started.html" allowfullscreen name="iframe_a" class="iframe">
@@ -154,6 +155,30 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
+        /*
+        * when the 'hamburger_menu' is clicked slide the nav into the viewing area
+        */
+        $(".hamburger_menu").click(function(){
+          window.console&&console.log('foo');
+          $(".side-nav").toggleClass('side-nav__slide-out');
+          $(".side-nav").toggleClass('side-nav__slide-in');
+        });
+        $(".hamburger_menu").click(function(){
+          window.console&&console.log('foo');
+          $(".overlay").toggleClass('overlay--visible');
+        });
+        /*
+        * when the close 'hamburger_menu-close' slide the nav out of the viewing area
+        */
+        $(".hamburger_menu-close").click(function(){
+          window.console&&console.log('foo');
+          $(".side-nav").toggleClass('side-nav__slide-out');
+          $(".side-nav").toggleClass('side-nav__slide-in');
+        });
+        $(".hamburger_menu-close").click(function(){
+          window.console&&console.log('foo');
+          $(".overlay").toggleClass('overlay--visible');
+        });
         /*
         * If an li with the class of 'nav-group-lnk' is clicked
         * then rotate the arrow

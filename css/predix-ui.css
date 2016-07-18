@@ -712,6 +712,109 @@ sup {
 sub {
   bottom: -0.25em; }
 
+.actionable {
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+  white-space: nowrap;
+  line-height: inherit;
+  text-decoration: none;
+  font: inherit;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer; }
+  .actionable, .actionable:link, .actionable:visited, .actionable:active, .actionable:focus {
+    color: #3e87e8; }
+  .actionable:hover {
+    color: #3573c5; }
+  .actionable:active {
+    color: #2b5ea2; }
+
+.actionable--select, .actionable--select:link, .actionable--select:visited, .actionable--select:active, .actionable--select:focus {
+  color: #0a9ec1; }
+
+.actionable--select:hover {
+  color: #0986a4; }
+
+.actionable--select:active {
+  color: #086e87; }
+
+.actionable--action, .actionable--action:link, .actionable--action:visited, .actionable--action:active, .actionable--action:focus {
+  color: #525156; }
+
+.actionable--action:hover {
+  color: #3e87e8; }
+
+.actionable--action:active {
+  color: #2b5ea2; }
+
+.actionable--disabled, .actionable--disabled:link, .actionable--disabled:visited, .actionable--disabled:hover, .actionable--disabled:active,
+.actionable[disabled],
+.actionable[disabled]:link,
+.actionable[disabled]:visited,
+.actionable[disabled]:hover,
+.actionable[disabled]:active {
+  cursor: not-allowed;
+  color: #d1d0d8; }
+
+.actionable--small {
+  font-size: 0.8rem; }
+
+.actionable--large {
+  font-size: 1.3333333333rem; }
+
+.actionable--huge {
+  font-size: 2rem; }
+
+.btn {
+  display: inline-block;
+  overflow: visible;
+  height: 2em;
+  margin: 0;
+  border: 1px solid #b1b1bc;
+  border-radius: 3px;
+  padding: 0 1em;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  font: inherit;
+  line-height: calc(2em - 2px);
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  white-space: nowrap;
+  background-color: #e4e4ea; }
+  .btn, .btn:link, .btn:visited, .btn:hover, .btn:active {
+    color: black; }
+  .btn:hover {
+    border-color: #9999a3;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    background-color: #b1b1bc; }
+  .btn:active {
+    border-color: #7c7c84;
+    box-shadow: none;
+    background-color: #9999a3; }
+  .btn:active {
+    outline: none; }
+
+/** Workaround for FF since it does not support calc().
+  * Other buttons appear ok with the height declaration, but non-button elements do not.
+**/
+@-moz-document url-prefix() {
+  .btn:not(button) {
+    line-height: 1.8em; } }
+
+button.btn {
+  -webkit-appearance: button; }
+
+/**
+* Establish default space between adjacent buttons
+*/
+.btn + .btn {
+  margin-left: 0.6666666667rem; }
+
 html, body {
   font: GE Inspira Sans;
   overflow: hidden; }
@@ -736,35 +839,32 @@ html, body {
     color: #9999a3; }
 
 /*
-* white bar with menu and github link
+* Menus
 */
-.white-bar {
-  height: 60px; }
+.hamburger_menu {
+  height: 60px;
+  color: black;
+  position: fixed;
+  padding: 65px 20px 30px 20px;
+  z-index: 1; }
 
-/*
-* iframe
-*/
-.iframe__container {
-  width: 100%;
-  height: 100vh;
-  -ms-flex-positive: 1;
-      flex-grow: 1;
-  margin: 45px 0px 0px 300px;
-  position: fixed; }
-
-.iframe {
-  border: none;
-  height: 97vh;
-  overflow: hidden;
-  padding: 0px;
-  margin: 0px; }
+.hamburger_menu-close {
+  height: 60px;
+  color: #e4e4ea;
+  position: fixed;
+  padding: -3px 0px 0px -2px;
+  z-index: 3;
+  cursor: pointer; }
+  .hamburger_menu-close:link, .hamburger_menu-close:visited, .hamburger_menu-close:active, .hamburger_menu-close:focus {
+    color: #e4e4ea; }
+  .hamburger_menu-close:hover {
+    color: #b1b1bc; }
+  .hamburger_menu-close:active {
+    color: #7c7c84; }
 
 /*
 * side navigation
 */
-.side-nav__main-ul {
-  padding-bottom: 100px; }
-
 .side-nav {
   width: 300px;
   background: #525156;
@@ -774,7 +874,8 @@ html, body {
   position: fixed;
   height: 100%;
   margin-top: 45px;
-  overflow: auto; }
+  overflow: auto;
+  z-index: 2; }
   .side-nav a {
     color: white;
     text-decoration: none; }
@@ -789,8 +890,21 @@ html, body {
     list-style: none;
     cursor: pointer; }
 
+.side-nav__main-ul {
+  padding-bottom: 100px;
+  padding-top: 40px; }
+
 .nav-group-lnk {
   margin-left: -1rem; }
+
+.side-nav__slide-out {
+  transform: translate3d(-300px, 0px, 0px); }
+
+.side-nav__slide-in {
+  transform: translate3d(0px, 0px, 0px); }
+
+.selected {
+  color: #0a9ec1 !important; }
 
 .arrow-right {
   width: 0;
@@ -809,8 +923,33 @@ html, body {
   border-left: 8px solid white;
   padding-right: 2px; }
 
-.selected {
-  color: #0a9ec1 !important; }
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  visibility: hidden; }
+
+.overlay--visible {
+  visibility: visible; }
+
+/*
+* iframe sizing
+*/
+.iframe__container {
+  width: 100%;
+  height: 100vh;
+  margin: 45px 0px 0px 0px;
+  position: fixed; }
+
+.iframe {
+  border: none;
+  height: 97vh;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+  width: 100%; }
 
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro

@@ -33,9 +33,11 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 @import "px-viewport-design/_base.viewport.scss";
 @import "px-typography-design/_base.typography.scss";
 $actionable: true;
+$actionable--action: true;
 $actionable--large: true;
 $actionable--huge: true;
-// @import "px-actionable-text-icons/_objects.actionable.scss";
+@import "px-actionable-text-icons-design/_objects.actionable.scss";
+@import "px-buttons-design/_objects.buttons.scss";
 
 
 // Component
@@ -54,7 +56,6 @@ html,body{
   position: fixed;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
-
   & a:link {
     color: $grey6;
     font-size: $inuit-base-spacing-unit--large;
@@ -62,48 +63,45 @@ html,body{
     letter-spacing: 1px;
     text-decoration: none;
   }
-
   & a:visited {
     color: $grey6;
   }
 }
 
 /*
-* white bar with menu and github link
+* Menus
 */
-.white-bar{
+.hamburger_menu{
   height: 60px;
-}
-
-
-/*
-* iframe
-*/
-.iframe__container{
-  width: 100%;
-  height: 100vh;
-  flex-grow: 1;
-  margin: 45px 0px 0px 300px;
+  color: $black;
   position: fixed;
-
+  padding: 65px 20px 30px 20px; //extra padding for hit state
+  z-index: 1;
 }
-
-.iframe{
-  border: none;
-  height: 97vh;
-  overflow: hidden;
-  padding:0px;
-  margin: 0px;
+.hamburger_menu-close{
+  height: 60px;
+  color: $gray3;
+  position: fixed;
+  padding: -3px 0px 0px -2px;
+  z-index: 3;
+  cursor: pointer;
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: $gray3;
+  }
+  &:hover{
+    color: $gray5;
+  }
+  &:active {
+    color: $grey7;
+  }
 }
-
-
 
 /*
 * side navigation
 */
-.side-nav__main-ul{
-  padding-bottom: 100px;
-}
 .side-nav{
   width: 300px;
   background: $gray8;
@@ -114,6 +112,8 @@ html,body{
   height: 100%;
   margin-top: 45px;
   overflow: auto;
+  z-index: 2;
+  // transform: translate3d(-300px, 0px, 0px);
 
   & a{
     color: $white;
@@ -138,11 +138,22 @@ html,body{
     cursor: pointer;
   }
 }
-
+.side-nav__main-ul{
+  padding-bottom: 100px;
+  padding-top: 40px;
+}
 .nav-group-lnk{
   margin-left: -($inuit-base-spacing-unit);
 }
-
+.side-nav__slide-out{
+  transform: translate3d(-300px, 0px, 0px);
+}
+.side-nav__slide-in{
+  transform: translate3d(0px, 0px, 0px);
+}
+.selected {
+ color: $select-blue-default !important;
+}
 .arrow-right {
   width: 0;
   height: 0;
@@ -151,7 +162,6 @@ html,body{
   border-left: 8px solid $white;
   padding-right: 2px;
 }
-
 .arrow-down {
   width: 0;
   height: 0;
@@ -161,11 +171,49 @@ html,body{
   border-left: 8px solid $white;
   padding-right: 2px;
 }
-
- .selected {
-  color: $select-blue-default !important;
+.overlay{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  visibility: hidden;
+}
+.overlay--visible{
+  visibility: visible;;
 }
 
+/*
+* iframe sizing
+*/
+.iframe__container{
+  width: 100%;
+  height: 100vh;
+  margin: 45px 0px 0px 0px;
+  position: fixed;
+}
+.iframe{
+  border: none;
+  height: 97vh;
+  overflow: hidden;
+  padding:0px;
+  margin: 0px;
+  width: 100%;
+}
+.iframe__nav{
+
+}
+
+.iframe__no-nav{
+
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1069px) {
+
+}
+@media screen and (min-width: 1070px) and (max-width: 1440px){}
+@media screen and (min-width: 1441px) {}
 // Trumps
 $inuit-enable-margins--tiny     : true;
 $inuit-enable-margins--small    : true;
