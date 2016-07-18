@@ -713,8 +713,7 @@ sub {
   bottom: -0.25em; }
 
 html, body {
-  font: GE Inspira Sans;
-  overflow: hidden; }
+  font: GE Inspira Sans; }
 
 /*
 * gray title bar
@@ -723,8 +722,9 @@ html, body {
   background-color: #3b3b3f;
   min-height: 45px;
   z-index: 2;
-  position: relative;
-  padding-left: 1.3333333333rem; }
+  position: fixed;
+  padding-left: 1.3333333333rem;
+  width: 100%; }
   .gray-bar a:link {
     color: #9999a3;
     font-size: 1.3333333333rem;
@@ -747,7 +747,9 @@ html, body {
   width: 100%;
   height: 100vh;
   -ms-flex-positive: 1;
-      flex-grow: 1; }
+      flex-grow: 1;
+  margin: 45px 0px 0px 300px;
+  position: fixed; }
 
 .iframe {
   border: none;
@@ -760,12 +762,15 @@ html, body {
 * side navigation
 */
 .side-nav {
-  -ms-flex-preferred-size: 300px;
-      flex-basis: 300px;
+  width: 300px;
   background: #525156;
   color: white;
   padding: 20px 10px 20px 20px;
-  line-height: 200%; }
+  line-height: 200%;
+  position: fixed;
+  height: 100%;
+  margin-top: 45px;
+  overflow: auto; }
   .side-nav a {
     color: white;
     text-decoration: none; }

@@ -24,27 +24,83 @@
       </section>
 
       <!-- Hamburger Menu and view on github -->
-      <section class="white-bar flex flex--justify flex--middle">
+      <!-- <section class="white-bar flex flex--justify flex--middle">
         <div class="">
           <iron-icon icon="fa:fa-bars"></iron-icon>
         </div>
-        <div class="">
-          <a class="actionable" href="https://github.com/PredixDev" target="_blank">
-            <iron-icon icon="fa:fa-github"></iron-icon> View on Github
-          </a>
-        </div>
-      </section>
+      </section> -->
 
-      <div class="flex" >
+      <div class="" >
 
         <!-- side nav -->
         <div class="side-nav">
           <ul>
+            <!--Getting Started -->
             <li><a class="nav-lnk" href="getting_started.html" target="iframe_a">Getting Started</a></li>
 
+            <!--Basics -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
+                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
+             </li>
+              <iron-collapse id="collapse_Basics" opened>
+                <ul>
+                  <!-- <li><a class="nav-lnk" href="" target="iframe_a">Slider</a></li> -->
+
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-actionable-text-icons-design/" target="iframe_a">px-actionable-text-icons-design</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-alert-label/px-alert-label/" target="iframe_a">px-alert-label</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-box-design/" target="iframe_a">px-box-design</a></li>
+                  <!-- buttons-design -->
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
+                        <div class="arrow-right"></div><div class="u-ml--">Buttons Design</div></a>
+                    </li>
+                    <iron-collapse id="collapse_buttons">
+                      <ul>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-meta-buttons-design</a></li>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-buttons-design</a></li>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-buttons-group-design</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" href="" target="iframe_a">Data Table</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-code-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-colors-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-headings-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-helpers-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-input-group-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-flag-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-forms-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-layout-design</a></li>
+                  <!-- list-design -->
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_list')">
+                        <div class="arrow-right"></div><div class="u-ml--">List Design</div></a>
+                   </li>
+                    <iron-collapse id="collapse_list">
+                      <ul>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-meta-lists-design</a></li>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-list-bare-design</a></li>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-list-inline-design</a></li>
+                        <li><a class="nav-lnk" href="" target="iframe_a">px-list-ui-design</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-popover</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-progress-bar</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-spinner</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-tables-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-tabs</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-typography-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-toggle-design</a></li>
+                  <li><a class="nav-lnk" href="" target="iframe_a">px-tooltip</a></li>
+                </ul>
+              </iron-collapse>
+
+            <!--Sass Helpers -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Sass')">
+                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Sass Helpers</div></a>
+            </li>
+
+            <!--Components -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_componnents')">
                 <div id="arrow" class="arrow-down"></div><div class="u-ml--">Components</div></a>
-            </li>
+             </li>
               <iron-collapse id="collapse_componnents" opened>
                 <ul>
                   <!-- Datetime Components -->
@@ -56,7 +112,7 @@
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-rangepicker/px-rangepicker/demo.html" target="iframe_a">Range Picker</a></li>
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-picker/px-datetime-picker/demo.html" target="iframe_a">Picker</a></li>
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-range-panel/px-datetime-range-panel/demo.html" target="iframe_a">Range Panel</a></li>
-                        <li><a class="nav-lnk" href="http://3.39.77.213:8084/demo?dom=shadow" target="iframe_a">Range Field</a></li>
+                        <li><a class="nav-lnk" href="http://localhost:8084/demo?dom=shadow" target="iframe_a">Range Field</a></li>
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-field/px-datetime-field/demo.html" target="iframe_a">Field</a></li>
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-calendar-picker/px-calendar-picker/demo.html" target="iframe_a">Calendar</a></li>
                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-common/px-datetime-common/demo.html" target="iframe_a">Datetime Common</a></li>
@@ -77,10 +133,11 @@
                 </ul>
               </iron-collapse>
 
-            <li>Mobile</li>
-              <ul>
-                <li><a class="nav-lnk" href="" target="iframe_a">Px Partials</a></li>
-              </ul>
+            <!--Mobile -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Mobile')">
+                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Mobile</div></a>
+            </li>
+
           </ul>
         </div>
 
