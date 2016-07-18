@@ -41,7 +41,7 @@ $actionable--huge: true;
 // Component
 html,body{
   font: GE Inspira Sans;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 /*
@@ -101,6 +101,9 @@ html,body{
 /*
 * side navigation
 */
+.side-nav__main-ul{
+  padding-bottom: 100px;
+}
 .side-nav{
   width: 300px;
   background: $gray8;

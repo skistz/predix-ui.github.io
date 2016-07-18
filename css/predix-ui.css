@@ -713,7 +713,8 @@ sub {
   bottom: -0.25em; }
 
 html, body {
-  font: GE Inspira Sans; }
+  font: GE Inspira Sans;
+  overflow: hidden; }
 
 /*
 * gray title bar
@@ -761,6 +762,9 @@ html, body {
 /*
 * side navigation
 */
+.side-nav__main-ul {
+  padding-bottom: 100px; }
+
 .side-nav {
   width: 300px;
   background: #525156;
