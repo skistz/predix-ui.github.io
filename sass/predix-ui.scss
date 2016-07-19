@@ -206,7 +206,6 @@ html,body{
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
-    background: $gray8;
   }
   .hamburger_menu-close{
     height: 0px;
@@ -218,6 +217,7 @@ html,body{
     flex-basis: 400px;
     position: relative;
     height: 100vh;
+    background: $gray8;
   }
   .side-nav__main-ul{
     padding-top: 0px;
