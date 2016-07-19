@@ -1,0 +1,42 @@
+{
+  "name": "px-helpers-design",
+  "version": "0.3.5",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "Common helper styles for Predix Experience",
+  "main": "_generic.helpers.scss",
+  "keywords": [
+    "px",
+    "sass",
+    "helpers"
+  ],
+  "license": "Apache 2",
+  "homepage": "https://github.com/PredixDev/px-helpers-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "inuit-responsive-tools": "~0.1.3"
+  },
+  "devDependencies": {
+    "px-buttons-design": "https://github.com/PredixDev/px-buttons-design.git#~0.4.0",
+    "px-code-design": "https://github.com/PredixDev/px-code-design.git#~0.2.0",
+    "px-iconography-design": "https://github.com/PredixDev/px-iconography-design.git#~0.2.0",
+    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.0"
+  },
+  "_release": "0.3.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.5",
+    "commit": "df9c9adff2a7187701e98ba2827d107daab3cc08"
+  },
+  "_source": "https://github.com/PredixDev/px-helpers-design.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/PredixDev/px-helpers-design.git"
+}

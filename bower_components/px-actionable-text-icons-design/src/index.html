@@ -1,0 +1,247 @@
+<!-- build:remove -->
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Actionable Text &#38; Icons</title>
+    <link rel=stylesheet href=../dist/css/style.css>
+  </head>
+  <body>
+    <section class=viewport role=region>
+      <!-- /build -->
+      <h1>Actionable Text &#38; Icons</h1>
+      <div class="flex flex--justify flex--wrap flex--baseline">
+        <p>
+          To use this module, follow the instructions in the
+          <a class="actionable" href=https://github.com/PredixDev/px-actionable-text-icons-design>README</a>.
+          <!-- build:remove -->
+          (For background on PXd, read the
+          <a class="actionable" href=https://github.com/PredixDev/px-getting-started>Getting Started</a>
+          documentation.)
+          <!-- /build -->
+        </p>
+        <a class="actionable actionable--large" href=https://github.com/PredixDev/px-actionable-text-icons-design>
+          <i class="fa fa-github u-mr--"></i>
+          px-actionable-text-icons-design
+        </a>
+      </div>
+      <h2>How to Use</h2>
+      <p>Install via command line:</p>
+      <figure class="code u-mb+">
+        <code>
+          bower install --save https://github.com/PredixDev/px-actionable-text-icons-design.git
+        </code>
+      </figure>
+      <p>Add to component Sass file:</p>
+      <figure class="code u-mb++">
+        <code>
+          @import "px-actionable-text-icons-design/_objects.actionable.scss";
+        </code>
+      </figure>
+      <br/>
+
+      <h2>Actionable Text &#38; Icons</h2>
+      <h3>Regular Sizing</h3>
+      <h4>Sass Flags</h4>
+      <p>To enable actionable text or icons the following Sass flags are required:</p>
+
+      <h4>Default</h4>
+      <figure class=code>
+        <code>
+          $actionable : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+
+      <h4>Selected</h4>
+      <figure class=code>
+        <code>
+          $actionable--select : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+
+      <h4>Action</h4>
+      <figure class=code>
+        <code>
+          $actionable--action : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+
+      <h4>Disabled</h4>
+      <figure class=code>
+        <code>
+          $actionable--disabled : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+
+      <figure class="code u-mv+">
+        <code>
+          &lt;span class="actionable"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--select"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--action"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--disabled"&gt;&hellip;&lt;/span&gt;
+          <br>
+          <br>
+          &lt;span class="actionable"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--select"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--action"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--disabled"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+        </code>
+      </figure>
+      <div class="flex flex--wrap u-mb+">
+        <span class="actionable u-mr u-mb+">Default</span>
+        <span class="actionable actionable--select u-mr u-mb+">Selected</span>
+        <span class="actionable actionable--action u-mr u-mb+">Action</span>
+        <span class="actionable actionable--disabled u-mr u-mb+">Disabled</span>
+        <span class="actionable u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+        <span class="actionable actionable--select u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+        <span class="actionable actionable--action u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+        <span class="actionable actionable--disabled u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+      </div>
+
+      <h3>Small Sizing</h3>
+      <h4>Sass Flag</h4>
+      <p>To enable actionable text or icons the following Sass flag is required:</p>
+      <figure class=code>
+        <code>
+          $actionable--small : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+      <figure class="code u-mv+">
+        <code>
+          &lt;span class="actionable actionable--small"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--action actionable--small"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+        </code>
+      </figure>
+      <div class="flex flex--wrap u-mb+">
+        <span class="actionable actionable--small u-mr u-mb+">Default</span>
+        <span class="actionable actionable--action actionable--small u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+      </div>
+
+      <h3>Large</h3>
+      <h4>Sass Flag</h4>
+      <p>To enable actionable text or icons the following Sass flag is required:</p>
+      <figure class=code>
+        <code>
+          $actionable--large : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+      <figure class="code u-mv+">
+        <code>
+          &lt;span class="actionable actionable--large"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--action actionable--large"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+        </code>
+      </figure>
+      <div class="flex flex--wrap u-mb+">
+        <span class="actionable actionable--large u-mr u-mb+">Default</span>
+        <span class="actionable actionable--action actionable--large u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+      </div>
+
+      <h3>Huge</h3>
+      <h4>Sass Flag</h4>
+      <p>To enable actionable text or icons the following Sass flag is required:</p>
+      <figure class=code>
+        <code>
+          $actionable--huge : true;
+        </code>
+      </figure>
+      <small>
+        Flag must be set before
+        <code class="code code--inline">@import</code>
+        in component Sass file.
+      </small>
+      <figure class="code u-mv+">
+        <code>
+          &lt;span class="actionable actionable--huge"&gt;&hellip;&lt;/span&gt;
+          <br>
+          &lt;span class="actionable actionable--action actionable--huge"&gt;
+          <br>
+          &nbsp;&nbsp;&lt;i class="fa fa-&hellip;"&gt;&lt;/i&gt;
+          <br>
+          &lt;/span&gt;
+        </code>
+      </figure>
+      <div class="flex flex--wrap u-mb+">
+        <span class="actionable actionable--huge u-mr u-mb+">Default</span>
+        <span class="actionable actionable--action actionable--huge u-mr u-mb+">
+          <i class="fa fa-area-chart"></i>
+        </span>
+      </div>
+    <!-- build:remove -->
+    </section>
+  </body>
+</html>
+<!-- /build -->

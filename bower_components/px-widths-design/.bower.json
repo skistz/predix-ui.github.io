@@ -1,0 +1,38 @@
+{
+  "name": "px-widths-design",
+  "version": "0.3.9",
+  "authors": [
+    "General Electric",
+    "Harry Roberts <harry@csswizardry.com>"
+  ],
+  "description": "A series of helper classes for dealing with widths in Predix Experience",
+  "main": "_trumps.widths.scss",
+  "keywords": [
+    "px",
+    "sass",
+    "widths"
+  ],
+  "license": "Apache 2",
+  "homepage": "https://github.com/PredixDev/px-widths-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "OSS_Notice.pdf"
+  ],
+  "dependencies": {
+    "px-widths-tools-design": "https://github.com/PredixDev/px-widths-tools-design.git#~0.2.0"
+  },
+  "_release": "0.3.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.9",
+    "commit": "123a7bac7feece04c9e97a44cf46793fc3eeec08"
+  },
+  "_source": "https://github.com/PredixDev/px-widths-design.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/PredixDev/px-widths-design.git"
+}
