@@ -128,7 +128,8 @@ html,body{
   }
 
   & ul{
-    margin: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
     padding-left: $inuit-base-spacing-unit;
   }
 
@@ -201,27 +202,38 @@ html,body{
 * ipad landscape and up
 */
 @media screen and (min-width: 1024px) {
-  .overlay{
-    visibility: hidden;
-  }
-  .side-nav__default{
-    transform: translate3d(0px, 0px, 0px);
-  }
   .wrapper-flex{
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
     background: $gray8;
   }
+  .hamburger_menu-close{
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    visibility: hidden;
+  }
   .side-nav{
     flex-basis: 400px;
     position: relative;
     height: 100vh;
   }
+  .side-nav__main-ul{
+    padding-top: 0px;
+    margin-top: -15px;
+  }
+  .side-nav__default{
+    transform: translate3d(0px, 0px, 0px);
+  }
+  .overlay{
+    visibility: hidden;
+  }
   .iframe__container{
     flex-grow: 1;
     position: relative;
   }
+
 }
 
 // Trumps
