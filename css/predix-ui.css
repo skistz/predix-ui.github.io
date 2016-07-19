@@ -838,27 +838,30 @@ html, body {
   .gray-bar a:visited {
     color: #9999a3; }
 
-/*
-* Menus
-*/
-.hamburger_menu {
-  height: 60px;
-  color: black;
-  position: fixed;
-  padding: 65px 20px 30px 20px;
-  z-index: 1; }
+.lnk {
+  margin-top: 4px; }
 
-.hamburger_menu-close {
-  height: 60px;
+.menu {
+  padding-right: 1rem;
   color: #e4e4ea;
-  padding: 10px 10px 10px 0px;
-  z-index: 3;
   cursor: pointer; }
-  .hamburger_menu-close:link, .hamburger_menu-close:visited, .hamburger_menu-close:active, .hamburger_menu-close:focus {
+  .menu:link, .menu:visited, .menu:active, .menu:focus {
     color: #e4e4ea; }
-  .hamburger_menu-close:hover {
+  .menu:hover {
+    color: #e4e4ea; }
+  .menu:active {
     color: #b1b1bc; }
-  .hamburger_menu-close:active {
+
+.menu-close {
+  padding-right: 1rem;
+  color: #e4e4ea;
+  cursor: pointer;
+  margin-top: -1px; }
+  .menu-close:link, .menu-close:visited, .menu-close:active, .menu-close:focus {
+    color: #e4e4ea; }
+  .menu-close:hover {
+    color: #b1b1bc; }
+  .menu-close:active {
     color: #7c7c84; }
 
 /*

@@ -16,6 +16,10 @@
     <body>
       <!-- header -->
       <section class="gray-bar flex flex--middle">
+        <span class="menu">
+          <iron-icon class="menu__open" icon="fa:fa-bars"></iron-icon>
+          <iron-icon class="menu__close" icon="fa:fa-times"></iron-icon>
+        </span>
         <div class="lnk first">
           <a class="header-lnk" href="http://predix.io" target="_blank">
             <img src="img/Predix_small.png" alt="Predix Logo" style="height:20px;margin-bottom: -3px;"/> Developer Network
@@ -23,20 +27,12 @@
         </div>
       </section>
 
-      <!-- Hamburger Menu and view on github -->
-      <span class="hamburger_menu actionable actionable--action">
-        <iron-icon icon="fa:fa-bars"></iron-icon>
-      </span>
-
       <!-- overlay -->
       <div class="overlay"></div>
 
       <div class="wrapper-flex">
         <!-- side nav -->
         <div class="side-nav side-nav__default">
-          <span class="hamburger_menu-close">
-            <iron-icon icon="fa:fa-times"></iron-icon>
-          </span>
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
             <li><a class="nav-lnk" href="getting_started.html" target="iframe_a">Getting Started</a></li>
@@ -197,7 +193,7 @@
         * when the 'hamburger_menu' is clicked toggle the default class
         * show overlay (this will only be shown on mobile)
         */
-        $(".hamburger_menu").click(function(){
+        $(".menu").click(function(){
           $(".side-nav").toggleClass('side-nav__default');
           $(".overlay").toggleClass('overlay--visible');
         });

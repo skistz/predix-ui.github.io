@@ -67,23 +67,31 @@ html,body{
     color: $grey6;
   }
 }
-
-/*
-* Menus
-*/
-.hamburger_menu{
-  height: 60px;
-  color: $black;
-  position: fixed;
-  padding: 65px 20px 30px 20px; //extra padding for hit state
-  z-index: 1;
+.lnk{
+  margin-top: 4px;
 }
-.hamburger_menu-close{
-  height: 60px;
+.menu{
+  padding-right: $inuit-base-spacing-unit;
   color: $gray3;
-  padding: 10px 10px 10px 0px;
-  z-index: 3;
   cursor: pointer;
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: $gray3;
+  }
+  &:hover{
+    color: $gray3;
+  }
+  &:active {
+    color: $gray5;
+  }
+}
+.menu-close{
+  padding-right: $inuit-base-spacing-unit;
+  color: $gray3;
+  cursor: pointer;
+  margin-top: -1px;
   &:link,
   &:visited,
   &:active,
