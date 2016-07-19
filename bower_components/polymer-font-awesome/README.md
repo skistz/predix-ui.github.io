@@ -12,7 +12,7 @@ install that via:
 
 Then, go ahead and install the element and its dependencies:
 
-    bower install polymer-font-awesome
+    bower install px-polymer-font-awesome
 
 ## Using this component
 
