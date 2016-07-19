@@ -18,7 +18,7 @@
       <section class="gray-bar flex flex--middle">
         <span class="menu">
           <iron-icon class="menu__open" icon="fa:fa-bars"></iron-icon>
-          <iron-icon class="menu__close" icon="fa:fa-times"></iron-icon>
+          <iron-icon class="menu__close is__hidden" icon="fa:fa-times"></iron-icon>
         </span>
         <div class="lnk first">
           <a class="header-lnk" href="http://predix.io" target="_blank">
@@ -190,25 +190,20 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
-
+        /*
+        * define toggleNavClasses function
+        */
         var toggleNavClasses = function() {
           $(".side-nav").toggleClass('side-nav__default');
           $(".overlay").toggleClass('overlay--visible');
+          $(".menu__open").toggleClass('is__hidden');
+          $(".menu__close").toggleClass('is__hidden');
         };
-
         /*
-        * when the 'hamburger_menu' is clicked toggle the default class
-        * show overlay (this will only be shown on mobile)
+        * when the the menu, overlay, or nav-link is clicked toggle the default class
+        * only for mobile
         */
         $(".menu").click(function(){
-          $(".side-nav").toggleClass('side-nav__default');
-          $(".overlay").toggleClass('overlay--visible');
-        });
-        /*
-        * when the close 'hamburger_menu-close' is clicked toggle the default class
-        * hide overlay
-        */
-        $(".hamburger_menu-close").click(function(){
           toggleNavClasses();
         });
         $(".overlay").click(function(){

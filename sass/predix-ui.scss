@@ -87,7 +87,7 @@ html,body{
     color: $gray5;
   }
 }
-.menu-close{
+.menu_close{
   padding-right: $inuit-base-spacing-unit;
   color: $gray3;
   cursor: pointer;
@@ -104,6 +104,9 @@ html,body{
   &:active {
     color: $grey7;
   }
+}
+.is__hidden{
+  display: none;
 }
 
 /*
@@ -148,7 +151,6 @@ html,body{
 }
 .side-nav__main-ul{
   padding-bottom: 100px;
-  padding-top: 20px;
 }
 .nav-group-lnk{
   margin-left: -($inuit-base-spacing-unit);
@@ -215,11 +217,8 @@ html,body{
     justify-content: space-between;
     width: 100%;
   }
-  .hamburger_menu-close{
-    height: 0px;
-    padding: 0px;
-    margin: 0px;
-    visibility: hidden;
+  .menu{
+    display: none;
   }
   .side-nav{
     flex-basis: 400px;
@@ -229,7 +228,6 @@ html,body{
   }
   .side-nav__main-ul{
     padding-top: 0px;
-    margin-top: -15px;
   }
   .side-nav__default{
     transform: translate3d(0px, 0px, 0px);

@@ -852,17 +852,20 @@ html, body {
   .menu:active {
     color: #b1b1bc; }
 
-.menu-close {
+.menu_close {
   padding-right: 1rem;
   color: #e4e4ea;
   cursor: pointer;
   margin-top: -1px; }
-  .menu-close:link, .menu-close:visited, .menu-close:active, .menu-close:focus {
+  .menu_close:link, .menu_close:visited, .menu_close:active, .menu_close:focus {
     color: #e4e4ea; }
-  .menu-close:hover {
+  .menu_close:hover {
     color: #b1b1bc; }
-  .menu-close:active {
+  .menu_close:active {
     color: #7c7c84; }
+
+.is__hidden {
+  display: none; }
 
 /*
 * side navigation
@@ -894,8 +897,7 @@ html, body {
     cursor: pointer; }
 
 .side-nav__main-ul {
-  padding-bottom: 100px;
-  padding-top: 20px; }
+  padding-bottom: 100px; }
 
 .nav-group-lnk {
   margin-left: -1rem; }
@@ -961,11 +963,8 @@ html, body {
     -ms-flex-pack: justify;
         justify-content: space-between;
     width: 100%; }
-  .hamburger_menu-close {
-    height: 0px;
-    padding: 0px;
-    margin: 0px;
-    visibility: hidden; }
+  .menu {
+    display: none; }
   .side-nav {
     -ms-flex-preferred-size: 400px;
         flex-basis: 400px;
@@ -973,8 +972,7 @@ html, body {
     height: 100vh;
     background: #525156; }
   .side-nav__main-ul {
-    padding-top: 0px;
-    margin-top: -15px; }
+    padding-top: 0px; }
   .side-nav__default {
     transform: translate3d(0px, 0px, 0px); }
   .overlay {
