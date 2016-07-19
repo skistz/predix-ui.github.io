@@ -24,12 +24,16 @@
       </section>
 
       <!-- Hamburger Menu and view on github -->
-        <span class="hamburger_menu actionable actionable--action">
-          <iron-icon icon="fa:fa-bars"></iron-icon>
-        </span>
+      <span class="hamburger_menu actionable actionable--action">
+        <iron-icon icon="fa:fa-bars"></iron-icon>
+      </span>
 
+      <!-- overlay -->
+      <div class="overlay"></div>
+
+      <div class="wrapper-flex">
         <!-- side nav -->
-        <div class="side-nav side-nav__slide-out">
+        <div class="side-nav side-nav__default">
           <span class="hamburger_menu-close">
             <iron-icon icon="fa:fa-times"></iron-icon>
           </span>
@@ -139,9 +143,6 @@
           </ul>
         </div>
 
-        <!-- overlay -->
-        <div class="overlay"></div>
-
         <!-- iframe -->
         <div class="iframe__container">
           <iframe src="getting_started.html" allowfullscreen name="iframe_a" class="iframe">
@@ -156,27 +157,23 @@
     <script type="text/javascript">
       $(document).ready(function(){
         /*
-        * when the 'hamburger_menu' is clicked slide the nav into the viewing area
+        * when the 'hamburger_menu' is clicked toggle the default class
+        * show overlay (this will only be shown on mobile)
         */
         $(".hamburger_menu").click(function(){
-          window.console&&console.log('foo');
-          $(".side-nav").toggleClass('side-nav__slide-out');
-          $(".side-nav").toggleClass('side-nav__slide-in');
+          $(".side-nav").toggleClass('side-nav__default');
         });
         $(".hamburger_menu").click(function(){
-          window.console&&console.log('foo');
           $(".overlay").toggleClass('overlay--visible');
         });
         /*
-        * when the close 'hamburger_menu-close' slide the nav out of the viewing area
+        * when the close 'hamburger_menu-close' is clicked toggle the default class
+        * hide overlay
         */
         $(".hamburger_menu-close").click(function(){
-          window.console&&console.log('foo');
-          $(".side-nav").toggleClass('side-nav__slide-out');
-          $(".side-nav").toggleClass('side-nav__slide-in');
+          $(".side-nav").toggleClass('side-nav__default');
         });
         $(".hamburger_menu-close").click(function(){
-          window.console&&console.log('foo');
           $(".overlay").toggleClass('overlay--visible');
         });
         /*
@@ -201,12 +198,15 @@
           }
         });
       });
-      var client = document.documentElement.clientWidth;
-      var wwidth = $(window).width();
-      var dwidth = $(document).width();
-      console.log(wwidth);
-      console.log(client);
+      // var client = document.documentElement.clientWidth;
+      // var wwidth = $(window).width();
+      // var dwidth = $(document).width();
+      // console.log(wwidth);
+      // console.log(client);
 
+      /*
+      * toggle for side nav's <iron-collapse>
+      */
       function toggle(selector) {
         document.querySelector(selector).toggle();
       }
