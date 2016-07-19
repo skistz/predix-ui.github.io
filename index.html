@@ -1,108 +1,181 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>px-demo-site API</title>
+        <link rel="stylesheet" href="css/predix-ui.css"/>
+        <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+        <link rel="import" href="../iron-component-page/iron-component-page.html"/>
+        <link rel="icon" href="img/px-favicon.png" type="image/x-icon"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="import" href="../iron-collapse/iron-collapse.html"/>
+        <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html" />
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-    <meta name="keywords" content="Predix, advanced analytics, amqp, anomaly detection,
-    apps, applications, applied predictive technologies, big data analytics, big data software,
-    blob storage, caas, cloud analytics, cloud applications, cloud foundry, cloud infrastructure,
-    cloud integration, cloud management software, cloud platform, cloud security, cloud services,
-    cloud software, cloud solutions, cloud storage, cloud technology, data analytics software,
-    data management, data science, debugger, debugging tools, hybrid cloud, iaas, industrial internet,
-    industrial internet of things, infrastructure as a service, iot technology, key value database,
-    key value store, logging, logstash, object store, paas, platform as a service,
-    predictive analytics software, predictive analysis, predictive maintenance,
-    real-time analytics, saas, saas software, software as a service, the internet of things,
-    ime series data, uaa, what is cloud computing, what is the cloud, what is iot, what is saas
-    ,what is Predix, how Predix works"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <!-- import predix.io css file -->
-    <link rel="stylesheet" href="predixio.css" />
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body class="osp-body">
-    <!-- Gray bar -->
-    <section class="gray-bar">
-      <div class="lnk first">
-        <a href="http://predix.io">Develop on Predix</a>
-      </div>
-      <div class="lnk second">
-        <a href="http://ge.com/digital">GE Digital</a>
-      </div>
-    </section>
-    <!-- end - Gray bar -->
-    <!-- begin - hero section -->
-    <section class="osp-hero">
-      <div class="osp-hero-background">
-        <div class="osp-hero-container">
-          <img class="osp-hero-logo" src="img/Predix_UI-Logo.png" alt="Predix Logo" />
+    </head>
+    <body>
+      <!-- header -->
+      <section class="gray-bar flex flex--middle">
+        <span class="menu">
+          <iron-icon class="menu__open" icon="fa:fa-bars"></iron-icon>
+          <iron-icon class="menu__close is__hidden" icon="fa:fa-times"></iron-icon>
+        </span>
+        <div class="lnk first">
+          <a class="header-lnk" href="http://predix.io" target="_blank">
+            <img class="header-img" src="img/Predix_small.png" alt="Predix Logo"/> Developer Network
+          </a>
         </div>
-      </div>
-    </section>
-    <!-- end - hero section -->
-    <!-- begin - contents container -->
-    <section class="osp-contents-container">
-      <!-- begin - cards container -->
-      <div class="osp-cards-container">
-        <!-- row -->
-        <div class="platform text--center">
-            <p class="header">We've produced Predix UI as a set of user interface components that enable designers and developers to quickly and easily create Industrial Internet web applications that run on top of Predix services and data.</p>
-          <div class="seed_shot">
-            <img src="img/seed_beautyshot.png" alt="Predix Seed On a Laptop"></div>
-          <h2 class="subHeader">Try Predix UI</h2>
-          <p>New to Predix? Just click below to learn more and get started.</p>
-            <a href="https://www.predix.io/services/starter-pack.html?id=1225" class="btn btn--primary">Visit the Predix developer site</a>
-        </div>
-        <hr>
-        <div>
-          <div class="ipadImg"><img src="img/predix_tiles_ipad.png" alt=""></div>
-          <div class="ipadContent">
+      </section>
 
-            <h2 class="subHeader dataFirstHeader">Data-first design philosophy</h2>
-              <p>We know your industrial data analysis requires time-critical decisions. That’s why the Predix UI dashboard is intuitive, so you can grasp key information instantly at a glance.</p>
-              <p>You'll find over a dozen useful components, from data visualization to alarm display. All of this in addition to the templates and layouts that you'd expect from a UI framework. We're just getting started so watch for much, much more.</p>
-          </div>
-          <div>
-            <div class="dataFirstContent"><p>The high-contrast visual language and card-based modular view framework deliver the most meaningful and useful information. That means you can create custom apps that deliver data based on specific context and user needs.</div>
-            <div class="dataFirstImage"><img src="img/predix_ui_screen.png" alt="Slide"></div>
-          </div>
-        </div>
-        <hr>
-        <div style="margin-top:1rem;">
-          <div class="techDetailsContent">
-            <h2 class="subHeader">Tried-and-true technology</h2>
-            <p>Predix UI is implemented using modern web application technologies such as a powerful, scalable and Sass-based CSS framework. You'll find components powered by D3, the best of open source web tech and we're going all-in on web components. Predix UI intends to be framework-agnostic, so you can use Angular, Ember, Backbone, pure Polymer.</p>
+      <!-- overlay -->
+      <div class="overlay"></div>
 
-          </div>
-          <div class="techDetailsImage"><img src="img/Github-seed-shot.png" alt="Github Predix Seed"></div>
-        </div>
-        <div>
-          <div class="polymerImage"><img src="img/polymer_logo.jpg" alt=""></div>
-          <div class="polymerContent">
+      <div class="wrapper-flex">
+        <!-- side nav -->
+        <div class="side-nav side-nav__default">
+          <ul class="side-nav__main-ul">
+            <!--Getting Started -->
+            <li><a class="nav-lnk" href="getting_started.html" target="iframe_a">Getting Started</a></li>
 
-            <p>Predix UI uses Google's <a href="https://www.polymer-project.org">Polymer</a>, which provides innovative "syntactic sugar" and polyfill libraries for practical adoption of modern web components. Polymer helps build web applications with custom, encapsuled, reusable components that work just like HTML elements.</p>
-          </div>
+            <!--Basics -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
+                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
+             </li>
+              <iron-collapse id="collapse_Basics" opened>
+                <ul>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-alert-label/px-alert-label/" target="iframe_a">Alert Label</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-popover/px-popover/" target="iframe_a">Popover</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-progress-bar/px-progress-bar/" target="iframe_a">Progress Bar</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-spinner/px-spinner/" target="iframe_a">Spinner</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-tabs/px-tabs/" target="iframe_a">Tabs</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-tooltip/px-tooltip/" target="iframe_a">Tooltip</a></li>
+                </ul>
+              </iron-collapse>
+
+            <!--Components -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_componnents')">
+                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Components</div></a>
+             </li>
+              <iron-collapse id="collapse_componnents" opened>
+                <ul>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-alert-message/px-alert-message/" target="iframe_a">Alert Message</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-app-nav/px-app-nav/" target="iframe_a">App Nav</a></li>
+                  <!-- Cards -->
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
+                        <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
+                    </li>
+                    <iron-collapse id="collapse_cards">
+                      <ul>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-card/px-card/" target="iframe_a">Card</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-deck-selector/px-deck-selector/" target="iframe_a">Deck Selector</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-sample-cards/px-sample-cards/" target="iframe_a">Sample Cards</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-widget-cards/px-widget-cards/" target="iframe_a">Widget Cards</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <!-- Charts -->
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
+                        <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
+                    </li>
+                    <iron-collapse id="collapse_charts">
+                      <ul>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-chart/px-chart/" target="iframe_a">Charts</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-simple-bar-chart/px-simple-bar-chart/" target="iframe_a">Simple Bar Chart</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart/" target="iframe_a">Simple Horizontal Bar Chart</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-simple-line-chart/px-simple-line-chart/" target="iframe_a">Simple Line Chart</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-clipboard/px-clipboard/" target="iframe_a">Clipboard</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-context-browser/px-context-browser/" target="iframe_a">Context Browser</a></li>
+
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-data-table/px-data-table/" target="iframe_a">Data Table</a></li>
+                  <!-- Datetime Components -->
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
+                        <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
+                    </li>
+                    <iron-collapse id="collapse_datetime-components">
+                      <ul>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-calendar-picker/px-calendar-picker/" target="iframe_a">Calendar Picker</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-field/px-datetime-field/" target="iframe_a">Field</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-picker/px-datetime-picker/" target="iframe_a">Picker</a></li>
+                         <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-range-field/px-datetime-range-field/" target="iframe_a">Range Field</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-datetime-range-panel/px-datetime-range-panel/" target="iframe_a">Range Panel</a></li>
+                        <li><a class="nav-lnk" href="http://predixdev.github.io/px-rangepicker/px-rangepicker/" target="iframe_a">Rangepicker</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-dropdown/px-dropdown/" target="iframe_a">Dropdown</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-login/px-login/" target="iframe_a">Login</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-modal/px-modal/" target="iframe_a">Modal</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-overlay/px-overlay/" target="iframe_a">Overlay</a></li>
+                  <li><a class="nav-lnk" href="http://predixdev.github.io/px-validation/px-validation/" target="iframe_a">Validation</a></li>
+                </ul>
+              </iron-collapse>
+
+          </ul>
         </div>
-        <hr>
-        <div class="github">
-          <h2 class="subHeader">Get Predix UI on GitHub</h2>
-          <p class="headerBottom">We're adding design patterns for small and large screens, localization and accessibility, advanced visualizations plus stencils for designers.</p>
-          <br />
-          <p class="headerBottom">But you don't have to wait! Predix UI is up and running on GitHub so get it now.</p>
-          <br />
-          <a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" class="btn btn--primary">Predix Developer GitHub</a>
+
+        <!-- iframe -->
+        <div class="iframe__container">
+          <iframe src="getting_started.html" allowfullscreen name="iframe_a" class="iframe">
+            <p>Your browser does not support iframes.</p>
+          </iframe>
         </div>
+
       </div>
-      <!-- end - cards container -->
-    </section>
-    <!-- end - cards container -->
-    <!-- begin - footer -->
-    <footer class="ops-footer"><div class="vw"><div class="layout"><div class=" u-4/12 pull-left osp-footer-img"><a href="https://ge.com/digital" class="no-border gray"><img src="img/monogram-wdmk.png" alt="GE Monogram"></a></div><div class="layout__item u-8/12"><small><ul class="list-inline list-inline--delimited"><li><a href="http://predix.io/legal" class="no-border darker">Legal</a></li><li><a href="mailto:info@predix.io" class="no-border darker">Contact Us</a></li><li>Copyright © 2016 General Electric Company. All rights reserved.</li></ul></small></div></div></div></footer>
-    <!-- end - footer -->
-  </body>
+
+    </body>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        /*
+        * define toggleNavClasses function
+        * when the the menu, overlay, or nav-link is clicked toggle the default class
+        * only for mobile
+        */
+        var toggleNavClasses = function() {
+          $(".side-nav").toggleClass('side-nav__default');
+          $(".overlay").toggleClass('overlay--visible');
+          $(".menu__open").toggleClass('is__hidden');
+          $(".menu__close").toggleClass('is__hidden');
+        };
+        $(".menu").click(function(){
+          toggleNavClasses();
+        });
+        $(".overlay").click(function(){
+          toggleNavClasses();
+        });
+        $(".nav-lnk").click(function(){
+          toggleNavClasses();
+        });
+        /*
+        * If an li with the class of 'nav-group-lnk' is clicked
+        * then rotate the arrow
+        */
+        $(".nav-group-lnk").click(function(){
+          $(this.children[0]).toggleClass('arrow-down');
+          $(this.children[0]).toggleClass('arrow-right');
+        });
+        /*
+        * When a link with the class of 'nav-lnk' is clicked
+        * remove the .selected class from all links
+        * and only add it to the one that was selected
+        */
+        $("a").click(function(){
+          console.dir($(this));
+          if(this.classList.contains("nav-lnk")){
+            $( ".nav-lnk" ).removeClass('selected');
+            $(this).addClass('selected');
+          }
+        });
+      });
+
+      /*
+      * toggle for side nav's <iron-collapse>
+      */
+      function toggle(selector) {
+        document.querySelector(selector).toggle();
+      }
+
+
+    </script>
+
 </html>

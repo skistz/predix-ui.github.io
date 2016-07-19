@@ -1,0 +1,267 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the "sketch" notion of the px-demo-site component
+//
+// @author
+//
+
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in px-demo-site-predix.scss, not in this file.
+*/
+
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+@import "px-typography-design/_base.typography.scss";
+$actionable: true;
+$actionable--action: true;
+$actionable--large: true;
+$actionable--huge: true;
+@import "px-actionable-text-icons-design/_objects.actionable.scss";
+@import "px-buttons-design/_objects.buttons.scss";
+
+
+// Component
+html,body{
+  font: GE Inspira Sans;
+  overflow: hidden;
+}
+
+/*
+* gray title bar
+*/
+.gray-bar {
+  background-color: $grey9;
+  min-height: 45px;
+  z-index: 2;
+  position: fixed;
+  padding-left: $inuit-base-spacing-unit--large;
+  width: 100%;
+  & a:link {
+    color: $grey6;
+    font-size: 17px;
+    display: block;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  & a:visited {
+    color: $grey6;
+  }
+}
+.header-img{
+  height:20px;
+  margin-bottom: -4px;
+}
+.lnk{
+  margin-top: 4px;
+}
+.menu{
+  padding-right: $inuit-base-spacing-unit;
+  color: $gray3;
+  cursor: pointer;
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: $gray3;
+  }
+  &:hover{
+    color: $gray3;
+  }
+  &:active {
+    color: $gray5;
+  }
+}
+.menu_close{
+  padding-right: $inuit-base-spacing-unit;
+  color: $gray3;
+  cursor: pointer;
+  margin-top: -1px;
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: $gray3;
+  }
+  &:hover{
+    color: $gray5;
+  }
+  &:active {
+    color: $grey7;
+  }
+}
+.is__hidden{
+  display: none;
+}
+
+/*
+* side navigation
+*/
+.side-nav{
+  width: 300px;
+  background: $gray8;
+  color: $white;
+  padding: 20px;
+  line-height: 200%;
+  position: fixed;
+  height: 100%;
+  margin-top: 45px;
+  overflow: auto;
+  z-index: 2;
+
+  & a{
+    color: $white;
+    text-decoration: none;
+  }
+
+  & a:hover{
+    color: $select-blue-default;
+  }
+
+  & a:active{
+    color: $select-blue-pressed;
+  }
+
+  & ul{
+    margin-left: 0px;
+    margin-bottom: 0px;
+    padding-left: $inuit-base-spacing-unit;
+  }
+
+  & li{
+    list-style: none;
+    cursor: pointer;
+  }
+}
+.side-nav__main-ul{
+  padding-bottom: 100px;
+}
+.nav-group-lnk{
+  margin-left: -($inuit-base-spacing-unit);
+}
+.side-nav__default{
+  transform: translate3d(-300px, 0px, 0px);
+}
+.selected {
+ color: $select-blue-default !important;
+}
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid $white;
+  padding-right: 2px;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(90deg);
+  border-left: 8px solid $white;
+  padding-right: 2px;
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  visibility: hidden;
+}
+.overlay--visible{
+  visibility: visible;;
+}
+
+/*
+* iframe sizing
+*/
+.iframe__container{
+  width: 100%;
+  height: 100vh;
+  margin: 45px 0px 0px 0px;
+  position: fixed;
+}
+.iframe{
+  border: none;
+  height: 97vh;
+  overflow: hidden;
+  padding:0px;
+  margin: 0px;
+  width: 100%;
+}
+
+/*
+* ipad landscape and up
+*/
+@media screen and (min-width: 1024px) {
+  .gray-bar {
+    & a:link {
+      font-size: $inuit-base-spacing-unit--large;
+    }
+  }
+  .header-img{
+    height:20px;
+    margin-bottom: -3px;
+  }
+  .wrapper-flex{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .menu{
+    display: none;
+  }
+  .side-nav{
+    flex-basis: 350px;
+    position: relative;
+    height: 100vh;
+    background: $gray8;
+  }
+  .side-nav__main-ul{
+    padding-top: 0px;
+  }
+  .side-nav__default{
+    transform: translate3d(0px, 0px, 0px);
+  }
+  .overlay{
+    visibility: hidden;
+  }
+  .iframe__container{
+    flex-grow: 1;
+    position: relative;
+  }
+
+}
+
+// Trumps
+$inuit-enable-margins--tiny     : true;
+$inuit-enable-margins--small    : true;
+$inuit-enable-margins           : true;
+$inuit-enable-margins--none     : true;
+$inuit-enable-margins--large    : true;
+
+@import "px-spacing-design/_trumps.spacing.scss";
+@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
