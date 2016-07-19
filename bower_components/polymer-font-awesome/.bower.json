@@ -35,5 +35,10 @@
   },
   "_source": "https://github.com/PredixDev/polymer-font-awesome.git",
   "_target": "^0.1.8",
+<<<<<<< HEAD
   "_originalSource": "px-polymer-font-awesome"
+=======
+  "_originalSource": "px-polymer-font-awesome",
+  "_direct": true
+>>>>>>> 13c1ebc8439a5014b9444770c746b02bbf353b73
 }
