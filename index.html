@@ -189,6 +189,12 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
+
+        var toggleNavClasses = function() {
+          $(".side-nav").toggleClass('side-nav__default');
+          $(".overlay").toggleClass('overlay--visible');
+        };
+
         /*
         * when the 'hamburger_menu' is clicked toggle the default class
         * show overlay (this will only be shown on mobile)
@@ -202,16 +208,13 @@
         * hide overlay
         */
         $(".hamburger_menu-close").click(function(){
-          $(".side-nav").toggleClass('side-nav__default');
-          $(".overlay").toggleClass('overlay--visible');
+          toggleNavClasses();
         });
         $(".overlay").click(function(){
-          $(".side-nav").toggleClass('side-nav__default');
-          $(".overlay").toggleClass('overlay--visible');
+          toggleNavClasses();
         });
         $(".nav-lnk").click(function(){
-          $(".side-nav").toggleClass('side-nav__default');
-          $(".overlay").toggleClass('overlay--visible');
+          toggleNavClasses();
         });
         /*
         * If an li with the class of 'nav-group-lnk' is clicked
