@@ -162,8 +162,6 @@
         */
         $(".hamburger_menu").click(function(){
           $(".side-nav").toggleClass('side-nav__default');
-        });
-        $(".hamburger_menu").click(function(){
           $(".overlay").toggleClass('overlay--visible');
         });
         /*
@@ -172,8 +170,14 @@
         */
         $(".hamburger_menu-close").click(function(){
           $(".side-nav").toggleClass('side-nav__default');
+          $(".overlay").toggleClass('overlay--visible');
         });
-        $(".hamburger_menu-close").click(function(){
+        $(".overlay").click(function(){
+          $(".side-nav").toggleClass('side-nav__default');
+          $(".overlay").toggleClass('overlay--visible');
+        });
+        $(".nav-lnk").click(function(){
+          $(".side-nav").toggleClass('side-nav__default');
           $(".overlay").toggleClass('overlay--visible');
         });
         /*

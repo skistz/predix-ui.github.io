@@ -81,8 +81,7 @@ html,body{
 .hamburger_menu-close{
   height: 60px;
   color: $gray3;
-  position: fixed;
-  padding: -3px 0px 0px -2px;
+  padding: 10px 10px 10px 0px;
   z-index: 3;
   cursor: pointer;
   &:link,
@@ -140,7 +139,7 @@ html,body{
 }
 .side-nav__main-ul{
   padding-bottom: 100px;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .nav-group-lnk{
   margin-left: -($inuit-base-spacing-unit);
@@ -212,11 +211,12 @@ html,body{
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
-
+    background: $gray8;
   }
   .side-nav{
     flex-basis: 400px;
     position: relative;
+    height: 100vh;
   }
   .iframe__container{
     flex-grow: 1;

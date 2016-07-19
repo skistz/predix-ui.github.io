@@ -851,8 +851,7 @@ html, body {
 .hamburger_menu-close {
   height: 60px;
   color: #e4e4ea;
-  position: fixed;
-  padding: -3px 0px 0px -2px;
+  padding: 10px 10px 10px 0px;
   z-index: 3;
   cursor: pointer; }
   .hamburger_menu-close:link, .hamburger_menu-close:visited, .hamburger_menu-close:active, .hamburger_menu-close:focus {
@@ -892,7 +891,7 @@ html, body {
 
 .side-nav__main-ul {
   padding-bottom: 100px;
-  padding-top: 40px; }
+  padding-top: 20px; }
 
 .nav-group-lnk {
   margin-left: -1rem; }
@@ -961,11 +960,13 @@ html, body {
     display: inline-flex;
     -ms-flex-pack: justify;
         justify-content: space-between;
-    width: 100%; }
+    width: 100%;
+    background: #525156; }
   .side-nav {
     -ms-flex-preferred-size: 400px;
         flex-basis: 400px;
-    position: relative; }
+    position: relative;
+    height: 100vh; }
   .iframe__container {
     -ms-flex-positive: 1;
         flex-grow: 1;
