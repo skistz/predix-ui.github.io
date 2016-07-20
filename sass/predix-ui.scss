@@ -121,7 +121,7 @@ html,body{
   background: $gray8;
   color: $white;
   padding: 20px;
-  line-height: 250%;
+  line-height: 300%;
   position: fixed;
   height: 100%;
   margin-top: 45px;
@@ -256,6 +256,7 @@ html,body{
     flex-grow: 1;
     position: relative;
   }
+  
 }
 
 // Trumps
