@@ -847,7 +847,7 @@ html, body {
   background: #525156;
   color: white;
   padding: 20px;
-  line-height: 200%;
+  line-height: 250%;
   position: fixed;
   height: 100%;
   margin-top: 45px;
@@ -948,7 +948,8 @@ html, body {
     position: relative;
     height: 100vh;
     background: #525156;
-    overflow: auto; }
+    overflow: auto;
+    line-height: 200%; }
   .side-nav__main-ul {
     padding-top: 0px; }
   .side-nav__default {
