@@ -125,8 +125,9 @@ html,body{
   position: fixed;
   height: 100%;
   margin-top: 45px;
-  overflow: auto;
   z-index: 2;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 
   & a{
     color: $white;
@@ -201,6 +202,8 @@ html,body{
   height: 100vh;
   margin: 45px 0px 0px 0px;
   position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .iframe{
   border: none;
@@ -237,6 +240,7 @@ html,body{
     position: relative;
     height: 100vh;
     background: $gray8;
+    overflow: auto;
   }
   .side-nav__main-ul{
     padding-top: 0px;
