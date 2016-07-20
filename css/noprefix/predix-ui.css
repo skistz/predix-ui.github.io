@@ -958,7 +958,8 @@ html, body {
     visibility: hidden; }
   .iframe__container {
     flex-grow: 1;
-    position: relative; } }
+    position: relative;
+    overflow-y: auto; } }
 
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro

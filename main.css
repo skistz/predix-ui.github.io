@@ -164,7 +164,7 @@
 }
 
 footer.ops-footer {
-  background: #666;
+  background: #7c7c84;
 }
 
 footer.ops-footer .vw {
@@ -512,7 +512,6 @@ hr {
 
   .osp-footer-img img {
     width: 150px;
-    margin-top: -12px;
   }
 
   .list-inline--delimited {
@@ -707,7 +706,6 @@ hr {
 
  .osp-footer-img img {
     width: 150px;
-    margin-top: -12px;
   }
 
   .list-inline--delimited {

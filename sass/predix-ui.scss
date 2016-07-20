@@ -255,8 +255,10 @@ html,body{
   .iframe__container{
     flex-grow: 1;
     position: relative;
+    overflow-y: auto;
+
   }
-  
+
 }
 
 // Trumps

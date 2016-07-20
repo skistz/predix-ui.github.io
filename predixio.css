@@ -312,7 +312,7 @@ th {
     padding: 0
 }
 .vw {
-    width: 98%;
+    width: 90%;
     max-width: 73.125rem;
     margin-right: auto;
     margin-left: auto;
@@ -524,7 +524,7 @@ footer {
     height: 6.25rem;
     padding-top: 2.0625rem;
     background-color: #eaeaea;
-    color: #a9a9a9;
+    color: #d1d0d8;
     z-index: 80
 }
 @media screen and (max-width: 44.9375em) {
@@ -3010,6 +3010,7 @@ table th {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -4616,7 +4617,7 @@ a.gray {
     color: #d8d8d8
 }
 a.darker {
-    color: #a9a9a9
+    color: #d1d0d8
 }
 a.black {
     color: #141414
