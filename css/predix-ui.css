@@ -599,8 +599,8 @@ a {
   font-family: "GE Inspira Sans";
   font-weight: normal;
   font-style: italic;
-  src: url("../px-typography-design/type/GEInspiraSans-Italic-v01.eot");
-  src: url("../px-typography-design/type/GEInspiraSans-Italic-v01.eot?#iefix") format("embedded-opentype"), url("../px-typography-design/type/GEInspiraSans-Italic-v01.woff") format("woff"), url("../px-typography-design/type/GEInspiraSans-Italic-v01.ttf") format("truetype"), url("../px-typography-design/type/GEInspiraSans-Italic-v01.svg#GE Inspira Sans") format("svg"); }
+  src: url("bower_components/px-typography-design/type/GEInspiraSans-Italic-v01.eot");
+  src: url("bower_components/px-typography-design/type/GEInspiraSans-Italic-v01.eot?#iefix") format("embedded-opentype"), url("bower_components/px-typography-design/type/GEInspiraSans-Italic-v01.woff") format("woff"), url("bower_components/px-typography-design/type/GEInspiraSans-Italic-v01.ttf") format("truetype"), url("bower_components/px-typography-design/type/GEInspiraSans-Italic-v01.svg#GE Inspira Sans") format("svg"); }
 
 @font-face {
   font-family: "GE Inspira Sans";
@@ -620,8 +620,8 @@ a {
   font-family: "GE Inspira Serif";
   font-weight: normal;
   font-style: normal;
-  src: url("../px-typography-design/type/GEInspiraSerif-Regular-v01.eot");
-  src: url("../px-typography-design/type/GEInspiraSerif-Regular-v01.eot?#iefix") format("embedded-opentype"), url("../px-typography-design/type/GEInspiraSerif-Regular-v01.woff") format("woff"), url("../px-typography-design/type/GEInspiraSerif-Regular-v01.ttf") format("truetype"), url("../px-typography-design/type/GEInspiraSerif-Regular-v01.svg#GE Inspira Serif") format("svg"); }
+  src: url("bower_components/px-typography-design/type/GEInspiraSerif-Regular-v01.eot");
+  src: url("bower_components/px-typography-design/type/GEInspiraSerif-Regular-v01.eot?#iefix") format("embedded-opentype"), url("bower_components/px-typography-design/type/GEInspiraSerif-Regular-v01.woff") format("woff"), url("bower_components/px-typography-design/type/GEInspiraSerif-Regular-v01.ttf") format("truetype"), url("bower_components/px-typography-design/type/GEInspiraSerif-Regular-v01.svg#GE Inspira Serif") format("svg"); }
 
 @font-face {
   font-family: "GE Inspira Serif";
