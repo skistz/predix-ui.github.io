@@ -19,6 +19,9 @@
  * Monochromatic (gray10 is darkest, gray1 is lightest)
  */
 /**
+ * Define grey = gray to avoid dev typos
+ */
+/**
  * Buttons
  */
 /**
@@ -413,10 +416,10 @@ a {
   visibility: hidden !important; }
 
 .viewport {
-  width: 100%;
-  max-width: 80rem;
-  margin-right: auto;
-  margin-left: auto; }
+  width: auto;
+  max-width: none;
+  margin-right: 2rem;
+  margin-left: 2rem; }
 
 .viewport--full-height {
   min-height: 100vh; }
@@ -2844,6 +2847,13 @@ code {
   .btn:active {
     outline: none; }
 
+/** Workaround for FF since it does not support calc().
+  * Other buttons appear ok with the height declaration, but non-button elements do not.
+**/
+@-moz-document url-prefix() {
+  .btn:not(button) {
+    line-height: 1.8em; } }
+
 button.btn {
   -webkit-appearance: button; }
 
@@ -2912,7 +2922,7 @@ button.btn {
         -webkit-flex-basis: 30rem;
             -ms-flex-preferred-size: 30rem;
                 flex-basis: 30rem; }
-        @media screen and (min-width: 80rem) {
+        @media screen and (min-width: auto) {
           .layout > .layout__item:nth-last-child(-n+4):first-child,
           .layout > .layout__item:nth-last-child(-n+4):first-child ~ .layout__item {
             -webkit-flex-basis: 0;
@@ -2923,13 +2933,13 @@ button.btn {
         -webkit-flex-basis: 40rem;
             -ms-flex-preferred-size: 40rem;
                 flex-basis: 40rem; }
-        @media screen and (min-width: 80rem) {
+        @media screen and (min-width: auto) {
           .layout > .layout__item:nth-last-child(-n+3):first-child,
           .layout > .layout__item:nth-last-child(-n+3):first-child ~ .layout__item {
             -webkit-flex-basis: 0;
                 -ms-flex-preferred-size: 0;
                     flex-basis: 0; } }
-      @media screen and (min-width: 80rem) {
+      @media screen and (min-width: auto) {
         .layout > .layout__item {
           -webkit-flex-basis: 0;
               -ms-flex-preferred-size: 0;
@@ -3076,22 +3086,27 @@ body {
 [role=banner], [role=contentinfo] {
   height: 4rem; }
 
-[role=banner] h1, [role=banner] h2 {
-  font-size: 1.6rem;
-  line-height: 1.6666666667;
-  margin: 0;
-  font-weight: normal;
-  color: #d1d0d8;
-  display: inline-block;
-  float: left; }
-  [role=banner] h1 svg, [role=banner] h2 svg {
-    margin-bottom: -.1em; }
-    [role=banner] h1 svg path, [role=banner] h2 svg path {
-      fill: #d1d0d8; }
-
-[role=banner] h2 {
-  float: right;
-  color: #9999a3; }
+[role=banner] {
+  width: 100%;
+  display: block;
+  margin: auto; }
+  [role=banner] h1, [role=banner] h2 {
+    font-size: 1.6rem;
+    line-height: 1.6666666667;
+    margin: 0;
+    line-height: 4rem;
+    font-weight: normal;
+    color: #d1d0d8;
+    display: inline-block; }
+    [role=banner] h1 svg, [role=banner] h2 svg {
+      margin-bottom: -.1em; }
+      [role=banner] h1 svg path, [role=banner] h2 svg path {
+        fill: #d1d0d8; }
+  [role=banner] h2 {
+    color: #9999a3; }
+    @media screen and (max-width: 47.9rem) {
+      [role=banner] h2 {
+        display: none; } }
 
 .content-wrapper {
   position: relative;
@@ -3101,12 +3116,16 @@ body {
 
 main {
   min-height: calc(100vh - 8rem);
-  margin-left: 3.6666666667rem;
+  margin-left: 0;
   background-color: #8b8d8f;
+  overflow-x: hidden;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1; }
-  @media screen and (min-width: 68.266666667rem) {
+  @media screen and (max-width: 63.9rem) {
+    main {
+      margin-left: 3.6666666667rem; } }
+  @media screen and (min-width: 63.9rem) {
     main {
       margin-left: 0; } }
 

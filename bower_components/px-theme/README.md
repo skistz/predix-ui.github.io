@@ -1,13 +1,36 @@
-Px-Theme
------------------------------------------------
+#Px-theme
 
 ## Overview
 
-Px-Theme is a Predix Experience ('Px') component
-
-## Getting Started
+Px-theme is a Predix UI component. This is the starting point for theming Predix UI  components. It is based loosely on the concepts outlined [here](https://www.polymer-project.org/1.0/docs/devguide/styling.html#xscope-styling).
 
 
+## Usage
+
+### Prerequisites
+1. node.js
+2. npm
+3. bower
+4. [webcomponents-lite.js polyfill](https://github.com/webcomponents/webcomponentsjs)
+
+Node, npm and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
+
+### Getting Started
+
+First, install the component via bower on the command line.
+
+```
+bower install px-theme --save
+```
+
+Second, import the component to your application with the following tag in your head.
+
+```
+<link rel="import" href="/bower_components/px-theme/px-theme.html"/>
+```
+
+
+## Local Development
 
 From the component's directory...
 
@@ -17,37 +40,29 @@ $ bower install
 $ grunt sass
 ```
 
-### API and examples
-
-From the component's directory
+From the component's directory, to start a local server run:
 
 ```
 $ grunt depserve
 ```
 
-Starts a local server. Navigate to the root of that server (e.g. http://localhost:8080/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
+Navigate to the root of that server (e.g. http://localhost:8080/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
 
-### Options
 
-Does this component have runtime configuration options?  If so, they should be able to be passed as attributes on the element with examples shown below.
+### DevMode
+Devmode runs `grunt depserve` and `grunt watch` concurrently so that when you make a change to your source files and save them, your preview will be updated in any browsers you have opened and turned on LiveReload.
+From the component's directory run:
 
-### Function calls
+```
+$ grunt devmode
+```
 
-What is the public API of this component?
-
-### Extending styles
-
-Documented CSS extension points?
-
-### Extending behavior
-
-See Polymer composition patterns
-
-GE Coding Style Guide
----------------------
-
+### GE Coding Style Guide
 [GE JS Developer's Guide](https://github.com/GeneralElectric/javascript)
 
+<br />
+<hr />
 
-### Known Issues
+## Known Issues
 
+Please use [Github Issues](https://github.com/PredixDev/px-theme/issues) to submit any bugs you might find.

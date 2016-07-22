@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "polymer": "^1.6.0",
-    "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
+    "px-theme": "https://github.com/PredixDev/px-theme.git#~0.8.0",
     "px-flexbox-design": "^0.3.9",
     "px-actionable-text-icons-design": "https://github.com/PredixDev/px-actionable-text-icons-design.git#^0.0.3",
     "px-buttons-design": "^0.4.26"
