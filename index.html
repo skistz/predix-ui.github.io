@@ -153,10 +153,10 @@
         * when the the menu, overlay, or nav-link is clicked toggle the default class
         * only for mobile
         */
-        console.log($('.menu').css('display'));
-        if ($('.menu').css('display') !== 'none') {
-          $('.nav-lnk').removeAttr('target');
-        }
+        // console.log($('.menu').css('display'));
+        // if ($('.menu').css('display') !== 'none') {
+        //   $('.nav-lnk').removeAttr('target');
+        // }
 
         var toggleNavClasses = function() {
           $(".side-nav").toggleClass('side-nav__default');
@@ -178,11 +178,11 @@
           $('#spinner').show();
           toggleNavClasses();
 
-          // if ($('.menu').css('display') !== 'none') {
-          //   $('.iframe').load(function() {
-          //     $('#spinner').hide();
-          //   });
-          // }
+          if ($('.menu').css('display') !== 'none') {
+            $('.iframe').load(function() {
+              $('#spinner').hide();
+            });
+          }
         });
 
         /*
