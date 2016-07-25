@@ -154,7 +154,7 @@
         * only for mobile
         */
         var toggleNavClasses = function() {
-          $('#spinner').show();
+
           $(".side-nav").toggleClass('side-nav__default');
           $(".overlay").toggleClass('overlay--visible');
           $(".menu__open").toggleClass('is__hidden');
@@ -164,12 +164,14 @@
           $('#spinner').hide();
         });
         $(".menu").click(function(){
+          $('#spinner').hide();
           toggleNavClasses();
         });
         $(".overlay").click(function(){
           toggleNavClasses();
         });
         $(".nav-lnk").click(function(){
+          $('#spinner').show();
           toggleNavClasses();
         });
         /*
