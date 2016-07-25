@@ -173,7 +173,12 @@
         $(".nav-lnk").click(function(){
           $('#spinner').show();
           toggleNavClasses();
+
+          if ($('.menu').css('display') === 'none') {
+            $('#spinner').hide();
+          }
         });
+
         /*
         * If an li with the class of 'nav-group-lnk' is clicked
         * then rotate the arrow
