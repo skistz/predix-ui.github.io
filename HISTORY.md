@@ -1,6 +1,10 @@
+v0.0.8
+==================
+* changed timeseries naming 
+
 v0.0.7
 ==================
-* Added px-vis, timeseries, and xy chart 
+* Added px-vis, timeseries, and xy chart
 
 v0.0.3
 ==================
