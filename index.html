@@ -153,8 +153,12 @@
         * when the the menu, overlay, or nav-link is clicked toggle the default class
         * only for mobile
         */
-        var toggleNavClasses = function() {
+        console.log($('.menu').css('display'));
+        if ($('.menu').css('display') !== 'none') {
+          $('.nav-lnk').removeAttr('target');
+        }
 
+        var toggleNavClasses = function() {
           $(".side-nav").toggleClass('side-nav__default');
           $(".overlay").toggleClass('overlay--visible');
           $(".menu__open").toggleClass('is__hidden');
@@ -175,7 +179,9 @@
           toggleNavClasses();
 
           if ($('.menu').css('display') !== 'none') {
-            $('#spinner').hide();
+            $('.iframe').load(function() {
+              $('#spinner').hide();
+            });
           }
         });
 
