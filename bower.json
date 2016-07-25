@@ -1,6 +1,6 @@
 {
   "name": "px-demo-site",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": [
     "px-demo-site.html"
   ],

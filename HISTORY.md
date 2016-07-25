@@ -1,6 +1,10 @@
+v0.0.7
+==================
+* Added px-vis, timeseries, and xy chart 
+
 v0.0.3
 ==================
-* font fix 
+* font fix
 
 v0.0.2
 ==================
