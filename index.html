@@ -180,7 +180,7 @@
 
           if ($('.menu').css('display') !== 'none') {
             $('.iframe').load(function() {
-              $('#spinner').hide();
+              $('#spinner').delay(2000).fadeOut();
             });
           }
         });
