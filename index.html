@@ -165,7 +165,9 @@
           $(".menu__open").toggleClass('is__hidden');
           $(".menu__close").toggleClass('is__hidden');
         };
-
+        $('.iframe').load(function() {
+          $('#spinner').hide();
+        });
         $(".menu").click(function(){
           $('#spinner').hide();
           toggleNavClasses();
@@ -180,10 +182,6 @@
           if ($('.menu').css('display') !== 'none') {
             $('.iframe').load(function() {
               $('#spinner').delay(2000).fadeOut();
-            });
-          } else {
-            $('.iframe').load(function() {
-              $('#spinner').hide();
             });
           }
         });
