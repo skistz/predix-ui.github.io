@@ -19,7 +19,8 @@
     "px-flexbox-design": "^0.3.9",
     "px-actionable-text-icons-design": "https://github.com/PredixDev/px-actionable-text-icons-design.git#^0.0.3",
     "px-buttons-design": "^0.4.26",
-    "px-spinner": "^0.3.8"
+    "px-spinner": "^0.3.8",
+    "px-typography-design":"~0.3.5"
   },
   "devDependencies": {
     "iron-collapse": "PolymerElements/iron-collapse#~1.2.0",

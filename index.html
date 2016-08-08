@@ -48,7 +48,7 @@
         <div class="side-nav side-nav__default">
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
-            <li><a class="nav-lnk" href="getting_started.html" target="iframe_a">Getting Started</a></li>
+            <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
 
             <!--Basics -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
@@ -56,12 +56,12 @@
              </li>
               <iron-collapse id="collapse_Basics" opened>
                 <ul>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-alert-label/px-alert-label/" target="iframe_a">Alert Label</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-popover/px-popover/" target="iframe_a">Popover</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-progress-bar/px-progress-bar/" target="iframe_a">Progress Bar</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-spinner/px-spinner/" target="iframe_a">Spinner</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-tabs/px-tabs/" target="iframe_a">Tabs</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-tooltip/px-tooltip/" target="iframe_a">Tooltip</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
                 </ul>
               </iron-collapse>
 
@@ -71,18 +71,18 @@
              </li>
               <iron-collapse id="collapse_componnents" opened>
                 <ul>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-alert-message/px-alert-message/" target="iframe_a">Alert Message</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-app-nav/px-app-nav/" target="iframe_a">App Nav</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
                   <!-- Cards -->
                   <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
                         <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
                     </li>
                     <iron-collapse id="collapse_cards">
                       <ul>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-card/px-card/" target="iframe_a">Card</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-deck-selector/px-deck-selector/" target="iframe_a">Deck Selector</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-sample-cards/px-sample-cards/" target="iframe_a">Sample Cards</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-widget-cards/px-widget-cards/" target="iframe_a">Widget Cards</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-card" >Card</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
                       </ul>
                     </iron-collapse>
                   <!-- Charts -->
@@ -91,40 +91,40 @@
                     </li>
                     <iron-collapse id="collapse_charts">
                       <ul>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-vis-pie-chart/px-vis-pie-chart/" target="iframe_a">Pie Chart</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-simple-bar-chart/px-simple-bar-chart/" target="iframe_a">Simple Bar Chart</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart/" target="iframe_a">Simple Horizontal Bar Chart</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-simple-line-chart/px-simple-line-chart/" target="iframe_a">Simple Line Chart</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-vis-timeseries/px-vis-timeseries/" target="iframe_a">Timeseries D3</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-chart/px-chart/" target="iframe_a">Timeseries High Charts</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-vis/px-vis/" target="iframe_a">Vis Framework</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-vis-xy-chart/px-vis-xy-chart/" target="iframe_a">XY Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Pie Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Timeseries D3</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Timeseries High Charts</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">XY Chart</a></li>
                       </ul>
                     </iron-collapse>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-clipboard/px-clipboard/" target="iframe_a">Clipboard</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-context-browser/px-context-browser/" target="iframe_a">Context Browser</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-clipboard">Clipboard</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
 
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-data-table/px-data-table/" target="iframe_a">Data Table</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-data-table">Data Table</a></li>
                   <!-- Datetime Components -->
                   <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
                         <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
                     </li>
                     <iron-collapse id="collapse_datetime-components">
                       <ul>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-calendar-picker/px-calendar-picker/" target="iframe_a">Calendar Picker</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-datetime-field/px-datetime-field/" target="iframe_a">Datetime Field</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-datetime-picker/px-datetime-picker/" target="iframe_a">Datetime Picker</a></li>
-                         <li><a class="nav-lnk" href="https://predixdev.github.io/px-datetime-range-field/px-datetime-range-field/" target="iframe_a">Datetime Range Field</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-datetime-range-panel/px-datetime-range-panel/" target="iframe_a">Datetime Range Panel</a></li>
-                        <li><a class="nav-lnk" href="https://predixdev.github.io/px-rangepicker/px-rangepicker/" target="iframe_a">Rangepicker</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
+                         <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
                       </ul>
                     </iron-collapse>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-dropdown/px-dropdown/" target="iframe_a">Dropdown</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-login/px-login/" target="iframe_a">Login</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-modal/px-modal/" target="iframe_a">Modal</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-overlay/px-overlay/" target="iframe_a">Overlay</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-slider/px-slider/" target="iframe_a">Slider</a></li>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-validation/px-validation/" target="iframe_a">Validation</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
                 </ul>
               </iron-collapse>
 
@@ -138,14 +138,14 @@
           <div id="spinner">
             <px-spinner size="100"></px-spinner>
           </div>
-          <iframe src="getting_started.html" allowfullscreen name="iframe_a" class="iframe">
+          <iframe src="" allowfullscreen name="iframe_a" class="iframe" id="iframe_a">
             <p>Your browser does not support iframes.</p>
           </iframe>
         </div>
 
       </div>
 <!--  -->
-    </body>
+
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -154,10 +154,39 @@
         * when the the menu, overlay, or nav-link is clicked toggle the default class
         * only for mobile
         */
-        // console.log($('.menu').css('display'));
-        // if ($('.menu').css('display') !== 'none') {
-        //   $('.nav-lnk').removeAttr('target');
-        // }
+        function GetURLParameter(sParam) {
+          var sPageURL = window.location.search.substring(1),
+              sURLVariables = sPageURL.split('&'),
+              i,
+              len = sURLVariables.length,
+              sParameterName;
+
+          for (i = 0; i < len; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+              return sParameterName[1];
+            }
+          }
+        }
+        //this object contains the different types of link you can have in the left nav.
+        var types = {
+          "component" : function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "home": function() {
+            return "https://predixdev.github.io/predix-ui/getting_started.html";
+          }
+        };
+
+        var name = GetURLParameter('show');
+        var type=GetURLParameter('type');
+
+        if (name && type) {
+          var showUrl = types[type](name);
+          $('#iframe_a').attr('src', showUrl);
+        } else {
+          $('#iframe_a').attr('src','getting_started.html');
+        }
 
         var toggleNavClasses = function() {
           $(".side-nav").toggleClass('side-nav__default');
@@ -165,25 +194,38 @@
           $(".menu__open").toggleClass('is__hidden');
           $(".menu__close").toggleClass('is__hidden');
         };
+
         $('.iframe').load(function() {
           $('#spinner').hide();
         });
+
         $(".menu").click(function(){
           $('#spinner').hide();
           toggleNavClasses();
         });
+
         $(".overlay").click(function(){
           toggleNavClasses();
         });
-        $(".nav-lnk").click(function(){
+
+        $(".nav-lnk").click(function(e){
+          e.preventDefault();
           $('#spinner').show();
           toggleNavClasses();
-
+          //fighting that 2 second delay we get from iron-doc-viewer by spinning the spinner for 2 extra seconds. it's all about perception.
           if ($('.menu').css('display') !== 'none') {
             $('.iframe').load(function() {
               $('#spinner').delay(2000).fadeOut();
             });
           }
+
+          var name = $(this).attr('data-name'),
+              type = $(this).attr('data-type'),
+              showUrl = types[type](name);
+
+          $('#iframe_a').attr("src", showUrl);
+          window.history.pushState('','','?show=' + name + '&type=' + type);
+
         });
 
         /*
@@ -201,7 +243,7 @@
         */
         $("a").click(function(){
           if(this.classList.contains("nav-lnk")){
-            $( ".nav-lnk" ).removeClass('selected');
+            $( "a.selected" ).removeClass('selected');
             $(this).addClass('selected');
           }
         });
@@ -216,5 +258,5 @@
 
 
     </script>
-
+    </body>
 </html>
