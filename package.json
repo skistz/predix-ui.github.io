@@ -1,8 +1,8 @@
 {
   "name": "px-demo-site",
   "author": "General Electric",
-  "description": "A Px component",
-  "version": "0.0.8",
+  "description": "A catalog of Px components",
+  "version": "0.0.9",
   "private": true,
   "extName": null,
   "repository": {

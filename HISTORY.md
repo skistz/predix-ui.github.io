@@ -1,6 +1,10 @@
+v0.0.9
+==================
+* Added percent circle & file upload
+
 v0.0.8
 ==================
-* changed timeseries naming 
+* changed timeseries naming
 
 v0.0.7
 ==================
