@@ -824,16 +824,16 @@ html, body {
   .menu:active {
     color: #b1b1bc; }
 
-.menu_close {
+.menu_close-icon {
   padding-right: 1rem;
   color: #e4e4ea;
   cursor: pointer;
   margin-top: -1px; }
-  .menu_close:link, .menu_close:visited, .menu_close:active, .menu_close:focus {
+  .menu_close-icon:link, .menu_close-icon:visited, .menu_close-icon:active, .menu_close-icon:focus {
     color: #e4e4ea; }
-  .menu_close:hover {
+  .menu_close-icon:hover {
     color: #b1b1bc; }
-  .menu_close:active {
+  .menu_close-icon:active {
     color: #7c7c84; }
 
 .is__hidden {
