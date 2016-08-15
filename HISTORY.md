@@ -1,3 +1,7 @@
+v0.0.10
+==================
+* separated out vis charts from charts
+
 v0.0.9
 ==================
 * Added percent circle & file upload
