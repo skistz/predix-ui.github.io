@@ -42,14 +42,12 @@
 
       <!-- overlay -->
       <div class="overlay"></div>
-
       <div class="wrapper-flex">
         <!-- side nav -->
         <div class="side-nav side-nav__default">
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
             <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
-
             <!--Basics -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
                 <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
@@ -96,7 +94,7 @@
                         <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
                         <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
                         <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Timeseries HighStock</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
                         <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
                         <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
                         <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
@@ -170,7 +168,7 @@
             }
           }
         }
-        //this object contains the different types of link you can have in the left nav.
+        //this object contains the different configurations of URLs, depending on the type of link.
         var types = {
           "component" : function(name) {
             return "https://predixdev.github.io/" + name + "/" + name + "/";
@@ -180,7 +178,7 @@
           }
         };
 
-        var name = GetURLParameter('show');
+        var name = GetURLParameter('show'),
             type = GetURLParameter('type');
 
 
