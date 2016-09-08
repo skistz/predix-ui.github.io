@@ -7,7 +7,6 @@
       <link rel="stylesheet" href="css/predix-ui.css"/>
       <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
       <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <link rel="import" href="bower_components/iron-collapse/iron-collapse.html"/>
       <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
       <link rel="import" href="bower_components/px-theme/px-theme.html" />
@@ -29,9 +28,9 @@
     <body>
       <!-- header -->
       <section class="gray-bar flex flex--middle">
-        <span class="menu">
-          <iron-icon class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
-          <iron-icon class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
+        <span id="menu" class="menu">
+          <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
+          <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
         </span>
         <div class="lnk first">
           <a class="header-lnk" href="http://predix.io" target="_blank">
@@ -41,10 +40,10 @@
       </section>
 
       <!-- overlay -->
-      <div class="overlay"></div>
+      <div id="overlay" class="overlay"></div>
       <div class="wrapper-flex">
         <!-- side nav -->
-        <div class="side-nav side-nav__default">
+        <div id="side-nav" class="side-nav side-nav__default">
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
             <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
@@ -65,10 +64,10 @@
               </iron-collapse>
 
             <!--Components -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_componnents')">
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
                 <div id="arrow" class="arrow-down"></div><div class="u-ml--">Components</div></a>
              </li>
-              <iron-collapse id="collapse_componnents" opened>
+              <iron-collapse id="collapse_components" opened>
                 <ul>
                   <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
@@ -148,7 +147,7 @@
 
 
     <script type="text/javascript">
-      $(document).ready(function(){
+      document.addEventListener("DOMContentLoaded", function(e){
         /*
         * define toggleNavClasses function
         * when the the menu, overlay, or nav-link is clicked toggle the default class
@@ -184,81 +183,83 @@
 
         if (name && type) {
           var showUrl = types[type](name);
-          $('#iframe_a').attr('src', showUrl);
+          document.getElementById('iframe_a').src = showUrl;
         } else {
-          $('#iframe_a').attr('src','getting_started.html');
+          document.getElementById('iframe_a').src = 'getting_started.html';
         }
         /*
          * create one function that toggles the menu for mobile
          */
         var toggleNavClasses = function() {
-          console.log("toggleNavClasses");
-          $(".side-nav").toggleClass('side-nav__default');
-          $(".overlay").toggleClass('overlay--visible');
-          $(".menu__open-icon").toggleClass('is__hidden');
-          $(".menu__close-icon").toggleClass('is__hidden');
+          document.getElementById("side-nav").classList.toggle('side-nav__default');
+          document.getElementById("overlay").classList.toggle('overlay--visible');
+          document.getElementById("menu__open-icon").classList.toggle('is__hidden');
+          document.getElementById("menu__close-icon").classList.toggle('is__hidden');
         };
 
-        $('.iframe').load(function() {
-          $('#spinner').hide();
+        document.getElementById('iframe_a').addEventListener("load", function() {
+          document.getElementById('spinner').classList.add('is__hidden');
         });
 
-        $(".menu").click(function(){
-          $('#spinner').hide();
+        document.getElementById("menu").addEventListener("click", function(){
+          document.getElementById('spinner').classList.add('is__hidden');
           toggleNavClasses();
         });
 
-        $(".overlay").click(function(){
+        document.getElementById("overlay").addEventListener("click", function(){
           toggleNavClasses();
         });
 
-        $(".nav-lnk").click(function(e){
-          console.log("nav-lnk");
-          e.preventDefault();
-          $('#spinner').show();
+        var links = document.getElementsByClassName("nav-lnk");
+        Array.prototype.forEach.call(links, function(link) {
+          link.addEventListener("click", function(e) {
+            e.preventDefault;
+            document.getElementById('spinner').classList.remove('is__hidden');
 
-          /*
-           * make sure that we are in the mobile layout indicated by the .menu being shown
-           *
-           * enable toggleNavClasses in mobile
-           * fighting that 2 second delay we get from iron-doc-viewer by spinning the spinner for 2 extra seconds. it's all about perception.
-           */
-          if ($('.menu').css('display') !== 'none') {
-            toggleNavClasses();
-
-            $('.iframe').load(function() {
-              $('#spinner').delay(2000).fadeOut();
+            /*
+            * Remove the .selected class from all links
+            * and only add it to the one that was selected
+            */
+            var otherLinks = document.getElementsByClassName("selected");
+            Array.prototype.forEach.call(otherLinks, function(otherLink) {
+              otherLink.classList.remove("selected");
             });
-          }
+            this.classList.add("selected");
 
-          var name = $(this).attr('data-name'),
-              type = $(this).attr('data-type'),
-              showUrl = types[type](name);
+            /*
+             * make sure that we are in the mobile layout indicated by the .menu being shown
+             *
+             * enable toggleNavClasses in mobile
+             */
+            if (document.getElementById('menu').style.display !== 'none') {
+              toggleNavClasses();
 
-          $('#iframe_a').attr("src", showUrl);
-          window.history.pushState('','','?show=' + name + '&type=' + type);
+              document.getElementById('iframe_a').addEventListener("load", function() {
+                document.getElementById('spinner').classList.add('is__hidden');
+              });
+            }
 
+            var name = this.dataset.name,
+                type = this.dataset.type,
+                showUrl = types[type](name);
+
+            document.getElementById('iframe_a').src = showUrl;
+            window.history.pushState('','','?show=' + name + '&type=' + type);
+          });
         });
 
         /*
         * If an li with the class of 'nav-group-lnk' is clicked
         * then rotate the arrow
         */
-        $(".nav-group-lnk").click(function(){
-          $(this.children[0]).toggleClass('arrow-down');
-          $(this.children[0]).toggleClass('arrow-right');
+        var groupLinks = document.getElementsByClassName("nav-group-lnk");
+        Array.prototype.forEach.call(groupLinks, function(groupLink) {
+          groupLink.addEventListener("click", function(e) {
+            this.children[0].classList.toggle('arrow-down');
+            this.children[0].classList.toggle('arrow-right');
+          });
         });
-        /*
-        * When a link with the class of 'nav-lnk' is clicked
-        * remove the .selected class from all links
-        * and only add it to the one that was selected
-        */
-        $("a").click(function(){
-          if(this.classList.contains("nav-lnk")){
-            $( "a.selected" ).removeClass('selected');
-            $(this).addClass('selected');
-          }
-        });
+
       });
 
       /*

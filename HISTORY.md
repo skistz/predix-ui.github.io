@@ -1,3 +1,7 @@
+v0.0.12
+==================
+* removed jQuery
+
 v0.0.11
 ==================
 * fixed the menu staying open when goign to mobile bug
