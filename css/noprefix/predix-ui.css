@@ -959,7 +959,8 @@ html, body {
   .iframe__container {
     flex-grow: 1;
     position: relative;
-    overflow-y: auto; } }
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; } }
 
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro

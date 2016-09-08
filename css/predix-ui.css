@@ -949,6 +949,7 @@ html, body {
   height: 100vh;
   margin: 45px 0px 0px 0px;
   position: fixed;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
 
 .iframe {
@@ -994,7 +995,8 @@ html, body {
     -ms-flex-positive: 1;
         flex-grow: 1;
     position: relative;
-    overflow-y: auto; } }
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; } }
 
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro

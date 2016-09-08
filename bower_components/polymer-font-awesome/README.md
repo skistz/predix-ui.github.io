@@ -24,7 +24,7 @@ To use this component, include the import link at the top of your page:
 and call the requested icon in your code like so:
 
 ```
-<iron-icon icon="polymer-font-awesome:fa-angle-down"></iron-icon>
+<iron-icon icon="fa:fa-angle-down"></iron-icon>
 ```
 
 ## Playing With Your Element

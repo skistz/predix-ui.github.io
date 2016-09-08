@@ -38,7 +38,7 @@
     "tag": "v0.3.13",
     "commit": "75469020d71f5f83e6a8e1197e95919457b060ec"
   },
-  "_source": "https://github.com/PredixDev/px-layout-design.git",
+  "_source": "https://github.com/predixDev/px-layout-design.git",
   "_target": "~0.3.7",
-  "_originalSource": "https://github.com/PredixDev/px-layout-design.git"
+  "_originalSource": "px-layout-design"
 }

@@ -52,21 +52,21 @@ html,body{
 * gray title bar
 */
 .gray-bar {
-  background-color: $grey9;
+  background-color: $gray9;
   min-height: 45px;
   z-index: 2;
   position: fixed;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
   & a:link {
-    color: $grey6;
+    color: $gray6;
     font-size: 17px;
     display: block;
     letter-spacing: 1px;
     text-decoration: none;
   }
   & a:visited {
-    color: $grey6;
+    color: $gray6;
   }
 }
 .header-img{
@@ -108,7 +108,7 @@ html,body{
     color: $gray5;
   }
   &:active {
-    color: $grey7;
+    color: $gray7;
   }
 }
 .is__hidden{
@@ -258,6 +258,7 @@ html,body{
     flex-grow: 1;
     position: relative;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
   }
 

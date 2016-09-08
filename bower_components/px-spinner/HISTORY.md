@@ -1,5 +1,29 @@
-v0.3.8
+v0.3.14
 ================
+* updated bower to bring in codepen feature.
+
+v0.3.13
+================
+* added overflow to demoContainer and removed flex__wrap from mega-demo
+
+v0.3.12
+================
+* added overflow to demo class and removed <br>
+
+v0.3.11
+================
+* updated mega demo styles and bower px-demo-snippet to ^
+
+v0.3.10
+================
+* added image to readme, removed watch, added view on github
+
+v0.3.9
+================
+* updated script to vulcanize demo page
+
+v0.3.8
+=======
 * updated size property to a number input field
 
 v0.3.7
