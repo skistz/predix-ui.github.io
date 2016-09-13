@@ -231,7 +231,7 @@
              *
              * enable toggleNavClasses in mobile
              */
-            if (document.getElementById('menu').style.display !== 'none') {
+            if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
               toggleNavClasses();
 
               document.getElementById('iframe_a').addEventListener("load", function() {
