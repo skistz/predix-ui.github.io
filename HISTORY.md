@@ -1,3 +1,7 @@
+v0.0.13
+==================
+* merged fix-menu-toggle
+
 v0.0.12
 ==================
 * removed jQuery
