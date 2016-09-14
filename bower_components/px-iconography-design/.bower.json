@@ -32,7 +32,7 @@
     "tag": "v0.2.10",
     "commit": "ed6e49aeaa872897eb03a5adc77a41a7b27ee8ed"
   },
-  "_source": "https://github.com/PredixDev/px-iconography-design.git",
-  "_target": "~0.2.9",
-  "_originalSource": "https://github.com/PredixDev/px-iconography-design.git"
+  "_source": "https://github.com/predixDev/px-iconography-design.git",
+  "_target": "^0.2.10",
+  "_originalSource": "px-iconography-design"
 }

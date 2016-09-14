@@ -7,17 +7,20 @@
 /// @type String [default] - Predix font-family
 $predix-font-family: "GE Inspira Sans", sans-serif !default;
 
+$predix-load-local-fonts: false !default;
+
 /// @type String [default] - Webfont path
-$inuit-webfont-path: '../px-typography-design/type' !default;
+$inuit-webfont-path: '//dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/1.0.0' !default;
+
+@if $predix-load-local-fonts == true {
+  $inuit-webfont-path: '../px-typography-design/type';
+}
+
 
 @import "px-defaults-design/_settings.defaults.scss";
 @import "px-colors-design/_settings.colors.scss";
 @import "px-mixins-design/_tools.mixins.scss";
 
-@include font-face('GE Inspira', '#{$inuit-webfont-path}/GEInspMd');
-@include font-face('GE Inspira', '#{$inuit-webfont-path}/GEInspMdIt', normal, italic);
-@include font-face('GE Inspira', '#{$inuit-webfont-path}/GEInspBd', bold, normal);
-@include font-face('GE Inspira', '#{$inuit-webfont-path}/GEInspBI', bold, italic);
 @include font-face('GE Inspira Sans', '#{$inuit-webfont-path}/GEInspiraSans-Regular-v01');
 @include font-face('GE Inspira Sans', '#{$inuit-webfont-path}/GEInspiraSans-Italic-v01', normal, italic);
 @include font-face('GE Inspira Sans', '#{$inuit-webfont-path}/GEInspiraSans-Bold-v01', bold, normal);
@@ -31,14 +34,10 @@ html {
   font-family: $predix-font-family;
 }
 
-:host {
-  font-family: $predix-font-family;
-}
-
 /**
  * Font weights
  */
- 
+
 .weight--light {
   font-weight: 300!important;
 }
@@ -49,6 +48,16 @@ html {
 
 .weight--semibold {
   font-weight: 600!important;
+}
+
+/**
+ * the html and :host declarations cannot be adjacent to one other
+ * or cssmin will combine them into a single rule, breaking in
+ * Safari and Firefox.
+ */
+
+:host {
+  font-family: $predix-font-family;
 }
 
 /* Text-level semantics

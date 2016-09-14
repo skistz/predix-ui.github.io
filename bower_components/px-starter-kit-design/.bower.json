@@ -1,6 +1,6 @@
 {
   "name": "px-starter-kit-design",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -12,7 +12,6 @@
     "sass",
     "starter kit"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-starter-kit-design.git",
   "private": false,
   "ignore": [
@@ -31,17 +30,17 @@
     "px-helpers-design": "https://github.com/PredixDev/px-helpers-design.git#~0.3.0",
     "px-normalize-design": "https://github.com/PredixDev/px-normalize-design.git#~0.3.0",
     "px-spacing-responsive-design": "https://github.com/PredixDev/px-spacing-responsive-design.git#~0.3.0",
-    "px-typography-design": "https://github.com/PredixDev/px-typography-design.git#~0.3.0",
+    "px-typography-design": "https://github.com/PredixDev/px-typography-design.git#~1.1.1",
     "px-viewport-design": "https://github.com/PredixDev/px-viewport-design.git#~0.4.1",
     "px-widths-responsive-design": "https://github.com/PredixDev/px-widths-responsive-design.git#~0.3.0"
   },
-  "_release": "0.5.5",
+  "_release": "0.6.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.5.5",
-    "commit": "72d217f83dda6381ea6dff1517784809720ba1cf"
+    "tag": "v0.6.0",
+    "commit": "801dbcf2607cc015c2ca5f0f556f72371c4d9038"
   },
-  "_source": "https://github.com/PredixDev/px-starter-kit-design.git",
-  "_target": "~0.5.5",
-  "_originalSource": "https://github.com/PredixDev/px-starter-kit-design.git"
+  "_source": "https://github.com/predixDev/px-starter-kit-design.git",
+  "_target": "~0.6.0",
+  "_originalSource": "px-starter-kit-design"
 }

@@ -1,6 +1,10 @@
+v0.3.6
+==============================
+* Fixed `:host` cssmin parsing bug in Firefox and Safari
+
 v0.3.5
 ==============================
-* added oss_notice to bower ignore and updated readme
+* Added oss_notice to bower ignore and updated readme
 
 v0.3.4
 ==============================

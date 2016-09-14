@@ -1,6 +1,6 @@
 {
   "name": "px-typography-design",
-  "version": "0.3.5",
+  "version": "1.1.1",
   "homepage": "https://github.com/PredixDev/px-typography-design.git",
   "authors": [
     "General Electric"
@@ -27,13 +27,13 @@
     "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.0",
     "px-mixins-design": "https://github.com/PredixDev/px-mixins-design.git#~0.2.0"
   },
-  "_release": "0.3.5",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.5",
-    "commit": "94be85b225477d8b22bd57b001a0c9c741607d36"
+    "tag": "v1.1.1",
+    "commit": "6a5349d60b9b57edcf3a7c7de26a9234e4ed5eb6"
   },
   "_source": "https://github.com/predixDev/px-typography-design.git",
-  "_target": "~0.3.5",
+  "_target": "^1.1.0",
   "_originalSource": "px-typography-design"
 }
