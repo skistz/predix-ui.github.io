@@ -39,7 +39,7 @@
     "tag": "v1.0.10",
     "commit": "f4e146da4982ff96bb25db85290c09e8de4ec734"
   },
-  "_source": "git://github.com/PolymerElements/iron-icon.git",
+  "_source": "https://github.com/PolymerElements/iron-icon.git",
   "_target": "^1.0.7",
   "_originalSource": "PolymerElements/iron-icon"
 }
