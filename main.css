@@ -1,714 +1,422 @@
-/**
-* CSS styles for Open-Source Projects on GitHub
-*/
+@charset "UTF-8";
 
-/**
-* Styles for mobile version
-*/
-.gray-bar {
-  background-color: #333;
-  min-height: 45px;
+*,html {
+  font-family: "GE Inspira Sans", sans-serif;
 }
 
-.gray-bar a:link {
-  color: #7e7e7e !important;
-  font-family: "GE Inspira";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,:after,:before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  position: relative;
+  min-height: 100%;
   font-size: 1em;
+  line-height: 1.25;
+  background-color: #fff;
+  color: #000;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+:host {
+  /*! Comment to prevent cssmin munging this rule with html above and borking Safari */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer,header,main,section {
   display: block;
-  letter-spacing: 1px;
-}
-.gray-bar a:visited {
-  color: #7e7e7e !important
 }
 
-.gray-bar .lnk {
-  float: left;
-  width: 50%;
-}
-
-.gray-bar .lnk.first a:link {
-  margin-left: 20px;
-  margin-top: 9px;
-}
-
-.gray-bar .lnk.second a:link {
-  float: right;
-  margin-right: 20px;
-  margin-top: 9px;
-}
-
-
-.osp-body {
-   background: #e9e9e9;
-}
-
-.osp-hero {
-  background: #10475b; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(90deg,#2886af,#092328 60%); /*Safari 5.1-6*/
-  background: -o-linear-gradient(90deg,#2886af,#092328 60%); /*Opera 11.1-12*/
-  background: -moz-linear-gradient(90deg,#2886af,#092328 60%); /*Fx 3.6-15*/
-  background: linear-gradient(90deg,#2886af,#092328 60%); /*Standard*/
-  background-size: cover;
-  width: 100%;
-}
-
-.osp-hero-container {
-  padding: 30px 0;
-  text-align: center;
-}
-
-.osp-hero-logo{
-  height: 30px;
-  /*height: 70px;*/
-}
-
-.osp-hero-sub-header{
-  color: #999999;
-  text-transform: uppercase;
-  font-size: 29px;
-  /*font-size: 40px;*/
-  margin-bottom: 0px;
-}
-
-.ops-hero-subtitle {
-  font-size: 1.2em;
-  font-family: "GE Inspira Sans";
-  text-align: center;
+h1,h2,h3,h4,h5,h6,p,ul {
   margin-bottom: 1rem;
 }
 
-.osp-contents-container {
-  width: 95%;
-  padding-bottom: 60px;
-  margin: 2% auto 0 auto;
-
+li>ul {
+  margin-bottom: 0;
 }
 
-.osp-contents-container-text {
-  padding: 30px;
-  font-size: 1.2em;
+ul {
+  margin-left: 1.875rem;
+}
+
+img {
+  border: 0;
+}
+
+.vw {
+  width: 90%;
+  max-width: 73.125rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+footer {
+  position: relative;
+  height: 6.25rem;
+  padding-top: 2.0625rem;
+  background-color: #eaeaea;
+  color: #d1d0d8;
+  z-index: 80;
+}
+
+footer .list-inline {
+  text-align: center;
+}
+
+footer .layout__item:first-child {
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+footer small {
+  font-size: .75rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid #d8d8d8;
+  box-sizing: content-box;
+  clear: both;
+  margin: 2rem 0 2rem 0;
+}
+
+.iron-icon-0 {
+  width: 18px;
+  height: 18px;
+  margin: 0 0 3px 5px;
+}
+
+@font-face {
   font-family: "GE Inspira Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url(type/GEInspiraSans-Regular-v01.eot);
+  src: url(type/GEInspiraSans-Regular-v01.eot?#iefix) format("embedded-opentype"), url(type/GEInspiraSans-Regular-v01.woff) format("woff"), url(type/GEInspiraSans-Regular-v01.ttf) format("truetype"), url("type/GEInspiraSans-Regular-v01.svg#GE Inspira Sans") format("svg");
 }
 
-.osp-cards-container {
+@font-face {
+  font-family: "GE Inspira Sans";
+  font-weight: 400;
+  font-style: italic;
+  src: url(type/GEInspiraSans-Italic-v01.eot);
+  src: url(type/GEInspiraSans-Italic-v01.eot?#iefix) format("embedded-opentype"), url(type/GEInspiraSans-Italic-v01.woff) format("woff"), url(type/GEInspiraSans-Italic-v01.ttf) format("truetype"), url("type/GEInspiraSans-Italic-v01.svg#GE Inspira Sans") format("svg");
+}
+
+@font-face {
+  font-family: "GE Inspira Sans";
+  font-weight: 700;
+  font-style: normal;
+  src: url(type/GEInspiraSans-Bold-v01.eot);
+  src: url(type/GEInspiraSans-Bold-v01.eot?#iefix) format("embedded-opentype"), url(type/GEInspiraSans-Bold-v01.woff) format("woff"), url(type/GEInspiraSans-Bold-v01.ttf) format("truetype"), url("type/GEInspiraSans-Bold-v01.svg#GE Inspira Sans") format("svg");
+}
+
+@font-face {
+  font-family: "GE Inspira Sans";
+  font-weight: 700;
+  font-style: italic;
+  src: url(type/GEInspiraSans-BoldItalic-v01.eot);
+  src: url(type/GEInspiraSans-BoldItalic-v01.eot?#iefix) format("embedded-opentype"), url(type/GEInspiraSans-BoldItalic-v01.woff) format("woff"), url(type/GEInspiraSans-BoldItalic-v01.ttf) format("truetype"), url("type/GEInspiraSans-BoldItalic-v01.svg#GE Inspira Sans") format("svg");
+}
+
+small {
+  font-size: 80%;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--large {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.1rem;
+}
+
+.text--small {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+}
+
+.text--gray {
+  color: #a9a9a9;
+}
+
+.pull-left {
+  float: left;
+}
+
+.u-4\/12 {
+  width: 33.3333333333%!important;
+  -webkit-flex: none!important;
+  -ms-flex: none!important;
+  flex: none!important;
+}
+
+.u-8\/12 {
+  width: 66.6666666667%!important;
+  -webkit-flex: none!important;
+  -ms-flex: none!important;
+  flex: none!important;
+}
+
+.layout {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 0 0 -1rem;
+  padding: 0;
+}
+
+.layout__item {
+  padding-left: 1rem;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 18.75rem;
+  -ms-flex-preferred-size: 18.75rem;
+  flex-basis: 18.75rem;
+}
+
+.layout__item:nth-last-child(-n+3):first-child,.layout__item:nth-last-child(-n+3):first-child~.layout__item {
+  -webkit-flex-basis: 37.5rem;
+  -ms-flex-preferred-size: 37.5rem;
+  flex-basis: 37.5rem;
+}
+
+.list-inline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-inline>li {
+  display: inline-block;
+}
+
+.list-inline--delimited>li+li:before {
+  content: " | ";
+}
+
+a.item__link {
+  font-size: 1.125rem;
+  line-height: 1.1111111111;
+}
+
+:focus {
+  outline: 0;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+a,a:link,a:visited {
+  color: #005eb8;
+}
+
+a:active,a:hover {
+  outline: 0;
+}
+
+a:hover {
+  color: #005eb8;
+}
+
+a.no-border {
+  border: 0;
+}
+
+a.gray {
+  color: #d8d8d8;
+}
+
+a.darker {
+  color: #d1d0d8;
+}
+
+.icon {
+  height: 100px;
+  margin: 3%;
+}
+
+.icon--small {
+  width: 68px;
+  height: 43px;
+}
+
+.section {
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+}
+
+.btn {
+  border-color: transparent;
+  font-family: "GE Inspira Sans",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  padding: 13px 10px;
+  height: 74px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #3f4145;
+  background-color: #f0f1f2;
+  margin: 0 10px 12px 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: background-color .1s linear,border-color .1s linear,color .1s linear;
+  -moz-transition: background-color .1s linear,border-color .1s linear,color .1s linear;
+  -o-transition: background-color .1s linear,border-color .1s linear,color .1s linear;
+  transition: background-color .1s linear,border-color .1s linear,color .1s linear;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.btn,.btn:link,.btn:visited {
+  border: 1px solid #005eb8;
+  background-color: #005eb8;
+  color: #fff;
+}
+
+.btn:active,.btn:hover {
+  border: 1px solid #005eb8;
+  background-color: #005eb8;
+  color: #fff;
+  box-shadow: none;
+}
+
+.viewport {
+  width: 100%;
+  height: 500px;
+}
+
+.text--left {
+  text-align: left!important;
+}
+
+.hero {
+  background-image: url('img/pattern_hero.jpg');
+  background-size: cover;
+  text-align: left;
+  color: white;
+  padding: 5%;
+}
+
+.main {
   width: 100%;
   margin: 0 auto;
-  background-color:#fff;
-  padding: 5rem 5%;
+  background-color: #fff;
+  padding: 5%;
   overflow: hidden;
 }
 
-.osp-card {
-  min-height: 200px;
-  width: 99.8%;
-  float: left;
-  background: #fff;
-  margin: 10px 0 6px;
-  box-shadow: -1px 1px 1px #aaa;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.ops-card-title {
-  padding: 10px;
-  color: #4ead07;
-}
-
-.ops-card-title h3 {
-  font-size: 1.2em;
-}
-
-.ops-card-status {
-  padding: 0 10px 10px 10px;
-  color: #999;
-  font-weight: bold;
-}
-
-.ops-card-status .fa-code-fork {
-  margin-left: 10px
-}
-
-.ops-card-text {
-  padding: 0 10px;
-  font-size: 0.9em;
-}
-
-.osp-hr {
-  margin: 10px;
-}
-
-.ops-card-details {
-  font-size: 0.7em;
-  padding: 0 10px 10px 10px;
-  overflow: hidden;
-  color: #aaa;
-}
-
-.ops-card-language {
-  float: left;
-  font-size: 1.1em;
-}
-
-.ops-card-categories {
-  float: right;
-  font-size: 1.1em;
-}
-
-.ops-card-categories span {
-  color: #4ead07;
-}
-
-.ops-card-btn {
-  margin: 10px;
-  font-weight: normal !important;
-}
-
-footer.ops-footer {
+footer.footer {
   background: #7c7c84;
 }
 
-footer.ops-footer .vw {
+footer.footer .vw {
   max-width: 82rem;
 }
 
-.osp-footer-img img{
+.footer-img img {
   width: 150px;
 }
-
-/**
-* End styles for mobile version
-*/
 
 .platform {
   margin: 0 auto;
   font-size: 1.1rem;
 }
 
-.ipadImg, .ipadContent, .dataFirstContent, .dataFirstImage, .techDetailsContent, .techDetailsImage, .polymerContent, .polymerImage {
+.halves {
+  margin-bottom: 5%;
   display: inline-block;
-}
-
-.ipadContent {
   vertical-align: top;
-  margin-top: 11%;
-}
-.seed_shot {
-  width: 98%;
-  margin: 3% auto 3% auto;
 }
 
-.techDetailsImage img, .ipadImg img, .polymerImage img, .ipadImg, .dataFirstImage, .techDetailsImage, .ipadContent {
+.halves img {
   width: 100%;
 }
-.seed_shot img {
-  width: 80%;
+
+img.thirds {
+  height: 50%;
+  width: 40%;
 }
-.ipadImg {
+
+.thirds {
+  display: inline-block;
   width: 100%;
-}
-.seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
-  display: block;
-}
-hr {
-  margin: 2rem 0 4rem 0;
-}
-.subHeader {
-  font-size: 1.8rem;
-}
-
-.dataFirstContent {
-  vertical-align: top;
-  padding-top: 12%;
-}
-
-.dataFirstImage img {
-  width: 100%;
-}
-.techDetailsContent,   .dataFirstContent, .polymerContent {
-  display: block;
-}
-.techDetailsContent {
-  vertical-align: top;
-  padding-top: 11%;
-  margin-bottom: 8%;
-}
-.polymerImage {
-  display: block;
-  vertical-align: top;
-  padding-top: 15%;
-  margin-bottom: 3%;
-}
-.white {
-  color: #fff;
-}
-
-.github {
+  max-width: 500px;
   text-align: center;
+  vertical-align: top;
+  margin: 0% 5% 10% 0;
 }
-.ipadImg img {
-  left: 0;
-  position: static;;
+
+.subHeader {
+  font-size: 1.4rem;
+  font-weight: 400;
 }
-.header  {
-   max-width: 1000px;
-   margin: 0 auto;
-   font-size: 1.5rem;
+
+.header {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 1.5rem;
 }
+
 .headerBottom {
   max-width: 1000px;
   margin: 0 auto;
 }
-@media screen and (min-width: 768px) and (max-width: 1069px) {
-  .dataFirstImage img {
-    width: 100%;
-    margin-left: 20%;
-  }
-  .techDetailsImage {
-    width: 50%;
-  }
-  .techDetailsContent,   .dataFirstContent, .polymerContent{
-    width: 40%;
-    display: inline-block;
-  }
-  .techDetailsContent {
-    vertical-align: top;
-  }
-  .techDetailsImage img{
-    margin-left: 41%;
-  }
-  .polymerImage {
-    width: 40%;
-    vertical-align: top;
-  padding-top: 8%;
-  }
-  .polymerContent {
-    margin-left: 10%;
-    padding-top: 8%;
-  }
-  .ipadContent {
-    width: 30%;
-    vertical-align: top;
-    position: relative;
-    left: -8%;
-    margin-top: 11%;
-  }
-  .dataFirstImage {
-    width: 52%;
-  }
-  .ipadImg {
-    width: 58%;
-  }
-  .ipadImg img {
-    left: -27%;
-    position: relative;
-  }
-.seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
-    display: inline-block;
-  }
-  .gray-bar a:link {
-    color: #7e7e7e !important;
-    font-family: "GE Inspira";
-    font-size: 1em;
-    display: block;
-    letter-spacing: 1px;
+
+@media screen and (min-width: 768px) {
+
+  .halves {
+    width: 44%;
+    margin: 0 5% 5% 0;
   }
 
-  .gray-bar a:visited {
-    color: #7e7e7e !important
-  }
-
-  .gray-bar .lnk {
-    float: left;
-     width: 50%;
-  }
-
-  .osp-hero-logo{
-    height: 60px;
-  }
-
-  .osp-hero-sub-header{
-    font-size: 40px;
-  }
-
-  .osp-hero-container {
-    padding: 50px 0;
-  }
-
-  .osp-hero-title {
-    font-size: 5em;
-  }
-
-  .ops-hero-subtitle {
-    font-size: 2em;
-  }
-
-  .osp-contents-container-text {
-    padding: 30px 100px;
-  }
-
-  .osp-card {
-    width: 47%;
-    margin: 10px 10px;
-  }
-
-  .ops-card-btn {
-    font-weight: normal !important;
-    padding: 10px 30px !important;
-  }
-}
-
-@media screen and (min-width: 1070px) and (max-width: 1440px) {
-  .dataFirstImage img {
-    width: 100%;
-    margin-left: 20%;
-  }
-  .techDetailsImage {
-    width: 59%;
-  }
-  .techDetailsContent,   .dataFirstContent, .polymerContent{
-    width: 40%;
-    display: inline-block;
-  }
-  .techDetailsContent {
-    vertical-align: top;
-  }
-  .techDetailsImage img{
-    margin-left: 14%;
-  }
-  .polymerImage {
-    width: 40%;
-    vertical-align: top;
-  padding-top: 8%;
-  }
-  .polymerContent {
-    margin-left: 10%;
-    padding-top: 8%;
-  }
-  .ipadContent {
-    width: 30%;
-    vertical-align: top;
-    position: relative;
-    left: -8%;
-    margin-top: 11%;
-  }
-  .dataFirstImage {
-    width: 52%;
-  }
-  .ipadImg {
-    width: 58%;
-  }
-  .ipadImg img {
-    left: -27%;
-    position: relative;
-  }
-  .seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
-    display: inline-block;
-  }
-
-  .gray-bar {
-    background-color: #333;
-    min-height: 36px;
-  }
-
-  .gray-bar a:link {
-    color: #7e7e7e !important;
-    font-family: "GE Inspira";
-    font-size: 1em;
-    display: block;
-    letter-spacing: 1px;
-  }
-
-  .gray-bar a:visited {
-    color: #7e7e7e !important
-  }
-
-  .gray-bar .lnk {
-    float: left;
-    width: 50%;
-  }
-
-  .gray-bar .lnk.first a:link {
-    margin-left: 151px;
-    margin-top: 9px;
-  }
-
-  .gray-bar .lnk.second a:link {
-    float: right;
-    margin-right: 151px;
-    margin-top: 9px;
-  }
-
-  .osp-hero-container {
-    padding: 70px 0;
-  }
-
-  .osp-hero-logo{
-    height: 70px;
-  }
-
-  .osp-hero-sub-header{
-    font-size: 40px;
-  }
-
-  .osp-hero-title {
-    font-size: 8.2em;
-    margin-bottom: 0;
-  }
-
-  .ops-hero-subtitle {
-    font-size: 2.5em;
-  }
-
-  .osp-contents-container-text {
-    font-size: 1.7em;
-    font-family: "GE Inspira Sans";
-    padding: 44px 15% 0;
-  }
-
-  .osp-cards-container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 5rem 5%;
-    overflow: hidden;
-  }
-
-  .osp-card {
-    width: 47%;
-    margin: 10px 10px;
-  }
-
-  .osp-card.even {
-    margin-left: 5px;
-  }
-
-  .osp-card.odd {
-    margin-left: 35px;
-  }
-  .ops-card-title h3 {
-    font-size: 1.3em;
-  }
-
-  .ops-card-status {
-    padding: 0 10px 10px 10px;
-    color: #999;
-    float: right;
-    margin-top: -48px;
-    font-size: 1.2em
-  }
-
-  .ops-card-status .fa-code-fork {
-    margin-left: 10px
-  }
-
-  .ops-card-text {
-    padding: 0 10px;
-    font-size: 1em;
-  }
-
- .ops-card-btn {
-   font-weight: normal !important;
-   padding: 10px 30px !important;
- }
-
-  .osp-footer-img img {
-    width: 150px;
+  .thirds {
+    width: 31%;
+    margin: 0 1% 5% 1%;
   }
 
   .list-inline--delimited {
     font-size: 1.3em;
   }
-  .ipadImg {
-    width: 58%;
-  }
-  .ipadImg img {
-    left: -27%;
-    position: relative;
-  }
-}
 
-@media screen and (min-width: 1441px) {
-  .dataFirstImage img {
-    width: 100%;
-    margin-left: 20%;
-  }
-  .ipadImg {
-    width: 58%;
-  }
-  .ipadImg img {
-    left: -27%;
-    position: relative;
-  }
-  .techDetailsImage {
-    width: 50%;
-  }
-  .techDetailsContent,   .dataFirstContent, .polymerContent{
-    width: 40%;
-    display: inline-block;
-  }
-  .techDetailsContent {
-    vertical-align: top;
-  }
-  .techDetailsImage img{
-    margin-left: 41%;
-  }
-  .polymerImage {
-    width: 40%;
-    vertical-align: top;
-  padding-top: 8%;
-  }
-  .polymerContent {
-    margin-left: 10%;
-    padding-top: 8%;
-  }
-  .ipadContent {
-    width: 30%;
-    vertical-align: top;
-    position: relative;
-    left: -8%;
-    margin-top: 11%;
-  }
-  .dataFirstImage {
-    width: 52%;
-  }
-  .seed_shot, .techDetailsImage, .ipadImg, .polymerImage{
-    display: inline-block;
-  }
-  .gray-bar {
-    background-color: #333;
-    min-height: 36px;
-  }
-
-  .gray-bar a:link {
-    color: #7e7e7e !important;
-    font-family: "GE Inspira";
-    font-size: 1em;
-    display: block;
-    letter-spacing: 1px;
-  }
-
-  .gray-bar a:visited {
-    color: #7e7e7e !important
-  }
-
-  .gray-bar .lnk {
-    float: left;
-    width: 50%;
-  }
-
-  .gray-bar .lnk.first a:link {
-    margin-left: 151px;
-    margin-top: 9px;
-  }
-
-  .gray-bar .lnk.second a:link {
-    float: right;
-    margin-right: 151px;
-    margin-top: 9px;
-  }
-
-  .osp-hero-container {
-    padding: 70px 0;
-  }
-
-  .osp-hero-logo{
-    height: 70px;
-  }
-
-  .osp-hero-sub-header{
-    font-size: 40px;
-  }
-
-  .osp-hero-title {
-    font-size: 8.2em;
-    letter-spacing: -1px;
-    margin-bottom: 0;
-  }
-
-  .ops-hero-subtitle {
-    font-size: 3.3em;
-  }
-
-  .osp-contents-container-text {
-    font-size: 1.7em;
-    font-family: "GE Inspira Sans";
-    padding: 44px 15% 0;
-  }
-
-  .osp-cards-container {
-    width: 90%;
-    margin: 35px auto 0;
-    padding: 5rem 5%;
-    overflow: hidden;
-  }
-
-  .osp-card {
-    height: 310px;
-    overflow: hidden;
-    width: 47%;
-  }
-
-  .osp-card.even {
-    margin-left: 5px;
-  }
-
-  .osp-card.odd {
-    margin-left: 35px;
-  }
-
-  .osp-card .card-head {
-    overflow: auto;
-  }
-
-  .ops-card-title {
-    float: left;
-    width: 70%;
-  }
-
-  .ops-card-title h3 {
-    font-size: 1.7em;
-  }
-
-  .ops-card-status {
-    padding: 16px 0 10px 17px;
-    color: #999;
-    float: left;
-    margin-top: 0;
-    font-size: 1.3em;
-  }
-
-  .ops-card-status .fa-code-fork {
-    margin-left: 50px
-  }
-
-  .ops-card-text {
-    padding: 22px 10px 0;
-    font-size: 1.2em;
-    line-height: 1.4em;
-    min-height: 133px;
-  }
-
-  .ops-card-details {
-    font-size: 0.9em;
-    padding: 0 10px 10px 10px;
-    overflow: hidden;
-    color: #aaa;
-  }
-
- .osp-card .ops-card-btn {
-    display: block;
-    font-weight: normal !important;
-    font-size: 1.3em;
-    margin: 4px 0 0 12px;
-    min-height: 39px;
-    padding: 0.525rem 1rem;
-    width: 190px;
- }
-
- .osp-footer-img img {
-    width: 150px;
-  }
-
-  .list-inline--delimited {
-    font-size: 1.3em;
-  }
 }
