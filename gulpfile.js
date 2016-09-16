@@ -11,6 +11,8 @@ const gulpif = require('gulp-if');
 const combiner = require('stream-combiner2');
 const bump = require('gulp-bump');
 const argv = require('yargs').argv;
+const vulcanize = require('gulp-vulcanize');
+const rename = require('gulp-rename');
 
 const sassOptions = {
   importer: importOnce,
@@ -92,6 +94,19 @@ gulp.task('bump:major', function(){
   .pipe(gulp.dest('./'));
 });
 
+gulp.task('vulcanize', function() {
+  return gulp.src('_index.html')
+    .pipe(vulcanize({
+      abspath: '',
+      excludes: [],
+      stripComments: true,
+      inlineCSS: true,
+      inlineScripts: true
+    }))
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('.'));
+});
+
 gulp.task('default', function(callback) {
-  gulpSequence('clean', 'sass')(callback);
+  gulpSequence('clean', 'sass', 'vulcanize')(callback);
 });
