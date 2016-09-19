@@ -52,6 +52,11 @@ h1,h2,h3,h4,h5,h6,p,ul {
   margin-bottom: 1rem;
 }
 
+h2 {
+  font-size: 45px;
+  font-weight: 400;
+}
+
 li>ul {
   margin-bottom: 0;
 }
@@ -279,11 +284,6 @@ a.darker {
   height: 43px;
 }
 
-.section {
-  padding-top: 1.875rem;
-  padding-bottom: 1.875rem;
-}
-
 .btn {
   border-color: transparent;
   font-family: "GE Inspira Sans",Helvetica,Arial,sans-serif;
@@ -332,17 +332,25 @@ a.darker {
 
 .hero {
   background-image: url('img/pattern_hero.jpg');
-  background-size: cover;
+  background-repeat: repeat;
   text-align: left;
   color: white;
   padding: 5%;
+}
+
+.hero-header {
+  vertical-align: top;
+}
+
+.hero-logo {
+  max-width: 500px;
 }
 
 .main {
   width: 100%;
   margin: 0 auto;
   background-color: #fff;
-  padding: 5%;
+  padding: 5% 5% 2% 5%;
   overflow: hidden;
 }
 
@@ -363,32 +371,35 @@ footer.footer .vw {
   font-size: 1.1rem;
 }
 
+#tech-logo {
+  width: 40%;
+}
+
+#tech-logo-2 {
+  width: 25%;
+}
+
 .halves {
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .halves img {
   width: 100%;
 }
 
-img.thirds {
-  height: 50%;
-  width: 40%;
-}
-
 .thirds {
   display: inline-block;
   width: 100%;
-  max-width: 500px;
+  /*max-width: 500px;*/
   text-align: center;
   vertical-align: top;
   margin: 0% 5% 10% 0;
 }
 
 .subHeader {
-  font-size: 1.4rem;
+  font-size: 30px;
   font-weight: 400;
 }
 
@@ -407,7 +418,7 @@ img.thirds {
 
   .halves {
     width: 44%;
-    margin: 0 5% 5% 0;
+    margin: 0 5% 10% 0;
   }
 
   .thirds {
@@ -417,6 +428,10 @@ img.thirds {
 
   .list-inline--delimited {
     font-size: 1.3em;
+  }
+
+  .hero-header {
+    vertical-align: top;
   }
 
 }
