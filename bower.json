@@ -21,6 +21,9 @@
     "px-buttons-design": "^0.4.26",
     "px-spinner": "^0.4.2",
     "px-typography-design": "~1.1.1",
+    "px-clipboard": "~0.1.3",
+    "px-code-design": "~0.2.11",
+    "px-list-inline-design": "~0.2.11",
     "px-frames": "git@github.com:davidrleonard/px-frames.git#0.1.4"
   },
   "devDependencies": {

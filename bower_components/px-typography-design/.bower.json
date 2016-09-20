@@ -33,7 +33,7 @@
     "tag": "v1.1.1",
     "commit": "6a5349d60b9b57edcf3a7c7de26a9234e4ed5eb6"
   },
-  "_source": "https://github.com/predixDev/px-typography-design.git",
-  "_target": "^1.1.0",
-  "_originalSource": "px-typography-design"
+  "_source": "https://github.com/PredixDev/px-typography-design.git",
+  "_target": "~1.1.1",
+  "_originalSource": "https://github.com/PredixDev/px-typography-design.git"
 }

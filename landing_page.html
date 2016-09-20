@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="embedded">
   <head>
     <title>Predix UI</title>
     <meta charset="utf-8" />
@@ -8,8 +8,14 @@
     with industrial machines through analytics and data for better business outcomes." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/px-theme/px-theme-styles.html">
+    <style include="px-theme-styles" is="custom-style"></style>    
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="import" href="css/predix-ui-styles.html"/>
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <link rel="import" href="bower_components/px-theme/px-theme-styles.html">
+    <style include="px-theme-styles" is="custom-style"></style>
     <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
   </head>
   <body class="body">
@@ -31,19 +37,19 @@
         <img class="icon" src="img/icon_comp.png" alt="Laptop">
         <h2 class="subHeader">1. Setup environment</h2>
         <p>Head over to Predix.io resources to learn about setting up your development environment to start building with Predix UI.</p>
-          <a href="https://www.predix.io/docs#hOTKiBl" target="_blank" class="btn btn--primary">View More</a>
+          <a href="https://www.predix.io/docs#hOTKiBl" target="_blank"><button class="btn btn--primary">View More</button></a>
       </div>
       <div class="thirds">
         <img  class="icon" src="img/icon_wrench.png" alt="Wrench">
         <h2 class="subHeader">2. Get started</h2>
         <p>After setting up your environment, read our documentation on how to install the dependencies required to use our components.</p>
-          <a href="https://www.predix.io/docs#3ICzwBi" target="_blank" class="btn btn--primary">View More</a>
+          <a href="https://www.predix.io/docs#3ICzwBi" target="_blank"><button class="btn btn--primary">View More</button></a>
       </div>
       <div class="thirds">
         <img class="icon" src="img/icon_blocks.png" alt="Blocks">
         <h2 class="subHeader">3. Build with components</h2>
         <p>Start with some basic components or browse the navigation on the left to find the right components for your project.</p>
-          <a href="https://www.predix.io/docs#UP8oJ8sa" target="_blank" class="btn btn--primary">View More</a>
+          <a href="https://www.predix.io/docs#UP8oJ8sa" target="_blank"><button class="btn btn--primary">View More</button></a>
       </div>
 
       <hr>
