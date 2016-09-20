@@ -1,0 +1,30 @@
+{
+  "name": "polymer-font-awesome",
+  "version": "0.1.9",
+  "authors": [
+    "Martin Wragg mdwragg@gmail.com",
+    "Runn Vermel runn@vermel.org"
+  ],
+  "description": "Polymer component to allow easy use of Font Awesome icons in your Polymer element.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "polymer-font-awesome.html",
+  "license": "https://github.com/mdwragg/polymer-font-awesome/LICENSE.md",
+  "homepage": "https://github.com/mdwragg/polymer-font-awesome",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^1.0.9",
+    "iron-icon": "PolymerElements/iron-icon#^1.0.7"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}
