@@ -1,3 +1,7 @@
+v0.1.1
+==================
+* added vulcanize and lnks in getting_started and landing page.
+
 v0.0.13
 ==================
 * merged fix-menu-toggle
