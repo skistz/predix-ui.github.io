@@ -52,19 +52,65 @@
           <ul class="side-nav__main-ul">
             <!--Getting Started -->
             <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
-            <!--Basics -->
+            <!--SASS Libraries -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
-                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Sass Basics (Demos soon!)</div></a>
              </li>
-              <iron-collapse id="collapse_Basics" opened>
+              <iron-collapse id="collapse_Basics">
                 <ul>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-box-design">Box</a></li>
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
+                        <div class="arrow-right"></div><div class="u-ml--">Buttons</div></a>
+                    </li>
+                    <iron-collapse id="collapse_buttons">
+                      <ul>
+                        <li><a href="https://github.com/PredixDev/px-meta-buttons-design" target="_blank">Buttons (Meta)</a></li>
+                        <li><a class="nav-lnk" data-type="sass" data-name="px-button-group-design">Button Group</a></li>
+                        <li><a class="nav-lnk" data-type="sass" data-name="px-buttons-design">Buttons</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-code-design">Code</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-flag-design">Flag</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-forms-design">Forms</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-headings-design">Headings</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-helpers-design">Helpers</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-input-group-design">Input Group</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-layout-design">Layout</a></li>
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_lists')">
+                        <div class="arrow-right"></div><div class="u-ml--">Lists</div></a>
+                    </li>
+                    <iron-collapse id="collapse_lists">
+                      <ul>
+                        <li><a href="https://github.com/PredixDev/px-meta-lists-design" target="_blank">Lists (Meta)</a></li>
+                        <li><a class="nav-lnk" data-type="sass" data-name="px-list-bare-design">List Bare</a></li>
+                        <li><a class="nav-lnk" data-type="sass" data-name="px-list-inline-design">List Inline</a></li>
+                        <li><a class="nav-lnk" data-type="sass" data-name="px-list-ui-design">List UI</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-tables-design">Tables</a></li>
+                  <li><a class="nav-lnk" data-type="sass" data-name="px-toggle-design">Toggle</a></li>
+                </ul>
+              </iron-collapse>
+
+            <!--More SASS Libraries -->
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_helpers')">
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Sass Helpers (Demos soon!)</div></a>
+             </li>
+              <iron-collapse id="collapse_helpers">
+                <ul>
+                  <li><a href="https://github.com/PredixDev/px-actionable-text-icons-design" target="_blank">Actionable Text &amp; Icons</a></li>
+                  <li><a href="https://github.com/PredixDev/px-box-sizing-design" target="_blank">Box Sizing</a></li>
+                  <li><a href="https://github.com/PredixDev/px-clearfix-design" target="_blank">Clearfix</a></li>
+                  <li><a href="https://github.com/PredixDev/px-defaults-design" target="_blank">Defaults</a></li>
+                  <li><a href="https://github.com/PredixDev/px-flexbox-design" target="_blank">Flexbox</a></li>
+                  <li><a href="https://github.com/PredixDev/px-polymer-font-awesome" target="_blank">Font Awesome</a></li>
+                  <li><a href="https://github.com/PredixDev/px-mixins-design" target="_blank">Mixins</a></li>
+                  <li><a href="https://github.com/PredixDev/px-normalize-design" target="_blank">Normalize</a></li>
+                  <li><a href="https://github.com/PredixDev/px-starter-kit-design" target="_blank">Starter Kit</a></li>
+                  <li><a href="https://github.com/PredixDev/px-spacing-design" target="_blank">Spacing</a></li>
+                  <li><a href="https://github.com/PredixDev/px-typography-design" target="_blank">Typography</a></li>
+                  <li><a href="https://github.com/PredixDev/px-widths-design" target="_blank">Widths</a></li>
+                  <li><a href="https://github.com/PredixDev/px-widths-tools-design" target="_blank">Widths Tools</a></li>
                 </ul>
               </iron-collapse>
 
@@ -74,6 +120,7 @@
              </li>
               <iron-collapse id="collapse_components" opened>
                 <ul>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
                   <!-- Cards -->
@@ -124,10 +171,16 @@
                       </ul>
                     </iron-collapse>
                   <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
                   <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
                 </ul>
               </iron-collapse>
@@ -176,6 +229,9 @@
         var types = {
           "component" : function(name) {
             return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "sass" : function(name) {
+            return "https://predixdev.github.io/" + name + "/";
           },
           "home": function() {
             return "https://predixdev.github.io/predix-ui/getting_started.html";
