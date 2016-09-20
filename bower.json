@@ -20,7 +20,8 @@
     "px-actionable-text-icons-design": "^0.0.3",
     "px-buttons-design": "^0.4.26",
     "px-spinner": "^0.4.2",
-    "px-typography-design": "~1.1.1"
+    "px-typography-design": "~1.1.1",
+    "px-frames": "git@github.com:davidrleonard/px-frames.git#0.1.4"
   },
   "devDependencies": {
     "iron-collapse": "PolymerElements/iron-collapse#~1.2.0",

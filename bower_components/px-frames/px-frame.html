@@ -1,0 +1,132 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-spinner/px-spinner.html" />
+
+<!--
+
+Use this component to load and manage the lifecycle of a single iFrame.
+
+##### Usage
+
+    <px-frame url="https://foo.com/frame"></px-frame>
+
+@element px-frame
+@blurb Predix UI sub-component that loads and manages a single iFrame.
+-->
+
+<link rel="import" href="css/px-frame-styles.html">
+
+<dom-module id="px-frame">
+  <style include="px-frame-styles"></style>
+  <template>
+    <px-spinner size="50" finished="{{loaded}}"></px-spinner>
+    <iframe src="{{url}}" onload="{{_handleFrameLoad()}}"></iframe>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-frame',
+
+    /**
+    * Properties block, expose attribute values to the DOM via 'notify'
+    *
+    * @property properties
+    * @type Object
+    */
+    properties: {
+      /**
+      * This property defines the URL of the frame that should be loaded.
+      *
+      * @prop url
+      * @type String
+      */
+      url: {
+        type: String,
+        notify: false,
+        reflectToAttribute: true
+      },
+
+      /**
+      * This property defines the URL of the frame that the parent wants visible.
+      *
+      * @prop wanted
+      * @type String
+      */
+      wanted: {
+        type: String,
+        notify: false,
+        value: function() {
+          return "";
+        }
+      },
+
+      /**
+      * This property is automatically updated when the frame finishes loading.
+      *
+      * @prop preload
+      * @type Boolean
+      * @default false
+      */
+      loaded: {
+        type: Boolean,
+        notify: true,
+        reflectToAttribute: true,
+        value: function() {
+          return false;
+        }
+      },
+
+      /**
+      * PRIVATE. This property contains the computed string that will be applied to the `style` attribute.
+      *
+      * @prop _style
+      * @type String
+      */
+      _style: {
+        type: String,
+        notify: false,
+        reflectToAttribute: true
+      }
+    },
+
+    observers: ['_computeVisibility(url,wanted)'],
+
+    ready: function() {
+      /**
+      * Listen for changes to the wanted frame from the parent
+      */
+      document.addEventListener('px-frames-frame-change', function(evt) {
+        this.wanted = evt.detail.frame;
+      }.bind(this));
+    },
+
+    /**
+    * Bound to the iFrame's `onload` event. Sets the loaded status to true so our parent can know the frame is ready.
+    *
+    * @method _checkIfFrameLoaded
+    */
+    _handleFrameLoad: function() {
+      this.loaded = true;
+    },
+
+    /**
+    * Determines if the frame is wanted by the parent, and creates a string to be applied to the frame's `style` attribute to manage visibility.
+    *
+    * @method _computeVisibility
+    */
+    _computeVisibility: function(url) {
+      if (url === this.wanted) {
+        this.style = '';
+      }
+      else {
+        this.style = 'display:none';
+      }
+    }
+  });
+</script>

@@ -13,6 +13,8 @@
       <link rel="import" href="bower_components/iron-collapse/iron-collapse.html"/>
       <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
       <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
+      <link rel="import" href="bower_components/px-frames/px-frames.html" />
+      <link rel="import" href="bower_components/app-route/app-route.html" />
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -26,139 +28,138 @@
       html{
         font-size: 15px;
       }
-      #spinner{position:absolute;z-index:999;width:100%;height:100%;background:#fff;}
+      #spinner{position:absolute;z-index:999;width:100%;height:100%;background:#fff;display:none;}
       #spinner px-spinner {margin:25% 36%;vertical-align: middle;}
       </style>
     </head>
     <body unresolved>
-      <!-- header -->
-      <section class="gray-bar flex flex--middle">
-        <span id="menu" class="menu">
-          <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
-          <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
-        </span>
-        <div class="lnk first">
-          <a class="header-lnk" href="http://predix.io" target="_blank">
-            <img class="header-img" src="img/Predix_small.png" alt="Predix Logo"/> Developer Network
-          </a>
-        </div>
-      </section>
-
-      <!-- overlay -->
-      <div id="overlay" class="overlay"></div>
-      <div class="wrapper-flex">
-        <!-- side nav -->
-        <div id="side-nav" class="side-nav side-nav__default">
-          <ul class="side-nav__main-ul">
-            <!--Getting Started -->
-            <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
-            <!--Basics -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
-                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
-             </li>
-              <iron-collapse id="collapse_Basics" opened>
-                <ul>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
-                </ul>
-              </iron-collapse>
-
-            <!--Components -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
-                <div id="arrow" class="arrow-down"></div><div class="u-ml--">Components</div></a>
-             </li>
-              <iron-collapse id="collapse_components" opened>
-                <ul>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
-                  <!-- Cards -->
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
-                        <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
-                    </li>
-                    <iron-collapse id="collapse_cards">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-card">Card</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <!-- Charts -->
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
-                        <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
-                    </li>
-                    <iron-collapse id="collapse_charts">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-percent-circle">Percent Circle</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">Vis XY Chart</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-clipboard">Clipboard</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
-
-                  <li><a class="nav-lnk" data-type="component" data-name="px-data-table">Data Table</a></li>
-                  <!-- Datetime Components -->
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
-                        <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
-                    </li>
-                    <iron-collapse id="collapse_datetime-components">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
-                         <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
-                </ul>
-              </iron-collapse>
-
-          </ul>
-        </div>
-
-
-
-        <!-- iframe -->
-        <div class="iframe__container">
-          <div id="spinner">
-            <px-spinner size="100"></px-spinner>
+      <template id="pxui-wrapper" is="dom-bind">
+        <!-- header -->
+        <section class="gray-bar flex flex--middle">
+          <span id="menu" class="menu">
+            <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
+            <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
+          </span>
+          <div class="lnk first">
+            <a class="header-lnk" href="http://predix.io" target="_blank">
+              <img class="header-img" src="img/Predix_small.png" alt="Predix Logo"/> Developer Network
+            </a>
           </div>
-          <iframe src="" allowfullscreen name="iframe_a" class="iframe" id="iframe_a">
-            <p>Your browser does not support iframes.</p>
-          </iframe>
+        </section>
+
+        <!-- overlay -->
+        <div id="overlay" class="overlay"></div>
+        <div class="wrapper-flex">
+          <!-- side nav -->
+          <div id="side-nav" class="side-nav side-nav__default">
+            <ul class="side-nav__main-ul">
+              <!--Getting Started -->
+              <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
+              <!--Basics -->
+              <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
+                  <div id="arrow" class="arrow-down"></div><div class="u-ml--">Basics</div></a>
+               </li>
+                <iron-collapse id="collapse_Basics" opened>
+                  <ul>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-alert-label" data-preload="true">Alert Label</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-file-upload" data-preload="true">File Upload</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-popover" data-preload="true">Popover</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar" data-preload="true">Progress Bar</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-spinner" data-preload="true">Spinner</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-tabs" data-preload="true">Tabs</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-tooltip" data-preload="true">Tooltip</a></li>
+                  </ul>
+                </iron-collapse>
+
+              <!--Components -->
+              <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
+                  <div id="arrow" class="arrow-down"></div><div class="u-ml--">Components</div></a>
+               </li>
+                <iron-collapse id="collapse_components" opened>
+                  <ul>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-alert-message" data-preload="true">Alert Message</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-app-nav" data-preload="true">App Nav</a></li>
+                    <!-- Cards -->
+                    <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
+                          <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
+                      </li>
+                      <iron-collapse id="collapse_cards">
+                        <ul>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-card" data-preload="true">Card</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
+                        </ul>
+                      </iron-collapse>
+                    <!-- Charts -->
+                    <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
+                          <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
+                      </li>
+                      <iron-collapse id="collapse_charts">
+                        <ul>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-percent-circle">Percent Circle</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">Vis XY Chart</a></li>
+                        </ul>
+                      </iron-collapse>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-clipboard" data-preload="true">Clipboard</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
+
+                    <li><a class="nav-lnk" data-type="component" data-name="px-data-table" data-preload="true">Data Table</a></li>
+                    <!-- Datetime Components -->
+                    <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
+                          <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
+                      </li>
+                      <iron-collapse id="collapse_datetime-components">
+                        <ul>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
+                           <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
+                          <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
+                        </ul>
+                      </iron-collapse>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-dropdown" data-preload="true">Dropdown</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-login" data-preload="true">Login</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-overlay" data-preload="true">Overlay</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-slider" data-preload="true">Slider</a></li>
+                    <li><a class="nav-lnk" data-type="component" data-name="px-validation" data-preload="true">Validation</a></li>
+                  </ul>
+                </iron-collapse>
+
+            </ul>
+          </div>
+
+          <!-- iframe -->
+          <div class="iframe__container flex flex--col">
+            <div id="spinner">
+              <px-spinner size="100"></px-spinner>
+            </div>
+            <px-frames frame="[[wantedFrame]]" preload="[[preloadFrames]]" delay="10000" class="flex__item"></px-frames>
+            <!--
+            <iframe src="" allowfullscreen name="iframe_a" class="iframe" id="iframe_a">
+              <p>Your browser does not support iframes.</p>
+            </iframe>
+            -->
+          </div>
         </div>
+      </template>
 
-      </div>
-<!--  -->
+      <script type="text/javascript">
+        var template = document.querySelector('template[is=dom-bind]'),
 
-
-    <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function(e){
-        /*
-        * define toggleNavClasses function
-        * when the the menu, overlay, or nav-link is clicked toggle the default class
-        * only for mobile
+        /**
+        * Retrieves the URL parameters for the page.
         */
-        function GetURLParameter(sParam) {
+        getURLParameter = function(sParam) {
           var sPageURL = window.location.search.substring(1),
               sURLVariables = sPageURL.split('&'),
               i,
@@ -171,110 +172,164 @@
               return sParameterName[1];
             }
           }
-        }
-        //this object contains the different configurations of URLs, depending on the type of link.
-        var types = {
+        },
+
+        /**
+        * Returns the different configurations of URLs, depending on the type of link.
+        */
+        types = {
           "component" : function(name) {
             return "https://predixdev.github.io/" + name + "/" + name + "/";
           },
           "home": function() {
             return "https://predixdev.github.io/predix-ui/getting_started.html";
           }
-        };
+        },
 
-        var name = GetURLParameter('show'),
-            type = GetURLParameter('type');
+        /**
+        * Manages the visible iFrame
+        */
+        getWantedFrame = function(name, type) {
+          if (name && type) {
+            return this.types[type](name);
+          }
+          else {
+            return 'getting_started.html';
+          }
+        },
 
+        /**
+        * Binds the links in the DOM to a listener
+        */
+        bindLinks = function() {
+          var _this = this,
+              links = document.getElementsByClassName("nav-lnk"),
+              groupLinks = document.getElementsByClassName("nav-group-lnk");
 
-        if (name && type) {
-          var showUrl = types[type](name);
-          document.getElementById('iframe_a').src = showUrl;
-        } else {
-          document.getElementById('iframe_a').src = 'getting_started.html';
-        }
-        /*
-         * create one function that toggles the menu for mobile
-         */
-        var toggleNavClasses = function() {
+          /**
+          * If an li with the class of 'nav-lnk' is clicked then update
+          * the visible state of the app
+          */
+          Array.prototype.forEach.call(links, function(link) {
+            link.addEventListener("click", function(e) {
+              e.preventDefault;
+
+              /*
+              * Remove the .selected class from all links
+              * and only add it to the one that was selected
+              */
+              var otherLinks = document.getElementsByClassName("selected");
+              Array.prototype.forEach.call(otherLinks, function(otherLink) {
+                otherLink.classList.remove("selected");
+              });
+              this.classList.add("selected");
+
+              /*
+               * make sure that we are in the mobile layout indicated by the .menu being shown
+               *
+               * enable toggleNavClasses in mobile
+               */
+              if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
+                _this.toggleNavClasses();
+              }
+
+              _this.setRoute(this.dataset.name, this.dataset.type);
+            });
+          });
+
+          /**
+          * If an li with the class of 'nav-group-lnk' is clicked
+          * then rotate the arrow
+          */
+          Array.prototype.forEach.call(groupLinks, function(groupLink) {
+            groupLink.addEventListener("click", function(e) {
+              this.children[0].classList.toggle('arrow-down');
+              this.children[0].classList.toggle('arrow-right');
+            });
+          });
+        },
+
+        /**
+        * Reads through the sidebar links and fetched the frames we want to
+        * preload so they can be passed into px-frames.
+        */
+        getPreloadFrames = function() {
+          var _this = this,
+              links = document.getElementsByClassName("nav-lnk"),
+              preloadFrames = [];
+
+          Array.prototype.forEach.call(links, function(link) {
+            if (typeof link.dataset !== "undefined" && typeof link.dataset.preload !== "undefined" && link.dataset.preload) {
+              preloadFrames.push(getWantedFrame(link.dataset.name || null, link.dataset.type || null));
+            }
+          });
+
+          this.preloadFrames = preloadFrames;
+        },
+
+        /**
+        * Toggles the menu on mobile
+        */
+        toggleNavClasses = function() {
           document.getElementById("side-nav").classList.toggle('side-nav__default');
           document.getElementById("overlay").classList.toggle('overlay--visible');
           document.getElementById("menu__open-icon").classList.toggle('is__hidden');
           document.getElementById("menu__close-icon").classList.toggle('is__hidden');
+        },
+
+        /**
+        * Updates the route and the wanted frame
+        */
+        setRoute = function(name, type) {
+          window.history.pushState('','','?show=' + name + '&type=' + type);
+          this.getRoute();
+        },
+
+        /**
+        * Updates the route and the wanted frame
+        */
+        getRoute = function() {
+          this.name = this.getURLParameter('show') || null;
+          this.type = this.getURLParameter('type') || null;
+          this.wantedFrame = getWantedFrame(this.name,this.type);
+        },
+
+        /**
+        * toggle for side nav's <iron-collapse>
+        */
+        toggle = function(selector) {
+          document.querySelector(selector).toggle();
         };
 
-        document.getElementById('iframe_a').addEventListener("load", function() {
-          document.getElementById('spinner').classList.add('is__hidden');
-        });
+        // Assign functions
+        template.getURLParameter = getURLParameter;
+        template.types = types;
+        template.getWantedFrame = getWantedFrame;
+        template.bindLinks = bindLinks;
+        template.getPreloadFrames = getPreloadFrames;
+        template.toggleNavClasses = toggleNavClasses;
+        template.setRoute = setRoute;
+        template.getRoute = getRoute;
+        template.toggle = toggle;
 
-        document.getElementById("menu").addEventListener("click", function(){
-          document.getElementById('spinner').classList.add('is__hidden');
-          toggleNavClasses();
-        });
+        // Assign variables
+        this.wantedFrame = null;
+        this.preloadFrames = null;
 
-        document.getElementById("overlay").addEventListener("click", function(){
-          toggleNavClasses();
-        });
+        document.addEventListener("WebComponentsReady", function(e){
+          // Run for the first time, will update with historyState later
+          template.bindLinks();
+          template.getRoute();
+          template.getPreloadFrames();
 
-        var links = document.getElementsByClassName("nav-lnk");
-        Array.prototype.forEach.call(links, function(link) {
-          link.addEventListener("click", function(e) {
-            e.preventDefault;
-            document.getElementById('spinner').classList.remove('is__hidden');
+          document.getElementById("menu").addEventListener("click", function(){
+            toggleNavClasses();
+          });
 
-            /*
-            * Remove the .selected class from all links
-            * and only add it to the one that was selected
-            */
-            var otherLinks = document.getElementsByClassName("selected");
-            Array.prototype.forEach.call(otherLinks, function(otherLink) {
-              otherLink.classList.remove("selected");
-            });
-            this.classList.add("selected");
-
-            /*
-             * make sure that we are in the mobile layout indicated by the .menu being shown
-             *
-             * enable toggleNavClasses in mobile
-             */
-            if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
-              toggleNavClasses();
-
-              document.getElementById('iframe_a').addEventListener("load", function() {
-                document.getElementById('spinner').classList.add('is__hidden');
-              });
-            }
-
-            var name = this.dataset.name,
-                type = this.dataset.type,
-                showUrl = types[type](name);
-
-            document.getElementById('iframe_a').src = showUrl;
-            window.history.pushState('','','?show=' + name + '&type=' + type);
+          document.getElementById("overlay").addEventListener("click", function(){
+            toggleNavClasses();
           });
         });
-
-        /*
-        * If an li with the class of 'nav-group-lnk' is clicked
-        * then rotate the arrow
-        */
-        var groupLinks = document.getElementsByClassName("nav-group-lnk");
-        Array.prototype.forEach.call(groupLinks, function(groupLink) {
-          groupLink.addEventListener("click", function(e) {
-            this.children[0].classList.toggle('arrow-down');
-            this.children[0].classList.toggle('arrow-right');
-          });
-        });
-
-      });
-
-      /*
-      * toggle for side nav's <iron-collapse>
-      */
-      function toggle(selector) {
-        document.querySelector(selector).toggle();
-      }
-
-
-    </script>
+      </script>
     </body>
 </html>

@@ -1,0 +1,173 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="px-frame.html"/>
+
+<!--
+
+Use this component to load a series of iFrames and selectively display one frame.
+
+You can eager-load frames in the background and attach them to the DOM invisibily if you want to create a nice, snappy experience when switching frames.
+
+##### Usage
+
+    <px-frames frame="https://example.com/frame1" preload="['https://example.com/frame1','https://example.com/frame2']" delay="5000">
+    </px-frames>
+
+@element px-frames
+@blurb Predix UI component to (pre-)load and change visibility of iFrames
+@homepage index.html
+@demo index.html
+-->
+
+<link rel="import" href="css/px-frames-styles.html">
+
+<dom-module id="px-frames">
+  <style include="px-frames-styles"></style>
+  <template>
+    <!-- The requested frame URLs will be processed and placed here as px-frame tags. -->
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-frames',
+
+    /**
+    * Properties block, expose attribute values to the DOM via 'notify'
+    *
+    * @property properties
+    * @type Object
+    */
+    properties: {
+      /**
+      * This property defines the URL of the frame that is currently visible.
+      *
+      * @prop frame
+      * @type String
+      */
+      frame: {
+        type: String,
+        notify: false,
+        reflectToAttribute: true,
+        observer: '_handleFrameChanged'
+      },
+
+      /**
+      * This property contains the URLs of the frames we should preload and place in the the DOM to efficiently show when requested later.
+      *
+      * @prop preload
+      * @type Array
+      */
+      preload: {
+        type: Array,
+        notify: false,
+        reflectToAttribute: true,
+        value: function() {
+          return [];
+        }
+      },
+
+      /**
+      * This property defines how long we should wait to begin preloading after the frames component fires its `ready` event. It should come in milliseconds.
+      *
+      * @prop preload
+      * @type Number
+      * @default 10000
+      */
+      delay: {
+        type: Number,
+        notify: false,
+        reflectToAttribute: true,
+        value: function() {
+          return 5000;
+        }
+      },
+
+      /**
+      * PRIVATE. This property will be set to `true` after we've waited for the requested delay.
+      *
+      * @prop _waitedForDelay
+      * @type Boolean
+      * @default false
+      */
+      _waitedForDelay: {
+        type: Boolean,
+        notify: false,
+        value: function() {
+          return false;
+        }
+      },
+    },
+
+    observers: ['_preloadAfterDelay(preload,_waitedForDelay)'],
+
+    /**
+    * When the component is ready, wait for the specified delay then trigger _waitedForDelay
+    */
+    ready: function() {
+      setTimeout(function(){
+        this._waitedForDelay = true;
+      }.bind(this), this.delay);
+    },
+
+    /**
+    * After the delay finishes, tries to preload frames if requested
+    *
+    * @method _preloadAfterDelay
+    */
+    _preloadAfterDelay: function() {
+      if (this._waitedForDelay && typeof this.preload !== "undefined" && this.preload.length > 0) {
+        this._preloadFrames(this.preload);
+      }
+    },
+
+    /**
+    * Preload the requested frames and append to the `px-frames` DOM.
+    *
+    * @method _preloadFrames
+    */
+    _preloadFrames: function() {
+      for (var i = 0; i < this.preload.length; i++) {
+        this._createFrame(this.preload[i]);
+      }
+    },
+
+    /**
+    * Check if a frame exists, create it and add it to the DOM if it doesn't exist
+    *
+    * @method _createFrame
+    */
+    _createFrame: function(url) {
+      // If a frame with the requested URL can't be found, create it
+      if (this.$$('px-frame[url="'+url+'"') === null) {
+        // Create a new px-frame with the appropriate url
+        var f = Polymer.Base.create('px-frame');
+        Polymer.dom(f).setAttribute('wanted', this.frame);
+        Polymer.dom(f).setAttribute('url', url);
+
+        // Append it to the DOM
+        Polymer.dom(this.root).appendChild(f);
+      }
+    },
+
+    /**
+    * Handle an update to the visible frame by looping through all frames and only showing the one we want visible.
+    *
+    * @method _handleFrameChanged
+    */
+    _handleFrameChanged: function() {
+      // Create the frame, if needed
+      this._createFrame(this.frame);
+
+      // Notify all frames of the selected frame so they can manage their visibility
+      this.fire('px-frames-frame-change', {
+        frame: this.frame
+      });
+    }
+  });
+</script>
