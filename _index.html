@@ -234,25 +234,7 @@
             return sParameterName[1];
           }
         }
-<<<<<<< HEAD
       },
-=======
-        //this object contains the different configurations of URLs, depending on the type of link.
-        var types = {
-          "component" : function(name) {
-            return "https://predixdev.github.io/" + name + "/" + name + "/";
-          },
-          "design": function(name) {
-            return "https://predixdev.github.io/" + name;
-          },
-          "home": function(name) {
-            return name + ".html";
-          }
-        };
-
-        var name = GetURLParameter('show'),
-            type = GetURLParameter('type');
->>>>>>> origin/gh-pages
 
       /**
       * Returns the different configurations of URLs, depending on the type of link.
@@ -271,18 +253,7 @@
       */
       getWantedFrame = function(name, type) {
         if (name && type) {
-<<<<<<< HEAD
           return this.types[type](name);
-=======
-          var showUrl = types[type](name);
-          if (type === "component") {
-            document.getElementById('iframe_a').src = showUrl;
-          } else if (type === "design") {
-            window.open(showUrl, '_blank');
-          }
-        } else {
-          document.getElementById('iframe_a').src = 'landing_page.html';
->>>>>>> origin/gh-pages
         }
         else {
           return 'landing_page.html';
@@ -350,7 +321,7 @@
             preloadFrames = [];
 
         Array.prototype.forEach.call(links, function(link) {
-          if (typeof link.dataset !== "undefined" && typeof link.dataset.preload !== "undefined" && link.dataset.preload) {
+          if (link.dataset && link.dataset.preload) {
             preloadFrames.push(getWantedFrame(link.dataset.name || null, link.dataset.type || null));
           }
         });
