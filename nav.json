@@ -1,0 +1,80 @@
+var basics = [
+  {
+    "repoName":"px-box-design",
+    "linktext": "Box"
+  },
+  {
+    "linkText": "Buttons",
+    "listItems": [
+      {
+        "repoName":"px-meta-buttons-design",
+        "linktext": "Buttons (Meta)"
+      },
+      {
+        "repoName":"px-button-group-design",
+        "linktext": "Button Group"
+      },
+      {
+        "repoName":"px-buttons-design",
+        "linktext": "Buttons"
+      }
+    ]
+  },
+  {
+    "repoName":"px-code-design",
+    "linktext": "Code"
+  },
+  {
+    "repoName":"px-flag-design",
+    "linktext": "Flag"
+  },
+  {
+    "repoName":"px-forms-design",
+    "linktext": "Forms"
+  },
+  {
+    "repoName":"px-headings-design",
+    "linktext": "Headings"
+  },
+  {
+    "repoName":"px-helpers-design",
+    "linktext": "Helpers"
+  },
+  {
+    "repoName":"px-input-group-design",
+    "linktext": "Input Group"
+  },
+  {
+    "repoName":"px-layout-design",
+    "linktext": "Layout"
+  },
+  {
+    "linkText": "Lists",
+    "linkItems": [
+      {
+        "repoName":"px-meta-lists-design",
+        "linktext":"Lists (Meta)"
+      },
+      {
+        "repoName":"px-list-bare-design",
+        "linktext":"List Bare"
+      },
+        {
+        "repoName":"px-list-inline-design",
+        "linktext":"List Inline"
+      },
+        {
+        "repoName":"px-list-ui-design",
+        "linktext":"List UI"
+      }
+    ]
+  },
+  {
+    "repoName":"px-tables-design",
+    "linkText":"Tables"
+  },
+  {
+    "repoName":"px-toggle-design",
+    "linkText":"Toggle"
+  }
+];

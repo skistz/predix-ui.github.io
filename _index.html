@@ -67,41 +67,7 @@
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
                 <div id="arrow" class="arrow-right"></div><div class="u-ml--">Basics CSS (Demos soon!)</div></a>
              </li>
-              <iron-collapse id="collapse_Basics">
-                <ul>
-                  <li><a class="nav-lnk" href="https://predixdev.github.io/px-box-design" target="_blank">Box</a></li>
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
-                        <div class="arrow-right"></div><div class="u-ml--">Buttons</div></a>
-                    </li>
-                    <iron-collapse id="collapse_buttons">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-meta-buttons-design" target="_blank">Buttons (Meta)</a></li>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-button-group-design" target="_blank">Button Group</a></li>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-buttons-design" target="_blank">Buttons</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-code-design" target="_blank">Code</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-flag-design" target="_blank">Flag</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-forms-design" target="_blank">Forms</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-headings-design" target="_blank">Headings</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-helpers-design" target="_blank">Helpers</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-input-group-design" target="_blank">Input Group</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-layout-design" target="_blank">Layout</a></li>
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_lists')">
-                        <div class="arrow-right"></div><div class="u-ml--">Lists</div></a>
-                    </li>
-                    <iron-collapse id="collapse_lists">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-meta-lists-design" target="_blank">Lists (Meta)</a></li>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-list-bare-design" target="_blank">List Bare</a></li>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-list-inline-design" target="_blank">List Inline</a></li>
-                        <li><a class="nav-lnk" data-type="design" data-name="px-list-ui-design" target="_blank">List UI</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-tables-design" target="_blank">Tables</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-toggle-design" target="_blank">Toggle</a></li>
-                </ul>
-              </iron-collapse>
+              {{createList(basics, 'design')}}
 
             <!--More SASS Libraries -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_helpers')">
@@ -377,7 +343,129 @@
       */
       toggle = function(selector) {
         document.querySelector(selector).toggle();
-      };
+      },
+
+      createList = function(listArr, dataType) {
+        console.log('in createList');
+        console.dir(listArr);
+        var returnString='',
+            len = listArr.length,
+            i,
+            j;
+
+        for (i = 0; i < len; i++) {
+          if (listArr[i].listItems) {
+            returnString+="<iron-collapse id=";
+            returnString+="collapse_" + listArr[i].linkText;
+            returnString+='"\>';
+            returnString+="<ul>";
+
+            for (j = 0; j < listArr[i].listItems.length; j++) {
+              if (listArr[i].listItems[j].listItems) {
+                createList(listArr[i].listItems[j], dataType);
+              } else {
+                returnString+='<li><a class="nav-lnk" data-type="';
+                returnString+= dataType;
+                returnString+='" data-name="';
+                returnString+=listArr[i].listItems[j].repoName;
+                returnString+='">';
+                returnString+= listArr[i].listItems[j].linkText;
+                returnString+="</a></li>";
+              }
+            }
+            returnString+="</ul>/iron-collapse>";
+          } else {
+            returnString+='<li><a class="nav-lnk" data-type="';
+            returnString+= dataType;
+            returnString+='" data-name="';
+            returnString+=listArr[i].repoName;
+            returnString+='">';
+            returnString+= listArr[i].linkText;
+            returnString+="</a></li>";
+          }
+        }
+        return returnString;
+      },
+      basics = [
+        {
+          "repoName":"px-box-design",
+          "linktext": "Box"
+        },
+        {
+          "linkText": "Buttons",
+          "listItems": [
+            {
+              "repoName":"px-meta-buttons-design",
+              "linktext": "Buttons (Meta)"
+            },
+            {
+              "repoName":"px-button-group-design",
+              "linktext": "Button Group"
+            },
+            {
+              "repoName":"px-buttons-design",
+              "linktext": "Buttons"
+            }
+          ]
+        },
+        {
+          "repoName":"px-code-design",
+          "linktext": "Code"
+        },
+        {
+          "repoName":"px-flag-design",
+          "linktext": "Flag"
+        },
+        {
+          "repoName":"px-forms-design",
+          "linktext": "Forms"
+        },
+        {
+          "repoName":"px-headings-design",
+          "linktext": "Headings"
+        },
+        {
+          "repoName":"px-helpers-design",
+          "linktext": "Helpers"
+        },
+        {
+          "repoName":"px-input-group-design",
+          "linktext": "Input Group"
+        },
+        {
+          "repoName":"px-layout-design",
+          "linktext": "Layout"
+        },
+        {
+          "linkText": "Lists",
+          "linkItems": [
+            {
+              "repoName":"px-meta-lists-design",
+              "linktext":"Lists (Meta)"
+            },
+            {
+              "repoName":"px-list-bare-design",
+              "linktext":"List Bare"
+            },
+              {
+              "repoName":"px-list-inline-design",
+              "linktext":"List Inline"
+            },
+              {
+              "repoName":"px-list-ui-design",
+              "linktext":"List UI"
+            }
+          ]
+        },
+        {
+          "repoName":"px-tables-design",
+          "linkText":"Tables"
+        },
+        {
+          "repoName":"px-toggle-design",
+          "linkText":"Toggle"
+        }
+      ];
 
       // Assign functions
       template.getURLParameter = getURLParameter;
@@ -391,6 +479,8 @@
       template.toggle = toggle;
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
+      template.createList = createList;
+      template.basics = basics;
 
       // Assign variables
       this.iframeUrl = null;
@@ -406,7 +496,7 @@
         // The spinner is active by default. When the iFrame loads, hide it.
         template.iframe.addEventListener("load", function(){
           this.hideSpinner();
-        }.bind(template))
+        }.bind(template));
 
         template.menu.addEventListener("click", function(){
           this.hideSpinner();
