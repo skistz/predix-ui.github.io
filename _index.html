@@ -58,16 +58,16 @@
             </li>
             <iron-collapse id="collapse_gettingStarted" opened>
               <ul>
-                <li><a class="nav-lnk" data-type="home" data-name="getting_started">Using Predix Components</a></li>
-                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-getting-started" target="_blank">Predix CSS Overview</a></li>
+                <li><a class="nav-lnk" data-type="home" data-name="getting_started">Using Predix UI Components</a></li>
+                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-getting-started" target="_blank">Predix UI CSS Overview</a></li>
                 <li><a class="nav-lnk" href="https://github.com/PredixDev/generator-px-comp" target="_blank">Creating a New Component</a></li>
-                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-starter-kit-design" target="_blank">Bootstrapping Predix CSS</a></li>
+                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-starter-kit-design" target="_blank">Bootstrapping Predix UI CSS</a></li>
               </ul>
             </iron-collapse>
 
             <!--Predix CSS Libraries -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_css')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix CSS</div></a>
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI CSS</div></a>
              </li>
               <iron-collapse id="collapse_css">
                 <ul>
@@ -148,7 +148,7 @@
 
             <!--Components -->
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix Components</div></a>
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI Components</div></a>
              </li>
               <iron-collapse id="collapse_components">
                 <ul>
@@ -296,30 +296,33 @@
         * the visible state of the app
         */
         Array.prototype.forEach.call(links, function(link) {
-          link.addEventListener("click", function(e) {
-            e.preventDefault;
+          if (!link.href) {
+            link.addEventListener("click", function(e) {
+              e.preventDefault;
 
-            /*
-            * Remove the .selected class from all links
-            * and only add it to the one that was selected
-            */
-            var otherLinks = document.getElementsByClassName("selected");
-            Array.prototype.forEach.call(otherLinks, function(otherLink) {
-              otherLink.classList.remove("selected");
+              /*
+              * Remove the .selected class from all links
+              * and only add it to the one that was selected
+              */
+              var otherLinks = document.getElementsByClassName("selected");
+              Array.prototype.forEach.call(otherLinks, function(otherLink) {
+                otherLink.classList.remove("selected");
+              });
+              this.classList.add("selected");
+
+              /*
+               * make sure that we are in the mobile layout indicated by the .menu being shown
+               *
+               * enable toggleNavClasses in mobile
+               */
+              if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
+                _this.toggleNavClasses();
+              }
+
+              _this.setRoute(this.dataset.name, this.dataset.type);
             });
-            this.classList.add("selected");
+          }
 
-            /*
-             * make sure that we are in the mobile layout indicated by the .menu being shown
-             *
-             * enable toggleNavClasses in mobile
-             */
-            if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
-              _this.toggleNavClasses();
-            }
-
-            _this.setRoute(this.dataset.name, this.dataset.type);
-          });
         });
 
         /**
