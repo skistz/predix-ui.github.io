@@ -50,119 +50,178 @@
       <div class="wrapper-flex">
         <!-- side nav -->
         <div id="side-nav" class="side-nav side-nav__default">
-          <ul class="side-nav__main-ul">
-
-            <!--Getting Started -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_overview')">
-              <div id="arrow" class="arrow-down"></div><div class="u-ml--">Predix UI</div></a>
+          <nav>
+            <!--Getting Started
+            <li><a class="nav-lnk" data-type="local" data-name="landing_page">Home</a></li>
+            <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_gettingStarted')">
+                  <div class="arrow-down"></div><div class="u-ml--">Getting Started</div></a>
             </li>
-            <iron-collapse id="collapse_overview" opened>
+            <iron-collapse id="collapse_gettingStarted" opened>
               <ul>
-                <li><a class="nav-lnk" data-type="home" data-name="landing_page">Overview</a></li>
-                <li><a class="nav-lnk" data-type="home" data-name="getting_started">Getting Started</a></li>
+                <li><a class="nav-lnk" data-type="local" data-name="getting_started">Using Predix UI Components</a></li>
+                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-getting-started" target="_blank">Predix UI CSS Overview</a></li>
+                <li><a class="nav-lnk" href="https://github.com/PredixDev/generator-px-comp" target="_blank">Creating a New Component</a></li>
+                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-starter-kit-design" target="_blank">Bootstrapping Predix UI CSS</a></li>
               </ul>
             </iron-collapse>
 
-            <!--SASS Libraries -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Basics')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Basics CSS (Demos soon!)</div></a>
+            <!--Predix CSS Libraries
+            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_css')">
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI CSS</div></a>
              </li>
-              {{createList(basics, 'design')}}
+              <iron-collapse id="collapse_css">
 
-            <!--More SASS Libraries -->
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_helpers')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Helpers (Demos soon!)</div></a>
-             </li>
-              <iron-collapse id="collapse_helpers">
-                <ul>
-                  <li><a class="nav-lnk" data-type="design" data-name="px-actionable-text-icons-design" target="_blank">Actionable Text &amp; Icons</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-box-sizing-design" target="_blank">Box Sizing</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-clearfix-design" target="_blank">Clearfix</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-defaults-design" target="_blank">Defaults</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-flexbox-design" target="_blank">Flexbox</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-polymer-font-awesome" target="_blank">Font Awesome</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-mixins-design" target="_blank">Mixins</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-normalize-design" target="_blank">Normalize</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-starter-kit-design" target="_blank">Starter Kit</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-spacing-design" target="_blank">Spacing</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-typography-design" target="_blank">Typography</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-widths-design" target="_blank">Widths</a></li>
-                  <li><a class="nav-lnk" data-type="design" data-name="x-widths-tools-design" target="_blank">Widths Tools</a></li>
+                  <!--Visual CSS Libraries
+                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Visual')">
+                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Visual</div></a>
+                  </li>
+
+                   <iron-collapse id="collapse_Visual">
+                    <ul>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-actionable-text-icons-design" target="_blank">Actionable Text &amp; Icons</a></li>
+                      <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
+                            <div class="arrow-right"></div><div class="u-ml--">Buttons</div></a>
+                      </li>
+                      <iron-collapse id="collapse_buttons">
+                        <ul>
+                          <li><a class="nav-lnk" href="https://github.com/PredixDev/px-meta-buttons-design" target="_blank">Buttons (Meta)</a></li>
+                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-button-group-design" target="_blank">Button Group</a></li>
+                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-buttons-design" target="_blank">Buttons</a></li>
+                        </ul>
+                      </iron-collapse>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-code-design" target="_blank">Code</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-forms-design" target="_blank">Forms</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-headings-design" target="_blank">Headings</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-helpers-design" target="_blank">Helpers</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-input-group-design" target="_blank">Input Group</a></li>
+                      <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_lists')">
+                            <div class="arrow-right"></div><div class="u-ml--">Lists</div></a>
+                      </li>
+                      <iron-collapse id="collapse_lists">
+                        <ul>
+                          <li><a class="nav-lnk" href="https://github.com/PredixDev/px-meta-lists-design" target="_blank">Lists (Meta)</a></li>
+                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-bare-design" target="_blank">List Bare</a></li>
+                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-inline-design" target="_blank">List Inline</a></li>
+                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-ui-design" target="_blank">List UI</a></li>
+                        </ul>
+                      </iron-collapse>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-tables-design" target="_blank">Tables</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-toggle-design" target="_blank">Toggle</a></li>
+                    </ul>
+                  </iron-collapse>
+
+                  <!--Layout CSS Libraries
+                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Layout')">
+                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Layout</div></a>
+                  </li>
+                  <iron-collapse id="collapse_Layout">
+                    <ul>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-box-design" target="_blank">Box</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-flag-design" target="_blank">Flag</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-flexbox-design" target="_blank">Flexbox</a></li>
+                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-layout-design" target="_blank">Layout</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-spacing-design" target="_blank">Spacing</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-widths-design" target="_blank">Widths</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-widths-tools-design" target="_blank">Widths Tools</a></li>
+                    </ul>
+                  </iron-collapse>
+
+                  <!--Utilities CSS Libraries
+                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Utilities')">
+                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Utilities</div></a>
+                  </li>
+                  <iron-collapse id="collapse_Utilities">
+                    <ul>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-box-sizing-design" target="_blank">Box Sizing</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-clearfix-design" target="_blank">Clearfix</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-defaults-design" target="_blank">Defaults</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-defaults-design" target="_blank">Functions</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-helpers-design" target="_blank">Helpers</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-iconography-design" target="_blank">Iconography</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-mixins-design" target="_blank">Mixins</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-normalize-design" target="_blank">Normalize</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-typography-design" target="_blank">Typography</a></li>
+                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-viewport-design" target="_blank">Viewport</a></li>
+                    </ul>
+                  </iron-collapse>
                 </ul>
-              </iron-collapse>
+              </iron-collapse> -->
 
-            <!--Components -->
+            <!--Components
             <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
-              <div id="arrow" class="arrow-right"></div><div class="u-ml--">Components</div></a>
-            </li>
-            <iron-collapse id="collapse_components">
-              <ul>
-                <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
-                <!-- Cards -->
-                <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
-                  <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
-                </li>
-                <iron-collapse id="collapse_cards">
-                  <ul>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-card">Card</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
-                  </ul>
-                </iron-collapse>
-                <!-- Charts -->
-                <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
-                  <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
-                </li>
-                <iron-collapse id="collapse_charts">
-                  <ul>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-percent-circle">Percent Circle</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">Vis XY Chart</a></li>
-                  </ul>
-                </iron-collapse>
-                <li><a class="nav-lnk" data-type="component" data-name="px-clipboard">Clipboard</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
+                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI Components</div></a>
+             </li>
+              <iron-collapse id="collapse_components">
+                <ul>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
+                  <!-- Cards
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
+                        <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
+                    </li>
+                    <iron-collapse id="collapse_cards">
+                      <ul>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-card">Card</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <!-- Charts
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
+                        <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
+                    </li>
+                    <iron-collapse id="collapse_charts">
+                      <ul>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-percent-circle">Percent Circle</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">Vis XY Chart</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-clipboard">Clipboard</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
 
-                <li><a class="nav-lnk" data-type="component" data-name="px-data-table">Data Table</a></li>
-                <!-- Datetime Components -->
-                <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
-                  <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
-                </li>
-                <iron-collapse id="collapse_datetime-components">
-                  <ul>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
-                    <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
-                  </ul>
-                </iron-collapse>
-                <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
-                <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
-              </ul>
-            </iron-collapse>
 
-          </ul>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-data-table">Data Table</a></li>
+                  <!-- Datetime Components
+                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
+                        <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
+                    </li>
+                    <iron-collapse id="collapse_datetime-components">
+                      <ul>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
+                         <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
+                        <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
+                      </ul>
+                    </iron-collapse>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
+                  <!-- TODO: Update this link once demo page is created
+                  <li><a class="nav-lnk" href="https://github.com/PredixDev/px-polymer-font-awesome" target="_blank">Font Awesome</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
+                  <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
+                </ul>
+              </iron-collapse> -->
+
+          </nav>
         </div>
 
         <!-- iframe -->
@@ -209,8 +268,11 @@
         "component" : function(name) {
           return "https://predixdev.github.io/" + name + "/" + name + "/";
         },
-        "home": function(name) {
+        "local": function(name) {
           return name + ".html";
+        },
+        "external" : function(name) {
+          return "https://github.com/predixdev/" + name;
         }
       },
 
@@ -239,30 +301,33 @@
         * the visible state of the app
         */
         Array.prototype.forEach.call(links, function(link) {
-          link.addEventListener("click", function(e) {
-            e.preventDefault;
+          if (!link.href) {
+            link.addEventListener("click", function(e) {
+              e.preventDefault;
 
-            /*
-            * Remove the .selected class from all links
-            * and only add it to the one that was selected
-            */
-            var otherLinks = document.getElementsByClassName("selected");
-            Array.prototype.forEach.call(otherLinks, function(otherLink) {
-              otherLink.classList.remove("selected");
+              /*
+              * Remove the .selected class from all links
+              * and only add it to the one that was selected
+              */
+              var otherLinks = document.getElementsByClassName("selected");
+              Array.prototype.forEach.call(otherLinks, function(otherLink) {
+                otherLink.classList.remove("selected");
+              });
+              this.classList.add("selected");
+
+              /*
+               * make sure that we are in the mobile layout indicated by the .menu being shown
+               *
+               * enable toggleNavClasses in mobile
+               */
+              if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
+                _this.toggleNavClasses();
+              }
+
+              _this.setRoute(this.dataset.name, this.dataset.type);
             });
-            this.classList.add("selected");
+          }
 
-            /*
-             * make sure that we are in the mobile layout indicated by the .menu being shown
-             *
-             * enable toggleNavClasses in mobile
-             */
-            if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
-              _this.toggleNavClasses();
-            }
-
-            _this.setRoute(this.dataset.name, this.dataset.type);
-          });
         });
 
         /**
@@ -342,9 +407,349 @@
       * toggle for side nav's <iron-collapse>
       */
       toggle = function(selector) {
-        document.querySelector(selector).toggle();
+        if (document.querySelector(selector)) {
+          document.querySelector(selector).toggle();
+        }
       },
+      nav = [{
+          "name": "Getting Started",
+          "links": [{
+              "dataType": "local",
+              "repoName": "getting_started",
+              "linkText": "Using Predix UI Components"
+          }, {
+              "dataType": "external",
+              "repoName": "px-getting-started",
+              "linkText": "Predix UI CSS Overview"
+          }, {
+              "dataType": "external",
+              "repoName": "generator-px-comp",
+              "linkText": "Creating a New Component"
+          }, {
+              "dataType": "external",
+              "repoName": "px-starter-kit-design",
+              "linkText": "Bootstrapping Predix UI CSS"
+          }],
+          "opened": true
+        },
+        {
+          "name": "Predix UI CSS",
+          "links": [{
+              "linkText": "Visual",
+              "listItems": [{
+                  "repoName": "https://github.com/PredixDev/px-actionable-text-icons-design",
+                  "dataType": "external",
+                  "linkText": "Actionable Text & Icons"
+              }, {
+                  "linkText": "Buttons",
+                  "listItems": [{
+                      "repoName": "px-meta-buttons-design",
+                      "dataType": "external",
+                      "linkText": "Buttons (Meta)"
+                  }, {
+                      "repoName": "px-button-group-design",
+                      "dataType": "external",
+                      "linkText": "Button Group"
+                  }, {
+                      "repoName": "px-buttons-design",
+                      "dataType": "external",
+                      "linkText": "Buttons"
+                  }]
+              }, {
+                  "repoName": "px-code-design",
+                  "dataType": "external",
+                  "linkText": "Code"
+              }, {
+                  "repoName": "px-forms-design",
+                  "dataType": "external",
+                  "linkText": "Forms"
+              }, {
+                  "repoName": "px-headings-design",
+                  "dataType": "external",
+                  "linkText": "Headings"
+              }, {
+                  "repoName": "px-helpers-design",
+                  "dataType": "external",
+                  "linkText": "Helpers"
+              }, {
+                  "repoName": "px-input-group-design",
+                  "dataType": "external",
+                  "linkText": "Input Group"
+              }, {
+                  "repoName": "px-layout-design",
+                  "dataType": "external",
+                  "linkText": "Layout"
+              }, {
+                  "linkText": "Lists",
+                  "linkItems": [{
+                      "repoName": "px-meta-lists-design",
+                      "dataType": "external",
+                      "linkText": "Lists (Meta)"
+                  }, {
+                      "repoName": "px-list-bare-design",
+                      "dataType": "external",
+                      "linkText": "List Bare"
+                  }, {
+                      "repoName": "px-list-inline-design",
+                      "dataType": "external",
+                      "linkText": "List Inline"
+                  }, {
+                      "repoName": "px-list-ui-design",
+                      "dataType": "external",
+                      "linkText": "List UI"
+                  }]
+              }, {
+                  "repoName": "px-tables-design",
+                  "dataType": "external",
+                  "linkText": "Tables"
+              }, {
+                  "repoName": "px-toggle-design",
+                  "dataType": "external",
+                  "linkText": "Toggle"
+              }]
+          }, {
+              "linkText": "Layout",
+              "listItems": [{
+                  "repoName": "px-box-design",
+                  "dataType": "external",
+                  "linkText": "Box"
+              }, {
+                  "repoName": "px-flag-design",
+                  "dataType": "external",
+                  "linkText": "Flag"
+              }, {
+                  "repoName": "px-flexbox-design",
+                  "dataType": "external",
+                  "linkText": "Flexbox"
+              }, {
+                  "repoName": "px-layout-design",
+                  "dataType": "external",
+                  "linkText": "Layout"
+              }, {
+                  "repoName": "px-spacing-design",
+                  "dataType": "external",
+                  "linkText": "Spacing"
+              }, {
+                  "repoName": "px-widths-design",
+                  "dataType": "external",
+                  "linkText": "Widths"
+              }, {
+                  "repoName": "px-width-tools-design",
+                  "dataType": "external",
+                  "linkText": "Width Tools"
+              }]
+          }, {
+              "linkText": "Utilities",
+              "listItems": [{
+                  "repoName": "px-box-sizing-design",
+                  "dataType": "external",
+                  "linkText": "Box Sizing"
+              }, {
+                  "repoName": "px-clearfix-design",
+                  "dataType": "external",
+                  "linkText": "Clearfix"
+              }, {
+                  "repoName": "px-defaults-design",
+                  "dataType": "external",
+                  "linkText": "Defaults"
+              }, {
+                  "repoName": "px-functions-design",
+                  "dataType": "external",
+                  "linkText": "Functions"
+              }, {
+                  "repoName": "px-helpers-design",
+                  "dataType": "external",
+                  "linkText": "Helpers"
+              }, {
+                  "repoName": "px-iconography-design",
+                  "dataType": "external",
+                  "linkText": "iconography"
+              }, {
+                  "repoName": "px-mixins-design",
+                  "dataType": "external",
+                  "linkText": "mixins"
+              }, {
+                  "repoName": "px-normalize-design",
+                  "dataType": "external",
+                  "linkText": "Normalize"
+              }, {
+                  "repoName": "px-typography-design",
+                  "dataType": "external",
+                  "linkText": "Typography"
+              }, {
+                  "repoName": "px-viewport-design",
+                  "dataType": "external",
+                  "linkText": "Viewport"
+              }]
+            }
+          ]
+          },
+          {
+          "name": "Predix UI Components",
+          "links": [{
+              "repoName": "px-alert-label",
+              "dataType": "component",
+              "linkText": "Alert Label"
+          }, {
+              "repoName": "px-alert-message",
+              "dataType": "component",
+              "linkText": "Alert Message"
+          }, {
+              "repoName": "px-app-nav",
+              "dataType": "component",
+              "linkText": "App Nav"
+          }, {
+              "linkText": "Cards",
+              "listItems": [{
+                  "repoName": "px-card",
+                  "dataType": "component",
+                  "linkText": "Card"
+              }, {
+                  "repoName": "px-deck-selector",
+                  "dataType": "component",
+                  "linkText": "Deck Selector"
+              }, {
+                  "repoName": "px-sample-cards",
+                  "dataType": "component",
+                  "linkText": "Sample Cards"
+              }, {
+                  "repoName": "px-widget-cards",
+                  "dataType": "component",
+                  "linkText": "Widget Cards"
+              }]
+          }, {
+              "linkText": "Charts",
+              "listItems": [{
+                  "repoName": "px-percent-circle",
+                  "dataType": "component",
+                  "linkText": "Percent Circle"
+              }, {
+                  "repoName": "px-simple-bar-chart",
+                  "dataType": "component",
+                  "linkText": "Simple Bar Chart"
+              }, {
+                  "repoName": "px-simple-horizontal-bar-chart",
+                  "dataType": "component",
+                  "linkText": "Simple horizontal Bar Chart"
+              }, {
+                  "repoName": "px-simple-line-chart",
+                  "dataType": "component",
+                  "linkText": "Simple Line Chart"
+              }, {
+                  "repoName": "px-chart",
+                  "dataType": "component",
+                  "linkText": "Chart"
+              }, {
+                  "repoName": "px-vis",
+                  "dataType": "component",
+                  "linkText": "Vis Framwork"
+              }, {
+                  "repoName": "px-vis-pie-chart",
+                  "dataType": "component",
+                  "linkText": "Vis Pie Chart"
+              }, {
+                  "repoName": "px-vis-timeseries",
+                  "dataType": "component",
+                  "linkText": "Vis Timeseries"
+              }, {
+                  "repoName": "px-vis-xy-chart",
+                  "dataType": "component",
+                  "linkText": "Vis XY Chart"
+              }]
 
+          }, {
+              "repoName": "px-clipboard",
+              "dataType": "component",
+              "linkText": "Clipboard"
+          }, {
+              "repoName": "px-context-browser",
+              "dataType": "component",
+              "linkText": "Context Browser"
+          }, {
+              "repoName": "px-data-table",
+              "dataType": "component",
+              "linkText": "Data Table"
+          }, {
+              "linkText": "Datetime Components",
+              "listItems": [{
+                  "repoName": "px-calendar-picker",
+                  "dataType": "component",
+                  "linkText": "Calendar Picker"
+              }, {
+                  "repoName": "px-simple-bar-chart",
+                  "dataType": "component",
+                  "linkText": "Simple Bar Chart"
+              }, {
+                  "repoName": "px-simple-horizontal-bar-chart",
+                  "dataType": "component",
+                  "linkText": "Simple horizontal Bar Chart"
+              }, {
+                  "repoName": "px-simple-line-chart",
+                  "dataType": "component",
+                  "linkText": "Simple Line Chart"
+              }, {
+                  "repoName": "px-chart",
+                  "dataType": "component",
+                  "linkText": "Chart"
+              }, {
+                  "repoName": "px-vis",
+                  "dataType": "component",
+                  "linkText": "Vis Framwork"
+              }]
+          }, {
+              "repoName": "px-dropdown",
+              "dataType": "component",
+              "linkText": "Dropdown"
+          }, {
+              "repoName": "px-file-upload",
+              "dataType": "component",
+              "linkText": "File Upload"
+          }, {
+              "repoName": "px-polymer-font-awesome",
+              "dataType": "component",
+              "linkText": "Font Awesome"
+          }, {
+              "repoName": "px-login",
+              "dataType": "component",
+              "linkText": "Login"
+          }, {
+              "repoName": "px-modal",
+              "dataType": "component",
+              "linkText": "Modal"
+          }, {
+              "repoName": "px-overlay",
+              "dataType": "component",
+              "linkText": "Overlay"
+          }, {
+              "repoName": "px-popover",
+              "dataType": "component",
+              "linkText": "Popover"
+          }, {
+              "repoName": "px-progress-bar",
+              "dataType": "component",
+              "linkText": "Progress Bar"
+          }, {
+              "repoName": "px-slider",
+              "dataType": "component",
+              "linkText": "Slider"
+          }, {
+              "repoName": "px-spinner",
+              "dataType": "component",
+              "linkText": "Spinner"
+          }, {
+              "repoName": "px-tabs",
+              "dataType": "component",
+              "linkText": "Tabs"
+          }, {
+              "repoName": "px-tooltip",
+              "dataType": "component",
+              "linkText": "Tooltip"
+          }, {
+              "repoName": "px-validation",
+              "dataType": "component",
+              "linkText": "Validation"
+          }]
+      }],
       createList = function(listArr, dataType) {
         console.log('in createList');
         console.dir(listArr);
@@ -353,8 +758,10 @@
             i,
             j;
 
+        console.log("len = "  +len);
         for (i = 0; i < len; i++) {
           if (listArr[i].listItems) {
+            console.log("has listItems");
             returnString+="<iron-collapse id=";
             returnString+="collapse_" + listArr[i].linkText;
             returnString+='"\>';
@@ -364,108 +771,57 @@
               if (listArr[i].listItems[j].listItems) {
                 createList(listArr[i].listItems[j], dataType);
               } else {
-                returnString+='<li><a class="nav-lnk" data-type="';
-                returnString+= dataType;
-                returnString+='" data-name="';
-                returnString+=listArr[i].listItems[j].repoName;
-                returnString+='">';
-                returnString+= listArr[i].listItems[j].linkText;
-                returnString+="</a></li>";
+                returnString += '<li><a class="nav-lnk" data-type="';
+                //check if there is a datatype specified on the object itself - it might be different than the rest of the group
+                if (listArr[i].listItems[j].dataType) {
+                  returnString += listArr[i].listItems[j].dataType;
+                } else {
+                  returnString += dataType;
+                }
+                returnString += '" data-name="';
+                returnString += listArr[i].listItems[j].repoName;
+                returnString += '">';
+                returnString += listArr[i].listItems[j].linkText;
+                returnString += "</a></li>";
               }
             }
-            returnString+="</ul>/iron-collapse>";
+            returnString += "</ul>/iron-collapse>";
           } else {
-            returnString+='<li><a class="nav-lnk" data-type="';
-            returnString+= dataType;
-            returnString+='" data-name="';
-            returnString+=listArr[i].repoName;
-            returnString+='">';
-            returnString+= listArr[i].linkText;
-            returnString+="</a></li>";
+            console.log("no list items");
+            returnString += '<li><a class="nav-lnk" data-type="';
+            //check if there is a datatype specified on the object itself - it might be different than the rest of the group
+            if (listArr[i].dataType) {
+              returnString += listArr[i].dataType;
+            } else {
+              returnString += dataType;
+            }
+            returnString += '" data-name="';
+            returnString += listArr[i].repoName;
+            returnString += '">';
+            returnString += listArr[i].linkText;
+            returnString +="</a></li>";
           }
         }
+        console.log("returnString = "  +returnString );
         return returnString;
       },
-      basics = [
-        {
-          "repoName":"px-box-design",
-          "linktext": "Box"
-        },
-        {
-          "linkText": "Buttons",
-          "listItems": [
-            {
-              "repoName":"px-meta-buttons-design",
-              "linktext": "Buttons (Meta)"
-            },
-            {
-              "repoName":"px-button-group-design",
-              "linktext": "Button Group"
-            },
-            {
-              "repoName":"px-buttons-design",
-              "linktext": "Buttons"
-            }
-          ]
-        },
-        {
-          "repoName":"px-code-design",
-          "linktext": "Code"
-        },
-        {
-          "repoName":"px-flag-design",
-          "linktext": "Flag"
-        },
-        {
-          "repoName":"px-forms-design",
-          "linktext": "Forms"
-        },
-        {
-          "repoName":"px-headings-design",
-          "linktext": "Headings"
-        },
-        {
-          "repoName":"px-helpers-design",
-          "linktext": "Helpers"
-        },
-        {
-          "repoName":"px-input-group-design",
-          "linktext": "Input Group"
-        },
-        {
-          "repoName":"px-layout-design",
-          "linktext": "Layout"
-        },
-        {
-          "linkText": "Lists",
-          "linkItems": [
-            {
-              "repoName":"px-meta-lists-design",
-              "linktext":"Lists (Meta)"
-            },
-            {
-              "repoName":"px-list-bare-design",
-              "linktext":"List Bare"
-            },
-              {
-              "repoName":"px-list-inline-design",
-              "linktext":"List Inline"
-            },
-              {
-              "repoName":"px-list-ui-design",
-              "linktext":"List UI"
-            }
-          ]
-        },
-        {
-          "repoName":"px-tables-design",
-          "linkText":"Tables"
-        },
-        {
-          "repoName":"px-toggle-design",
-          "linkText":"Toggle"
+      createNav = function() {
+        var len = nav.length,
+            i,
+            list = '<ul class="side-nav__main-ul">';
+            console.log(nav.length);
+        for (i = 0; i < len; i++) {
+          list += '<li><a class="nav-group-lnk flex flex--middle" onclick="toggle(\'#collapse_gettingStarted\')">';
+          list += '<div class="arrow-down"></div>';
+          list += '<div class="u-ml--">' + nav[i].name + '</div>';
+          list += "</a></li>";
+          list += createList(nav[i], nav[i].dataType);
+          console.log(list);
         }
-      ];
+        list +="</ul>";
+      document.getElementsByTagName('nav').innerHTML = list;
+      };
+
 
       // Assign functions
       template.getURLParameter = getURLParameter;
@@ -480,7 +836,6 @@
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
       template.createList = createList;
-      template.basics = basics;
 
       // Assign variables
       this.iframeUrl = null;
@@ -499,17 +854,23 @@
         }.bind(template));
 
         template.menu.addEventListener("click", function(){
+          this.toggleNavClasses();
           this.hideSpinner();
-        }.bind(template))
+        }.bind(template));
 
         template.overlay.addEventListener("click", function(){
           this.toggleNavClasses();
-        }.bind(template))
+        }.bind(template));
 
         // Run for the first time, will update with historyState later
         template.bindLinks();
         template.getRoute();
       });
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+        createNav();
+      });
+
     </script>
   </body>
 </html>

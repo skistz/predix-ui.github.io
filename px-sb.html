@@ -1,0 +1,46 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<!--
+Element providing a dropdown solution.
+
+##### Usage
+
+```
+<px-sb display-value="Text">
+  <px-sb-content class="px-sb-content" extend-dropdown="true" extend-dropdown-by="25" max-cont-character-width="10" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
+  </px-sb-content>
+</px-sb>
+```
+
+@element px-sb
+@blurb Element providing a dropdown solution.
+@homepage index.html
+@demo demo.html
+-->
+<link rel="import" href="css/px-sb-styles.html">
+
+<dom-module id="px-sb">
+  <template>
+    <style include="px-sb-styles"></style>
+    <style include="px-theme-styles"></style>
+      <template is="dom-repeat" items="nav">
+        <px-sb-list nav-items="{{item}}"></px-sb-list>
+      </template>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-sb',
+    properties: {
+      nav: {
+        type: Array,
+        value: []
+      }
+    }
+
+  });
+</script>

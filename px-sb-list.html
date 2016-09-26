@@ -1,0 +1,122 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<!--
+Element providing a dropdown solution.
+
+##### Usage
+
+```
+<px-sb display-value="Text">
+  <px-sb-content class="px-sb-content" extend-dropdown="true" extend-dropdown-by="25" max-cont-character-width="10" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
+  </px-sb-content>
+</px-sb>
+```
+
+@element px-sb
+@blurb Element providing a dropdown solution.
+@homepage index.html
+@demo demo.html
+-->
+<link rel="import" href="css/px-sb-list-styles.html">
+
+<dom-module id="px-sb-list">
+  <template>
+    <style include="px-sb-list-styles"></style>
+    <style include="px-theme-styles"></style>
+    <template is="dom-if" if="_showNavItem(item)">
+      <li>
+        <a class="nav-group-lnk flex flex--middle" on-tap="_toggle" data-name$="{{_combine(item.linkText)}}">
+          <div class="arrow-right"></div>
+          <div class="u-ml--">{{item.linkText}}</div>
+        </a>
+        <iron-collapse id="collapse_{{_combine(item.linkText)}}">
+          <ul>
+      </li>
+    </template>
+    <template is="dom-repeat" items="navItems">
+      <template is="dom-if" if="_hasKids(item)">
+        <px-sb-list nav-items="{{item.links}}"></px-sb-list>
+      </template>
+      <template is="dom-if" if="_isItemVisible(item)">
+        <li>
+
+        </li>
+      </template>
+    </template>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-sb-list',
+    properties: {
+      navItem: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      searchKeyword: {
+        type: String,
+        value: ''
+      }
+    },
+    _combine: function(name) {
+      return name.toLowerCase().replace(" ","_");
+    },
+    _toggle: function(evt) {
+      var name = evt.target.getAttribute('data-name');
+      name = name.toLowerCase().replace(" ", "_");
+      this.$$('#collapse_' + name).toggle();
+      //find out if the clicked item has arrow right or down
+      var targetNode = evt.target,
+          arrowRight = targetNode.classList.contains('arrow-right'),
+          arrowDown = targetNode.classList.contains('arrow-down');
+
+      // and if they do have one of those, set the existing one to false, and missing one to true.
+      Polymer.toggleClass('arrow-right', !arrowRight, evt.target);
+      Polymer.toggleClass('arrow-down', !arrowDown, evt.target);
+    },
+    _showNavItem: function(navArr) {
+      var len = navArr.length,
+          i,
+          query = this.searchKeyword;
+
+      //if there's no query, always return true;
+      if (!query) {
+        return true;
+      }
+
+      //else, loop through the sub-items recursively
+      for (i = 0; i < len; i++) {
+        if (navArr[i].links) {
+          this._showNavItem(navArr[i]);
+        }
+        //check if this item has the search query in the text. Since we made sure that query isn't false, we'd never reach this stage without query being true.
+        if (this._searchMatch(navArr[i])) {
+          return true;
+        }
+      }
+      //if we've reached this point, none of the subitems contain the search query, and we'd like to hide this item.
+      return false;
+    },
+    _isItemVisible: function(item) {
+      return this._hasNoKids(item) && this._searchMatch();
+    },
+    _hasNoKids: function(item) {
+      //if there are no links, it has no kids.
+      return !item.links;
+    },
+    _hasKids: function(item) {
+      return item.links;
+    },
+    _searchMatch: function(item) {
+      var query = this.searchKeyword;
+      //search the text of the link text for the query
+      return (query) ? item.linkText.indexOf(query) > -1 : true;
+    }
+  });
+</script>
