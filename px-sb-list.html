@@ -30,7 +30,7 @@ Element providing a dropdown solution.
     <style include="px-theme-styles"></style>
     <template is="dom-if" if="_showNavItem(navItem)">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
-        <div class="arrow-right" data-name$="{{_removeSpaces(navItem)}}"></div>
+        <div class="arrow-right arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
         <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
       <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}">
@@ -91,34 +91,25 @@ Element providing a dropdown solution.
           //TODO add routing functionality
     },
     _removeSpaces: function(name) {
-      //console.log("remove spaces name =" + name);
-      if (name) {
-        console.log("name");
-        console.log(name)
-        var shortName = name.linkText.toLowerCase().replace(/ /g, "_");
-        return shortName;
-      }
+      return name.linkText.toLowerCase().replace(/ /g, "_");
     },
     _toggle: function(evt) {
       console.log(evt);
-      var name = evt.target.getAttribute('data-name');
-      console.log(" toggle name =" + name);
-      if (name) {
-        name = name.toLowerCase().replace(/ /g, "_");
-      }
-
-      this.$$('#collapse_' + name).toggle();
-      //find out if the clicked item has arrow right or down
-      var targetNode = evt.target,
-          arrowRight = targetNode.classList.contains('arrow-right'),
-          arrowDown = targetNode.classList.contains('arrow-down'),
+      var parentElement = evt.target.parentElement,
+          arrow = Polymer.dom(parentElement).querySelector('.arrow'),
+          name = arrow.getAttribute('data-name'),
+          //find out if the clicked item has arrow right or down
+          arrowRight = arrow.classList.contains('arrow-right'),
+          arrowDown = arrow.classList.contains('arrow-down'),
           flipArrowRight = !arrowRight,
           flipArrowDown = !arrowDown;
 
+      name = name.toLowerCase().replace(/ /g, "_");
+      this.$$('#collapse_' + name).toggle();
 
       // and if they do have one of those, set the existing one to false, and missing one to true.
-      this.toggleClass('arrow-right', flipArrowRight, evt.target);
-      this.toggleClass('arrow-down', flipArrowDown, evt.target);
+      this.toggleClass('arrow-right', flipArrowRight, arrow);
+      this.toggleClass('arrow-down', flipArrowDown, arrow);
     },
     _showNavItem: function(navArr) {
       var len = navArr.length,
@@ -151,9 +142,7 @@ Element providing a dropdown solution.
       return !item.links;
     },
     _hasKids: function(item) {
-      var hasKids = item.links && item.links.length >0;
-      console.log("hasKids = " + hasKids);
-      return hasKids;
+      return item.links;
     },
     _searchMatch: function(item) {
       var query = this.searchKeyword;
