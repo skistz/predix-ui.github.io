@@ -247,47 +247,47 @@
       /**
       * Retrieves the URL parameters for the page.
       */
-      getURLParameter = function(sParam) {
-        var sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split('&'),
-            i,
-            len = sURLVariables.length,
-            sParameterName;
-
-        for (i = 0; i < len; i++) {
-          sParameterName = sURLVariables[i].split('=');
-          if (sParameterName[0] === sParam) {
-            return sParameterName[1];
-          }
-        }
-      },
-
+      // getURLParameter = function(sParam) {
+      //   var sPageURL = window.location.search.substring(1),
+      //       sURLVariables = sPageURL.split('&'),
+      //       i,
+      //       len = sURLVariables.length,
+      //       sParameterName;
+      //
+      //   for (i = 0; i < len; i++) {
+      //     sParameterName = sURLVariables[i].split('=');
+      //     if (sParameterName[0] === sParam) {
+      //       return sParameterName[1];
+      //     }
+      //   }
+      // },
+      //
       /**
       * Returns the different configurations of URLs, depending on the type of link.
       */
-      types = {
-        "component" : function(name) {
-          return "https://predixdev.github.io/" + name + "/" + name + "/";
-        },
-        "local": function(name) {
-          return name + ".html";
-        },
-        "external" : function(name) {
-          return "https://github.com/predixdev/" + name;
-        }
-      },
-
+      // types = {
+      //   "component" : function(name) {
+      //     return "https://predixdev.github.io/" + name + "/" + name + "/";
+      //   },
+      //   "local": function(name) {
+      //     return name + ".html";
+      //   },
+      //   "external" : function(name) {
+      //     return "https://github.com/predixdev/" + name;
+      //   }
+      // },
+      //
       /**
       * Manages the visible iFrame
       */
-      getWantedFrame = function(name, type) {
-        if (name && type) {
-          return this.types[type](name);
-        }
-        else {
-          return 'landing_page.html';
-        }
-      },
+      // getWantedFrame = function(name, type) {
+      //   if (name && type) {
+      //     return this.types[type](name);
+      //   }
+      //   else {
+      //     return 'landing_page.html';
+      //   }
+      // },
 
       /**
       * Binds the links in the DOM to a listener
@@ -310,11 +310,11 @@
               * Remove the .selected class from all links
               * and only add it to the one that was selected
               */
-              var otherLinks = document.getElementsByClassName("selected");
-              Array.prototype.forEach.call(otherLinks, function(otherLink) {
-                otherLink.classList.remove("selected");
-              });
-              this.classList.add("selected");
+              // var otherLinks = document.getElementsByClassName("selected");
+              // Array.prototype.forEach.call(otherLinks, function(otherLink) {
+              //   otherLink.classList.remove("selected");
+              // });
+              // this.classList.add("selected");
 
               /*
                * make sure that we are in the mobile layout indicated by the .menu being shown
@@ -325,7 +325,7 @@
                 _this.toggleNavClasses();
               }
 
-              _this.setRoute(this.dataset.name, this.dataset.type);
+              //_this.setRoute(this.dataset.name, this.dataset.type);
             });
           }
 
@@ -374,19 +374,19 @@
       /**
       * Updates the route and the wanted frame
       */
-      setRoute = function(name, type) {
-        window.history.pushState('','','?show=' + name + '&type=' + type);
-        this.getRoute();
-      },
+      // setRoute = function(name, type) {
+      //   window.history.pushState('','','?show=' + name + '&type=' + type);
+      //   this.getRoute();
+      // },
 
       /**
       * Updates the route and the wanted frame
       */
-      getRoute = function() {
-        this.name = this.getURLParameter('show') || null;
-        this.type = this.getURLParameter('type') || null;
-        this.iframeUrl = getWantedFrame(this.name,this.type);
-      },
+      // getRoute = function() {
+      //   this.name = this.getURLParameter('show') || null;
+      //   this.type = this.getURLParameter('type') || null;
+      //   this.iframeUrl = getWantedFrame(this.name,this.type);
+      // },
 
       /**
       * Shows the spinner
@@ -484,19 +484,21 @@
       // document.getElementsByTagName('nav').innerHTML = list;
       // };
 
+      window.addEventListener('iframeUrlChange', function(e) {
+        template.iframeUrl = e.detail.url;
+        console.log( e);
+      });
 
       // Assign functions
-      template.getURLParameter = getURLParameter;
-      template.types = types;
-      template.getWantedFrame = getWantedFrame;
+    //  template.getURLParameter = getURLParameter;
+    //  template.types = types;
+    //  template.getWantedFrame = getWantedFrame;
       template.bindLinks = bindLinks;
       template.getPreloadFrames = getPreloadFrames;
       template.toggleNavClasses = toggleNavClasses;
-      template.setRoute = setRoute;
-      template.getRoute = getRoute;
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
-
+      template.iframeUrl = '';
 
       // Assign variables
       this.iframeUrl = null;
@@ -525,7 +527,7 @@
 
         // Run for the first time, will update with historyState later
         template.bindLinks();
-        template.getRoute();
+      //  template.getRoute();
       });
 
     </script>

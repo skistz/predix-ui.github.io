@@ -64,37 +64,93 @@ Element providing a dropdown solution.
       searchKeyword: {
         type: String,
         value: ''
+      },
+      show : {
+        type: String,
+        value: ''
+      },
+      type: {
+        type: String,
+        value: ''
+      },
+      types: {
+        type: Object,
+        value: {
+          "component" : function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "local": function(name) {
+            return name + ".html";
+          },
+          "external" : function(name) {
+            return "https://github.com/predixdev/" + name;
+          }
+        }
+      }
+    },
+    attached: function() {
+      this._getRoute();
+    },
+    _getURLParameter: function(sParam) {
+      var sPageURL = window.location.search.substring(1),
+          sURLVariables = sPageURL.split('&'),
+          i,
+          len = sURLVariables.length,
+          sParameterName;
+
+      for (i = 0; i < len; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1];
+        }
       }
     },
     _itemClick: function(evt) {
       var target = evt.target,
           repoName = target.getAttribute('data-name'),
           type = target.getAttribute('data-type'),
-          types = {
-            "component" : function(name) {
-              return "https://predixdev.github.io/" + name + "/" + name + "/";
-            },
-            "local": function(name) {
-              return name + ".html";
-            },
-            "external" : function(name) {
-              return "https://github.com/predixdev/" + name;
-            }
-          };
+          otherLinks = Polymer.dom(this.root).querySelectorAll(".selected");
 
-          var otherLinks = Polymer.dom(this.root).querySelectorAll(".selected");
-          otherLinks.forEach(function(otherLink) {
-            otherLink.classList.remove("selected");
-          });
-          target.classList.add("selected");
+          if (type !== "external") {
+            otherLinks.forEach(function(otherLink) {
+              otherLink.classList.remove("selected");
+            });
 
-          //TODO add routing functionality
+            target.classList.add("selected");
+          }
+
+          this._setRoute(repoName, type);
+    },
+    _getWantedFrame: function(name, type) {
+      if  (type === "external") {
+        window.open(this.types.external(name), '_blank');
+        return false;
+      } else if (name && type) {
+        return this.types[type](name);
+      }
+      else {
+        return 'landing_page.html';
+      }
+    },
+    _setRoute: function(name, type) {
+      window.history.pushState('','','?show=' + name + '&type=' + type);
+      this._changeIframeUrl(name, type);
+    },
+    _getRoute: function() {
+      this.name = this._getURLParameter('show') || null;
+      this.type = this._getURLParameter('type') || null;
+      this._changeIframeUrl(this.name, this.type);
+    },
+    _changeIframeUrl: function(name, type) {
+      var iframeUrl = this._getWantedFrame(name, type);
+      if (iframeUrl) {
+        this.fire('iframeUrlChange', {url: iframeUrl});
+      }
     },
     _removeSpaces: function(name) {
       return name.linkText.toLowerCase().replace(/ /g, "_");
     },
     _toggle: function(evt) {
-      console.log(evt);
       var parentElement = evt.target.parentElement,
           arrow = Polymer.dom(parentElement).querySelector('.arrow'),
           name = arrow.getAttribute('data-name'),
