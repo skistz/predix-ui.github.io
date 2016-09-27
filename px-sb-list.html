@@ -3,7 +3,8 @@
     siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
 -->
-<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="bower_components/polymer/polymer.html" />
+<link rel="import" href="bower_components/iron-collapse/iron-collapse.html" />
 <!--
 Element providing a dropdown solution.
 
@@ -27,26 +28,28 @@ Element providing a dropdown solution.
   <template>
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
-    <template is="dom-if" if="_showNavItem(item)">
-      <li>
-        <a class="nav-group-lnk flex flex--middle" on-tap="_toggle" data-name$="{{_combine(item.linkText)}}">
-          <div class="arrow-right"></div>
-          <div class="u-ml--">{{item.linkText}}</div>
-        </a>
-        <iron-collapse id="collapse_{{_combine(item.linkText)}}">
-          <ul>
+    <template is="dom-if" if="_showNavItem(navItem)">
+      <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
+        <div class="arrow-right" data-name$="{{_removeSpaces(navItem)}}"></div>
+        <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
+      <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}">
+        <ul>
+          <template is="dom-repeat" items="{{navItem.links}}">
+            <template is="dom-if" if="{{_hasKids(item)}}">
+              <px-sb-list nav-item="{{item}}"></px-sb-list>
+            </template>
+            <template is="dom-if" if="{{_isItemVisible(item)}}">
+              <li><a class="nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
+            </template>
+          </template>
     </template>
-    <template is="dom-repeat" items="navItems">
-      <template is="dom-if" if="_hasKids(item)">
-        <px-sb-list nav-items="{{item.links}}"></px-sb-list>
-      </template>
-      <template is="dom-if" if="_isItemVisible(item)">
-        <li>
+    <template is="dom-if" if="_showNavItem(item)">
+        </ul>
+      </iron-collapse>
+    </template>
+    <!-- close the iron collapse list, if it was opened -->
 
-        </li>
-      </template>
-    </template>
   </template>
 </dom-module>
 <script>
@@ -54,31 +57,68 @@ Element providing a dropdown solution.
     is: 'px-sb-list',
     properties: {
       navItem: {
-        type: Array,
-        value: function() {
-          return [];
-        }
+        type: Object,
+        value: function() {return {};},
+        notify: true
       },
       searchKeyword: {
         type: String,
         value: ''
       }
     },
-    _combine: function(name) {
-      return name.toLowerCase().replace(" ","_");
+    _itemClick: function(evt) {
+      var target = evt.target,
+          repoName = target.getAttribute('data-name'),
+          type = target.getAttribute('data-type'),
+          types = {
+            "component" : function(name) {
+              return "https://predixdev.github.io/" + name + "/" + name + "/";
+            },
+            "local": function(name) {
+              return name + ".html";
+            },
+            "external" : function(name) {
+              return "https://github.com/predixdev/" + name;
+            }
+          };
+
+          var otherLinks = Polymer.dom(this.root).querySelectorAll(".selected");
+          otherLinks.forEach(function(otherLink) {
+            otherLink.classList.remove("selected");
+          });
+          target.classList.add("selected");
+
+          //TODO add routing functionality
+    },
+    _removeSpaces: function(name) {
+      //console.log("remove spaces name =" + name);
+      if (name) {
+        console.log("name");
+        console.log(name)
+        var shortName = name.linkText.toLowerCase().replace(/ /g, "_");
+        return shortName;
+      }
     },
     _toggle: function(evt) {
+      console.log(evt);
       var name = evt.target.getAttribute('data-name');
-      name = name.toLowerCase().replace(" ", "_");
+      console.log(" toggle name =" + name);
+      if (name) {
+        name = name.toLowerCase().replace(/ /g, "_");
+      }
+
       this.$$('#collapse_' + name).toggle();
       //find out if the clicked item has arrow right or down
       var targetNode = evt.target,
           arrowRight = targetNode.classList.contains('arrow-right'),
-          arrowDown = targetNode.classList.contains('arrow-down');
+          arrowDown = targetNode.classList.contains('arrow-down'),
+          flipArrowRight = !arrowRight,
+          flipArrowDown = !arrowDown;
+
 
       // and if they do have one of those, set the existing one to false, and missing one to true.
-      Polymer.toggleClass('arrow-right', !arrowRight, evt.target);
-      Polymer.toggleClass('arrow-down', !arrowDown, evt.target);
+      this.toggleClass('arrow-right', flipArrowRight, evt.target);
+      this.toggleClass('arrow-down', flipArrowDown, evt.target);
     },
     _showNavItem: function(navArr) {
       var len = navArr.length,
@@ -111,7 +151,9 @@ Element providing a dropdown solution.
       return !item.links;
     },
     _hasKids: function(item) {
-      return item.links;
+      var hasKids = item.links && item.links.length >0;
+      console.log("hasKids = " + hasKids);
+      return hasKids;
     },
     _searchMatch: function(item) {
       var query = this.searchKeyword;

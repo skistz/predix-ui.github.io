@@ -1,4 +1,4 @@
-[{
+var pxNav = [{
     "linkText": "Getting Started",
     "id" : "gettingStarted",
     "links": [{
@@ -337,4 +337,4 @@
         "dataType": "component",
         "linkText": "Validation"
     }]
-}]
+}];

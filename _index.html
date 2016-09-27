@@ -13,6 +13,7 @@
     <link rel="import" href="bower_components/iron-collapse/iron-collapse.html" />
     <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
     <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
+    <link rel="import" href="px-sb.html" />
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,7 +51,7 @@
       <div class="wrapper-flex">
         <!-- side nav -->
         <div id="side-nav" class="side-nav side-nav__default">
-          <nav>
+            <px-sb></px-sb>
             <!--Getting Started
             <li><a class="nav-lnk" data-type="local" data-name="landing_page">Home</a></li>
             <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_gettingStarted')">
@@ -221,7 +222,7 @@
                 </ul>
               </iron-collapse> -->
 
-          </nav>
+
         </div>
 
         <!-- iframe -->
@@ -330,16 +331,16 @@
 
         });
 
-        /**
-        * If an li with the class of 'nav-group-lnk' is clicked
-        * then rotate the arrow
-        */
-        Array.prototype.forEach.call(groupLinks, function(groupLink) {
-          groupLink.addEventListener("click", function(e) {
-            this.children[0].classList.toggle('arrow-down');
-            this.children[0].classList.toggle('arrow-right');
-          });
-        });
+        // /**
+        // * If an li with the class of 'nav-group-lnk' is clicked
+        // * then rotate the arrow
+        // */
+        // Array.prototype.forEach.call(groupLinks, function(groupLink) {
+        //   groupLink.addEventListener("click", function(e) {
+        //     this.children[0].classList.toggle('arrow-down');
+        //     this.children[0].classList.toggle('arrow-right');
+        //   });
+        // });
       },
 
       /**
@@ -401,426 +402,87 @@
       hideSpinner = function() {
         document.getElementById('spinner').classList.add('is__hidden');
         this.spinnerIsActive = false;
-      },
+      };
 
       /**
       * toggle for side nav's <iron-collapse>
       */
-      toggle = function(selector) {
-        if (document.querySelector(selector)) {
-          document.querySelector(selector).toggle();
-        }
-      },
-      nav = [{
-          "name": "Getting Started",
-          "links": [{
-              "dataType": "local",
-              "repoName": "getting_started",
-              "linkText": "Using Predix UI Components"
-          }, {
-              "dataType": "external",
-              "repoName": "px-getting-started",
-              "linkText": "Predix UI CSS Overview"
-          }, {
-              "dataType": "external",
-              "repoName": "generator-px-comp",
-              "linkText": "Creating a New Component"
-          }, {
-              "dataType": "external",
-              "repoName": "px-starter-kit-design",
-              "linkText": "Bootstrapping Predix UI CSS"
-          }],
-          "opened": true
-        },
-        {
-          "name": "Predix UI CSS",
-          "links": [{
-              "linkText": "Visual",
-              "listItems": [{
-                  "repoName": "https://github.com/PredixDev/px-actionable-text-icons-design",
-                  "dataType": "external",
-                  "linkText": "Actionable Text & Icons"
-              }, {
-                  "linkText": "Buttons",
-                  "listItems": [{
-                      "repoName": "px-meta-buttons-design",
-                      "dataType": "external",
-                      "linkText": "Buttons (Meta)"
-                  }, {
-                      "repoName": "px-button-group-design",
-                      "dataType": "external",
-                      "linkText": "Button Group"
-                  }, {
-                      "repoName": "px-buttons-design",
-                      "dataType": "external",
-                      "linkText": "Buttons"
-                  }]
-              }, {
-                  "repoName": "px-code-design",
-                  "dataType": "external",
-                  "linkText": "Code"
-              }, {
-                  "repoName": "px-forms-design",
-                  "dataType": "external",
-                  "linkText": "Forms"
-              }, {
-                  "repoName": "px-headings-design",
-                  "dataType": "external",
-                  "linkText": "Headings"
-              }, {
-                  "repoName": "px-helpers-design",
-                  "dataType": "external",
-                  "linkText": "Helpers"
-              }, {
-                  "repoName": "px-input-group-design",
-                  "dataType": "external",
-                  "linkText": "Input Group"
-              }, {
-                  "repoName": "px-layout-design",
-                  "dataType": "external",
-                  "linkText": "Layout"
-              }, {
-                  "linkText": "Lists",
-                  "linkItems": [{
-                      "repoName": "px-meta-lists-design",
-                      "dataType": "external",
-                      "linkText": "Lists (Meta)"
-                  }, {
-                      "repoName": "px-list-bare-design",
-                      "dataType": "external",
-                      "linkText": "List Bare"
-                  }, {
-                      "repoName": "px-list-inline-design",
-                      "dataType": "external",
-                      "linkText": "List Inline"
-                  }, {
-                      "repoName": "px-list-ui-design",
-                      "dataType": "external",
-                      "linkText": "List UI"
-                  }]
-              }, {
-                  "repoName": "px-tables-design",
-                  "dataType": "external",
-                  "linkText": "Tables"
-              }, {
-                  "repoName": "px-toggle-design",
-                  "dataType": "external",
-                  "linkText": "Toggle"
-              }]
-          }, {
-              "linkText": "Layout",
-              "listItems": [{
-                  "repoName": "px-box-design",
-                  "dataType": "external",
-                  "linkText": "Box"
-              }, {
-                  "repoName": "px-flag-design",
-                  "dataType": "external",
-                  "linkText": "Flag"
-              }, {
-                  "repoName": "px-flexbox-design",
-                  "dataType": "external",
-                  "linkText": "Flexbox"
-              }, {
-                  "repoName": "px-layout-design",
-                  "dataType": "external",
-                  "linkText": "Layout"
-              }, {
-                  "repoName": "px-spacing-design",
-                  "dataType": "external",
-                  "linkText": "Spacing"
-              }, {
-                  "repoName": "px-widths-design",
-                  "dataType": "external",
-                  "linkText": "Widths"
-              }, {
-                  "repoName": "px-width-tools-design",
-                  "dataType": "external",
-                  "linkText": "Width Tools"
-              }]
-          }, {
-              "linkText": "Utilities",
-              "listItems": [{
-                  "repoName": "px-box-sizing-design",
-                  "dataType": "external",
-                  "linkText": "Box Sizing"
-              }, {
-                  "repoName": "px-clearfix-design",
-                  "dataType": "external",
-                  "linkText": "Clearfix"
-              }, {
-                  "repoName": "px-defaults-design",
-                  "dataType": "external",
-                  "linkText": "Defaults"
-              }, {
-                  "repoName": "px-functions-design",
-                  "dataType": "external",
-                  "linkText": "Functions"
-              }, {
-                  "repoName": "px-helpers-design",
-                  "dataType": "external",
-                  "linkText": "Helpers"
-              }, {
-                  "repoName": "px-iconography-design",
-                  "dataType": "external",
-                  "linkText": "iconography"
-              }, {
-                  "repoName": "px-mixins-design",
-                  "dataType": "external",
-                  "linkText": "mixins"
-              }, {
-                  "repoName": "px-normalize-design",
-                  "dataType": "external",
-                  "linkText": "Normalize"
-              }, {
-                  "repoName": "px-typography-design",
-                  "dataType": "external",
-                  "linkText": "Typography"
-              }, {
-                  "repoName": "px-viewport-design",
-                  "dataType": "external",
-                  "linkText": "Viewport"
-              }]
-            }
-          ]
-          },
-          {
-          "name": "Predix UI Components",
-          "links": [{
-              "repoName": "px-alert-label",
-              "dataType": "component",
-              "linkText": "Alert Label"
-          }, {
-              "repoName": "px-alert-message",
-              "dataType": "component",
-              "linkText": "Alert Message"
-          }, {
-              "repoName": "px-app-nav",
-              "dataType": "component",
-              "linkText": "App Nav"
-          }, {
-              "linkText": "Cards",
-              "listItems": [{
-                  "repoName": "px-card",
-                  "dataType": "component",
-                  "linkText": "Card"
-              }, {
-                  "repoName": "px-deck-selector",
-                  "dataType": "component",
-                  "linkText": "Deck Selector"
-              }, {
-                  "repoName": "px-sample-cards",
-                  "dataType": "component",
-                  "linkText": "Sample Cards"
-              }, {
-                  "repoName": "px-widget-cards",
-                  "dataType": "component",
-                  "linkText": "Widget Cards"
-              }]
-          }, {
-              "linkText": "Charts",
-              "listItems": [{
-                  "repoName": "px-percent-circle",
-                  "dataType": "component",
-                  "linkText": "Percent Circle"
-              }, {
-                  "repoName": "px-simple-bar-chart",
-                  "dataType": "component",
-                  "linkText": "Simple Bar Chart"
-              }, {
-                  "repoName": "px-simple-horizontal-bar-chart",
-                  "dataType": "component",
-                  "linkText": "Simple horizontal Bar Chart"
-              }, {
-                  "repoName": "px-simple-line-chart",
-                  "dataType": "component",
-                  "linkText": "Simple Line Chart"
-              }, {
-                  "repoName": "px-chart",
-                  "dataType": "component",
-                  "linkText": "Chart"
-              }, {
-                  "repoName": "px-vis",
-                  "dataType": "component",
-                  "linkText": "Vis Framwork"
-              }, {
-                  "repoName": "px-vis-pie-chart",
-                  "dataType": "component",
-                  "linkText": "Vis Pie Chart"
-              }, {
-                  "repoName": "px-vis-timeseries",
-                  "dataType": "component",
-                  "linkText": "Vis Timeseries"
-              }, {
-                  "repoName": "px-vis-xy-chart",
-                  "dataType": "component",
-                  "linkText": "Vis XY Chart"
-              }]
-
-          }, {
-              "repoName": "px-clipboard",
-              "dataType": "component",
-              "linkText": "Clipboard"
-          }, {
-              "repoName": "px-context-browser",
-              "dataType": "component",
-              "linkText": "Context Browser"
-          }, {
-              "repoName": "px-data-table",
-              "dataType": "component",
-              "linkText": "Data Table"
-          }, {
-              "linkText": "Datetime Components",
-              "listItems": [{
-                  "repoName": "px-calendar-picker",
-                  "dataType": "component",
-                  "linkText": "Calendar Picker"
-              }, {
-                  "repoName": "px-simple-bar-chart",
-                  "dataType": "component",
-                  "linkText": "Simple Bar Chart"
-              }, {
-                  "repoName": "px-simple-horizontal-bar-chart",
-                  "dataType": "component",
-                  "linkText": "Simple horizontal Bar Chart"
-              }, {
-                  "repoName": "px-simple-line-chart",
-                  "dataType": "component",
-                  "linkText": "Simple Line Chart"
-              }, {
-                  "repoName": "px-chart",
-                  "dataType": "component",
-                  "linkText": "Chart"
-              }, {
-                  "repoName": "px-vis",
-                  "dataType": "component",
-                  "linkText": "Vis Framwork"
-              }]
-          }, {
-              "repoName": "px-dropdown",
-              "dataType": "component",
-              "linkText": "Dropdown"
-          }, {
-              "repoName": "px-file-upload",
-              "dataType": "component",
-              "linkText": "File Upload"
-          }, {
-              "repoName": "px-polymer-font-awesome",
-              "dataType": "component",
-              "linkText": "Font Awesome"
-          }, {
-              "repoName": "px-login",
-              "dataType": "component",
-              "linkText": "Login"
-          }, {
-              "repoName": "px-modal",
-              "dataType": "component",
-              "linkText": "Modal"
-          }, {
-              "repoName": "px-overlay",
-              "dataType": "component",
-              "linkText": "Overlay"
-          }, {
-              "repoName": "px-popover",
-              "dataType": "component",
-              "linkText": "Popover"
-          }, {
-              "repoName": "px-progress-bar",
-              "dataType": "component",
-              "linkText": "Progress Bar"
-          }, {
-              "repoName": "px-slider",
-              "dataType": "component",
-              "linkText": "Slider"
-          }, {
-              "repoName": "px-spinner",
-              "dataType": "component",
-              "linkText": "Spinner"
-          }, {
-              "repoName": "px-tabs",
-              "dataType": "component",
-              "linkText": "Tabs"
-          }, {
-              "repoName": "px-tooltip",
-              "dataType": "component",
-              "linkText": "Tooltip"
-          }, {
-              "repoName": "px-validation",
-              "dataType": "component",
-              "linkText": "Validation"
-          }]
-      }],
-      createList = function(listArr, dataType) {
-        console.log('in createList');
-        console.dir(listArr);
-        var returnString='',
-            len = listArr.length,
-            i,
-            j;
-
-        console.log("len = "  +len);
-        for (i = 0; i < len; i++) {
-          if (listArr[i].listItems) {
-            console.log("has listItems");
-            returnString+="<iron-collapse id=";
-            returnString+="collapse_" + listArr[i].linkText;
-            returnString+='"\>';
-            returnString+="<ul>";
-
-            for (j = 0; j < listArr[i].listItems.length; j++) {
-              if (listArr[i].listItems[j].listItems) {
-                createList(listArr[i].listItems[j], dataType);
-              } else {
-                returnString += '<li><a class="nav-lnk" data-type="';
-                //check if there is a datatype specified on the object itself - it might be different than the rest of the group
-                if (listArr[i].listItems[j].dataType) {
-                  returnString += listArr[i].listItems[j].dataType;
-                } else {
-                  returnString += dataType;
-                }
-                returnString += '" data-name="';
-                returnString += listArr[i].listItems[j].repoName;
-                returnString += '">';
-                returnString += listArr[i].listItems[j].linkText;
-                returnString += "</a></li>";
-              }
-            }
-            returnString += "</ul>/iron-collapse>";
-          } else {
-            console.log("no list items");
-            returnString += '<li><a class="nav-lnk" data-type="';
-            //check if there is a datatype specified on the object itself - it might be different than the rest of the group
-            if (listArr[i].dataType) {
-              returnString += listArr[i].dataType;
-            } else {
-              returnString += dataType;
-            }
-            returnString += '" data-name="';
-            returnString += listArr[i].repoName;
-            returnString += '">';
-            returnString += listArr[i].linkText;
-            returnString +="</a></li>";
-          }
-        }
-        console.log("returnString = "  +returnString );
-        return returnString;
-      },
-      createNav = function() {
-        var len = nav.length,
-            i,
-            list = '<ul class="side-nav__main-ul">';
-            console.log(nav.length);
-        for (i = 0; i < len; i++) {
-          list += '<li><a class="nav-group-lnk flex flex--middle" onclick="toggle(\'#collapse_gettingStarted\')">';
-          list += '<div class="arrow-down"></div>';
-          list += '<div class="u-ml--">' + nav[i].name + '</div>';
-          list += "</a></li>";
-          list += createList(nav[i], nav[i].dataType);
-          console.log(list);
-        }
-        list +="</ul>";
-      document.getElementsByTagName('nav').innerHTML = list;
-      };
+      // toggle = function(selector) {
+      //   if (document.querySelector(selector)) {
+      //     document.querySelector(selector).toggle();
+      //   }
+      // };
+      // createList = function(listArr, dataType) {
+      //   console.log('in createList');
+      //   console.dir(listArr);
+      //   var returnString='',
+      //       len = listArr.links.length,
+      //       i,
+      //       j;
+      //
+      //   console.log("len = "  +len);
+      //   for (i = 0; i < len; i++) {
+      //     if (listArr[i].links) {
+      //       console.log("has links");
+      //       returnString+="<iron-collapse id=";
+      //       returnString+="collapse_" + listArr[i].linkText;
+      //       returnString+='"\>';
+      //       returnString+="<ul>";
+      //
+      //       for (j = 0; j < listArr[i].links.length; j++) {
+      //         if (listArr[i].links[j].links) {
+      //           createList(listArr[i].links[j], dataType);
+      //         } else {
+      //           returnString += '<li><a class="nav-lnk" data-type="';
+      //           //check if there is a datatype specified on the object itself - it might be different than the rest of the group
+      //           if (listArr[i].links[j].dataType) {
+      //             returnString += listArr[i].links[j].dataType;
+      //           } else {
+      //             returnString += dataType;
+      //           }
+      //           returnString += '" data-name="';
+      //           returnString += listArr[i].links[j].repoName;
+      //           returnString += '">';
+      //           returnString += listArr[i].links[j].linkText;
+      //           returnString += "</a></li>";
+      //         }
+      //       }
+      //       returnString += "</ul>/iron-collapse>";
+      //     } else {
+      //       console.log("no list items");
+      //       returnString += '<li><a class="nav-lnk" data-type="';
+      //       //check if there is a datatype specified on the object itself - it might be different than the rest of the group
+      //       if (listArr[i].dataType) {
+      //         returnString += listArr[i].dataType;
+      //       } else {
+      //         returnString += dataType;
+      //       }
+      //       returnString += '" data-name="';
+      //       returnString += listArr[i].repoName;
+      //       returnString += '">';
+      //       returnString += listArr[i].linkText;
+      //       returnString +="</a></li>";
+      //     }
+      //   }
+      //   console.log("returnString = "  +returnString );
+      //   return returnString;
+      // },
+      // createNav = function() {
+      //   var len = nav.length,
+      //       i,
+      //       list = '<ul class="side-nav__main-ul">';
+      //       console.log(nav.length);
+      //   for (i = 0; i < len; i++) {
+      //     list += '<li><a class="nav-group-lnk flex flex--middle" onclick="toggle(\'#collapse_gettingStarted\')">';
+      //     list += '<div class="arrow-down"></div>';
+      //     list += '<div class="u-ml--">' + nav[i].name + '</div>';
+      //     list += "</a></li>";
+      //     list += createList(nav[i], nav[i].dataType);
+      //     console.log(list);
+      //   }
+      //   list +="</ul>";
+      // document.getElementsByTagName('nav').innerHTML = list;
+      // };
 
 
       // Assign functions
@@ -832,10 +494,9 @@
       template.toggleNavClasses = toggleNavClasses;
       template.setRoute = setRoute;
       template.getRoute = getRoute;
-      template.toggle = toggle;
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
-      template.createList = createList;
+
 
       // Assign variables
       this.iframeUrl = null;
@@ -865,10 +526,6 @@
         // Run for the first time, will update with historyState later
         template.bindLinks();
         template.getRoute();
-      });
-
-      document.addEventListener("DOMContentLoaded", function(event) {
-        createNav();
       });
 
     </script>
