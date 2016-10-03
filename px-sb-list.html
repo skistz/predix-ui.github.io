@@ -28,19 +28,22 @@ Element providing a dropdown solution.
   <template>
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
-    <template is="dom-if" if="_showNavItem(navItem)">
+    <template is="dom-if" if="{{_isHome(navItem)}}">
+      <li><a class="nav-lnk" data-name="home" on-click="_itemClick">{{navItem.linkText}}</a></li>
+    </template>
+    <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
         <div class="arrow-right arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
         <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
-      <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}">
+      <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem)}}">
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
-              <li><a class="nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
+              <li><a class$="{{_isItemSelected(item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
             </template>
           </template>
     </template>
@@ -56,9 +59,18 @@ Element providing a dropdown solution.
   Polymer({
     is: 'px-sb-list',
     properties: {
+      openedFlag: {
+        type: Boolean,
+        notify: true
+      },
       navItem: {
         type: Object,
         value: function() {return {};},
+        notify: true
+      },
+      selected: {
+        type: Object,
+        observer: '_selectedChange',
         notify: true
       },
       searchKeyword: {
@@ -84,12 +96,41 @@ Element providing a dropdown solution.
           },
           "external" : function(name) {
             return "https://github.com/predixdev/" + name;
+          },
+          "design": function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
           }
         }
       }
     },
     attached: function() {
       this._getRoute();
+    },
+    /**
+     * @method  [_isOpened]
+     *
+     * check whether the item has an opened property
+     * @param  {[object]}  item [any arrow item]
+     * @return {Boolean}      [true if it's set to true, false if false, undefined (falsey) if not there]
+     */
+    _isOpened: function(item) {
+      return item.opened;
+    },
+    /**
+     * @method [_selectedChange ]
+     *
+     * this method is called through the observer when a new item is selected.
+     * We add the classlist to the newly selected one, and through the magic of binding, go across all the px-sb-lists, and deselect the old one.
+     * @param  {object} itemSelected   [this is the newly selected item]
+     * @param  {[type]} itemDeselected [thi is the newly deselected item]
+     */
+    _selectedChange: function(itemSelected, itemDeselected) {
+      if (this.selected) {
+        itemSelected.classList.add("selected");
+        if (itemDeselected) {
+          itemDeselected.classList.remove("selected");
+        }
+      }
     },
     _getURLParameter: function(sParam) {
       var sPageURL = window.location.search.substring(1),
@@ -105,31 +146,28 @@ Element providing a dropdown solution.
         }
       }
     },
+    _isHome: function(item) {
+      return item.dataType === "home";
+    },
     _itemClick: function(evt) {
       var target = evt.target,
           repoName = target.getAttribute('data-name'),
-          type = target.getAttribute('data-type'),
-          otherLinks = Polymer.dom(this.root).querySelectorAll(".selected");
+          type = target.getAttribute('data-type');
 
-          if (type !== "external") {
-            otherLinks.forEach(function(otherLink) {
-              otherLink.classList.remove("selected");
-            });
+        this.set('selected', target);
 
-            target.classList.add("selected");
-          }
+        this._setRoute(repoName, type);
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name});
 
-          this._setRoute(repoName, type);
     },
     _getWantedFrame: function(name, type) {
       if  (type === "external") {
         window.open(this.types.external(name), '_blank');
         return false;
+      } else if(type === "home" || !type) {
+        return 'landing_page.html';
       } else if (name && type) {
         return this.types[type](name);
-      }
-      else {
-        return 'landing_page.html';
       }
     },
     _setRoute: function(name, type) {
@@ -140,11 +178,14 @@ Element providing a dropdown solution.
       this.name = this._getURLParameter('show') || null;
       this.type = this._getURLParameter('type') || null;
       this._changeIframeUrl(this.name, this.type);
+      if (this.name) {
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name});
+      }
     },
     _changeIframeUrl: function(name, type) {
       var iframeUrl = this._getWantedFrame(name, type);
       if (iframeUrl) {
-        this.fire('iframeUrlChange', {url: iframeUrl});
+        this.fire('px-sb-list-iframe-url-change', {url: iframeUrl});
       }
     },
     _removeSpaces: function(name) {
@@ -172,10 +213,16 @@ Element providing a dropdown solution.
           i,
           query = this.searchKeyword;
 
+      //if the item is home, don't show the arrow.
+      if (navArr.dataType === "home") {
+        return false;
+      }
+
       //if there's no query, always return true;
       if (!query) {
         return true;
       }
+
 
       //else, loop through the sub-items recursively
       for (i = 0; i < len; i++) {
@@ -189,6 +236,11 @@ Element providing a dropdown solution.
       }
       //if we've reached this point, none of the subitems contain the search query, and we'd like to hide this item.
       return false;
+    },
+    _isItemSelected: function(item) {
+      if (item.selected) {
+        return 'selected';
+      }
     },
     _isItemVisible: function(item) {
       return this._hasNoKids(item) && this._searchMatch();

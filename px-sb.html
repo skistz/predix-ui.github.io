@@ -27,7 +27,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <ul>
       <template is="dom-repeat" items="[[nav]]">
-        <px-sb-list nav-item="[[item]]"></px-sb-list>
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -35,12 +35,98 @@ Element providing sidebar for the predix ui website.
 <script>
   Polymer({
     is: 'px-sb',
+    _clearOpened: function(navArr) {
+      var len = navArr.length,
+          i,
+          foundItem;
+
+      //else, loop through the sub-items recursively
+      for (i = 0; i < len; i++) {
+        if (navArr[i].links) {
+          this._clearOpened(navArr[i]);
+        }
+        //check if this item has the search query in the text. Since we made sure that query isn't false, we'd never reach this stage without query being true.
+        if (navArr[i].opened) {
+          navArr[i].opened = false;
+        }
+        if (navArr[i].selected) {
+          navArr[i].selected = false;
+        }
+      }
+    },
+    _findSelectedItemTrail: function(navArr, selectedItemEvt) {
+      var foundItem,
+          openedItemsArr = [],
+          selectedItem = selectedItemEvt.detail.selectedItem;
+
+
+      for (var i = 0, len = navArr.length; i < len; i++) {
+        if (navArr[i].links) {
+          var arr = this._findSelectedItemTrail(navArr[i].links, selectedItemEvt);
+          if (arr !== null) {
+            arr.push(navArr[i]);
+            return arr;
+          }
+        }
+
+        if (navArr[i].repoName === selectedItem) {
+          navArr[i].selected = true;
+          return [navArr[i]];
+        }
+      }
+      return null;
+    },
+    _findInitialSelected: function() {
+      var pxSb = document.querySelector('px-sb'),
+          pxSbLists = Polymer.dom(pxSb.root).querySelectorAll('px-sb-list'),
+          selected;
+
+          pxSbLists.forEach(function(pxSbList) {
+            selected = Polymer.dom(pxSbList.root).querySelector('.selected');
+
+            if (selected) {
+              this.set('selected', selected);
+            }
+          }.bind(this));
+    },
+    changeOpenedProperty: function(trail) {
+      trail.forEach(function(item) {
+        item.opened = true;
+      });
+    },
+    _changeOpenMenus: function(selectedItem) {
+      this._clearOpened(this.nav);
+      var trail = this._findSelectedItemTrail(this.nav, selectedItem);
+      trail.splice(0,1); //remove the item itself, only keep the parents
+      this.changeOpenedProperty(trail);
+      this._findInitialSelected();
+    },
+    listeners: {
+      'px-sb-list-selected-item-changed' : '_changeOpenMenus'
+    },
     properties: {
+      openedItemsArr: {
+        type: Array,
+        value: function() {return[];}
+      },
+      selected: {
+        type: Object,
+        notify: true
+      },
+      opened: {
+        type: Array,
+        value: function(){return [];}
+      },
       nav: {
         type: Array,
+        notify: true,
         value: [{
+            "linkText": "Home",
+            "repoName": "landing_page",
+            "dataType": "home",
+          },
+          {
             "linkText": "Getting Started",
-            "id" : "gettingStarted",
             "links": [{
                 "dataType": "local",
                 "repoName": "getting_started",
@@ -336,7 +422,7 @@ Element providing sidebar for the predix ui website.
                 "dataType": "component",
                 "linkText": "File Upload"
                 }, {
-                "repoName": "px-polymer-font-awesome",
+                "repoName": "polymer-font-awesome",
                 "dataType": "component",
                 "linkText": "Font Awesome"
                 }, {
