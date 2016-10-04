@@ -25,9 +25,10 @@ Element providing sidebar for the predix ui website.
   <template>
     <style include="px-sb-styles"></style>
     <style include="px-theme-styles"></style>
+    <input type="text" class="input--large" value="{{searchKeyword::input}}">
     <ul>
       <template is="dom-repeat" items="[[nav]]">
-        <px-sb-list nav-item="[[item]]" selected="{{selected}}"></px-sb-list>
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -101,10 +102,20 @@ Element providing sidebar for the predix ui website.
       this.changeOpenedProperty(trail);
       this._findInitialSelected();
     },
+    _startSearch: function() {
+      var repeat = Polymer.dom(this.root).querySelector('template[is=dom-repeat]');
+      repeat.render();
+    },
     listeners: {
       'px-sb-list-selected-item-changed' : '_changeOpenMenus'
     },
     properties: {
+
+      searchKeyword: {
+        type: String,
+        value: '',
+        observer: '_startSearch'
+      },
       openedItemsArr: {
         type: Array,
         value: function() {return[];}

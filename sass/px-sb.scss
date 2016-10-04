@@ -19,6 +19,10 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 // Settings
 // Generic
 // Base
+
+$inuit-enable-input--large : true;
+@import "px-forms-design/_base.forms.scss";
+
 @import "px-list-inline-design/_objects.list-inline.scss";
 
 body,

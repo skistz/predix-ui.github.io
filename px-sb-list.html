@@ -28,6 +28,7 @@ Element providing a dropdown solution.
   <template>
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
+
     <template is="dom-if" if="{{_isHome(navItem)}}">
       <li><a class="nav-lnk" data-name="home" on-click="_itemClick">{{navItem.linkText}}</a></li>
     </template>
@@ -40,7 +41,7 @@ Element providing a dropdown solution.
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}" selected="{{selected}}"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
               <li><a class$="{{_isItemSelected(item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
@@ -106,6 +107,7 @@ Element providing a dropdown solution.
     attached: function() {
       this._getRoute();
     },
+
     _arrowClass: function(item) {
       return (item.opened) ? 'arrow-down' : 'arrow-right';
     },
