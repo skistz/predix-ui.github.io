@@ -33,7 +33,7 @@ Element providing a dropdown solution.
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
-        <div class="arrow-right arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
+        <div class$="{{_arrowClass(navItem)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
         <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
       <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem)}}">
@@ -105,6 +105,9 @@ Element providing a dropdown solution.
     },
     attached: function() {
       this._getRoute();
+    },
+    _arrowClass: function(item) {
+      return (item.opened) ? 'arrow-down' : 'arrow-right';
     },
     /**
      * @method  [_isOpened]
