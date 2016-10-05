@@ -40,7 +40,7 @@ Element providing a dropdown solution.
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}" selected="{{selected}}"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}" old-selected="{{oldSelected}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
               <li><a class$="{{_isItemSelected(item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
@@ -72,6 +72,10 @@ Element providing a dropdown solution.
         type: Object,
         observer: '_selectedChange',
         notify: true
+      },
+      oldSelected: {
+        type: Object,
+        notify:true
       },
       searchKeyword: {
         type: String,
@@ -128,12 +132,35 @@ Element providing a dropdown solution.
      * @param  {[type]} itemDeselected [thi is the newly deselected item]
      */
     _selectedChange: function(itemSelected, itemDeselected) {
+      console.log("itemSelected = " + itemSelected);
+      console.log("itemDeselected = " + itemDeselected);
+      var oldItemObj,
+          newItemObj,
+          iron,
+          selected,
+          repeat;
       if (this.selected) {
-        itemSelected.classList.add("selected");
-        if (itemDeselected) {
-          itemDeselected.classList.remove("selected");
+        iron = Polymer.dom(this.root).querySelector('iron-collapse');
+        selected = Polymer.dom(iron).querySelector('.selected');
+
+        if (selected && selected !== itemSelected) {
+          selected.classList.remove('selected');
+          itemSelected.classList.add("selected");
+        }
+        repeat = Polymer.dom(iron).querySelector('template[is=dom-repeat]');
+        if (repeat) {
+          oldItemObj = repeat.itemForElement(selected);
+          newItemObj = repeat.itemForElement(itemSelected);
+        }
+
+        if (oldItemObj) {
+          oldItemObj.selected = false;
+        }
+        if (newItemObj) {
+          newItemObj.selected = true;
         }
       }
+
     },
     _getURLParameter: function(sParam) {
       var sPageURL = window.location.search.substring(1),
