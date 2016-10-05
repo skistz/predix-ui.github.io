@@ -27,7 +27,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <ul>
       <template is="dom-repeat" items="[[nav]]">
-        <px-sb-list nav-item="[[item]]" selected="{{selected}}"></px-sb-list>
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}"  old-selected="{{oldSelected}}"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -108,6 +108,10 @@ Element providing sidebar for the predix ui website.
       openedItemsArr: {
         type: Array,
         value: function() {return[];}
+      },
+      oldSelected: {
+        type: Object,
+        notify: true
       },
       selected: {
         type: Object,
