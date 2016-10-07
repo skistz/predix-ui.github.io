@@ -42,6 +42,9 @@ Element providing sidebar for the predix ui website.
 <script>
   Polymer({
     is: 'px-sb',
+    attached: function() {
+      this._getRoute();
+    },
     _resetSearch: function() {
       this.set('searchKeyword','');
       this.$.searchInput.focus();
@@ -108,6 +111,7 @@ Element providing sidebar for the predix ui website.
       }
     },
     _changeOpenMenus: function(selectedItem) {
+      this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
       this._clearOpened(this.nav);
       var trail = this._findSelectedItemTrail(this.nav, selectedItem);
       //trail.splice(0,1); //remove the item itself, only keep the parents
@@ -154,8 +158,68 @@ Element providing sidebar for the predix ui website.
         this.set('nav', this.initialNav);
       }
     },
+    _getWantedFrame: function(name, type) {
+      if  (type === "external") {
+        window.open(this.types.external(name), '_blank');
+        return false;
+      } else if (name && type) {
+        return this.types[type](name);
+      }
+    },
+    _setRoute: function(name, type) {
+      window.history.pushState('','','?show=' + name + '&type=' + type);
+      this._changeIframeUrl(name, type);
+    },
+    _getRoute: function() {
+      this.name = this._getURLParameter('show') || null;
+      this.type = this._getURLParameter('type') || null;
+      this._changeIframeUrl(this.name, this.type);
+      if (this.name) {
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name, itemType: this.type});
+      }
+    },
+    _changeIframeUrl: function(name, type) {
+      var iframeUrl = this._getWantedFrame(name, type),
+          external = (type === 'external');
+          console.log("type = " + type);
+      this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external});
+    },
+    _getURLParameter: function(sParam) {
+      var sPageURL = window.location.search.substring(1),
+          sURLVariables = sPageURL.split('&'),
+          i,
+          len = sURLVariables.length,
+          sParameterName;
+
+      for (i = 0; i < len; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1];
+        }
+      }
+    },
     observers: ['_computedNav(initialNav, searchKeyword)'],
     properties: {
+      types: {
+        type: Object,
+        value: {
+          "component" : function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "local": function(name) {
+            return name + ".html";
+          },
+          "external" : function(name) {
+            return "https://github.com/predixdev/" + name;
+          },
+          "design": function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "home" : function() {
+            return 'landing_page.html';
+          }
+        }
+      },
       openedItemsArr: {
         type: Array,
         value: function() {return[];}

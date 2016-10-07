@@ -29,7 +29,7 @@ Element providing a dropdown solution.
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
     <template is="dom-if" if="{{_isHome(navItem)}}">
-      <li><a class$="{{_isItemSelected(navItem)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home">{{navItem.linkText}}</a></li>
+      <li><a class$="{{_isItemSelected(navItem.selected)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home">{{navItem.linkText}}</a></li>
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
@@ -43,7 +43,7 @@ Element providing a dropdown solution.
               <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
-              <li><a class$="{{_isItemSelected(item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
+              <li><a class$="{{_isItemSelected(item.selected)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
             </template>
           </template>
     </template>
@@ -84,30 +84,7 @@ Element providing a dropdown solution.
       type: {
         type: String,
         value: ''
-      },
-      types: {
-        type: Object,
-        value: {
-          "component" : function(name) {
-            return "https://predixdev.github.io/" + name + "/" + name + "/";
-          },
-          "local": function(name) {
-            return name + ".html";
-          },
-          "external" : function(name) {
-            return "https://github.com/predixdev/" + name;
-          },
-          "design": function(name) {
-            return "https://predixdev.github.io/" + name + "/" + name + "/";
-          },
-          "home" : function() {
-            return 'landing_page.html';
-          }
-        }
       }
-    },
-    attached: function() {
-      this._getRoute();
     },
     _arrowClass: function(item) {
       return (item.opened) ? 'arrow-down' : 'arrow-right';
@@ -140,14 +117,14 @@ Element providing a dropdown solution.
         iron = Polymer.dom(this.root).querySelector('iron-collapse');
         selected = Polymer.dom(iron).querySelector('.selected');
 
-        if (selected && selected !== itemSelected) {
-          selected.classList.remove('selected');
-          itemSelected.classList.add("selected");
-        } else {
-          if (itemSelected) {
-            itemSelected.classList.add('selected');
-          }
-        }
+        // if (selected && selected !== itemSelected) {
+        //   selected.classList.remove('selected');
+        //   itemSelected.classList.add("selected");
+        // } else {
+        //   if (itemSelected) {
+        //     itemSelected.classList.add('selected');
+        //   }
+        // }
         repeat = Polymer.dom(iron).querySelector('template[is=dom-repeat]');
         if (repeat) {
           oldItemObj = repeat.itemForElement(selected);
@@ -163,20 +140,6 @@ Element providing a dropdown solution.
       }
 
     },
-    _getURLParameter: function(sParam) {
-      var sPageURL = window.location.search.substring(1),
-          sURLVariables = sPageURL.split('&'),
-          i,
-          len = sURLVariables.length,
-          sParameterName;
-
-      for (i = 0; i < len; i++) {
-        sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] === sParam) {
-          return sParameterName[1];
-        }
-      }
-    },
     _isHome: function(item) {
       return item.dataType === "home";
     },
@@ -186,36 +149,9 @@ Element providing a dropdown solution.
           type = target.getAttribute('data-type');
 
         this.set('selected', target);
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type});
+    },
 
-        this._setRoute(repoName, type);
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName});
-
-    },
-    _getWantedFrame: function(name, type) {
-      if  (type === "external") {
-        window.open(this.types.external(name), '_blank');
-        return false;
-      } else if (name && type) {
-        return this.types[type](name);
-      }
-    },
-    _setRoute: function(name, type) {
-      window.history.pushState('','','?show=' + name + '&type=' + type);
-      this._changeIframeUrl(name, type);
-    },
-    _getRoute: function() {
-      this.name = this._getURLParameter('show') || null;
-      this.type = this._getURLParameter('type') || null;
-      this._changeIframeUrl(this.name, this.type);
-      if (this.name) {
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name});
-      }
-    },
-    _changeIframeUrl: function(name, type) {
-      var iframeUrl = this._getWantedFrame(name, type),
-          external = (type === 'external');
-      this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external});
-    },
     _removeSpaces: function(name) {
       return name.linkText.toLowerCase().replace(/ /g, "_");
     },
@@ -246,8 +182,8 @@ Element providing a dropdown solution.
         return true;
       }
     },
-    _isItemSelected: function(item) {
-      if (item.selected) {
+    _isItemSelected: function(selectedItem) {
+      if (selectedItem) {
         return 'selected';
       }
     },
