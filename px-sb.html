@@ -5,6 +5,7 @@
 -->
 <link rel="import" href="bower_components/polymer/polymer.html" />
 <link rel="import" href="px-sb-list.html" />
+<link rel="import" href="bower_components/px-polymer-font-awesome/polymer-font-awesome.html" />
 <!--
 Element providing sidebar for the predix ui website.
 
@@ -25,9 +26,15 @@ Element providing sidebar for the predix ui website.
   <template>
     <style include="px-sb-styles"></style>
     <style include="px-theme-styles"></style>
-    <ul>
-      <template is="dom-repeat" items="[[nav]]">
-        <px-sb-list nav-item="[[item]]" selected="{{selected}}"  old-selected="{{oldSelected}}"></px-sb-list>
+    <div class="search">
+      <div class="input">
+        <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="type in a search term...">
+      </div>
+      <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+    </div>
+    <ul style="margin-top:40px;">
+      <template is="dom-repeat" items="{{nav}}">
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -35,6 +42,10 @@ Element providing sidebar for the predix ui website.
 <script>
   Polymer({
     is: 'px-sb',
+    _resetSearch: function() {
+      this.set('searchKeyword','');
+      this.$.searchInput.focus();
+    },
     _clearOpened: function(navArr) {
       var len = navArr.length,
           i,
@@ -90,28 +101,64 @@ Element providing sidebar for the predix ui website.
           }.bind(this));
     },
     changeOpenedProperty: function(trail) {
-      trail.forEach(function(item) {
-        item.opened = true;
-      });
+      if (trail && trail.length) {
+        trail.forEach(function(item) {
+          item.opened = true;
+        });
+      }
     },
     _changeOpenMenus: function(selectedItem) {
       this._clearOpened(this.nav);
       var trail = this._findSelectedItemTrail(this.nav, selectedItem);
-      trail.splice(0,1); //remove the item itself, only keep the parents
+      //trail.splice(0,1); //remove the item itself, only keep the parents
       this.changeOpenedProperty(trail);
       this._findInitialSelected();
     },
     listeners: {
       'px-sb-list-selected-item-changed' : '_changeOpenMenus'
     },
+    _computedNav: function(navArr, searchKeyword) {
+      if (searchKeyword === '') {
+        this.set('nav', this.initialNav);
+        return;
+      }
+
+      this.debounce('navBuild', function() {
+        this.set('nav', this._buildNav(navArr, searchKeyword));
+      }, 125);
+    },
+    _buildNav: function(navArr, searchKeyword) {
+      var foundItems = [];
+      for (var i = 0, len=navArr.length; i < len; i++) {
+        var currentObj = {};
+        currentObj.linkText = navArr[i].linkText;
+        (currentObj.dataType) = navArr[i].dataType;
+        currentObj.repoName = navArr[i].repoName;
+        currentObj.selected = navArr[i].selected;
+        currentObj.opened = true;
+        if (navArr[i].links) {
+          var tempArr = this._buildNav(navArr[i].links, searchKeyword);
+          if (tempArr.length) {
+            currentObj['links'] = tempArr;
+          }
+        }
+
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword) !== -1 || currentObj.links) {
+          foundItems.push(currentObj);
+        }
+      }
+      return foundItems;
+    },
+    _isSearchKeywordEmpty: function() {
+      if (this.searchKeyword) {
+        this.set('nav', this.initialNav);
+      }
+    },
+    observers: ['_computedNav(initialNav, searchKeyword)'],
     properties: {
       openedItemsArr: {
         type: Array,
         value: function() {return[];}
-      },
-      oldSelected: {
-        type: Object,
-        notify: true
       },
       selected: {
         type: Object,
@@ -121,9 +168,18 @@ Element providing sidebar for the predix ui website.
         type: Array,
         value: function(){return [];}
       },
+      searchKeyword: {
+        type: String,
+        value: '',
+        notify:true,
+        observer: '_isSearchKeywordEmpty'
+      },
       nav: {
+        type: Object,
+        notify: true
+      },
+      initialNav: {
         type: Array,
-        notify: true,
         value: [{
             "linkText": "Home",
             "repoName": "landing_page",
@@ -178,6 +234,10 @@ Element providing sidebar for the predix ui website.
                         "dataType": "external",
                         "linkText": "Code"
                         }, {
+                          "repoName": "px-colors-design",
+                          "dataType": "external",
+                          "linkText": "Colors"
+                          }, {
                         "repoName": "px-forms-design",
                         "dataType": "external",
                         "linkText": "Forms"

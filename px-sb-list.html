@@ -33,14 +33,14 @@ Element providing a dropdown solution.
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
-        <div class$="{{_arrowClass(navItem)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
+        <div id="arrow" class$="{{_arrowClass(navItem)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
         <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
       <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem)}}">
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}" selected="{{selected}}" old-selected="{{oldSelected}}"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
               <li><a class$="{{_isItemSelected(item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
@@ -72,10 +72,6 @@ Element providing a dropdown solution.
         type: Object,
         observer: '_selectedChange',
         notify: true
-      },
-      oldSelected: {
-        type: Object,
-        notify:true
       },
       searchKeyword: {
         type: String,
@@ -132,8 +128,7 @@ Element providing a dropdown solution.
      * @param  {[type]} itemDeselected [thi is the newly deselected item]
      */
     _selectedChange: function(itemSelected, itemDeselected) {
-      console.log("itemSelected = " + itemSelected);
-      console.log("itemDeselected = " + itemDeselected);
+
       var oldItemObj,
           newItemObj,
           iron,
@@ -146,6 +141,10 @@ Element providing a dropdown solution.
         if (selected && selected !== itemSelected) {
           selected.classList.remove('selected');
           itemSelected.classList.add("selected");
+        } else {
+          if (itemSelected) {
+            itemSelected.classList.add('selected');
+          }
         }
         repeat = Polymer.dom(iron).querySelector('template[is=dom-repeat]');
         if (repeat) {
@@ -187,7 +186,7 @@ Element providing a dropdown solution.
         this.set('selected', target);
 
         this._setRoute(repoName, type);
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name});
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName});
 
     },
     _getWantedFrame: function(name, type) {
@@ -222,8 +221,7 @@ Element providing a dropdown solution.
       return name.linkText.toLowerCase().replace(/ /g, "_");
     },
     _toggle: function(evt) {
-      var parentElement = evt.target.parentElement,
-          arrow = Polymer.dom(parentElement).querySelector('.arrow'),
+      var arrow = this.$$('#arrow'),
           name = arrow.getAttribute('data-name'),
           //find out if the clicked item has arrow right or down
           arrowRight = arrow.classList.contains('arrow-right'),
@@ -231,7 +229,7 @@ Element providing a dropdown solution.
           flipArrowRight = !arrowRight,
           flipArrowDown = !arrowDown;
 
-      name = name.toLowerCase().replace(/ /g, "_");
+      //name = name.toLowerCase().replace(/ /g, "_");
       this.$$('#collapse_' + name).toggle();
 
       // and if they do have one of those, set the existing one to false, and missing one to true.
@@ -240,32 +238,14 @@ Element providing a dropdown solution.
     },
     _showNavItem: function(navArr) {
       var len = navArr.length,
-          i,
-          query = this.searchKeyword;
+          i;
 
       //if the item is home, don't show the arrow.
       if (navArr.dataType === "home") {
         return false;
-      }
-
-      //if there's no query, always return true;
-      if (!query) {
+      } else {
         return true;
       }
-
-
-      //else, loop through the sub-items recursively
-      for (i = 0; i < len; i++) {
-        if (navArr[i].links) {
-          this._showNavItem(navArr[i]);
-        }
-        //check if this item has the search query in the text. Since we made sure that query isn't false, we'd never reach this stage without query being true.
-        if (this._searchMatch(navArr[i])) {
-          return true;
-        }
-      }
-      //if we've reached this point, none of the subitems contain the search query, and we'd like to hide this item.
-      return false;
     },
     _isItemSelected: function(item) {
       if (item.selected) {
@@ -273,7 +253,7 @@ Element providing a dropdown solution.
       }
     },
     _isItemVisible: function(item) {
-      return this._hasNoKids(item) && this._searchMatch();
+      return this._hasNoKids(item);
     },
     _hasNoKids: function(item) {
       //if there are no links, it has no kids.
@@ -281,11 +261,6 @@ Element providing a dropdown solution.
     },
     _hasKids: function(item) {
       return item.links;
-    },
-    _searchMatch: function(item) {
-      var query = this.searchKeyword;
-      //search the text of the link text for the query
-      return (query) ? item.linkText.indexOf(query) > -1 : true;
     }
   });
 </script>

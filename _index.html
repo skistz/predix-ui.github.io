@@ -301,35 +301,35 @@
         * If an li with the class of 'nav-lnk' is clicked then update
         * the visible state of the app
         */
-        Array.prototype.forEach.call(links, function(link) {
-          if (!link.href) {
-            link.addEventListener("click", function(e) {
-              e.preventDefault;
-
-              /*
-              * Remove the .selected class from all links
-              * and only add it to the one that was selected
-              */
-              // var otherLinks = document.getElementsByClassName("selected");
-              // Array.prototype.forEach.call(otherLinks, function(otherLink) {
-              //   otherLink.classList.remove("selected");
-              // });
-              // this.classList.add("selected");
-
-              /*
-               * make sure that we are in the mobile layout indicated by the .menu being shown
-               *
-               * enable toggleNavClasses in mobile
-               */
-              if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
-                _this.toggleNavClasses();
-              }
-
-              //_this.setRoute(this.dataset.name, this.dataset.type);
-            });
-          }
-
-        });
+        // Array.prototype.forEach.call(links, function(link) {
+        //   if (!link.href) {
+        //     link.addEventListener("click", function(e) {
+        //       e.preventDefault;
+        //
+        //       /*
+        //       * Remove the .selected class from all links
+        //       * and only add it to the one that was selected
+        //       */
+        //       // var otherLinks = document.getElementsByClassName("selected");
+        //       // Array.prototype.forEach.call(otherLinks, function(otherLink) {
+        //       //   otherLink.classList.remove("selected");
+        //       // });
+        //       // this.classList.add("selected");
+        //
+        //       /*
+        //        * make sure that we are in the mobile layout indicated by the .menu being shown
+        //        *
+        //        * enable toggleNavClasses in mobile
+        //        */
+        //       if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
+        //         _this.toggleNavClasses();
+        //       }
+        //
+        //       //_this.setRoute(this.dataset.name, this.dataset.type);
+        //     });
+        //   }
+        //
+        // });
 
         // /**
         // * If an li with the class of 'nav-group-lnk' is clicked

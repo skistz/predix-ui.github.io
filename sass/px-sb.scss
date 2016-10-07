@@ -17,9 +17,11 @@ THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PRE
 Predix branding rules go in px-demo-site-predix.scss, not in this file.
 */
 // Settings
+@import "px-colors-design/_settings.colors.scss";
 // Generic
 // Base
 @import "px-list-inline-design/_objects.list-inline.scss";
+
 
 body,
 html {
@@ -34,5 +36,29 @@ ul {
  }
 
 // Component
+:host{
+  width:100%;
+}
 
+.search {
+  background-color: $white;
+  display: flex;
+  .icon {
+    color: $gray7;
+    height: calculateRem(15px);
+    iron-icon {
+      height: calculateRem(20px);
+      cursor: pointer;
+    }
+  }
+  .input {
+    width: 100%;
+    input {
+      padding: calculateRem(7px);
+      width: 100%;
+      outline: none;
+      border:0;
+    }
+  }
+}
 // Trumps
