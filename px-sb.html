@@ -28,7 +28,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <div class="search">
       <div class="input">
-        <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="type in a search term...">
+        <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="Type In A Search Term...">
       </div>
       <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
     </div>
@@ -92,13 +92,13 @@ Element providing sidebar for the predix ui website.
           pxSbLists = Polymer.dom(pxSb.root).querySelectorAll('px-sb-list'),
           selected;
 
-          pxSbLists.forEach(function(pxSbList) {
-            selected = Polymer.dom(pxSbList.root).querySelector('.selected');
+      pxSbLists.forEach(function(pxSbList) {
+        selected = Polymer.dom(pxSbList.root).querySelector('.selected');
 
-            if (selected) {
-              this.set('selected', selected);
-            }
-          }.bind(this));
+        if (selected) {
+          this.set('selected', selected);
+        }
+      }.bind(this));
     },
     changeOpenedProperty: function(trail) {
       if (trail && trail.length) {
@@ -125,7 +125,7 @@ Element providing sidebar for the predix ui website.
 
       this.debounce('navBuild', function() {
         this.set('nav', this._buildNav(navArr, searchKeyword));
-      }, 125);
+      }, 150);
     },
     _buildNav: function(navArr, searchKeyword) {
       var foundItems = [];

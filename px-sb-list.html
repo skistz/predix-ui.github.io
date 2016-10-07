@@ -29,7 +29,7 @@ Element providing a dropdown solution.
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
     <template is="dom-if" if="{{_isHome(navItem)}}">
-      <li><a class="nav-lnk" data-name="home" on-click="_itemClick">{{navItem.linkText}}</a></li>
+      <li><a class$="{{_isItemSelected(navItem)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home">{{navItem.linkText}}</a></li>
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
@@ -99,6 +99,9 @@ Element providing a dropdown solution.
           },
           "design": function(name) {
             return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "home" : function() {
+            return 'landing_page.html';
           }
         }
       }
@@ -125,9 +128,8 @@ Element providing a dropdown solution.
      * this method is called through the observer when a new item is selected.
      * We add the classlist to the newly selected one, and through the magic of binding, go across all the px-sb-lists, and deselect the old one.
      * @param  {object} itemSelected   [this is the newly selected item]
-     * @param  {[type]} itemDeselected [thi is the newly deselected item]
      */
-    _selectedChange: function(itemSelected, itemDeselected) {
+    _selectedChange: function(itemSelected) {
 
       var oldItemObj,
           newItemObj,
@@ -193,8 +195,6 @@ Element providing a dropdown solution.
       if  (type === "external") {
         window.open(this.types.external(name), '_blank');
         return false;
-      } else if(type === "home" || !type) {
-        return 'landing_page.html';
       } else if (name && type) {
         return this.types[type](name);
       }
@@ -212,10 +212,9 @@ Element providing a dropdown solution.
       }
     },
     _changeIframeUrl: function(name, type) {
-      var iframeUrl = this._getWantedFrame(name, type);
-      if (iframeUrl) {
-        this.fire('px-sb-list-iframe-url-change', {url: iframeUrl});
-      }
+      var iframeUrl = this._getWantedFrame(name, type),
+          external = (type === 'external');
+      this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external});
     },
     _removeSpaces: function(name) {
       return name.linkText.toLowerCase().replace(/ /g, "_");

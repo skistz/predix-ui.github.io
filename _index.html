@@ -52,177 +52,6 @@
         <!-- side nav -->
         <div id="side-nav" class="side-nav side-nav__default">
             <px-sb></px-sb>
-            <!--Getting Started
-            <li><a class="nav-lnk" data-type="local" data-name="landing_page">Home</a></li>
-            <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_gettingStarted')">
-                  <div class="arrow-down"></div><div class="u-ml--">Getting Started</div></a>
-            </li>
-            <iron-collapse id="collapse_gettingStarted" opened>
-              <ul>
-                <li><a class="nav-lnk" data-type="local" data-name="getting_started">Using Predix UI Components</a></li>
-                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-getting-started" target="_blank">Predix UI CSS Overview</a></li>
-                <li><a class="nav-lnk" href="https://github.com/PredixDev/generator-px-comp" target="_blank">Creating a New Component</a></li>
-                <li><a class="nav-lnk" href="https://github.com/PredixDev/px-starter-kit-design" target="_blank">Bootstrapping Predix UI CSS</a></li>
-              </ul>
-            </iron-collapse>
-
-            <!--Predix CSS Libraries
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_css')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI CSS</div></a>
-             </li>
-              <iron-collapse id="collapse_css">
-
-                  <!--Visual CSS Libraries
-                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Visual')">
-                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Visual</div></a>
-                  </li>
-
-                   <iron-collapse id="collapse_Visual">
-                    <ul>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-actionable-text-icons-design" target="_blank">Actionable Text &amp; Icons</a></li>
-                      <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_buttons')">
-                            <div class="arrow-right"></div><div class="u-ml--">Buttons</div></a>
-                      </li>
-                      <iron-collapse id="collapse_buttons">
-                        <ul>
-                          <li><a class="nav-lnk" href="https://github.com/PredixDev/px-meta-buttons-design" target="_blank">Buttons (Meta)</a></li>
-                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-button-group-design" target="_blank">Button Group</a></li>
-                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-buttons-design" target="_blank">Buttons</a></li>
-                        </ul>
-                      </iron-collapse>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-code-design" target="_blank">Code</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-forms-design" target="_blank">Forms</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-headings-design" target="_blank">Headings</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-helpers-design" target="_blank">Helpers</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-input-group-design" target="_blank">Input Group</a></li>
-                      <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_lists')">
-                            <div class="arrow-right"></div><div class="u-ml--">Lists</div></a>
-                      </li>
-                      <iron-collapse id="collapse_lists">
-                        <ul>
-                          <li><a class="nav-lnk" href="https://github.com/PredixDev/px-meta-lists-design" target="_blank">Lists (Meta)</a></li>
-                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-bare-design" target="_blank">List Bare</a></li>
-                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-inline-design" target="_blank">List Inline</a></li>
-                          <li><a class="nav-lnk" href="https://predixdev.github.io/px-list-ui-design" target="_blank">List UI</a></li>
-                        </ul>
-                      </iron-collapse>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-tables-design" target="_blank">Tables</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-toggle-design" target="_blank">Toggle</a></li>
-                    </ul>
-                  </iron-collapse>
-
-                  <!--Layout CSS Libraries
-                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Layout')">
-                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Layout</div></a>
-                  </li>
-                  <iron-collapse id="collapse_Layout">
-                    <ul>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-box-design" target="_blank">Box</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-flag-design" target="_blank">Flag</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-flexbox-design" target="_blank">Flexbox</a></li>
-                      <li><a class="nav-lnk" href="https://predixdev.github.io/px-layout-design" target="_blank">Layout</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-spacing-design" target="_blank">Spacing</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-widths-design" target="_blank">Widths</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-widths-tools-design" target="_blank">Widths Tools</a></li>
-                    </ul>
-                  </iron-collapse>
-
-                  <!--Utilities CSS Libraries
-                  <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_Utilities')">
-                      <div id="arrow" class="arrow-right"></div><div class="u-ml--">Utilities</div></a>
-                  </li>
-                  <iron-collapse id="collapse_Utilities">
-                    <ul>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-box-sizing-design" target="_blank">Box Sizing</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-clearfix-design" target="_blank">Clearfix</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-defaults-design" target="_blank">Defaults</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-defaults-design" target="_blank">Functions</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-helpers-design" target="_blank">Helpers</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-iconography-design" target="_blank">Iconography</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-mixins-design" target="_blank">Mixins</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-normalize-design" target="_blank">Normalize</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-typography-design" target="_blank">Typography</a></li>
-                      <li><a class="nav-lnk" href="https://github.com/PredixDev/px-viewport-design" target="_blank">Viewport</a></li>
-                    </ul>
-                  </iron-collapse>
-                </ul>
-              </iron-collapse> -->
-
-            <!--Components
-            <li class="flex"><a  class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_components')">
-                <div id="arrow" class="arrow-right"></div><div class="u-ml--">Predix UI Components</div></a>
-             </li>
-              <iron-collapse id="collapse_components">
-                <ul>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-label">Alert Label</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-alert-message">Alert Message</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-app-nav">App Nav</a></li>
-                  <!-- Cards
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_cards')">
-                        <div class="arrow-right"></div><div class="u-ml--">Cards</div></a>
-                    </li>
-                    <iron-collapse id="collapse_cards">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-card">Card</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-deck-selector">Deck Selector</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-sample-cards">Sample Cards</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-widget-cards">Widget Cards</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <!-- Charts
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_charts')">
-                        <div class="arrow-right"></div><div class="u-ml--">Charts</div></a>
-                    </li>
-                    <iron-collapse id="collapse_charts">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-percent-circle">Percent Circle</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-bar-chart">Simple Bar Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-horizontal-bar-chart">Simple Horizontal Bar Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-simple-line-chart">Simple Line Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-chart">Px-Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis">Vis Framework</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-pie-chart">Vis Pie Chart</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-timeseries">Vis Timeseries</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-vis-xy-chart">Vis XY Chart</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-clipboard">Clipboard</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-context-browser">Context Browser</a></li>
-
-
-                  <li><a class="nav-lnk" data-type="component" data-name="px-data-table">Data Table</a></li>
-                  <!-- Datetime Components
-                  <li><a class="nav-group-lnk flex flex--middle" onclick="toggle('#collapse_datetime-components')">
-                        <div class="arrow-right"></div><div class="u-ml--">Datetime Components</div></a>
-                    </li>
-                    <iron-collapse id="collapse_datetime-components">
-                      <ul>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-calendar-picker">Calendar Picker</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-field">Datetime Field</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-picker">Datetime Picker</a></li>
-                         <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-field">Datetime Range Field</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-datetime-range-panel">Datetime Range Panel</a></li>
-                        <li><a class="nav-lnk" data-type="component" data-name="px-rangepicker">Rangepicker</a></li>
-                      </ul>
-                    </iron-collapse>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-dropdown">Dropdown</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-file-upload">File Upload</a></li>
-                  <!-- TODO: Update this link once demo page is created
-                  <li><a class="nav-lnk" href="https://github.com/PredixDev/px-polymer-font-awesome" target="_blank">Font Awesome</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-login">Login</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-modal">Modal</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-overlay">Overlay</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-popover">Popover</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-progress-bar">Progress Bar</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-slider">Slider</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-spinner">Spinner</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tabs">Tabs</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-tooltip">Tooltip</a></li>
-                  <li><a class="nav-lnk" data-type="component" data-name="px-validation">Validation</a></li>
-                </ul>
-              </iron-collapse> -->
-
-
         </div>
 
         <!-- iframe -->
@@ -245,121 +74,22 @@
       var template = document.querySelector('template[is=dom-bind]'),
 
       /**
-      * Retrieves the URL parameters for the page.
-      */
-      // getURLParameter = function(sParam) {
-      //   var sPageURL = window.location.search.substring(1),
-      //       sURLVariables = sPageURL.split('&'),
-      //       i,
-      //       len = sURLVariables.length,
-      //       sParameterName;
-      //
-      //   for (i = 0; i < len; i++) {
-      //     sParameterName = sURLVariables[i].split('=');
-      //     if (sParameterName[0] === sParam) {
-      //       return sParameterName[1];
-      //     }
-      //   }
-      // },
-      //
-      /**
-      * Returns the different configurations of URLs, depending on the type of link.
-      */
-      // types = {
-      //   "component" : function(name) {
-      //     return "https://predixdev.github.io/" + name + "/" + name + "/";
-      //   },
-      //   "local": function(name) {
-      //     return name + ".html";
-      //   },
-      //   "external" : function(name) {
-      //     return "https://github.com/predixdev/" + name;
-      //   }
-      // },
-      //
-      /**
-      * Manages the visible iFrame
-      */
-      // getWantedFrame = function(name, type) {
-      //   if (name && type) {
-      //     return this.types[type](name);
-      //   }
-      //   else {
-      //     return 'landing_page.html';
-      //   }
-      // },
-
-      /**
-      * Binds the links in the DOM to a listener
-      */
-      bindLinks = function() {
-        var _this = this,
-            links = document.getElementsByClassName("nav-lnk"),
-            groupLinks = document.getElementsByClassName("nav-group-lnk");
-
-        /**
-        * If an li with the class of 'nav-lnk' is clicked then update
-        * the visible state of the app
-        */
-        // Array.prototype.forEach.call(links, function(link) {
-        //   if (!link.href) {
-        //     link.addEventListener("click", function(e) {
-        //       e.preventDefault;
-        //
-        //       /*
-        //       * Remove the .selected class from all links
-        //       * and only add it to the one that was selected
-        //       */
-        //       // var otherLinks = document.getElementsByClassName("selected");
-        //       // Array.prototype.forEach.call(otherLinks, function(otherLink) {
-        //       //   otherLink.classList.remove("selected");
-        //       // });
-        //       // this.classList.add("selected");
-        //
-        //       /*
-        //        * make sure that we are in the mobile layout indicated by the .menu being shown
-        //        *
-        //        * enable toggleNavClasses in mobile
-        //        */
-        //       if (getComputedStyle(document.getElementById('menu'), null).display !== 'none') {
-        //         _this.toggleNavClasses();
-        //       }
-        //
-        //       //_this.setRoute(this.dataset.name, this.dataset.type);
-        //     });
-        //   }
-        //
-        // });
-
-        // /**
-        // * If an li with the class of 'nav-group-lnk' is clicked
-        // * then rotate the arrow
-        // */
-        // Array.prototype.forEach.call(groupLinks, function(groupLink) {
-        //   groupLink.addEventListener("click", function(e) {
-        //     this.children[0].classList.toggle('arrow-down');
-        //     this.children[0].classList.toggle('arrow-right');
-        //   });
-        // });
-      },
-
-      /**
       * Reads through the sidebar links and fetched the frames we want to
       * preload so they can be passed into px-frames.
       */
-      getPreloadFrames = function() {
-        var _this = this,
-            links = document.getElementsByClassName("nav-lnk"),
-            preloadFrames = [];
-
-        Array.prototype.forEach.call(links, function(link) {
-          if (link.dataset && link.dataset.preload) {
-            preloadFrames.push(getWantedFrame(link.dataset.name || null, link.dataset.type || null));
-          }
-        });
-
-        this.preloadFrames = preloadFrames;
-      },
+      // getPreloadFrames = function() {
+      //   var _this = this,
+      //       links = document.getElementsByClassName("nav-lnk"),
+      //       preloadFrames = [];
+      //
+      //   Array.prototype.forEach.call(links, function(link) {
+      //     if (link.dataset && link.dataset.preload) {
+      //       preloadFrames.push(getWantedFrame(link.dataset.name || null, link.dataset.type || null));
+      //     }
+      //   });
+      //
+      //   this.preloadFrames = preloadFrames;
+      // },
 
       /**
       * Toggles the menu on mobile
@@ -370,23 +100,6 @@
         document.getElementById("menu__open-icon").classList.toggle('is__hidden');
         document.getElementById("menu__close-icon").classList.toggle('is__hidden');
       },
-
-      /**
-      * Updates the route and the wanted frame
-      */
-      // setRoute = function(name, type) {
-      //   window.history.pushState('','','?show=' + name + '&type=' + type);
-      //   this.getRoute();
-      // },
-
-      /**
-      * Updates the route and the wanted frame
-      */
-      // getRoute = function() {
-      //   this.name = this.getURLParameter('show') || null;
-      //   this.type = this.getURLParameter('type') || null;
-      //   this.iframeUrl = getWantedFrame(this.name,this.type);
-      // },
 
       /**
       * Shows the spinner
@@ -404,96 +117,19 @@
         this.spinnerIsActive = false;
       };
 
-      /**
-      * toggle for side nav's <iron-collapse>
-      */
-      // toggle = function(selector) {
-      //   if (document.querySelector(selector)) {
-      //     document.querySelector(selector).toggle();
-      //   }
-      // };
-      // createList = function(listArr, dataType) {
-      //   console.log('in createList');
-      //   console.dir(listArr);
-      //   var returnString='',
-      //       len = listArr.links.length,
-      //       i,
-      //       j;
-      //
-      //   console.log("len = "  +len);
-      //   for (i = 0; i < len; i++) {
-      //     if (listArr[i].links) {
-      //       console.log("has links");
-      //       returnString+="<iron-collapse id=";
-      //       returnString+="collapse_" + listArr[i].linkText;
-      //       returnString+='"\>';
-      //       returnString+="<ul>";
-      //
-      //       for (j = 0; j < listArr[i].links.length; j++) {
-      //         if (listArr[i].links[j].links) {
-      //           createList(listArr[i].links[j], dataType);
-      //         } else {
-      //           returnString += '<li><a class="nav-lnk" data-type="';
-      //           //check if there is a datatype specified on the object itself - it might be different than the rest of the group
-      //           if (listArr[i].links[j].dataType) {
-      //             returnString += listArr[i].links[j].dataType;
-      //           } else {
-      //             returnString += dataType;
-      //           }
-      //           returnString += '" data-name="';
-      //           returnString += listArr[i].links[j].repoName;
-      //           returnString += '">';
-      //           returnString += listArr[i].links[j].linkText;
-      //           returnString += "</a></li>";
-      //         }
-      //       }
-      //       returnString += "</ul>/iron-collapse>";
-      //     } else {
-      //       console.log("no list items");
-      //       returnString += '<li><a class="nav-lnk" data-type="';
-      //       //check if there is a datatype specified on the object itself - it might be different than the rest of the group
-      //       if (listArr[i].dataType) {
-      //         returnString += listArr[i].dataType;
-      //       } else {
-      //         returnString += dataType;
-      //       }
-      //       returnString += '" data-name="';
-      //       returnString += listArr[i].repoName;
-      //       returnString += '">';
-      //       returnString += listArr[i].linkText;
-      //       returnString +="</a></li>";
-      //     }
-      //   }
-      //   console.log("returnString = "  +returnString );
-      //   return returnString;
-      // },
-      // createNav = function() {
-      //   var len = nav.length,
-      //       i,
-      //       list = '<ul class="side-nav__main-ul">';
-      //       console.log(nav.length);
-      //   for (i = 0; i < len; i++) {
-      //     list += '<li><a class="nav-group-lnk flex flex--middle" onclick="toggle(\'#collapse_gettingStarted\')">';
-      //     list += '<div class="arrow-down"></div>';
-      //     list += '<div class="u-ml--">' + nav[i].name + '</div>';
-      //     list += "</a></li>";
-      //     list += createList(nav[i], nav[i].dataType);
-      //     console.log(list);
-      //   }
-      //   list +="</ul>";
-      // document.getElementsByTagName('nav').innerHTML = list;
-      // };
-
       window.addEventListener('px-sb-list-iframe-url-change', function(e) {
-        template.iframeUrl = e.detail.url;
+        console.log(e);
+        if (e.detail.external) {
+          template.iframeUrl = 'external_links.html';
+          console.log(template.iframeUrl);
+        } else {
+          template.iframeUrl = e.detail.url;  
+        }
+
       });
 
       // Assign functions
-    //  template.getURLParameter = getURLParameter;
-    //  template.types = types;
-    //  template.getWantedFrame = getWantedFrame;
-      template.bindLinks = bindLinks;
-      template.getPreloadFrames = getPreloadFrames;
+      //template.getPreloadFrames = getPreloadFrames;
       template.toggleNavClasses = toggleNavClasses;
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
@@ -524,8 +160,6 @@
           this.toggleNavClasses();
         }.bind(template));
 
-        // Run for the first time, will update with historyState later
-        template.bindLinks();
       //  template.getRoute();
       });
 
