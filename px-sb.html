@@ -68,7 +68,7 @@ Element providing sidebar for the predix ui website.
         }
       }
     },
-    _findSelectedItemTrail: function(navArr, selectedItemEvt) {
+    _findSelectedItemTrail: function(navArr, selectedItemEvt, path) {
       var foundItem,
           openedItemsArr = [],
           selectedItem = selectedItemEvt.detail.selectedItem;
@@ -76,33 +76,28 @@ Element providing sidebar for the predix ui website.
 
       for (var i = 0, len = navArr.length; i < len; i++) {
         if (navArr[i].links) {
-          var arr = this._findSelectedItemTrail(navArr[i].links, selectedItemEvt);
+          var oldPath = path;
+          path = (path)?path:'';
+          path += i.toString() + '.links.';
+
+          var arr = this._findSelectedItemTrail(navArr[i].links, selectedItemEvt, path);
           if (arr !== null) {
             arr.push(navArr[i]);
             return arr;
+          } else {
+            path = oldPath;
           }
         }
 
         if (navArr[i].repoName === selectedItem) {
-          this.set('nav.' + navArr[i].itemPath +'.selected',true);
+          path += i.toString();
+          //this.set('nav.' + path +'.selected',true);
+          this.set('selected', 'nav.' + path);
           return [navArr[i]];
         }
       }
       return null;
     },
-    // _findInitialSelected: function() {
-    //   var pxSb = document.querySelector('px-sb'),
-    //       pxSbLists = Polymer.dom(pxSb.root).querySelectorAll('px-sb-list'),
-    //       selected;
-    //
-    //   pxSbLists.forEach(function(pxSbList) {
-    //     selected = Polymer.dom(pxSbList.root).querySelector('.selected');
-    //
-    //     if (selected) {
-    //       this.set('selected', selected);
-    //     }
-    //   }.bind(this));
-    // },
     changeOpenedProperty: function(trail) {
       if (trail && trail.length) {
         trail.forEach(function(item) {
@@ -112,7 +107,7 @@ Element providing sidebar for the predix ui website.
     },
     _setSelected: function(evt) {
       if (evt.detail.path) {
-        this.set('nav.'+ evt.detail.path + '.selected', true);
+        this.set('selected', 'nav.'+ evt.detail.path);
       }
     },
     _changeOpenMenus: function(selectedItem) {
@@ -123,8 +118,8 @@ Element providing sidebar for the predix ui website.
       //trail.splice(0,1); //remove the item itself, only keep the parents
       this.changeOpenedProperty(trail);
       this._setSelected(selectedItem);
-      //this._findInitialSelected();
     },
+
     listeners: {
       'px-sb-list-selected-item-changed' : '_changeOpenMenus'
     },
@@ -212,7 +207,7 @@ Element providing sidebar for the predix ui website.
       if (oldVal) {
         this.set(oldPath, false);
       }
-      
+
       this.set(newPath, true);
     },
     observers: ['_computedNav(initialNav, searchKeyword)'],
