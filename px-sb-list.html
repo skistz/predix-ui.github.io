@@ -29,7 +29,7 @@ Element providing a dropdown solution.
     <style include="px-sb-list-styles"></style>
     <style include="px-theme-styles"></style>
     <template is="dom-if" if="{{_isHome(navItem)}}">
-      <li><a class$="{{_isItemSelected(navItem.selected)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home">{{navItem.linkText}}</a></li>
+      <li><a class$="{{_isItemSelected(navItem.selected)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home" item-path="0">{{navItem.linkText}}</a></li>
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
@@ -40,10 +40,10 @@ Element providing a dropdown solution.
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[itemPath]].[[index]].links"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
-              <li><a class$="{{_isItemSelected(item.selected)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick">{{item.linkText}}</a></li>
+              <li><a class$="{{_isItemSelected(item.selected)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick" item-path="[[itemPath]].[[index]]">{{item.linkText}}</a></li>
             </template>
           </template>
     </template>
@@ -69,8 +69,8 @@ Element providing a dropdown solution.
         notify: true
       },
       selected: {
-        type: Object,
-        observer: '_selectedChange',
+        type: String,
+        //observer: '_selectedChange',
         notify: true
       },
       searchKeyword: {
@@ -146,10 +146,12 @@ Element providing a dropdown solution.
     _itemClick: function(evt) {
       var target = evt.target,
           repoName = target.getAttribute('data-name'),
-          type = target.getAttribute('data-type');
+          type = target.getAttribute('data-type'),
+          path = (target.itemPath) ? target.itemPath : (target.getAttribute('item-path') === "0") ? "0" : '';
 
-        this.set('selected', target);
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type});
+
+        this.set('selected', 'nav.' + path);
+        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
     },
 
     _removeSpaces: function(name) {

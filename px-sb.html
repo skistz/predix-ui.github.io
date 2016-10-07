@@ -34,7 +34,7 @@ Element providing sidebar for the predix ui website.
     </div>
     <ul style="margin-top:40px;">
       <template is="dom-repeat" items="{{nav}}">
-        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}"></px-sb-list>
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[index]].links"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -84,25 +84,25 @@ Element providing sidebar for the predix ui website.
         }
 
         if (navArr[i].repoName === selectedItem) {
-          navArr[i].selected = true;
+          this.set('nav.' + navArr[i].itemPath +'.selected',true);
           return [navArr[i]];
         }
       }
       return null;
     },
-    _findInitialSelected: function() {
-      var pxSb = document.querySelector('px-sb'),
-          pxSbLists = Polymer.dom(pxSb.root).querySelectorAll('px-sb-list'),
-          selected;
-
-      pxSbLists.forEach(function(pxSbList) {
-        selected = Polymer.dom(pxSbList.root).querySelector('.selected');
-
-        if (selected) {
-          this.set('selected', selected);
-        }
-      }.bind(this));
-    },
+    // _findInitialSelected: function() {
+    //   var pxSb = document.querySelector('px-sb'),
+    //       pxSbLists = Polymer.dom(pxSb.root).querySelectorAll('px-sb-list'),
+    //       selected;
+    //
+    //   pxSbLists.forEach(function(pxSbList) {
+    //     selected = Polymer.dom(pxSbList.root).querySelector('.selected');
+    //
+    //     if (selected) {
+    //       this.set('selected', selected);
+    //     }
+    //   }.bind(this));
+    // },
     changeOpenedProperty: function(trail) {
       if (trail && trail.length) {
         trail.forEach(function(item) {
@@ -110,13 +110,20 @@ Element providing sidebar for the predix ui website.
         });
       }
     },
+    _setSelected: function(evt) {
+      if (evt.detail.path) {
+        this.set('nav.'+ evt.detail.path + '.selected', true);
+      }
+    },
     _changeOpenMenus: function(selectedItem) {
+      console.log(selectedItem);
       this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
       this._clearOpened(this.nav);
       var trail = this._findSelectedItemTrail(this.nav, selectedItem);
       //trail.splice(0,1); //remove the item itself, only keep the parents
       this.changeOpenedProperty(trail);
-      this._findInitialSelected();
+      this._setSelected(selectedItem);
+      //this._findInitialSelected();
     },
     listeners: {
       'px-sb-list-selected-item-changed' : '_changeOpenMenus'
@@ -171,6 +178,7 @@ Element providing sidebar for the predix ui website.
       this._changeIframeUrl(name, type);
     },
     _getRoute: function() {
+
       this.name = this._getURLParameter('show') || null;
       this.type = this._getURLParameter('type') || null;
       this._changeIframeUrl(this.name, this.type);
@@ -181,7 +189,6 @@ Element providing sidebar for the predix ui website.
     _changeIframeUrl: function(name, type) {
       var iframeUrl = this._getWantedFrame(name, type),
           external = (type === 'external');
-          console.log("type = " + type);
       this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external});
     },
     _getURLParameter: function(sParam) {
@@ -197,6 +204,16 @@ Element providing sidebar for the predix ui website.
           return sParameterName[1];
         }
       }
+    },
+    _selectedChange: function(newVal, oldVal) {
+      var newPath = newVal  + '.selected',
+          oldPath = oldVal  + '.selected';
+
+      if (oldVal) {
+        this.set(oldPath, false);
+      }
+      
+      this.set(newPath, true);
     },
     observers: ['_computedNav(initialNav, searchKeyword)'],
     properties: {
@@ -225,8 +242,9 @@ Element providing sidebar for the predix ui website.
         value: function() {return[];}
       },
       selected: {
-        type: Object,
-        notify: true
+        type: String,
+        notify: true,
+        observer: '_selectedChange'
       },
       opened: {
         type: Array,
@@ -521,25 +539,25 @@ Element providing sidebar for the predix ui website.
                     "dataType": "component",
                     "linkText": "Calendar Picker"
                     }, {
-                    "repoName": "px-simple-bar-chart",
+                    "repoName": "px-datetime-field",
                     "dataType": "component",
-                    "linkText": "Simple Bar Chart"
+                    "linkText": "Datetime Field"
                     }, {
-                    "repoName": "px-simple-horizontal-bar-chart",
+                    "repoName": "px-datetime-picker",
                     "dataType": "component",
-                    "linkText": "Simple horizontal Bar Chart"
+                    "linkText": "Datetime Picker"
                     }, {
-                    "repoName": "px-simple-line-chart",
+                    "repoName": "px-datetime-range-field",
                     "dataType": "component",
-                    "linkText": "Simple Line Chart"
+                    "linkText": "DateTime Range Field"
                     }, {
-                    "repoName": "px-chart",
+                    "repoName": "px-datetime-range-panel",
                     "dataType": "component",
-                    "linkText": "Chart"
+                    "linkText": "Datetime range Panel"
                     }, {
-                    "repoName": "px-vis",
+                    "repoName": "px-rangepicker",
                     "dataType": "component",
-                    "linkText": "Vis Framwork"
+                    "linkText": "Rangepicker"
                 }]
                 }, {
                 "repoName": "px-dropdown",
