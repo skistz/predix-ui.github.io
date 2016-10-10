@@ -43,7 +43,8 @@ Element providing sidebar for the predix ui website.
   Polymer({
     is: 'px-sb',
     attached: function() {
-      this._getRoute();
+      this.getRoute();
+      window.addEventListener('popstate', this._popStateChanged.bind(this));
     },
     _resetSearch: function() {
       this.set('searchKeyword','');
@@ -111,7 +112,6 @@ Element providing sidebar for the predix ui website.
       }
     },
     _changeOpenMenus: function(selectedItem) {
-      console.log(selectedItem);
       this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
       this._clearOpened(this.nav);
       var trail = this._findSelectedItemTrail(this.nav, selectedItem);
@@ -122,6 +122,15 @@ Element providing sidebar for the predix ui website.
 
     listeners: {
       'px-sb-list-selected-item-changed' : '_changeOpenMenus'
+    },
+    _popStateChanged: function(e) {
+      var obj = {};
+      obj.detail = {};
+      console.log("pop.name = " + e.state.name);
+      obj.detail.selectedItem = e.state.name;
+      obj.detail.itemType = e.state.type;
+      this._changeOpenMenus(obj);
+      e.preventDefault();
     },
     _computedNav: function(navArr, searchKeyword) {
       if (searchKeyword === '') {
@@ -157,7 +166,7 @@ Element providing sidebar for the predix ui website.
     },
     _isSearchKeywordEmpty: function() {
       if (this.searchKeyword) {
-        this.set('nav', this.initialNav);
+        this.set('nav', this.nav);
       }
     },
     _getWantedFrame: function(name, type) {
@@ -169,13 +178,26 @@ Element providing sidebar for the predix ui website.
       }
     },
     _setRoute: function(name, type) {
-      window.history.pushState('','','?show=' + name + '&type=' + type);
+
       this._changeIframeUrl(name, type);
+
+      if (window.history.state) {
+        if (window.history.state.name !== name) {
+          console.log('replace = ' + name);
+          window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
+        }
+      } else {
+        window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
+        console.log('push = ' + name);
+      }
     },
-    _getRoute: function() {
+    getRoute: function() {
+      var name = this._getURLParameter('show') || null,
+          type = this._getURLParameter('type') || null;
 
       this.name = this._getURLParameter('show') || null;
       this.type = this._getURLParameter('type') || null;
+      //TODO wrap this next one in an if statement, comparing the existing url to the new one, and only calling this on different URLs
       this._changeIframeUrl(this.name, this.type);
       if (this.name) {
         this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name, itemType: this.type});
@@ -184,7 +206,7 @@ Element providing sidebar for the predix ui website.
     _changeIframeUrl: function(name, type) {
       var iframeUrl = this._getWantedFrame(name, type),
           external = (type === 'external');
-      this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external});
+      this.fire('px-sb-list-iframe-url-change', {url: iframeUrl, external: external, name: name, type: type});
     },
     _getURLParameter: function(sParam) {
       var sPageURL = window.location.search.substring(1),

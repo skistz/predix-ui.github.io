@@ -59,7 +59,7 @@
           <div id="spinner">
             <px-spinner size="100"></px-spinner>
           </div>
-          <iframe src="{{iframeUrl}}" allowfullscreen name="iframe_a" class="iframe" id="iframe_a">
+          <iframe src="" allowfullscreen name="iframe_a" class="iframe" id="iframe_a" data-name$="[[name]]" data-type$="[[type]]">
             <p>Your browser does not support iframes.</p>
           </iframe>
         </div>
@@ -119,14 +119,15 @@
 
       window.addEventListener('px-sb-list-iframe-url-change', function(e) {
         console.log(e);
+        var url = e.detail.url || 'landing_page.html';
         if (e.detail.external) {
-          template.iframeUrl = 'external_links.html';
-          console.log(template.iframeUrl);
-        } else {
-          template.iframeUrl = e.detail.url;  
+          url = 'external_links.html';
         }
+        console.log('url = ' + url);
+        window.frames['iframe_a'].location.replace(url);
 
       });
+
 
       // Assign functions
       //template.getPreloadFrames = getPreloadFrames;

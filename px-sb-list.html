@@ -152,6 +152,7 @@ Element providing a dropdown solution.
 
         this.set('selected', 'nav.' + path);
         this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
+        evt.preventDefault();
     },
 
     _removeSpaces: function(name) {
