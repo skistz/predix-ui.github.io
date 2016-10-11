@@ -43,62 +43,94 @@ Element providing sidebar for the predix ui website.
   Polymer({
     is: 'px-sb',
     attached: function() {
+      //we call this to find out if there a component is specified in the url
       this.getRoute();
+      //and configure a listener that listens to popstate - which is activated by the back and forward buttons.
+      // we listen to these to make sure the left nav is in sync with the url, and with the content window.
       window.addEventListener('popstate', this._popStateChanged.bind(this));
     },
+    /*
+    * Called when the X is pressed in the search bar, this method resets the searchKeyword property and
+    * resets the selected property, in case there was a selection while the nav was filtered through search.
+    *
+    * @method _resetSearch
+     */
     _resetSearch: function() {
       this.set('searchKeyword','');
       this.$.searchInput.focus();
 
+      //this is async'd to give hte nav time to rebuild
       this.async(function() {
-        console.log(this);
+
         var name = this.selectedElem.getAttribute('data-name'),
             newSelectedPath = this._findItemPath(this.nav, name),
             oldPath = this._findItemPath(this.nav, this.previousSelectedName);
 
-        //this.set('selected', 'nav.' + path);
+        // we send a newValue and an oldValue to _selectedChange first, TO "zero out" the oldVal portion of _selectedChange
         this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
+        //and we have to changed the selected attribute as well - please note that this will trigger a call to _selectedChange, but the oldVal in that will be set correctly because of the line above.
         this.set('selected', 'nav.' + newSelectedPath);
+
+        //and reset everything so it's ready for next time.
         this.set('selectedElem',{});
         this.set('previousSelectedName', '');
 
       },50);
     },
+    /*
+    *
+    * Ensures that all menu items with arrows are not opened by recuresively looping through all menu items, and setting the opened property to false everywhere.
+    * Called as a reset helper.
+    * @method _clearOpened
+     */
     _clearOpened: function(navArr) {
       var len = navArr.length,
-          i,
-          foundItem;
+          i;
 
       //else, loop through the sub-items recursively
       for (i = 0; i < len; i++) {
         if (navArr[i].links) {
           this._clearOpened(navArr[i]);
         }
-        //check if this item has the search query in the text. Since we made sure that query isn't false, we'd never reach this stage without query being true.
+
         if (navArr[i].opened) {
           navArr[i].opened = false;
         }
-        if (navArr[i].selected) {
-          navArr[i].selected = false;
-        }
       }
     },
-    _findSelectedItemTrail: function(navArr, selectedItemEvt, path) {
-      var foundItem,
-          openedItemsArr = [],
-          selectedItem = selectedItemEvt.detail.selectedItem;
+    /*
+    *
+    * recuresively search the model for the item passed, and
+    * returns an array that represents the path to the item,
+    *
+    * Also sets the selected property to the path found, in string notation - for example, 0.links.3.links.3
+    *
+    * @method _findItemTrail
+    * @prop navArr {Object}
+    * @prop selectedItemEvt {object}
+    * @prop path {String}
+     */
+    _findItemTrail: function(navArr, selectedItemEvt, path) {
+      var selectedItem = selectedItemEvt.detail.selectedItem,
+      i,
+      len,
+      oldPath,
+      arr;
 
-      for (var i = 0, len = navArr.length; i < len; i++) {
+      for (i = 0, len = navArr.length; i < len; i++) {
         if (navArr[i].links) {
-          var oldPath = path;
+          oldPath = path;
           path = (path)?path:'';
           path += i.toString() + '.links.';
 
-          var arr = this._findSelectedItemTrail(navArr[i].links, selectedItemEvt, path);
+          //this will return null when it can't find anything, but if it does find something, we grab the array it's returned, push that into another array, and return that.
+          arr = this._findItemTrail(navArr[i].links, selectedItemEvt, path);
           if (arr !== null) {
             arr.push(navArr[i]);
+            //this is the final return, after the recursion is done
             return arr;
           } else {
+            //we found nothing, we don't need this path. reset.
             path = oldPath;
           }
         }
@@ -107,55 +139,83 @@ Element providing sidebar for the predix ui website.
           path += i.toString();
           //this.set('nav.' + path +'.selected',true);
           this.set('selected', 'nav.' + path);
+          //this will return into the recursion.
           return [navArr[i]];
         }
       }
+      //this will only hit if we didn't find anything in the recursive search.
       return null;
     },
+    /*
+    *
+    * recuresively search the model for the item passed, and
+    * returns an path that represents the path to the item in string notation - for example, 0.links.3.links.3
+    *
+    * @method _findItemPath
+    * @prop navArr {Object}
+    * @prop selectedItem {String}
+    * @prop path {String}
+     */
     _findItemPath: function(navArr, selectedItem, path) {
-      var foundItem,
-          openedItemsArr = [];
+      var i,
+          len,
+          foundPath;
 
-      for (var i = 0, len = navArr.length; i < len; i++) {
+      for (i = 0, len = navArr.length; i < len; i++) {
         if (navArr[i].links) {
           var oldPath = path;
           path = (path)?path:'';
           path += i.toString() + '.links.';
 
-          var Foundpath = this._findItemPath(navArr[i].links, selectedItem, path);
-          if (Foundpath === null) {
+          foundPath = this._findItemPath(navArr[i].links, selectedItem, path);
+          if (foundPath === null) {
+            //we found nothing, we don't need this path. reset.
             path = oldPath;
           } else {
-            return Foundpath;
+            //this is the final return
+            return foundPath;
           }
         }
 
         if (navArr[i].repoName === selectedItem) {
+          //this will return into the recursion.
           return path + i.toString();
         }
       }
+      //this will only hit if we didn't find anything in the recursive search.
       return null;
     },
-    changeOpenedProperty: function(trail) {
+    /*
+    *
+    * loops through the trail (array) given to it, and sets the opened property on each item
+    * @method _changeOpenedProperty
+     */
+    _changeOpenedProperty: function(trail) {
       if (trail && trail.length) {
         trail.forEach(function(item) {
           item.opened = true;
         });
       }
     },
+    /*
+    *
+    * sets the selected property to the path specified in the event.
+    * @method _setSelected
+     */
     _setSelected: function(evt) {
       if (evt.detail.path) {
         this.set('selected', 'nav.'+ evt.detail.path);
       }
     },
+
     _changeOpenMenus: function(selectedItem) {
       this.set('name', selectedItem.detail.selectedItem);
       this.set('type', selectedItem.detail.itemType);
       this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
       this._clearOpened(this.nav);
-      var trail = this._findSelectedItemTrail(this.nav, selectedItem);
-      //trail.splice(0,1); //remove the item itself, only keep the parents
-      this.changeOpenedProperty(trail);
+      var trail = this._findItemTrail(this.nav, selectedItem);
+      
+      this._changeOpenedProperty(trail);
       this._setSelected(selectedItem);
     },
 
