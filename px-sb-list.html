@@ -40,7 +40,7 @@ Element providing a dropdown solution.
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
-              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[itemPath]].[[index]].links"></px-sb-list>
+              <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[itemPath]].[[index]].links" selected-elem="{{selectedElem}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
               <li><a class$="{{_isItemSelected(item.selected)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick" item-path="[[itemPath]].[[index]]">{{item.linkText}}</a></li>
@@ -84,6 +84,10 @@ Element providing a dropdown solution.
       type: {
         type: String,
         value: ''
+      },
+      selectedElem: {
+        type: Object,
+        notify: true
       }
     },
     _arrowClass: function(item) {
@@ -151,6 +155,10 @@ Element providing a dropdown solution.
 
 
         this.set('selected', 'nav.' + path);
+        if (this.searchKeyword) {
+          this.set('selectedElem', target);
+        }
+
         this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
         evt.preventDefault();
     },

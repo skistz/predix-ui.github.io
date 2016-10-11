@@ -34,7 +34,7 @@ Element providing sidebar for the predix ui website.
     </div>
     <ul style="margin-top:40px;">
       <template is="dom-repeat" items="{{nav}}">
-        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[index]].links"></px-sb-list>
+        <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[index]].links" selected-elem="{{selectedElem}}"></px-sb-list>
       </template>
     </ul>
   </template>
@@ -49,6 +49,20 @@ Element providing sidebar for the predix ui website.
     _resetSearch: function() {
       this.set('searchKeyword','');
       this.$.searchInput.focus();
+
+      this.async(function() {
+        console.log(this);
+        var name = this.selectedElem.getAttribute('data-name'),
+            newSelectedPath = this._findItemPath(this.nav, name),
+            oldPath = this._findItemPath(this.nav, this.previousSelectedName);
+
+        //this.set('selected', 'nav.' + path);
+        this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
+        this.set('selected', 'nav.' + newSelectedPath);
+        this.set('selectedElem',{});
+        this.set('previousSelectedName', '');
+
+      },50);
     },
     _clearOpened: function(navArr) {
       var len = navArr.length,
@@ -74,7 +88,6 @@ Element providing sidebar for the predix ui website.
           openedItemsArr = [],
           selectedItem = selectedItemEvt.detail.selectedItem;
 
-
       for (var i = 0, len = navArr.length; i < len; i++) {
         if (navArr[i].links) {
           var oldPath = path;
@@ -99,6 +112,30 @@ Element providing sidebar for the predix ui website.
       }
       return null;
     },
+    _findItemPath: function(navArr, selectedItem, path) {
+      var foundItem,
+          openedItemsArr = [];
+
+      for (var i = 0, len = navArr.length; i < len; i++) {
+        if (navArr[i].links) {
+          var oldPath = path;
+          path = (path)?path:'';
+          path += i.toString() + '.links.';
+
+          var Foundpath = this._findItemPath(navArr[i].links, selectedItem, path);
+          if (Foundpath === null) {
+            path = oldPath;
+          } else {
+            return Foundpath;
+          }
+        }
+
+        if (navArr[i].repoName === selectedItem) {
+          return path + i.toString();
+        }
+      }
+      return null;
+    },
     changeOpenedProperty: function(trail) {
       if (trail && trail.length) {
         trail.forEach(function(item) {
@@ -112,6 +149,8 @@ Element providing sidebar for the predix ui website.
       }
     },
     _changeOpenMenus: function(selectedItem) {
+      this.set('name', selectedItem.detail.selectedItem);
+      this.set('type', selectedItem.detail.itemType);
       this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
       this._clearOpened(this.nav);
       var trail = this._findSelectedItemTrail(this.nav, selectedItem);
@@ -126,7 +165,6 @@ Element providing sidebar for the predix ui website.
     _popStateChanged: function(e) {
       var obj = {};
       obj.detail = {};
-      console.log("pop.name = " + e.state.name);
       obj.detail.selectedItem = e.state.name;
       obj.detail.itemType = e.state.type;
       this._changeOpenMenus(obj);
@@ -139,6 +177,7 @@ Element providing sidebar for the predix ui website.
       }
 
       this.debounce('navBuild', function() {
+        this.set('previousSelectedName', this.name);
         this.set('nav', this._buildNav(navArr, searchKeyword));
       }, 150);
     },
@@ -183,20 +222,18 @@ Element providing sidebar for the predix ui website.
 
       if (window.history.state) {
         if (window.history.state.name !== name) {
-          console.log('replace = ' + name);
           window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
         }
       } else {
         window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
-        console.log('push = ' + name);
       }
     },
     getRoute: function() {
       var name = this._getURLParameter('show') || null,
           type = this._getURLParameter('type') || null;
 
-      this.name = this._getURLParameter('show') || null;
-      this.type = this._getURLParameter('type') || null;
+      this.set('name', this._getURLParameter('show') || null);
+      this.set('type', this._getURLParameter('type') || null);
       //TODO wrap this next one in an if statement, comparing the existing url to the new one, and only calling this on different URLs
       this._changeIframeUrl(this.name, this.type);
       if (this.name) {
@@ -234,6 +271,15 @@ Element providing sidebar for the predix ui website.
     },
     observers: ['_computedNav(initialNav, searchKeyword)'],
     properties: {
+      previousSelected:
+      {
+        type: String,
+        value: ''
+      },
+      selectedElem: {
+        type: Object,
+        notify: true
+      },
       types: {
         type: Object,
         value: {
