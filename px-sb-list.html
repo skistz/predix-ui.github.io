@@ -43,7 +43,7 @@ Element providing a dropdown solution.
               <px-sb-list nav-item="{{item}}" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[itemPath]].[[index]].links" selected-elem="{{selectedElem}}"></px-sb-list>
             </template>
             <template is="dom-if" if="{{_isItemVisible(item)}}">
-              <li><a class$="{{_isItemSelected(item.selected)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick" item-path="[[itemPath]].[[index]]">{{item.linkText}}</a></li>
+              <li><a class$="{{_isItemSelected(item.selected, item)}} nav-lnk" data-type$="{{item.dataType}}" data-name$="{{item.repoName}}" on-click="_itemClick" item-path="[[itemPath]].[[index]]">{{item.linkText}}</a></li>
             </template>
           </template>
     </template>

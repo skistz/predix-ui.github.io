@@ -71,6 +71,7 @@ Element providing sidebar for the predix ui website.
             obj.detail = {};
             obj.detail.selectedItem = name;
             obj.detail.itemType = type;
+            obj.detail.path = newSelectedPath;
 
         // we send a newValue and an oldValue to _selectedChange first, TO "zero out" the oldVal portion of _selectedChange
         this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
@@ -78,6 +79,9 @@ Element providing sidebar for the predix ui website.
         this._launchSelectedChange(obj);
         //and we have to changed the selected attribute as well - please note that this will trigger a call to _selectedChange, but the oldVal in that will be set correctly because of the line above.
         //this.set('selected', 'nav.' + newSelectedPath);
+
+        var trail = this._findItemTrail(this.nav, name);
+        this._changeOpenedProperty(trail);
 
         //and reset everything so it's ready for next time.
         this.set('selectedElem',{});
