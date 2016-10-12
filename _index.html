@@ -118,12 +118,10 @@
       };
 
       window.addEventListener('px-sb-list-iframe-url-change', function(e) {
-        console.log(e);
         var url = e.detail.url || 'landing_page.html';
         if (e.detail.external) {
           url = 'external_links.html';
         }
-        console.log('url = ' + url);
         window.frames['iframe_a'].location.replace(url);
 
       });
