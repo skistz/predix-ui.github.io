@@ -32,11 +32,11 @@ Element providing a dropdown solution.
       <li><a class$="{{_isItemSelected(navItem.selected)}} nav-lnk" data-name="landing_page" on-tap="_itemClick" data-type="home" item-path="0">{{navItem.linkText}}</a></li>
     </template>
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
-      <li on-tap="_toggle" class="flex flex--middle nav-group-lnk">
-        <div id="arrow" class$="{{_arrowClass(navItem)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
+      <li on-click="_toggle" class="flex flex--middle nav-group-lnk">
+        <div id="arrow" class$="{{_arrowClass(navItem.opened)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
         <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
-      <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem)}}">
+      <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem.opened)}}">
         <ul>
           <template is="dom-repeat" items="{{navItem.links}}">
             <template is="dom-if" if="{{_hasKids(item)}}">
@@ -70,7 +70,6 @@ Element providing a dropdown solution.
       },
       selected: {
         type: String,
-        //observer: '_selectedChange',
         notify: true
       },
       searchKeyword: {
@@ -91,7 +90,7 @@ Element providing a dropdown solution.
       }
     },
     _arrowClass: function(item) {
-      return (item.opened) ? 'arrow-down' : 'arrow-right';
+      return (item) ? 'arrow-down' : 'arrow-right';
     },
     /**
      * @method  [_isOpened]
@@ -101,51 +100,19 @@ Element providing a dropdown solution.
      * @return {Boolean}      [true if it's set to true, false if false, undefined (falsey) if not there]
      */
     _isOpened: function(item) {
-      return item.opened;
-    },
-    /**
-     * @method [_selectedChange ]
-     *
-     * this method is called through the observer when a new item is selected.
-     * We add the classlist to the newly selected one, and through the magic of binding, go across all the px-sb-lists, and deselect the old one.
-     * @param  {object} itemSelected   [this is the newly selected item]
-     */
-    _selectedChange: function(itemSelected) {
-
-      var oldItemObj,
-          newItemObj,
-          iron,
-          selected,
-          repeat;
-      if (this.selected) {
-        iron = Polymer.dom(this.root).querySelector('iron-collapse');
-        selected = Polymer.dom(iron).querySelector('.selected');
-
-        // if (selected && selected !== itemSelected) {
-        //   selected.classList.remove('selected');
-        //   itemSelected.classList.add("selected");
-        // } else {
-        //   if (itemSelected) {
-        //     itemSelected.classList.add('selected');
-        //   }
-        // }
-        repeat = Polymer.dom(iron).querySelector('template[is=dom-repeat]');
-        if (repeat) {
-          oldItemObj = repeat.itemForElement(selected);
-          newItemObj = repeat.itemForElement(itemSelected);
-        }
-
-        if (oldItemObj) {
-          oldItemObj.selected = false;
-        }
-        if (newItemObj) {
-          newItemObj.selected = true;
-        }
-      }
-
+      return item;
     },
     _isHome: function(item) {
       return item.dataType === "home";
+    },
+    _openIronCollapseMenus: function(e) {
+      var menu = Polymer.dom(this.root).querySelector('iron-collapse');
+      if (menu) {
+        menu.show();
+      }
+    },
+    listeners: {
+      'px-sb-list-selected-item-changed' : '_openIronCollapseMenus'
     },
     _itemClick: function(evt) {
       var target = evt.target,

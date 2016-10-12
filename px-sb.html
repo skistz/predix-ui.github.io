@@ -59,44 +59,31 @@ Element providing sidebar for the predix ui website.
       this.set('searchKeyword','');
       this.$.searchInput.focus();
 
-      //this is async'd to give hte nav time to rebuild
+      //this is async'd to give the nav time to rebuild
       this.async(function() {
 
         var name = this.selectedElem.getAttribute('data-name'),
+            type = this.selectedElem.getAttribute('data-type'),
             newSelectedPath = this._findItemPath(this.nav, name),
-            oldPath = this._findItemPath(this.nav, this.previousSelectedName);
+            oldPath = this._findItemPath(this.nav, this.previousSelectedName),
+            obj = {};
+
+            obj.detail = {};
+            obj.detail.selectedItem = name;
+            obj.detail.itemType = type;
 
         // we send a newValue and an oldValue to _selectedChange first, TO "zero out" the oldVal portion of _selectedChange
         this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
+
+        this._launchSelectedChange(obj);
         //and we have to changed the selected attribute as well - please note that this will trigger a call to _selectedChange, but the oldVal in that will be set correctly because of the line above.
-        this.set('selected', 'nav.' + newSelectedPath);
+        //this.set('selected', 'nav.' + newSelectedPath);
 
         //and reset everything so it's ready for next time.
         this.set('selectedElem',{});
         this.set('previousSelectedName', '');
 
       },50);
-    },
-    /*
-    *
-    * Ensures that all menu items with arrows are not opened by recuresively looping through all menu items, and setting the opened property to false everywhere.
-    * Called as a reset helper.
-    * @method _clearOpened
-     */
-    _clearOpened: function(navArr) {
-      var len = navArr.length,
-          i;
-
-      //else, loop through the sub-items recursively
-      for (i = 0; i < len; i++) {
-        if (navArr[i].links) {
-          this._clearOpened(navArr[i]);
-        }
-
-        if (navArr[i].opened) {
-          navArr[i].opened = false;
-        }
-      }
     },
     /*
     *
@@ -110,12 +97,11 @@ Element providing sidebar for the predix ui website.
     * @prop selectedItemEvt {object}
     * @prop path {String}
      */
-    _findItemTrail: function(navArr, selectedItemEvt, path) {
-      var selectedItem = selectedItemEvt.detail.selectedItem,
-      i,
-      len,
-      oldPath,
-      arr;
+    _findItemTrail: function(navArr, selectedItem, path) {
+      var i,
+          len,
+          oldPath,
+          arr;
 
       for (i = 0, len = navArr.length; i < len; i++) {
         if (navArr[i].links) {
@@ -123,9 +109,10 @@ Element providing sidebar for the predix ui website.
           path = (path)?path:'';
           path += i.toString() + '.links.';
 
-          //this will return null when it can't find anything, but if it does find something, we grab the array it's returned, push that into another array, and return that.
-          arr = this._findItemTrail(navArr[i].links, selectedItemEvt, path);
+          //this will return null when it can't find anything, but if it does find something, we grab the array its returned, push that into another array, and return that.
+          arr = this._findItemTrail(navArr[i].links, selectedItem, path);
           if (arr !== null) {
+            navArr[i].path = path.substr(0,path.length - 7);
             arr.push(navArr[i]);
             //this is the final return, after the recursion is done
             return arr;
@@ -139,6 +126,7 @@ Element providing sidebar for the predix ui website.
           path += i.toString();
           //this.set('nav.' + path +'.selected',true);
           this.set('selected', 'nav.' + path);
+          navArr[i].path = path;
           //this will return into the recursion.
           return [navArr[i]];
         }
@@ -191,10 +179,14 @@ Element providing sidebar for the predix ui website.
     * @method _changeOpenedProperty
      */
     _changeOpenedProperty: function(trail) {
-      if (trail && trail.length) {
-        trail.forEach(function(item) {
-          item.opened = true;
-        });
+      if (typeof trail === 'string') {
+        this.set('nav.' + trail + '.opened', true);
+      } else {
+        if (trail && trail.length) {
+          trail.forEach(function(item) {
+            this.set('nav.' + item.path + '.opened', true);
+          }.bind(this));
+        }
       }
     },
     /*
@@ -207,67 +199,115 @@ Element providing sidebar for the predix ui website.
         this.set('selected', 'nav.'+ evt.detail.path);
       }
     },
-
-    _changeOpenMenus: function(selectedItem) {
-      this.set('name', selectedItem.detail.selectedItem);
-      this.set('type', selectedItem.detail.itemType);
-      this._setRoute(selectedItem.detail.selectedItem, selectedItem.detail.itemType);
-      this._clearOpened(this.nav);
-      var trail = this._findItemTrail(this.nav, selectedItem);
-      
-      this._changeOpenedProperty(trail);
+    /*
+    *
+    * Called when the "px-sb-list-selected-item-changed" event is fired, This method sets the name and type properties of the selected item on px-sb,
+    * sets the route (changes iframe url and window.history), removes all the opened=true properties on the arrows, finds the trail from the selected item up to the root,
+    * and sets opened=true on the correct arrows, and last but not least, sets the item as the selected item.
+    * @method _launchSelectedChange
+     */
+    _launchSelectedChange: function(selectedItem) {
+      var item = selectedItem.detail;
+      this.set('name', item.selectedItem);
+      this.set('type', item.itemType);
+      //load the correct url into the iframe, and set the window.history change.
+      this._setRoute(item.selectedItem, item.itemType, item.path);
+      //the trail is path from the top menu to the selected item - needed so we can set opened=true on the arrow that are part of the path.
+      //and make sure to change our selected property.
       this._setSelected(selectedItem);
     },
 
     listeners: {
-      'px-sb-list-selected-item-changed' : '_changeOpenMenus'
+      'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
+    /*
+    *
+    * Pop state is called on a click on the back or forward button on the browser.
+    * Since we are changing the window.history object, this method ensures that when those buttons are clicked, the behaviour is as expected.
+    * @method _popStateChanged
+    * @prop e {Event}
+     */
     _popStateChanged: function(e) {
+      //set up the object with the correct info and property that _launchSelectedChange expectes, emulating the event structure.
       var obj = {};
       obj.detail = {};
       obj.detail.selectedItem = e.state.name;
       obj.detail.itemType = e.state.type;
-      this._changeOpenMenus(obj);
+      obj.detail.path = e.state.path;
+      this._launchSelectedChange(obj);
+      // we don't want the back or forward button to actually do their intended action.
       e.preventDefault();
     },
+    /*
+    *
+    * Called when the search Keyword is changed to call the filter on the nav.
+    * To ensure we don't do this on every single key down, we have a debounce in place.
+    * @method _computedNav
+    * @prop navArr {Object}
+    * @prop searchKeyword {String}
+     */
     _computedNav: function(navArr, searchKeyword) {
+      //if there's no searchKeyword, nothing needs to be rebuild. return the existing nav.
       if (searchKeyword === '') {
         this.set('nav', this.initialNav);
         return;
       }
 
       this.debounce('navBuild', function() {
+        //if the user has an item selected, types in a search, and then clicks on an item in the filtered list, and THEN hits the X, we need to know the
+        //name of the item that was selected before the search, so we can remove the selected property on it. we can't remove it automatically, since another scenario is for
+        //the user to have a selected item, search, NOT select anything, and click X, in which point we want the previously selected one to still be selected.
         this.set('previousSelectedName', this.name);
+        //call the filter with the search keyword
         this.set('nav', this._buildNav(navArr, searchKeyword));
       }, 150);
     },
+    /*
+    *
+    * Called when a search keyword is entered, and builds (and returns) a new nav Object that only contains the search query.
+    * @_buildNav
+    * @prop navArr {Object}
+    * @prop searchKeyword {String}
+     */
     _buildNav: function(navArr, searchKeyword) {
       var foundItems = [];
       for (var i = 0, len=navArr.length; i < len; i++) {
+        //build our initial object and populate it.
         var currentObj = {};
         currentObj.linkText = navArr[i].linkText;
-        (currentObj.dataType) = navArr[i].dataType;
+        currentObj.dataType = navArr[i].dataType;
         currentObj.repoName = navArr[i].repoName;
         currentObj.selected = navArr[i].selected;
         currentObj.opened = true;
+        //if the item has links (ie children), recurse and if another array with links is returned, insert that into the object.
         if (navArr[i].links) {
           var tempArr = this._buildNav(navArr[i].links, searchKeyword);
           if (tempArr.length) {
             currentObj['links'] = tempArr;
           }
         }
-
-        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword) !== -1 || currentObj.links) {
+        //lowercase both the search keyword, and link text, and compare - if there's a match, push it into the array.
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 || currentObj.links) {
           foundItems.push(currentObj);
         }
       }
+      //returns a rebuilt, filtered nav
       return foundItems;
     },
-    _isSearchKeywordEmpty: function() {
+    /*
+    *
+    * called when the searchKeyword is changed, and sets off the nav rebuild process.
+    * @method _callNavRebuild
+     */
+    _callNavRebuild: function() {
       if (this.searchKeyword) {
         this.set('nav', this.nav);
       }
     },
+    /*
+    * calculates the appropriate URL and returns it if it's local. if it's external, opens a new window, and returns false.
+    * method _getWantedFrame
+     */
     _getWantedFrame: function(name, type) {
       if  (type === "external") {
         window.open(this.types.external(name), '_blank');
@@ -276,17 +316,15 @@ Element providing sidebar for the predix ui website.
         return this.types[type](name);
       }
     },
-    _setRoute: function(name, type) {
+    /*
+    * called on initial load, in case there is a component specified in the url.
+    * changes the iframe url, and the window.history.state
+     */
+    _setRoute: function(name, type, path) {
 
       this._changeIframeUrl(name, type);
 
-      if (window.history.state) {
-        if (window.history.state.name !== name) {
-          window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
-        }
-      } else {
-        window.history.pushState({name: name, type:type},'','?show=' + name + '&type=' + type);
-      }
+      window.history.pushState({name: name, type:type, path: path},'','?show=' + name + '&type=' + type);
     },
     getRoute: function() {
       var name = this._getURLParameter('show') || null,
@@ -296,8 +334,19 @@ Element providing sidebar for the predix ui website.
       this.set('type', this._getURLParameter('type') || null);
       //TODO wrap this next one in an if statement, comparing the existing url to the new one, and only calling this on different URLs
       this._changeIframeUrl(this.name, this.type);
+
       if (this.name) {
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name, itemType: this.type});
+        var trail = this._findItemTrail(this.nav, this.name),
+        path;
+
+        if (trail.length) {
+          path = trail[0].path;
+        }
+    //using the trail, we set the opened=true properties on the correct arrows on initial load. the listener in sb-list does it on click from now on.
+    this._changeOpenedProperty(trail);
+
+    this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name, itemType: this.type, path: path});
+
       }
     },
     _changeIframeUrl: function(name, type) {
@@ -377,7 +426,7 @@ Element providing sidebar for the predix ui website.
         type: String,
         value: '',
         notify:true,
-        observer: '_isSearchKeywordEmpty'
+        observer: '_callNavRebuild'
       },
       nav: {
         type: Object,
