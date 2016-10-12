@@ -42,12 +42,74 @@ Element providing sidebar for the predix ui website.
 <script>
   Polymer({
     is: 'px-sb',
+    properties: {
+      previousSelected:
+      {
+        type: String,
+        value: ''
+      },
+      selectedElem: {
+        type: Object,
+        notify: true
+      },
+      types: {
+        type: Object,
+        value: {
+          "component" : function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "local": function(name) {
+            return name + ".html";
+          },
+          "external" : function(name) {
+            return "https://github.com/predixdev/" + name;
+          },
+          "design": function(name) {
+            return "https://predixdev.github.io/" + name + "/" + name + "/";
+          },
+          "home" : function() {
+            return 'landing_page.html';
+          }
+        }
+      },
+      openedItemsArr: {
+        type: Array,
+        value: function() {return[];}
+      },
+      selected: {
+        type: String,
+        notify: true,
+        observer: '_selectedChange'
+      },
+      opened: {
+        type: Array,
+        value: function(){return [];}
+      },
+      searchKeyword: {
+        type: String,
+        value: '',
+        notify:true,
+        observer: '_callNavRebuild'
+      },
+      nav: {
+        type: Object,
+        notify: true
+      },
+      initialNav: {
+        type: Array,
+        value: function() {return [];}
+      }
+    },
     attached: function() {
       //we call this to find out if there a component is specified in the url
       this.getRoute();
       //and configure a listener that listens to popstate - which is activated by the back and forward buttons.
       // we listen to these to make sure the left nav is in sync with the url, and with the content window.
       window.addEventListener('popstate', this._popStateChanged.bind(this));
+    },
+    observers: ['_computedNav(initialNav, searchKeyword)'],
+    listeners: {
+      'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
     /*
     * Called when the X is pressed in the search bar, this method resets the searchKeyword property and
@@ -219,10 +281,6 @@ Element providing sidebar for the predix ui website.
       //and make sure to change our selected property.
       this._setSelected(selectedItem);
     },
-
-    listeners: {
-      'px-sb-list-selected-item-changed' : '_launchSelectedChange'
-    },
     /*
     *
     * Pop state is called on a click on the back or forward button on the browser.
@@ -237,6 +295,13 @@ Element providing sidebar for the predix ui website.
       obj.detail.selectedItem = e.state.name;
       obj.detail.itemType = e.state.type;
       obj.detail.path = e.state.path;
+      if (this.searchKeyword) {
+        this.set('searchKeyword','');
+        this.async(function() {
+          var trail = this._findItemTrail(this.nav, e.state.name);
+          this._changeOpenedProperty(trail);
+        },50);
+      }
       this._launchSelectedChange(obj);
       // we don't want the back or forward button to actually do their intended action.
       e.preventDefault();
@@ -403,65 +468,6 @@ Element providing sidebar for the predix ui website.
       }
 
       this.set(newPath, true);
-    },
-    observers: ['_computedNav(initialNav, searchKeyword)'],
-    properties: {
-      previousSelected:
-      {
-        type: String,
-        value: ''
-      },
-      selectedElem: {
-        type: Object,
-        notify: true
-      },
-      types: {
-        type: Object,
-        value: {
-          "component" : function(name) {
-            return "https://predixdev.github.io/" + name + "/" + name + "/";
-          },
-          "local": function(name) {
-            return name + ".html";
-          },
-          "external" : function(name) {
-            return "https://github.com/predixdev/" + name;
-          },
-          "design": function(name) {
-            return "https://predixdev.github.io/" + name + "/" + name + "/";
-          },
-          "home" : function() {
-            return 'landing_page.html';
-          }
-        }
-      },
-      openedItemsArr: {
-        type: Array,
-        value: function() {return[];}
-      },
-      selected: {
-        type: String,
-        notify: true,
-        observer: '_selectedChange'
-      },
-      opened: {
-        type: Array,
-        value: function(){return [];}
-      },
-      searchKeyword: {
-        type: String,
-        value: '',
-        notify:true,
-        observer: '_callNavRebuild'
-      },
-      nav: {
-        type: Object,
-        notify: true
-      },
-      initialNav: {
-        type: Array,
-        value: function() {return [];}
-      }
     }
   });
 </script>
