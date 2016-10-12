@@ -121,34 +121,37 @@ Element providing sidebar for the predix ui website.
       this.set('searchKeyword','');
       this.$.searchInput.focus();
 
+      if (this.selectedElem) {
+        this.async(function() {
+
+          var name = this.selectedElem.getAttribute('data-name'),
+              type = this.selectedElem.getAttribute('data-type'),
+              newSelectedPath = this._findItemPath(this.nav, name),
+              oldPath = this._findItemPath(this.nav, this.previousSelectedName),
+              obj = {};
+
+              obj.detail = {};
+              obj.detail.selectedItem = name;
+              obj.detail.itemType = type;
+              obj.detail.path = newSelectedPath;
+
+          // we send a newValue and an oldValue to _selectedChange first, TO "zero out" the oldVal portion of _selectedChange
+          this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
+
+          this._launchSelectedChange(obj);
+
+          //let's find the trail for the selected element, and make sure all the menus on the path to it are opened.
+          var trail = this._findItemTrail(this.nav, name);
+          this._changeOpenedProperty(trail);
+
+          //and reset everything so it's ready for next time.
+          this.set('selectedElem',{});
+          this.set('previousSelectedName', '');
+
+        },50);
+      }
       //this is async'd to give the nav time to rebuild
-      this.async(function() {
 
-        var name = this.selectedElem.getAttribute('data-name'),
-            type = this.selectedElem.getAttribute('data-type'),
-            newSelectedPath = this._findItemPath(this.nav, name),
-            oldPath = this._findItemPath(this.nav, this.previousSelectedName),
-            obj = {};
-
-            obj.detail = {};
-            obj.detail.selectedItem = name;
-            obj.detail.itemType = type;
-            obj.detail.path = newSelectedPath;
-
-        // we send a newValue and an oldValue to _selectedChange first, TO "zero out" the oldVal portion of _selectedChange
-        this._selectedChange('nav.' + newSelectedPath, 'nav.' + oldPath);
-
-        this._launchSelectedChange(obj);
-
-        //let's find the trail for the selected element, and make sure all the menus on the path to it are opened.
-        var trail = this._findItemTrail(this.nav, name);
-        this._changeOpenedProperty(trail);
-
-        //and reset everything so it's ready for next time.
-        this.set('selectedElem',{});
-        this.set('previousSelectedName', '');
-
-      },50);
     },
     /*
     *
