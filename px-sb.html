@@ -293,21 +293,24 @@ Element providing sidebar for the predix ui website.
      */
     _popStateChanged: function(e) {
       //set up the object with the correct info and property that _launchSelectedChange expectes, emulating the event structure.
-      var obj = {};
-      obj.detail = {};
-      obj.detail.selectedItem = e.state.name;
-      obj.detail.itemType = e.state.type;
-      obj.detail.path = e.state.path;
-      if (this.searchKeyword) {
-        this.set('searchKeyword','');
-        this.async(function() {
-          var trail = this._findItemTrail(this.nav, e.state.name);
-          this._changeOpenedProperty(trail);
-        },50);
+      if (e.state.name) {
+        var obj = {};
+        obj.detail = {};
+        obj.detail.selectedItem = e.state.name;
+        obj.detail.itemType = e.state.type;
+        obj.detail.path = e.state.path;
+        if (this.searchKeyword) {
+          this.set('searchKeyword','');
+        }
+        var trail = this._findItemTrail(this.nav, e.state.name);
+        this._changeOpenedProperty(trail);
+        this.set('name', obj.detail.selectedItem);
+        this.set('type', obj.detail.itemType);
+        //and make sure to change our selected property.
+        this._setSelected(obj);
+        this._changeIframeUrl(this.name, this.type);
+
       }
-      this._launchSelectedChange(obj);
-      // we don't want the back or forward button to actually do their intended action.
-      e.preventDefault();
     },
     /*
     *
@@ -394,8 +397,7 @@ Element providing sidebar for the predix ui website.
     _setRoute: function(name, type, path) {
 
       this._changeIframeUrl(name, type);
-
-      window.history.pushState({name: name, type:type, path: path},'','?show=' + name + '&type=' + type);
+        window.history.pushState({name: name, type:type, path: path},'','?show=' + name + '&type=' + type);
     },
     getRoute: function() {
       var name = this._getURLParameter('show') || null,
