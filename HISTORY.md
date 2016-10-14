@@ -1,3 +1,11 @@
+v0.1.4
+==================
+* bump version
+
+v0.1.3
+==================
+* added additional links to sass libraries
+
 v0.1.2
 ==================
 * added new links for first few updated sass libraries
