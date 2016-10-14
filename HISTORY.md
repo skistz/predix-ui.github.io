@@ -6,6 +6,7 @@ v0.1.3
 ==================
 * added additional links to sass libraries
 * added dynamic menu with search function
+* added new links for more updated sass libraries
 
 v0.1.2
 ==================
