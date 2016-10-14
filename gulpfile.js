@@ -98,7 +98,7 @@ gulp.task('vulcanize', function() {
   return gulp.src('_index.html')
     .pipe(vulcanize({
       abspath: '',
-      excludes: ['../px-theme/px-theme-styles.html'],
+      excludes: ['bower_components/px-theme/px-theme-styles.html'],
       stripComments: true,
       inlineCSS: true,
       inlineScripts: true

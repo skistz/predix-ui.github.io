@@ -6,47 +6,40 @@
 
 @import 'px-defaults-design/_settings.defaults.scss';
 
-/// @type String [default] - Prepend value for all generated classes
+/// Prepend value for all generated classes
+/// @group px-list-inline-design:variables:style
+/// @type String [default]
 $inuit-list-inline-namespace          : $inuit-namespace !default;
 
-/// @type Boolean [default] - Produce CSS for character to delimit list items?
+/// Enable character to delimit list items?
+/// @group px-list-inline-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-list-inline--delimited  : false !default;
 
-/// @type String [default] - Character to delimit list items
+/// Character to delimit list items
+/// @group px-list-inline-design:variables:style
+/// @type String [default]
 $inuit-list-inline-delimit-character  : "\00A0|\00A0" !default;
-  
+
+/// Default list-inline
 .#{$inuit-list-inline-namespace}list-inline,
 %#{$inuit-list-inline-namespace}list-inline {
     margin:  0;
     padding: 0;
     list-style: none;
-
     > li {
         display: inline-block;
     }
-
 }
 
-
-
+/// Character delimited list-inline
 @if ($inuit-enable-list-inline--delimited == true) {
-
-    /**
-     * Pipe delimited list to semantically mark up lists of tags, etc.
-     *
-     */
-
     .#{$inuit-list-inline-namespace}list-inline--delimited,
     %#{$inuit-list-inline-namespace}list-inline--delimited {
-
         > li + li {
-
             &:before {
                 content: "#{$inuit-list-inline-delimit-character}";
             }
-
         }
-
     }
-
 }

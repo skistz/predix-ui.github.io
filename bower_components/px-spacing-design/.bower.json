@@ -1,38 +1,41 @@
 {
   "name": "px-spacing-design",
-  "version": "0.3.8",
+  "version": "0.3.10",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
   ],
-  "description": "Spacing helper classes for Predix Experience",
+  "description": "Spacing helper classes for Predix UI",
   "main": "_trumps.spacing.scss",
   "keywords": [
     "sass",
     "px",
     "spacing"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-spacing-design.git",
   "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests",
+    "sass",
+    ".github",
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.0"
+    "px-defaults-design": "~0.2.11"
   },
-  "_release": "0.3.8",
+  "devDependencies": {
+    "px-sass-doc": "~0.1.7",
+    "px-starter-kit-design": "~0.6.0"
+  },
+  "_release": "0.3.10",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.8",
-    "commit": "6cb3ebf7f726ead647afa692aa710371e3a10815"
+    "tag": "v0.3.10",
+    "commit": "ef07ca12c3db842e07f823705b67db2059fb4f49"
   },
-  "_source": "https://github.com/predixDev/px-spacing-design.git",
-  "_target": "^0.3.8",
-  "_originalSource": "px-spacing-design"
+  "_source": "https://github.com/PredixDev/px-spacing-design.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/PredixDev/px-spacing-design.git"
 }

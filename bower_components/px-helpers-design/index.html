@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-helpers-design Demo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Boilerplate: Import Libraries -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html" />
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+  <!-- 0: Import Module Styles -->
+  <link rel="stylesheet" type="text/css" href="css/px-helpers-design-demo.css" />
+</head>
+<body>
+<template id="just-for-demo" is="dom-bind">
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-helpers-design"
+  description="A series of helper classes for use throughout Predix UI."
+  layer="objects"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/PredixDev/px-functions-design",
+    "https://github.com/inuitcss/tools.responsive"
+  ]'
+  selected-options="{{selectedOptions}}"
+  hide-demo-container="true">
+
+<!-- 2: Set Options -->
+<!-- N/A -->
+
+<!-- 3: Make HTML Demo -->
+<!-- N/A -->
+
+<!-- 4: Set Import Slot -->
+<!-- N/A -->
+
+<!-- 5: Set Usage HTML -->
+<section data-slot="intro">
+Only use a helper class if an element/component doesn’t already have a class to which you could apply this styling, e.g. if you need to float `.main-nav` left then add `float:left;` to that ruleset as opposed to adding the `.float--left` class to the markup.
+
+A lot of these classes carry `!important` as you will always want them to win out over other selectors.
+</section>
+
+<section data-slot="usage">
+### Float Left:
+<div class="float--left" style="line-height:40px;background-color:lightgray;padding:5px;">Floated Left</div>
+```
+<div class="float--left"></div>
+```
+### Float Right:
+<div class="float--right" style="line-height:40px;background-color:lightgray;padding:5px;">Floated Right</div>
+```
+<div class="float--right"></div>
+```
+### Text Align Left:
+<div class="text--left">Left Aligned Text</div>
+```
+<div class="text--left"></div>
+```
+### Text Align Center:
+<div class="text--center">Center Aligned Text</div>
+```
+<div class="text--center"></div>
+```
+### Text Align Right:
+<div class="text--right">Right Aligned Text</div>
+```
+<div class="text--right"></div>
+```
+### Informative:
+<div class="informative">Informative Element (hover over me!)</div>
+```
+<div class="informative"></div>
+```
+### Pointer:
+<div class="pointer">Element with an on-click handler, for example (hover over me!)</div>
+```
+<div class="pointer"></div>
+```
+### Muted Text:
+<div class="muted">Muted Text</div>
+```
+<div class="muted"></div>
+```
+### Proceed:
+<div class="proceed">Read More...</div>
+```
+<div class="proceed"></div>
+```
+### Capitalized Text:
+<div class="caps">All Caps</div>
+```
+<div class="caps"></div>
+```
+</section>
+
+</px-sass-doc>
+</template>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<script>
+  var template = document.querySelector('template[is=dom-bind]');
+
+  document.addEventListener('px-sass-doc-options-updated', function(evt) {
+    template.importCode = template._importCode();
+    template.spanClass = template._spanClass();
+  });
+
+  template._spanClass = function() {
+    var opts = template.selectedOptions || {};
+    if (opts.Helper === "float left")     return "float--left";
+    if (opts.Helper === "float right")    return "float--right";
+    if (opts.Helper === "text left")      return "text--left";
+    if (opts.Helper === "text center")    return "text--center";
+    if (opts.Helper === "text right")     return "text--right";
+    if (opts.Helper === "informative")    return "informative";
+    if (opts.Helper === "muted")          return "muted";
+    if (opts.Helper === "proceed")        return "proceed";
+    if (opts.Helper === "all caps")       return "caps";
+  };
+
+  template._importCode = function() {
+    return '@import "px-helpers-design/_objects.box.scss";';
+  };
+</script>
+
+</body>
+</html>

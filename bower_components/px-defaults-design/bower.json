@@ -1,18 +1,17 @@
 {
   "name": "px-defaults-design",
-  "version": "0.2.9",
+  "version": "0.2.11",
   "authors": [
     "General Electric",
     "Harry Roberts"
   ],
-  "description": "PXd's default settings",
+  "description": "Default settings for Predix UI",
   "main": "_settings.defaults.scss",
   "keywords": [
     "PXd",
     "Sass",
     "defaults"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-defaults-design.git",
   "private": false,
   "ignore": [
@@ -23,6 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "px-functions-design": "https://github.com/PredixDev/px-functions-design.git#~0.2.0"
+    "px-functions-design": "~0.3.3"
   }
 }

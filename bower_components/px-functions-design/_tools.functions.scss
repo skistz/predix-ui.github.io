@@ -4,6 +4,7 @@
 /// @group px-functions-design
 ////
 
+@import "px-defaults-design/_settings.defaults.scss";
 @import "inuit-functions/_tools.functions.scss";
 
 /// @name calculateRem
@@ -12,8 +13,12 @@
 @function calculateRem($size) {
   $remSize: $size / $inuit-base-font-size;
   $remUnit: 1rem;
-
   @return $remSize * $remUnit;
+}
+
+@function remToPx($rem) {
+  $remUnit: 1rem;
+  @return ($rem / $remUnit) * $inuit-base-font-size;
 }
 
 /// @name third

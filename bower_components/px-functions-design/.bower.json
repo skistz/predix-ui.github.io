@@ -1,6 +1,6 @@
 {
   "name": "px-functions-design",
-  "version": "0.2.6",
+  "version": "0.3.3",
   "authors": [
     "General Electric"
   ],
@@ -13,7 +13,7 @@
   ],
   "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-functions-design.git",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -22,15 +22,16 @@
     "tests"
   ],
   "dependencies": {
-    "inuit-functions": "~0.2.0"
+    "inuit-functions": "~0.2.0",
+    "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.6"
   },
-  "_release": "0.2.6",
+  "_release": "0.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.6",
-    "commit": "5dfd9795596564e5c3bb52c7ea49b1f320a4ddd0"
+    "tag": "v0.3.3",
+    "commit": "378c8cc7808023cb03358ed59deff6a798877bae"
   },
-  "_source": "https://github.com/PredixDev/px-functions-design.git",
-  "_target": "~0.2.0",
-  "_originalSource": "https://github.com/PredixDev/px-functions-design.git"
+  "_source": "https://github.com/predixDev/px-functions-design.git",
+  "_target": "~0.3.3",
+  "_originalSource": "px-functions-design"
 }

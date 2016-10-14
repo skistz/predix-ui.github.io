@@ -4,12 +4,19 @@
 /// @group px-typography-design
 ////
 
-/// @type String [default] - Predix font-family
+/// Predix font-family
+/// @group px-typography-design:variables:style
+/// @type String [default]
 $predix-font-family: "GE Inspira Sans", sans-serif !default;
 
+/// Load fonts locally?
+/// @group px-typography-design:variables:style
+/// @type Boolean [default]
 $predix-load-local-fonts: false !default;
 
-/// @type String [default] - Webfont path
+/// Webfont path
+/// @group px-typography-design:variables:style
+/// @type String [default]
 $inuit-webfont-path: '//dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/1.0.0' !default;
 
 @if $predix-load-local-fonts == true {

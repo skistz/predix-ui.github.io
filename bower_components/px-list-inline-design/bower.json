@@ -1,6 +1,6 @@
 {
   "name": "px-list-inline-design",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -13,24 +13,22 @@
     "inline",
     "lists"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-list-inline-design.git",
   "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests",
+    "Gruntfile.js",
+    ".github",
+    "sass",
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.0"
+    "px-defaults-design": "~0.2.0"
   },
   "devDependencies": {
-    "px-buttons-design": "https://github.com/PredixDev/px-buttons-design.git#~0.4.0",
-    "px-code-design": "https://github.com/PredixDev/px-code-design.git#~0.2.0",
-    "px-iconography-design": "https://github.com/PredixDev/px-iconography-design.git#~0.2.0",
-    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.0"
+    "px-sass-doc": "~0.1.7",
+    "px-starter-kit-design": "~0.6.0"
   }
 }
