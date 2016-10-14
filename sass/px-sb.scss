@@ -60,5 +60,10 @@ ul {
       border:0;
     }
   }
+  #searchInput::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 // Trumps
