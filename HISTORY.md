@@ -1,6 +1,10 @@
+v0.1.2
+==================
+* added new links for first few updated sass libraries
+
 v0.1.1
 ==================
-* added vulcanize and lnks in getting_started and landing page.
+* added vulcanize and lnks in getting_started and landing page
 
 v0.0.13
 ==================
