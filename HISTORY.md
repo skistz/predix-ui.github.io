@@ -1,5 +1,10 @@
+v0.1.4
+==================
+* bump version
+
 v0.1.3
 ==================
+* added additional links to sass libraries
 * added dynamic menu with search function
 
 v0.1.2
