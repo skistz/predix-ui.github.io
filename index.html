@@ -12582,7 +12582,7 @@ this.fire('dom-change');
 <dom-module id="px-sb-styles" assetpath="css/">
 <template>
 <style>
-.list-inline{margin:0;padding:0;list-style:none}.list-inline>li{display:inline-block}body,html{font:GE Inspira Sans;overflow:hidden}ul{margin-left:0;margin-bottom:0;padding-left:1rem}:host{width:100%}.search{background-color:#fff;display:-webkit-flex;display:-ms-flexbox;display:flex}.search .icon{color:#7c7c84;height:1rem}.search .icon iron-icon{height:1.33333rem;cursor:pointer}.search .input{width:100%}.search .input input{padding:.46667rem;width:100%;outline:0;border:0}.search #searchInput::-ms-clear{display:none;width:0;height:0}
+.list-inline{margin:0;padding:0;list-style:none}.list-inline>li{display:inline-block}body,html{font:GE Inspira Sans;overflow:hidden}ul{margin-left:0;margin-bottom:0;padding-left:1rem}:host{width:100%}.search{background-color:#fff;display:-webkit-flex;display:-ms-flexbox;display:flex}.search .icon{color:#7c7c84;height:1rem}.search .icon iron-icon{height:1.33333rem;cursor:pointer}.search .input{width:100%}.search .input input{padding:.46667rem;width:90%;outline:0;border:0;height:1.06667rem}.search #searchInput::-ms-clear{display:none;width:0;height:0}
 </style>
 </template>
 </dom-module>
@@ -12594,7 +12594,9 @@ this.fire('dom-change');
       <div class="input">
         <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="Type In A Search Term...">
       </div>
-      <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+      <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
+        <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+      </template>
     </div>
     <ul style="margin-top:40px;">
       <template is="dom-repeat" items="{{nav}}">
@@ -12722,7 +12724,10 @@ this.fire('dom-change');
     listeners: {
       'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
-
+    _isSearchKeywordTrue: function() {
+      console.log(this.searchKeyword);
+      return this.searchKeyword;
+    },
     /**
     * Recursively searches the model for the item passed, and returns an array
     * of item paths, starting with the selected item and continuing along its
