@@ -1,3 +1,7 @@
+v0.1.6
+==================
+* fixed typo in nav bar
+
 v0.1.5
 ==================
 * added new charts
