@@ -1,3 +1,7 @@
+v0.1.7
+==================
+* made nav dynamic, added search, X now  only appears when there's a search keyword
+
 v0.1.6
 ==================
 * fixed typo in nav bar
