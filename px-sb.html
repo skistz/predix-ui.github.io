@@ -30,7 +30,9 @@ Element providing sidebar for the predix ui website.
       <div class="input">
         <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="Type In A Search Term...">
       </div>
-      <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+      <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
+        <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+      </template>
     </div>
     <ul style="margin-top:40px;">
       <template is="dom-repeat" items="{{nav}}">
@@ -158,7 +160,10 @@ Element providing sidebar for the predix ui website.
     listeners: {
       'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
-
+    _isSearchKeywordTrue: function() {
+      console.log(this.searchKeyword);
+      return this.searchKeyword;
+    },
     /**
     * Recursively searches the model for the item passed, and returns an array
     * of item paths, starting with the selected item and continuing along its
