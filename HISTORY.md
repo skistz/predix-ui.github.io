@@ -1,3 +1,7 @@
+v0.1.8
+==================
+* added more sass repos to the nav
+
 v0.1.7
 ==================
 * made nav dynamic, added search, X now  only appears when there's a search keyword
