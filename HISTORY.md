@@ -1,3 +1,7 @@
+v0.1.11
+==================
+* added more sass repos to the nav
+
 v0.1.10
 ==================
 * added more sass repos to the nav
