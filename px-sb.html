@@ -28,7 +28,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <div class="search">
       <div class="input">
-        <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="Type In A Search Term...">
+        <input id="searchInput" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type In A Search Term...">
       </div>
       <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
         <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
@@ -98,7 +98,10 @@ Element providing sidebar for the predix ui website.
         notify:true,
         observer: '_callNavRebuild'
       },
-
+      initialSearchKeyword: {
+        type: String,
+        observer: '_calculateDebounce'
+      },
       /**
       * The initial navigation in array form.
       *
@@ -147,6 +150,10 @@ Element providing sidebar for the predix ui website.
         type: String,
         value: '',
         notify: true
+      },
+      searchDebounceVal: {
+        type: Number,
+        value: ''
       }
     },
 
@@ -160,8 +167,29 @@ Element providing sidebar for the predix ui website.
     listeners: {
       'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
+    /*
+    * The search debounce needs to be calculated -
+    * it needs to be much lower if the user is deleting something,
+    * and much higher if the user is typing more.
+    *
+    * @method _calculateDebounce
+    * @prop {string} newVal - the new search keyword val
+    * @prop {string} oldVal - the old search keyword val
+    *
+     */
+    _calculateDebounce: function(newVal, oldVal) {
+      var ADD = 250,
+          REMOVE = 50;
+     this.set('searchDebounceVal', (newVal > oldVal) ? ADD : REMOVE);
+     this.set('searchKeyword', this.initialSearchKeyword);
+    },
+    /*
+    *
+    * Checks whether there's anything in the search keyword
+    * @method _isSearchKeywordTrue
+    *
+     */
     _isSearchKeywordTrue: function() {
-      console.log(this.searchKeyword);
       return this.searchKeyword;
     },
     /**
@@ -370,7 +398,7 @@ Element providing sidebar for the predix ui website.
     * @method _resetSearch
     */
     _resetSearch: function() {
-      this.set('searchKeyword','');
+      this.set('initialSearchKeyword','');
       this.$.searchInput.focus();
 
       if (this.selectedElem) {
@@ -436,7 +464,7 @@ Element providing sidebar for the predix ui website.
         this.set('previousSelectedName', this.name);
         //call the filter with the search keyword
         this.set('nav', this._buildNav(navArr, searchKeyword));
-      }, 150);
+      }, this.searchDebounceVal);
     },
 
     /**
@@ -448,7 +476,8 @@ Element providing sidebar for the predix ui website.
     * @prop {String} searchKeyword - The string to filter the navigation with
     */
     _buildNav: function(navArr, searchKeyword) {
-      var foundItems = [];
+      var foundItems = [],
+      lowercaseArray;
       for (var i = 0, len=navArr.length; i < len; i++) {
         //build our initial object and populate it.
         var currentObj = {};
@@ -464,10 +493,19 @@ Element providing sidebar for the predix ui website.
             currentObj['links'] = tempArr;
           }
         }
+        if (navArr[i].keywords) {
+          lowercaseArray = navArr[i].keywords.map(function(keyword) {
+            return keyword.toLowerCase();
+          });
+        }
+
         //lowercase both the search keyword, and link text, and compare - if there's a match, push it into the array.
-        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 || currentObj.links) {
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        navArr[i].keywords && lowercaseArray.indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        currentObj.links) {
           foundItems.push(currentObj);
         }
+        lowercaseArray=[];
       }
       //returns a rebuilt, filtered nav
       return foundItems;
