@@ -13,7 +13,8 @@ const bump = require('gulp-bump');
 const argv = require('yargs').argv;
 const vulcanize = require('gulp-vulcanize');
 const rename = require('gulp-rename');
-
+const symlink = require("gulp-sym");
+const chmod = require('gulp-chmod');
 const sassOptions = {
   importer: importOnce,
   importOnce: {
@@ -107,6 +108,21 @@ gulp.task('vulcanize', function() {
       path.basename = path.basename.substr(1);
     }))
     .pipe(gulp.dest('.'));
+});
+
+// Install the GIT hooks
+gulp.task("hooks", function() {
+    return gulp.src([ ".git-hooks/post-merge" ])
+    .pipe(symlink([".git/hooks/post-merge" ], {
+        relative: true,
+        force: true
+    }));
+});
+
+gulp.task('chmod', () => {
+  return gulp.src('.git-hooks/*')
+    .pipe(chmod(755))
+    .pipe(gulp.dest('.git-hooks'));
 });
 
 gulp.task('default', function(callback) {
