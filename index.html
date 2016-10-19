@@ -12592,7 +12592,7 @@ this.fire('dom-change');
     <style include="px-theme-styles"></style>
     <div class="search">
       <div class="input">
-        <input id="searchInput" type="text" value="{{searchKeyword::input}}" placeholder="Type In A Search Term...">
+        <input id="searchInput" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type In A Search Term...">
       </div>
       <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
         <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
@@ -12662,7 +12662,10 @@ this.fire('dom-change');
         notify:true,
         observer: '_callNavRebuild'
       },
-
+      initialSearchKeyword: {
+        type: String,
+        observer: '_calculateDebounce'
+      },
       /**
       * The initial navigation in array form.
       *
@@ -12711,6 +12714,10 @@ this.fire('dom-change');
         type: String,
         value: '',
         notify: true
+      },
+      searchDebounceVal: {
+        type: Number,
+        value: ''
       }
     },
 
@@ -12724,8 +12731,29 @@ this.fire('dom-change');
     listeners: {
       'px-sb-list-selected-item-changed' : '_launchSelectedChange'
     },
+    /*
+    * The search debounce needs to be calculated -
+    * it needs to be much lower if the user is deleting something,
+    * and much higher if the user is typing more.
+    *
+    * @method _calculateDebounce
+    * @prop {string} newVal - the new search keyword val
+    * @prop {string} oldVal - the old search keyword val
+    *
+     */
+    _calculateDebounce: function(newVal, oldVal) {
+      var ADD = 250,
+          REMOVE = 50;
+     this.set('searchDebounceVal', (newVal > oldVal) ? ADD : REMOVE);
+     this.set('searchKeyword', this.initialSearchKeyword);
+    },
+    /*
+    *
+    * Checks whether there's anything in the search keyword
+    * @method _isSearchKeywordTrue
+    *
+     */
     _isSearchKeywordTrue: function() {
-      console.log(this.searchKeyword);
       return this.searchKeyword;
     },
     /**
@@ -12934,7 +12962,7 @@ this.fire('dom-change');
     * @method _resetSearch
     */
     _resetSearch: function() {
-      this.set('searchKeyword','');
+      this.set('initialSearchKeyword','');
       this.$.searchInput.focus();
 
       if (this.selectedElem) {
@@ -13000,7 +13028,7 @@ this.fire('dom-change');
         this.set('previousSelectedName', this.name);
         //call the filter with the search keyword
         this.set('nav', this._buildNav(navArr, searchKeyword));
-      }, 150);
+      }, this.searchDebounceVal);
     },
 
     /**
@@ -13012,7 +13040,8 @@ this.fire('dom-change');
     * @prop {String} searchKeyword - The string to filter the navigation with
     */
     _buildNav: function(navArr, searchKeyword) {
-      var foundItems = [];
+      var foundItems = [],
+      lowercaseArray;
       for (var i = 0, len=navArr.length; i < len; i++) {
         //build our initial object and populate it.
         var currentObj = {};
@@ -13028,10 +13057,19 @@ this.fire('dom-change');
             currentObj['links'] = tempArr;
           }
         }
+        if (navArr[i].keywords) {
+          lowercaseArray = navArr[i].keywords.map(function(keyword) {
+            return keyword.toLowerCase();
+          });
+        }
+
         //lowercase both the search keyword, and link text, and compare - if there's a match, push it into the array.
-        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 || currentObj.links) {
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        navArr[i].keywords && lowercaseArray.indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        currentObj.links) {
           foundItems.push(currentObj);
         }
+        lowercaseArray=[];
       }
       //returns a rebuilt, filtered nav
       return foundItems;
@@ -13537,77 +13575,89 @@ this.fire('dom-change');
               "links": [{
                   "repoName": "px-actionable-text-icons-design",
                   "dataType": "css",
-                  "linkText": "Actionable Text & Icons"
+                  "linkText": "Actionable Text & Icons",
+                  "keywords": ['px-actionable-text-icons-design','disabled', 'icons','link']
                   }, {
                   "linkText": "Buttons",
                     "links": [{
                         "repoName": "px-meta-buttons-design",
                         "dataType": "css",
-                        "linkText": "Buttons (Meta)"
+                        "linkText": "Buttons (Meta)",
+                        "keywords": ['px-meta-buttons-design', 'buttons']
                         }, {
                         "repoName": "px-button-group-design",
                         "dataType": "css",
-                        "linkText": "Button Group"
+                        "linkText": "Button Group",
+                        "keywords":['px-button-group-design', 'buttons']
                         }, {
                         "repoName": "px-buttons-design",
                         "dataType": "css",
-                        "linkText": "Buttons"
+                        "linkText": "Buttons",
+                        "keywords": ['px-buttons-design','icon', 'icons', 'disabled']
                         }]
                       }, {
                       "repoName": "px-code-design",
                       "dataType": "css",
-                      "linkText": "Code"
+                      "linkText": "Code",
+                      "keywords":['px-code-design']
                       }, {
                         "repoName": "px-colors-design",
                         "dataType": "css",
-                        "linkText": "Colors"
+                        "linkText": "Colors",
+                        "keywords":['px-colors-design']
                         }, {
                       "repoName": "px-forms-design",
                       "dataType": "css",
-                      "linkText": "Forms"
+                      "linkText": "Forms",
+                      "keywords": ['checkbox','input', 'textarea', 'validation']
                       }, {
                       "repoName": "px-headings-design",
                       "dataType": "css",
-                      "linkText": "Headings"
+                      "linkText": "Headings",
+                      "keywords":['px-headings-design']
                       }, {
                       "repoName": "px-helpers-design",
                       "dataType": "css",
-                      "linkText": "Helpers"
+                      "linkText": "Helpers",
+                      "keywords": ['px-helpers-design','utilities','float','pointer','informative','capitalize']
                       }, {
                       "repoName": "px-input-group-design",
                       "dataType": "css",
-                      "linkText": "Input Group"
-                      }, {
-                      "repoName": "px-layout-design",
-                      "dataType": "css",
-                      "linkText": "Layout"
+                      "linkText": "Input Group",
+                      "keywords":['px-input-group-design']
                       }, {
                       "linkText": "Lists",
                         "links": [{
                         "repoName": "px-meta-lists-design",
                         "dataType": "css",
-                        "linkText": "Lists (Meta)"
+                        "linkText": "Lists (Meta)",
+                        "keywords":['px-meta-lists-design','Lists']
                         }, {
                         "repoName": "px-list-bare-design",
                         "dataType": "css",
-                        "linkText": "List Bare"
+                        "linkText": "List Bare",
+                        "keywords":['px-list-bare-design','Lists']
                         }, {
                         "repoName": "px-list-inline-design",
                         "dataType": "css",
-                        "linkText": "List Inline"
+                        "linkText": "List Inline",
+                        "keywords":['px-list-inline-design','Lists']
                         }, {
                         "repoName": "px-list-ui-design",
                         "dataType": "css",
-                        "linkText": "List UI"
+                        "linkText": "List UI",
+                        "keywords":['px-list-ui-design','Lists']
                         }]
                       }, {
                       "repoName": "px-tables-design",
                       "dataType": "css",
-                      "linkText": "Tables"
+                      "linkText": "Tables",
+                      "keywords": ['px-tables-design','rows','columns']
                       }, {
                       "repoName": "px-toggle-design",
                       "dataType": "css",
-                      "linkText": "Toggle"
+                      "linkText": "Toggle",
+                      "keywords":['px-toggle-design']
                   }]
                 },
                 {
@@ -13615,31 +13665,38 @@ this.fire('dom-change');
                 "links": [{
                   "repoName": "px-box-design",
                   "dataType": "css",
-                  "linkText": "Box"
+                  "linkText": "Box",
+                  "keywords":['px-box-design']
                   }, {
                   "repoName": "px-flag-design",
                   "dataType": "css",
-                  "linkText": "Flag"
+                  "linkText": "Flag",
+                  "keywords":['px-flag-design']
                   }, {
                   "repoName": "px-flexbox-design",
                   "dataType": "css",
-                  "linkText": "Flexbox"
+                  "linkText": "Flexbox",
+                  "keywords": ['px-flexbox-design','flex']
                   }, {
                   "repoName": "px-layout-design",
                   "dataType": "css",
-                  "linkText": "Layout"
+                  "linkText": "Layout",
+                  "keywords": ['px-layout-design','grid']
                   }, {
                   "repoName": "px-spacing-design",
                   "dataType": "css",
-                  "linkText": "Spacing"
+                  "linkText": "Spacing",
+                  "keywords": ['px-spacing-design','margin', 'padding', ]
                   }, {
                   "repoName": "px-widths-design",
                   "dataType": "css",
-                  "linkText": "Widths"
+                  "linkText": "Widths",
+                  "keywords":['px-widths-design']
                   }, {
                   "repoName": "px-width-tools-design",
                   "dataType": "css",
-                  "linkText": "Width Tools"
+                  "linkText": "Width Tools",
+                  "keywords":['px-width-tools-design']
                   }]
                 },
                 {
@@ -13647,39 +13704,48 @@ this.fire('dom-change');
                 "links": [{
                   "repoName": "px-box-sizing-design",
                   "dataType": "css",
-                  "linkText": "Box Sizing"
+                  "linkText": "Box Sizing",
+                  "keywords":['px-box-sizing-design']
                   }, {
                   "repoName": "px-clearfix-design",
                   "dataType": "css",
-                  "linkText": "Clearfix"
+                  "linkText": "Clearfix",
+                  "keywords":['px-clearfix-design']
                   }, {
                   "repoName": "px-defaults-design",
                   "dataType": "css",
-                  "linkText": "Defaults"
+                  "linkText": "Defaults",
+                  "keywords":['px-defaults-design']
                   }, {
                   "repoName": "px-functions-design",
                   "dataType": "css",
-                  "linkText": "Functions"
+                  "linkText": "Functions",
+                  "keywords":['px-functions-design']
                   }, {
                   "repoName": "px-iconography-design",
                   "dataType": "css",
-                  "linkText": "Iconography"
+                  "linkText": "Iconography",
+                  "keywords":['px-iconography-design']
                   }, {
                   "repoName": "px-mixins-design",
                   "dataType": "css",
-                  "linkText": "Mixins"
+                  "linkText": "Mixins",
+                  "keywords":['px-mixins-design']
                   }, {
                   "repoName": "px-normalize-design",
                   "dataType": "css",
-                  "linkText": "Normalize"
+                  "linkText": "Normalize",
+                  "keywords":['px-normalize-design']
                   }, {
                   "repoName": "px-typography-design",
                   "dataType": "css",
-                  "linkText": "Typography"
+                  "linkText": "Typography",
+                  "keywords":['px-typography-design']
                   }, {
                   "repoName": "px-viewport-design",
                   "dataType": "css",
-                  "linkText": "Viewport"
+                  "linkText": "Viewport",
+                  "keywords":['px-viewport-design']
                 }]
               }
             ]
@@ -13689,33 +13755,40 @@ this.fire('dom-change');
           "links": [{
               "repoName": "px-alert-label",
               "dataType": "component",
-              "linkText": "Alert Label"
+              "linkText": "Alert Label",
+              "keywords":['px-alert-label']
               }, {
               "repoName": "px-alert-message",
               "dataType": "component",
-              "linkText": "Alert Message"
+              "linkText": "Alert Message",
+              "keywords":['px-alert-message']
               }, {
               "repoName": "px-app-nav",
               "dataType": "component",
-              "linkText": "App Nav"
+              "linkText": "App Nav",
+              "keywords":['px-app-nav', 'navigation']
               }, {
               "linkText": "Cards",
               "links": [{
                   "repoName": "px-card",
                   "dataType": "component",
-                  "linkText": "Card"
+                  "linkText": "Card",
+                  "keywords":['px-card']
                   }, {
                   "repoName": "px-deck-selector",
                   "dataType": "component",
-                  "linkText": "Deck Selector"
+                  "linkText": "Deck Selector",
+                  "keywords":['px-deck-selector']
                   }, {
                   "repoName": "px-sample-cards",
                   "dataType": "component",
-                  "linkText": "Sample Cards"
+                  "linkText": "Sample Cards",
+                  "keywords":['px-sample-cards']
                   }, {
                   "repoName": "px-widget-cards",
                   "dataType": "component",
-                  "linkText": "Widget Cards"
+                  "linkText": "Widget Cards",
+                  "keywords":['px-widget-cards']
               }]
           }, {
               "linkText": "Charts",
@@ -13723,144 +13796,178 @@ this.fire('dom-change');
                 {
                   "repoName": "px-percent-circle",
                   "dataType": "component",
-                  "linkText": "Percent Circle"
+                  "linkText": "Percent Circle",
+                  "keywords": ['px-percent-circle','charts','chart']
                   }, {
                   "repoName": "px-simple-bar-chart",
                   "dataType": "component",
-                  "linkText": "Simple Bar Chart"
+                  "linkText": "Simple Bar Chart",
+                  "keywords": ['px-simple-bar-chart','charts','chart']
                   }, {
                   "repoName": "px-simple-horizontal-bar-chart",
                   "dataType": "component",
-                  "linkText": "Simple horizontal Bar Chart"
+                  "linkText": "Simple horizontal Bar Chart",
+                  "keywords": ['px-simple-horizontal-bar-chart','charts','chart']
                   }, {
                   "repoName": "px-simple-line-chart",
                   "dataType": "component",
-                  "linkText": "Simple Line Chart"
+                  "linkText": "Simple Line Chart",
+                  "keywords": ['px-simple-line-chart', 'charts','chart']
                   }, {
                   "repoName": "px-chart",
                   "dataType": "component",
-                  "linkText": "Chart"
+                  "linkText": "Chart",
+                  "keywords": ['px-chart','charts']
                   }, {
                   "repoName": "px-vis",
                   "dataType": "component",
-                  "linkText": "Vis Framework"
+                  "linkText": "Vis Framework",
+                  "keywords": ['px-vis','charts','chart']
                   }, {
                   "repoName": "px-vis-parallel-coordinates",
                   "dataType": "component",
-                  "linkText": "Vis Parallel Coordinates"
+                  "linkText": "Vis Parallel Coordinates",
+                  "keywords": ['px-vis-parallel-coordinates','charts','chart']
                   }, {
                   "repoName": "px-vis-pie-chart",
                   "dataType": "component",
-                  "linkText": "Vis Pie Chart"
+                  "linkText": "Vis Pie Chart",
+                  "keywords": ['px-vis-pie-chart','charts','chart']
                   }, {
                   "repoName": "px-vis-polar",
                   "dataType": "component",
-                  "linkText": "Vis Polar Chart"
+                  "linkText": "Vis Polar Chart",
+                  "keywords": ['px-vis-polar','charts','chart']
                   }, {
                   "repoName": "px-vis-radar",
                   "dataType": "component",
-                  "linkText": "Vis Radar Chart"
+                  "linkText": "Vis Radar Chart",
+                  "keywords": ['px-vis-radar','charts','chart']
                   }, {
                   "repoName": "px-vis-timeseries",
                   "dataType": "component",
-                  "linkText": "Vis Timeseries"
+                  "linkText": "Vis Timeseries",
+                  "keywords":['px-vis-timeseries','time-series', 'charts','chart']
                   }, {
                   "repoName": "px-vis-xy-chart",
                   "dataType": "component",
-                  "linkText": "Vis XY Chart"
+                  "linkText": "Vis XY Chart",
+                  "keywords": ['px-vis-xy-chart','charts','chart']
               }]
 
               }, {
               "repoName": "px-clipboard",
               "dataType": "component",
-              "linkText": "Clipboard"
+              "linkText": "Clipboard",
+              "keywords":['px-clipboard']
               }, {
               "repoName": "px-context-browser",
               "dataType": "component",
-              "linkText": "Context Browser"
+              "linkText": "Context Browser",
+              "keywords":['px-context-browser']
               }, {
               "repoName": "px-data-table",
               "dataType": "component",
-              "linkText": "Data Table"
+              "linkText": "Data Table",
+              "keywords":['px-data-table']
               }, {
               "linkText": "Datetime Components",
               "links": [{
                   "repoName": "px-calendar-picker",
                   "dataType": "component",
-                  "linkText": "Calendar Picker"
+                  "linkText": "Calendar Picker",
+                  "keywords":['px-calendar-picker','datetime']
                   }, {
                   "repoName": "px-datetime-field",
                   "dataType": "component",
-                  "linkText": "Datetime Field"
+                  "linkText": "Datetime Field",
+                  "keywords":['px-datetime-field']
                   }, {
                   "repoName": "px-datetime-picker",
                   "dataType": "component",
-                  "linkText": "Datetime Picker"
+                  "linkText": "Datetime Picker",
+                  "keywords":['px-datetime-picker']
                   }, {
                   "repoName": "px-datetime-range-field",
                   "dataType": "component",
-                  "linkText": "DateTime Range Field"
+                  "linkText": "DateTime Range Field",
+                  "keywords":['px-datetime-range-field']
                   }, {
                   "repoName": "px-datetime-range-panel",
                   "dataType": "component",
-                  "linkText": "Datetime range Panel"
+                  "linkText": "Datetime range Panel",
+                  "keywords":['px-datetime-range-panel']
                   }, {
                   "repoName": "px-rangepicker",
                   "dataType": "component",
-                  "linkText": "Rangepicker"
+                  "linkText": "Rangepicker",
+                  "keywords":['px-rangepicker','datetime']
               }]
               }, {
               "repoName": "px-dropdown",
               "dataType": "component",
-              "linkText": "Dropdown"
+              "linkText": "Dropdown",
+              "keywords":['px-dropdown']
               }, {
               "repoName": "px-file-upload",
               "dataType": "component",
-              "linkText": "File Upload"
+              "linkText": "File Upload",
+              "keywords":['px-file-upload']
               }, {
               "repoName": "polymer-font-awesome",
               "dataType": "component",
-              "linkText": "Font Awesome"
+              "linkText": "Font Awesome",
+              "keywords":['polymer-font-awesome']
               }, {
               "repoName": "px-login",
               "dataType": "component",
-              "linkText": "Login"
+              "linkText": "Login",
+              "keywords":['px-login']
               }, {
               "repoName": "px-modal",
               "dataType": "component",
-              "linkText": "Modal"
+              "linkText": "Modal",
+              "keywords":['px-modal']
               }, {
               "repoName": "px-overlay",
               "dataType": "component",
-              "linkText": "Overlay"
+              "linkText": "Overlay",
+              "keywords":['px-overlay']
               }, {
               "repoName": "px-popover",
               "dataType": "component",
-              "linkText": "Popover"
+              "linkText": "Popover",
+              "keywords":['px-popover']
               }, {
               "repoName": "px-progress-bar",
               "dataType": "component",
-              "linkText": "Progress Bar"
+              "linkText": "Progress Bar",
+              "keywords":['px-progress-bar']
               }, {
               "repoName": "px-slider",
               "dataType": "component",
-              "linkText": "Slider"
+              "linkText": "Slider",
+              "keywords":['px-slider']
               }, {
               "repoName": "px-spinner",
               "dataType": "component",
-              "linkText": "Spinner"
+              "linkText": "Spinner",
+              "keywords":['px-spinner']
               }, {
               "repoName": "px-tabs",
               "dataType": "component",
-              "linkText": "Tabs"
+              "linkText": "Tabs",
+              "keywords":['px-tabs']
               }, {
               "repoName": "px-tooltip",
               "dataType": "component",
-              "linkText": "Tooltip"
+              "linkText": "Tooltip",
+              "keywords":['px-tooltip']
               }, {
               "repoName": "px-validation",
               "dataType": "component",
-              "linkText": "Validation"
+              "linkText": "Validation",
+              "keywords":['px-validation']
           }]
       }];
 
