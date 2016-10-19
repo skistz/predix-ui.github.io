@@ -104,7 +104,7 @@ gulp.task('vulcanize', function() {
       inlineScripts: true
     }))
     .pipe(rename(function(path) {
-      path.basename + path.basename.substr(1);
+      path.basename = path.basename.substr(1);
     }))
     .pipe(gulp.dest('.'));
 });
