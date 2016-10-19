@@ -31,6 +31,8 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 // Base
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
+
+$inuit-enable-code--inline: true;
 @import "px-code-design/_base.code.scss";
 
 $inuit-webfont-path: '/bower_components/px-typography-design/type';
@@ -615,6 +617,15 @@ footer.footer .vw {
 
 }
 
+.md-html code {
+  @extend .code;
+  @extend .code--inline;
+  font-size: 0.9rem;
+}
+
+.container {
+  padding: 20px;
+}
 
 // Trumps
 $inuit-enable-margins--tiny           : true;

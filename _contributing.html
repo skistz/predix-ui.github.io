@@ -1,17 +1,21 @@
 <!doctype html>
-<html>
+<html class="embedded">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Predix UI</title>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="import" href="bower_components/px-theme/px-theme-styles.html" />
-    <style include="px-theme-styles" is="custom-style"></style>
+    <link rel="import" href="bower_components/zero-md/zero-md.html">
+    <link rel="import" href="css/predix-ui-styles.html"/>
+    <style include="predix-ui-styles" is="custom-style"></style>
   </head>
-  <body unresolved>
-    <template id="px-catalog-wrapper" is="dom-bind">
-      <style include="px-theme-styles"></style>
-    </template>
+  <body class="body">
+    <div class="container">
+      <zero-md file="https://cdn.rawgit.com/PredixDev/px-context-browser/master/CONTRIBUTING.md">
+       <!-- Remember to pass in empty container of class="md-html". -->
+       <div class="md-html"></div>
+      </zero-md>
+    </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "name": "px-demo-site",
-  "version": "0.1.11,
+  "version": "0.1.11",
   "main": [
     "px-demo-site.html"
   ],
@@ -26,7 +26,8 @@
     "px-list-inline-design": "~0.2.11",
     "polymer-font-awesome": "px-polymer-font-awesome#^0.1.9",
     "px-colors-design": "^0.2.16",
-    "px-forms-design": "^0.3.17"
+    "px-forms-design": "^0.3.17",
+    "zero-md": "^0.2.0"
   },
   "devDependencies": {
     "iron-collapse": "PolymerElements/iron-collapse#~1.2.0",

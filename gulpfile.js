@@ -95,7 +95,7 @@ gulp.task('bump:major', function(){
 });
 
 gulp.task('vulcanize', function() {
-  return gulp.src('_index.html')
+  return gulp.src('_*.html')
     .pipe(vulcanize({
       abspath: '',
       excludes: ['bower_components/px-theme/px-theme-styles.html'],
@@ -103,7 +103,9 @@ gulp.task('vulcanize', function() {
       inlineCSS: true,
       inlineScripts: true
     }))
-    .pipe(rename('index.html'))
+    .pipe(rename(function(path) {
+      path.basename + path.basename.substr(1);
+    }))
     .pipe(gulp.dest('.'));
 });
 
