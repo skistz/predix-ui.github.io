@@ -500,7 +500,7 @@ Element providing sidebar for the predix ui website.
         }
 
         //lowercase both the search keyword, and link text, and compare - if there's a match, push it into the array.
-        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 && !navArr[i].links ||
         navArr[i].keywords && lowercaseArray.indexOf(searchKeyword.toLowerCase()) !== -1 ||
         currentObj.links) {
           foundItems.push(currentObj);
