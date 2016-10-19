@@ -1,3 +1,11 @@
+v0.1.13
+==================
+* vulcanize all the files
+
+v0.1.12
+==================
+* added more sass repos to the nav
+
 v0.1.11
 ==================
 * added more sass repos to the nav
