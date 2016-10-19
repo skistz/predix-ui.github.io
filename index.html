@@ -13064,7 +13064,7 @@ this.fire('dom-change');
         }
 
         //lowercase both the search keyword, and link text, and compare - if there's a match, push it into the array.
-        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 ||
+        if (navArr[i].linkText.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1 && !navArr[i].links ||
         navArr[i].keywords && lowercaseArray.indexOf(searchKeyword.toLowerCase()) !== -1 ||
         currentObj.links) {
           foundItems.push(currentObj);
@@ -13579,12 +13579,7 @@ this.fire('dom-change');
                   "keywords": ['px-actionable-text-icons-design','disabled', 'icons','link']
                   }, {
                   "linkText": "Buttons",
-                    "links": [{
-                        "repoName": "px-meta-buttons-design",
-                        "dataType": "css",
-                        "linkText": "Buttons (Meta)",
-                        "keywords": ['px-meta-buttons-design', 'buttons']
-                        }, {
+                    "links": [ {
                         "repoName": "px-button-group-design",
                         "dataType": "css",
                         "linkText": "Button Group",
@@ -13594,6 +13589,12 @@ this.fire('dom-change');
                         "dataType": "css",
                         "linkText": "Buttons",
                         "keywords": ['px-buttons-design','icon', 'icons', 'disabled']
+                      },
+                      {
+                        "repoName": "px-meta-buttons-design",
+                        "dataType": "css",
+                        "linkText": "Buttons (Meta)",
+                        "keywords": ['px-meta-buttons-design', 'buttons']
                         }]
                       }, {
                       "repoName": "px-code-design",
@@ -13627,12 +13628,7 @@ this.fire('dom-change');
                       "keywords":['px-input-group-design']
                       }, {
                       "linkText": "Lists",
-                        "links": [{
-                        "repoName": "px-meta-lists-design",
-                        "dataType": "css",
-                        "linkText": "Lists (Meta)",
-                        "keywords":['px-meta-lists-design','Lists']
-                        }, {
+                        "links": [ {
                         "repoName": "px-list-bare-design",
                         "dataType": "css",
                         "linkText": "List Bare",
@@ -13647,7 +13643,13 @@ this.fire('dom-change');
                         "dataType": "css",
                         "linkText": "List UI",
                         "keywords":['px-list-ui-design','Lists']
-                        }]
+                      },
+                      {
+                      "repoName": "px-meta-lists-design",
+                      "dataType": "css",
+                      "linkText": "Lists (Meta)",
+                      "keywords":['px-meta-lists-design','Lists']
+                      }]
                       }, {
                       "repoName": "px-tables-design",
                       "dataType": "css",
@@ -13693,10 +13695,10 @@ this.fire('dom-change');
                   "linkText": "Widths",
                   "keywords":['px-widths-design']
                   }, {
-                  "repoName": "px-width-tools-design",
+                  "repoName": "px-widths-tools-design",
                   "dataType": "css",
-                  "linkText": "Width Tools",
-                  "keywords":['px-width-tools-design']
+                  "linkText": "Widths Tools",
+                  "keywords":['px-widths-tools-design']
                   }]
                 },
                 {
