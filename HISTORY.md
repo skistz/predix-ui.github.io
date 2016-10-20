@@ -1,3 +1,7 @@
+v0.1.15
+==================
+* added keywords to charts
+
 v0.1.14
 ==================
 * added keywords to search
