@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-defaults-design Demo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Boilerplate: Import Libraries -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
+
+  <!-- 0: Import Module Styles -->
+  <link rel="stylesheet" type="text/css" href="css/px-defaults-design-demo.css" />
+</head>
+<body>
+<template id="just-for-demo" is="dom-bind">
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-defaults-design"
+  description="The defaults module contains variables and settings that are required for using nearly all Predix UI CSS modules. Use it to set the default font color, size, and vertical rhythm for your project."
+  layer="settings"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/PredixDev/px-functions-design"
+  ]'
+  hide-demo-container
+  selected-options="{{selectedOptions}}">
+
+<!-- 2: Provide Usage Info -->
+<section data-slot="usage">
+This module defines default style variables that many modules in your project will rely on. Take a look at the **Customize Styles** section in the documentation above for a full list of available variables and instructions on how to use them.
+
+The defaults provided are a good starting point for most projects. To change any of the variables, override them in your project Sass file by adding the new definitions above your `@import` line.
+</section>
+
+</px-sass-doc>
+</template>
+</body>
+</html>

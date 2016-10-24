@@ -6,19 +6,34 @@
 
 @import 'px-functions-design/_tools.functions.scss';
 
-/// @type Number [default] - Base font size
+/// Sets the project-wide base font size. Also used to calculate the base spacing unit.
+///
+/// @group px-defaults-design:variables:style
+/// @type Number [default]
 $inuit-base-font-size           : 15px !default;
 
-/// @type Number [default] - Base line height (leading)
+/// Sets the project-wide base line-height. Also used to calculate the base spacing unit modifiers.
+///
+/// @group px-defaults-design:variables:style
+/// @type Number [default]
 $inuit-base-line-height         : 20px !default;
 
+/// Sets the project-wide base font color.
+///
+/// @group px-defaults-design:variables:style
 /// @type Color [default] - Base text color
 $inuit-base-text-color          : rgb(0,0,0) !default;
 
+/// Sets the project-wide base background color.
+///
+/// @group px-defaults-design:variables:style
 /// @type Color [default] - Base background color
 $inuit-base-background-color    : rgb(255,255,255) !default;
 
-/// @type String [default] - Would you like inuitcss’ classes to be prepended with a namespace? If so, define it here.
+/// Sets a prefix that will be added to the beginning of all classes across your project. (e.g. 'px' or 'intuit').
+///
+/// @group px-defaults-design:variables:style
+/// @type String [default]
 $inuit-namespace                : null !default;
 
 /// @type Number [default] - Base spacing unit (same as $inuit base-font-size)

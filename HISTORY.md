@@ -1,3 +1,9 @@
+v0.1.16
+==================
+* fixed link for polymer-font-awesome
+* added some keywords
+* added px-simple-win-loss-chart
+
 v0.1.15
 ==================
 * added keywords to charts

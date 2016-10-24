@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-mixins-design Demo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Boilerplate: Import Libraries -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html" />
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+  <!-- 0: Import Module Styles -->
+  <link rel="stylesheet" type="text/css" href="css/px-mixins-design-demo.css" />
+</head>
+<body>
+<template id="just-for-demo" is="dom-bind">
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-mixins-design"
+  description="The Predix UI Mixins module is a fork of the inuitcss Mixins Module and contains mixins for use across other Predix UI modules."
+  layer="tools"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "http://github.com/PredixDev/px-defaults-design"
+  ]'
+  selected-options="{{selectedOptions}}"
+  hide-demo-container="true">
+
+<!-- 2: Set Options -->
+<!-- N/A -->
+
+<!-- 3: Make HTML Demo -->
+<!-- N/A -->
+
+<!-- 4: Set Import Slot -->
+<section data-slot="import">
+@import "px-mixins-design/_tools.mixins.scss";
+</section>
+
+<!-- 5: Set Usage HTML -->
+<section data-slot="usage">
+The following Sass mixins are provided:
+
+### inuit-font-size
+Generates rem sized fonts with line height from pixel sizes. Can take the following parameters:
+- $inuit-font-size
+- $inuit-line-height
+
+### border-right-left
+Swaps horizontal border placement if HTML direction switched to `dir=rtl`. Can take the following parameters:
+- $inuit-border-position
+- $inuit-border-color
+- $inuit-border-width
+- $inuit-border-style
+
+### font-face
+Generates webfont-friendly font families. Can take the following parameters:
+- $font-family
+- $file-path
+- $weight
+- $style
+</section>
+
+</px-sass-doc>
+</template>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<!-- N/A -->
+
+</body>
+</html>

@@ -1,47 +1,47 @@
-# px-functions-design
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-functions-design Demo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-The functions module contains contains functions that are required for using all Predix UI CSS modules. Use it to convert between units (i.e. pixels to REM and back again) and compute numbers.
+  <!-- Boilerplate: Import Libraries -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
 
-**px-functions-design is a Predix UI CSS module.** You can find a demonstration and full documentation on the [Predix UI catalog](https://predixdev.github.io/predix-ui/?show=px-functions-design&type=css]).
+  <!-- 0: Import Module Styles -->
+  <link rel="stylesheet" type="text/css" href="css/px-functions-design-demo.css" />
+</head>
+<body>
+<template id="just-for-demo" is="dom-bind">
 
-## IMPORT NOTE: It's recommended to install px-defaults-design instead
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-functions-design"
+  description="The functions module contains contains functions that are required for using all Predix UI CSS modules. Use it to convert between units (i.e. pixels to REM and back again) and compute numbers."
+  layer="tools"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/inuitcss/tools.functions"
+  ]'
+  hide-demo-container
+  selected-options="{{selectedOptions}}">
+
+<section data-slot="intro">
+# IMPORT NOTE: It's recommended to install px-defaults-design instead
 
 Rather than install this module directly, it's recommended you install px-defaults-design which includes this module as a dependency. You'll have access to the functions in this module if you install px-defaults-design.
 
 To find installation and import instructions for the px-defaults-design module, see its [Github README](https://github.com/PredixDev/px-defaults-design) or read its [Predix UI catalog documentation page](https://predixdev.github.io/predix-ui/?show=px-defaults-design&type=css).
 
 For more information about this requirement, see this [discussion thread on Github](https://github.com/PredixDev/px-functions-design/pull/2).
+</section>
 
-## Install the module
-
-To use the module, you need to install it in your project using Bower. Run this task on the command line from inside your project folder:
-
-```
-bower install --save px-functions-design
-```
-
-## Import it in your Sass
-
-The module won't do anything until you import and configure it in your project Sass file. Follow these steps to import it:
-
-### 1. Enable Flags
-
-There are no flags to set before importing this module in your project Sass file.
-
-### 2. Customize Styles
-
-There are no style variables to set before importing this module in your project Sass file.
-
-### 3. Import Sass File
-
-Import the module by placing this code into the **Tools** layer of your project Sass file:
-
-```
-@import 'px-functions-design/_tools.functions.scss';
-```
-
-## Use it in your project
-
+<!-- 2: Provide Usage Info -->
+<section data-slot="usage">
 You can use this module's functions in your Sass files.
 
 ### Converting between size units
@@ -84,9 +84,9 @@ The functions module also provides a set of related utilities that take a number
 ```
 
 In addition to `triple`, you can use `quarter`, `halve`, `double`, `quadruple`, and `third`. All functions will return rounded integers.
+</section>
 
-## Dependencies
-
-This module depends on the following modules (automatically included with Bower install):
-
-* [inuit-functions](https://github.com/inuitcss/tools.functions)
+</px-sass-doc>
+</template>
+</body>
+</html>

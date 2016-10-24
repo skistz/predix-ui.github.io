@@ -1,3 +1,8 @@
+v1.1.3
+==============================
+* Updated dependencies
+* Updated boilerplate files
+
 v1.1.2
 ==============================
 * added new demo and auto-ghp
