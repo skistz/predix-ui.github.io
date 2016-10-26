@@ -1,3 +1,7 @@
+v0.1.17
+==================
+* added kpi, spark, inbox
+
 v0.1.16
 ==================
 * fixed link for polymer-font-awesome
