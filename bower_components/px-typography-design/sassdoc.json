@@ -26,7 +26,7 @@
         }
     },
     {
-        "description": "Load fonts locally?\n",
+        "description": "Load fonts locally\n",
         "commentRange": {
             "start": 12,
             "end": 14

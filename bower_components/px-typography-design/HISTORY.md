@@ -1,3 +1,12 @@
+
+v1.1.5
+==================
+* patch test
+
+v1.1.4
+==============================
+* minor changes to demo text, removed ?'s from sassdoc.json
+
 v1.1.3
 ==============================
 * Updated dependencies
