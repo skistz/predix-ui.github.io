@@ -25,9 +25,7 @@
     ga('send', 'pageview');
     </script>
     <style>
-    html{
-      font-size: 15px;
-    }
+    html{font-size: 15px;}
     #spinner{position:absolute;z-index:999;width:100%;height:100%;background:#fff;}
     #spinner px-spinner {margin:25% 36%;vertical-align: middle;}
     </style>
@@ -37,15 +35,22 @@
       <style include="px-theme-styles"></style>
       <px-catalog-state active-name="{{activeName}}" active-type="{{activeType}}"></px-catalog-state>
       <!-- header -->
-      <section class="gray-bar flex flex--middle">
+      <section class="gray-bar flex flex--row flex--middle flex--justify">
         <span id="menu" class="menu">
           <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
           <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
         </span>
-        <div class="lnk first">
-          <a class="header-lnk" href="http://predix.io" target="_blank">
-            <img class="header-img" src="img/Predix_small.png" alt="Predix Logo"/> Developer Network
-          </a>
+        <div class="flex__item flex flex--row flex--justify flex--middle">
+          <div class="flex__item">
+            <a class="header-lnk" href="https://predixdev.github.io/predix-ui/">
+              Predix UI Catalog
+            </a>
+          </div>
+          <div>
+            <a class="header-lnk header-lnk--secondary" href="http://predix.io" target="_blank">
+              <img class="header-img" src="img/Predix_small.png" alt="Predix Logo"/> <span class="dev-network">Developer Network</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -164,11 +169,7 @@
       //  template.getRoute();
       });
 
-      template.initialNav = [{
-          "linkText": "Home",
-          "repoName": "landing_page",
-          "dataType": "home",
-        },
+      template.initialNav = [
         {
           "linkText": "Getting Started",
           "links": [{

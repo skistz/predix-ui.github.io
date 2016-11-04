@@ -74,24 +74,32 @@ html,body{
   position: fixed;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
-  & a:link {
-    color: $gray6;
-    font-size: 17px;
-    display: block;
-    letter-spacing: 1px;
-    text-decoration: none;
-  }
-  & a:visited {
-    color: $gray6;
-  }
 }
 .header-img{
-  height:20px;
-  margin-bottom: -4px;
+  height:18px;
+  margin-bottom: -2px;
 }
-.lnk{
-  margin-top: 4px;
+.dev-network{
+  display: none;
 }
+.header-lnk, a.header-lnk{
+  font-size: 16px;
+  display: block;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin-top: 2px;
+
+  color: white;
+  &:visited { color: white; }
+
+  &.header-lnk--secondary {
+    font-size: 12px;
+    color: $gray6;
+    &:visited { color: $gray6; }
+    padding-right: $inuit-base-spacing-unit--large;
+  }
+}
+
 .menu{
   padding-right: $inuit-base-spacing-unit;
   color: $gray3;
@@ -237,14 +245,23 @@ html,body{
 * ipad landscape and up
 */
 @media screen and (min-width: 1024px) {
-  .gray-bar {
-    & a:link {
-      font-size: $inuit-base-spacing-unit--large;
+  // .gray-bar {
+  //   & a:link {
+  //     font-size: $inuit-base-spacing-unit--large;
+  //   }
+  // }
+  .header-lnk, a.header-lnk{
+    font-size: 22px;
+    &.header-lnk--secondary {
+      font-size: 18px;
     }
   }
   .header-img{
-    height:20px;
-    margin-bottom: -3px;
+    height: 20px;
+    margin-bottom: -4px;
+  }
+  .dev-network{
+    display: inline;
   }
   .wrapper-flex{
     display: inline-flex;
