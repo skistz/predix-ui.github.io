@@ -1,3 +1,7 @@
+v0.1.21
+==================
+* added px-typeahead
+
 v0.1.20
 ==================
 * added view header
