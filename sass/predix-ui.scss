@@ -245,11 +245,6 @@ html,body{
 * ipad landscape and up
 */
 @media screen and (min-width: 1024px) {
-  // .gray-bar {
-  //   & a:link {
-  //     font-size: $inuit-base-spacing-unit--large;
-  //   }
-  // }
   .header-lnk, a.header-lnk{
     font-size: 22px;
     &.header-lnk--secondary {
@@ -332,6 +327,9 @@ html,body{
   text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+.embedded body {
+  min-height: 100vh;
 }
 
 :host {
@@ -612,6 +610,19 @@ footer.footer .vw {
   margin: 0 auto;
 }
 
+.info-box, a.info-box, a:link.info-box, a:visited.info-box {
+  padding: $inuit-base-spacing-unit;
+  display: block;
+  background-color: $gray2;
+  margin: ($inuit-base-spacing-unit * 2) 0;
+  color: $black;
+  &:hover {
+    color: $black;
+    .actionable { color: $primary-blue-pressed; }
+  }
+  p:last-child { margin-bottom: 0 }
+}
+
 @media screen and (min-width: 768px) {
 
   .halves {
@@ -653,6 +664,13 @@ $inuit-enable-margins--large          : true;
 $inuit-enable-margins--huge           : true;
 $inuit-enable-margins--negative-tiny  : true;
 
+$inuit-enable-paddings--tiny           : true;
+$inuit-enable-paddings--small          : true;
+$inuit-enable-paddings                 : true;
+$inuit-enable-paddings--none           : true;
+$inuit-enable-paddings--large          : true;
+$inuit-enable-paddings--huge           : true;
+$inuit-enable-paddings--negative-tiny  : true;
 @import "px-spacing-design/_trumps.spacing.scss";
 @import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";

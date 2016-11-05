@@ -171,29 +171,43 @@
 
       template.initialNav = [
         {
-          "linkText": "Getting Started",
+          "linkText": "About",
+          "links": [{
+              "dataType": "local",
+              "repoName": "what_is_predix_ui",
+              "linkText": "What is Predix UI?"
+          }],
+          "opened": true
+        },
+        {
+          "linkText": "Use Predix UI in your app",
           "links": [{
               "dataType": "local",
               "repoName": "getting_started",
-              "linkText": "Using Predix UI Components"
+              "linkText": "Use the components"
           }, {
-              "dataType": "external",
-              "repoName": "px-getting-started",
-              "linkText": "Predix UI CSS Overview"
+              "dataType": "local",
+              "repoName": "use_css",
+              "linkText": "Use the CSS modules"
           }, {
-              "dataType": "external",
-              "repoName": "generator-px-comp",
-              "linkText": "Creating a New Component"
+              "dataType": "local",
+              "repoName": "use_seed",
+              "linkText": "Start a new app with the seed"
           }, {
-              "dataType": "external",
-              "repoName": "px-starter-kit-design",
-              "linkText": "Bootstrapping Predix UI CSS"
+              "dataType": "local",
+              "repoName": "use_component_generator",
+              "linkText": "Build your own components"
           }],
           "opened": true
         },
         {
           "linkText": "Predix UI CSS",
           "links": [{
+              "dataType": "css",
+              "repoName": "px-starter-kit-design",
+              "linkText": "CSS Starter Kit"
+            },
+            {
               "linkText": "Visual",
               "links": [{
                   "repoName": "px-actionable-text-icons-design",
@@ -608,6 +622,11 @@
               "dataType": "component",
               "linkText": "Tooltip",
               "keywords":['px-tooltip','hover','help','tip']
+              }, {
+              "repoName": "px-typeahead",
+              "dataType": "component",
+              "linkText": "Typeahead",
+              "keywords":['px-typeahead','typeahead','autocomplete']
               }, {
               "repoName": "px-view-header",
               "dataType": "component",

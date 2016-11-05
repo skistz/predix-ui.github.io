@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-tooltip Demo</title>
+  <link rel="stylesheet" type="text/css" href="css/px-tooltip-demo.css"/>
+  <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
+  <link rel="import" href="../px-tabs/px-tab-set.html" />
+  <link rel="import" href="../px-tooltip/px-tooltip.html"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+  <link rel="import" href="../px-dropdown/px-dropdown.html" />
+</head>
+
+<body>
+
+  <!-- Wrap elements with auto-binding template to -->
+  <!-- allow use of Polymer bindings in main document -->
+  <template id="just-for-demo" is="dom-bind" >
+
+    <!-- discription -->
+    <div class="hero u-p++ text--shadow">
+      <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-tooltip" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
+  		<h1 class="delta">px-tooltip</h1>
+      <div class="description-text">
+    		<p>
+          A Tooltip is meant to give users more information related to an item shortly after they hover over the target component (the delay is configurable).
+          When the mouse leaves the target area, the tooltip goes away.
+          Tooltips can be positioned above, below, to the left, or to the right of the target.
+          A Smart Orientation option is included that will attempt to automatically choose a placement based on the real estate available – this attempts to prevent the tooltip from going off the screen.
+          For long messages or rich content, use a <a href="https://predixdev.github.io/px-popover/">Popover</a> instead.<br />
+        </p>
+        <p>
+          Note: tooltips are not recommended for mobile or tablet applications since the hover affordance is inconsistent across devices and platforms (3D touch, tap-and-hold, proximity sensors, etc).
+    		</p>
+      </div>
+  		<div class="flex">
+  			<img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-tooltip.svg?style=flat-square" alt="Travis"/>
+  			<img class="u-mr--" src="https://img.shields.io/bower/v/px-tooltip.svg?style=flat-square" alt="Bower"/>
+  			<img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-tooltip.svg?style=flat-square" alt="Issues"/>
+  		</div>
+  	</div>
+
+    <!-- mega demo -->
+    <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
+      <div class="tabContainer u-pt++ u-pl++">
+        <px-tab-set selected="{{selected}}" bare no-bottom-border>
+          <template is="dom-repeat" items="{{optionsArray}}">
+            <px-tab>Option {{indexPlusOne(index)}}</px-tab>
+          </template>
+        </px-tab-set>
+      </div>
+      <px-tab-pages selected="{{selected}}">
+        <template is="dom-repeat" items="{{optionsArray}}">
+          <section class="tab-page">
+            <div class="mega-demo flex u-ph++ u-pb++">
+              <!-- Properties -->
+              <div class="properties u-ph+ u-pb+ u-mt+">
+                <p class="epsilon">Properties</p>
+                <div class="flex u-mb-">
+                  <input id="smartOrientation{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.smartOrientation::change}}">
+                  <label for$="smartOrientation{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                  <div class="u-ml-">Smart Orientation</div>
+                </div>
+                <div class="u-mb-">For: <input id="for{{indexPlusOne(index)}}" class="text-input" type="text" placeholder="{{item.for::input}}" value="{{item.for::input}}" /></div>
+                <div class="u-mb-">Delay: <input id="delay{{indexPlusOne(index)}}" class="text-input" type="text" placeholder="{{item.delay::input}}" value="{{item.delay::input}}" /></div>
+                <div class="u-mb-">tooltipMessage: <input id="tooltipMessage{{indexPlusOne(index)}}" class="text-input" type="text" placeholder="{{item.tooltipMessage::input}}" value="{{item.tooltipMessage::input}}" /></div>
+                <div class="flex">orientation:</div>
+                <div class="flex u-mb-">
+                  <px-dropdown id="orientation{{indexPlusOne(index)}}" style="width:100%;" value="{{item.orientation}}" display-value="Select">
+                    <px-dropdown-content
+                    items={{items}}>
+                  </px-dropdown-content>
+                  </px-dropdown>
+                </div>
+              </div>
+
+              <div class="demoContainer u-mt+">
+                <!-- demo -->
+                <div class="flex flex--col">
+                  <div class="demo u-p+">
+                    <div style="position:relative;">
+                      <button class="btn btn--tertiary" id="btn{{indexPlusOne(index)}}" type="button" name="button">Hover over me, tooltip is to the [[item.orientation]]</button>
+                      <px-tooltip
+                          for="[[item.for]]"
+                          orientation="[[item.orientation]]"
+                          tooltip-message="[[item.tooltipMessage]]"
+                          smart-orientation="[[item.smartOrientation]]"
+                          delay="[[item.delay]]">
+                      </px-tooltip>
+                    </div>
+                  </div>
+                  <div>
+                    <px-demo-snippet
+                      element-properties={{item}}
+                      element-name="px-tooltip">
+                    </px-demo-snippet>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="apiContainer">
+              <div class="flex flex--col api u-mt++" >
+                <div>
+                  <px-api-viewer source="px-tooltip"></px-api-viewer>
+                </div>
+              </div>
+            </div>
+          </section>
+        </template>
+      </px-tab-pages>
+    </div>
+    <footer class="footer flex flex--center">
+      <div class="footer__container u-pv++">
+        <div>
+          <a href="https://ge.com/digital" >
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+          </a>
+        </div>
+        <div class="footer__list">
+          <ul class="list-inline list-inline--delimited">
+            <li>
+              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+            </li>
+            <li>
+              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+            </li>
+            <li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </template>
+<script>
+window.addEventListener('WebComponentsReady', function() {
+  var template = document.querySelector('template[is=dom-bind]'),
+      items = [
+        {"key":"one","val":"auto"},
+        {"key":"two","val":"left"},
+        {"key":"three","val":"right"},
+        {"key":"four","val":"top"},
+        {"key":"five","val":"bottom"}
+      ],
+      optionsArray = [
+        {
+          "for":"btn1",
+          "orientation": "right",
+          "tooltipMessage": "this is a right tooltip message",
+          "delay": 500,
+          "siblingElement": "<button id='btn1'>Hover over me</button>"
+        },
+        {
+          "for":"btn2",
+          "orientation": "left",
+          "tooltipMessage": "this is a left tooltip message",
+          "delay": 2500,
+          "siblingElement": "<button id='btn2'>Hover over me</button>"
+        },
+        {
+          "for":"btn3",
+          "orientation": "top",
+          "tooltipMessage": "this is a top tooltip message",
+          "delay": 1500,
+          "siblingElement": "<button id='btn3'>Hover over me</button>"
+        },
+        {
+          "for":"btn4",
+          "orientation": "bottom",
+          "tooltipMessage": "this is a bottom tooltip message",
+          "delay": 50,
+          "siblingElement": "<button id='btn4'>Hover over me</button>"
+        },
+      ],
+      indexPlusOne = function(num) {
+        return num + 1;
+      },
+      year = new Date();
+
+
+  template.selected = "0";
+  template.optionsArray = optionsArray;
+  template.indexPlusOne = indexPlusOne;
+  template.items = items;
+  template.year = year.getFullYear();
+
+});
+</script>
+
+</body>
+</html>

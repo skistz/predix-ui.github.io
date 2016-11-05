@@ -1,0 +1,44 @@
+{
+  "name": "px-tooltip",
+  "version": "0.9.4",
+  "main": [
+    "px-tooltip.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "OSS_Notice.pdf",
+    "px-tooltip.png",
+    "wct.conf.*",
+    "package.json"
+  ],
+  "dependencies": {
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#~1.0.2",
+    "polymer": "^1.6.0",
+    "px-theme": "~1.1.2"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "~0.6.0",
+    "web-component-tester": "~3.3.14",
+    "px-forms-design": "#~0.3.15",
+    "px-tables-design": "#~0.3.12",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
+    "px-polymer-font-awesome": "^0.1.8",
+    "px-tabs": "~0.5.0",
+    "px-api-viewer": "~0.1.0",
+    "px-demo-snippet": "^0.6.3",
+    "px-actionable-text-icons-design": "^0.1.0",
+    "px-code-design": "^0.2.11",
+    "px-headings-design": "^0.2.14",
+    "px-list-inline-design": "^0.2.11",
+    "px-dropdown": "^0.12.0",
+    "px-spacing-design": "~0.3.8",
+    "px-toggle-design": "^0.2.12",
+    "px-buttons-design": "^0.4.26"
+  }
+}
