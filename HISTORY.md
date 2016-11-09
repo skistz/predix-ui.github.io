@@ -1,3 +1,7 @@
+v0.1.22
+==================
+* fixed typos, alphabetical order
+
 v0.1.21
 ==================
 * added px-typeahead
