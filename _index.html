@@ -110,6 +110,32 @@
       },
 
       /**
+      * Explicitly hides the menu on mobile, if it is active.
+      */
+      ensureNavHidden = function() {
+        var sideNav = document.getElementById("side-nav"),
+            overlay = document.getElementById("overlay"),
+            menuOpenIcon = document.getElementById("menu__open-icon"),
+            menuCloseIcon = document.getElementById("menu__close-icon");
+
+        if (this.isMobile()) {
+          if (!sideNav.classList.contains('side-nav__default')) sideNav.classList.add('side-nav__default');
+          if (overlay.classList.contains('overlay')) overlay.classList.remove('overlay');
+          if (menuOpenIcon.classList.contains('is__hidden')) menuOpenIcon.classList.remove('is__hidden');
+          if (!menuCloseIcon.classList.contains('is__hidden')) menuCloseIcon.classList.add('is__hidden');
+        }
+      },
+
+      /**
+      * Checks if we're on a mobile-size screen by inspecting the visibility of
+      * the menu icon, which we hide on small screens with CSS.
+      */
+      isMobile = function() {
+        var menu = document.getElementById('menu');
+        return getComputedStyle(menu, 'display').display !== 'none';
+      },
+
+      /**
       * Shows the spinner
       */
       showSpinner = function() {
@@ -127,9 +153,16 @@
 
       window.addEventListener('px-sb-list-iframe-url-change', function(e) {
         var url = e.detail.url || 'landing_page.html';
-        if (e.detail.external) {
-          url = 'external_links.html';
-        }
+        if (e.detail.external) url = 'external_links.html';
+
+        // Show the spinner, we listen elsewhere for the iFrame to stop loading
+        // and will then hide the spinner
+        this.showSpinner();
+
+        // If we're on mobile, ensure the navigation hides
+        this.ensureNavHidden();
+
+        // Update the iFrame URL
         window.frames['iframe_a'].location.replace(url);
       });
 
@@ -137,6 +170,8 @@
       // Assign functions
       //template.getPreloadFrames = getPreloadFrames;
       template.toggleNavClasses = toggleNavClasses;
+      template.ensureNavHidden = ensureNavHidden;
+      template.isMobile = isMobile;
       template.showSpinner = showSpinner;
       template.hideSpinner = hideSpinner;
       template.iframeUrl = '';

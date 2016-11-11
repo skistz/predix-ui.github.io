@@ -1,3 +1,9 @@
+v0.1.23
+==================
+* Hide side navigation when user clicks a menu item on mobile
+* Show spinner when user clicks a menu item to indicate page is responding
+* Ensure iFrame container doesn't show double scroll bar on mobile
+
 v0.1.22
 ==================
 * fixed typos, alphabetical order
