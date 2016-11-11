@@ -1,3 +1,7 @@
+v0.1.24
+==================
+* Fix scrolling issue on mobile in Chrome
+
 v0.1.23
 ==================
 * Hide side navigation when user clicks a menu item on mobile
