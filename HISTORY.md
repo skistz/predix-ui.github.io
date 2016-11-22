@@ -1,3 +1,7 @@
+v0.2.0
+==================
+* optimized build process to include uglify JS
+
 v0.1.26
 ==================
 * updated link to px-polymer-font-awesome demo
