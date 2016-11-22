@@ -133,7 +133,7 @@ var buildPipe = lazypipe()
   // remove whitespace from inline css
   .pipe(polyclean.cleanCss)
   .pipe(uglify)
-  .pipe(crisper)
+  //.pipe(crisper)
   .pipe(gulp.dest,'.');
 
 
