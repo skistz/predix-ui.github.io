@@ -15,8 +15,7 @@ const rename = require('gulp-rename');
 const symlink = require("gulp-sym");
 const chmod = require('gulp-chmod');
 var lazypipe = require('lazypipe');
-const polyclean = require('polyclean');
-const crisper = require('gulp-crisper');
+var htmlmin = require('gulp-htmlmin');
 const vulcanize = require('gulp-vulcanize');
 
 const sassOptions = {
@@ -113,7 +112,6 @@ gulp.task('vulcanize', function() {
     }))
     .pipe(gulp.dest('.'));
 });
-var uglify = polyclean.uglifyJs;
 
 var buildPipe = lazypipe()
   // inline html imports, scripts and css
@@ -130,10 +128,7 @@ var buildPipe = lazypipe()
     inlineCSS: true,
     inlineScripts: true
   })
-  // remove whitespace from inline css
-  .pipe(polyclean.cleanCss)
-  .pipe(uglify)
-  //.pipe(crisper)
+  .pipe(htmlmin,{collapseWhitespace: true, removeComments: true, removeEmptyAttributes: true, minifyJS:true, minifyCSS:true})
   .pipe(gulp.dest,'.');
 
 
