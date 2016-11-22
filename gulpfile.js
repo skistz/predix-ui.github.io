@@ -11,10 +11,14 @@ const gulpif = require('gulp-if');
 const combiner = require('stream-combiner2');
 const bump = require('gulp-bump');
 const argv = require('yargs').argv;
-const vulcanize = require('gulp-vulcanize');
 const rename = require('gulp-rename');
 const symlink = require("gulp-sym");
 const chmod = require('gulp-chmod');
+var lazypipe = require('lazypipe');
+const polyclean = require('polyclean');
+const crisper = require('gulp-crisper');
+const vulcanize = require('gulp-vulcanize');
+
 const sassOptions = {
   importer: importOnce,
   importOnce: {
@@ -108,6 +112,33 @@ gulp.task('vulcanize', function() {
       path.basename = path.basename.substr(1);
     }))
     .pipe(gulp.dest('.'));
+});
+var uglify = polyclean.uglifyJs;
+
+var buildPipe = lazypipe()
+  // inline html imports, scripts and css
+  // also remove html comments
+  .pipe(function() {
+      return rename(function(path) {
+      path.basename = path.basename.substr(1);
+    });
+  })
+  .pipe(vulcanize,{
+    abspath: '',
+    //excludes: ['bower_components/px-theme/px-theme-styles.html'],
+    stripComments: true,
+    inlineCSS: true,
+    inlineScripts: true
+  })
+  // remove whitespace from inline css
+  .pipe(polyclean.cleanCss)
+  .pipe(uglify)
+  .pipe(crisper)
+  .pipe(gulp.dest,'.');
+
+
+gulp.task('build', function() {
+  return gulp.src('_*.html').pipe(buildPipe());
 });
 
 // Install the GIT hooks
