@@ -1,3 +1,7 @@
+v0.1.26
+==================
+* updated link to px-polymer-font-awesome demo
+
 v0.1.25
 ==================
 * added keywords to forms design
