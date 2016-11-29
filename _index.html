@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Predix UI</title>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="import" href="css/predix-ui-styles.html" />
-    <style include="predix-ui-styles" is="custom-style"></style>
     <link rel="import" href="bower_components/px-theme/px-theme-styles.html" />
-    <style include="px-theme-styles" is="custom-style"></style>
     <link rel="import" href="bower_components/iron-collapse/iron-collapse.html" />
     <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
     <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
@@ -32,7 +31,9 @@
   </head>
   <body unresolved>
     <template id="px-catalog-wrapper" is="dom-bind">
-      <style include="px-theme-styles"></style>
+      <style include="predix-ui-styles" is="custom-style"></style>
+      <style include="px-theme-styles" is="custom-style"></style>
+
       <px-catalog-state active-name="{{activeName}}" active-type="{{activeType}}"></px-catalog-state>
       <!-- header -->
       <section class="gray-bar flex flex--row flex--middle flex--justify">

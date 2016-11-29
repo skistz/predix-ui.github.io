@@ -1,6 +1,7 @@
 v0.2.0
 ==================
 * optimized build process to include uglify JS
+* organized gulpfile code and tasks
 
 v0.1.26
 ==================

@@ -9,16 +9,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="import" href="css/predix-ui-styles.html"/>
-    <style include="predix-ui-styles" is="custom-style"></style>
     <link rel="import" href="bower_components/px-theme/px-theme-styles.html">
-    <style include="px-theme-styles" is="custom-style"></style>
     <link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
     <link rel="import" href="bower_components/px-clipboard/px-clipboard.html">
     <link rel="import" href="bower_components/px-dropdown/px-dropdown.html" />
   </head>
   <body class="body">
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
     <template is="dom-bind">
       <section class="main u-mb++">
         <p class="caps muted">Quick Start Guide</p>
