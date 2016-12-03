@@ -1,6 +1,6 @@
 {
   "name": "px-typography-design",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "homepage": "https://github.com/PredixDev/px-typography-design.git",
   "authors": [
     "General Electric"
@@ -27,14 +27,14 @@
     "px-mixins-design": "~0.2.9"
   },
   "devDependencies": {
-    "px-sass-doc": "^0.2.9",
+    "px-sass-doc": "^0.2.10",
     "px-starter-kit-design": "~0.6.0"
   },
-  "_release": "1.1.5",
+  "_release": "1.1.7",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.5",
-    "commit": "2bb98a21420629b4628e4a38d42fc8b93d201469"
+    "tag": "v1.1.7",
+    "commit": "dd25294d0b210b4867b74cb4856ac13db04ce5c4"
   },
   "_source": "https://github.com/PredixDev/px-typography-design.git",
   "_target": "~1.1.1",

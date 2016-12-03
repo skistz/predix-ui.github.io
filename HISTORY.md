@@ -1,3 +1,7 @@
+v0.2.1
+==================
+* added px-timeline
+
 v0.2.0
 ==================
 * optimized build process to include uglify JS

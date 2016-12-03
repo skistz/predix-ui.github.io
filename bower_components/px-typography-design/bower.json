@@ -1,6 +1,6 @@
 {
     "name": "px-typography-design",
-    "version": "1.1.5",
+    "version": "1.1.7",
     "homepage": "https://github.com/PredixDev/px-typography-design.git",
     "authors": [
         "General Electric"
@@ -27,7 +27,7 @@
         "px-mixins-design": "~0.2.9"
     },
     "devDependencies": {
-        "px-sass-doc": "^0.2.9",
+        "px-sass-doc": "^0.2.10",
         "px-starter-kit-design": "~0.6.0"
     }
 }
