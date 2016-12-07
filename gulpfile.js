@@ -217,3 +217,22 @@ gulp.task('chmod', function() {
   .pipe(chmod(755))
   .pipe(gulp.dest('.git-hooks'));
 });
+
+gulp.task('generate-service-worker', function(callback) {
+  var swPrecache = require('sw-precache');
+  var rootDir = '.';
+
+  swPrecache.write(path.join(rootDir, 'service-worker.js'), {
+    staticFileGlobs: [rootDir + '/use*.html',
+                      rootDir + '/px*.html',
+                      rootDir + '/w*.html',
+                      rootDir + '/l*.html',
+                      rootDir + '/index.html',
+                      rootDir + '/g.html',
+                      rootDir + '/c.html',
+                      rootDir + '/img/**',
+                      rootDir + '/type/**',
+                      rootDir + '/css/**'],
+    stripPrefix: rootDir
+  }, callback);
+});
