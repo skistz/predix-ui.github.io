@@ -193,7 +193,7 @@ gulp.task('serve', function() {
  ******************************************************************************/
 
 gulp.task('build', function(callback) {
-  gulpSequence('sass','html')(callback);
+  gulpSequence('sass', 'html', 'generate-service-worker')(callback);
 });
 
 gulp.task('default', ['build']);
