@@ -26,7 +26,8 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
 @import "px-code-design/_base.code.scss";
-$inuit-webfont-path: '/bower_components/px-typography-design/type';
+
+$inuit-webfont-path: '/type';
 @import "px-typography-design/_base.typography.scss";
 $actionable: true;
 $actionable--action: true;
