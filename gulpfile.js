@@ -218,6 +218,14 @@ gulp.task('chmod', function() {
   .pipe(gulp.dest('.git-hooks'));
 });
 
+/*******************************************************************************
+ * SERVICE WORKER
+ *
+ * Builds (or rebuilds) a service worker to cache files on the site's app shell.
+ * Rebuilding the service worker invalidates the user's cache on the next
+ * visit to the site ensuring they get new files.
+ ******************************************************************************/
+
 gulp.task('generate-service-worker', function(callback) {
   var swPrecache = require('sw-precache');
   var rootDir = '.';
