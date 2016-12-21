@@ -12,7 +12,7 @@
  *
  * - `gulp build` - Run before releasing a new version of the project to
  *                  production. Builds *.scss files to the css/ directory,
- *                  processes _*.html files (vulcanize, minify, etc.) into
+ *                  processes _*.html files (minify, etc.) into
  *                  *.html files.
  ******************************************************************************/
 
@@ -33,7 +33,6 @@ const symlink = require("gulp-sym");
 const chmod = require('gulp-chmod');
 const lazypipe = require('lazypipe');
 const htmlmin = require('gulp-htmlmin');
-const vulcanize = require('gulp-vulcanize');
 
 /*******************************************************************************
  * SETTINGS
@@ -49,13 +48,6 @@ const sassOptions = {
     index: true,
     bower: true
   }
-};
-
-const vulcanizeOptions = {
-  abspath: '',
-  stripComments: true,
-  inlineCSS: true,
-  inlineScripts: true
 };
 
 const htmlminOptions = {
@@ -129,11 +121,10 @@ gulp.task('sass:clean', function() {
  * HTML BUILD PIPELINE
  *
  * Builds the _*.html files to *.html files to prepare for production. Uses
- * various methods to improve client performane (vulcanize, minify, etc).
+ * various methods to improve client performane (minify, etc).
  ******************************************************************************/
 
 var buildPipe = lazypipe()
-  .pipe(vulcanize, vulcanizeOptions)
   .pipe(htmlmin, htmlminOptions)
   .pipe(function() {
     return rename(function(path) {
@@ -181,7 +172,7 @@ gulp.task('bump:major', function(){
 
 gulp.task('serve', function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['css/*-styles.html', '*.html', 'bower_components/**/*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', '*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
 });
 
