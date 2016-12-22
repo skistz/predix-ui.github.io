@@ -137,7 +137,7 @@ self.addEventListener('fetch', function(event) {
     ];
 
     for (var resource of resourcesToRemap) {
-      if (url.includes(resource)){
+      if (url.includes(resource) && !url.includes('bower_components')){
         const lhsIndex = url.indexOf('px-');
         if (lhsIndex > 0){
           const rhsIndex = url.indexOf('/', lhsIndex);
