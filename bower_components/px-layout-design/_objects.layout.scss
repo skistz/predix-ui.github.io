@@ -15,57 +15,93 @@
  */
 
 @import 'px-defaults-design/_settings.defaults.scss';
+@import 'inuit-responsive-settings/_settings.responsive.scss';
 @import 'inuit-responsive-tools/_tools.responsive.scss';
 
-/// @type String [default] - Prepend value for all generated classes
+/// Prepend value for all generated classes
+/// @group px-layout-design:variables:style
+/// @type String [default]
 $inuit-layout-namespace             : $inuit-namespace !default;
 
-/// @type Number [default] - Minimum width of individual layout item
+/// Minimum width of individual layout item
+/// @group px-layout-design:variables:style
+/// @type Number [default]
 $inuit-layout-min-width             : 300px !default;
 
-/// @type Boolean [default] - Produce CSS for layout with tiny gutters between layout items?
+/// Produce CSS for layout with tiny gutters between layout items?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--tiny          : false !default;
 
-/// @type Boolean [default] - Produce CSS for layout with small gutters between layout items?
+/// Produce CSS for layout with small gutters between layout items?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--small         : false !default;
 
-/// @type Boolean [default] - Produce CSS for layout with large gutters between layout items?
+/// Produce CSS for layout with large gutters between layout items?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--large         : false !default;
 
-/// @type Boolean [default] - Produce CSS for layout with huge gutters between layout items?
+/// Produce CSS for layout with huge gutters between layout items?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--huge          : false !default;
 
-/// @type Boolean [default] - Produce CSS for layout with no gutters between layout items?
+/// Produce CSS for layout with no gutters between layout items?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--flush         : false !default;
 
-/// @type Boolean [default] - Produce CSS for layout items reversed?
+/// Produce CSS for layout items reversed?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--rev           : false !default;
 
-/// @type Boolean [default] - Produce CSS to align layout items to the vertical centers of each other?
+/// Produce CSS to align layout items to the vertical centers of each other?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--middle        : false !default;
 
-/// @type Boolean [default] - Produce CSS to align layout items to the vertical bottoms of each other?
+/// Produce CSS to align layout items to the vertical bottoms of each other?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--bottom        : false !default;
 
-/// @type Boolean [default] - Produce CSS to align layout items to all be the same height?
+/// Produce CSS to align layout items to all be the same height?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--full          : false !default;
 
-/// @type Boolean [default] - Produce CSS to make layout items fill up from the right hand side?
+/// Produce CSS to make layout items fill up from the right hand side?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--right         : false !default;
 
-/// @type Boolean [default] - Produce CSS to make the layout items fill up from the center outward?
+/// Produce CSS to make the layout items fill up from the center outward?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout--center        : false !default;
 
-/// @type Boolean [default] - Produce CSS to make an individual layout item fill up the height of its layout?
+/// Produce CSS to make an individual layout item fill up the height of its layout?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout__item--full    : false !default;
 
-/// @type Boolean [default] - Produce CSS to make an individual layout item fill up from the center vertically?
+/// Produce CSS to make an individual layout item fill up from the center vertically?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
+/// TODO: this should really be called "middle" since it's vertical rather than horizontal
 $inuit-enable-layout__item--center  : false !default;
 
-/// @type Boolean [default] - Produce CSS to make an individual layout item fill up from the bottom up?
+/// Produce CSS to make an individual layout item fill up from the bottom up?
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-enable-layout__item--bottom  : false !default;
 
-/// @type Boolean [default] - Set a variable assuming that `box-sizing  : border-box;` is not set globally. If it has been previously been defined, the following variable will be overriden and will be set to `true`.
+/// Set a variable assuming that `box-sizing  : border-box;` is not set globally. If it has been previously been defined, the following variable will be overriden and will be set to `true`.
+/// @group px-layout-design:variables:flag
+/// @type Boolean [default]
 $inuit-global-border-box            : false !default;
 
 /**
@@ -79,7 +115,7 @@ $inuit-global-border-box            : false !default;
     margin: 0;
     margin-left: -$inuit-base-spacing-unit;
     padding: 0;
-    
+
     > {
 
       /**
@@ -92,7 +128,7 @@ $inuit-global-border-box            : false !default;
           padding-left: $inuit-base-spacing-unit; /* [1] */
           flex: 1; /* [2] */
           flex-basis: calculateRem($inuit-layout-min-width);
-          
+
           &:nth-last-child(-n+4):first-child,
           &:nth-last-child(-n+4):first-child ~ .layout__item {
             flex-basis: calculateRem($inuit-layout-min-width * 1.5);
@@ -100,7 +136,7 @@ $inuit-global-border-box            : false !default;
               flex-basis: 0;
             }
           }
-          
+
           &:nth-last-child(-n+3):first-child,
           &:nth-last-child(-n+3):first-child ~ .layout__item {
             flex-basis: calculateRem($inuit-layout-min-width * 2);
@@ -108,15 +144,15 @@ $inuit-global-border-box            : false !default;
               flex-basis: 0;
             }
           }
-          
+
           @include media-query(desk-wide) {
             flex-basis: 0;
           }
-  
+
           @if $inuit-global-border-box == false {
             box-sizing: border-box; /* [3] */
           }
-  
+
       }
     }
 
@@ -325,7 +361,7 @@ $inuit-global-border-box            : false !default;
       align-self: stretch;
   }
 
-}  
+}
 
 @if ($inuit-enable-layout__item--center == true) {
 

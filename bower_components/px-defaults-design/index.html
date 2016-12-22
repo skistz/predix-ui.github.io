@@ -13,7 +13,9 @@
   <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
 
   <!-- 0: Import Module Styles -->
-  <link rel="stylesheet" type="text/css" href="css/px-defaults-design-demo.css" />
+  <link rel="import" href="css/px-defaults-design-demo-styles.html" />
+  <style include="px-defaults-design-demo-styles" is="custom-style"></style>
+
 </head>
 <body>
 <template id="just-for-demo" is="dom-bind">
@@ -32,9 +34,35 @@
 
 <!-- 2: Provide Usage Info -->
 <section data-slot="usage">
-This module defines default style variables that many modules in your project will rely on. Take a look at the **Customize Styles** section in the documentation above for a full list of available variables and instructions on how to use them.
+This module defines default style variables that many modules in your project will rely on.
 
 The defaults provided are a good starting point for most projects. To change any of the variables, override them in your project Sass file by adding the new definitions above your `@import` line.
+
+```
+<!-- Tiny base spacing unit -->
+<!-- 5px -->
+$inuit-base-spacing-unit--tiny
+
+
+<!-- Small base spacing unit -->
+<!-- 10px -->
+$inuit-base-spacing-unit--small
+
+
+<!-- Base spacing unit -->
+<!-- 15px -->
+$inuit-base-spacing-unit
+
+
+<!-- Large base spacing unit -->
+<!-- 20px -->
+$inuit-base-spacing-unit--large
+
+
+<!-- Huge base spacing unit -->
+<!-- 30px -->
+$inuit-base-spacing-unit--huge
+```
 </section>
 
 </px-sass-doc>

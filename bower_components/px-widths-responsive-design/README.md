@@ -33,7 +33,7 @@ Install this module and its dependencies using bower:
 
 Once installed, `@import` into your project's Sass file in its **Trumps layer**:
 
-    @import "px-spacing-responsive-design/_trumps.widths-responsive.scss";
+    @import "px-widths-responsive-design/_trumps.widths-responsive.scss";
 
 ## Options
 

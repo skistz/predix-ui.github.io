@@ -1,6 +1,50 @@
+v1.1.0
+==================
+* Updated dependencies
+
+v1.0.7
+==================
+* changing browser in wct testing from safari 8 to safari 10 on elcapitan
+
+v1.0.6
+==================
+* fixed file import for backward compatibility of v1.0.0a
+
+v1.0.5
+==================
+* added file import for backward compatibility of v1.0.0a
+
+v1.0.4
+==================
+* changing all devDeps to ^
+
+v1.0.3
+==================
+* Remove unused dependency.
+
+v1.0.2
+==================
+* Update px-theme to 2.0.1 and update test fixtures
+
+v1.0.1
+==================
+* added image to README
+
+v1.0.0
+==================
+* standardized name of main file
+* updated README
+* added Git issue/PR templates
+* updated license
+* removed dummy tests
+
+v0.1.10
+==================
+* added new demo page and auto-ghp
+
 v0.1.9
 ==================
-* updated README.md to correct sytax 
+* updated README.md to correct sytax
 
 v0.1.8
 ==================

@@ -1,3 +1,61 @@
+v0.2.0
+==================
+* Updated dependencies
+
+v0.1.17
+==================
+* changing browser in wct testing from safari 8 to safari 10 on elcapitan
+
+v0.1.16
+==================
+* changing all devDeps to ^
+
+v0.1.15
+==================
+* Update px-theme to 2.0.1 and update test fixtures
+
+v0.1.14
+==================
+* removing px-theme style call
+
+
+v0.1.13
+==================
+* changing Gruntfile.js to gulpfile.js
+
+v0.1.12
+==================
+* changed var names to be consistent with BEM
+
+v0.1.11
+==================
+* bower updating px-demo-snippet
+
+v0.1.10
+==================
+* added style variables for theming
+
+v0.1.9
+==================
+* added flex__item to div content tag to allow clipboard to expand full width again
+
+v0.1.8
+==================
+* fixed codepen
+
+v0.1.7
+==================
+* fixed layout issues
+* fixed demo and codepen
+
+v0.1.6
+==================
+* added title to clipboard icon
+
+v0.1.5
+==================
+* added hover state to clipboard icon
+
 v0.1.4
 ==================
 * latest demo snippet dependency and latest gulpfile.

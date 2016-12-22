@@ -13,7 +13,9 @@
   <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
 
   <!-- 0: Import Module Styles -->
-  <link rel="stylesheet" type="text/css" href="css/px-functions-design-demo.css" />
+  <link rel="import" href="css/px-functions-design-demo-styles.html" />
+  <style include="px-functions-design-demo-styles" is="custom-style"></style>
+
 </head>
 <body>
 <template id="just-for-demo" is="dom-bind">
@@ -72,7 +74,7 @@ The `remTopx` function does the opposite: it takes a value in REM and returns th
 
 Again, the size returned will depend on the base rem size set in your project.
 
-## Additional functions
+### Additional functions
 
 The functions module also provides a set of related utilities that take a number and compute a multiple or fraction of it. For example, you can use the following function to get the result of 3 * 4 and convert it to REM.
 

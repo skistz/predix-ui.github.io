@@ -47,9 +47,12 @@ html {
   overflow: hidden;
 }
 
+a, .sb-list__category{
+  color: $white;
+  text-decoration: none;
+}
+
 a {
-   color: $white;
-   text-decoration: none;
    &:hover {
        color: $select-blue-default;
    }

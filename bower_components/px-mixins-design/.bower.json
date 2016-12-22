@@ -1,6 +1,6 @@
 {
   "name": "px-mixins-design",
-  "version": "0.2.10",
+  "version": "0.3.1",
   "authors": [
     "General Electric"
   ],
@@ -22,19 +22,19 @@
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-defaults-design": "~0.3.0"
+    "px-defaults-design": "^1.0.2"
   },
   "devDependencies": {
-    "px-sass-doc": "~0.2.4",
-    "px-starter-kit-design": "~0.6.0"
+    "px-sass-doc": "^0.3.0",
+    "px-starter-kit-design": "^0.7.0"
   },
-  "_release": "0.2.10",
+  "_release": "0.3.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.10",
-    "commit": "9cc7ea66c500122d9cf9efe557c3b987744bff29"
+    "tag": "v0.3.1",
+    "commit": "95421a4f0c83bcee48aa444099f18f5194fe2d84"
   },
   "_source": "https://github.com/predixDev/px-mixins-design.git",
-  "_target": "~0.2.9",
+  "_target": "^0.3.0",
   "_originalSource": "px-mixins-design"
 }

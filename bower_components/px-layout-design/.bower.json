@@ -1,6 +1,6 @@
 {
   "name": "px-layout-design",
-  "version": "0.3.13",
+  "version": "0.4.1",
   "authors": [
     "General Electric"
   ],
@@ -12,33 +12,32 @@
     "grid",
     "layout"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-layout-design.git",
   "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "sass",
+    ".github",
+    "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.0"
+    "px-defaults-design": "^1.0.2",
+    "inuit-responsive-tools": "^0.1.3",
+    "inuit-responsive-settings": "^0.1.5"
   },
   "devDependencies": {
-    "px-buttons-design": "https://github.com/PredixDev/px-buttons-design.git#~0.4.0",
-    "px-code-design": "https://github.com/PredixDev/px-code-design.git#~0.2.0",
-    "px-colors-design": "https://github.com/PredixDev/px-colors-design.git#~0.2.0",
-    "px-iconography-design": "https://github.com/PredixDev/px-iconography-design.git#~0.2.0",
-    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.0"
+    "px-sass-doc": "^0.3.0",
+    "px-starter-kit-design": "^0.7.0"
   },
-  "_release": "0.3.13",
+  "_release": "0.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.13",
-    "commit": "75469020d71f5f83e6a8e1197e95919457b060ec"
+    "tag": "v0.4.1",
+    "commit": "3bba95f7e99b913df3cc4ed8032eb2d4e310a926"
   },
   "_source": "https://github.com/predixDev/px-layout-design.git",
-  "_target": "~0.3.7",
+  "_target": "^0.4.0",
   "_originalSource": "px-layout-design"
 }

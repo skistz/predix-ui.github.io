@@ -1,6 +1,6 @@
 {
   "name": "px-functions-design",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "The functions module contains contains functions that are required for using all Predix UI CSS modules. Use it to convert between units (i.e. pixels to REM and back again) and compute numbers.",
   "author": "General Electric",
   "private": false,
@@ -29,6 +29,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sequence": "^0.4.5",
+    "gulp-style-modules": "^0.1.0",
     "node-sass-import-once": "^1.2.0",
     "sassdoc": "^2.1.20",
     "stream-combiner2": "^1.1.1",

@@ -1,13 +1,13 @@
 {
   "name": "px-spinner",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "main": [
     "px-spinner.html"
   ],
   "ignore": [
     ".*",
     "npm-debug.log",
-    "Gruntfile.js",
+    "gulpfile.js",
     "sass",
     "bower_components",
     "node_modules",
@@ -19,32 +19,32 @@
   ],
   "dependencies": {
     "polymer": "^1.6.0",
-    "px-theme": "~1.1.2",
-    "px-layout-design": "~0.3.7"
+    "px-theme": "^2.0.1",
+    "px-layout-design": "^0.4.0"
   },
   "devDependencies": {
-    "px-starter-kit-design": "~0.6.0",
-    "px-forms-design": "#~0.3.15",
-    "px-tables-design": "#~0.3.12",
+    "px-starter-kit-design": "^0.7.0",
+    "px-forms-design": "^1.1.0",
+    "px-tables-design": "^1.1.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
-    "px-polymer-font-awesome": "^0.1.8",
-    "px-tabs": "~0.5.0",
-    "px-api-viewer": "~0.1.0",
-    "px-demo-snippet": "^0.6.4",
-    "px-toggle-design": "^0.2.12",
-    "px-actionable-text-icons-design": "^0.1.0",
-    "px-headings-design": "^0.2.14",
-    "px-code-design": "~0.2.11",
-    "px-list-inline-design": "^0.2.11"
+    "px-polymer-font-awesome": "^1.1.0",
+    "px-tabs": "^0.6.0",
+    "px-api-viewer": "^0.1.0",
+    "px-demo-snippet": "^0.6.9",
+    "px-toggle-design": "^1.1.0",
+    "px-actionable-text-icons-design": "^1.1.0",
+    "px-headings-design": "^0.3.0",
+    "px-code-design": "^1.1.0",
+    "px-list-inline-design": "^0.3.0"
   },
   "homepage": "https://github.com/PredixDev/px-spinner",
-  "_release": "0.4.3",
+  "_release": "0.5.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.3",
-    "commit": "3aa1ba90c867172cda00944d37a8da49825386c7"
+    "tag": "v0.5.0",
+    "commit": "3d40990ee32023c78a0e0a25c964ce110977fdf2"
   },
   "_source": "https://github.com/PredixDev/px-spinner.git",
-  "_target": "^0.4.3",
+  "_target": "^0.5.0",
   "_originalSource": "px-spinner"
 }

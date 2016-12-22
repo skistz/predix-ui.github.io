@@ -14,7 +14,17 @@
   <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
 
   <!-- 0: Import Module Styles -->
-  <link rel="stylesheet" type="text/css" href="css/px-helpers-design-demo.css" />
+  <link rel="import" href="css/px-helpers-design-demo-styles.html" />
+  <style include="px-helpers-design-demo-styles" is="custom-style"></style>
+
+  <style>
+    .boxContainer{
+      line-height:40px;
+      background-color:lightSkyBlue;
+      width:200px;
+      padding: 5px 10px;
+    }
+  </style>
 </head>
 <body>
 <template id="just-for-demo" is="dom-bind">
@@ -23,81 +33,163 @@
 <px-sass-doc
   module-name="px-helpers-design"
   description="A series of helper classes for use throughout Predix UI."
-  layer="objects"
+  layer="generic"
   sassdoc-path="sassdoc.json"
   dependencies='[
-    "https://github.com/PredixDev/px-functions-design",
+    "https://github.com/PredixDev/px-colors-design",
+    "https://github.com/inuitcss/settings.responsive",
     "https://github.com/inuitcss/tools.responsive"
   ]'
-  selected-options="{{selectedOptions}}"
-  hide-demo-container="true">
+  selected-options="{{selectedOptions}}">
 
 <!-- 2: Set Options -->
-<!-- N/A -->
+<px-sass-doc-option
+  option-name="Align Text"
+  choose-with="dropdown"
+  choices='[
+    "None",
+    "Text Left",
+    "Text Center",
+    "Text Right"
+  ]'
+  default-choice="None">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Floats"
+  choose-with="dropdown"
+  choices='[
+    "None",
+    "Float Right",
+    "Float Left"
+  ]'
+  default-choice="None">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Cursor"
+  choose-with="dropdown"
+  choices='[
+    "None",
+    "Informative",
+    "Pointer"
+  ]'
+  default-choice="None">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Hide"
+  choose-with="dropdown"
+  choices='[
+    "None",
+    "Hidden",
+    "Invisible",
+    "Visually Hidden"
+  ]'
+  default-choice="None">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Muted Text"
+  choose-with="boolean">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="All Caps"
+  choose-with="boolean">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Proceed"
+  choose-with="boolean">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Full Height"
+  choose-with="boolean">
+</px-sass-doc-option>
 
 <!-- 3: Make HTML Demo -->
+<section data-slot="demoHTML">
+
+  <div class$="{{cssClasses}}">Text</div>
+
+</section>
+
 <!-- N/A -->
 
 <!-- 4: Set Import Slot -->
-<!-- N/A -->
+<section data-slot="import">
+@import "px-helpers-design/_generic.helpers.scss";
+</section>
 
-<!-- 5: Set Usage HTML -->
+<!-- 4.1: API Intro -->
 <section data-slot="intro">
 Only use a helper class if an element/component doesn’t already have a class to which you could apply this styling, e.g. if you need to float `.main-nav` left then add `float:left;` to that ruleset as opposed to adding the `.float--left` class to the markup.
 
 A lot of these classes carry `!important` as you will always want them to win out over other selectors.
 </section>
 
+<!-- 5: Set Usage HTML -->
 <section data-slot="usage">
-### Float Left:
-<div class="float--left" style="line-height:40px;background-color:lightgray;padding:5px;">Floated Left</div>
-```
-<div class="float--left"></div>
-```
-### Float Right:
-<div class="float--right" style="line-height:40px;background-color:lightgray;padding:5px;">Floated Right</div>
-```
-<div class="float--right"></div>
-```
-### Text Align Left:
-<div class="text--left">Left Aligned Text</div>
-```
-<div class="text--left"></div>
-```
-### Text Align Center:
-<div class="text--center">Center Aligned Text</div>
-```
-<div class="text--center"></div>
-```
-### Text Align Right:
-<div class="text--right">Right Aligned Text</div>
-```
-<div class="text--right"></div>
-```
-### Informative:
-<div class="informative">Informative Element (hover over me!)</div>
-```
-<div class="informative"></div>
-```
-### Pointer:
-<div class="pointer">Element with an on-click handler, for example (hover over me!)</div>
-```
-<div class="pointer"></div>
-```
-### Muted Text:
-<div class="muted">Muted Text</div>
-```
-<div class="muted"></div>
-```
-### Proceed:
-<div class="proceed">Read More...</div>
-```
-<div class="proceed"></div>
-```
-### Capitalized Text:
-<div class="caps">All Caps</div>
-```
-<div class="caps"></div>
+  ```
+<!-- Text Align Left: -->
+<div class="text--left">...</div>
+
+
+<!-- Text Align Center: -->
+<div class="text--center">...</div>
+
+
+<!-- Text Align Right: -->
+<div class="text--right">...</div>
+
+
+<!-- Float Left: -->
+<div class="float--left">...</div>
+
+
+<!-- Float Right: -->
+<div class="float--right">...</div>
+
+
+<!-- Informative: -->
+<!-- Add a help cursor to any element that gives the user extra information on -->
+<div class="informative">...</div>
+
+
+<!-- Pointer: -->
+<!-- Add a pointer cursor to any element, useful for on-click events -->
+<div class="pointer">...</div>
+
+
+<!-- Hidden -->
+<!-- Hide visually and from screen readers -->
+<div class="hidden">...</div>
+
+
+<!-- Invisible -->
+<!-- Hide visually and from screen readers, but maintain layout -->
+<div class="invisible">...</div>
+
+
+<!-- Visually Hidden -->
+<!-- Hide content off-screen without resorting to `display:none;` -->
+<div class="invisible">...</div>
+
+
+<!-- Muted Text: -->
+<!-- Mute an object by reducing its opacity. -->
+<div class="muted">...</div>
+
+
+<!-- Capitalized Text: -->
+<!-- Apply capital case to an element -->
+<div class="caps">...</div>
+
+
+<!-- Proceed: -->
+<!-- Align items to the right where they imply progression/movement forward -->
+<div class="proceed">...</div>
+
+
+<!-- Full Height -->
+<!-- Hide content off-screen without resorting to `display:none;` -->
+<div class="full-height">...</div>
+
 ```
 </section>
 
@@ -110,24 +202,38 @@ A lot of these classes carry `!important` as you will always want them to win ou
 
   document.addEventListener('px-sass-doc-options-updated', function(evt) {
     template.importCode = template._importCode();
-    template.spanClass = template._spanClass();
+    template.cssClasses = template._calcCssClasses();
+
+    // Wait, then tell the highlighter to run after dom-if restamps
+    template.async(function(){ template.fire('px-sass-doc-demo-updated', {}) }, 10);
   });
 
-  template._spanClass = function() {
-    var opts = template.selectedOptions || {};
-    if (opts.Helper === "float left")     return "float--left";
-    if (opts.Helper === "float right")    return "float--right";
-    if (opts.Helper === "text left")      return "text--left";
-    if (opts.Helper === "text center")    return "text--center";
-    if (opts.Helper === "text right")     return "text--right";
-    if (opts.Helper === "informative")    return "informative";
-    if (opts.Helper === "muted")          return "muted";
-    if (opts.Helper === "proceed")        return "proceed";
-    if (opts.Helper === "all caps")       return "caps";
+  template._calcCssClasses = function() {
+    var opts = template.selectedOptions || {}, strings = [];
+    if (opts["Align Text"] === "Text Left")      strings.push("text--left");
+    if (opts["Align Text"] === "Text Center")    strings.push("text--center");
+    if (opts["Align Text"] === "Text Right")     strings.push("text--right");
+
+    if (opts["Floats"] === "Float Left")     strings.push("float--left");
+    if (opts["Floats"] === "Float Right")    strings.push("float--right");
+
+    if (opts["Cursor"] === "Informative")    strings.push("informative");
+    if (opts["Cursor"] === "Pointer")    strings.push("pointer");
+
+    if (opts["Hide"] === "Hidden")    strings.push("hidden");
+    if (opts["Hide"] === "Invisible")    strings.push("invisible");
+    if (opts["Hide"] === "Visually Hidden")    strings.push("visuallyhidden");
+
+    if (opts["Muted Text"] === true)    strings.push("muted");
+    if (opts["All Caps"] === true)    strings.push("caps");
+    if (opts["Proceed"] === true)    strings.push("proceed");
+    if (opts["Full Height"] === true)    strings.push("full-height");
+
+    return ("boxContainer " + strings.join(" ")).trim();
   };
 
   template._importCode = function() {
-    return '@import "px-helpers-design/_objects.box.scss";';
+    return '@import "px-helpers-design/_generic.helpers.scss";';
   };
 </script>
 

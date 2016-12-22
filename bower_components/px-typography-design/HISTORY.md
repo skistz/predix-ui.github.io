@@ -1,3 +1,18 @@
+v1.2.2
+=================
+* Update colors dependencies
+
+v1.2.1
+==================
+* Update missed design depndencies
+
+v1.2.0
+==================
+* Updated dependencies
+
+v1.1.8
+==================
+* Move to style modules to demos
 
 v1.1.7
 ==================

@@ -1,3 +1,38 @@
+v1.0.2
+==================
+* Updated dependencies
+
+v1.0.1
+==================
+* Move to style modules to demos
+v1.0.0
+==================
+* re-adding css vars with major bump
+
+v0.3.6
+==================
+* removed css vars for patch.
+
+v0.3.5
+==================
+* added style variables for theming
+
+v0.3.4
+==================
+* bumping sassdoc to propogate clipboard changes
+
+v0.3.3
+==================
+* bumping all version of px-sass-doc to get px-clipboard update
+
+v0.3.2
+==================
+* patch test
+
+v0.3.1
+==============================
+* Updated 'use it in your project' section of demo
+
 v0.3.0
 ==============================
 * Update to latest px-functions-design dependencies, fixing import loop

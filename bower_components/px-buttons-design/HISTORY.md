@@ -1,3 +1,76 @@
+v1.1.3
+==================
+* updated px-colors-design version number
+
+v1.1.2
+==================
+* Add px-iconography-design dependency
+
+v1.1.1
+==================
+* Update missed design depndencies
+
+v1.1.0
+==================
+* Updated dependencies
+
+v1.0.3
+==================
+* Add service worker for gh_pages.
+
+v1.0.2
+==================
+* Gulp fixes & style module naming changes.
+
+v1.0.1
+==================
+* Move demo page to use style module. Clean out dead code.
+
+v1.0.0
+==================
+* Reintroduce CSS style variables
+
+v0.4.40
+==================
+* remove CSS style variables from 0.4.X release track
+
+v0.4.39
+==================
+* added pointer-events:none to disabled buttons
+
+v0.4.38
+==================
+* Adding css variables for button colour styles.
+
+v0.4.37
+==================
+* bumping sassdoc to propogate clipboard changes
+
+v0.4.36
+==================
+* bumping all version of px-sass-doc to get px-clipboard update
+
+v0.4.35
+==================
+* patch test
+
+v0.4.34
+==============================
+* updating to fix safari demo height bug
+
+v0.4.33
+==============================
+* updated to px-sass-doc#0.2.8
+
+v0.4.32
+==============================
+* Updated dependencies
+* Updated boilerplate files
+
+v0.4.31
+==============================
+* added minor fixes to demo
+
 v0.4.30
 ==============================
 * fixed typo in demo
@@ -9,7 +82,7 @@ v0.4.29
 v0.4.28
 ==============================
 * fixed bower.json
-
+ç
 v0.4.27
 ==============================
 * added new demo and auto-ghp

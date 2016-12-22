@@ -1,6 +1,6 @@
 {
   "name": "px-spacing-design",
-  "version": "0.3.10",
+  "version": "0.4.1",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -23,19 +23,19 @@
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-defaults-design": "~0.2.11"
+    "px-defaults-design": "^1.0.2"
   },
   "devDependencies": {
-    "px-sass-doc": "~0.1.7",
-    "px-starter-kit-design": "~0.6.0"
+    "px-sass-doc": "^0.3.0",
+    "px-starter-kit-design": "^0.7.0"
   },
-  "_release": "0.3.10",
+  "_release": "0.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.10",
-    "commit": "ef07ca12c3db842e07f823705b67db2059fb4f49"
+    "tag": "v0.4.1",
+    "commit": "3428cfadcea16b284de3f9b5e6276f76b96a49bc"
   },
-  "_source": "https://github.com/PredixDev/px-spacing-design.git",
-  "_target": "~0.3.0",
-  "_originalSource": "https://github.com/PredixDev/px-spacing-design.git"
+  "_source": "https://github.com/predixDev/px-spacing-design.git",
+  "_target": "^0.4.0",
+  "_originalSource": "px-spacing-design"
 }

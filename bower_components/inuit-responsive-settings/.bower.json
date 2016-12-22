@@ -20,6 +20,6 @@
     "commit": "6fc74dae3cea39906d9d68f27a0f835758ef51c6"
   },
   "_source": "https://github.com/inuitcss/settings.responsive.git",
-  "_target": "~0.1.5",
+  "_target": "^0.1.5",
   "_originalSource": "inuit-responsive-settings"
 }

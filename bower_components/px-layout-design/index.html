@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-layout-design Demo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Boilerplate: Import Libraries -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-theme/px-theme-styles.html" />
+  <style include="px-theme-styles" is="custom-style"></style>
+  <link rel="import" href="../px-sass-doc/px-sass-doc.html" />
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+  <!-- 0: Import Module Styles -->
+  <link rel="import" href="css/px-layout-design-demo-styles.html" />
+  <style include="px-layout-design-demo-styles" is="custom-style"></style>
+
+</head>
+<body>
+<template id="just-for-demo" is="dom-bind">
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-layout-design"
+  description="The Predix UI Layout module defines the 'grid,' or more accurately the layout engine, for Predix UI."
+  layer="objects"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/PredixDev/px-defaults-design"
+  ]'
+  selected-options="{{selectedOptions}}">
+
+<!-- 2: Set Options -->
+<px-sass-doc-option
+  option-name="Gutters"
+  choose-with="dropdown"
+  choices='[
+    "flush",
+    "tiny",
+    "small",
+    "regular (default)",
+    "large",
+    "huge"
+  ]'
+  default-choice="regular (default)">
+</px-sass-doc-option>
+
+<px-sass-doc-option
+  option-name="Alignment"
+  choose-with="dropdown"
+  choices='[
+    "left (default)",
+    "center",
+    "right"
+  ]'
+  default-choice="left (default)">
+</px-sass-doc-option>
+
+<px-sass-doc-option
+  option-name="Reverse"
+  choose-with="boolean">
+</px-sass-doc-option>
+
+<px-sass-doc-option
+  option-name="Vertical"
+  choose-with="dropdown"
+  choices='[
+    "top (default)",
+    "middle",
+    "bottom",
+    "full"
+  ]'
+  default-choice="top (default)">
+</px-sass-doc-option>
+
+<px-sass-doc-option
+  option-name="Vertical (by Item)"
+  choose-with="dropdown"
+  choices='[
+    "top (default)",
+    "center",
+    "bottom"
+  ]'
+  default-choice="top (default)">
+</px-sass-doc-option>
+
+<!-- 3: Make HTML Demo -->
+<section data-slot="demoHTML">
+<div class$="{{layoutClasses}}">
+  <div class$="{{layoutItemClasses}}">Layout Item 1</div>
+  <div class$="{{layoutItemClasses}}">Layout Item 2. <br/> More text to show functionality.</div>
+  <div class$="{{layoutItemClasses}}">Layout Item 3</div>
+</div>
+</section>
+
+<!-- 4: Set Import Slot -->
+<section data-slot="import">
+{{importCode}}
+</section>
+
+<!-- 5: Set Usage HTML -->
+<section data-slot="intro">
+
+</section>
+
+<section data-slot="usage">
+```
+<!-- Layout -->
+<!-- Begin a layout group -->
+<div class="layout">...</div>
+
+
+<!-- Layout Item -->
+<!-- 1. Space columns apart. -->
+<!-- 2. Full-width unless told to behave otherwise. -->
+<!-- 3. Required to combine fluid widths and fixed gutters. -->
+<div class="layout">
+  <div class="layout__item"></div>
+</div>
+
+
+<!-- Layout Tiny -->
+<!-- 5px gutters -->
+<div class="layout layout--tiny"></div>
+
+
+<!-- Layout Small -->
+<!-- 10px gutters -->
+<div class="layout layout--small"></div>
+
+
+<!-- Layout Large -->
+<!-- 20px gutters -->
+<div class="layout layout--large"></div>
+
+
+<!-- Layout Huge -->
+<!-- 30px gutters -->
+<div class="layout layout--huge"></div>
+
+
+<!-- Layout Flush -->
+<!-- no gutters -->
+<div class="layout layout--huge"></div>
+
+
+<!-- Layout Reverse -->
+<!-- Reversed rendered order of layout items -->
+<div class="layout layout--rev"></div>
+
+
+<!-- Layout Middle -->
+<!-- Align layout items to the vertical centers of each other. -->
+<div class="layout layout--middle"></div>
+
+
+<!-- Layout Bottom -->
+<!-- Align layout items to the vertical bottoms of each other. -->
+<div class="layout layout--bottom"></div>
+
+
+<!-- Layout Full -->
+<!-- Align layout items to all be the same height. -->
+<div class="layout layout--full"></div>
+
+
+<!-- Layout Right -->
+<!-- Make the layout items fill up from the right hand side. -->
+<div class="layout layout--right"></div>
+
+
+<!-- Layout Center -->
+<!-- Make the layout items fill up from the center outward. -->
+<div class="layout layout--center"></div>
+
+
+<!-- Item Full -->
+<!-- Make an individual layout item fill up the height of its layout. -->
+<div class="layout layout__item--full"></div>
+
+
+<!-- Item Center -->
+<!-- Make an individual layout item fill up from the center vertically. -->
+<div class="layout layout__item--center"></div>
+
+
+<!-- Item Bottom -->
+<!-- Make an individual layout item fill up from the bottom up. -->
+<div class="layout layout__item--bottom"></div>
+
+```
+</section>
+
+</px-sass-doc>
+</template>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<script>
+  var template = document.querySelector('template[is=dom-bind]');
+
+  document.addEventListener('px-sass-doc-options-updated', function(evt) {
+    template.importCode = template._importCode();
+    template.layoutClasses = template._layoutClasses();
+    template.layoutItemClasses = template._layoutItemClasses();
+  });
+
+  template._layoutClasses = function() {
+    var opts = template.selectedOptions || {}, strings = [];
+    if (opts.Gutters === "flush")           strings.push("layout--flush");
+    if (opts.Gutters === "tiny")            strings.push("layout--tiny");
+    if (opts.Gutters === "small")           strings.push("layout--small");
+    if (opts.Gutters === "large")           strings.push("layout--large");
+    if (opts.Gutters === "huge")            strings.push("layout--huge");
+    if (opts.Reverse === true)              strings.push("layout--rev");
+    if (opts.Vertical === "middle")         strings.push("layout--middle");
+    if (opts.Vertical === "bottom")         strings.push("layout--bottom");
+    if (opts.Vertical === "full")           strings.push("layout--full");
+    if (opts.Alignment === "right")         strings.push("layout--right");
+    if (opts.Alignment === "center")        strings.push("layout--center");
+    return ("layout " + strings.join(" ")).trim();
+  };
+
+  template._layoutItemClasses = function() {
+    var opts = template.selectedOptions || {}, strings = [];
+    if(opts["Vertical (by Item)"] === "center")  strings.push("layout__item--center");
+    if(opts["Vertical (by Item)"] === "bottom")  strings.push("layout__item--bottom");
+    if(opts["Vertical (by Item)"] === "full")    strings.push("layout__item--full");
+    return ("layout__item u-1/4 " + strings.join(" ")).trim();
+  };
+
+  template._importCode = function() {
+    var opts = template.selectedOptions || {}, strings = [];
+    if (opts.Gutters === "flush")          strings.push("$inuit-enable-layout--flush : true;");
+    if (opts.Gutters === "tiny")           strings.push("$inuit-enable-layout--tiny : true;");
+    if (opts.Gutters === "small")          strings.push("$inuit-enable-layout--small : true;");
+    if (opts.Gutters === "large")          strings.push("$inuit-enable-layout--large : true;");
+    if (opts.Gutters === "huge")           strings.push("$inuit-enable-layout--huge : true;");
+    if (opts.Reverse === true)             strings.push("$inuit-enable-layout--rev : true;");
+    if (opts.Vertical === "middle")        strings.push("$inuit-enable-layout--middle : true;");
+    if (opts.Vertical === "bottom")        strings.push("$inuit-enable-layout--bottom : true;");
+    if (opts.Vertical === "full")          strings.push("$inuit-enable-layout--full : true;");
+    if (opts.Alignment === "right")        strings.push("$inuit-enable-layout--right : true;");
+    if (opts.Alignment === "center")       strings.push("$inuit-enable-layout--center : true;");
+    return (strings.join("\n") + "\n@import 'px-layout-design/_objects.layout.scss';").trim();
+  };
+</script>
+
+</body>
+</html>

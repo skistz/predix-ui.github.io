@@ -1,42 +1,49 @@
-# Box-sizing
+# px-box-sizing-design
 
-The Predix UI `box-sizing` module causes all elements to use the more useful `border-box` box model. This module is a fork of the [inuitcss Box-sizing module](https://github.com/inuitcss/generic.box-sizing).
+The box-sizing module sets the `box-sizing` property of all elements to `border-box`. Using the `border-box` model makes it easier to understand how changes to an element's spacing properties like `margin` or `padding` will impact the flow of elements. [Read more about `box-sizing` on the Mozilla Developer Network website.](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
 
+**px-box-sizing-design is a Predix UI CSS module.** You can find a demonstration and full documentation on the [Predix UI catalog](https://predixdev.github.io/predix-ui/?show=px-box-sizing-design&type=css]).
 
-## Dependency
+## Install the module
 
-Predix UI's Box-sizing module depends on one other Px module:
+To use the module, you need to install it in your project using Bower. Run this task on the command line from inside your project folder:
 
-* [px-functions-design](https://github.com/PredixDev/px-functions-design)
+```
+bower install --save px-box-sizing-design
+```
 
-## Upstream dependency
+## Import it in your Sass
 
-The Box-sizing module is also an upstream dependency in this meta kit:
+The module won't do anything until you import and configure it in your project Sass file. Follow these steps to import it:
 
-* [px-starter-kit-design](https://github.com/PredixDev/px-starter-kit-design)
+### 1. Enable Flags
 
-## Installation
+There are no flags to set before importing this module in your project Sass file.
 
-Install this module and its dependency using bower:
+### 2. Customize Styles
 
-    bower install --save px-box-sizing-design
+There are no style variables to set before importing this module in your project Sass file.
 
-Once installed, `@import` into your project's Sass file in its Generic layer:
+### 3. Import Sass File
 
-    @import "px-box-sizing-design/_generic.box-sizing.scss";
+Import the module by placing this code into the **Generic** layer of your project Sass file:
 
-## Import once
+```
+@import 'px-box-sizing-design/_generic.box-sizing.scss';
+```
 
-All rulesets are wrapped in the following `@if` statement:
+## Use it in your project
 
-    @if import-once('generic.box-sizing') { ... }
+Importing this module in your Sass will automatically set the following variable flag to `true` for other components:
 
-## Usage
+```
+$intuit-global-border-box : true;
+```
 
-By importing the Box-sizing module this variable flag is set to true:
+This will tell other modules that you are using the `border-box` CSS box model. You don't have to do anything else.
 
-    $inuit-global-border-box
+The component will also set all elements to use `box-sizing: border-box`.
 
-This tells other modules you are using the `border-box` CSS box model.
+## Dependencies
 
-View the full API [here](http://predixdev.github.io/px-box-sizing-design/sassdoc/)
+This module doesn't have any dependencies.

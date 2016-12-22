@@ -1,7 +1,7 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 @import "px-defaults-design/_settings.defaults.scss";
-  
+
 /**
  *
  * 1. Set the default `font-size` and `line-height` for the entire project,
@@ -17,12 +17,15 @@
  */
 
 html {
+  background-color: $inuit-base-background-color;
   font-size: ($inuit-base-font-size / 16px) * 1em; /* [1] */
   line-height: $inuit-base-line-height / $inuit-base-font-size; /* [1] */
-  background-color: $inuit-base-background-color;
-  color: $inuit-base-text-color;
   overflow-y: scroll; /* [2] */
   min-height: 100%; /* [3] */
+}
+
+:host, html {
+  color: $inuit-base-text-color;
   text-size-adjust: 100%; /* [4] */
   -moz-osx-font-smoothing: grayscale; /* [5] */
   -webkit-font-smoothing: antialiased; /* [5] */

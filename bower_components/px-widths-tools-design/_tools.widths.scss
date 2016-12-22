@@ -5,11 +5,14 @@
 ////
 
 @import "px-defaults-design/_settings.defaults.scss";
-
-/// @type String [default] - Prepend value for all generated classes
+/// Prepend value for all generated classes
+/// @group px-widths-tools-design:variables:style
+///
+/// @type String [default]
 $inuit-widths-namespace   : $inuit-namespace !default;
-
-/// @type Boolean [default] - Do we want to use classes like u-1/4 instead of u-1-of-4?
+/// when this flag is true, it creates classes in the name format `u-1/4`. When false, classes are created with the name format `u-1-of-4`
+/// @type Boolean [default]
+/// @group px-widths-tools-design:variables:flag
 $inuit-use-fractions      : true !default;
 
 // Depending on what we chose for `$inuit-use-fractions`, create the relevant delimiter.

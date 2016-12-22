@@ -14,7 +14,9 @@
   <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
 
   <!-- 0: Import Module Styles -->
-  <link rel="stylesheet" type="text/css" href="css/px-mixins-design-demo.css" />
+  <link rel="import" href="css/px-mixins-design-demo-styles.html" />
+  <style include="px-mixins-design-demo-styles" is="custom-style"></style>
+
 </head>
 <body>
 <template id="just-for-demo" is="dom-bind">
@@ -47,23 +49,39 @@
 The following Sass mixins are provided:
 
 ### inuit-font-size
-Generates rem sized fonts with line height from pixel sizes. Can take the following parameters:
-- $inuit-font-size
-- $inuit-line-height
+Generates rem sized fonts with line height from pixel sizes.<br/>
+Can take the following parameters:
+```
+<!-- @param {Number}  $inuit-font-size           - Font size in pixels -->
+<!-- @param {Number}  $inuit-line-height [auto]  - Line height in pixels -->
+
+@include inuit-font-size($inuit-font-size, $inuit-line-height: auto);
+```
 
 ### border-right-left
-Swaps horizontal border placement if HTML direction switched to `dir=rtl`. Can take the following parameters:
-- $inuit-border-position
-- $inuit-border-color
-- $inuit-border-width
-- $inuit-border-style
+Swaps horizontal border placement if HTML direction switched to `dir=rtl`. <br/>
+Can take the following parameters:
+```
+<!-- @param {String}  $inuit-border-position         - Left or right border -->
+<!-- @param {Color}   $inuit-border-color [inherit]  - Border color -->
+<!-- @param {Number}  $inuit-border-width [1px]      - Border width -->
+<!-- @param {String}  $inuit-border-style            - CSS border style value -->
+
+@include border-right-left($inuit-border-position, $inuit-border-color: inherit, $inuit-border-width: 1px, $inuit-border-style: solid);
+```
 
 ### font-face
-Generates webfont-friendly font families. Can take the following parameters:
-- $font-family
-- $file-path
-- $weight
-- $style
+Generates webfont-friendly font families.<br/>
+Can take the following parameters:
+
+```
+<!-- @param {String}  $font-family      - Name of font family @font-face will use -->
+<!-- @param {String}  $file-path        - Path to webfont file -->
+<!-- @param {String}  $weight [normal]  - CSS Font weight value -->
+<!-- @param {String}  $style [normal]   - CSS Font style value -->
+
+@include font-face($font-family, $file-path, $weight: normal, $style: normal);
+```
 </section>
 
 </px-sass-doc>

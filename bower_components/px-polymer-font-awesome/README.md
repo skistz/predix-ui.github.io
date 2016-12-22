@@ -1,73 +1,72 @@
-# polymer-font-awesome
+# px-polymer-font-awesome [![Build Status](https://travis-ci.org/PredixDev/px-polymer-font-awesome.svg?branch=master)](https://travis-ci.org/PredixDev/px-polymer-font-awesome)
 
-An element providing a starting point for your own reusable Polymer elements.
+[![px-polymer-font-awesome demo](px-polymer-font-awesome.png?raw=true)](https://PredixDev.github.io/px-polymer-font-awesome/)
 
+## Overview
 
-## Dependencies
+px-polymer-font-awesome the font awesome icons, made available - in a shadow dom compliant way - through a polymer tag.
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+## Usage
 
-    npm install -g bower
+### Prerequisites
+1. node.js
+2. npm
+3. bower
+4. [webcomponents-lite.js polyfill](https://github.com/webcomponents/webcomponentsjs)
 
-Then, go ahead and install the element and its dependencies:
+Node, npm and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
 
-    bower install px-polymer-font-awesome
+### Getting Started
 
-## Using this component
+First, install the component via bower on the command line.
 
-To use this component, include the import link at the top of your page:
 ```
-<link rel="import" href="bower_components/polymer-font-awesome/polymer-font-awesome.html" />
-```   
+bower install px-polymer-font-awesome --save
+```
 
-and call the requested icon in your code like so:
+Second, import the component to your application with the following tag in your head.
+
+```
+<link rel="import" href="/bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html"/>
+```
+
+Finally, use the component in your application:
 
 ```
 <iron-icon icon="fa:fa-angle-down"></iron-icon>
 ```
 
-## Playing With Your Element
+<br />
+<hr />
 
-If you wish to work on your element in isolation, we recommend that you use
-[Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
-bower dependencies in line. You can install it via:
+## documentation
 
-    npm install -g polyserve
+Read the full API and view the demo [here](https://predixdev.github.io/px-polymer-font-awesome).
 
-And you can run it via:
+## Local Development
 
-    polyserve
+From the component's directory...
 
-Once running, you can preview your element at
-`http://localhost:8080/components/polymer-font-awesome/`, where `polymer-font-awesome` is the name of the directory containing it.
+```
+$ npm install
+$ bower install
+$ gulp sass
+```
 
+From the component's directory, to start a local server run:
 
-## Testing Your Element
+```
+$ gulp serve
+```
 
-Simply navigate to the `/test` directory of your element to run its tests. If
-you are using Polyserve: `http://localhost:8080/components/polymer-font-awesome/test/`
+Navigate to the root of that server (e.g. http://localhost:8080/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
 
-### web-component-tester
+### GE Coding Style Guide
+[GE JS Developer's Guide](https://github.com/GeneralElectric/javascript)
 
-The tests are compatible with [web-component-tester](https://github.com/Polymer/web-component-tester).
-Install it via:
+<br />
+<hr />
 
-    npm install -g web-component-tester
+## Known Issues
 
-Then, you can run your tests on _all_ of your local browsers via:
-
-    wct
-
-#### WCT Tips
-
-`wct -l chrome` will only run tests in chrome.
-
-`wct -p` will keep the browsers alive after test runs (refresh to re-run).
-
-`wct test/some-file.html` will test only the files you specify.
-
-
-## Yeoman support
-
-If you'd like to use Yeoman to scaffold your element that's possible. The official [`generator-polymer`](https://github.com/yeoman/generator-polymer) generator has a [`seed`](https://github.com/yeoman/generator-polymer#seed) subgenerator.
+Please use [Github Issues](https://github.com/PredixDev/px-polymer-font-awesome/issues) to submit any bugs you might find.

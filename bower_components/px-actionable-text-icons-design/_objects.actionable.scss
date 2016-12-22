@@ -25,13 +25,13 @@
   &:visited,
   &:active,
   &:focus {
-    color: $primary-blue;
+    color: var(--px-actionable-text-color, $primary-blue);
   }
   &:hover{
-    color: $primary-blue-hover;
+    color: var(--px-actionable-text-color--hover, $primary-blue-hover);
   }
   &:active {
-    color: $primary-blue-pressed;
+    color: var(--px-actionable-text-color--active, $primary-blue-pressed);
   }
 }
 
@@ -41,13 +41,13 @@
   &:visited,
   &:active,
   &:focus {
-    color: $select-blue-default;
+    color: var(--px-selectable-text-color, $select-blue-default);
   }
   &:hover{
-    color: $select-blue-hover;
+    color: var(--px-selectable-text-color--hover, $select-blue-hover);
   }
   &:active {
-      color: $select-blue-pressed;
+      color: var(--px-selectable-text-color--active, $select-blue-pressed);
     }
   }
 
@@ -57,13 +57,13 @@
   &:visited,
   &:active,
   &:focus {
-    color: $gray8;
+    color: var(--px-actionable-alt-text-color, $gray8);
   }
   &:hover{
-    color: $primary-blue;
+    color: var(--px-actionable-alt-text-color--hover, $primary-blue);
   }
   &:active {
-      color: $primary-blue-pressed;
+      color: var(--px-actionable-alt-text-color--active, $primary-blue-pressed);
     }
   }
 
@@ -75,7 +75,7 @@
     &:hover,
     &:active {
       cursor: not-allowed;
-      color: $gray4;
+      color: var(--px-disabled-text-color, $gray4);
     }
   }
 

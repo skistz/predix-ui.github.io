@@ -22,13 +22,13 @@ $inuit-base-line-height         : 20px !default;
 ///
 /// @group px-defaults-design:variables:style
 /// @type Color [default] - Base text color
-$inuit-base-text-color          : rgb(0,0,0) !default;
+$inuit-base-text-color          : var(--px-base-text-color, rgb(0,0,0)) !default;
 
 /// Sets the project-wide base background color.
 ///
 /// @group px-defaults-design:variables:style
 /// @type Color [default] - Base background color
-$inuit-base-background-color    : rgb(255,255,255) !default;
+$inuit-base-background-color    : var(--px-base-background-color, rgb(255,255,255)) !default;
 
 /// Sets a prefix that will be added to the beginning of all classes across your project. (e.g. 'px' or 'intuit').
 ///

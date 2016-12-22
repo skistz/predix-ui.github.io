@@ -1,3 +1,56 @@
+v2.1.1
+==================
+* Updated iron-dropdown dependency
+
+v2.1.0
+==================
+* Updated dependencies
+
+v2.0.8
+==================
+* changing browser in wct testing from safari 8 to safari 10 on elcapitan
+
+v2.0.7
+==================
+* added --px-dropdown-text-color css var
+
+v2.0.6
+==================
+* changing all devDeps to ^
+
+v2.0.5
+==================
+* Update px-theme to 2.0.1 and update test fixtures
+
+v2.0.4
+==================
+* removing px-theme style call
+
+
+v2.0.3
+==================
+* changing Gruntfile.js to gulpfile.js
+
+v2.0.2
+==================
+* fixed style variables for consistency
+
+v2.0.1
+==================
+* added the style header in the docs
+
+v2.0.0
+==================
+* added css variables, and changed previous ones to match the BEM naming.
+
+v1.0.1
+==================
+* bower updating px-demo-snippet
+
+v1.0.0
+===============
+* accepted PR that fixed multiple checkbox behavior and standardized event names
+
 v0.13.0
 ===============
 * added property for disabled dropdown

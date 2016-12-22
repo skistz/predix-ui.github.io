@@ -1,18 +1,17 @@
 {
   "name": "px-box-sizing-design",
-  "version": "0.2.8",
+  "version": "0.2.16",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
   ],
-  "description": "Global box-sizing options for Predix Experience",
+  "description": "Global box-sizing options for Predix UI",
   "main": "_generic.box-sizing.scss",
   "keywords": [
     "px",
     "sass",
     "box-sizing"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-box-sizing-design.git",
   "private": false,
   "ignore": [
@@ -20,15 +19,20 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "OSS_Notice.pdf"
   ],
-  "_release": "0.2.8",
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-sass-doc": "^0.3.0"
+  },
+  "_release": "0.2.16",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.8",
-    "commit": "a0c2aeb574b237c18af708a80bc2abf19269f0f0"
+    "tag": "v0.2.16",
+    "commit": "da2ab159351c8e78bf72ac0a9f105924aacbfaa8"
   },
-  "_source": "https://github.com/PredixDev/px-box-sizing-design.git",
-  "_target": "~0.2.0",
-  "_originalSource": "https://github.com/PredixDev/px-box-sizing-design.git"
+  "_source": "https://github.com/predixDev/px-box-sizing-design.git",
+  "_target": "^0.2.0",
+  "_originalSource": "px-box-sizing-design"
 }

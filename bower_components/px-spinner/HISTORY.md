@@ -1,3 +1,41 @@
+v0.5.0
+==================
+* Updated dependencies
+
+v0.4.11
+==================
+* changing browser in wct testing from safari 8 to safari 10 on elcapitan
+
+v0.4.10
+==================
+* changed font awesome folder name
+
+v0.4.9
+==================
+* changing all devDeps to ^
+
+v0.4.8
+==================
+* Update px-theme to 2.0.1 and update test fixtures
+
+v0.4.7
+==================
+* removing px-theme style call
+
+
+v0.4.6
+==================
+* changing Gruntfile.js to gulpfile.js
+
+
+v0.4.5
+==================
+* bower updating px-demo-snippet
+
+v0.4.4
+================
+* added style variables for theming
+
 v0.4.3
 ================
 * Updated dependencies

@@ -1,3 +1,7 @@
+v0.4.0
+==================
+* Updated dependencies
+
 v0.3.8
 ==============================
 * added oss_notice to bower ignore and updated readme

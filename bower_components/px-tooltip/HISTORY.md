@@ -1,6 +1,81 @@
-v0.9.4
+v0.10.3
+==================
+* fixed light tooltip color
+
+v0.10.2
+==================
+* allow to manually call _show without it origniatiing from an event (falling back on target)
+
+v0.10.1
+==================
+* fix watchdog for cases were target is an array
+
+v0.10.0
+==================
+* Updated dependencies
+
+v0.9.19
+==================
+* adding light version theme vars
+
+v0.9.18
+==================
+* changing browser in wct testing from safari 8 to safari 10 on elcapitan
+
+v0.9.17
+==================
+* Added a watchdog to remove the tooltip if the parent has been removed
+* Added watchDogTimeout to get control over the watchDog performance impact (205ms by default)
+* Fixed hide/show issues
+* Fies event lsitening problems
+
+v0.9.16
+==================
+* changing all devDeps to ^
+
+v0.9.15
+==================
+* Update px-theme to 2.0.1 and update test fixtures
+
+v0.9.14
+==================
+* turned max width into a mixin
+
+v0.9.13
+==================
+* give (hidden) default values to mouseCoords in case the tooltip has been requried to be shown without the mouse positions being known yet
+
+v0.9.12
+==================
+* update dependencies for dropdown
+
+v0.9.11
+==================
+* removing px-theme style call
+
+v0.9.10
+==================
+* ensure smart orientation works with followMouse
+
+v0.9.9
+==================
+* changing Gruntfile.js to gulpfile.js
+
+v0.9.8
+==================
+* bower updating px-demo-snippet
+
+v0.9.7
 =================
-* Update dependencies
+* rebuild css
+
+v0.9.6
+=================
+* updated dependencies
+
+v0.9.5
+=================
+* added style variables for theming
 
 v0.9.3
 =================

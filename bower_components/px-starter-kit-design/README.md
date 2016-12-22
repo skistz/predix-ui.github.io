@@ -16,10 +16,12 @@ Strictly speaking, the Starter Kit is just a collection of dependencies and noth
 
 ## Usage
 
-The modules must be imported in the following order (read more about [why the order matters](https://github.com/PredixDev/px-getting-started#import-order)):
+Use the following as a template for your sass file. Inside this template,the modules must be imported in the following order (read more about [why the order matters](https://github.com/PredixDev/px-getting-started#import-order)):
 
     // Settings
     @import "px-colors-design/_settings.colors.scss";
+
+    // Tools
 
     // Generic
     @import "px-normalize-design/_generic.normalize.scss";
@@ -31,13 +33,14 @@ The modules must be imported in the following order (read more about [why the or
     @import "px-viewport-design/_base.viewport.scss";
     @import "px-typography-design/_base.typography.scss";
 
+    // Meta
+
+    // Objects
+
+    // Component
+    // Your css goes in here
+
     // Trumps
     @import "inuit-clearfix/_trumps.clearfix.scss";
     @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
     @import "px-widths-responsive-design/_trumps.widths-responsive.scss";
-
-## NPM & Grunt
-
-Also, the Starter Kit includes `package.json` and `Gruntfile.js` templates (as well as the necessary supporting grunt task configurations) for compiling your Sass and passing the resulting CSS through [Autoprefixer](https://github.com/postcss/autoprefixer).
-
-To get these, `git clone` this repository. Note, you'll need to fill in paths relevant to your project in the grunt tasks (found under `tasks/options`) replacing `'TODO'` with the appropriate file locations.

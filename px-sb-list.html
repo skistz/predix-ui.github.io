@@ -34,7 +34,7 @@ Element providing a dropdown solution.
     <template is="dom-if" if="{{_showNavItem(navItem)}}">
       <li on-click="_toggle" class="flex flex--middle nav-group-lnk">
         <div id="arrow" class$="{{_arrowClass(navItem.opened)}} arrow" data-name$="{{_removeSpaces(navItem)}}"></div>
-        <div class="u-ml--" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
+        <div class="u-ml-- sb-list__category" data-name$="{{_removeSpaces(navItem)}}">{{navItem.linkText}}</div>
       </li>
       <iron-collapse id$="collapse_{{_removeSpaces(navItem)}}" opened$="{{_isOpened(navItem.opened)}}">
         <ul>

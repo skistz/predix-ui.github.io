@@ -1,6 +1,6 @@
 {
   "name": "px-spacing-responsive-design",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -13,7 +13,6 @@
     "responsive",
     "spacing"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-spacing-responsive-design.git",
   "private": false,
   "ignore": [
@@ -27,15 +26,15 @@
   "dependencies": {
     "inuit-responsive-settings": "~0.1.5",
     "inuit-responsive-tools": "~0.1.2",
-    "px-spacing-design": "https://github.com/PredixDev/px-spacing-design.git#~0.3.0"
+    "px-spacing-design": "^0.4.0"
   },
-  "_release": "0.3.8",
+  "_release": "0.4.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.8",
-    "commit": "b79b0a977e2cf051bfab0d234782e95c593d9115"
+    "tag": "v0.4.0",
+    "commit": "d07994423e67397a614d89c34535f36cff172d70"
   },
-  "_source": "https://github.com/PredixDev/px-spacing-responsive-design.git",
-  "_target": "~0.3.0",
-  "_originalSource": "https://github.com/PredixDev/px-spacing-responsive-design.git"
+  "_source": "https://github.com/predixDev/px-spacing-responsive-design.git",
+  "_target": "^0.4.0",
+  "_originalSource": "px-spacing-responsive-design"
 }
