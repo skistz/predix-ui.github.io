@@ -193,8 +193,10 @@ self.addEventListener('fetch', function(event) {
     for (var resource of resourcesToRemap) {
       if (url.includes(resource)){
         const lhsIndex = url.indexOf('px-');
-        const rhsIndex = url.indexOf('/', lhsIndex);
-        url = url.replace(url.substr(lhsIndex, rhsIndex - lhsIndex), 'bower_components')
+        if (lhsIndex > 0){
+          const rhsIndex = url.indexOf('/', lhsIndex);
+          url = url.replace(url.substr(lhsIndex, rhsIndex - lhsIndex), 'bower_components')
+        }
       }
     }
 
