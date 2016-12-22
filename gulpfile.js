@@ -231,7 +231,14 @@ gulp.task('generate-service-worker', function(callback) {
                       rootDir + '/c.html',
                       rootDir + '/img/**',
                       rootDir + '/type/**',
-                      rootDir + '/css/**'],
-    stripPrefix: rootDir
+                      rootDir + '/css/**',
+                      rootDir + '/bower_components/polymer/polymer.html',
+                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
+                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
+                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
+                      rootDir + '/bower_components/hydrolysis/hydrolysis.*',
+                      rootDir + '/bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html'],
+    stripPrefix: rootDir,
+    maximumFileSizeToCacheInBytes: 6000000 //this needed so hydrolysis is cached...
   }, callback);
 });
