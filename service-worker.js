@@ -181,6 +181,23 @@ self.addEventListener('fetch', function(event) {
     // First, remove all the ignored parameter and see if we have that URL
     // in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
+
+    const resourcesToRemap = [
+      'polymer.html',
+      'webcomponents-lite.js',
+      'webcomponents-lite.min.js',
+      'hydrolysis.js',
+      'px-polymer-font-awesome.html'
+    ];
+
+    for (var resource of resourcesToRemap) {
+      if (url.includes(resource)){
+        const lhsIndex = url.indexOf('px-');
+        const rhsIndex = url.indexOf('/', lhsIndex);
+        url = url.replace(url.substr(lhsIndex, rhsIndex - lhsIndex), 'bower_components')
+      }
+    }
+
     shouldRespond = urlsToCacheKeys.has(url);
 
     // If shouldRespond is false, check again, this time with 'index.html'
