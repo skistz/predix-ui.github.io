@@ -5,7 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#2D2D30">
     <title>Predix UI</title>
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script>
+    (function() {
+      'use strict';
+
+      var onload = function() {
+        // For native Imports, manually fire WebComponentsReady so user code
+        // can use the same code path for native and polyfill'd imports.
+        if (!window.HTMLImports) {
+          document.dispatchEvent(
+            new CustomEvent('WebComponentsReady', {bubbles: true})
+          );
+        }
+      };
+
+      var webComponentsSupported = (
+        'registerElement' in document
+        && 'import' in document.createElement('link')
+        && 'content' in document.createElement('template')
+      );
+
+      if (!webComponentsSupported) {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+        script.onload = onload;
+        document.head.appendChild(script);
+      } else {
+        onload();
+      }
+    })();
+    </script>
     <link rel="import" href="bower_components/polymer/polymer.html" />
     <link rel="icon" defer href="img/favicon.ico" type="image/x-icon" />
     <link rel="import" async href="css/predix-ui-styles.html" />
@@ -32,7 +62,7 @@
     </style>
     <link defer rel="manifest" href="manifest.json">
   </head>
-  <body unresolved>
+  <body>
     <template id="px-catalog-wrapper" is="dom-bind">
       <style include="predix-ui-styles" is="custom-style"></style>
 
@@ -182,16 +212,16 @@
       // Assign variables
       this.iframeUrl = null;
       this.spinnerIsActive = true;
-
-      document.addEventListener("WebComponentsReady", function(e){
+      template.addEventListener('dom-change', function(e) {
         // Get DOM elements we'll manipulate
-        template.iframe = document.getElementById('iframe_a');
-        template.spinner = document.getElementById('spinner');
-        template.menu = document.getElementById("menu");
-        template.overlay = document.getElementById("overlay");
+        template.iframe = Polymer.dom(document).querySelector('#iframe_a');
+        template.spinner = Polymer.dom(document).querySelector('#spinner');
+        template.menu = Polymer.dom(document).querySelector('#menu');
+        template.overlay = Polymer.dom(document).querySelector('#overlay');
 
         // The spinner is active by default. When the iFrame loads, hide it.
         template.iframe.addEventListener("load", function(){
+
           this.hideSpinner();
         }.bind(template));
 
