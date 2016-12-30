@@ -56,7 +56,7 @@ a component.
         rawPath: {
           type: String,
           notify: true,
-          observer: '_checkRawPathHasTrailingSlash'
+          observer: '_ensureRawPathHasTrailingSlash'
         },
 
         /**
@@ -141,7 +141,8 @@ a component.
       observers: [
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
         '_handleActiveChange(activeName)',
-        '_updateFrameUrl(appPath, appPath.*)'
+        '_updateFrameUrl(appPath, appPath.*)',
+        '_syncPathToActiveAttrs(appPath, appPath.*)'
       ],
 
       attached: function() {
@@ -157,12 +158,40 @@ a component.
         }, 10);
       },
 
-      _checkRawPathHasTrailingSlash: function(newRawPath) {
+      /**
+       * When the raw URL path is changed, ensure that it has a trailing slash
+       * to make `app-route` happy with its parsing patterns.
+       *
+       * @param {Object} newRawPath
+       */
+      _ensureRawPathHasTrailingSlash: function(newRawPath) {
         if (newRawPath && newRawPath.length) {
           var lastItem = newRawPath.substring(newRawPath.length - 1);
           if (lastItem !== '/') {
             this.set('rawPath', newRawPath + '/');
           }
+        }
+      },
+
+      /**
+       * When the `appPath` changes, determine if we need to sync its changes
+       * to the `activeName` and `activeType` attributes to ensure the
+       * sidebar navigation is updated.
+       *
+       * @param {Object} newAppPath
+       */
+      _syncPathToActiveAttrs: function(newAppPath) {
+        if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
+          this.debounce('sync-path-to-active-attrs', function(){
+            debugger;
+            var activeName = this.activeName || '';
+            var activeType = this.activeType || '';
+
+            if ((newAppPath.name && newAppPath.name !== activeName) ||(newAppPath.type && newAppPath.type !== activeType)) {
+              this.set('activeName', newAppPath.name);
+              this.set('activeType', newAppPath.type);
+            }
+          }, 10);
         }
       },
 
@@ -183,35 +212,18 @@ a component.
             // If `type` is external, open an external window
             if (type === "external") {
               // this._openExternalWindow(name, type);
+              // return;
             }
-            // Otherwise, update the data attribute
-            else {
+
+            // Otherwise, check if either activeName or activeType is different
+            // from the appPath. If there is a difference, update.
+            var appPathName = this.appPath.name || '';
+            var appPathType = this.appPath.type || '';
+
+            if (name !== appPathName || type !== appPathType) {
               this.set('appPath', { type: type, name: name });
             }
           }, 10);
-        }
-      },
-
-      /**
-       * Module to retrieve the iFrame URL for a given type of component.
-       *
-       * @method types
-       */
-      types: {
-        "components": function(name) {
-          return "https://www.predix-ui.com/" + name + "/" + name + "/";
-        },
-        "local": function(name) {
-          return name + ".html";
-        },
-        "external": function(name) {
-          return "https://github.com/predixdev/" + name;
-        },
-        "css": function(name) {
-          return "https://predix-ui.com/" + name + "/" + name + "/";
-        },
-        "home": function() {
-          return 'landing_page.html';
         }
       },
 
