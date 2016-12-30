@@ -1,0 +1,430 @@
+<!--
+Copyright (c) 2016 GE Global Research. All rights reserved.
+
+The copyright to the computer software herein is the property of
+GE Global Research. The software may be used and/or copied only
+with the written permission of GE Global Research or in accordance
+with the terms and conditions stipulated in the agreement/contract
+under which the software has been supplied.
+-->
+
+<!-- Import Polymer -->
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<!--
+`px-catalog-router` is a bespoke router that handles URLs for the Predix UI
+catalog by setting the appropriate state on the page (i.e. iFrame/sidebar)
+or handles necessary redirects.
+
+# Redirect cases currently handled
+
+1. Redirect `/#/modules/:name` to the correct type
+
+When a URL like `/#/modules/px-context-browser` is recieved, redirects it to
+the correct path with the module's type. In this case, the browser would be
+redirected to `/#/components/px-context-browser`, because px-context-browser is
+a component.
+
+@element px-catalog-router
+-->
+
+<script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'px-catalog-router',
+
+      properties: {
+        /**
+         * The raw route path, harvested by an `app-location` instance. Useful
+         * for doing redirects on URLs that won't be deserialized into `appPath`.
+         *
+         * @type {Object}
+         */
+        rawRoute: {
+          type: Object,
+          value: function(){ return {}; }
+        },
+
+        /**
+         * The raw path from `app-location`. Useful to set the path manually for complex
+         * redirects requiring a total path rewrite.
+         *
+         * @type {String}
+         */
+        rawPath: {
+          type: String,
+          notify: true,
+          observer: '_ensureRawPathHasTrailingSlash'
+        },
+
+        /**
+         * The parsed app path. Expects an object with the following keys:
+         *
+         * * `type` - the kind of thing to show (i.e. 'components' or 'css')
+         * * `name` - the name of the specific page to show (i.e. 'px-data-table')
+         *
+         * Given the URL `https://domain.com/#/components/px-app-nav`, the object
+         * will have the data `{ type: 'components', name: 'px-app-nav' }`.
+         *
+         * @type {Object}
+         */
+        appPath: {
+          type: Object,
+          value: function(){ return {}; },
+          notify: true
+        },
+
+        /**
+         * The parsed app options. Could an an object with any arbitrary keys,
+         * or an empty object if no options are specified.
+         *
+         * Given the URL `https://domain.com/#/components/px-app-nav/{"theme":"dark"}`,
+         * the object will have the data `{ theme: 'dark' }`.
+         *
+         * @type {Object}
+         */
+        appOptions: {
+          type: Object,
+          value: function(){ return {}; },
+          notify: true
+        },
+
+        /**
+         * If `app-location` captures any query params, they will be passed
+         * to this object. Note that query params at the end of a hash string
+         * will not be present here and will need to be parsed manually.
+         *
+         * @type {Object}
+         */
+        queryParams: {
+          type: Object,
+          notify: true,
+          value: function(){ return {}; }
+        },
+
+        /**
+         * The active page name, from the sidebar (e.g. 'px-sass-doc')
+         *
+         * @type {String}
+         */
+        activeName: {
+          type: String,
+          value: '',
+          notify: true
+        },
+
+        /**
+         * The active page type, from the sidebar (e.g. 'component')
+         *
+         * @type {String}
+         */
+        activeType: {
+          type: String,
+          value: '',
+          notify: true
+        },
+
+        /**
+         * The URL for the currently active iFrame. If nothing is set, defaults
+         * to the catalog homepage.
+         *
+         * @type {String}
+         */
+        frameUrl: {
+          type: String,
+          notify: true
+        },
+
+        /**
+         * An object describing the navigation structure of our pages. Used to
+         * determine if we need to redirect from '/#/modules/name' type URLs.
+         *
+         * @type {Object}
+         */
+        navJson: {
+          type: Object,
+          value: function(){ return {}; }
+        }
+      },
+
+      observers: [
+        '_redirectOldQueryURLs(queryParams, queryParams.*)',
+        '_redirectModulePathURLs(appPath, appPath.*)',
+        '_handleActiveChange(activeName)',
+        '_updateFrameUrl(appPath, appPath.*)',
+        '_syncPathToActiveAttrs(appPath, appPath.*)'
+      ],
+
+      attached: function() {
+        // Wait a second, a check if there is no path. If there is no path,
+        // create a base by pushing a hash to the URL. This is necessary because
+        // we can't automatically update the path if there's no hash
+        // by setting the `appPath`.
+        this.async(function(){
+          var rawPath = this.rawPath || '';
+          if (!rawPath.length) {
+            this.set('rawPath', '/home/');
+          }
+        }, 10);
+      },
+
+      /**
+       * When the raw URL path is changed, ensure that it has a trailing slash
+       * to make `app-route` happy with its parsing patterns.
+       *
+       * @param {Object} newRawPath
+       */
+      _ensureRawPathHasTrailingSlash: function(newRawPath) {
+        if (newRawPath && newRawPath.length) {
+          var lastItem = newRawPath.substring(newRawPath.length - 1);
+          if (lastItem !== '/') {
+            this.set('rawPath', newRawPath + '/');
+          }
+        }
+      },
+
+      /**
+       * When the `appPath` changes, determine if we need to sync its changes
+       * to the `activeName` and `activeType` attributes to ensure the
+       * sidebar navigation is updated.
+       *
+       * @param {Object} newAppPath
+       */
+      _syncPathToActiveAttrs: function(newAppPath) {
+        if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
+          this.debounce('sync-path-to-active-attrs', function(){
+            var activeName = this.activeName || '';
+            var activeType = this.activeType || '';
+
+            if ((newAppPath.name && newAppPath.name !== activeName) ||(newAppPath.type && newAppPath.type !== activeType)) {
+              this.set('activeName', newAppPath.name);
+              this.set('activeType', newAppPath.type);
+            }
+          }, 10);
+        }
+      },
+
+      /**
+       * Called by an observer watching `activeName` and `activeType`. When these
+       * properties are updated, attempt to update the URL and send out the
+       * new iFrame URL.
+       *.
+       * @method _handleActiveChange
+       */
+      _handleActiveChange: function() {
+        if (this.activeName && this.activeName.length) {
+          // Wait a few ticks to make sure both activeName and activeType update
+          this.async(function() {
+            var name = this.activeName;
+            var type = this.activeType;
+
+            // If `type` is external, open an external window
+            if (type === "external") {
+              // this._openExternalWindow(name, type);
+              // return;
+            }
+
+            // Otherwise, check if either activeName or activeType is different
+            // from the appPath. If there is a difference, update.
+            var appPathName = this.appPath.name || '';
+            var appPathType = this.appPath.type || '';
+
+            if (name !== appPathName || type !== appPathType) {
+              this.set('appPath', { type: type, name: name });
+            }
+          }, 10);
+        }
+      },
+
+      /**
+       * Attempts to look up the URL of a resource given its name and type.
+       * Returns a URL (relative or full path).
+       *
+       * @method _findUrlByNameAndType
+       * @param {String} type - Type of the resource
+       * @param {String} name - Name of the resource
+       * @return {String}
+       */
+      _findUrlByNameAndType(type, name) {
+        if (type && type !== '') {
+          var knownTypes = {
+            components: function(name) {
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/';
+            },
+            css: function(name) {
+              return 'https://predix-ui.com/' + name + '/' + name + '/';
+            },
+            about: function(name) {
+              return '../../pages/about/' + name + '.html';
+            },
+            guides: function(name) {
+              return '../../pages/guides/' + name + '.html';
+            },
+            home: function() {
+              return '../../pages/home.html';
+            },
+            external: function(name) {
+              return 'https://github.com/predixdev/' + name;
+            }
+          };
+          var knownTypesKeys = Object.keys(knownTypes);
+
+          if (knownTypesKeys.indexOf(type) !== -1) {
+            return knownTypes[type](name);
+          }
+        }
+
+        // Return the default path, home
+        return knownTypes['home']();
+      },
+
+      /**
+       * Update the iFrame URL to match the `appPath`.
+       *
+       * @method _updateFrameUrl
+       * @param {Object} newAppPath
+      */
+      _updateFrameUrl: function(newAppPath) {
+        if (newAppPath && (typeof newAppPath === "object") && Object.keys(newAppPath).length) {
+          this.debounce('update-frame-url', function(){
+            var type = newAppPath.type;
+            var name = newAppPath.name;
+            if (type || name) {
+              var frameUrl = this._findUrlByNameAndType(type, name);
+              this.set('frameUrl', frameUrl);
+            }
+          }, 10);
+        }
+      },
+
+      /**
+       * If `appPath.key` is `modules`, redirect to the correct URL.
+       *
+       * @param {Object} newAppPath
+       */
+      _redirectModulePathURLs: function(newAppPath) {
+        if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
+          this.debounce('redirect-module-path-URLs', function(){
+            var type = newAppPath.type || '';
+            var name = newAppPath.name || '';
+
+            // If we are `type` of `modules`, try to search for nav item to get
+            // the correct type to set for the URL
+            if (type === 'modules') {
+              var foundType = this._searchNavForTypeByName(name);
+
+              if (!foundType) {
+                // @TODO: Handle case where not found, give some 404 page/message
+              }
+              else {
+                // Otherwise, set the new `appPath` to update the URL
+                this.set('appPath', { type: foundType, name: name });
+              }
+
+            }
+          }, 100);
+        }
+      },
+
+      /**
+       * Handle query parameters with the keys `type` or `show` and transform
+       * into a hash-y path, then set the hash-y path on properties that will
+       * notify up and change the URL.
+       *
+       * @method _redirectOldQueryURLs
+       * @param {Object} queryParams
+       */
+      _redirectOldQueryURLs: function(queryParams) {
+        if (queryParams && (typeof queryParams === 'object') && Object.keys(queryParams).length) {
+          this.debounce('redirect-old-query-URLs', function(){
+            var type;
+            var name;
+
+            // Check if `queryParams` object has the key `type`, which will be mapped
+            // to the type of the component
+            if (queryParams.type && queryParams.type.length) {
+              type = queryParams.type;
+            }
+
+            // Check if `queryParams` object has the key `show`, which will be
+            // mapped to the name of the component
+            if (queryParams.show && queryParams.show.length) {
+              name = queryParams.show;
+            }
+
+            // If this is the homepage (`/?show=landing_page&type=home`), the path should just
+            // be nothing (i.e. default to homepage)
+            if (type && name && (type === 'home' || name === 'landing_page')) {
+              type = 'home';
+              name = '';
+            }
+
+            // If type is `local`, rewrite names from underscore case to dash-y case
+            // Given a route that looks like this: `/?show=use_css&type=local`
+            // Will change the name to: `use-css`
+            if (type && name && type === 'local') {
+              name = name.replace(/_/g,'-');
+            }
+
+            // Remap certain `type` and `name` combinations to a new path that is less generic
+            // and looks like a real app route
+            // Given a route like this: `/?show=use-css&type=local`
+            // Will produce a path like this: `/#/guides/use-css`
+            var newTypeByName = {
+              'what-is-predix-ui' : 'about',
+              'getting-started' : 'guides',
+              'use-css' : 'guides',
+              'use-seed' : 'guides',
+              'use-component-generator' : 'guides'
+            };
+            var newTypeKeys = Object.keys(newTypeByName);
+            if (type && name && newTypeKeys.indexOf(name) !== -1) {
+              type = newTypeByName[name];
+            }
+
+            // Remap certain `type` to new names
+            if (type && type === 'component') {
+              type = 'components'
+            }
+
+            if (type || name) {
+              this.set('queryParams', {});
+              this.set('appPath', {});
+              this.set('rawPath', '/' + type + '/' + name);
+            }
+          }, 100);
+        }
+      },
+
+      /**
+       * Search the `navJson` object to find a module by name. If nothing is found,
+       * the method will return undefined.
+       *
+       * @param {String} name - Name of the module to find
+       * @return {String|Undefined} - If a matching item was found, its type is returned. Otherwise, returns null.
+       */
+      _searchNavForTypeByName: function(name) {
+        if (this.navJson && (typeof this.navJson === 'object') && Object.keys(this.navJson).length) {
+          var navJson = this.navJson;
+          var found;
+
+          var recurse = function(obj) {
+            for (var key in obj) {
+              if (obj[key].repoName === name) {
+                found = obj[key];
+              }
+              if (obj[key].links && obj[key].links.length) {
+                recurse(obj[key].links);
+              }
+            }
+          }
+
+          recurse(navJson);
+          return found ? found.dataType : null;
+        }
+      },
+    });
+  })();
+</script>
