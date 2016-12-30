@@ -55,7 +55,8 @@ a component.
          */
         rawPath: {
           type: String,
-          notify: true
+          notify: true,
+          observer: '_checkRawPathHasTrailingSlash'
         },
 
         /**
@@ -142,6 +143,28 @@ a component.
         '_handleActiveChange(activeName)',
         '_updateFrameUrl(appPath, appPath.*)'
       ],
+
+      attached: function() {
+        // Wait a second, a check if there is no path. If there is no path,
+        // create a base by pushing a hash to the URL. This is necessary because
+        // we can't automatically update the path if there's no hash
+        // by setting the `appPath`.
+        this.async(function(){
+          var rawPath = this.rawPath || '';
+          if (!rawPath.length) {
+            this.set('rawPath', '/home/')
+          }
+        }, 10);
+      },
+
+      _checkRawPathHasTrailingSlash: function(newRawPath) {
+        if (newRawPath && newRawPath.length) {
+          var lastItem = newRawPath.substring(newRawPath.length - 1);
+          if (lastItem !== '/') {
+            this.set('rawPath', newRawPath + '/');
+          }
+        }
+      },
 
       /**
        * Called by an observer watching `activeName` and `activeType`. When these
