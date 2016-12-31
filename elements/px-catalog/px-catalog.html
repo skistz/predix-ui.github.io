@@ -188,23 +188,6 @@
         }
       },
 
-      ready: function() {
-        window.addEventListener('px-sb-list-iframe-url-change', function(e) {
-          var url = e.detail.url || 'landing_page.html';
-          if (e.detail.external) url = 'external_links.html';
-
-          // Show the spinner, we listen elsewhere for the iFrame to stop loading
-          // and will then hide the spinner
-          this.showSpinner();
-
-          // If we're on mobile, ensure the navigation hides
-          this.ensureNavHidden();
-
-          // Update the iFrame URL
-          window.frames['iframe_a'].location.replace(url);
-        }.bind(this));
-      },
-
       attached: function() {
         this.checkIfIsMobile();
       },
@@ -224,7 +207,8 @@
         var currentUrl = frame.src;
 
         if ((typeof newVal !== 'undefined') && frame && currentUrl && (newVal !== currentUrl)) {
-          this.$.frameEl.src = newVal;
+          // this.$.frameEl.src = newVal;
+          window.frames['iframe_a'].location.replace(newVal);
         }
       },
 

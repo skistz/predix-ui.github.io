@@ -153,7 +153,7 @@ a component.
         this.async(function(){
           var rawPath = this.rawPath || '';
           if (!rawPath.length) {
-            this.set('rawPath', '/home/')
+            this.set('rawPath', '/home/');
           }
         }, 10);
       },
@@ -183,7 +183,6 @@ a component.
       _syncPathToActiveAttrs: function(newAppPath) {
         if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
           this.debounce('sync-path-to-active-attrs', function(){
-            debugger;
             var activeName = this.activeName || '';
             var activeType = this.activeType || '';
 
