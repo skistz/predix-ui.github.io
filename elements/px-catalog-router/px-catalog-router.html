@@ -135,11 +135,23 @@ a component.
         frameUrl: {
           type: String,
           notify: true
+        },
+
+        /**
+         * An object describing the navigation structure of our pages. Used to
+         * determine if we need to redirect from '/#/modules/name' type URLs.
+         *
+         * @type {Object}
+         */
+        navJson: {
+          type: Object,
+          value: function(){ return {}; }
         }
       },
 
       observers: [
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
+        '_redirectModulePathURLs(appPath, appPath.*)',
         '_handleActiveChange(activeName)',
         '_updateFrameUrl(appPath, appPath.*)',
         '_syncPathToActiveAttrs(appPath, appPath.*)'
@@ -288,6 +300,35 @@ a component.
       },
 
       /**
+       * If `appPath.key` is `modules`, redirect to the correct URL.
+       *
+       * @param {Object} newAppPath
+       */
+      _redirectModulePathURLs: function(newAppPath) {
+        if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
+          this.debounce('redirect-module-path-URLs', function(){
+            var type = newAppPath.type || '';
+            var name = newAppPath.name || '';
+
+            // If we are `type` of `modules`, try to search for nav item to get
+            // the correct type to set for the URL
+            if (type === 'modules') {
+              var foundType = this._searchNavForTypeByName(name);
+
+              if (!foundType) {
+                // @TODO: Handle case where not found, give some 404 page/message
+              }
+              else {
+                // Otherwise, set the new `appPath` to update the URL
+                this.set('appPath', { type: foundType, name: name });
+              }
+
+            }
+          }, 100);
+        }
+      },
+
+      /**
        * Handle query parameters with the keys `type` or `show` and transform
        * into a hash-y path, then set the hash-y path on properties that will
        * notify up and change the URL.
@@ -297,63 +338,93 @@ a component.
        */
       _redirectOldQueryURLs: function(queryParams) {
         if (queryParams && (typeof queryParams === 'object') && Object.keys(queryParams).length) {
-          var type;
-          var name;
+          this.debounce('redirect-old-query-URLs', function(){
+            var type;
+            var name;
 
-          // Check if `queryParams` object has the key `type`, which will be mapped
-          // to the type of the component
-          if (queryParams.type && queryParams.type.length) {
-            type = queryParams.type;
-          }
+            // Check if `queryParams` object has the key `type`, which will be mapped
+            // to the type of the component
+            if (queryParams.type && queryParams.type.length) {
+              type = queryParams.type;
+            }
 
-          // Check if `queryParams` object has the key `show`, which will be
-          // mapped to the name of the component
-          if (queryParams.show && queryParams.show.length) {
-            name = queryParams.show;
-          }
+            // Check if `queryParams` object has the key `show`, which will be
+            // mapped to the name of the component
+            if (queryParams.show && queryParams.show.length) {
+              name = queryParams.show;
+            }
 
-          // If this is the homepage (`/?show=landing_page&type=home`), the path should just
-          // be nothing (i.e. default to homepage)
-          if (type && name && (type === 'home' || name === 'landing_page')) {
-            type = 'home';
-            name = '';
-          }
+            // If this is the homepage (`/?show=landing_page&type=home`), the path should just
+            // be nothing (i.e. default to homepage)
+            if (type && name && (type === 'home' || name === 'landing_page')) {
+              type = 'home';
+              name = '';
+            }
 
-          // If type is `local`, rewrite names from underscore case to dash-y case
-          // Given a route that looks like this: `/?show=use_css&type=local`
-          // Will change the name to: `use-css`
-          if (type && name && type === 'local') {
-            name = name.replace(/_/g,'-');
-          }
+            // If type is `local`, rewrite names from underscore case to dash-y case
+            // Given a route that looks like this: `/?show=use_css&type=local`
+            // Will change the name to: `use-css`
+            if (type && name && type === 'local') {
+              name = name.replace(/_/g,'-');
+            }
 
-          // Remap certain `type` and `name` combinations to a new path that is less generic
-          // and looks like a real app route
-          // Given a route like this: `/?show=use-css&type=local`
-          // Will produce a path like this: `/#/guides/use-css`
-          var newTypeByName = {
-            'what-is-predix-ui' : 'about',
-            'getting-started' : 'guides',
-            'use-css' : 'guides',
-            'use-seed' : 'guides',
-            'use-component-generator' : 'guides'
-          };
-          var newTypeKeys = Object.keys(newTypeByName);
-          if (type && name && newTypeKeys.indexOf(name) !== -1) {
-            type = newTypeByName[name];
-          }
+            // Remap certain `type` and `name` combinations to a new path that is less generic
+            // and looks like a real app route
+            // Given a route like this: `/?show=use-css&type=local`
+            // Will produce a path like this: `/#/guides/use-css`
+            var newTypeByName = {
+              'what-is-predix-ui' : 'about',
+              'getting-started' : 'guides',
+              'use-css' : 'guides',
+              'use-seed' : 'guides',
+              'use-component-generator' : 'guides'
+            };
+            var newTypeKeys = Object.keys(newTypeByName);
+            if (type && name && newTypeKeys.indexOf(name) !== -1) {
+              type = newTypeByName[name];
+            }
 
-          // Remap certain `type` to new names
-          if (type && type === 'component') {
-            type = 'components'
-          }
+            // Remap certain `type` to new names
+            if (type && type === 'component') {
+              type = 'components'
+            }
 
-          if (type || name) {
-            this.set('queryParams', {});
-            this.set('appPath', {});
-            this.set('rawPath', '/' + type + '/' + name);
-          }
+            if (type || name) {
+              this.set('queryParams', {});
+              this.set('appPath', {});
+              this.set('rawPath', '/' + type + '/' + name);
+            }
+          }, 100);
         }
-      }
+      },
+
+      /**
+       * Search the `navJson` object to find a module by name. If nothing is found,
+       * the method will return undefined.
+       *
+       * @param {String} name - Name of the module to find
+       * @return {String|Undefined} - If a matching item was found, its type is returned. Otherwise, returns null.
+       */
+      _searchNavForTypeByName: function(name) {
+        if (this.navJson && (typeof this.navJson === 'object') && Object.keys(this.navJson).length) {
+          var navJson = this.navJson;
+          var found;
+
+          var recurse = function(obj) {
+            for (var key in obj) {
+              if (obj[key].repoName === name) {
+                found = obj[key];
+              }
+              if (obj[key].links && obj[key].links.length) {
+                recurse(obj[key].links);
+              }
+            }
+          }
+
+          recurse(navJson);
+          return found ? found.dataType : null;
+        }
+      },
     });
   })();
 </script>
