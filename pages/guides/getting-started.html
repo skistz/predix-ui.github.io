@@ -26,42 +26,44 @@
       <section class="main u-mb++">
         <p class="caps muted">Quick Start Guide</p>
         <h2 class="selected">Use Predix UI Components in your application</h2>
-        <p>Predix UI Components are a set of user interface pieces that can be quickly snapped together to build an application. This guide covers the steps to install a single component. Choose the component you'd like to install to update the documentation. Go through these steps for each component you want to install in your project (you can do them as many times as you'd like).</p>
+        <p>Predix UI Components are a set of user interface pieces that can be quickly snapped together to build an application. This guide covers the steps to install a single component (px-spinner).</p>
 
-        <p class="u-mb-"><strong>Choose a component to install:</strong></p>
-        <px-dropdown display-value='{{selectedComponent}}'>
+        <!-- <p>Choose the component you'd like to install to update the documentation. Go through these steps for each component you want to install in your project (you can do them as many times as you'd like).</p> -->
+
+        <!-- <p class="u-mb-"><strong>Choose a component to install:</strong></p>
+        <px-dropdown display-value='px-spinner'>
           <px-dropdown-content extend-dropdown='true' extend-dropdown-by='25' items='[[componentList]]'>
           </px-dropdown-content>
-        </px-dropdown>
+        </px-dropdown> -->
 
         <h4 class="u-mt++ u-pt++">Step 1: Complete the Bower Install</h4>
         <hr class="u--mt--">
         <p>Bower is an online repository and package manager of code snippets for the web. You should have a bower.json file in your app (created by using bower init in the command line in your app directory). Adding a bower file to your app means you allow bower to manage your dependencies. Components can be retrieved with bower by using the bower install command. This is the  first step to import a Predix UI component into your app.</p>
-        <p>For example, to install the latest version of the {{selectedComponent}} component, type the following command into a command line while inside your app directory:</p>
-        <px-clipboard data-clipboard-text="bower install {{selectedComponent}}">
+        <p>For example, to install the latest version of the px-spinner component, type the following command into a command line while inside your app directory:</p>
+        <px-clipboard copy-from="#install1">
           <figure class="code u-mr- u-mb">
             <code id="install1">
-              $ bower install {{selectedComponent}}
+              bower install px-spinner
             </code>
           </figure>
         </px-clipboard>
         <p>If you'd like to add the installed component to your bower.json file under the dependencies section when you initially install the component, add "–save” to the command as follows:</p>
-        <px-clipboard data-clipboard-text="bower install {{selectedComponent}} --save">
+        <px-clipboard copy-from="#install2">
           <figure class="code u-mr- u-mb">
             <code id="install2">
-              $ bower install {{selectedComponent}} --save
+              bower install px-spinner --save
             </code>
           </figure>
         </px-clipboard>
-        <p>The installed component will now be available in your app's directory under the bower_components/{{selectedComponent}} directory. Be sure to read more <a href="https://bower.io/" target="_blank">about bower</a> to make full use of this powerful tool.</p>
+        <p>The installed component will now be available in your app's directory under the bower_components/px-spinner directory. Be sure to read more <a href="https://bower.io/" target="_blank">about bower</a> to make full use of this powerful tool.</p>
 
         <h4 class="u-mt++ u-pt++">Step 2: Import the Link</h4>
         <hr class="u--mt--">
-        <p>Next, import the Predix UI component by using the link tag in your HTML code. Here's an example of how to import the {{selectedComponent}} component:</p>
+        <p>Next, import the Predix UI component by using the link tag in your HTML code. Here's an example of how to import the px-spinner component:</p>
         <px-clipboard copy-from="#import">
           <figure class="code u-mr- u-mb">
             <code id="import">
-               &lt;link rel="import" href="bower_components/{{selectedComponent}}/{{selectedComponent}}.html" /&gt;
+               &lt;link rel="import" href="bower_components/px-spinner/px-spinner.html" /&gt;
             </code>
           </figure>
         </px-clipboard>
@@ -69,18 +71,18 @@
 
         <h4 class="u-mt++ u-pt++">Step 3: Use the Tag</h4>
         <hr class="u--mt--">
-        <p>Now use the tag in your app. Continuing with the example above, use the {{selectedComponent}} component and insert the following code into your app:</p>
+        <p>Now use the tag in your app. Continuing with the example above, use the px-spinner component and insert the following code into your app:</p>
         <px-clipboard copy-from="#use1">
           <figure class="code u-mr- u-mb">
             <code id="use1">
-               &lt;{{selectedComponent}}&gt;&lt;/{{selectedComponent}}&gt;
+               &lt;px-spinner&gt;&lt;/px-spinner&gt;
             </code>
           </figure>
         </px-clipboard>
 
         <h4 class="u-mt++ u-pt++"> Step 4: Read the API</h4>
         <hr class="u--mt--">
-        <p>Every component has an interactive demo and API documentation page. You can find <a href="http://predix-ui.com/?show={{selectedComponent}}&type=component" target="_blank">the documentation for the {{selectedComponent}} component</a>, and all the rest, on the Predix UI Catalog.</p>
+        <p>Every component has an interactive demo and API documentation page. You can find <a href="http://predix-ui.com/?show=px-spinner&type=component" target="_blank">the documentation for the px-spinner component</a>, and all the rest, on the Predix UI Catalog.</p>
 
         <p><strong>Using the API documentation</strong></p>
         <p>For example, if you look at the <a href="http://predix-ui.com/?show=px-spinner&type=component" target="_blank">px-spinner API</a>, you'll see that it has a "finished” property that can be used to hide it. To hide the px-spinner component, set the "finished” attribute to true, as follows:</p>
@@ -125,53 +127,54 @@
     </footer>
 
     <script type="text/javascript">
-      var template = document.querySelector('template[is=dom-bind]');
-
-      document.addEventListener("WebComponentsReady", function(e){
-        template.componentList = [
-          "px-alert-label",
-          "px-alert-message",
-          "px-app-nav",
-          "px-card",
-          "px-deck-selector",
-          "px-sample-cards",
-          "px-widget-cards",
-          "px-percent-circle",
-          "px-simple-bar-chart",
-          "px-simple-horizontal-bar-chart",
-          "px-simple-line-chart",
-          "px-simple-win-loss-chart",
-          "px-chart",
-          "px-vis",
-          "px-vis-parallel-coordinates",
-          "px-vis-pie-chart",
-          "px-vis-polar",
-          "px-vis-radar",
-          "px-vis-spark",
-          "px-vis-timeseries",
-          "px-vis-xy-chart",
-          "px-clipboard",
-          "px-context-browser",
-          "px-data-table",
-          "px-dropdown",
-          "px-file-upload",
-          "px-polymer-font-awesome",
-          "px-inbox",
-          "px-kpi",
-          "px-login",
-          "px-modal",
-          "px-overlay",
-          "px-popover",
-          "px-progress-bar",
-          "px-slider",
-          "px-spinner",
-          "px-tabs",
-          "px-tooltip",
-          "px-view-header",
-          "px-validation"
-        ];
-        template.selectedComponent = "px-spinner";
-      });
+      // var template = document.querySelector('template[is=dom-bind]');
+      // template.componentList = [
+      //   "px-alert-label",
+      //   "px-alert-message",
+      //   "px-app-nav",
+      //   "px-card",
+      //   "px-deck-selector",
+      //   "px-sample-cards",
+      //   "px-widget-cards",
+      //   "px-percent-circle",
+      //   "px-simple-bar-chart",
+      //   "px-simple-horizontal-bar-chart",
+      //   "px-simple-line-chart",
+      //   "px-simple-win-loss-chart",
+      //   "px-chart",
+      //   "px-vis",
+      //   "px-vis-parallel-coordinates",
+      //   "px-vis-pie-chart",
+      //   "px-vis-polar",
+      //   "px-vis-radar",
+      //   "px-vis-spark",
+      //   "px-vis-timeseries",
+      //   "px-vis-xy-chart",
+      //   "px-clipboard",
+      //   "px-context-browser",
+      //   "px-data-table",
+      //   "px-dropdown",
+      //   "px-file-upload",
+      //   "px-polymer-font-awesome",
+      //   "px-inbox",
+      //   "px-kpi",
+      //   "px-login",
+      //   "px-modal",
+      //   "px-overlay",
+      //   "px-popover",
+      //   "px-progress-bar",
+      //   "px-slider",
+      //   "px-spinner",
+      //   "px-tabs",
+      //   "px-tooltip",
+      //   "px-view-header",
+      //   "px-validation"
+      // ];
+      // template.selectedComponent = "px-spinner";
+      //
+      // document.addEventListener("WebComponentsReady", function(e){
+      //
+      // });
     </script>
   </body>
 </html>
