@@ -323,7 +323,7 @@ a component.
           // Given a route that looks like this: `/?show=use_css&type=local`
           // Will change the name to: `use-css`
           if (type && name && type === 'local') {
-            name = name.replace('_','-');
+            name = name.replace(/_/g,'-');
           }
 
           // Remap certain `type` and `name` combinations to a new path that is less generic
