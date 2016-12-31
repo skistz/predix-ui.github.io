@@ -276,12 +276,14 @@ a component.
       */
       _updateFrameUrl: function(newAppPath) {
         if (newAppPath && (typeof newAppPath === "object") && Object.keys(newAppPath).length) {
-          var type = newAppPath.type;
-          var name = newAppPath.name;
-          if (type && name) {
-            var frameUrl = this._findUrlByNameAndType(type, name);
-            this.set('frameUrl', frameUrl);
-          }
+          this.debounce('update-frame-url', function(){
+            var type = newAppPath.type;
+            var name = newAppPath.name;
+            if (type || name) {
+              var frameUrl = this._findUrlByNameAndType(type, name);
+              this.set('frameUrl', frameUrl);
+            }
+          }, 10);
         }
       },
 
