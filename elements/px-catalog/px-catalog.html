@@ -15,8 +15,7 @@
 
 <!-- Import local dependencies -->
 <link rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link rel="import" href="../../px-sb.html" />
-<link rel="import" href="../../px-catalog-state.html" />
+<link rel="import" href="../px-catalog-sidebar/px-sb.html" />
 
 <dom-module id="px-catalog">
   <template>
@@ -62,8 +61,6 @@
         nav-JSON="{{navJSON}}">
     </px-catalog-router>
 
-    <!-- <px-catalog-state active-name="{{activeName}}" active-type="{{activeType}}"></px-catalog-state> -->
-
     <!-- App Header -->
     <section class="gray-bar flex flex--row flex--middle flex--justify">
       <span id="menu" class="menu">
@@ -97,7 +94,7 @@
         <div id="spinner">
           <px-spinner size="100"></px-spinner>
         </div>
-        <iframe src="../../_landing_page.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
+        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
           <p>Your browser does not support iframes.</p>
         </iframe>
       </div>
@@ -116,7 +113,7 @@
          */
         frameUrl: {
           type: String,
-          value: '../../landing_page.html',
+          value: '../../pages/home.html',
           observer: '_handleFrameUrlChanged'
         },
 
