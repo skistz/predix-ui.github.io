@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-gulp vulcanize
-
-git add -A
-git commit --amend -C HEAD
