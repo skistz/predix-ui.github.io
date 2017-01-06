@@ -189,7 +189,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
 
 gulp.task('copyFilesIntoRoot',function() {
     //the full array of what we want to end up in the root folder/
-   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.{eot, svg, ttf, woff}', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*'];
+   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.{eot, svg, ttf, woff}', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*'];
 
    //loop through our array to add each stream into the mergeStream process.
    copyFrom.forEach((fileOrFolder) => {
