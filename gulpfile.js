@@ -248,7 +248,7 @@ gulp.task('deleteFiles', function() {
      console.log("we're local.");
      path=".";
    }
-   gitSync.checkout('gh-pages',{args : '--orphan', cwd : path}, (err) => {
+   gitSync.checkout('master',{args : '--orphan', cwd : path}, (err) => {
      if (err) {
        console.log(err);
      }
@@ -257,10 +257,10 @@ gulp.task('deleteFiles', function() {
      return gulp.src('.', {cwd:path})
          .pipe(gitSync.add()) //git add
          .on('error', (err) => console.log(err))
-         .pipe(gitSync.commit('gh-pages rebuild', {maxBuffer: 'infinity'})) //git commit
+         .pipe(gitSync.commit('master rebuild', {maxBuffer: 'infinity'})) //git commit
          .on('error', (err) => console.log(err))
          .on('end', () => { //this is the only way i foudn to run this synchronously.
-           gitSync.push('origin', 'gh-pages', {cwd: path, args: "--force"}, (errPush) => {
+           gitSync.push('origin', 'master', {cwd: path, args: "--force"}, (errPush) => {
              if (errPush) {
                console.log('push error: ' + errPush);
              } else {
