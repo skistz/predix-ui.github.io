@@ -152,7 +152,7 @@ gulp.task('bump:major', function(){
 
 gulp.task('copyFilesIntoDist', ['sass'], function() {
     //the full array of what we want to end up in the dist folder/
-   let copyFrom = ['index.html', 'favicon.ico', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*'];
+   let copyFrom = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*'];
 
    //loop through our array to add each stream into the mergeStream process.
    copyFrom.forEach((fileOrFolder) => {
