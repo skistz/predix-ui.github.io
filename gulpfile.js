@@ -309,23 +309,24 @@ gulp.task('default', ['build']);
  ******************************************************************************/
 
 gulp.task('generate-service-worker', function(callback) {
-  var swPrecache = require('sw-precache');
+  var swPrecache = require('sw-precache'),
+      rootDir =  (!isTravis()) ? './dist' : '.';
 
-  swPrecache.write(path.join('./', 'service-worker.js'), {
-    staticFileGlobs: ['index.html',
-                      'img/**',
-                      'type/**',
-                      'pages/**',
-                      'elements/**/*.html',
-                      'css/**',
-                      'bower_components/px-theme/**/*.html',
-                      'bower_components/px-spinner/**/*.html',
-                      'bower_components/polymer/polymer*.html',
-                      'bower_components/webcomponentsjs/webcomponents-lite.js',
-                      'bower_components/webcomponentsjs/webcomponents-lite.min.js',
-                      'bower_components/hydrolysis/hydrolysis.*',
-                      'bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
-    stripPrefix: '.',
+  swPrecache.write(path.join(rootDir, 'service-worker.js'), {
+    staticFileGlobs: [rootDir + '/index.html',
+                      rootDir + '/img/**',
+                      rootDir + '/type/**',
+                      rootDir + '/pages/**',
+                      rootDir + '/elements/**/*.html',
+                      rootDir + '/css/**',
+                      rootDir + '/bower_components/px-theme/**/*.html',
+                      rootDir + '/bower_components/px-spinner/**/*.html',
+                      rootDir + '/bower_components/polymer/polymer*.html',
+                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
+                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
+                      rootDir + '/bower_components/hydrolysis/hydrolysis.*',
+                      rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
+    stripPrefix: rootDir,
     maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
     templateFilePath: 'sw.tmpl'
   }, callback);
