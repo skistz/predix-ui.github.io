@@ -296,26 +296,6 @@ gulp.task('prodBuild', function(callback) {
 
 gulp.task('default', ['build']);
 
-/*******************************************************************************
- * GIT HOOK INSTALLATION
- *
- * Tasks to help with installing githooks.
- ******************************************************************************/
-
-gulp.task('hooks', function() {
-  return gulp.src(['.git-hooks/post-merge'])
-  .pipe(symlink(['.git/hooks/post-merge'], {
-      relative: true,
-      force: true
-  }));
-});
-
-gulp.task('chmod', function() {
-  return gulp.src('.git-hooks/*')
-  .pipe(chmod(755))
-  .pipe(gulp.dest('.git-hooks'));
-});
-
 
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
