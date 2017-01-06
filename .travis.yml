@@ -1,0 +1,31 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+- stable
+branches:
+  except:
+  - gh-pages
+addons:
+  firefox: latest
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+before_script:
+- npm install web-component-tester
+- npm install bower
+- export PATH=$PWD/node_modules/.bin:$PATH
+- bower install
+after_success:
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$password"
+  -in id_rsa.enc -out id_rsa -d; fi
+- mv id_rsa ~/.ssh/
+- eval `ssh-agent -s`
+- chmod 0400 ~/.ssh/id_rsa
+- git remote set-url origin git@github.com:predix-ui/predix-ui.github.io.git
+- gulp prodBuild
+env:
+  global:
+    secure: AKESuYef+Ccx6bj52IancFbwArmidiCmgiOIfKPyUNZ7QZ9h6UFgsc2gmCCSP3Gia2pxXP0Qn8LY/cbU3C5E5KAqsBYS4qKeLqdF3u52uXnBBWoh1tlLPQFBX1+j/pikgfu/rG0fg6pSiBVurAbnptWLyFmHdCVbDUOvUmlwoobMwPib3lvg2jMb2vqMmE1IYHig6TfZ96fGW/MzawCVI2SKUHdfJp/1JPNidYWrUSJHIZKxRTvAijQPGQhFVtGlE0jwBTkuKF8xE0Cl9JUZdk3u/07BHnAB+MT+RaXEcHDiJBdaieFz4pK/BeDlowNgpsayE9pLOfZBiKF9Igp/2QhmgTobXojohoWjwggrLqYRwHtzCvoxnlleSlAADbK8EW/Whuc28GrD/nSXa9bIO/fDRMx6gzc/owg8Kl3BvNFRz6izcGfarq3jf+ITntd+4tN5FV5WeVKcyvU04L+Tdw5WgE/HYRg/OsXsSmBzdkbtab3gYc/cbMlSDQjYa2lrgZgEnezdCqSzIYgduLKjVtm05LnnpE7rtm4m4BhOeNa9SKkfoewd0U3KmBPkWqE4Jbj50cyAYD/MRbXrt38ZX4xWQSdNPqAGRHfszGVmE5YDMsxYQHf9XmGB4h+4cZmg5dlhxTVmmzozPlrY/jRwrQMBeFG8jJGI2TAxSmj013c=
