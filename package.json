@@ -34,5 +34,8 @@
     "stream-combiner2": "^1.1.1",
     "sw-precache": "^4.2.3",
     "yargs": "^6.0.0"
+  },
+  "dependencies": {
+    "del": "^2.2.2"
   }
 }
