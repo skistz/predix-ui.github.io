@@ -254,7 +254,7 @@ gulp.task('deleteFiles', function() {
      }
      console.log('finished checkout successfully');
      //set the source to our working directory and exclude node_modules
-     return gulp.src(['.', '!node_modules{,/**}'], {cwd:path}) //this line grabs everything and excludes the node_modules folder
+     return gulp.src(['**/*', '!/**/node_modules*/**/*'], {cwd:path}) //this line grabs everything and excludes the node_modules folder
          .pipe(gitSync.add()) //git add
          .on('error', (err) => console.log(err))
          .pipe(gitSync.commit('master rebuild', {maxBuffer: 'infinity'})) //git commit
