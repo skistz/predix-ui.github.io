@@ -245,7 +245,7 @@ gulp.task('deleteFiles', function() {
        console.log(err);
      }
      console.log('finished checkout successfully');
-     var src = ['./index.html', './favicon.ico', './manifest.json', './pages/**/*.html', './elements/**/*.{html,json}', './service-worker.js', './type/**/*.{eot, svg, ttf, woff}', './bower_components/**/*.*', './img/**/*.*', './css/**/*.*'];
+     var src = ['./index.html', './favicon.ico', './manifest.json', './pages/**/*.html', './elements/**/*.{html,json}', './service-worker.js', './type/**/*.{eot, svg, ttf, woff}', './bower_components/**/*.*', './img/**/*.*', './css/**/*.*', './sw.tmpl'];
      //set the source to our working directory and exclude node_modules
      return gulp.src(src, {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
          .pipe(gitSync.add()) //git add
