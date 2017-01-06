@@ -240,27 +240,19 @@ gulp.task('deleteFiles', function() {
  ******************************************************************************/
 
  gulp.task('gitStuff', function() {
-   var path;
-   if (isTravis()) {
-     console.log("we're in travis!");
-     path = process.env.TRAVIS_BUILD_DIR;
-   } else {
-     console.log("we're local.");
-     path=".";
-   }
-   gitSync.checkout('master',{args : '--orphan', cwd : path}, (err) => {
+   gitSync.checkout('master',{args : '--orphan', cwd : '.'}, (err) => {
      if (err) {
        console.log(err);
      }
      console.log('finished checkout successfully');
      //set the source to our working directory and exclude node_modules
-     return gulp.src(['**/*', '!/**/node_modules*/**/*'], {cwd:path}) //this line grabs everything and excludes the node_modules folder
+     return gulp.src(['**/*', '!/**/node_modules*/**/*'], {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
          .pipe(gitSync.add()) //git add
          .on('error', (err) => console.log(err))
          .pipe(gitSync.commit('master rebuild', {maxBuffer: 'infinity'})) //git commit
          .on('error', (err) => console.log(err))
          .on('end', () => { //this is the only way i foudn to run this synchronously.
-           gitSync.push('origin', 'master', {cwd: path, args: "--force"}, (errPush) => {
+           gitSync.push('origin', 'master', {cwd: '.', args: "--force"}, (errPush) => {
              if (errPush) {
                console.log('push error: ' + errPush);
              } else {
@@ -317,7 +309,7 @@ gulp.task('default', ['build']);
 
 gulp.task('generate-service-worker', function(callback) {
   var swPrecache = require('sw-precache'),
-      rootDir =  (!isTravis) ? './dist' : '.';
+      rootDir =  (!isTravis()) ? './dist' : '.';
 
   swPrecache.write(path.join(rootDir, 'service-worker.js'), {
     staticFileGlobs: [rootDir + '/index.html',
