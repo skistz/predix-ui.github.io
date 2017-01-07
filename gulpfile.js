@@ -62,6 +62,8 @@ const browserSyncOptions = {
   server: ['./', 'bower_components']
 };
 
+var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
+
 /*******************************************************************************
  * BASIC UTILITIES
  *
@@ -137,6 +139,44 @@ gulp.task('bump:major', function(){
 });
 
 /*******************************************************************************
+ * COPY FILES INTO ROOT
+ * This task loop through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
+ * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
+ * files/folders:
+ * index.html
+ * the pages folder (html files only)
+ * the elements folder (html and json)
+ * the css folder
+ * the img folder
+ * the type folder
+ * the bower_components
+ ******************************************************************************/
+
+gulp.task('copyFilesIntoRoot',function() {
+    //the full array of what we want to end up in the root folder/
+   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.{eot, svg, ttf, woff}', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*','CNAME', 'sw.tmpl'];
+
+   //loop through our array to add each stream into the mergeStream process.
+   copyFrom.forEach((fileOrFolder) => {
+     let current;
+     //do we have globbing? if not, just use the file/folder name.
+     if (fileOrFolder.indexOf('*') > -1) {
+      let firstIndex = fileOrFolder.indexOf('/');
+      let copyName = fileOrFolder.substr(0, firstIndex);
+      current = gulp.src(['./dist/' + copyName + '/**/*.*']).pipe(gulp.dest('./' + copyName));
+     } else {
+       current = gulp.src(['./dist/' + fileOrFolder]).pipe(gulp.dest('.'));
+     }
+     //add the current file/folder to the stream
+     stream.add(current);
+   });
+
+   //and make sure it's not empty before we return it.
+   return stream.isEmpty() ? null : stream;
+});
+
+
+/*******************************************************************************
  * COPY FILES INTO DIST
  * This task loops through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
  * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
@@ -152,7 +192,7 @@ gulp.task('bump:major', function(){
 
 gulp.task('copyFilesIntoDist', ['sass'], function() {
     //the full array of what we want to end up in the dist folder/
-   let copyFrom = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*','CNAME', 'sw.tmpl'];
+   let copyFrom = src;
 
    //loop through our array to add each stream into the mergeStream process.
    copyFrom.forEach((fileOrFolder) => {
@@ -209,7 +249,6 @@ gulp.task('deleteFiles', function() {
        console.log(err);
      }
      console.log('finished checkout successfully');
-     var src = ['./index.html', './favicon.ico', './manifest.json', './pages/**/*.html', './elements/**/*.{html,json}', './service-worker.js', './type/**/*.{eot, svg, ttf, woff}', './bower_components/**/*.*', './img/**/*.*', './css/**/*.*', './sw.tmpl','CNAME'];
      //set the source to our working directory and exclude node_modules
      return gulp.src(src, {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
          .pipe(gitSync.add()) //git add
@@ -261,7 +300,7 @@ gulp.task('default', ['build']);
  *
  ******************************************************************************/
  var isTravis = function() {
-   return process.env.TRAVIS == true;
+   return process.env.IS_TRAVIS.toString() === "true";
  };
 
 /*******************************************************************************
