@@ -261,7 +261,7 @@ gulp.task('default', ['build']);
  *
  ******************************************************************************/
  var isTravis = function() {
-   return process.env.TRAVIS === true;
+   return process.env.TRAVIS == true;
  };
 
 /*******************************************************************************
@@ -276,7 +276,7 @@ gulp.task('generate-service-worker', function(callback) {
   var swPrecache = require('sw-precache'),
       rootDir =  (isTravis()) ? '.' : './dist';
 
-      console.log("isTravis = " + isTravis());
+      console.log("isTravis = " + isTravis()  );
   swPrecache.write(path.join(rootDir, '/service-worker.js'), {
     staticFileGlobs: [rootDir + '/index.html',
                       rootDir + '/img/**',
