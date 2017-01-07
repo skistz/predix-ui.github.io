@@ -138,7 +138,7 @@ gulp.task('bump:major', function(){
 
 /*******************************************************************************
  * COPY FILES INTO DIST
- * This taks loop through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
+ * This task loops through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
  * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
  * files/folders:
  * index.html
@@ -152,7 +152,7 @@ gulp.task('bump:major', function(){
 
 gulp.task('copyFilesIntoDist', ['sass'], function() {
     //the full array of what we want to end up in the dist folder/
-   let copyFrom = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*'];
+   let copyFrom = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*','CNAME', 'sw.tmpl'];
 
    //loop through our array to add each stream into the mergeStream process.
    copyFrom.forEach((fileOrFolder) => {
@@ -173,42 +173,6 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
    return stream.isEmpty() ? null : stream;
 });
 
-/*******************************************************************************
- * COPY FILES INTO DIST
- * This taks loop through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
- * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
- * files/folders:
- * index.html
- * the pages folder (html files only)
- * the elements folder (html and json)
- * the css folder
- * the img folder
- * the type folder
- * the bower_components
- ******************************************************************************/
-
-gulp.task('copyFilesIntoRoot',function() {
-    //the full array of what we want to end up in the root folder/
-   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.{eot, svg, ttf, woff}', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*'];
-
-   //loop through our array to add each stream into the mergeStream process.
-   copyFrom.forEach((fileOrFolder) => {
-     let current;
-     //do we have globbing? if not, just use the file/folder name.
-     if (fileOrFolder.indexOf('*') > -1) {
-      let firstIndex = fileOrFolder.indexOf('/');
-      let copyName = fileOrFolder.substr(0, firstIndex);
-      current = gulp.src(['./dist/' + copyName + '/**/*.*']).pipe(gulp.dest('./' + copyName));
-     } else {
-       current = gulp.src(['./dist/' + fileOrFolder]).pipe(gulp.dest('.'));
-     }
-     //add the current file/folder to the stream
-     stream.add(current);
-   });
-
-   //and make sure it's not empty before we return it.
-   return stream.isEmpty() ? null : stream;
-});
 
 /*******************************************************************************
  * DEVELOPMENT SERVE PIPELINE
@@ -293,8 +257,8 @@ gulp.task('default', ['build']);
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
  *
- * checks if we are inside the travis VM by testing the process.env.NODE_ENV
- * - travis is "testing"
+ * checks if we are inside the travis VM by testing the process.env.TRAVIS
+ *
  ******************************************************************************/
  var isTravis = function() {
    return process.env.TRAVIS === true;
@@ -310,9 +274,10 @@ gulp.task('default', ['build']);
 
 gulp.task('generate-service-worker', function(callback) {
   var swPrecache = require('sw-precache'),
-      rootDir =  (!isTravis()) ? './dist' : '.';
+      rootDir =  (isTravis()) ? '.' : './dist';
 
-  swPrecache.write(path.join(rootDir, 'service-worker.js'), {
+      console.log("isTravis = " + isTravis());
+  swPrecache.write(path.join(rootDir, '/service-worker.js'), {
     staticFileGlobs: [rootDir + '/index.html',
                       rootDir + '/img/**',
                       rootDir + '/type/**',
@@ -328,6 +293,6 @@ gulp.task('generate-service-worker', function(callback) {
                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
     stripPrefix: rootDir,
     maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
-    templateFilePath: 'sw.tmpl'
+    templateFilePath: rootDir + '/sw.tmpl'
   }, callback);
 });
