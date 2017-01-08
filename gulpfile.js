@@ -62,7 +62,7 @@ const browserSyncOptions = {
   server: ['./', 'bower_components']
 };
 
-var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.{eot, svg, ttf, woff}', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
+var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
 
 /*******************************************************************************
  * BASIC UTILITIES
@@ -154,7 +154,7 @@ gulp.task('bump:major', function(){
 
 gulp.task('copyFilesIntoRoot',function() {
     //the full array of what we want to end up in the root folder/
-   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.{eot, svg, ttf, woff}', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*','CNAME', 'sw.tmpl'];
+   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.*', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*','CNAME', 'sw.tmpl'];
 
    //loop through our array to add each stream into the mergeStream process.
    copyFrom.forEach((fileOrFolder) => {
@@ -234,7 +234,7 @@ gulp.task('serve', function() {
  * the orphan gh-pages branch
  ******************************************************************************/
 gulp.task('deleteFiles', function() {
-    return del(['./**/*.*', './.gitignore', '!./manifest.json', '!./type/*.*', '!.git/**/*.*', '!./index.html', '!./favicon.ico', '!./pages/**/*.html', '!./elements/**/*.{html,json}', '!./service-worker.js', '!./sw.tmpl', '!./bower_components/**/*.*', '!./img/**/*.*', '!./css/**/*.*', '!./node_modules/**/*.*']);
+    return del(['./**/*.*', './.gitignore', '!./manifest.json', '!./type/**/*.*', '!.git/**/*.*', '!./index.html', '!./favicon.ico', '!./pages/**/*.html', '!./elements/**/*.{html,json}', '!./service-worker.js', '!./sw.tmpl', '!./bower_components/**/*.*', '!./img/**/*.*', '!./css/**/*.*', '!./node_modules/**/*.*']);
 });
 
 /*******************************************************************************
