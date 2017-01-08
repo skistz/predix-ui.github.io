@@ -300,7 +300,7 @@ gulp.task('default', ['build']);
  *
  ******************************************************************************/
  var isTravis = function() {
-   return process.env.IS_TRAVIS.toString() === "true";
+   return process.env.IS_TRAVIS && process.env.IS_TRAVIS.toString() === "true";
  };
 
 /*******************************************************************************
