@@ -35,6 +35,20 @@ const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
 
+const uglify = require('gulp-uglify');
+const cssSlam = require('css-slam').gulp;
+const htmlMinifier = require('gulp-html-minifier');
+const mergeStream = require('merge-stream');
+
+const PolymerProject = require('polymer-build').PolymerProject;
+
+var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
+
+const project = new PolymerProject({
+  entrypoint: 'index.html',
+  shell: 'elements/px-catalog/px-catalog.html',
+  sources: ['index.html', 'pages/**/*.html']
+});
 
 /*******************************************************************************
  * SETTINGS
@@ -62,7 +76,6 @@ const browserSyncOptions = {
   server: ['./', 'bower_components']
 };
 
-var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
 
 /*******************************************************************************
  * BASIC UTILITIES
@@ -88,8 +101,8 @@ function buildCSS(){
     $.autoprefixer({
       browsers: ['last 2 versions', 'Safari 8.0'],
       cascade: false
-    }),
-    gulpif(!argv.debug, $.cssmin())
+    })//,
+    // gulpif(!argv.debug, $.cssmin())
   ])
   .on('error', handleError);
 }
@@ -267,6 +280,17 @@ gulp.task('deleteFiles', function() {
      });
  });
 
+ const sourcesStream = project.sources()
+ .pipe(project.splitHtml())
+ .pipe(gulpif(/\.js$/, uglify()))
+ .pipe(gulpif(/\.css$/, cssSlam()))
+ .pipe(gulpif(/\.html$/, htmlMinifier()))
+ .pipe(project.rejoinHtml());
+
+gulp.task('minify-all', function(){
+  return mergeStream(sourcesStream, project.dependencies())
+    .pipe(gulp.dest('build/'));});
+
 
 /*******************************************************************************
  * LOCAL BUILD PIPELINE
@@ -286,7 +310,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff')(callback);
+   gulpSequence('sass', 'deleteFiles', 'minify-all', 'generate-service-worker', 'gitStuff')(callback);
 });
 
 
