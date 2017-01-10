@@ -31,6 +31,7 @@
     "px-starter-kit-design": "^0.7.1",
     "hydrolysis": "^1.24.1",
     "app-route": "PolymerElements/app-route#^0.9.3",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3"
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3",
+    "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0"
   }
 }
