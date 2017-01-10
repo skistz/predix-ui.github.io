@@ -237,14 +237,14 @@ a component.
        * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name, useDarkTheme) {
+      _findUrlByNameAndType(type, name, tail, useDarkTheme) {
         if (type && type !== '') {
           var knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (useDarkTheme ? 'index-dark.html' : '');
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://predix-ui.com/' + name + '/' + name + '/' + (useDarkTheme ? 'index-dark.html' : '');
+              return 'https://predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
@@ -262,7 +262,13 @@ a component.
           var knownTypesKeys = Object.keys(knownTypes);
 
           if (knownTypesKeys.indexOf(type) !== -1) {
-            return knownTypes[type](name);
+            var url = knownTypes[type](name);
+            // If we're using dark theme, and URL has .html in it, replace with -dark.html
+            if (useDarkTheme && url.slice(-5) === '.html') {
+              // turns `/path/foo.html` into `/path/foo-dark.html`
+              url = url.slice(0,-5) + '-dark.html';
+            }
+            return url;
           }
         }
 
@@ -279,14 +285,16 @@ a component.
       _updateFrameUrl: function() {
         this.debounce('update-frame-url', function() {
           var appPath = this.appPath || {};
+          var appTail = this.appTail || '';
           var queryParams = this.queryParams || {};
 
           var type = appPath.type;
           var name = appPath.name;
+          var tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail; // remove beginning slash
           var isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
 
           if (type || name) {
-            var frameUrl = this._findUrlByNameAndType(type, name, isDarkTheme);
+            var frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);
             this.set('frameUrl', frameUrl);
           }
         }, 10);
@@ -333,8 +341,8 @@ a component.
       _ensureHasSlashes: function(rawPath) {
         // Ensure beginning slash
         rawPath = (rawPath.substring(0,1) !== '/') ? '/' + rawPath : rawPath;
-        // Ensure trailing slash
-        rawPath = (rawPath.slice(-1) !== '/') ? rawPath + '/' : rawPath;
+        // Ensure trailing slash if does not end in `.html`
+        rawPath = (rawPath.slice(-1) !== '/' && rawPath.slice(-5) !== '.html') ? rawPath + '/' : rawPath;
 
         return rawPath;
       },
