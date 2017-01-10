@@ -311,27 +311,38 @@ gulp.task('default', ['build']);
  * visit to the site ensuring they get new files.
  ******************************************************************************/
 
-gulp.task('generate-service-worker', function(callback) {
-  var swPrecache = require('sw-precache'),
-      rootDir =  (isTravis()) ? '.' : './dist';
+ gulp.task('generate-service-worker', function(callback) {
+   var swPrecache = require('sw-precache'),
+       rootDir =  (isTravis()) ? '.' : './dist';
 
-      console.log("isTravis = " + isTravis()  );
-  swPrecache.write(path.join(rootDir, '/service-worker.js'), {
-    staticFileGlobs: [rootDir + '/index.html',
-                      rootDir + '/img/**',
-                      rootDir + '/type/**',
-                      rootDir + '/pages/**',
-                      rootDir + '/elements/**/*.html',
-                      rootDir + '/css/**',
-                      rootDir + '/bower_components/px-theme/**/*.html',
-                      rootDir + '/bower_components/px-spinner/**/*.html',
-                      rootDir + '/bower_components/polymer/polymer*.html',
-                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
-                      rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
-                      rootDir + '/bower_components/hydrolysis/hydrolysis.*',
-                      rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
-    stripPrefix: rootDir,
-    maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
-    templateFilePath: rootDir + '/sw.tmpl'
-  }, callback);
-});
+       console.log("isTravis = " + isTravis()  );
+   swPrecache.write(path.join(rootDir, '/service-worker.js'), {
+     staticFileGlobs: [rootDir + '/index.html',
+                       rootDir + '/img/**',
+                       rootDir + '/type/**',
+                       rootDir + '/pages/**',
+                       rootDir + '/elements/**/*.html',
+                       rootDir + '/css/**',
+                       rootDir + '/bower_components/px-theme/**/*.html',
+                       rootDir + '/bower_components/px-spinner/**/*.html',
+                       rootDir + '/bower_components/polymer/polymer*.html',
+                       rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
+                       rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
+                       rootDir + '/bower_components/hydrolysis/hydrolysis.*',
+                       rootDir + '/bower_components/app-route/app-*.html',
+                       rootDir + '/bower_components/iron-ajax/iron-*.html',
+                       rootDir + '/bower_components/iron-location/iron-*.html',
+                       rootDir + '/bower_components/iron-collapse/iron-collapse.html',
+                       rootDir + '/bower_components/iron-iconset-svg/iron-iconset-svg.html',
+                       rootDir + '/bower_components/iron-icon/iron-icon.html',
+                       rootDir + '/bower_components/iron-meta/iron-meta.html',
+                       rootDir + '/bower_components/promise-polyfill/promise-polyfill-lite.html',
+                       rootDir + '/bower_components/promise-polyfill/Promise.html',
+                       rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
+                       rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
+                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
+     stripPrefix: rootDir,
+     maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
+     templateFilePath: rootDir + '/sw.tmpl'
+   }, callback);
+ });
