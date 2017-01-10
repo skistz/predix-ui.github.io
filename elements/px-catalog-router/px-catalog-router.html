@@ -157,7 +157,7 @@ a component.
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
         '_redirectModulePathURLs(appPath, appPath.*)',
         '_handleActiveChange(activeName)',
-        '_updateFrameUrl(appPath, appPath.*)',
+        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*)',
         '_syncPathToActiveAttrs(appPath, appPath.*)'
       ],
 
@@ -234,16 +234,17 @@ a component.
        * @method _findUrlByNameAndType
        * @param {String} type - Type of the resource
        * @param {String} name - Name of the resource
+       * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name) {
+      _findUrlByNameAndType(type, name, useDarkTheme) {
         if (type && type !== '') {
           var knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/';
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (useDarkTheme ? 'index-dark.html' : '');
             },
             css: function(name) {
-              return 'https://predix-ui.com/' + name + '/' + name + '/';
+              return 'https://predix-ui.com/' + name + '/' + name + '/' + (useDarkTheme ? 'index-dark.html' : '');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
@@ -270,22 +271,25 @@ a component.
       },
 
       /**
-       * Update the iFrame URL to match the `appPath`.
+       * Update the iFrame URL to match the `appPath` and `queryParams`.
        *
        * @method _updateFrameUrl
        * @param {Object} newAppPath
       */
-      _updateFrameUrl: function(newAppPath) {
-        if (newAppPath && (typeof newAppPath === "object") && Object.keys(newAppPath).length) {
-          this.debounce('update-frame-url', function(){
-            var type = newAppPath.type;
-            var name = newAppPath.name;
-            if (type || name) {
-              var frameUrl = this._findUrlByNameAndType(type, name);
-              this.set('frameUrl', frameUrl);
-            }
-          }, 10);
-        }
+      _updateFrameUrl: function() {
+        this.debounce('update-frame-url', function() {
+          var appPath = this.appPath || {};
+          var queryParams = this.queryParams || {};
+
+          var type = appPath.type;
+          var name = appPath.name;
+          var isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
+
+          if (type || name) {
+            var frameUrl = this._findUrlByNameAndType(type, name, isDarkTheme);
+            this.set('frameUrl', frameUrl);
+          }
+        }, 10);
       },
 
       /**
