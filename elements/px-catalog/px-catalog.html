@@ -42,11 +42,6 @@
         data="{{route}}"
         tail="{{_routeTail}}">
     </app-route>
-    <!-- Fetch any additional URL information and assign to `routeOpts` -->
-    <app-route
-        route="{{_routeTail}}"
-        pattern="/:options"
-        data="{{_routeOpts}}">
     </app-route>
     <!-- Pass the routing data to the custom router to handle state and redirects -->
     <px-catalog-router
@@ -54,7 +49,7 @@
         raw-path="{{_path}}"
         query-params="{{_queryParams}}"
         app-path="{{route}}"
-        app-options="{{routeOpts}}"
+        app-tail="{{_routeTail.path}}"
         active-name="{{activeName}}"
         active-type="{{activeType}}"
         frame-url="{{frameUrl}}"
@@ -150,39 +145,23 @@
         },
 
         /**
-         * An object with the deserialized route, harvested from the window
-         * location. Used to determine our state. Can be read from or set
-         * to update the URL.
+         * The active page name, from the sidebar (e.g. 'px-sass-doc')
          *
-         * @type {Object}
+         * @type {String}
          */
-        route: {
-          type: Object,
-          value: function(){ return {}; }
+        activeName: {
+          type: String,
+          observer: '_updateTitle'
         },
 
         /**
-         * Additional route data that specifies arbitrary changes to the state
-         * on the page. Provided in a stringified JSON format that will need
-         * to be parsed.
+         * The active page type, from the sidebar (e.g. 'component')
          *
-         * @type {Object}
+         * @type {String}
          */
-        _routeOpts: {
-          type: Object,
-          value: function(){ return {}; }
-        },
-
-        /**
-         * Deserialized route data (if any) parsed from the `_routeOpts` object.
-         * If no route options are present, should be an empty object.
-         *
-         * @type {Object}
-         */
-        routeOpts: {
-          type: Object,
-          computed: '_computeRouteOpts(_routeOpts)',
-          value: function(){ return {}; }
+        activeType: {
+          type: String,
+          observer: '_updateTitle'
         }
       },
 
@@ -194,6 +173,77 @@
         'menu.tap' : '_handleMenuTapped',
         'overlay.tap' : 'ensureNavHidden',
         'frameEl.load' : 'hideSpinner'
+      },
+
+      _updateTitle: function() {
+        this.debounce('update-title', function() {
+          var type = this._formatType(this.activeType || '');
+          var name = this._formatName(this.activeName || '');
+          if (name || type) {
+            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '')
+          }
+        }, 100);
+      },
+
+      /**
+       * Takes a URL routing `type` value, splits and capitalizes words.
+       *
+       * For example:
+       * 'css' would become 'CSS'
+       * 'components' would become 'Components'
+       * 'new-thing' would become 'New Thing'
+       *
+       * @param {String} type
+       * @return {String} Formatted string
+       */
+      _formatType: function(type) {
+        if (!type || !type.length) return '';
+
+        // CSS is a special case, capitalize it and return
+        if (type === 'css') return 'CSS';
+
+        return type
+        // Split on '-' char
+          .split('-')
+        // Capitalize first letter
+          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+        // Join with a space
+          .join(' ');
+      },
+
+      /**
+       * Takes a URL routing `name` value, cleans up the words and capitalizes.
+       *
+       * For example:
+       * 'px-app-nav' would become 'App Nav'
+       * 'components' would become 'Components'
+       * 'new-thing' would become 'New Thing'
+       *
+       * @param {String} type
+       * @return {String} Formatted string
+       */
+      _formatName: function(name) {
+        if (!name || !name.length) return '';
+
+        return name
+        // Split on '-' char
+          .split('-')
+        // Remove 'px' (['px','app','nav'] -> ['app','nav'])
+          .filter(function(part){ return part !== 'px' })
+        // Capitalize first letter
+          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+        // Join with a space
+          .join(' ');
+      },
+
+      /**
+       * Capitalizes the first character of a string if it is a letter.
+       *
+       * @param {String} str - 'hello'
+       * @return {String} - 'Hello'
+       */
+      _capitalizeFirstLetter(str) {
+        return str.substring(0,1).toUpperCase() + str.substring(1);
       },
 
       /**
@@ -297,25 +347,6 @@
         }
         this.isMobile = false;
         return false;
-      },
-
-      /**
-       * Attempts to parse `_routeOpts.options` to deserialize stringified JSON.
-       * If JSON.parse fails or if there is nothing to parse, returns an empty
-       * object.
-       *
-       * @param {String} rawRouteOpts - Stringified JSON harvested from the URL
-       * @return {Object} - The deserialized JSON object, or an empty object if deserialization failed
-       */
-      _computeRouteOpts: function(rawRouteOpts) {
-        if (rawRouteOpts
-            && rawRouteOpts.options
-            && (rawRouteOpts.options !== '')) {
-          try {
-            return JSON.parse(rawRouteOpts.options);
-          } catch(e) {}
-        }
-        return {};
       }
     });
   </script>

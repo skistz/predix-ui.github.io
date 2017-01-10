@@ -10,6 +10,11 @@ under which the software has been supplied.
 
 <!-- Import Polymer -->
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
+<!-- Import Promise polyfill from PolymerLabs team. We need to use this one
+     because we also use `iron-ajax` which uses with polyfill at the window
+     level. Placing this here in case `iron-ajax` is removed as a dependency
+     in the future to ensure we don't lose Promise definition. -->
+<link rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 
 <!--
 `px-catalog-router` is a bespoke router that handles URLs for the Predix UI
@@ -56,7 +61,7 @@ a component.
         rawPath: {
           type: String,
           notify: true,
-          observer: '_ensureRawPathHasTrailingSlash'
+          observer: '_cleanRawPath'
         },
 
         /**
@@ -77,17 +82,16 @@ a component.
         },
 
         /**
-         * The parsed app options. Could an an object with any arbitrary keys,
-         * or an empty object if no options are specified.
+         * The additional route passed after the main `type` and `name` paths.
          *
-         * Given the URL `https://domain.com/#/components/px-app-nav/{"theme":"dark"}`,
-         * the object will have the data `{ theme: 'dark' }`.
+         * Given the URL `https://domain.com/#/components/px-app-nav/subcomp-name,
+         * the property will be string 'subcomp-name'.
          *
-         * @type {Object}
+         * @type {String}
          */
-        appOptions: {
-          type: Object,
-          value: function(){ return {}; },
+        appTail: {
+          type: String,
+          value: '',
           notify: true
         },
 
@@ -153,7 +157,7 @@ a component.
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
         '_redirectModulePathURLs(appPath, appPath.*)',
         '_handleActiveChange(activeName)',
-        '_updateFrameUrl(appPath, appPath.*)',
+        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*)',
         '_syncPathToActiveAttrs(appPath, appPath.*)'
       ],
 
@@ -168,21 +172,6 @@ a component.
             this.set('rawPath', '/home/');
           }
         }, 10);
-      },
-
-      /**
-       * When the raw URL path is changed, ensure that it has a trailing slash
-       * to make `app-route` happy with its parsing patterns.
-       *
-       * @param {Object} newRawPath
-       */
-      _ensureRawPathHasTrailingSlash: function(newRawPath) {
-        if (newRawPath && newRawPath.length) {
-          var lastItem = newRawPath.substring(newRawPath.length - 1);
-          if (lastItem !== '/') {
-            this.set('rawPath', newRawPath + '/');
-          }
-        }
       },
 
       /**
@@ -245,16 +234,17 @@ a component.
        * @method _findUrlByNameAndType
        * @param {String} type - Type of the resource
        * @param {String} name - Name of the resource
+       * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name) {
+      _findUrlByNameAndType(type, name, tail, useDarkTheme) {
         if (type && type !== '') {
           var knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/';
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://predix-ui.com/' + name + '/' + name + '/';
+              return 'https://predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
@@ -272,7 +262,13 @@ a component.
           var knownTypesKeys = Object.keys(knownTypes);
 
           if (knownTypesKeys.indexOf(type) !== -1) {
-            return knownTypes[type](name);
+            var url = knownTypes[type](name);
+            // If we're using dark theme, and URL has .html in it, replace with -dark.html
+            if (useDarkTheme && url.slice(-5) === '.html') {
+              // turns `/path/foo.html` into `/path/foo-dark.html`
+              url = url.slice(0,-5) + '-dark.html';
+            }
+            return url;
           }
         }
 
@@ -281,22 +277,148 @@ a component.
       },
 
       /**
-       * Update the iFrame URL to match the `appPath`.
+       * Update the iFrame URL to match the `appPath` and `queryParams`.
        *
        * @method _updateFrameUrl
        * @param {Object} newAppPath
       */
-      _updateFrameUrl: function(newAppPath) {
-        if (newAppPath && (typeof newAppPath === "object") && Object.keys(newAppPath).length) {
-          this.debounce('update-frame-url', function(){
-            var type = newAppPath.type;
-            var name = newAppPath.name;
-            if (type || name) {
-              var frameUrl = this._findUrlByNameAndType(type, name);
-              this.set('frameUrl', frameUrl);
+      _updateFrameUrl: function() {
+        this.debounce('update-frame-url', function() {
+          var appPath = this.appPath || {};
+          var appTail = this.appTail || '';
+          var queryParams = this.queryParams || {};
+
+          var type = appPath.type;
+          var name = appPath.name;
+          var tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail; // remove beginning slash
+          var isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
+
+          if (type || name) {
+            var frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);
+            this.set('frameUrl', frameUrl);
+          }
+        }, 10);
+      },
+
+      /**
+       * If any query parameters were captured in the raw path routes,
+       * assign them to the correct location in the path, extract them out
+       * of the route and prepare to assign to the `queryParams` object
+       *
+       * @param {String} rawPath
+       */
+      _extractQueryParamsFromHash: function(rawPath) {
+        return new Promise(function(resolve, reject) {
+          // Extract pieces of path with length
+          var parts = rawPath.split('/').filter(function(part){ return part.length });
+          var newParts = [];
+          var foundQueries = [];
+
+          for (var i = 0; i < parts.length; i++) {
+            var queryStart = parts[i].indexOf('?');
+            if (queryStart > -1) {
+              var query = parts[i].substring(queryStart + 1);
+              var part = parts[i].substring(0, queryStart);
+              if (part.length) newParts.push(part);
+              if (query.length) foundQueries.push(query);
+            } else {
+              newParts.push(parts[i]);
             }
-          }, 10);
+          }
+
+          return resolve({ path: newParts.join('/'), query: foundQueries.join('&') });
+        }.bind(this));
+      },
+
+
+      /**
+       * When the raw URL path is changed, ensure that it has a beginning and a
+       * trailing slash to make `app-route` happy with its parsing patterns.
+       *
+       * @param {String} rawPath
+       * @return {String} - The modified `rawPath` string
+       */
+      _ensureHasSlashes: function(rawPath) {
+        // Ensure beginning slash
+        rawPath = (rawPath.substring(0,1) !== '/') ? '/' + rawPath : rawPath;
+        // Ensure trailing slash if does not end in `.html`
+        rawPath = (rawPath.slice(-1) !== '/' && rawPath.slice(-5) !== '.html') ? rawPath + '/' : rawPath;
+
+        return rawPath;
+      },
+
+      /**
+       * Accepts a raw query string and returns it as a parsed object.
+       *
+       * Function taken from `iron-query-params` element @v0.8.9. Original code
+       * copyright (c) 2015 The Polymer Project Authors and released under the
+       * BSD license. See the following page for full license information and
+       * the original source code:
+       *
+       * https://github.com/PolymerElements/iron-location/blob/master/iron-query-params.html
+       *
+       * @param {String} paramString
+       * @return {Object}
+       */
+      _parseQueryString: function(paramString) {
+        var params = {};
+        // Work around a bug in decodeURIComponent where + is not
+        // converted to spaces:
+        paramString = (paramString || '').replace(/\+/g, '%20');
+        var paramList = paramString.split('&');
+        for (var i = 0; i < paramList.length; i++) {
+          var param = paramList[i].split('=');
+          if (param[0]) {
+            params[decodeURIComponent(param[0])] =
+                decodeURIComponent(param[1] || '');
+          }
         }
+        return params;
+      },
+
+      /**
+       * Run a series of promises to clean up the raw path.
+       *
+       * 1. Places query params in right position
+       *
+       * Given a route like this: `/#/home?theme=dark`
+       * Will produce a path like this: `/?theme=dark#/home/`
+       *
+       * Given a route like this: `/#/css/thing?theme=dark`
+       * Will produce a path like this: `/?theme=dark#/css/thing`
+       *
+       * Given a route like this: `/#/css/thing/?theme=dark`
+       * Will produce a path like this: `/?theme=dark#/css/thing
+       *
+       * 2. Adds trailing slash
+       *
+       * Given a route like this: `/#/css/thing`
+       * Will produce a path like this: `/#/css/thing/`
+       */
+      _cleanRawPath: function() {
+        this.debounce('clean-raw-path', function(){
+          var rawPath = this.rawPath || '';
+          var cleaning = this._cleaningRawPath || false;
+          if (rawPath.length && !this.cleaning) {
+            this.set('_cleaningRawPath', true);
+            this._extractQueryParamsFromHash(rawPath)
+              .then(function(pathAndQuery) {
+                // Clean up the path and set it
+                var newRawPath = this._ensureHasSlashes(pathAndQuery.path);
+                this.set('rawPath', newRawPath);
+
+                var newQuery = (pathAndQuery.query.length) ? this._parseQueryString(pathAndQuery.query) : {};
+                // Combine any existing query params with the new params
+                var existingQuery = this.queryParams || {};
+                var query = Object.assign({}, newQuery, existingQuery);
+                // If any params, set them
+                if (Object.keys(query).length) this.set('queryParams', query);
+
+                // Finish up by unlocking
+                this.set('_cleaningRawPath', false)
+              }.bind(this));
+          }
+        }, 100);
       },
 
       /**
