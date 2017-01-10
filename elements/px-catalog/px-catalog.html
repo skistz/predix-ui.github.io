@@ -142,6 +142,26 @@
          */
         navJSON: {
           type: Object
+        },
+
+        /**
+         * The active page name, from the sidebar (e.g. 'px-sass-doc')
+         *
+         * @type {String}
+         */
+        activeName: {
+          type: String,
+          observer: '_updateTitle'
+        },
+
+        /**
+         * The active page type, from the sidebar (e.g. 'component')
+         *
+         * @type {String}
+         */
+        activeType: {
+          type: String,
+          observer: '_updateTitle'
         }
       },
 
@@ -153,6 +173,77 @@
         'menu.tap' : '_handleMenuTapped',
         'overlay.tap' : 'ensureNavHidden',
         'frameEl.load' : 'hideSpinner'
+      },
+
+      _updateTitle: function() {
+        this.debounce('update-title', function() {
+          var type = this._formatType(this.activeType || '');
+          var name = this._formatName(this.activeName || '');
+          if (name || type) {
+            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '')
+          }
+        }, 100);
+      },
+
+      /**
+       * Takes a URL routing `type` value, splits and capitalizes words.
+       *
+       * For example:
+       * 'css' would become 'CSS'
+       * 'components' would become 'Components'
+       * 'new-thing' would become 'New Thing'
+       *
+       * @param {String} type
+       * @return {String} Formatted string
+       */
+      _formatType: function(type) {
+        if (!type || !type.length) return '';
+
+        // CSS is a special case, capitalize it and return
+        if (type === 'css') return 'CSS';
+
+        return type
+        // Split on '-' char
+          .split('-')
+        // Capitalize first letter
+          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+        // Join with a space
+          .join(' ');
+      },
+
+      /**
+       * Takes a URL routing `name` value, cleans up the words and capitalizes.
+       *
+       * For example:
+       * 'px-app-nav' would become 'App Nav'
+       * 'components' would become 'Components'
+       * 'new-thing' would become 'New Thing'
+       *
+       * @param {String} type
+       * @return {String} Formatted string
+       */
+      _formatName: function(name) {
+        if (!name || !name.length) return '';
+
+        return name
+        // Split on '-' char
+          .split('-')
+        // Remove 'px' (['px','app','nav'] -> ['app','nav'])
+          .filter(function(part){ return part !== 'px' })
+        // Capitalize first letter
+          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+        // Join with a space
+          .join(' ');
+      },
+
+      /**
+       * Capitalizes the first character of a string if it is a letter.
+       *
+       * @param {String} str - 'hello'
+       * @return {String} - 'Hello'
+       */
+      _capitalizeFirstLetter(str) {
+        return str.substring(0,1).toUpperCase() + str.substring(1);
       },
 
       /**
