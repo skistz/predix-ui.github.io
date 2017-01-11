@@ -1,5 +1,9 @@
 v0.2.1
 ==================
+* fixed mobile nav issue
+
+v0.2.1
+==================
 * added px-timeline
 
 v0.2.0
