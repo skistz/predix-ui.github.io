@@ -171,6 +171,7 @@
 
       listeners: {
         'menu.tap' : '_handleMenuTapped',
+        'px-sb-list-selected-item-changed': '_handleMenuTapped',
         'overlay.tap' : 'ensureNavHidden',
         'frameEl.load' : 'hideSpinner'
       },
@@ -180,7 +181,7 @@
           var type = this._formatType(this.activeType || '');
           var name = this._formatName(this.activeName || '');
           if (name || type) {
-            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '')
+            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '');
           }
         }, 100);
       },
@@ -206,7 +207,7 @@
         // Split on '-' char
           .split('-')
         // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
         // Join with a space
           .join(' ');
       },
@@ -229,9 +230,9 @@
         // Split on '-' char
           .split('-')
         // Remove 'px' (['px','app','nav'] -> ['app','nav'])
-          .filter(function(part){ return part !== 'px' })
+          .filter(function(part){ return part !== 'px'; })
         // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
         // Join with a space
           .join(' ');
       },
