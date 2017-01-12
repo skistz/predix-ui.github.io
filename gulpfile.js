@@ -289,9 +289,7 @@ gulp.task('prodBuild', function(callback) {
    gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff')(callback);
 });
 
-
-gulp.task('default', ['build']);
-
+gulp.task('default', ['localBuild']);
 
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
@@ -321,7 +319,7 @@ gulp.task('default', ['build']);
                        rootDir + '/img/**',
                        rootDir + '/type/**',
                        rootDir + '/pages/**',
-                       rootDir + '/elements/**/*.html',
+                       rootDir + '/elements/**/*.{html,json}',
                        rootDir + '/css/**',
                        rootDir + '/bower_components/px-theme/**/*.html',
                        rootDir + '/bower_components/px-spinner/**/*.html',
@@ -337,7 +335,7 @@ gulp.task('default', ['build']);
                        rootDir + '/bower_components/iron-icon/iron-icon.html',
                        rootDir + '/bower_components/iron-meta/iron-meta.html',
                        rootDir + '/bower_components/promise-polyfill/promise-polyfill-lite.html',
-                       rootDir + '/bower_components/promise-polyfill/Promise.html',
+                       rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
                        rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],

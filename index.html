@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#2D2D30">
     <title>Predix UI</title>
@@ -57,6 +57,9 @@
         rel="import"
         href="elements/px-catalog/px-catalog.html">
 
+    <link href="bower_components/platinum-sw/platinum-sw-register.html">
+    <link href="bower_components/platinum-sw/platinum-sw-cache.html">
+
     <!--
       Load the app icon and manifest for Android devices.
     -->
@@ -90,6 +93,10 @@
     <div id="splash"></div>
 
     <!-- Elements wait on the page and are upgraded after elements.html is loaded. -->
+    <platinum-sw-register auto-register>
+      <platinum-sw-cache></platinum-sw-cache>
+    </platinum-sw-register>
+
     <px-catalog></px-catalog>
 
     <!--
