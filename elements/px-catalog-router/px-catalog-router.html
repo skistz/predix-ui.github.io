@@ -230,7 +230,7 @@ a component.
        * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name, tail, useDarkTheme) {
+      _findUrlByNameAndType: function(type, name, tail, useDarkTheme) {
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
