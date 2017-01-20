@@ -1,3 +1,7 @@
+v0.2.2
+==================
+* fixed IE11 bug that was caused by an extra closing tag.
+
 v0.2.1
 ==================
 * fixed mobile nav issue
