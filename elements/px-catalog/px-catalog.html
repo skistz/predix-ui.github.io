@@ -42,7 +42,6 @@
         data="{{route}}"
         tail="{{_routeTail}}">
     </app-route>
-    </app-route>
     <!-- Pass the routing data to the custom router to handle state and redirects -->
     <px-catalog-router
         raw-route="{{_route}}"
@@ -198,10 +197,10 @@
        * @return {String} Formatted string
        */
       _formatType: function(type) {
-        if (!type || !type.length) return '';
+        if (!type || !type.length) {return '';}
 
         // CSS is a special case, capitalize it and return
-        if (type === 'css') return 'CSS';
+        if (type === 'css') {return 'CSS';}
 
         return type
         // Split on '-' char
@@ -224,7 +223,7 @@
        * @return {String} Formatted string
        */
       _formatName: function(name) {
-        if (!name || !name.length) return '';
+        if (!name || !name.length) {return '';}
 
         return name
         // Split on '-' char
@@ -243,7 +242,7 @@
        * @param {String} str - 'hello'
        * @return {String} - 'Hello'
        */
-      _capitalizeFirstLetter(str) {
+      _capitalizeFirstLetter: function(str) {
         return str.substring(0,1).toUpperCase() + str.substring(1);
       },
 
@@ -325,10 +324,10 @@
         var menuCloseIcon = this.$$("#menu__close-icon");
 
         if (this.isMobile) {
-          if (!sideNav.classList.contains('side-nav__default')) sideNav.classList.add('side-nav__default');
-          if (overlay.classList.contains('overlay')) overlay.classList.remove('overlay');
-          if (menuOpenIcon.classList.contains('is__hidden')) menuOpenIcon.classList.remove('is__hidden');
-          if (!menuCloseIcon.classList.contains('is__hidden')) menuCloseIcon.classList.add('is__hidden');
+          if (!sideNav.classList.contains('side-nav__default')) {sideNav.classList.add('side-nav__default');}
+          if (overlay.classList.contains('overlay')) {overlay.classList.remove('overlay');}
+          if (menuOpenIcon.classList.contains('is__hidden')) {menuOpenIcon.classList.remove('is__hidden');}
+          if (!menuCloseIcon.classList.contains('is__hidden')) {menuCloseIcon.classList.add('is__hidden');}
         }
       },
 

@@ -230,7 +230,7 @@ a component.
        * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name, tail, useDarkTheme) {
+      _findUrlByNameAndType: function(type, name, tail, useDarkTheme) {
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
@@ -313,8 +313,8 @@ a component.
             if (queryStart > -1) {
               var query = parts[i].substring(queryStart + 1),
                   part = parts[i].substring(0, queryStart);
-              if (part.length) newParts.push(part);
-              if (query.length) foundQueries.push(query);
+              if (part.length) {newParts.push(part);}
+              if (query.length) {foundQueries.push(query);}
             } else {
               newParts.push(parts[i]);
             }
@@ -406,7 +406,7 @@ a component.
                 var existingQuery = this.queryParams || {};
                 var query = Object.assign({}, newQuery, existingQuery);
                 // If any params, set them
-                if (Object.keys(query).length) this.set('queryParams', query);
+                if (Object.keys(query).length) {this.set('queryParams', query);}
 
                 // Finish up by unlocking
                 this.set('_cleaningRawPath', false);
@@ -526,16 +526,17 @@ a component.
           var navJson = this.navJson,
               found;
 
-          var recurse = function(obj) {
-            for (var key in obj) {
-              if (obj[key].repoName === name) {
-                found = obj[key];
-              }
-              if (obj[key].links && obj[key].links.length) {
-                recurse(obj[key].links);
-              }
-            }
-          };
+              var recurse = function(obj) {
+               var keys = Object.keys(obj);
+               for (var i = 0; i < keys.length; i++) {
+                 if (obj[keys[i]].repoName === name) {
+                   found = obj[keys[i]];
+                 }
+                 if (obj[keys[i]].links && obj[keys[i]].links.length) {
+                   recurse(obj[keys[i]].links);
+                 }
+               }
+             };
 
           recurse(navJson);
           return found ? found.dataType : null;
