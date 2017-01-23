@@ -392,7 +392,7 @@ footer {
   position: relative;
   height: 6.25rem;
   padding-top: 2.0625rem;
-  background-color: #eaeaea;
+  background-color: $gray7;
   color: #d1d0d8;
   z-index: 80;
 }
@@ -550,10 +550,6 @@ a.item__link {
   background-color: #fff;
   padding: 5% 5% 2% 5%;
   overflow: hidden;
-}
-
-footer.footer {
-  background: #7c7c84;
 }
 
 footer.footer .vw {
