@@ -73,11 +73,11 @@
       </div>
     </section>
 
-    <!-- App Overlay -->
-    <div id="overlay" class="overlay"></div>
-
     <!-- App Wrapper -->
-    <div class="wrapper-flex">
+    <div class="wrapper wrapper--flex">
+      <!-- App Overlay -->
+      <div id="overlay" class="overlay"></div>
+
       <!-- App Side Nav -->
       <div id="side-nav" class="side-nav side-nav__default">
         <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
@@ -325,7 +325,7 @@
 
         if (this.isMobile) {
           if (!sideNav.classList.contains('side-nav__default')) {sideNav.classList.add('side-nav__default');}
-          if (overlay.classList.contains('overlay')) {overlay.classList.remove('overlay');}
+          if (overlay.classList.contains('overlay--visible')) {overlay.classList.remove('overlay--visible');}
           if (menuOpenIcon.classList.contains('is__hidden')) {menuOpenIcon.classList.remove('is__hidden');}
           if (!menuCloseIcon.classList.contains('is__hidden')) {menuCloseIcon.classList.add('is__hidden');}
         }
