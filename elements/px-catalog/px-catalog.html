@@ -103,7 +103,7 @@
             <px-spinner size="150"></px-spinner>
           </div>
         </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
+        <iframe src="../../pages/home.html" onload="" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
           <p>Your browser does not support iframes.</p>
         </iframe>
       </div>
@@ -199,7 +199,28 @@
         'menu.tap' : '_handleMenuTapped',
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
         'overlay.tap' : '_handleOverlayTapped',
-        'frameEl.load' : '_handleFrameLoad'
+        'frameEl.load' : '_handleFrameLoad',
+        'frameEl.load' : 'checkForFrameNavigate'
+      },
+
+      checkForFrameNavigate: function(evt) {
+        var url = evt.srcElement.contentWindow.location;
+        try {
+          // Attempt to extract the pathname
+          var path = url.pathname;
+        }
+        catch (err) {
+          // If retreiving the URL failed, this is a cross-origin iframe. We are
+          // not allow to get the path of a cross-origin iframe due to CORS
+          // policies, even if CORS headers are correct.
+        }
+
+        if (path) {
+          // We were able to get the path, diff and update the parent app URL
+          // ...
+        }
+        console.log(url);
+>>>>>>> 495b05e... WIP -- frame communications for sub-component routing
       },
 
       /**
