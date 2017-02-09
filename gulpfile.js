@@ -34,7 +34,7 @@ const chmod = require('gulp-chmod');
 const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
-const request = require('request');
+var request = require('request');
 
 /*******************************************************************************
  * SETTINGS
@@ -272,16 +272,14 @@ gulp.task('resetCloudflareCache', function() {
       cloudflare = process.argv.cloudflare;
 
   request({
-      url: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
-      mehod:'DELETE',
+      uri: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
+      method:'DELETE',
       headers: {
         "X-Auth-Email" : "martin.wragg@ge.com",
         "X-Auth-Key" : cloudflare,
         "Content-Type" : "application/json"
       },
-      body: {
-        purge_everything :true
-      }
+      body: '{"purge_everything" :true}'
     }, function(err, res, body) {
       if (err) {
         console.log(err);
