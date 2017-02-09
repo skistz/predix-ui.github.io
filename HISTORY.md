@@ -1,3 +1,7 @@
+v0.2.3
+==================
+* added cloudflare cache reset on push
+
 v0.2.2
 ==================
 * fixed IE11 bug that was caused by an extra closing tag.

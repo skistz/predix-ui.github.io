@@ -34,7 +34,7 @@ const chmod = require('gulp-chmod');
 const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
-
+const request = require('request');
 
 /*******************************************************************************
  * SETTINGS
@@ -267,6 +267,22 @@ gulp.task('deleteFiles', function() {
      });
  });
 
+gulp.task('resetCloudflareCache', function() {
+  var cloudflare_zone_identifier = process.argv.cloudflare_zone_identifier,
+      cloudflare = process.argv.cloudflare;
+
+  request.delete({
+      url: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
+      headers: {
+        "X-Auth-Email" : "martin.wragg@ge.com",
+        "X-Auth-Key" : cloudflare,
+        "Content-Type" : "application/json"
+      },
+      body: {
+        purge_everything :true
+      }
+    });
+});
 
 /*******************************************************************************
  * LOCAL BUILD PIPELINE
@@ -286,7 +302,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff')(callback);
+   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 gulp.task('default', ['localBuild']);
