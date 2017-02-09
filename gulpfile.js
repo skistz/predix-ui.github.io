@@ -271,8 +271,9 @@ gulp.task('resetCloudflareCache', function() {
   var cloudflare_zone_identifier = process.argv.cloudflare_zone_identifier,
       cloudflare = process.argv.cloudflare;
 
-  request.delete({
+  request({
       url: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
+      mehod:'DELETE',
       headers: {
         "X-Auth-Email" : "martin.wragg@ge.com",
         "X-Auth-Key" : cloudflare,
@@ -280,6 +281,12 @@ gulp.task('resetCloudflareCache', function() {
       },
       body: {
         purge_everything :true
+      }
+    }, function(err, res, body) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
       }
     });
 });
