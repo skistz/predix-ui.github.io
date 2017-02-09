@@ -268,8 +268,8 @@ gulp.task('deleteFiles', function() {
  });
 
 gulp.task('resetCloudflareCache', function() {
-  var cloudflare_zone_identifier = process.argv['cloudflare_zone_identifier'],
-      cloudflare = process.argv['cloudflare'];
+  var cloudflare_zone_identifier = process.env.cloudflare_zone_identifier,
+      cloudflare = process.env.cloudflare;
 
   request({
       uri: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
