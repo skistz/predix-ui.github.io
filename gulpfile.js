@@ -259,8 +259,6 @@ gulp.task('deleteFiles', function() {
            gitSync.push('origin', 'master', {cwd: '.', args: "--force"}, (errPush) => {
              if (errPush) {
                console.log('push error: ' + errPush);
-             } else {
-               console.log("pushed successfully!");
              }
            });
          });
