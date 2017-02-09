@@ -27,7 +27,7 @@ after_success:
 - git remote set-url origin git@github.com:predix-ui/predix-ui.github.io.git
 - if [ "${TRAVIS_BRANCH}" = "source" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ];
   then gulp prodBuild; fi
-- curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${cloudflare_zone_identifier}/purge_cache" -H "X-Auth-Email: martin.wragg@ge.com" -H "X-Auth-Key: ${cloudflare}" -H "Content-Type: application/json" --data '{"purge_everything":true}'  
+
 env:
   global:
   - secure: AKESuYef+Ccx6bj52IancFbwArmidiCmgiOIfKPyUNZ7QZ9h6UFgsc2gmCCSP3Gia2pxXP0Qn8LY/cbU3C5E5KAqsBYS4qKeLqdF3u52uXnBBWoh1tlLPQFBX1+j/pikgfu/rG0fg6pSiBVurAbnptWLyFmHdCVbDUOvUmlwoobMwPib3lvg2jMb2vqMmE1IYHig6TfZ96fGW/MzawCVI2SKUHdfJp/1JPNidYWrUSJHIZKxRTvAijQPGQhFVtGlE0jwBTkuKF8xE0Cl9JUZdk3u/07BHnAB+MT+RaXEcHDiJBdaieFz4pK/BeDlowNgpsayE9pLOfZBiKF9Igp/2QhmgTobXojohoWjwggrLqYRwHtzCvoxnlleSlAADbK8EW/Whuc28GrD/nSXa9bIO/fDRMx6gzc/owg8Kl3BvNFRz6izcGfarq3jf+ITntd+4tN5FV5WeVKcyvU04L+Tdw5WgE/HYRg/OsXsSmBzdkbtab3gYc/cbMlSDQjYa2lrgZgEnezdCqSzIYgduLKjVtm05LnnpE7rtm4m4BhOeNa9SKkfoewd0U3KmBPkWqE4Jbj50cyAYD/MRbXrt38ZX4xWQSdNPqAGRHfszGVmE5YDMsxYQHf9XmGB4h+4cZmg5dlhxTVmmzozPlrY/jRwrQMBeFG8jJGI2TAxSmj013c=
