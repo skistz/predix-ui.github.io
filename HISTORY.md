@@ -1,6 +1,19 @@
-v0.2.2
+v0.2.4
 ==================
 * Fixed placeholder text in search box
+
+v0.2.3
+==================
+* added cloudflare cache reset on push
+
+v0.2.2
+==================
+* fixed IE11 bug that was caused by an extra closing tag.
+
+v0.2.1
+==================
+* fixed mobile nav issue
+>>>>>>> d7b87d1c987e9c5d2e91b88a743eef96e96c37f9
 
 v0.2.1
 ==================

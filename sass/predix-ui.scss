@@ -65,6 +65,14 @@ html,body{
 }
 
 /*
+ * Page wrapper
+ */
+.wrapper {
+  position: fixed;
+  top: 45px;
+}
+
+/*
 * gray title bar
 */
 .gray-bar {
@@ -153,8 +161,8 @@ html,body{
   line-height: 300%;
   position: fixed;
   height: 100%;
-  margin-top: 45px;
-  z-index: 2;
+  // margin-top: 45px;
+  z-index: 9999;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 
@@ -229,7 +237,7 @@ html,body{
 .iframe__container{
   width: 100%;
   height: 100vh;
-  margin: 45px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   position: fixed;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -260,7 +268,7 @@ html,body{
   .dev-network{
     display: inline;
   }
-  .wrapper-flex{
+  .wrapper--flex{
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
@@ -392,7 +400,7 @@ footer {
   position: relative;
   height: 6.25rem;
   padding-top: 2.0625rem;
-  background-color: #eaeaea;
+  background-color: $gray7;
   color: #d1d0d8;
   z-index: 80;
 }
@@ -550,10 +558,6 @@ a.item__link {
   background-color: #fff;
   padding: 5% 5% 2% 5%;
   overflow: hidden;
-}
-
-footer.footer {
-  background: #7c7c84;
 }
 
 footer.footer .vw {

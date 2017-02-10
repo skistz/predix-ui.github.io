@@ -22,9 +22,7 @@
       };
 
       var webComponentsSupported = (
-        'registerElement' in document
-        && 'import' in document.createElement('link')
-        && 'content' in document.createElement('template')
+        'registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template')
       );
 
       if (!webComponentsSupported) {
@@ -50,7 +48,7 @@
     <section class="hero">
       <div class="halves hero-header">
         <h2>Welcome to Predix UI</h2>
-        <p>We've produced Predix UI as a set of user interface components that enable designers and developers to quickly and easily create Industrial Internet web applications that run on top of Predix services and data.</p>
+        <p>Our user interface components enable you to quickly and easily create Industrial Internet web applications that run on dedicated Predix services and data.</p>
       </div>
       <div class="halves">
         <img class="hero-logo" src="../../img/component_peel.jpg" alt="Predix Component" />
@@ -63,7 +61,7 @@
       <div class="thirds">
         <img class="icon" src="../img/icon_comp.png" alt="Laptop">
         <h2 class="subHeader">1. Setup environment</h2>
-        <p>Head over to Predix.io resources to learn about setting up your development environment to start building with Predix UI.</p>
+        <p>Head over to <a href="https://www.predix.io">Predix.io</a> resources to learn about setting up your development environment to start building with Predix UI.</p>
           <a href="https://www.predix.io/docs#hOTKiBl" target="_blank"><button class="btn btn--primary">View More</button></a>
       </div>
       <div class="thirds">
@@ -121,7 +119,7 @@
         <h2 class="subHeader">Have a question?</h2>
         <p class="headerBottom">Having an issue with one of our components? General questions about getting up and running?</p>
         <br />
-        <p class="text--large"><a href="https://forum.predix.io/spaces/29/" target="_blank">Predix.io Forums </a></p>
+        <p class="text--large"><a href="https://forum.predix.io/" target="_blank">Predix.io Forums </a></p>
       </div>
     </section>
 

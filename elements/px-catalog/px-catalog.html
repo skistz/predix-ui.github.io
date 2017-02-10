@@ -20,6 +20,19 @@
 <dom-module id="px-catalog">
   <template>
     <style include="predix-ui-styles" is="custom-style"></style>
+    <style>
+      #spinner {
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+      #spinner px-spinner {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
@@ -41,7 +54,6 @@
         pattern="/:type/:name"
         data="{{route}}"
         tail="{{_routeTail}}">
-    </app-route>
     </app-route>
     <!-- Pass the routing data to the custom router to handle state and redirects -->
     <px-catalog-router
@@ -74,11 +86,11 @@
       </div>
     </section>
 
-    <!-- App Overlay -->
-    <div id="overlay" class="overlay"></div>
-
     <!-- App Wrapper -->
-    <div class="wrapper-flex">
+    <div class="wrapper wrapper--flex">
+      <!-- App Overlay -->
+      <div id="overlay" class="overlay"></div>
+
       <!-- App Side Nav -->
       <div id="side-nav" class="side-nav side-nav__default">
         <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
@@ -86,8 +98,10 @@
 
       <!-- App iFrame -->
       <div class="iframe__container">
-        <div id="spinner">
-          <px-spinner size="100"></px-spinner>
+        <div id="spinner" class="flex flex--row flex--center">
+          <div class="flex__item flex__item--middle">
+            <px-spinner size="150"></px-spinner>
+          </div>
         </div>
         <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
           <p>Your browser does not support iframes.</p>
@@ -113,13 +127,25 @@
         },
 
         /**
+         * Set to `true` when the menu should be visible. Set to `false` when
+         * it should be hidden.
+         *
+         * @type {Boolean}
+         */
+        menuIsVisible: {
+          type: Boolean,
+          value: false,
+          observer: '_handleMenuVisibilityChange'
+        },
+
+        /**
          * Set to `true` to show the spinner. Set to `false` to hide the spinner.
          *
          * @type {Boolean}
          */
         spinnerIsActive: {
           type: Boolean,
-          value: false,
+          value: true,
           observer: '_handleSpinnerVisibility'
         },
 
@@ -171,16 +197,20 @@
 
       listeners: {
         'menu.tap' : '_handleMenuTapped',
-        'overlay.tap' : 'ensureNavHidden',
-        'frameEl.load' : 'hideSpinner'
+        'px-sb-list-selected-item-changed': '_handleListItemChanged',
+        'overlay.tap' : '_handleOverlayTapped',
+        'frameEl.load' : '_handleFrameLoad'
       },
 
+      /**
+       * Update the title in the <head> to match the active page.
+       */
       _updateTitle: function() {
         this.debounce('update-title', function() {
           var type = this._formatType(this.activeType || '');
           var name = this._formatName(this.activeName || '');
           if (name || type) {
-            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '')
+            document.title = 'Predix UI' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '');
           }
         }, 100);
       },
@@ -197,16 +227,16 @@
        * @return {String} Formatted string
        */
       _formatType: function(type) {
-        if (!type || !type.length) return '';
+        if (!type || !type.length) {return '';}
 
         // CSS is a special case, capitalize it and return
-        if (type === 'css') return 'CSS';
+        if (type === 'css') {return 'CSS';}
 
         return type
         // Split on '-' char
           .split('-')
         // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
         // Join with a space
           .join(' ');
       },
@@ -223,15 +253,15 @@
        * @return {String} Formatted string
        */
       _formatName: function(name) {
-        if (!name || !name.length) return '';
+        if (!name || !name.length) {return '';}
 
         return name
         // Split on '-' char
           .split('-')
         // Remove 'px' (['px','app','nav'] -> ['app','nav'])
-          .filter(function(part){ return part !== 'px' })
+          .filter(function(part){ return part !== 'px'; })
         // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part) }.bind(this))
+          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
         // Join with a space
           .join(' ');
       },
@@ -242,7 +272,7 @@
        * @param {String} str - 'hello'
        * @return {String} - 'Hello'
        */
-      _capitalizeFirstLetter(str) {
+      _capitalizeFirstLetter: function(str) {
         return str.substring(0,1).toUpperCase() + str.substring(1);
       },
 
@@ -250,23 +280,83 @@
        * When the URL the iFrame should show is updated, sync the new URL with
        * the iFrame on the page.
        */
-      _handleFrameUrlChanged: function(newVal, oldVal) {
+      _handleFrameUrlChanged: function(newUrl) {
         var frame = this.$.frameEl;
-        var currentUrl = frame.src;
+        if ((typeof newUrl === 'string') && frame) {
+          // Try to get the frame location
+          var frameLocation = window.frames['iframe_a'].location;
+          // If the location is blank, this is a first load and we can assume
+          // the current page is `iframe.src`'s normalized pathname'
+          var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
+          // Normalize the new path
+          var newPath = this._normalizePath(newUrl);
 
-        if ((typeof newVal !== 'undefined') && frame && currentUrl && (newVal !== currentUrl)) {
-          // this.$.frameEl.src = newVal;
-          window.frames['iframe_a'].location.replace(newVal);
+          if (currentPath !== newPath) {
+            // Replace location like this so we don't add an entry to the
+            // history stack. The router will do that for us.
+            window.frames['iframe_a'].location.replace(newUrl);
+            // Activate the spinner
+            this.set('spinnerIsActive', true);
+          }
         }
       },
 
       /**
-       * When the menu button is tapped, hide the spinner and toggle the
-       * visibility of the side navigation menu.
+       * Given a relative or absolute URL, returns the normalized pathname.
+       *
+       * Example:
+       *
+       *     _normalizePath('../../pages/home.html');
+       *     //=> '/pages/home.html'
+       *
+       *     _normalizePath('http://predix-ui.com/px-component/px-component/')
+       *     //=> '/px-component/px-component/'
+       *
+       * @param {String} url
+       * @return {String}
+       */
+      _normalizePath: function(url) {
+        var linkTag = document.createElement('a');
+        linkTag.href = url;
+        return linkTag.pathname || '';
+      },
+
+      /**
+       * When the menu button is tapped, toggle the visibility of the menu.
+       * This should only fire during user interaction with the menu.
        */
       _handleMenuTapped: function() {
-        this.toggleNavClasses();
-        this.hideSpinner();
+        var currentMenuState = this.get('menuIsVisible');
+        this.set('menuIsVisible', !currentMenuState);
+      },
+
+      /**
+       * When the selected list item changes, ensure the menu is hidden.
+       * This event will fire on initial load so it doesn't always indicate
+       * user interaction.
+       */
+      _handleListItemChanged: function() {
+        if (this.get('menuIsVisible') !== false) {
+          this.set('menuIsVisible', false);
+        }
+      },
+
+      /**
+       * When the overlay is tapped, ensure the menu is hidden.
+       */
+      _handleOverlayTapped: function() {
+        if (this.get('menuIsVisible') !== false) {
+          this.set('menuIsVisible', false);
+        }
+      },
+
+      /**
+       * When the frame finishes loading, ensure the spinner is hidden.
+       */
+      _handleFrameLoad: function() {
+        if (this.get('spinnerIsActive') !== false) {
+          this.set('spinnerIsActive', false);
+        }
       },
 
       /**
@@ -275,60 +365,70 @@
        */
       _handleSpinnerVisibility: function(newVal, oldVal) {
         if ((typeof newVal !== "undefined") && newVal) {
-          this.showSpinner();
+          this._showSpinner();
         }
         if ((typeof newVal !== "undefined") && !newVal) {
-          this.hideSpinner();
+          this._hideSpinner();
         }
       },
 
       /**
-       * Shows the spinner.
-       */
-      showSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.remove('is__hidden');
-        if (!this.spinnerIsActive) {
-          this.set('spinnerIsActive', true);
-        }
-      },
-
-      /**
-      * Hides the spinner.
-      */
-      hideSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.add('is__hidden');
-        if (!!this.spinnerIsActive) {
-          this.set('spinnerIsActive', false);
-        }
-      },
-
-      /**
-       * Toggles the menu (closes if currently open, opens if currently closed).
+       * When the visibility state of the menu changes, make updates to the DOM
+       * to reflect its state.
        */
-      toggleNavClasses: function() {
-        this.$$("#side-nav").classList.toggle('side-nav__default');
-        this.$$("#overlay").classList.toggle('overlay--visible');
-        this.$$("#menu__open-icon").classList.toggle('is__hidden');
-        this.$$("#menu__close-icon").classList.toggle('is__hidden');
+      _handleMenuVisibilityChange: function(newState, oldState) {
+        if ((typeof newState !== "undefined") && newState) {
+          this._showMenu();
+        }
+        if ((typeof newState !== "undefined") && !newState) {
+          this._hideMenu();
+        }
       },
 
       /**
-       * Explicitly closes the menu if it currently open.
+       * Shows the menu by manipulating classes in the DOM.
        */
-      ensureNavHidden: function() {
+      _showMenu: function() {
         var sideNav = this.$$("#side-nav");
         var overlay = this.$$("#overlay");
         var menuOpenIcon = this.$$("#menu__open-icon");
         var menuCloseIcon = this.$$("#menu__close-icon");
 
-        if (this.isMobile) {
-          if (!sideNav.classList.contains('side-nav__default')) sideNav.classList.add('side-nav__default');
-          if (overlay.classList.contains('overlay')) overlay.classList.remove('overlay');
-          if (menuOpenIcon.classList.contains('is__hidden')) menuOpenIcon.classList.remove('is__hidden');
-          if (!menuCloseIcon.classList.contains('is__hidden')) menuCloseIcon.classList.add('is__hidden');
-        }
+        if (sideNav.classList.contains('side-nav__default')) { sideNav.classList.remove('side-nav__default');   }
+        if (!overlay.classList.contains('overlay--visible'))   { overlay.classList.add('overlay--visible'); }
+        if (!menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.add('is__hidden');  }
+        if (menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.remove('is__hidden');    }
+      },
+
+      /**
+       * Hides the menu by manipulating classes in the DOM.
+       */
+      _hideMenu: function() {
+        var sideNav = this.$$("#side-nav");
+        var overlay = this.$$("#overlay");
+        var menuOpenIcon = this.$$("#menu__open-icon");
+        var menuCloseIcon = this.$$("#menu__close-icon");
+
+        if (!sideNav.classList.contains('side-nav__default')) { sideNav.classList.add('side-nav__default');   }
+        if (overlay.classList.contains('overlay--visible'))   { overlay.classList.remove('overlay--visible'); }
+        if (menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.remove('is__hidden');  }
+        if (!menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.add('is__hidden');    }
+      },
+
+      /**
+       * Shows the spinner by manipulating classes in the DOM.
+       */
+      _showSpinner: function() {
+        var spinner = this.$$('#spinner');
+        spinner.classList.remove('is__hidden');
+      },
+
+      /**
+       * Hides the spinner by manipulating classes in the DOM.
+       */
+      _hideSpinner: function() {
+        var spinner = this.$$('#spinner');
+        spinner.classList.add('is__hidden');
       },
 
       /**

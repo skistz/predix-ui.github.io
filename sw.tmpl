@@ -133,15 +133,20 @@ self.addEventListener('fetch', function(event) {
       'webcomponents-lite.min.js',
       'hydrolysis.js',
       'polymer-font-awesome.html',
-      'px-polymer-font-awesome.html'
+      'px-polymer-font-awesome.html',
+      'fontawesome-webfont.woff'
     ];
-
-    for (var resource of resourcesToRemap) {
-      if (url.includes(resource) && !url.includes('bower_components')){
-        const lhsIndex = url.indexOf('px-');
-        if (lhsIndex > 0){
-          const rhsIndex = url.indexOf('/', lhsIndex);
-          url = url.replace(url.substr(lhsIndex, rhsIndex - lhsIndex), 'bower_components')
+    if (url.includes('GEInspiraSans')) {
+      url = 'https://www.predix-ui.com/type/' + url.substr(url.lastIndexOf('/')+1);
+    }
+    else {
+      for (var resource of resourcesToRemap) {
+        if (url.includes(resource) && !url.includes('bower_components')){
+          const lhsIndex = url.indexOf('px-');
+          if (lhsIndex > 0){
+            const rhsIndex = url.indexOf('/', lhsIndex);
+            url = url.replace(url.substr(lhsIndex, rhsIndex - lhsIndex), 'bower_components')
+          }
         }
       }
     }

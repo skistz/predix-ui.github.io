@@ -2,7 +2,7 @@
   "name": "px-demo-site",
   "author": "General Electric",
   "description": "A catalog of Px components",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "extName": null,
   "repository": {
@@ -36,5 +36,8 @@
     "yargs": "^6.0.0",
     "del": "^2.2.2",
     "gulp-git": "^1.12.0"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
   }
 }

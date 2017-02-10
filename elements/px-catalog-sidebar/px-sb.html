@@ -28,7 +28,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <div class="search">
       <div class="input">
-        <input id="searchInput" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type in a search term...">
+        <input id="searchInput" class="text-input" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type in a search term...">
       </div>
       <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
         <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
@@ -208,19 +208,20 @@ Element providing sidebar for the predix ui website.
     */
     _findItemTrail: function(navArr, selectedItem, path) {
       var i,
-          len,
           oldPath,
-          arr;
+          arr,
+          len = (navArr) ? navArr.length: 0;
 
-      for (i = 0, len = navArr.length; i < len; i++) {
+      for (i = 0 ; i < len; i++) {
         if (navArr[i].links) {
           oldPath = path;
-          path = (path)?path:'';
+          path = path || '';
           path += i.toString() + '.links.';
 
           //this will return null when it can't find anything, but if it does find something, we grab the array its returned, push that into another array, and return that.
           arr = this._findItemTrail(navArr[i].links, selectedItem, path);
           if (arr !== null) {
+            console.log('not null');
             navArr[i].path = path.substr(0,path.length - 7);
             arr.push(navArr[i]);
             //this is the final return, after the recursion is done
@@ -257,10 +258,10 @@ Element providing sidebar for the predix ui website.
     */
     _findItemPath: function(navArr, selectedItem, path) {
       var i,
-          len,
+          len = (navArr) ? navArr.length : 0,
           foundPath;
 
-      for (i = 0, len = navArr.length; i < len; i++) {
+      for (i = 0; i < len; i++) {
         if (navArr[i].links) {
           var oldPath = path;
           path = (path)?path:'';
@@ -477,8 +478,9 @@ Element providing sidebar for the predix ui website.
     */
     _buildNav: function(navArr, searchKeyword) {
       var foundItems = [],
-      lowercaseArray;
-      for (var i = 0, len=navArr.length; i < len; i++) {
+          lowercaseArray,
+          len=(navArr) ? navArr.length : 0;
+      for (var i = 0; i < len; i++) {
         //build our initial object and populate it.
         var currentObj = {};
         currentObj.linkText = navArr[i].linkText;
@@ -489,7 +491,7 @@ Element providing sidebar for the predix ui website.
         //if the item has links (ie children), recurse and if another array with links is returned, insert that into the object.
         if (navArr[i].links) {
           var tempArr = this._buildNav(navArr[i].links, searchKeyword);
-          if (tempArr.length) {
+          if (tempArr && tempArr.length) {
             currentObj['links'] = tempArr;
           }
         }
@@ -565,7 +567,7 @@ Element providing sidebar for the predix ui website.
     _activeItemChange: function() {
       // The activeItem changed, check to see if we have the right activeItem. Otherwise, we need to find it
       // and force it to open.
-      if (this.activeName.length && this.activeType.length) {
+      if (this.activeName && this.activeName.length && this.activeType && this.activeType.length) {
         // This case below will only be true if the change is coming from the outside
         if (this.activeName !== this.name) {
           // Wait a beat so `activeName` and `activeType` will be in sync
@@ -577,14 +579,14 @@ Element providing sidebar for the predix ui website.
                 path;
 
             // the first item from the trail is always item itself. now we have the path :)
-            if (trail.length) {
+            if (trail && trail.length) {
               path = trail[0].path;
             }
 
             //using the trail, we set the opened=true properties on the correct arrows on initial load. the listener in sb-list does it on click from now on, and it also happens on searchKeyword reset.
             this._changeOpenedProperty(trail);
             this.fire('px-sb-list-selected-item-changed', {selectedItem: this.name, itemType: this.type, path: path});
-          }, 10)
+          }, 10);
         }
       }
     }

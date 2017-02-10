@@ -184,8 +184,8 @@ a component.
       _syncPathToActiveAttrs: function(newAppPath) {
         if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
           this.debounce('sync-path-to-active-attrs', function(){
-            var activeName = this.activeName || '';
-            var activeType = this.activeType || '';
+            var activeName = this.activeName || '',
+                activeType = this.activeType || '';
 
             if ((newAppPath.name && newAppPath.name !== activeName) ||(newAppPath.type && newAppPath.type !== activeType)) {
               this.set('activeName', newAppPath.name);
@@ -206,19 +206,12 @@ a component.
         if (this.activeName && this.activeName.length) {
           // Wait a few ticks to make sure both activeName and activeType update
           this.async(function() {
-            var name = this.activeName;
-            var type = this.activeType;
-
-            // If `type` is external, open an external window
-            if (type === "external") {
-              // this._openExternalWindow(name, type);
-              // return;
-            }
-
-            // Otherwise, check if either activeName or activeType is different
-            // from the appPath. If there is a difference, update.
-            var appPathName = this.appPath.name || '';
-            var appPathType = this.appPath.type || '';
+            var name = this.activeName,
+                type = this.activeType,
+                // Otherwise, check if either activeName or activeType is different
+                // from the appPath. If there is a difference, update.
+                appPathName = this.appPath.name || '',
+                appPathType = this.appPath.type || '';
 
             if (name !== appPathName || type !== appPathType) {
               this.set('appPath', { type: type, name: name });
@@ -237,9 +230,10 @@ a component.
        * @param {Boolean} useDarkTheme - If `true`, should attempt to load the dark theme version of the iFrame
        * @return {String}
        */
-      _findUrlByNameAndType(type, name, tail, useDarkTheme) {
+      _findUrlByNameAndType: function(type, name, tail, useDarkTheme) {
+        var knownTypes;
         if (type && type !== '') {
-          var knownTypes = {
+          knownTypes = {
             components: function(name) {
               return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
@@ -284,17 +278,17 @@ a component.
       */
       _updateFrameUrl: function() {
         this.debounce('update-frame-url', function() {
-          var appPath = this.appPath || {};
-          var appTail = this.appTail || '';
-          var queryParams = this.queryParams || {};
-
-          var type = appPath.type;
-          var name = appPath.name;
-          var tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail; // remove beginning slash
-          var isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
+          var appPath = this.appPath || {},
+              appTail = this.appTail || '',
+              queryParams = this.queryParams || {},
+              type = appPath.type,
+              name = appPath.name,
+              frameUrl,
+              tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail, // remove beginning slash
+              isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
 
           if (type || name) {
-            var frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);
+            frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);
             this.set('frameUrl', frameUrl);
           }
         }, 10);
@@ -310,17 +304,17 @@ a component.
       _extractQueryParamsFromHash: function(rawPath) {
         return new Promise(function(resolve, reject) {
           // Extract pieces of path with length
-          var parts = rawPath.split('/').filter(function(part){ return part.length });
-          var newParts = [];
-          var foundQueries = [];
+          var parts = rawPath.split('/').filter(function(part){ return part.length; }),
+              newParts = [],
+              foundQueries = [];
 
           for (var i = 0; i < parts.length; i++) {
             var queryStart = parts[i].indexOf('?');
             if (queryStart > -1) {
-              var query = parts[i].substring(queryStart + 1);
-              var part = parts[i].substring(0, queryStart);
-              if (part.length) newParts.push(part);
-              if (query.length) foundQueries.push(query);
+              var query = parts[i].substring(queryStart + 1),
+                  part = parts[i].substring(0, queryStart);
+              if (part.length) {newParts.push(part);}
+              if (query.length) {foundQueries.push(query);}
             } else {
               newParts.push(parts[i]);
             }
@@ -370,7 +364,7 @@ a component.
           var param = paramList[i].split('=');
           if (param[0]) {
             params[decodeURIComponent(param[0])] =
-                decodeURIComponent(param[1] || '');
+              decodeURIComponent(param[1] || '');
           }
         }
         return params;
@@ -397,8 +391,8 @@ a component.
        */
       _cleanRawPath: function() {
         this.debounce('clean-raw-path', function(){
-          var rawPath = this.rawPath || '';
-          var cleaning = this._cleaningRawPath || false;
+          var rawPath = this.rawPath || '',
+              cleaning = this._cleaningRawPath || false;
           if (rawPath.length && !this.cleaning) {
             this.set('_cleaningRawPath', true);
             this._extractQueryParamsFromHash(rawPath)
@@ -412,10 +406,10 @@ a component.
                 var existingQuery = this.queryParams || {};
                 var query = Object.assign({}, newQuery, existingQuery);
                 // If any params, set them
-                if (Object.keys(query).length) this.set('queryParams', query);
+                if (Object.keys(query).length) {this.set('queryParams', query);}
 
                 // Finish up by unlocking
-                this.set('_cleaningRawPath', false)
+                this.set('_cleaningRawPath', false);
               }.bind(this));
           }
         }, 100);
@@ -429,8 +423,8 @@ a component.
       _redirectModulePathURLs: function(newAppPath) {
         if (newAppPath && (typeof newAppPath === 'object') && Object.keys(newAppPath).length) {
           this.debounce('redirect-module-path-URLs', function(){
-            var type = newAppPath.type || '';
-            var name = newAppPath.name || '';
+            var type = newAppPath.type || '',
+                name = newAppPath.name || '';
 
             // If we are `type` of `modules`, try to search for nav item to get
             // the correct type to set for the URL
@@ -444,7 +438,6 @@ a component.
                 // Otherwise, set the new `appPath` to update the URL
                 this.set('appPath', { type: foundType, name: name });
               }
-
             }
           }, 100);
         }
@@ -461,8 +454,8 @@ a component.
       _redirectOldQueryURLs: function(queryParams) {
         if (queryParams && (typeof queryParams === 'object') && Object.keys(queryParams).length) {
           this.debounce('redirect-old-query-URLs', function(){
-            var type;
-            var name;
+            var type,
+                name;
 
             // Check if `queryParams` object has the key `type`, which will be mapped
             // to the type of the component
@@ -495,20 +488,21 @@ a component.
             // Given a route like this: `/?show=use-css&type=local`
             // Will produce a path like this: `/#/guides/use-css`
             var newTypeByName = {
-              'what-is-predix-ui' : 'about',
-              'getting-started' : 'guides',
-              'use-css' : 'guides',
-              'use-seed' : 'guides',
-              'use-component-generator' : 'guides'
-            };
-            var newTypeKeys = Object.keys(newTypeByName);
+                  'what-is-predix-ui' : 'about',
+                  'getting-started' : 'guides',
+                  'use-css' : 'guides',
+                  'use-seed' : 'guides',
+                  'use-component-generator' : 'guides'
+                },
+                newTypeKeys = Object.keys(newTypeByName);
+
             if (type && name && newTypeKeys.indexOf(name) !== -1) {
               type = newTypeByName[name];
             }
 
             // Remap certain `type` to new names
             if (type && type === 'component') {
-              type = 'components'
+              type = 'components';
             }
 
             if (type || name) {
@@ -529,19 +523,20 @@ a component.
        */
       _searchNavForTypeByName: function(name) {
         if (this.navJson && (typeof this.navJson === 'object') && Object.keys(this.navJson).length) {
-          var navJson = this.navJson;
-          var found;
+          var navJson = this.navJson,
+              found;
 
-          var recurse = function(obj) {
-            for (var key in obj) {
-              if (obj[key].repoName === name) {
-                found = obj[key];
-              }
-              if (obj[key].links && obj[key].links.length) {
-                recurse(obj[key].links);
-              }
-            }
-          }
+              var recurse = function(obj) {
+               var keys = Object.keys(obj);
+               for (var i = 0; i < keys.length; i++) {
+                 if (obj[keys[i]].repoName === name) {
+                   found = obj[keys[i]];
+                 }
+                 if (obj[keys[i]].links && obj[keys[i]].links.length) {
+                   recurse(obj[keys[i]].links);
+                 }
+               }
+             };
 
           recurse(navJson);
           return found ? found.dataType : null;

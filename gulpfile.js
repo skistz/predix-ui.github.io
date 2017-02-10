@@ -34,7 +34,7 @@ const chmod = require('gulp-chmod');
 const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
-
+var request = require('request');
 
 /*******************************************************************************
  * SETTINGS
@@ -259,14 +259,33 @@ gulp.task('deleteFiles', function() {
            gitSync.push('origin', 'master', {cwd: '.', args: "--force"}, (errPush) => {
              if (errPush) {
                console.log('push error: ' + errPush);
-             } else {
-               console.log("pushed successfully!");
              }
            });
          });
      });
  });
 
+gulp.task('resetCloudflareCache', function() {
+  var cloudflare_zone_identifier = process.env.cloudflare_zone_identifier,
+      cloudflare = process.env.cloudflare;
+
+  request({
+      uri: 'https://api.cloudflare.com/client/v4/zones/' + cloudflare_zone_identifier + '/purge_cache',
+      method:'DELETE',
+      headers: {
+        "X-Auth-Email" : "martin.wragg@ge.com",
+        "X-Auth-Key" : cloudflare,
+        "Content-Type" : "application/json"
+      },
+      body: '{"purge_everything" :true}'
+    }, function(err, res, body) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    });
+});
 
 /*******************************************************************************
  * LOCAL BUILD PIPELINE
@@ -286,12 +305,10 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff')(callback);
+   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
-
-gulp.task('default', ['build']);
-
+gulp.task('default', ['localBuild']);
 
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
@@ -321,8 +338,9 @@ gulp.task('default', ['build']);
                        rootDir + '/img/**',
                        rootDir + '/type/**',
                        rootDir + '/pages/**',
-                       rootDir + '/elements/**/*.html',
+                       rootDir + '/elements/**/*.{html,json}',
                        rootDir + '/css/**',
+                       rootDir + '/bower_components/font-awesome/fonts/fontawesome*',
                        rootDir + '/bower_components/px-theme/**/*.html',
                        rootDir + '/bower_components/px-spinner/**/*.html',
                        rootDir + '/bower_components/polymer/polymer*.html',
@@ -337,7 +355,7 @@ gulp.task('default', ['build']);
                        rootDir + '/bower_components/iron-icon/iron-icon.html',
                        rootDir + '/bower_components/iron-meta/iron-meta.html',
                        rootDir + '/bower_components/promise-polyfill/promise-polyfill-lite.html',
-                       rootDir + '/bower_components/promise-polyfill/Promise.html',
+                       rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
                        rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
