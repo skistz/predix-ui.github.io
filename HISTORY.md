@@ -12,12 +12,8 @@ v0.2.2
 
 v0.2.1
 ==================
-* fixed mobile nav issue
->>>>>>> d7b87d1c987e9c5d2e91b88a743eef96e96c37f9
-
-v0.2.1
-==================
 * added px-timeline
+* fixed mobile nav issue
 
 v0.2.0
 ==================
