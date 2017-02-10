@@ -1,3 +1,7 @@
+v0.2.2
+==================
+* Fixed placeholder text in search box
+
 v0.2.1
 ==================
 * added px-timeline

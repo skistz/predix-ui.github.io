@@ -28,7 +28,7 @@ Element providing sidebar for the predix ui website.
     <style include="px-theme-styles"></style>
     <div class="search">
       <div class="input">
-        <input id="searchInput" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type In A Search Term...">
+        <input id="searchInput" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type in a search term...">
       </div>
       <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
         <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
