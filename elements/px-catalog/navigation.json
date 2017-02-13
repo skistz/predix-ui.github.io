@@ -476,6 +476,20 @@
             ]
           },
           {
+            "repoName":"px-gauge",
+            "dataType":"components",
+            "linkText":"Gauge",
+            "keywords":[
+              "px-gauge",
+              "charts",
+              "graph",
+              "graphs",
+              "percent",
+              "percentage",
+              "gauge"
+            ]
+          },
+          {
             "repoName":"px-simple-bar-chart",
             "dataType":"components",
             "linkText":"Simple Bar Chart",
@@ -863,6 +877,14 @@
         "linkText":"Modal",
         "keywords":[
           "px-modal"
+        ]
+      },
+      {
+        "repoName":"px-number-formatter",
+        "dataType":"components",
+        "linkText":"Number Formatter",
+        "keywords":[
+          "px-number-formatter", "number"
         ]
       },
       {
