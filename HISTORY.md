@@ -1,3 +1,7 @@
+v0.2.5
+==================
+* updated nav to include gauge and number-formatter
+
 v0.2.4
 ==================
 * Fixed placeholder text in search box
