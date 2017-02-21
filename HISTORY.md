@@ -1,3 +1,7 @@
+v0.2.6
+==================
+* updated description and links on the home page
+
 v0.2.5
 ==================
 * updated nav to include gauge and number-formatter
