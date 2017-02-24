@@ -1,3 +1,7 @@
+v0.2.7
+==================
+* updated all pages' footers to px-demo footers
+
 v0.2.6
 ==================
 * updated description and links on the home page

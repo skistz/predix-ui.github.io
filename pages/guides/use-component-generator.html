@@ -14,6 +14,7 @@
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
     <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
     <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
   </head>
   <body class="body flex flex--col">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
@@ -32,25 +33,8 @@
       </a>
     </section>
 
-    <footer class="footer">
-      <div class="vw">
-        <div class="layout">
-          <div class=" u-4/12 pull-left footer-img">
-            <a target="_blank" href="https://ge.com/digital" class="no-border gray">
-              <img src="../../img/monogram-wdmk.png" alt="GE Monogram">
-            </a>
-          </div>
-          <div class="layout__item u-8/12">
-            <small>
-              <ul class="list-inline list-inline--delimited">
-                <li><a target="_blank" href="http://predix.io/legal" class="no-border darker">Legal</a></li>
-                <li><a target="_blank" href="mailto:info@predix.io" class="no-border darker">Contact Us</a></li>
-                <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
-              </ul>
-            </small>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
   </body>
 </html>

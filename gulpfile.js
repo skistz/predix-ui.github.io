@@ -223,7 +223,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
 
 gulp.task('serve', function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['css/*-styles.html', '*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', '*.html', 'page/*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
 });
 

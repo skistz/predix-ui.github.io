@@ -358,7 +358,7 @@ body:after {
   clear: both;
 }
 
-footer,header,main,section {
+header,main,section {
   display: block;
 }
 
@@ -395,30 +395,6 @@ img {
   margin-left: auto;
   padding-right: 1%;
   padding-left: 1%;
-}
-
-footer {
-  position: relative;
-  height: 6.25rem;
-  padding-top: 2.0625rem;
-  background-color: $gray7;
-  color: #d1d0d8;
-  z-index: 80;
-}
-
-footer .list-inline {
-  text-align: center;
-}
-
-footer .layout__item:first-child {
-  margin-right: 25%;
-  margin-left: 25%;
-}
-
-footer small {
-  font-size: .75rem;
-  line-height: 1.5;
-  text-align: center;
 }
 
 hr {
@@ -559,14 +535,6 @@ a.item__link {
   background-color: #fff;
   padding: 5% 5% 2% 5%;
   overflow: hidden;
-}
-
-footer.footer .vw {
-  max-width: 82rem;
-}
-
-.footer-img img {
-  width: 150px;
 }
 
 .platform {
