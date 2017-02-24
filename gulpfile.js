@@ -252,9 +252,15 @@ gulp.task('deleteFiles', function() {
      //set the source to our working directory and exclude node_modules
      return gulp.src(src, {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
          .pipe(gitSync.add()) //git add
-         .on('error', (err) => console.log('adding files to git' + err))
+         .on('error', (err) => {
+           console.log('adding files to git');
+           console.log(err);
+          })
          .pipe(gitSync.commit('master rebuild', {maxBuffer: 'infinity'})) //git commit
-         .on('error', (err) => console.log('git commit error:' + err))
+         .on('error', (err) => {
+           console.log('git commit error:');
+           console.log(err);
+          })
          .on('end', () => { //this is the only way i foudn to run this synchronously.
            gitSync.push('origin', 'master', {cwd: '.', args: "--force"}, (errPush) => {
              if (errPush) {
