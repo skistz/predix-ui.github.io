@@ -244,6 +244,8 @@ gulp.task('deleteFiles', function() {
  ******************************************************************************/
 
  gulp.task('gitStuff', function() {
+   var addOptions = {args: 'options', quiet: false, maxBuffer: 200 * 1024};
+
    gitSync.checkout('master',{args : '--orphan', cwd : '.'}, (err) => {
      if (err) {
        console.log('git checkout error:' + err);
@@ -251,7 +253,7 @@ gulp.task('deleteFiles', function() {
      console.log('finished checkout successfully');
      //set the source to our working directory and exclude node_modules
      return gulp.src(src, {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
-         .pipe(gitSync.add()) //git add
+         .pipe(gitSync.add(addOptions)) //git add
          .on('error', (err) => {
            console.log('adding files to git');
            console.log(err);
