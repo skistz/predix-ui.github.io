@@ -223,7 +223,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
 
 gulp.task('serve', function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['css/*-styles.html', '*.html', 'page/*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
 });
 
@@ -282,7 +282,7 @@ gulp.task('resetCloudflareCache', function() {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
+        console.log(res.body);
       }
     });
 });
