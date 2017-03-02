@@ -62,7 +62,7 @@ const browserSyncOptions = {
   server: ['./', 'bower_components']
 };
 
-var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'sw.tmpl','CNAME'];
+var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'CNAME'];
 
 /*******************************************************************************
  * BASIC UTILITIES
