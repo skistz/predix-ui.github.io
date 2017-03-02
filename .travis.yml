@@ -1,8 +1,8 @@
-sudo: required
-os: osx
+sudo: false
+dist: trusty
 language: node_js
 node_js:
-- stable
+- "6.1.x"
 branches:
   except:
   - gh-pages
