@@ -244,7 +244,7 @@ gulp.task('deleteFiles', function() {
  ******************************************************************************/
 
  gulp.task('gitStuff', function() {
-   var addOptions = {quiet: false, maxBuffer: 'infinity'};
+   var addOptions = {quiet: false, maxBuffer: Infinity};
 
    gitSync.checkout('master',{args : '--orphan', cwd : '.'}, (err) => {
      if (err) {
