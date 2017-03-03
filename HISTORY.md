@@ -1,3 +1,7 @@
+v0.2.8
+==================
+* fixed header spacing per design feedback
+
 v0.2.7
 ==================
 * updated all pages' footers to px-demo footers
