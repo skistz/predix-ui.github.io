@@ -1,3 +1,12 @@
+v0.2.9
+==================
+* remove px-demo because it was causing an e2big error because of all the bower dependencies. 
+* added px-catalog-footer
+
+v0.2.8
+==================
+* fixed header spacing per design feedback
+
 v0.2.7
 ==================
 * updated all pages' footers to px-demo footers
