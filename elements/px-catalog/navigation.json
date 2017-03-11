@@ -272,11 +272,36 @@
             ]
           },
           {
+            "repoName":"px-spacing-responsive-design",
+            "dataType":"css",
+            "linkText":"Spacing (Responsive)",
+            "keywords":[
+              "px-spacing-responsive-design",
+              "margin",
+              "padding",
+              "spacing",
+              "responsive",
+              "mobile"
+            ]
+          },
+          {
             "repoName":"px-widths-design",
             "dataType":"css",
             "linkText":"Widths",
             "keywords":[
-              "px-widths-design"
+              "px-widths-design",
+              "sizing"
+            ]
+          },
+          {
+            "repoName":"px-widths-responsive-design",
+            "dataType":"css",
+            "linkText":"Widths (Responsive)",
+            "keywords":[
+              "px-widths-responsive-design",
+              "sizing",
+              "responsive",
+              "mobile"
             ]
           },
           {

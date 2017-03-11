@@ -1,3 +1,7 @@
+v0.2.9
+==================
+* added spacing-responsive and widths-responsive
+
 v0.2.8
 ==================
 * fixed header spacing per design feedback
