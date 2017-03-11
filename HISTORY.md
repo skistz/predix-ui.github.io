@@ -1,6 +1,11 @@
-v0.2.9
+v0.2.10
 ==================
 * added spacing-responsive and widths-responsive
+
+v0.2.9
+==================
+* remove px-demo because it was causing an e2big error because of all the bower dependencies. 
+* added px-catalog-footer
 
 v0.2.8
 ==================

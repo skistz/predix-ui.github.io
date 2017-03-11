@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+//
+// Sass for the "sketch" notion of the px-demo-site component
+//
+// @author
+//
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in px-demo-site-predix.scss, not in this file.
+*/
+// Settings
+// Generic
+// Base
+@import 'px-flexbox-design/_base.flexbox.scss';
+$inuit-enable-list-inline--delimited : true;
+@import "px-list-inline-design/_objects.list-inline.scss";
+
+
+// Component
+@import "px-demo-design/_component.demo.scss";
+
+// Trumps
+$inuit-enable-paddings--huge : true;
+@import 'px-spacing-design/_trumps.spacing.scss';

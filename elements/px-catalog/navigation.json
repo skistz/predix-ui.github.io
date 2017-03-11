@@ -995,6 +995,17 @@
         ]
       },
       {
+        "repoName":"px-toggle",
+        "dataType":"components",
+        "linkText":"Toggle",
+        "keywords":[
+          "px-toggle",
+          "switch",
+          "checkbox",
+          "tog"
+        ]
+      },
+      {
         "repoName":"px-tooltip",
         "dataType":"components",
         "linkText":"Tooltip",
