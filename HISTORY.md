@@ -1,3 +1,9 @@
+v0.2.12
+==================
+* remove dead code
+* remove legacy flexbox for IE10
+* add 'noscript' handler if browser JS is switched of.
+
 v0.2.11
 ==================
 * added label for search input (a11y)
