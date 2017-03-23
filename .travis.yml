@@ -7,7 +7,7 @@ branches:
   except:
   - gh-pages
 before_script:
-- yarn add bower
+- npm install bower
 - export PATH=$PWD/node_modules/.bin:$PATH
 - bower install
 after_success:
