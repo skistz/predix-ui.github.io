@@ -1,3 +1,6 @@
 node_modules/
 bower_components/
 dist/
+caddyfile
+cert.crt
+cert.key
