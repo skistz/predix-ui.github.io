@@ -564,17 +564,6 @@
             ]
           },
           {
-            "repoName":"px-chart",
-            "dataType":"components",
-            "linkText":"Chart",
-            "keywords":[
-              "px-chart",
-              "charts",
-              "graph",
-              "graphs"
-            ]
-          },
-          {
             "repoName":"px-vis",
             "dataType":"components",
             "linkText":"Vis Framework",

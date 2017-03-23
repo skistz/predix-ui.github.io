@@ -1,3 +1,7 @@
+v0.2.13
+==================
+* removed px-chart
+
 v0.2.12
 ==================
 * remove dead code
