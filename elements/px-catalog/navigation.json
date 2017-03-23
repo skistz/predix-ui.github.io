@@ -897,6 +897,17 @@
         ]
       },
       {
+        "repoName":"px-map",
+        "dataType":"components",
+        "linkText":"Modal",
+        "keywords":[
+          "px-map",
+          "map",
+          "maps",
+          "mapping"
+        ]
+      },
+      {
         "repoName":"px-modal",
         "dataType":"components",
         "linkText":"Modal",
