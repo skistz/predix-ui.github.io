@@ -515,6 +515,19 @@
             ]
           },
           {
+            "repoName":"px-simple-area-chart",
+            "dataType":"components",
+            "linkText":"Simple Area Chart",
+            "keywords":[
+              "px-simple-area-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "area",
+              "stacked"
+            ]
+          },
+          {
             "repoName":"px-simple-bar-chart",
             "dataType":"components",
             "linkText":"Simple Bar Chart",
