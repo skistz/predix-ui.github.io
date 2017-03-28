@@ -149,17 +149,6 @@
         },
 
         /**
-         * Updated to indicate if the browser is mobile-size. This is read only
-         * and cannot be set from the outside.
-         *
-         * @type {Boolean}
-         */
-        isMobile: {
-          type: Boolean,
-          value: true
-        },
-
-        /**
          * The navigation represented as JSON, loaded by an `iron-ajax` element
          * from the `navigation.json` file.
          *
@@ -188,10 +177,6 @@
           type: String,
           observer: '_updateTitle'
         }
-      },
-
-      attached: function() {
-        this.checkIfIsMobile();
       },
 
       listeners: {
@@ -428,24 +413,6 @@
       _hideSpinner: function() {
         var spinner = this.$$('#spinner');
         spinner.classList.add('is__hidden');
-      },
-
-      /**
-       * Checks if we're on a mobile-size screen by inspecting the visibility of
-       * the menu icon, which we hide on small screens with CSS. Updates the
-       * `isMobile` property to keep track of state.
-       *
-       * @return {Boolean} - If `true`, indicates screen is mobile size.
-       */
-      checkIfIsMobile: function() {
-        var menu = document.getElementById('menu');
-        var screenIsMobile = getComputedStyle(menu, 'display').display !== 'none';
-        if (screenIsMobile) {
-          this.isMobile = true;
-          return true;
-        }
-        this.isMobile = false;
-        return false;
       }
     });
   </script>
