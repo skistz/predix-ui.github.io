@@ -176,6 +176,15 @@
         activeType: {
           type: String,
           observer: '_updateTitle'
+        },
+
+        /**
+         * Place to hang iframe loading poller
+         *
+         * @type {Object}
+         */
+        _loadingPoller: {
+          type: Object
         }
       },
 
@@ -338,12 +347,14 @@
        * When the frame finishes loading, ensure the spinner is hidden.
        */
       _handleFrameLoad: function() {
-        if(this.frameUrl.indexOf('/pages/') < 0){
-          var id = setInterval(checkComponentDemoAttached.bind(this), 250);
+        var url = this.frameUrl;
+        if(url.indexOf('/pages/') < 0 && url.indexOf('px-starter-kit-design') < 0){
+          clearInterval(this._loadingPoller);
+          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
           function checkComponentDemoAttached() {
             if(this.$.frameEl.contentDocument.body.querySelector('local-element-demo').isAttached){
               this._clearSpinner();
-              clearInterval(id);
+              clearInterval(this._loadingPoller);
             };
           };
         } else{
