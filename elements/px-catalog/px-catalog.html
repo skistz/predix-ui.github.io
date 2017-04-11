@@ -348,14 +348,23 @@
        */
       _handleFrameLoad: function() {
         var url = this.frameUrl;
-        if(url.indexOf('/pages/') < 0 && url.indexOf('px-starter-kit-design') < 0){
+        var countNoOfTimesFailedToFindDemoEl = 0;
+        if(url.indexOf('/pages/') < 0){
           clearInterval(this._loadingPoller);
           this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
           function checkComponentDemoAttached() {
-            if(this.$.frameEl.contentDocument.body.querySelector('local-element-demo').isAttached){
+            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
+            if(led && led.isAttached){
               this._clearSpinner();
               clearInterval(this._loadingPoller);
             };
+            if(!led){
+              countNoOfTimesFailedToFindDemoEl += 1;
+              if (countNoOfTimesFailedToFindDemoEl === 10){
+                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
+                this._clearSpinner();
+              }
+            }
           };
         } else{
           this._clearSpinner();
