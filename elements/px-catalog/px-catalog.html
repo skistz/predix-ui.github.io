@@ -363,6 +363,7 @@
               if (countNoOfTimesFailedToFindDemoEl === 10){
                 // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
                 this._clearSpinner();
+                clearInterval(this._loadingPoller);
               }
             }
           };
