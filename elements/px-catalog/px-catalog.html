@@ -338,11 +338,24 @@
        * When the frame finishes loading, ensure the spinner is hidden.
        */
       _handleFrameLoad: function() {
+        if(this.frameUrl.indexOf('/pages/') < 0){
+          var id = setInterval(checkComponentDemoAttached.bind(this), 250);
+          function checkComponentDemoAttached() {
+            if(this.$.frameEl.contentDocument.body.querySelector('local-element-demo').isAttached){
+              this._clearSpinner();
+              clearInterval(id);
+            };
+          };
+        } else{
+          this._clearSpinner();
+        }
+      },
+
+      _clearSpinner: function(){
         if (this.get('spinnerIsActive') !== false) {
           this.set('spinnerIsActive', false);
         }
       },
-
       /**
        * When the `spinnerIsActive` property is updated, responds and attempts
        * to hide or show the spinner.
