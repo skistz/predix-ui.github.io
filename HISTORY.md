@@ -1,3 +1,7 @@
+v0.2.14
+==================
+* removed px-input-group-design
+
 v0.2.13
 ==================
 * removed px-chart

@@ -154,14 +154,6 @@
             ]
           },
           {
-            "repoName":"px-input-group-design",
-            "dataType":"css",
-            "linkText":"Input Group",
-            "keywords":[
-              "px-input-group-design"
-            ]
-          },
-          {
             "linkText":"Lists",
             "links":[
               {
