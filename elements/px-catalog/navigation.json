@@ -111,7 +111,9 @@
             "dataType":"css",
             "linkText":"Colors",
             "keywords":[
-              "px-colors-design"
+              "px-colors-design",
+              "light",
+              "dark"
             ]
           },
           {
@@ -223,7 +225,8 @@
             "dataType":"css",
             "linkText":"Box",
             "keywords":[
-              "px-box-design"
+              "px-box-design",
+              "container"
             ]
           },
           {
@@ -241,7 +244,9 @@
             "linkText":"Flexbox",
             "keywords":[
               "px-flexbox-design",
-              "flex"
+              "flex",
+              "layout",
+              "grid"
             ]
           },
           {
@@ -282,7 +287,9 @@
             "linkText":"Widths",
             "keywords":[
               "px-widths-design",
-              "sizing"
+              "sizing",
+              "layout",
+              "grid"
             ]
           },
           {
@@ -293,7 +300,9 @@
               "px-widths-responsive-design",
               "sizing",
               "responsive",
-              "mobile"
+              "mobile",
+              "layout",
+              "grid"
             ]
           },
           {
@@ -301,7 +310,10 @@
             "dataType":"css",
             "linkText":"Widths Tools",
             "keywords":[
-              "px-widths-tools-design"
+              "px-widths-tools-design",
+              "sizing",
+              "layout",
+              "grid"
             ]
           }
         ]
@@ -450,7 +462,9 @@
             "linkText":"Deck Selector",
             "keywords":[
               "px-deck-selector",
-              "deck"
+              "deck",
+              "dropdown",
+              "drop-down"
             ]
           },
           {
@@ -812,7 +826,8 @@
         "keywords":[
           "px-drawer",
           "drawer",
-          "mobile"
+          "mobile",
+          "panel"
         ]
       },
       {
@@ -898,7 +913,11 @@
           "px-map",
           "map",
           "maps",
-          "mapping"
+          "mapping",
+          "gis",
+          "location",
+          "geographic",
+          "geography"
         ]
       },
       {
@@ -906,7 +925,10 @@
         "dataType":"components",
         "linkText":"Modal",
         "keywords":[
-          "px-modal"
+          "px-modal",
+          "modal",
+          "dialog",
+          "dialogue"
         ]
       },
       {
@@ -914,7 +936,11 @@
         "dataType":"components",
         "linkText":"Number Formatter",
         "keywords":[
-          "px-number-formatter", "number"
+          "px-number-formatter",
+          "number",
+          "currency",
+          "numbro",
+          "localization"
         ]
       },
       {
@@ -922,7 +948,8 @@
         "dataType":"components",
         "linkText":"Overlay",
         "keywords":[
-          "px-overlay"
+          "px-overlay",
+          "transparency"
         ]
       },
       {
@@ -939,7 +966,8 @@
         "dataType":"components",
         "linkText":"Progress Bar",
         "keywords":[
-          "px-progress-bar"
+          "px-progress-bar",
+          "loading"
         ]
       },
       {
@@ -981,7 +1009,10 @@
         "dataType":"components",
         "linkText":"Tabs",
         "keywords":[
-          "px-tabs"
+          "px-tabs",
+          "navigation",
+          "nav",
+          "panel"
         ]
       },
       {
@@ -1028,7 +1059,9 @@
         "keywords":[
           "px-typeahead",
           "typeahead",
-          "autocomplete"
+          "autocomplete",
+          "dropdown",
+          "drop-down"
         ]
       },
       {
@@ -1040,7 +1073,9 @@
           "form",
           "field",
           "validate",
-          "input"
+          "input",
+          "error",
+          "help"
         ]
       },
       {
