@@ -1,0 +1,110 @@
+<!-- Import Polymer -->
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<!-- Import style module -->
+<link rel="import" href="../../css/predix-ui-styles.html" />
+
+<link rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+
+
+<dom-module id="iframe-view">
+  <template>
+    <div id="spinner" class="flex flex--row flex--center">
+      <div class="flex__item flex__item--middle">
+        <px-spinner size="150"></px-spinner>
+      </div>
+    </div>
+    <iframe src="[[frameUrl]]" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
+      <p>Your browser does not support iframes.</p>
+    </iframe>
+  </template>
+  <script>
+    Polymer({
+      is: 'iframe-view',
+      properties:{
+        frameUrl:String,
+                /**
+         * Set to `true` to show the spinner. Set to `false` to hide the spinner.
+         *
+         * @type {Boolean}
+         */
+        spinnerIsActive: {
+          type: Boolean,
+          value: true,
+          observer: '_handleSpinnerVisibility'
+        },
+      },
+
+      listeners: {
+        'frameEl.load' : '_handleFrameLoad'
+      },
+
+
+       /**
+       * When the frame finishes loading, ensure the spinner is hidden.
+       */
+      _handleFrameLoad: function() {
+        var url = this.frameUrl;
+        var countNoOfTimesFailedToFindDemoEl = 0;
+        if(url.indexOf('/pages/') < 0){
+          clearInterval(this._loadingPoller);
+          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
+          function checkComponentDemoAttached() {
+            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
+            if(led && led.isAttached){
+              this._clearSpinner();
+              clearInterval(this._loadingPoller);
+            };
+            if(!led){
+              countNoOfTimesFailedToFindDemoEl += 1;
+              if (countNoOfTimesFailedToFindDemoEl === 10){
+                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
+                this._clearSpinner();
+                clearInterval(this._loadingPoller);
+              }
+            }
+          };
+        } else{
+          this._clearSpinner();
+        }
+      },
+
+      _clearSpinner: function(){
+        if (this.get('spinnerIsActive') !== false) {
+          this.set('spinnerIsActive', false);
+        }
+      },
+
+      /**
+       * When the `spinnerIsActive` property is updated, responds and attempts
+       * to hide or show the spinner.
+       */
+      _handleSpinnerVisibility: function(newVal, oldVal) {
+        if ((typeof newVal !== "undefined") && newVal) {
+          this._showSpinner();
+        }
+        if ((typeof newVal !== "undefined") && !newVal) {
+          this._hideSpinner();
+        }
+      },
+
+      /**
+       * Shows the spinner by manipulating classes in the DOM.
+       */
+      _showSpinner: function() {
+        var spinner = this.$$('#spinner');
+        spinner.classList.remove('is__hidden');
+      },
+
+      /**
+       * Hides the spinner by manipulating classes in the DOM.
+       */
+      _hideSpinner: function() {
+        var spinner = this.$$('#spinner');
+        spinner.classList.add('is__hidden');
+      }
+
+    });
+
+  </script>
+</dom-module>

@@ -5,21 +5,29 @@
 <link rel="import" href="../../css/predix-ui-styles.html" />
 
 <!-- Import external dependencies -->
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link rel="import" href="../../bower_components/app-route/app-route.html" />
 <link rel="import" href="../../bower_components/app-route/app-location.html" />
-<link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-<link rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html" />
+<!--<link defer rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />-->
 
 <!-- Import local dependencies -->
 <link rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<!--<link defer rel="import" href="../px-catalog-sidebar/px-sb.html" />-->
 
 <dom-module id="px-catalog">
   <template>
     <style include="predix-ui-styles" is="custom-style"></style>
     <style>
+      :host {
+        display: block;
+        height: 100vh;
+        width: 100vw;
+      }
+      .gray-bar {
+        height: 45px;
+        background-color: black;
+      }
       #spinner {
         position: absolute;
         z-index: 999;
@@ -62,7 +70,7 @@
         app-path="{{route}}"
         app-tail="{{_routeTail.path}}"
         active-name="{{activeName}}"
-        active-type="{{activeType}}"
+        active-type="{{activeType}}"`
         frame-url="{{frameUrl}}"
         nav-JSON="{{navJSON}}">
     </px-catalog-router>
@@ -95,16 +103,17 @@
         <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
       </div>
 
+
       <!-- App iFrame -->
       <div class="iframe__container">
-        <div id="spinner" class="flex flex--row flex--center">
-          <div class="flex__item flex__item--middle">
-            <px-spinner size="150"></px-spinner>
-          </div>
-        </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
+        <!--For static pages-->
+        <iron-pages
+          selected="[[view]]"
+          attr-for-selected="name"
+          fallback-selection="home">
+            <home-view name="home"></home-view>
+            <iframe-view name="iframe" frame-url="[[frameUrl]]"></iframe-view>
+        </iron-pages>
       </div>
     </div>
   </template>
@@ -121,8 +130,8 @@
          */
         frameUrl: {
           type: String,
-          value: '../../pages/home.html',
-          observer: '_handleFrameUrlChanged'
+          // value: '../../pages/home.html',
+          // observer: '_handleFrameUrlChanged'
         },
 
         /**
@@ -137,16 +146,7 @@
           observer: '_handleMenuVisibilityChange'
         },
 
-        /**
-         * Set to `true` to show the spinner. Set to `false` to hide the spinner.
-         *
-         * @type {Boolean}
-         */
-        spinnerIsActive: {
-          type: Boolean,
-          value: true,
-          observer: '_handleSpinnerVisibility'
-        },
+
 
         /**
          * The navigation represented as JSON, loaded by an `iron-ajax` element
@@ -185,6 +185,16 @@
          */
         _loadingPoller: {
           type: Object
+        },
+
+        /**
+         * Property to tell how the page is loaded
+         * TODO combine activeName and activeType to replace this
+         */
+        view: {
+          type: String,
+          computed: "_getView(activeName, activeType)",
+          observer: "_loadView"
         }
       },
 
@@ -192,8 +202,37 @@
         'menu.tap' : '_handleMenuTapped',
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
         'overlay.tap' : '_handleOverlayTapped',
-        'frameEl.load' : '_handleFrameLoad'
       },
+
+      created: function() {
+        this.removeAttribute('unresolved');
+      },
+
+      attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function(){
+          var path = this.resolveUrl('../px-catalog-sidebar/px-sb.html');
+          this.importHref(path, null);
+        })
+      },
+
+      /**
+       * Determine wheither to load iframe or static page
+       */
+       _getView: function(activeName, activeType){
+        if(activeType==="home"){
+          return "home";
+        }
+        return "iframe";
+       },
+
+      /**
+       *
+       */
+       _loadView: function(view){
+        var path = this.resolveUrl('../views/' + view + '-view.html');
+        this.importHref(path, null);
+       },
+
 
       /**
        * Update the title in the <head> to match the active page.
@@ -274,24 +313,24 @@
        * the iFrame on the page.
        */
       _handleFrameUrlChanged: function(newUrl) {
-        var frame = this.$.frameEl;
-        if ((typeof newUrl === 'string') && frame) {
-          // Try to get the frame location
-          var frameLocation = window.frames['iframe_a'].location;
-          // If the location is blank, this is a first load and we can assume
-          // the current page is `iframe.src`'s normalized pathname'
-          var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
-          // Normalize the new path
-          var newPath = this._normalizePath(newUrl);
+        // var frame = this.$.frameEl;
+        // if ((typeof newUrl === 'string') && frame) {
+        //   // Try to get the frame location
+        //   var frameLocation = window.frames['iframe_a'].location;
+        //   // If the location is blank, this is a first load and we can assume
+        //   // the current page is `iframe.src`'s normalized pathname'
+        //   var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
+        //   // Normalize the new path
+        //   var newPath = this._normalizePath(newUrl);
 
-          if (currentPath !== newPath) {
-            // Replace location like this so we don't add an entry to the
-            // history stack. The router will do that for us.
-            window.frames['iframe_a'].location.replace(newUrl);
-            // Activate the spinner
-            this.set('spinnerIsActive', true);
-          }
-        }
+        //   if (currentPath !== newPath) {
+        //     // Replace location like this so we don't add an entry to the
+        //     // history stack. The router will do that for us.
+        //     window.frames['iframe_a'].location.replace(newUrl);
+        //     // Activate the spinner
+        //     this.set('spinnerIsActive', true);
+        //   }
+        // }
       },
 
       /**
@@ -308,11 +347,11 @@
        * @param {String} url
        * @return {String}
        */
-      _normalizePath: function(url) {
-        var linkTag = document.createElement('a');
-        linkTag.href = url;
-        return linkTag.pathname || '';
-      },
+      // _normalizePath: function(url) {
+      //   var linkTag = document.createElement('a');
+      //   linkTag.href = url;
+      //   return linkTag.pathname || '';
+      // },
 
       /**
        * When the menu button is tapped, toggle the visibility of the menu.
@@ -343,52 +382,9 @@
         }
       },
 
-      /**
-       * When the frame finishes loading, ensure the spinner is hidden.
-       */
-      _handleFrameLoad: function() {
-        var url = this.frameUrl;
-        var countNoOfTimesFailedToFindDemoEl = 0;
-        if(url.indexOf('/pages/') < 0){
-          clearInterval(this._loadingPoller);
-          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
-          function checkComponentDemoAttached() {
-            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
-            if(led && led.isAttached){
-              this._clearSpinner();
-              clearInterval(this._loadingPoller);
-            };
-            if(!led){
-              countNoOfTimesFailedToFindDemoEl += 1;
-              if (countNoOfTimesFailedToFindDemoEl === 10){
-                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
-                this._clearSpinner();
-                clearInterval(this._loadingPoller);
-              }
-            }
-          };
-        } else{
-          this._clearSpinner();
-        }
-      },
 
-      _clearSpinner: function(){
-        if (this.get('spinnerIsActive') !== false) {
-          this.set('spinnerIsActive', false);
-        }
-      },
-      /**
-       * When the `spinnerIsActive` property is updated, responds and attempts
-       * to hide or show the spinner.
-       */
-      _handleSpinnerVisibility: function(newVal, oldVal) {
-        if ((typeof newVal !== "undefined") && newVal) {
-          this._showSpinner();
-        }
-        if ((typeof newVal !== "undefined") && !newVal) {
-          this._hideSpinner();
-        }
-      },
+
+
 
       /**
        * When the visibility state of the menu changes, make updates to the DOM
@@ -433,21 +429,7 @@
         if (!menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.add('is__hidden');    }
       },
 
-      /**
-       * Shows the spinner by manipulating classes in the DOM.
-       */
-      _showSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.remove('is__hidden');
-      },
 
-      /**
-       * Hides the spinner by manipulating classes in the DOM.
-       */
-      _hideSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.add('is__hidden');
-      }
     });
   </script>
 </dom-module>
