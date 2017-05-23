@@ -206,7 +206,14 @@ gulp.task('serve', function() {
      console.log('finished checkout successfully');
      //set the source to our working directory and exclude node_modules
 
+     execSync(`rm -f .gitignore`);
+     execSync(`touch .gitignore`);
      const gitIgnore = ['.gitignore',
+        'node_modules',
+        'dist/',
+        'caddyfile',
+        'cert.crt',
+        'cert.key',
         'HISTORY.md',
         'LICENSE.md',
         'README.md',
