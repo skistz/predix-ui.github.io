@@ -208,8 +208,8 @@ gulp.task('serve', function() {
 
      execSync(`rm -f .gitignore`);
      execSync(`touch .gitignore`);
-     const gitIgnore = ['.gitignore',
-        'node_modules',
+     const gitIgnore = [
+        'node_modules/',
         'dist/',
         'caddyfile',
         'cert.crt',
