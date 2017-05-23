@@ -223,7 +223,7 @@ gulp.task('serve', function() {
 
      execSync(`git add --all`);
      execSync(`git commit -m 'master rebuild'`);
-     execSync(`git push origin/master`);
+     execSync(`git push origin master --force`);
 
 
      });
