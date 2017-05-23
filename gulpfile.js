@@ -351,6 +351,8 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/css/**',
                        rootDir + '/bower_components/font-awesome/fonts/fontawesome*',
                        rootDir + '/bower_components/px-theme/**/*.html',
+                       rootDir + '/bower_components/px-demo/*.html',
+                       rootDir + '/bower_components/px-demo/css/*.html',
                        rootDir + '/bower_components/px-spinner/**/*.html',
                        rootDir + '/bower_components/polymer/polymer*.html',
                        rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
