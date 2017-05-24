@@ -164,7 +164,7 @@ html,body{
 */
 .side-nav{
   min-width: 300px;
-  background: $px-catalog-light-gray;
+  background: $px-catalog-dark-blue;
   color: $white;
   padding: 20px;
   padding-bottom: 60px;
@@ -291,7 +291,7 @@ html,body{
     flex-basis: 350px;
     position: relative;
     height: 100vh;
-    background: $px-catalog-light-gray;
+    background: $px-catalog-dark-blue;
     overflow: auto;
     line-height: 200%;
   }
