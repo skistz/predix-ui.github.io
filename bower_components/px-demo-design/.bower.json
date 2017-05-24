@@ -1,0 +1,44 @@
+{
+  "name": "px-demo-design",
+  "version": "1.2.0",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "One sass file for all of PX component demo pages",
+  "main": "_component.demo.scss",
+  "keywords": [
+    "px",
+    "sass",
+    "demo",
+    "page"
+  ],
+  "homepage": "https://github.com/Menkhaus-ge/px-demo-design",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    ".github",
+    "OSS_Notice.pdf"
+  ],
+  "dependencies": {
+    "px-colors-design": "^0.3.0",
+    "px-defaults-design": "^1.0.2"
+  },
+  "devDependencies": {
+    "px-sass-doc": "^0.3.0",
+    "px-starter-kit-design": "^0.7.0",
+    "px-polymer-font-awesome": "^1.1.0",
+    "px-buttons-design": "^1.1.3"
+  },
+  "_release": "1.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.0",
+    "commit": "58c01e4b096482b5c938b39e7920a1b555b1ba9a"
+  },
+  "_source": "https://github.com/PredixDev/px-demo-design.git",
+  "_target": "^1.2.0",
+  "_originalSource": "px-demo-design"
+}

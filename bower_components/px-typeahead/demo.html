@@ -1,0 +1,122 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      px-typeahead Demo</title>
+    <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+    <link rel="import" href="px-typeahead.html" />
+    <link rel="import" href="../px-theme/px-theme.html" />
+    <link rel="import" href="../px-theme/px-app.html" />
+
+    <style>
+    html:not([style-scope]):not(.style-scope) {
+        background : none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <template is="dom-bind" id="app">
+
+    <div class="u-p-">
+
+      <h3>Local candidates example with maxSuggestions 10 </h3>
+      <div class="u-1/3">
+        <label>Selected value : {{inputValue}}</label>
+        <px-typeahead max-suggestions="10" local-candidates="{{states}}"  disabled="true" placeholder="US states" input-value="{{inputValue}}">
+        </px-typeahead>
+      </div>
+
+      <h3>Local candidates passed as array of strings</h3>
+      <div class="u-1/3">
+        <px-typeahead max-suggestions="10" local-candidates='["abc","abcd","abcde"]' placeholder='["abc","abcd","abcde"]'>
+        </px-typeahead>
+      </div>
+
+
+      <div class="u-1/3"><h4>Testing the overlay of the above typeahead</h4></div>
+
+      <h3>Prefetched candidates example with maxSuggestions 4</h3>
+      <div class="u-1/3">
+        <px-typeahead max-suggestions="8" prefetch-url="https://predixdev.github.io/px-typeahead/px-typeahead/countries.json" placeholder="Ajax call getting countries.json">
+        </px-typeahead>
+      </div>
+
+    </div>
+
+
+    </template>
+    <script>
+        window.addEventListener('WebComponentsReady', function() {
+        var app = document.querySelector('#app');
+        app.states = [
+           "Alabama",
+           "Alaska",
+           "American Samoa",
+           "Arizona",
+           "Arkansas",
+           "California",
+           "Colorado",
+           "Connecticut",
+           "Delaware",
+           "District Of Columbia",
+           "Federated States Of Micronesia",
+           "Florida",
+           "Georgia",
+           "Guam",
+           "Hawaii",
+           "Idaho",
+           "Illinois",
+           "Indiana",
+           "Iowa",
+           "Kansas",
+           "Kentucky",
+           "Louisiana",
+           "Maine",
+           "Marshall Islands",
+           "Maryland",
+           "Massachusetts",
+           "Michigan",
+           "Minnesota",
+           "Mississippi",
+           "Missouri",
+           "Montana",
+           "Nebraska",
+           "Nevada",
+           "New Hampshire",
+           "New Jersey",
+           "New Mexico",
+           "New York",
+           "North Carolina",
+           "North Dakota",
+           "Northern Mariana Islands",
+           "Ohio",
+           "Oklahoma",
+           "Oregon",
+           "Palau",
+           "Pennsylvania",
+           "Puerto Rico",
+           "Rhode Island",
+           "South Carolina",
+           "South Dakota",
+           "Tennessee",
+           "Texas",
+           "Utah",
+           "Vermont",
+           "Virgin Islands",
+           "Virginia",
+           "Washington",
+           "West Virginia",
+           "Wisconsin",
+           "Wyoming"
+          ]
+      });
+    </script>
+  </body>
+</html>

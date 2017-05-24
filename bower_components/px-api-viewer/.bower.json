@@ -1,0 +1,40 @@
+{
+  "name": "px-api-viewer",
+  "version": "0.3.2",
+  "main": [
+    "px-api-viewer.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "gulpfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    ".git",
+    "scripts",
+    ".github"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.0",
+    "px-theme": "^2.0.1",
+    "hydrolysis": "~1.24.1",
+    "px-polymer-font-awesome": "^1.1.0",
+    "iron-doc-viewer": "^1.1.0"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "iron-component-page": "^1.1.8"
+  },
+  "homepage": "https://github.com/PredixDev/px-api-viewer",
+  "_release": "0.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.2",
+    "commit": "6115091e143eedfce2ef0565fca89cf3cc3aaebb"
+  },
+  "_source": "https://github.com/PredixDev/px-api-viewer.git",
+  "_target": "^0.3.0",
+  "_originalSource": "px-api-viewer"
+}

@@ -1,0 +1,49 @@
+{
+  "name": "px-flexbox-design",
+  "version": "0.5.2",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "lexbox creates layout classes to give elements sizes and dynamically put elements in the right place. The flexbox module a wrapper around all of CSS flexbox's non-unit-based properties.",
+  "main": "_base.flexbox.scss",
+  "keywords": [
+    "flexbox",
+    "sass",
+    "px"
+  ],
+  "homepage": "https://github.com/PredixDev/px-flexbox-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "px-defaults-design": "^1.0.2"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-sass-doc": "^0.4.3"
+  },
+  "_release": "0.5.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.5.2",
+    "commit": "31944d1664fa7ffbfb003e440435a8966a64bd8c"
+  },
+  "_source": "https://github.com/predixDev/px-flexbox-design.git",
+  "_target": "^0.5.2",
+  "_originalSource": "px-flexbox-design"
+}

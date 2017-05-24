@@ -1,0 +1,50 @@
+{
+  "name": "px-widths-tools-design",
+  "version": "0.3.4",
+  "authors": [
+    "General Electric",
+    "Harry Roberts"
+  ],
+  "description": "Predix Experience width classes generator",
+  "main": "_tools.widths.scss",
+  "keywords": [
+    "widths",
+    "px",
+    "sass"
+  ],
+  "homepage": "https://github.com/PredixDev/px-widths-tools-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "px-defaults-design": "^1.0.2"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-sass-doc": "^0.4.3"
+  },
+  "_release": "0.3.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.4",
+    "commit": "b4dba109312b742f371870a0963e5d92214110c9"
+  },
+  "_source": "https://github.com/predixDev/px-widths-tools-design.git",
+  "_target": "^0.3.0",
+  "_originalSource": "px-widths-tools-design"
+}

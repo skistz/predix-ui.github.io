@@ -1,0 +1,41 @@
+<script>
+var PxDemoBehaviors = PxDemoBehaviors || {};
+
+/*
+  Name:
+  PxDemoBehaviors.manageProps
+
+  Description:
+  Common methods for dealing with props.
+
+  @polymerBehavior PxDemoBehaviors.manageProps
+*/
+PxDemoBehaviors.manageProps = [{
+  /**
+   * On first run, copy each prop's `defaultValue` to its `value`. If you
+   * need to add props dynamically, you can call this method manually on the
+   * `px-demo-props` instance. Passing `overwriteValue` as `true` will reset
+   * the props to their default value.
+   *
+   * @method applyPropDefaults
+   * @param {Boolean} overwriteValue - If `true`, will write the default to value even if the value is already defined
+   * @return null
+   */
+  applyPropDefaults: function(overwriteValue) {
+    overwriteValue = overwriteValue || false;
+    var props = this.props;
+    var propKeys = Object.keys(this.props);
+
+    for (var i = 0; i < propKeys.length; i++) {
+      var prop = props[propKeys[i]];
+      var pathTo = function(key) { return 'props.' + propKeys[i] + '.' + key; };
+      var defaultValue = this.get(pathTo('defaultValue'));
+      var value = this.get(pathTo('value'));
+
+      if ((typeof defaultValue !== 'undefined') && ((typeof value === 'undefined') || overwriteValue)) {
+        this.set(pathTo('value'), defaultValue);
+      }
+    }
+  }
+}];
+</script>

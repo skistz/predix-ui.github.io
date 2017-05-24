@@ -1,0 +1,328 @@
+[
+    {
+        "description": "Heading size 1\n",
+        "commentRange": {
+            "start": 52,
+            "end": 52
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 53,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Heading size 2\n",
+        "commentRange": {
+            "start": 58,
+            "end": 58
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 59,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Heading size 3\n",
+        "commentRange": {
+            "start": 64,
+            "end": 64
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 65,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Heading size 4\n",
+        "commentRange": {
+            "start": 70,
+            "end": 70
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 71,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Heading size 5\n",
+        "commentRange": {
+            "start": 76,
+            "end": 76
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 77,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Heading size 6\n",
+        "commentRange": {
+            "start": 82,
+            "end": 82
+        },
+        "context": {
+            "type": "css",
+            "name": ".#",
+            "value": "$inuit-headings-namespace",
+            "line": {
+                "start": 83,
+                "end": 87
+            }
+        },
+        "group": [
+            "px-headings-design"
+        ],
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets a prepended namespace for all generated classes.\n\n",
+        "commentRange": {
+            "start": 10,
+            "end": 13
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-headings-namespace",
+            "value": "$inuit-namespace",
+            "scope": "default",
+            "line": {
+                "start": 14,
+                "end": 14
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "String [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h1 class `.alpha`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 16,
+            "end": 19
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-1",
+            "value": "75px",
+            "scope": "default",
+            "line": {
+                "start": 20,
+                "end": 20
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h2 class `.beta`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 22,
+            "end": 25
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-2",
+            "value": "60px",
+            "scope": "default",
+            "line": {
+                "start": 26,
+                "end": 26
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h3 class `.gamma`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 28,
+            "end": 31
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-3",
+            "value": "45px",
+            "scope": "default",
+            "line": {
+                "start": 32,
+                "end": 32
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h4 class `.delta`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 34,
+            "end": 37
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-4",
+            "value": "30px",
+            "scope": "default",
+            "line": {
+                "start": 38,
+                "end": 38
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h5 class `.epsilon`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 40,
+            "end": 43
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-5",
+            "value": "20px",
+            "scope": "default",
+            "line": {
+                "start": 44,
+                "end": 44
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    },
+    {
+        "description": "Sets the size for the h6 class `.zeta`. Should be a number in pixels or rems.\n\n",
+        "commentRange": {
+            "start": 46,
+            "end": 49
+        },
+        "context": {
+            "type": "variable",
+            "name": "inuit-heading-size-6",
+            "value": "12px",
+            "scope": "default",
+            "line": {
+                "start": 50,
+                "end": 50
+            }
+        },
+        "group": [
+            "px-headings-design:variables:style"
+        ],
+        "type": "Number [default]",
+        "access": "public",
+        "file": {
+            "path": "_base.headings.scss",
+            "name": "_base.headings.scss"
+        }
+    }
+]

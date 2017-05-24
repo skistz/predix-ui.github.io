@@ -1,0 +1,52 @@
+{
+  "name": "px-widths-responsive-design",
+  "version": "0.4.4",
+  "authors": [
+    "General Electric",
+    "Harry Roberts <harry@csswizardry.com>"
+  ],
+  "description": "The Predix Experience widths-responsive module is an extension of the default widths module.",
+  "main": "_trumps.widths-responsive.scss",
+  "keywords": [
+    "sass",
+    "px",
+    "responsive",
+    "widths"
+  ],
+  "homepage": "https://github.com/PredixDev/px-widths-responsive-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "inuit-responsive-tools": "~0.1.3",
+    "px-widths-design": "^0.3.18"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.4",
+    "px-sass-doc": "^0.4.5"
+  },
+  "_release": "0.4.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.4",
+    "commit": "3dd0ed6ce4afc19a066717231ecee0f788f23f71"
+  },
+  "_source": "https://github.com/predixDev/px-widths-responsive-design.git",
+  "_target": "^0.4.0",
+  "_originalSource": "px-widths-responsive-design"
+}

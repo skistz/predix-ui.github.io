@@ -1,0 +1,616 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="css/px-code-editor-styles.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+
+<!-- Ace editor instance -->
+<script defer src="ace/ace.js"></script>
+
+<!--
+The px-code-editor component provides a rich, full-featured editor that can be embedded as a webcomponents and controlled through a simple attribute and event based API.
+
+Use it to provide an embedded code editor to users for editing JavaScript, HTML, CSS or other common languages. The editor is a wrapper around the open-source Ace Editor project.
+
+#### Usage
+
+Pass code in to the editor by configuring how you want it to appear then setting
+the `content` attribute (or data-binding on it) with the stringified code.
+
+Example:
+
+    <px-code-editor language="javascript" enable-beautify content="var array = ['firstItem', 'secondItem'];"></px-code-editor>
+
+#### Watching for changes
+
+The editor document will be populated by the `content` attribute, but changes to the document will not be data-bound out on the `content` attribute by default.
+
+To listen for and handle changes to the editor content, add a listener to the `px-code-editor` instance (see documentation for the `px-code-editor-content-changed` in the component demo's API section).
+
+Example:
+
+    <px-code-editor ...></px-code-editor>
+    <script type="text/javascript">
+      var codeEditor = document.querySelector('px-code-editor');
+      codeEditor.addEventListener('px-code-editor-content-changed', function(evt) {
+        var newEditorContent = evt.detail.content;
+        // ... handle the change here ...
+      });
+    </script>
+
+@element px-code-editor
+@blurb Code editor component that provides a lightweight wrapper around Ace Editor
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-code-editor">
+  <template>
+    <style include="px-code-editor-styles"></style>
+    <style>
+      /* Use flex to resize */
+      :host([flex-to-size]) {
+        display: flex;
+        flex: 1;
+      }
+      :host([flex-to-size]) #code {
+        flex: 1;
+      }
+    </style>
+
+    <section class="code-editor flex flex--col" id="code">
+      <div class="code-editor__wrapper flex__item" id="wrapper">
+        <div id="editor"></div>
+      </div>
+
+      <template is="dom-if" if="{{enableSaveToUpdate}}">
+        <div class="code-editor__actions flex flex--row flex--right">
+          <button class="btn" on-tap="_handleResetAction">{{resetButtonLabel}}</button>
+          <button class="btn btn--primary" on-tap="_handleSaveAction">{{saveButtonLabel}}</button>
+        </div>
+      </template>
+    </section>
+
+    <template is="dom-if" if="{{_shouldBeautify('javascript', enableBeautify, language)}}">
+      <!-- <link rel="import" href="js-beautify.html" on-load="_initializeBeautify"> -->
+      <script src="load-js-beautify.js"></script>
+    </template>
+    <template is="dom-if" if="{{_shouldBeautify('html', enableBeautify, language)}}">
+      <!-- <link rel="import" href="html-beautify.html" on-load="_initializeBeautify"> -->
+      <script src="load-html-beautify.js"></script>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+(function() {
+
+  Polymer({
+    is: 'px-code-editor',
+
+    behaviors: [
+      Polymer.IronResizableBehavior
+    ],
+
+    properties: {
+
+      /**
+       * The language the editor instance should use.Choose from 'javascript'
+       * or 'html'.
+       *
+       * @property language
+       * @type {String}
+       * @default 'javascript'
+       * @choices ['javascript', 'html']
+       */
+      language: {
+        type: String,
+        value: 'javascript',
+        observer: '_setEditorLanguage'
+      },
+
+      /**
+       * The content to place in the editor. Should be valid code for the
+       * configured `language`.
+       *
+       * @property content
+       * @type {String}
+       */
+      content: {
+        type: String,
+        observer: '_updateEditorContent'
+      },
+
+      /**
+       * Enables the `beautify` plugin.
+       *
+       * @property enableBeautify
+       * @type {Boolean}
+       * @default <false></false>
+       */
+      enableBeautify: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Disables linter errors, warnings, and info items.
+       *
+       * @property disableLinter
+       * @type {Boolean}
+       * @default false
+       */
+      disableLinter: {
+        type: Boolean,
+        value: false,
+        observer: '_setLinterStatus'
+      },
+
+      /**
+       * Sets the number of spaces for each level of indentation.
+       *
+       * @property tabSize
+       * @type {Number}
+       * @default 2
+       */
+      tabSize: {
+        type: Number,
+        value: 2,
+        observer: '_setTabSize'
+      },
+
+      /**
+       * Shows a 'Save' button that the user can click to apply their edits
+       * to the content.
+       *
+       * @property enableSaveToUpdate
+       * @type {Boolean}
+       * @default false
+       */
+      enableSaveToUpdate: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Text to show for the save button (if `enableSaveToUpdate` is enabled).
+       *
+       * @property saveButtonLabel
+       * @type {String}
+       * @default 'Save'
+       */
+      saveButtonLabel: {
+        type: String,
+        value: 'Save'
+      },
+
+      /**
+       * Text to show for the reset button (if `enableSaveToUpdate` is enabled).
+       *
+       * @property resetButtonLabel
+       * @type {String}
+       * @default 'Cancel'
+       */
+      resetButtonLabel: {
+        type: String,
+        value: 'Cancel'
+      },
+
+      /**
+       * Uses flexbox to set the size of the code editor. Set the parent container
+       * to use `display: flex;` in your CSS and the map will automatically
+       * fill the container's available height and width.
+       *
+       * If `true`, the map will no longer attempt to resize itself automatically
+       * when its parent is resized using `IronResizableBehavior`. Instead,
+       * it will rely on the CSS rules to take effect.
+       *
+       * @property flexToSize
+       * @type {Boolean}
+       * @default false
+       */
+      flexToSize: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+    },
+
+    listeners: {
+      'iron-resize': '_handleResizeEvent'
+    },
+
+    attached: function() {
+      if (!this.editor) {
+        this._initializeEditor();
+      }
+      if (this.editor) {
+        // Watch for changes to the editor
+        this.listen(this.editor, 'change', '_handleEditorChange');
+        // FOR SHADOW DOM: Watch for new themes to be loaded, so we can grab
+        // them from the document head and inject into the shadow root
+        this.listen(this.editor.renderer, 'themeLoaded', '_handleThemeLoaded');
+        // Listen for beautify to load
+        this.listen(window, 'beautify-extension-loaded', '_handleBeautifyLoaded');
+      }
+    },
+
+    detached: function() {
+      if (this.editor) {
+        this.unlisten(this.editor, 'change', '_handleEditorChange');
+        this.unlisten(this.editor.renderer, 'themeLoaded', '_handleThemeLoaded');
+        this.unlisten(window, 'beautify-extension-loaded', '_handleBeautifyLoaded');
+      }
+    },
+
+    /**
+     * Handle 'iron-resize' event to ensure the editor size is synced with
+     * the available space.
+     */
+    _handleResizeEvent: function(evt) {
+      if (!this.flexToSize) {
+        this._fitToParentContainer(20);
+      }
+    },
+
+    /**
+     * Attempts to resize the code editor to fill the parent container. Can be
+     * called with a number of desired `maxRetries` before stopping to avoid an
+     * infinite loop that happens when trying to check the size of parents
+     * that are collapsed/invisible.
+     *
+     * Setting the `retry` param will be handled internally by the function.
+     */
+    _fitToParentContainer: function(maxRetries, retry) {
+      maxRetries = maxRetries || 20;
+      retry = retry || 0;
+
+      var x = this.x = this.parentElement.clientWidth;
+      var y = this.y = this.parentElement.clientHeight;
+
+      if ((!x || !y) && retry <= maxRetries) {
+        // If no height, toss this back and wait for the next animation frame
+        // to try again.
+        window.requestAnimationFrame(function(){
+          var boundFitFn = this._fitToParentContainer.bind(this, maxRetries, retry + 1);
+          this.async(boundFitFn, 1);
+        }.bind(this));
+        return;
+      }
+
+      // Set width/height on code container
+      this.$.code.style.width = x + 'px';
+      this.$.code.style.height = y + 'px';
+
+      // Notify editor to reside
+      if (this.editor) {
+        this.editor.resize();
+      }
+    },
+
+    /**
+     * Initializes an editor instance and returns it.
+     *
+     * @return {Function}
+     */
+    _initializeEditor: function() {
+      // Create the ace instance then bind to this (don't assign directly to this)
+      var editorEl = Polymer.dom(this.root).querySelector('#editor');
+      var editor = ace.edit(editorEl);
+      this.editor = editor;
+
+      // FOR SHADOW DOM: The ace editor tries to dump a bunch of stuff into the
+      // document head. That works fine in Shady DOM but breaks in Shadow DOM.
+      // We have to go out, grab the things from the head, and shove them into
+      // the shadow root for changes to take effect. Sad! Bad code!
+      this._moveToShadowRoot('#ace_editor\\.css');
+      this._moveToShadowRoot('#ace-tm');
+
+      // Assign the default theme
+      // this.editor.setTheme('ace/theme/monokai');
+      this.editor.setTheme('ace/theme/predix');
+
+      // Assign any configurations that are currently set
+      this._setEditorLanguage(this.language);
+      this._setLinterStatus(this.disableLinter);
+      this._setTabSize(this.tabSize);
+
+      // Attempt to flow in content if it exists, unless we're waiting on beautify
+      if (!(this.enableBeautify && !this._beautify)) {
+        this._updateEditorContent(this.content);
+      }
+
+      // Set the blockScrolling attribute to stop annoying console messages
+      this.editor.$blockScrolling = Infinity;
+
+      return this.editor;
+    },
+
+    /**
+     * Sets the editor language mode to support syntax highlighting, linting
+     * and other features.
+     *
+     * @param {String} language - The langauge to set
+     */
+    _setEditorLanguage: function(language) {
+      if (language && (typeof language === 'string') && language.length && this.editor) {
+        var editorLanguage = 'ace/mode/' + language;
+        this.editor.getSession().setMode(editorLanguage);
+      }
+    },
+
+    /**
+     * Enables or disables the linter feature for the current editor
+     *
+     * @param {Boolean} disableLinter
+     */
+    _setLinterStatus: function(disableLinter) {
+      var linterStatus = (this.editor) ? this.editor.getSession().getOption('useWorker') : undefined;
+      if ((typeof disableLinter ===  'undefined') || (typeof linterStatus ===  'undefined')) return;
+
+      if (disableLinter && linterStatus === true) {
+        this.editor.getSession().setOption('useWorker', false);
+      }
+      if (!disableLinter && linterStatus === false) {
+        this.editor.getSession().setOption('useWorker', true);
+      }
+    },
+
+    /**
+     * Sets the number of spaces for each level of indentation.
+     *
+     * @param {Number} newTabSize
+     */
+    _setTabSize: function(newTabSize) {
+      var currentTabSize = (this.editor) ? this.editor.getSession().getOption('tabSize') : undefined;
+      if ((typeof currentTabSize === 'undefined') || (typeof newTabSize ===  'undefined')) return;
+
+      if (currentTabSize !== newTabSize) {
+        this.editor.getSession().setOption('tabSize', newTabSize);
+      }
+    },
+
+    /**
+     * Initializes the beautify plugin once it is loaded and parsed. Attempt
+     * to beautify whatever content is
+     */
+    _handleBeautifyLoaded: function() {
+      this._beautifyRetries = this._beautifyRetries || 0;
+      // If beautify has been parsed and is in the window, attach to `this`
+      // and update the editor content (if any) to ensure it's beautiful
+      var entrypoint;
+      if (this.language === 'javascript') entrypoint = 'js_beautify';
+      if (this.language === 'html') entrypoint = 'html_beautify';
+      if (window[entrypoint]) {
+        this._beautify = window[entrypoint];
+        this._updateEditorContent(this.content);
+        return;
+      }
+      // Otherwise, in 50ms try again. This will loop and retry until it
+      // succeeds or hits the maximum number of retries.
+      else if (this._beautifyRetries < 10) {
+        this._beautifyRetries++;
+        this.async(this._initializeBeautify, 50);
+      }
+      else {
+        console.log('[px-demo-snippet] Failed to load beautify. Hit maximum number of retries. ');
+      }
+    },
+
+    /**
+     * Checks if the editor instance has been created, and if the user requested
+     * the specific extension, before it is loaded and parsed.
+     *
+     * @return {Boolean}
+     */
+    _shouldLoadExtension: function(extWanted) {
+      return extWanted;
+    },
+
+    /**
+     * If `enableBeautify` is set and the requested `language` matches the
+     * caller, returns `true`.
+     *
+     * @param {String} language - The language `this.language` should match
+     * @return {Boolean}
+     */
+    _shouldBeautify: function(language) {
+      return this.enableBeautify && this.language === language;
+    },
+
+    /**
+     * Updates the editor instance's content.
+     *
+     * @param {String} content
+     */
+    _updateEditorContent: function(content) {
+      if (content && (typeof content === 'string') && this.editor) {
+        var newContent = content;
+        if (this.enableBeautify) {
+          newContent = this._beautifyContent(content);
+        }
+        this.editor.setValue(newContent);
+        this.editor.scrollToLine(0);
+        this.editor.gotoLine(0);
+      }
+    },
+
+    /**
+     * Beautifies content (indent and clean up spaces) before inserting it
+     * into the editor.
+     *
+     * @return {String}
+     */
+    _beautifyContent: function(content) {
+      if (typeof this._beautify !== 'function') return content;
+      var beautifyConfig = {
+        'indent_size' : this.tabSize || 2,
+        'brace_style' : 'end-expand'
+      };
+      return this._beautify(content, beautifyConfig);
+    },
+
+    /**
+     * Converts a complex JavaScript object that cannot be represeted as JSON
+     * to a string.
+     *
+     * @return {String}
+     */
+    _stringifyObj: function(obj) {
+      var keys = Object.keys(obj);
+      var str = '';
+      str += '{';
+
+      for (var i = 0; i < keys.length; i++) {
+        str += keys[i] + ':';
+
+        if (typeof obj[keys[i]] === 'function') {
+          str += obj[keys[i]].toString();
+        }
+        else {
+          str += JSON.stringify(obj[keys[i]]);
+        }
+
+        if (i !== (keys.length - 1)) str += ',';
+      }
+
+      str += '}';
+
+      return str;
+    },
+
+    /**
+     * Converts a stringified JavaScript object back to JavaScript.
+     *
+     * @return {Object}
+     */
+    _parseObj: function(str) {
+      return JSON.parse(str,function(key, value){
+       if (typeof value !== 'string') return value;
+       return ( value.substring(0,8) == 'function') ? eval('('+value+')') : value;
+      });
+    },
+
+    /**
+     * Updates the `content` attribute with text from the editor and fires an
+     * event when the 'Save' button is clicked.
+     */
+    _handleSaveAction: function() {
+      var content = this.editor.getValue();
+      this.set('content', content);
+      this.fire('px-code-editor-save-action', {
+        content: content
+      });
+    },
+    /**
+     * Fired when the user clicks the editor save button to apply changes.
+     *
+     * The following details are passed in `evt.detail`:
+     * - {String} `content` : The current content in the editor
+     *
+     * @event px-code-editor-save-action
+     */
+
+    /**
+     * Overwrites changes to the editor with `content` initial value when the
+     * 'Reset' button is clicked.
+     */
+    _handleResetAction: function() {
+      this._updateEditorContent(this.content);
+      this.fire('px-code-editor-reset-action', {
+        content: this.content
+      });
+    },
+    /**
+     * Fired when the user clicks the editor reset button to apply changes.
+     *
+     * The following details are passed in `evt.detail`:
+     * - {String} `content` : The current content in the editor
+     *
+     * @event px-code-editor-save-action
+     */
+
+    /**
+     * Recieves events from the active Ace editor instance and passes them up
+     * to components above with the current content of the editor. Debounced
+     * to only fire every 10ms.
+     *
+     * @param {Event} evt - Event passed from the ace editor 'change' event
+     */
+    _handleEditorChange: function(evt) {
+      this.debounce('handle-editor-change', function() {
+        if (evt && this.editor) {
+          var content = this.editor.getValue();
+          if (!content) return;
+
+          this.fire('px-code-editor-content-changed', {
+            content: content,
+            type: evt.action || undefined,
+            start: evt.start || undefined,
+            end: evt.end || undefined,
+            lines: evt.lines || undefined
+          });
+        }
+      }, 10);
+    },
+    /**
+     * Fired when the user changes content in the editor document.
+     *
+     * The following details are passed in `evt.detail`:
+     * - {String} `content` : The current content in the editor
+     * - {String} `type` : The type of change (i.e. 'insert', 'delete', 'paste')
+     * - {Object} `start` : The start point of the change in the document
+     * - {Number} `start.row` : The row where the change started
+     * - {Number} `start.column` : The column where the change started
+     * - {Object} `end` : The end point of the change in the document
+     * - {Number} `end.row` : The row where the change ended
+     * - {Number} `end.column` : The column where the change ended
+     * - {Array} `lines` : The lines changed, as an array
+     *
+     * See the ace editor documentation for more information on expected values
+     * for `type` or `lines`.
+     *
+     * @event px-code-editor-content-changed
+     */
+
+    /**
+     * When a new editor theme is loaded, grab the node that the theme is injected
+     * into in the document head and clone it into this element's shadow root
+     * so styles will take effect in Shadow DOM.
+     *
+     * @param {Event} evt
+     */
+    _handleThemeLoaded: function(evt) {
+      this._moveToShadowRoot('#' + evt.theme.cssClass);
+    },
+
+    /**
+     * Query the entire document for the `selector`. Clone that node and place it
+     * into this element's shadow root so it won't get sandboxed out in
+     * Shadow DOM. Useful for grabbing CSS from the document and injecting it
+     * to style this component.
+     *
+     * @param {String} selector - A valid query that can be passed to `document.querySelector` to find a node to clone
+     */
+    _moveToShadowRoot: function(selector) {
+      var sourceNode = document.querySelector(selector);
+      if (sourceNode) {
+        Polymer.dom(this.root).appendChild(cloneStyleNode(sourceNode));
+      }
+    }
+  });
+
+  // IE Safe
+  // Cheers to https://github.com/Juicy/juicy-ace-editor/blob/master/juicy-ace-editor.html
+  // for the concept behind this function
+  function cloneStyleNode(styleNode) {
+    var newStyleNode = document.createElement('style');
+    newStyleNode.id = styleNode.id;
+    newStyleNode.textContent = styleNode.textContent;
+    return newStyleNode;
+  }
+})();
+</script>

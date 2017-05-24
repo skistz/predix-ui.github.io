@@ -1,0 +1,69 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+//
+// Sass for the "sketch" notion of the px-demo-site component
+//
+// @author
+//
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in px-demo-site-predix.scss, not in this file.
+*/
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+// Generic
+@import "px-helpers-design/_generic.helpers.scss";
+// Base
+@import "px-forms-design/_base.forms.scss";
+@import "px-list-inline-design/_objects.list-inline.scss";
+
+
+body,
+html {
+  font: GE Inspira Sans;
+  overflow: hidden;
+}
+
+ul {
+   margin-left: 0;
+   margin-bottom: 0;
+   padding-left: $inuit-base-spacing-unit;
+ }
+
+// Component
+:host{
+  width:100%;
+}
+
+.search {
+  display: flex;
+  .icon {
+    color: $gray7;
+    height: calculateRem(15px);
+    padding-left: $inuit-base-spacing-unit;
+    iron-icon {
+      height: calculateRem(20px);
+      cursor: pointer;
+    }
+  }
+  .input {
+    width: 100%;
+    input {
+      width: 90%;
+    }
+  }
+  //IE shows its own x without this. yay ie.
+  #searchInput::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+// Trumps

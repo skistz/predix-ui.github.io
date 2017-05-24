@@ -1,0 +1,128 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-deck-selector/px-deck-selector.html" />
+<link rel="import" href="../px-view-header.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-view-header"
+        description="The view header is located at the top of the page/view, as an alternative to px-context-browser. The view header provides the user an overview of the content they are viewing and interacting with.">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component style="width:100%">
+        <px-view-header
+          use-deck-selector="{{props.useDeckSelector.value}}"
+          title="{{props.title.value}}"
+          subtitle="{{props.subtitle.value}}">
+          <template is="dom-if" if="{{!props.useDeckSelector.value}}">
+            <div class="left actionable">&lt; Back</div>
+            <div class="right actionable">Next &gt;</div>
+          </template>
+          <template is="dom-if" if="{{props.useDeckSelector.value}}">
+            <px-deck-selector decks='[{"id":"1","name":"Overview","url":"/overview"}]'></px-deck-selector>
+          </template>
+        </px-view-header>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-view-header"
+          links-includes=["px-deck-selector/px-deck-selector.html"]>
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-view-header"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    properties: {
+
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { configName: "Mobile-style header",
+              configReset: true,
+              lightDomContent: '<div class="left actionable">&lt; Back</div><div class="right actionable">Next &gt;</div>' },
+
+            { configName: "With deck selector",
+              useDeckSelector: true,
+              configShowProps: ['useDeckSelector'],
+              title: '',
+              subtitle: '',
+              lightDomContent: '<px-deck-selector decks=\'[{"id":"1","name":"Overview","url":"/overview"}]\'></px-deck-selector>' }
+          ]
+        }
+      }
+    },
+
+    demoProps: {
+      useDeckSelector: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'text',
+        inputDisabled: true,
+        inputHelpText: 'Choose the "With deck selector" tab above to change this property.'
+      },
+
+      title: {
+        type: String,
+        defaultValue: 'Current View Title',
+        inputType: 'text'
+      },
+
+      subtitle: {
+        type: String,
+        defaultValue: 'A subtitle describing the view.',
+        inputType: 'text'
+      },
+
+      lightDomContent: {
+        type: String,
+        defaultValue: ''
+      }
+    }
+  });
+</script>

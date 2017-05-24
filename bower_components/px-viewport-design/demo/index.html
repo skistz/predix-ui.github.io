@@ -1,0 +1,58 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-sass-doc/px-sass-doc.html" />
+<link rel="import" href="../css/px-viewport-design-demo-styles.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>
+    <!-- 0: Import the styles-->
+    <style include="px-viewport-design-demo-styles" is="custom-style"></style>
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-viewport-design"
+  description="Default viewport parameters for Predix UI components."
+  layer="base"
+  sassdoc-path="sassdoc.json"
+  hide-demo-container
+  selected-options="{{selectedOptions}}">
+
+<!-- 5: Set Usage HTML -->
+<section data-slot="usage">
+```
+<!-- Array of different breakpoints -->
+$breakpoints
+  palm          screen and max-width: 47.9rem
+  lap           screen and min-width: 48rem and max-width: 63.9rem
+  lap-and-up    screen and min-width: 48rem
+  portable      screen and max-width: 63.9rem
+  desk          screen and min-width: 63.9rem
+  desk-wide     screen and min-width: $desk-wide-width
+  retina        -webkit-min-device-pixel-ratio: 2, min-resolution: 192dpi, min-resolution: 2dppx
+
+
+<!-- Viewport -->
+<!-- .viewport is the primary class applied to div containing app nav and content (body > div.viewport) -->
+.viewport
+
+
+<!-- Viewpoit Full Height -->
+.viewport--full-height
+
+```
+</section>
+
+</px-sass-doc>
+</template>
+
+</dom-module>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<script>
+  Polymer({
+    is: 'local-element-demo'
+  });
+</script>

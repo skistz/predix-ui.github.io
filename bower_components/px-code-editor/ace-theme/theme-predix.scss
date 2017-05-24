@@ -1,0 +1,124 @@
+@import "px-colors-design/_settings.colors.scss";
+@import "px-colors-design/_settings.colors-dark.scss";
+
+.ace-predix .ace_gutter {
+  background: $d-gray16;
+  color: $d-gray9;
+}
+
+.ace-predix .ace_print-margin {
+  width: 1px;
+  background: $d-gray16;
+}
+
+.ace-predix {
+  background-color: $d-gray20;
+  color: $d-gray5;
+}
+
+.ace-predix .ace_cursor {
+  color: $d-gray1
+}
+
+.ace-predix .ace_marker-layer .ace_selection {
+  background: $d-gray17
+}
+
+.ace-predix.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px #4c6472;
+}
+
+.ace-predix .ace_marker-layer .ace_step {
+  background: rgb(102, 82, 0)
+}
+
+.ace-predix .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid #49483E
+}
+
+.ace-predix .ace_marker-layer .ace_active-line {
+  background: $d-gray16;
+}
+
+.ace-predix .ace_gutter-active-line {
+  background-color: $d-gray19;
+}
+
+.ace-predix .ace_marker-layer .ace_selected-word {
+  border: 1px solid #49483E
+}
+
+.ace-predix .ace_invisible {
+  color: #52524d
+}
+
+.ace-predix .ace_entity.ace_name.ace_tag,
+.ace-predix .ace_keyword,
+.ace-predix .ace_meta.ace_tag,
+.ace-predix .ace_storage {
+  color: $d-dv-bright-9
+}
+
+.ace-predix .ace_punctuation,
+.ace-predix .ace_punctuation.ace_tag {
+  color: $d-gray6;
+}
+
+.ace-predix .ace_constant.ace_character,
+.ace-predix .ace_constant.ace_language,
+.ace-predix .ace_constant.ace_numeric,
+.ace-predix .ace_constant.ace_other {
+  color: $d-dv-bright-7;
+}
+
+.ace-predix .ace_invalid {
+  color: #F8F8F0;
+  background-color: #F92672
+}
+
+.ace-predix .ace_invalid.ace_deprecated {
+  color: #F8F8F0;
+  background-color: #AE81FF
+}
+
+.ace-predix .ace_support.ace_constant,
+.ace-predix .ace_support.ace_function {
+  color: #66D9EF
+}
+
+.ace-predix .ace_fold {
+  background-color: #A6E22E;
+  border-color: #F8F8F2
+}
+
+.ace-predix .ace_storage.ace_type,
+.ace-predix .ace_support.ace_class,
+.ace-predix .ace_support.ace_type {
+  font-style: italic;
+  color: $d-dv-bright-7;
+}
+
+.ace-predix .ace_entity.ace_name.ace_function,
+.ace-predix .ace_entity.ace_other,
+.ace-predix .ace_entity.ace_other.ace_attribute-name,
+.ace-predix .ace_variable {
+  color: $d-dv-bright-6;
+}
+
+.ace-predix .ace_variable.ace_parameter {
+  font-style: italic;
+  color: $d-dv-bright-1;
+}
+
+.ace-predix .ace_string {
+  color: $d-white;
+}
+
+.ace-predix .ace_comment {
+  color: $d-gray11;
+}
+
+.ace-predix .ace_indent-guide {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y
+}

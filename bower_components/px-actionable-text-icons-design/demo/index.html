@@ -1,0 +1,154 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+
+  <!-- Common demo imports -->
+  <link rel="import" href="../../px-sass-doc/px-sass-doc.html" />
+  <link rel="import" href="../css/px-actionable-text-icons-design-demo-styles.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>  
+  <!-- 0: Import the styles-->
+  <style include="px-actionable-text-icons-design-demo-styles" is="custom-style"></style>
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+id="test"
+  module-name="px-actionable-text-icons-design"
+  description="Predix UI Actionable Text and Icons module is a simple implementation of added button type behaviors to text. Actionable text allows the user to initiate an action associated to the text string."
+  layer="objects"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/PredixDev/px-colors-design",
+    "https://github.com/PredixDev/px-defaults-design"
+  ]'
+  selected-options="{{selectedOptions}}">
+
+<!-- 2: Set Options -->
+<px-sass-doc-option
+  option-name="Size"
+  choose-with="dropdown"
+  choices='[
+    "small",
+    "regular (default)",
+    "large",
+    "huge"
+  ]'
+  default-choice="regular (default)">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Type"
+  choose-with="dropdown"
+  choices='[
+    "default",
+    "select",
+    "action"
+  ]'
+  default-choice="default">
+</px-sass-doc-option>
+<px-sass-doc-option
+  option-name="Disabled"
+  choose-with="boolean"
+  default-choice="false">
+</px-sass-doc-option>
+
+<!-- 3: Make HTML Demo -->
+<section data-slot="demoHTML">
+<span class$="{{cssClasses}}">Actionable Text</span>
+<p class$="{{cssClasses}}">
+  <i class="fa fa-area-chart"></i>
+</p>
+</section>
+
+<!-- 4: Set Import Slot -->
+<section data-slot="import">
+{{importCode}}
+</section>
+
+<!-- 5: Set Usage HTML -->
+<section data-slot="usage">
+```
+<!-- Default Actionable Text & Icon -->
+<span class="actionable">…</span>
+<span class="actionable">
+  <i class="fa fa-…"></i>
+</span>
+
+
+<!-- Small -->
+<span class="actionable actionable--small">…</span>
+
+
+<!-- Large -->
+<span class="actionable actionable--large">…</span>
+
+
+<!-- Huge -->
+<span class="actionable actionable--huge">…</span>
+
+
+<!-- Action -->
+<span class="actionable actionable--action">…</span>
+
+
+<!-- Select -->
+<span class="actionable actionable--select">…</span>
+
+
+<!-- Disabled -->
+<span class="actionable actionable--disabled">…</span>
+
+```
+</section>
+
+</px-sass-doc>
+</template>
+
+</dom-module>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    attached : function(){
+      var boundHandler = this._handleOptionsUpdated.bind(this); 
+      this.addEventListener('px-sass-doc-options-updated', boundHandler)
+    },
+    
+    detached : function(){
+      this.removeEventListener('px-sass-doc-options-updated', boundHandler);
+    },
+
+    _handleOptionsUpdated : function(evt) {
+      //call functions created below
+      this.cssClasses = this._calcCssClasses();
+      this.importCode = this._importCode();
+
+      // Wait, then tell the highlighter to run after dom-if restamps
+      this.async(function(){ this.fire('px-sass-doc-demo-updated', {}) }, 10);
+    },
+
+    _calcCssClasses : function() {
+      var opts = this.selectedOptions || {}, strings = [];
+
+      if (opts.Size === "small")    strings.push("actionable--small");
+      if (opts.Size === "large")    strings.push("actionable--large");
+      if (opts.Size === "huge")     strings.push("actionable--huge");
+
+      if (opts.Type === "select")    strings.push("actionable--select");
+      if (opts.Type === "action")    strings.push("actionable--action");
+
+      if (opts.Disabled === true)    strings.push("actionable--disabled");
+
+      return ("actionable " + strings.join(" ")).trim();
+    },
+
+    _importCode : function() {
+      var opts = this.selectedOptions || {}, strings = [];
+
+      return (strings.join("\n") + "\n@import 'px-actionable-text-icons-design/_objects.actionable.scss';").trim();
+    },
+
+  });
+</script>

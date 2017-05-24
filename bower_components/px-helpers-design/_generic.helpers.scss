@@ -1,0 +1,216 @@
+////
+/// PX-HELPERS-DESIGN
+/// Defines generic helpers styles
+/// @group px-helpers-design
+////
+
+/**
+ * A series of helper classes to use arbitrarily. Only use a helper class if an
+ * element/component doesn’t already have a class to which you could apply this
+ * styling, e.g. if you need to float `.main-nav` left then add `float:left;` to
+ * that ruleset as opposed to adding the `.float--left` class to the markup.
+ *
+ * A lot of these classes carry `!important` as you will always want them to win
+ * out over other selectors.
+ */
+
+@import "px-colors-design/_settings.colors.scss";
+@import "inuit-responsive-settings/_settings.responsive.scss";
+@import "inuit-responsive-tools/_tools.responsive.scss";
+
+/// @name accessibility
+/// @output Properties and values for hiding elements accessibly
+/// @example
+///   position: absolute !important;
+///   overflow: hidden !important;
+///   width: 1px !important;
+///   height: 1px !important;
+///   margin: -1px !important;
+///   border: 0 !important;
+///   padding: 0 !important;
+///   clip: rect(0 0 0 0) !important;
+@mixin accessibility {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  clip: rect(0 0 0 0) !important;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+
+/**
+ * Default link colors
+ */
+
+  &:link,
+  &:visited {
+    color: $primary-blue;
+  }
+
+  &:hover {
+    color: $primary-blue-hover;
+  }
+
+  &:active {
+    color: $primary-blue-pressed;
+  }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+
+}
+
+/**
+ * Add/remove floats
+ */
+
+.float--right {
+  float: right !important;
+}
+
+.float--left {
+  float: left !important;
+}
+
+.float--none {
+  float: none !important;
+}
+
+/**
+ * Text alignment
+ */
+
+.text--left {
+  text-align: left !important;
+}
+
+.text--center {
+  text-align: center !important;
+}
+
+.text--right {
+  text-align: right !important;
+}
+
+/**
+ * Full height element
+ */
+
+.full-height {
+  height: 100% !important;
+}
+
+/**
+ * Add a help cursor to any element that gives the user extra information on
+ * `:hover`.
+ */
+
+.informative {
+  cursor: help !important;
+}
+
+/**
+ * Add a pointer cursor to any element, useful for on-click events
+ */
+
+.pointer {
+  cursor: pointer !important;
+}
+
+/**
+ * Mute an object by reducing its opacity.
+ */
+
+.muted {
+ opacity: 0.5 !important;
+}
+
+/**
+ * Align items to the right where they imply progression/movement forward, e.g.:
+ *
+ * <p class=proceed><a href=#>Read more...</a></p>
+ *
+ */
+
+.proceed {
+  text-align: right !important;
+}
+
+/**
+ * Apply capital case to an element (usually a `strong`).
+ */
+
+.caps {
+  text-transform: uppercase !important;
+}
+
+/**
+ * Hide visually and from screen readers:
+ * http://juicystudio.com/article/screen-readers-display-none.php
+ */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+/**
+ * Hide content off-screen without resorting to `display:none;`
+ */
+
+.a11y,
+.visuallyhidden{
+  @include accessibility;
+}
+
+.a11y,
+.visuallyhidden {
+  &.focusable {
+    &:active,&:focus {
+      position: static;
+      overflow: visible;
+      width: auto;
+      height: auto;
+      margin: 0;
+      clip: auto;
+    }
+  }
+}
+
+@if $inuit-responsive-settings {
+  @each $breakpoint in $breakpoints {
+    $alias: nth($breakpoint, 1);
+    @include media-query($alias) {
+      .a11y-#{$alias},
+      .visuallyhidden-#{$alias} {
+        @include accessibility;
+      }
+    }
+  }
+}
+
+/**
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden !important;
+}

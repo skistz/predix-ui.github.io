@@ -1,0 +1,136 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!--
+Creates a header for Predix UI demo pages.
+
+##### Usage
+
+    <px-demo-header
+        module-name="px-calendar-picker"
+        description="The px-calendar-picker component includes various elements used for structuring responsive layouts. This component allows the user to select a date or date range. The main use of this component is to be used in the px-range-panel.">
+    </px-demo-header>
+
+@element px-demo-header
+@blurb Creates a header for Predix UI demo pages.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-header">
+  <template>
+    <style include="px-demo-styles"></style>
+
+    <section class="demo-background--base">
+      <div class="demo-layout--center demo-u-pb+++ u-pt++ text--shadow">
+        <div class="flex flex--row">
+          <div class="flex__item flex__item__msfix">
+            <h1 class="delta">{{moduleName}}</h1>
+            <div class="demo-text-width--max">
+              <p>{{description}}</p>
+            </div>
+            <template is="dom-if" if="{{!hideShields}}">
+              <div class="flex">
+                <img class="u-mr--" src="https://img.shields.io/travis/PredixDev/{{_shieldName}}/master.svg?style=flat-square" alt="Travis Status" onerror="this.style.display='none'"/>
+                <img class="u-mr--" src="https://img.shields.io/bower/v/{{_shieldName}}.svg?style=flat-square" alt="Bower Version" onerror="this.style.display='none'"/>
+                <img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/{{_shieldName}}/master.svg?style=flat-square" alt="GitHub Issues Count" onerror="this.style.display='none'"/>
+              </div>
+            </template>
+          </div>
+          <a class="actionable u-mt+" href="https://github.com/PredixDev/{{_shieldName}}" target="_new">
+            <iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github
+          </a>
+        </div>
+    	</div>
+    </section>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-header',
+
+    properties: {
+      /**
+       * Name of the Predix UI module.
+       *
+       * @property moduleName
+       * @type {String}
+       */
+      moduleName: {
+        type: String,
+        value: ''
+      },
+
+      /**
+       * Description of the Predix UI module.
+       *
+       * @property description
+       * @type {String}
+       */
+      description: {
+        type: String,
+        value: ''
+      },
+
+      /**
+       * Hides the shields (i.e. the images that show the current bower tag,
+       * issues, and more). Useful if you don't need them or can't get them.
+       *
+       * @property hideShields
+       * @type {Boolean}
+       * @default false
+       */
+      hideShields: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Sets the name of the topmost parent component, which will be used to
+       * build the shield links. Optional, leave it blank to use the `moduleName`.
+       *
+       * @property parentName
+       * @type {String}
+       */
+      parentName: {
+        type: String,
+        value: ''
+      },
+
+      /**
+       * The computed name for the shields. If `parentName` is defined and has
+       * length, it takes precedence. Then `moduleName` is used by default.
+       *
+       * @property
+       * @type {String}
+       */
+      _shieldName: {
+        type: String,
+        computed: '_computeShieldName(moduleName, parentName)'
+      }
+    },
+
+    /**
+     * Computes the `_shieldName`. Tries to use the `parentName`, then falls
+     * back to `moduleName`.
+     *
+     * @param {String} moduleName
+     * @param {string} parentName
+     * @return {String}
+     */
+    _computeShieldName: function(moduleName, parentName) {
+      if (moduleName && (typeof moduleName === 'string')) {
+        parentName = parentName || '';
+        return (parentName.length) ? parentName : moduleName;
+      }
+    }
+  });
+</script>

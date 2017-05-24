@@ -1,0 +1,206 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+
+  <!-- Common demo imports -->
+  <link rel="import" href="../../px-sass-doc/px-sass-doc.html" />
+  <link rel="import" href="../css/px-headings-design-demo-styles.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>  
+  <!-- 0: Import the styles-->
+  <style include="px-headings-design-demo-styles" is="custom-style"></style>
+
+<!-- 1: Describe Module -->
+<px-sass-doc
+  module-name="px-headings-design"
+  description="Headings gives you base-level heading sizes in the form of easy-to-apply classes. Use its classes to style H1-H6 heading tags or other text elements. These type sizes are loose multiples of 15px as a basic unit. The size steps are following a typographic rhythm, which makes the sizing distinct and gives the visual hierarchy emphasis."
+  layer="base"
+  sassdoc-path="sassdoc.json"
+  dependencies='[
+    "https://github.com/PredixDev/px-defaults-design",
+    "https://github.com/PredixDev/px-mixins-design"
+  ]'
+  selected-options="{{selectedOptions}}">
+
+<!-- 2: Set Options -->
+<px-sass-doc-option
+  option-name="Size"
+  choose-with="dropdown"
+  choices='[
+    "h1 alpha",
+    "h2 beta",
+    "h3 gamma",
+    "h4 delta",
+    "h5 epsilon",
+    "h6 zeta"
+  ]'
+  default-choice="h1 alpha">
+</px-sass-doc-option>
+
+<!-- 3: Make HTML Demo -->
+<!-- H1 -->
+<template is="dom-if" if="{{isSize('h1 alpha',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H1 Heading Size 75px</p>
+  </section>
+</template>
+
+<!-- H2 -->
+<template is="dom-if" if="{{isSize('h2 beta',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H2 Heading Size 60px</p>
+  </section>
+</template>
+
+<!-- H3 -->
+<template is="dom-if" if="{{isSize('h3 gamma',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H3 Heading Size 45px</p>
+  </section>
+</template>
+
+<!-- H4 -->
+<template is="dom-if" if="{{isSize('h4 delta',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H4 Heading Size 30px</p>
+  </section>
+</template>
+
+<!-- H5 -->
+<template is="dom-if" if="{{isSize('h5 epsilon',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H5 Heading Size 20px</p>
+  </section>
+</template>
+
+<!-- H6 -->
+<template is="dom-if" if="{{isSize('h6 zeta',selectedOptions)}}" restamp>
+  <section data-slot="demoHTML">
+    <p class$="{{headingClass}}">H6 Heading Size 12px</p>
+  </section>
+</template>
+
+<!-- 4: Set Import Slot -->
+<section data-slot="import">
+@import "px-headings-design/_base.headings.scss";
+</section>
+
+<section data-slot="usage">
+The headings module exposes classes that set the sizes of your heading tags. Each heading size (`<h1>...</h1>` through `<h6>...</h6>`) has corresponding class listed below. Apply the class to your heading tag and the sizing will automatically happen.
+
+<h5 class="epsilon">For example, here's an `h5` tag. You can create it like this:</h5>
+
+```
+<h5 class="epsilon">For example, here's an `h5` tag. You can create it like this:</h5>
+```
+
+<p class="u-mt++ u-mb-"> You can also apply the headings classes to non-heading tags. For example:</p>
+
+<p class="zeta u-mt-">This paragraph would be styled like an `h6`</p>
+
+```
+<p class="zeta">This paragraph tag can be styled like an `h6`</p>
+```
+
+(Note: There's a good accessibility case for doing this. Heading tags have meaning for screen readers and web scrapers, and you should avoid having multiple high-level heading tags that are only used for styling.)
+
+<br/>
+Here are all the heading classes available:
+
+```
+<!-- Heading Size 1 75px-->
+<h1 class="alpha">...</h1>
+
+<!-- Heading Size 2 60px-->
+<h2 class="beta">...</h2>
+
+<!-- Heading Size 3 45px-->
+<h3 class="gamma">...</h3>
+
+<!-- Heading Size 4 30px -->
+<h4 class="delta">...</h4>
+
+<!-- Heading Size 5 20px -->
+<h5 class="epsilon">...</h5>
+
+<!-- Heading Size 6 12px-->
+<h6 class="zeta">...</h6>
+```
+
+</section>
+
+</px-sass-doc>
+</template>
+
+</dom-module>
+
+<!-- 6: Handle selectedOptions, update demo -->
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    attached : function(){
+      var boundHandler = this._handleOptionsUpdated.bind(this); 
+      this.addEventListener('px-sass-doc-options-updated', boundHandler)
+    },
+    
+    detached : function(){
+      this.removeEventListener('px-sass-doc-options-updated', boundHandler);
+    },
+
+    _handleOptionsUpdated : function(evt) {
+      //call functions created below
+      this.headingClass = this._headingClass();
+
+      // Wait, then tell the highlighter to run after dom-if restamps
+      this.async(function(){ this.fire('px-sass-doc-demo-updated', {}) }, 10);
+    },
+
+    _headingClass : function() {
+      var opts = this.selectedOptions || {};
+      if(opts.Size === "h1 alpha") return "alpha";
+      if(opts.Size === "h2 beta") return "beta";
+      if(opts.Size === "h3 gamma") return "gamma";
+      if(opts.Size === "h4 delta") return "delta";
+      if(opts.Size === "h5 epsilon") return "epsilon";
+      if(opts.Size === "h6 zeta") return "zeta";
+    },
+
+    isSize : function(size) {
+      var opts = this.selectedOptions || {};
+      if (opts.Size === size) return true;
+      return false;
+    }
+
+  });
+</script>
+
+<!--<script>
+  var template = document.querySelector('template[is=dom-bind]');
+
+  document.addEventListener('px-sass-doc-options-updated', function(evt) {
+    template.headingClass = template._headingClass();
+
+    // Wait, then tell the highlighter to run after dom-if restamps
+    template.async(function(){ template.fire('px-sass-doc-demo-updated', {}) }, 10);
+  });
+
+  template._headingClass = function() {
+    var opts = template.selectedOptions || {};
+    if(opts.Size === "h1 alpha") return "alpha";
+    if(opts.Size === "h2 beta") return "beta";
+    if(opts.Size === "h3 gamma") return "gamma";
+    if(opts.Size === "h4 delta") return "delta";
+    if(opts.Size === "h5 epsilon") return "epsilon";
+    if(opts.Size === "h6 zeta") return "zeta";
+  };
+
+  template.isSize = function(size) {
+    var opts = template.selectedOptions || {};
+    if (opts.Size === size) return true;
+    return false;
+  }
+</script>
+</body>
+</html>-->

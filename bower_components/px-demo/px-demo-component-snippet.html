@@ -1,0 +1,149 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!--
+Wraps around `px-demo-snippet` to show code sample.
+
+##### Usage
+
+    <px-demo-component-snippet></px-demo-component-snippet>
+
+@element px-demo-component-snippet
+@blurb Wraps around `px-demo-snippet` to show code sample.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-component-snippet">
+  <template>
+    <style include="px-demo-styles"></style>
+
+    <px-demo-snippet
+        element-properties="{{_shallowProps}}"
+        element-name="{{elementName}}"
+        links-includes="[[linksIncludes]]"
+        scripts-includes="[[scriptsIncludes]]"
+        polygit-includes="[[polygitIncludes]]"
+        code-link="[[codepenLink]]">
+    </px-demo-snippet>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-component-snippet',
+
+    properties: {
+      /**
+       * Name of the Predix UI element.
+       *
+       * @property elementName
+       */
+      elementName: {
+        type: String,
+        value: ''
+      },
+
+      /**
+       * Description of the Predix UI module.
+       *
+       * @property elementProperties
+       */
+      elementProperties: {
+        type: Object,
+        value: function(){ return {}; }
+      },
+
+      /**
+       * An array of <link> include URLs required to make the CodePen work.
+       *
+       * @property linksIncludes
+       */
+      linksIncludes: {
+        type: Array,
+        value: function(){ return {}; }
+      },
+
+      /**
+       * An array of <script> include URLs required to make the CodePen work.
+       *
+       * @property scriptsIncludes
+       */
+      scriptsIncludes: {
+        type: Array,
+        value: function(){ return {}; }
+      },
+
+      /**
+       * An array of additional PolyGit includes required to make the CodePen work.
+       *
+       * @property polygitIncludes
+       */
+      polygitIncludes: {
+        type: Array,
+        value: function(){ return {}; }
+      },
+
+      /**
+       * Link to a pre-created Codepen that we do not need to dynamically build.
+       *
+       * @property codepenLink
+       */
+      codepenLink: {
+        type: String
+      },
+
+      /**
+       * Props computed to the format `px-demo-snippet` accepts.
+       *
+       * @property _shallowProps
+       */
+      _shallowProps: {
+        type: Object,
+        value: function(){ return {}; }
+      }
+    },
+
+    observers: ['_assignShallowProps(elementProperties, elementProperties.*)'],
+
+    /**
+     * Converts the complex `props` object into a shallow format of
+     * `propName`:`propValue` for `px-demo-snippet`.
+     *
+     * @return {Object}
+     */
+     _assignShallowProps: function(props) {
+       if (props && (typeof props === 'object') && Object.keys(props).length) {
+         var propKeys = Object.keys(props);
+         var shallow = {};
+
+         for (var i = 0; i < propKeys.length; i++) {
+           // Don't check the property directly because it might be a boolean value, check its existence on the object
+           var val = props[propKeys[i]].hasOwnProperty('value') ? props[propKeys[i]].value : "";
+           // @TODO: px-demo-snippet silently fails if it gets a string for an attribute with double quotes.
+           // For now, we clean them out manually. Future improvement is to fix this bug in px-demo-snippet.
+           if (typeof val === 'string') {
+             // Replace double quotes on the outside with single quotes. Example:
+             // In: <tag foo="bar" array="['key':'val']"></tag>
+             // Out: <tag foo='bar' array='["key":"val"]'></tag>
+             val = val.replace(/([a-zA-Z]+=)"([^"]*)"/g, function(fullMatch, attrName, attrVal) {
+               return attrName + "'" + attrVal.replace(/\'/g, '"') + "'";
+             });
+           }
+           shallow[propKeys[i]] = val;
+         }
+
+         this.set('_shallowProps', {});
+         this.set('_shallowProps', shallow);
+       }
+     }
+  });
+</script>

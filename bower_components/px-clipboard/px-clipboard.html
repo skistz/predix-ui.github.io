@@ -1,0 +1,314 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+<link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
+
+<!--
+Element allowing copy/cut to clipboard.
+The value to be copied/cut must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from. if the copy-from attribute does not exist,
+the data-clipboard-text property must be used.
+
+##### Usage
+
+    <px-clipboard copy-from="#copyMe"><input type="text" value="copy me" id="copyMe"/></px-clipboard>
+
+Or, to cut:
+
+    <px-clipboard data-clipboard-action="cut" copy-from="#cutMe"><input type="text" value="Cut me" id="cutMe"/></px-clipboard>
+
+Or, with no input/textarea:
+
+    <px-clipboard data-clipboard-text="This text will be copied."></px-clipboard>
+
+## Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-clipboard-icon-color` | The color of the copy icon | $gray8
+`--px-clipboard-icon-color--hover` | The color of the copy icon when hovered | $primary-blue
+`--px-clipboard-icon-color--pressed`  | The color of the copy icon when pressed | $primary-blue-pressed
+`--px-clipboard-icon-color--copied` | The color of the copy icon when pressed and copy is complete | $dv-basic-green
+
+@element px-clipboard
+@blurb Element allowing copy/cut to clipboard.
+@homepage index.html
+@demo index.html
+-->
+
+<link rel="import" href="css/px-clipboard-styles.html">
+<dom-module id="px-clipboard">
+  <template>
+    <style include="px-clipboard-styles"></style>
+    
+    <div class="flex flex--left">
+      <div class="flex__item"><content></content></div>
+      <div class="iron">
+        <iron-icon title="copy" icon="fa:fa-clipboard" id="copy"></iron-icon>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-clipboard',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'notify'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /**
+       * An attribute that allows you to cut text (vs copy).
+       * Available options are 'cut' or 'copy'
+       * @property dataClipboardAction
+       * @type String
+       */
+      dataClipboardAction: {
+        type: String,
+        value: ''
+      },
+      /**
+       * An attribute that points to the element holding the value
+       * you'd like to cut or copy.
+       * Possible options are `tag`, `class` or `ID`.
+       * @property copyFrom
+       * @type String
+       */
+      copyFrom: {
+        type: String,
+        value: ''
+      },
+      /**
+       *
+       * An object that holds a reference to the node from which the value is copied/cut from.
+       *
+       * @property _copyFromElem
+       * @type Objecct
+       */
+      _copyFromElem: {
+        type: Object,
+        observer: '_initializeClipboard'
+      },
+      /**
+       * An attribute that allows you to set the text that will go into the clipboard.
+       *
+       * @property dataClipboardText
+       * @type String
+       */
+      dataClipboardText: {
+        type: String,
+        value: '',
+        observer: '_updateText'
+      },
+      /**
+       * An attribute holds the Clipboard object.
+       *
+       * @property _clipboard
+       * @type Object
+       */
+      _clipboard: {
+        type: Object
+      },
+      /**
+       * a boolean which reflects whether the "copied" text should be visible.
+       * @type {Boolean}
+       * @prop _showCopiedText
+       */
+      _showCopiedText: {
+        type: Boolean,
+        value: false
+      }
+    },
+    attached: function() {
+      var content = this.$$('content'),
+          //this calls the _setCopyFrom method when the content is loaded, and makes sure the Polymer this is bound to that function.
+          _observer = Polymer.dom(content).observeNodes(this._setCopyFrom.bind(this)),
+          copy = this.$$('#copy');
+      //check whether this is a text only clipboard element.
+      if (this.dataClipboardText) {
+        //initialize clipboard`
+        this._clipboard = this._initializeTextOnly(copy);
+        //and initialze the events
+        this._setEventFire();
+      }
+    },
+    detached: function() {
+      //clean up after ourselves.
+      this._destroy();
+    },
+    _destroy: function() {
+      //removes the current Clipboard instance, if it exists.
+      if (this._clipboard) {
+        this._clipboard.destroy();
+      }
+    },
+    /**
+     * This method is called when the the text to be copied is updated on a copy where data-clipboard-text is used.
+     * It destroys the old copy, initilizes a new Clipboard object with the new text property, and sets the listeners on the new Clipboard object
+     *
+     * @method _updateText
+     */
+    _updateText: function() {
+      var copy = this.$$('#copy');
+      if (this.dataClipboardText) {
+        this._destroy();
+        this._clipboard = this._initializeTextOnly(copy);
+        this._setEventFire();
+      }
+
+    },
+    /**
+     * This method is called when the _copyFromElem property changes (the light dom is loaded).
+     * It initilizes a clipboard object.
+     *
+     * @method _initializeClipboard
+     */
+    _initializeClipboard: function() {
+      var copy = this.$$('#copy');
+
+      //check that we aren't dealing with a text only clipboard
+      if (!this.dataClipboardText) {
+        //initialze our clipboard object
+        this._clipboard = this._initializeCopy(copy);
+
+        //and if it's a cut action, set that up.
+        if (this.dataClipboardAction) {
+          this._clipboard.action = function(trigger) {
+            return this.dataClipboardAction;
+          }.bind(this);
+        }
+
+        //lastly, we turn on listeners that will fire events.
+        this._setEventFire();
+      }
+    },
+    /**
+     * This method captures the internal success/error message sent by the clipboard
+     * and calls _success or _error.
+     *
+     * @method _initializeClipboard
+     */
+    _setEventFire: function() {
+
+      //listen to a success or error event. I put these here since "success" or "error" are really generic, and I wanted better event Names.
+      this._clipboard.on('success', function(e) {
+        this._success(e);
+        this.set('_showCopiedText', true);
+        this._changeIcon();
+
+      }.bind(this))
+      .on('error', function(e) {
+        this._error(e);
+      }.bind(this));
+    },
+    _changeIcon: function() {
+      var ironIcon = Polymer.dom(this.root).querySelector('iron-icon'),
+          copiedIcon = Polymer.dom(this.root).querySelector('.iron');
+
+      ironIcon.icon ='fa:fa-check-circle';
+      copiedIcon.classList.add('copiedIconGreen', 'fadeOutCopied');
+
+      if (this._showCopiedText) {
+        copiedIcon.classList.remove('fadeIn');
+        this.distributeContent();
+      }
+
+      setTimeout(function() {
+        ironIcon.icon ='fa:fa-clipboard';
+        copiedIcon.classList.remove('copiedIconGreen', 'fadeOutCopied');
+        copiedIcon.classList.add('fadeIn');
+        this.distributeContent();
+        // copiedText.classList.add('copiedText');
+      }.bind(this), 4000);
+
+    },
+    /**
+     * This method finds the element specified in copyFrom, and sets _copyFromElem
+     *
+     * @method _setCopyFrom
+     *
+     */
+    _setCopyFrom: function() {
+      //find the element we are copying from
+      var copyFrom  = Polymer.dom(this).querySelector(this.copyFrom);
+      //and set _copyFromElem to that element.
+      this.set('_copyFromElem', copyFrom);
+    },
+    /**
+     * This method returns a new instance of the Clipboard object
+     * and sets the _copyFrom property
+     *
+     * @method _initializeCopy
+     * @return {Clipboard Object}
+     */
+    _initializeCopy: function(copy) {
+
+      var content = this.$$('content'),
+          copyFrom;
+      //check we have an attribute telling us where to copy from
+      if (this.copyFrom) {
+        //since we do, let's set it up as an element reference
+        this._setCopyFrom();
+        //and return a new Clipboard object that points to this element.
+        return new Clipboard(copy,
+          { target:
+              function(trigger) {
+                return this._copyFromElem;
+            }.bind(this)
+          }
+        );
+      } else {
+        throw "You must specify where you'd like the value copied/cut from using the copy-from attribute";
+      }
+    },
+    /**
+     * This method returns a new instance of the Clipboard object
+     * that has text set on it using the data-clipboard-text attribute
+     *
+     * @method _initializeTextOnly
+     * @return {Clipboard Object}
+     *
+     */
+    _initializeTextOnly: function(copy) {
+      //we return a new Clipboard instance that has a text property set on it.
+      return new Clipboard(copy,
+        { text:
+            function(trigger) {
+              return this.dataClipboardText;
+          }.bind(this)
+        }
+      );
+    },
+    /*
+    * This event is fired after a successful copy/cut.
+    *  @event clipboardSuccess
+    */
+    /*
+    * This method fires off a clipboardSuccess event
+    *  @method _success
+    */
+    _success: function(e) {
+      this.fire('pxClipboardSuccess', e);
+    },
+    /*
+    * This event is fired after an error occurs with copy/cut.
+    *  @event clipboardError
+    */
+    /*
+    * This method fires off a clipboardError event
+    *  @method _error
+    */
+    _error: function(e) {
+      this.fire('pxClipboardError', e);
+    }
+  });
+</script>

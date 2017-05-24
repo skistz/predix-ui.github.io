@@ -1,0 +1,256 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of5 bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-tabs/px-tab-set.html" />
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!-- Common demo behaviors -->
+<link rel="import" href="px-demo-behaviors.html">
+
+<!--
+Displays a list of configs that the user can choose from to set the demo's
+configurable options.
+
+##### Usage
+
+        <px-demo-configs configs="{{configs}}" chosen-config="{{chosenConfig}}">
+        </px-demo-configs>
+
+@element px-demo-configs
+@blurb Holds a tab set for a demo page.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-configs">
+  <template>
+    <style include="px-demo-styles"></style>
+
+    <template is="dom-if" if="_hasConfigs(configs)">
+      <px-tab-set selected="{{_selectedTab}}" bare no-bottom-border>
+        <template is="dom-repeat" items="{{_userConfigs}}">
+          <px-tab>{{_findConfigName(item, index)}}</px-tab>
+        </template>
+      </px-tab-set>
+    </template>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-configs',
+
+    behaviors: [PxDemoBehaviors.manageProps],
+
+    properties: {
+      /**
+       * A list of configs that can be selected by the user. Will be displayed
+       * as a list of tabs.
+       *
+       * @example
+       *   [{
+       *     optionName: 'Basic',
+       *     preventRangeSelection: true,
+       *     blockDatesBefore: '',
+       *     displayMode: 'day'
+       *   }, ...]
+       *
+       * On definition or update, copied to an internal representation of configs
+       * called `_userConfigs` that can then be mutated by the user. This
+       * representation is saved so users can return to the developer defined
+       * version of this configuration.
+       *
+       * @property configs
+       */
+      configs: {
+        type: Array,
+        value: function(){ return [] }
+      },
+
+      /**
+       * The currently-selected config, returned as as an object.
+       *
+       * @property chosenConfig
+       */
+      chosenConfig: {
+        type: Object,
+        notify: true,
+        value: function(){ return {} }
+      },
+
+      /**
+       * The `props` that the user can configure. When the `chosenConfig` is
+       * updated, any values defined there will be applied to `props`
+       *
+       * When any of the `props` values are changed, a new version of the config
+       * is saved so that when the user returns to this config, the options
+       * they selected are restored.
+       *
+       * @property props
+       */
+      props: {
+        type: Object,
+        notify: true
+      },
+
+      /**
+       * The index of the currently-selected option. When this is updated,
+       * `chosenConfig` will be updated with the corresponding object.
+       *
+       * @type {Number}
+       */
+      _selectedTab: {
+        type: Number,
+        value: 0
+      },
+
+      /**
+       * An internal representation of the state of a particular configuration.
+       *
+       * @type {Object}
+       */
+      _userConfigs: {
+        type: Array,
+        value: function(){ return []; }
+      }
+    },
+
+    observers: [
+      '_setChosenConfig(_selectedTab, _userConfigs)',
+      '_updateProps(chosenConfig)',
+      '_createUserConfigs(configs)',
+      '_updateUserConfigProps(props.*)'
+    ],
+
+    /**
+     * Converts all developer-supplied `configs` and copies them to a `_userConfigs`
+     * representation that can be changed by the user.
+     *
+     * Whenever the user changes a prop with a config selected, the current state
+     * of the config is saved. If a user leaves the config and returns to it later,
+     * the config state will be restored.
+     */
+    _createUserConfigs: function() {
+      this.debounce('create-user-configs', function() {
+        var configs = this.configs;
+
+        for (var i = 0; i < configs.length; i++) {
+          this.push('_userConfigs', Object.assign({}, {}, configs[i]));
+        }
+      }, 200);
+    },
+
+    /**
+     * Returns the next index.
+     *
+     * @return {Number}
+     */
+    _indexPlusOne: function(num) {
+      return num + 1;
+    },
+
+    /**
+     * Attempts to find a `configName` for the item. If there is no name, returns
+     * a string like 'Option 1'.
+     *
+     * @return {String}
+     */
+    _findConfigName: function(item, index) {
+      if (!item.configName) return 'Option ' + this._indexPlusOne(index);
+
+      // There is a name, so show that instead
+      return item.configName;
+    },
+
+    /**
+     * When the user selects a tab, sets the `chosenConfig` to a corresponding value.
+     *
+     * @return {Object}
+     */
+    _setChosenConfig: function(selected) {
+      this.debounce('set-chosen-config', function() {
+        var configs = this._userConfigs || [];
+        if (typeof selected === 'undefined' || !configs.length) return {};
+        this.set('chosenConfig', {});
+        this.set('chosenConfig', configs[selected]);
+      }, 20);
+    },
+
+    /**
+     * When the `chosenConfig` is reset, iterate over its values and set the
+     * `props` to the new values.
+     *
+     * @param {Object} newConfig
+     */
+    _updateProps: function(newConfig) {
+      if (newConfig && (typeof newConfig === 'object') && Object.keys(newConfig).length) {
+        this.debounce('update-props', function(){
+          if (this._updatingProps) return;
+          this._updatingProps = true;
+
+          if (newConfig.configReset) {
+            this.applyPropDefaults(true);
+          };
+
+          var propsToSet = Object.keys(newConfig);
+          for (var i = 0; i < propsToSet.length; i++) {
+            var propName = propsToSet[i];
+            if (propName === 'configName' || propName === 'configReset') continue;
+
+            var pathToVal = 'props.' + propsToSet[i] + '.value';
+            var oldVal = this.get(pathToVal);
+            var newVal = newConfig[propName];
+
+            if ((typeof oldVal !== 'undefined') && oldVal !== newVal) {
+              this.set(pathToVal, newVal);
+            }
+          }
+
+          this._updatingProps = false;
+        }, 10);
+      }
+    },
+
+    /**
+     * Determines if any `configs` were defined.
+     *
+     * @return {Boolean}
+     */
+    _hasConfigs: function(configs) {
+      return this.configs.length > 0;
+    },
+
+    /**
+     * Whenever the user changes a prop with a config selected, save the current
+     * state of the config. If a user leaves this config and returns to it later,
+     * the config state will be restored.
+     *
+     * @param {Object} propChangeInfo - Object emitted by the complex change listener watching deep paths in `props`
+     */
+    _updateUserConfigProps: function(propChangeInfo) {
+      if (propChangeInfo && (typeof propChangeInfo === 'object') && propChangeInfo.path && propChangeInfo.path.indexOf('.value') !== -1) {
+        this.debounce('update-user-config-props', function() {
+          // Get the prop name and value
+          var propName = propChangeInfo.path.replace('props.','').replace('.value','');
+          var propVal = propChangeInfo.value;
+
+          // Get the current `_userConfigs`
+          var configIndex = this.get('_selectedTab');
+          var configPropPath = '_userConfigs.' + configIndex + '.' + propName;
+          var configPropVal = this.get(configPropPath);
+
+          // Set the new value, if needed
+          if (configPropVal !== propVal) {
+            this.set(configPropPath, propVal);
+          }
+        }, 50);
+      }
+    }
+  });
+</script>

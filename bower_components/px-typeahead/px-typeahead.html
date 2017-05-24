@@ -1,0 +1,532 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+<!--
+
+##### Usage
+
+    <px-typeahead max-suggestions="10" local-candidates="{{your-array-of-input-strings}}" placeholder="your-placeholder">
+    </px-typeahead>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-typeahead-background-color` | Background color for the typeahead input | `$gray2`
+`--px-typeahead-background-color--selected` | Background color for selected typeahead result | `$select-blue-default`
+`--px-typeahead-border-color` | Border color for the typeahead input | `$gray5`
+`--px-typeahead-text-color` | Fill color for text in the input field and unselected results | `$black`
+`--px-typeahead-text-color--selected` | Fill color for text of a selected result | `$white`
+
+@element px-typeahead
+@blurb showing px-typeahead is a Predix UI component that show possible completion options for the search term entered
+@homepage index.html
+@demo index.html
+-->
+<link rel="import" href="css/px-typeahead-styles.html">
+
+<dom-module id="px-typeahead">
+  <template>
+    <style include="px-typeahead-styles"></style>
+    <template is="dom-if" if="{{prefetchUrl}}">
+      <iron-ajax
+        auto
+        url="{{prefetchUrl}}"
+        handle-as="json"
+        last-response="{{_prefetchedCandidates}}">
+      </iron-ajax>
+    </template>
+
+    <input 
+      id="search" 
+      class="text-input input--search" 
+      disabled$="[[disabled]]" 
+      placeholder="{{placeholder}}" 
+      value="{{inputValue::input}}" 
+      on-keyup="_keyup" 
+      on-keydown="_keydown"
+      on-focus="_onfocus"
+      on-blur="_onblur"
+      on-input="_onSearchInputChange"
+      autocomplete="off">
+    </input>
+    <template is="dom-if" if="{{_isSuggestionsEmtpy(_suggestions)}}">
+      <div class="dropdown__container" >
+        <ul id="searchResults" class="list-bare">
+          <template is="dom-repeat" items="[[_boldResults(_suggestions.*, inputValue)]]">
+             <li on-tap="_select" on-mouseover="_onhover"
+             on-keyup="_keyup" class="result">
+             [[item.prefix]]<span class="bold">[[item.highlight]]</span>[[item.suffix]]
+            </li>
+          </template>
+        </ul>
+      </div>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-typeahead',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'notify'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /**
+       * Sets diabled on the input element. 
+       * @type {Object}
+       */
+      disabled: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * The placeholder for the input element.
+       */
+      placeholder:{
+        type:String,
+        value:'Enter Your Search Query'
+      },
+      /**
+       * The search candidates from local data model.
+       */
+      localCandidates:{
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * Url for a prefectched list in json format for the list of suggestion candidates.
+       * The response should be an array - for example: ["a","b"]
+       */
+      prefetchUrl:{
+        type: String,
+        value: ''
+      },
+      /**
+      * The prefetched candidates retrieved by prefetchUrl
+      */
+      _prefetchedCandidates:{
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * Internal variable holding all matched suggestions.
+       */
+      _suggestions:{
+        type: Array,
+        value: function() {
+          return [];
+        },
+        notify: true
+      },
+      /**
+       * Maximum number of suggestions for remote urls
+       */
+      maxSuggestions:{
+        type:Number,
+        value:5,
+        notify:true
+      },
+      /**
+       * Remote url to perform a search using the value in the input. The input value will be passed in as url parameter. The placeholder should be %QUERY.
+       */
+      remoteUrl:{
+        type: String,
+        value: ''
+      },
+      /**
+       * A boolean property to indicate if a search happens with a remote Url.
+       * Must be used together with remoteUrl.
+       */
+      remoteUrlSearching:{
+        type:Boolean,
+        value:false,
+        notify:true
+      },
+      /**
+       * The currently selected value of the input.
+       */
+      value:{
+        type:String,
+        notify:true
+      },
+      /**
+       * //TODO - For Future Input object.
+       */
+      inputObject:{
+        type:Object,
+        notify:true
+      },
+      /**
+       * The current value of the input while the user is searching.
+       */
+      inputValue: {
+        type: String,
+        notify: true,
+        observer: '_search'
+      },
+      /*
+       * Helper function to determine if typeahead is attached yet
+       */
+      _isFocused: {		
+        type: Boolean,		
+        value: false
+      }
+    },
+    behaviors: [Polymer.IronResizableBehavior],
+    listeners: {'iron-resize': '_setSearchResultSize'},
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+      document.addEventListener("click", function(){
+        var ptinputs = document.querySelectorAll('px-typeahead');
+
+        for (var i = 0, len = ptinputs.length; i < len; i ++){
+          ptinputs[i]._suggestions = [];
+        }
+      });
+    },
+    _setSearchResultSize: function() {
+      if (this.$$('#searchResults')) {
+        var searchInputRect = this.$.search.getBoundingClientRect();
+        this.$$('#searchResults').style.width = searchInputRect.width + 'px';
+      }
+    },
+    _isSuggestionsEmtpy: function() {
+      return this._suggestions.length;
+    },
+
+    /**
+     * Callback for keydown event, checks on keys up or down, and disables them.
+     * 40: down arrow
+     * 38: up arrow
+     *
+     * @param {e} event
+     */
+    _keydown: function(e) {
+      if (e.which === 40 || e.which === 38){
+          e.preventDefault();
+      } 
+    },
+    /**
+     * on mouse over for each li item
+     *
+     */
+    _onhover: function(e) {
+      var alreadySelected = Polymer.dom(this.root).querySelector('.item-selected');
+      if (alreadySelected){
+        alreadySelected.classList.remove('item-selected');
+      }
+      e.currentTarget.classList.add('item-selected');
+    },
+    /**
+     * Sets _isFocused to true
+     */
+    _onfocus: function(e) {		
+      this.set('_isFocused', true);		
+    },
+    /**
+     * Sets _isFocused to false
+     */
+    _onblur: function(e) {		
+      this.set('_isFocused', false);		
+    },
+    /**
+     * fires an event when search input field changes
+     * @event px-typeahead-keydown
+     * @param {e} event
+     */
+     _onSearchInputChange: function(e){
+       this.fire('px-typeahead-search-input-change', e);
+      },
+    /**
+     * Fired whenever an item is selected.
+     * @event px-typeahead-item-selected
+     * @param {String} {The Selected Value}
+     */
+    /**
+     * Callback on click event on list item
+     *
+     */
+    _select: function(e) {
+        var selectedItem = e.currentTarget,
+            text = selectedItem.textContent.trim();
+
+        this.$.search.focus();
+        this.set('inputValue',text);
+        this.set('value',text);
+        this.async(function() {
+          this.set('_suggestions',[]);
+        },100);
+
+
+        this.fire('px-typeahead-item-selected',this.value);
+        e.stopPropagation();
+
+    },
+    _downArrowPress: function(e) {
+      var alreadySelected,
+          selectedItem,
+          suggestionsMenu,
+          children;
+      alreadySelected = Polymer.dom(this.root).querySelector('.item-selected');
+
+      if (alreadySelected) {
+        alreadySelected.classList.remove('item-selected');
+        selectedItem = alreadySelected.nextElementSibling;
+
+        if(selectedItem) {
+         selectedItem.classList.add('item-selected');
+        } else {
+         return;
+        }
+      } else {
+        suggestionsMenu = Polymer.dom(this.root).querySelector('ul');
+
+        if (suggestionsMenu){
+          children = suggestionsMenu.getElementsByTagName('li');
+          selectedItem = children[0];
+          if (selectedItem) {
+            selectedItem.classList.add('item-selected');
+          }
+        }
+      }
+    },
+    _upArrowPress: function(e) {
+      var alreadySelected,
+          selectedItem,
+          suggestionsMenu,
+          children;
+      alreadySelected = Polymer.dom(this.root).querySelector('.item-selected');
+      if (alreadySelected){
+        alreadySelected.classList.remove('item-selected');
+        selectedItem = alreadySelected.previousElementSibling;
+        if(selectedItem) {
+          selectedItem.classList.add('item-selected');
+        } else {
+          return;
+        }
+      } else {
+        suggestionsMenu = Polymer.dom(this.root).querySelector('ul');
+
+        if (suggestionsMenu) {
+          children = suggestionsMenu.getElementsByTagName('li');
+          selectedItem = children[0];
+          if (selectedItem) {
+            selectedItem.classList.add('item-selected');
+          }
+        }
+      }
+    },
+    _enterPress: function(e) {
+      var alreadySelected,
+          selectedItem,
+          suggestionsMenu,
+          children,
+          results;
+
+      alreadySelected = Polymer.dom(this.root).querySelector('.item-selected');
+
+      //if we only have 1 option, select it, otherwise, do nothing.
+      results = Polymer.dom(this.root).querySelectorAll('.result');
+      if (results.length ===1) {
+        //if we only have 1 result, we should select it.
+        selectedItem = results[0];
+      } else if (results.length > 1) {
+        //let make sure we have a selected item, and if we do, set it to selectedItem and remove the class.
+        if (alreadySelected) {
+          //and if we do, mark it.
+          selectedItem = alreadySelected;
+          selectedItem.classList.remove('item-selected');
+        } else {
+          //we have results, but none of them are selected.
+          return false;
+        }
+      } else {
+        //no results, return false
+        return false;
+      }
+
+      //if we've reached this point, selectedItem should be set.
+      this.set('value',selectedItem.textContent.trim());
+      this.set('inputValue',selectedItem.textContent.trim());
+      this.async(function() {
+        this.set('_suggestions',[]);
+      }, 100);
+      this.fire('px-typeahead-item-selected',this.value);
+      Polymer.dom(this.root).querySelector('input').focus();
+    },
+    _backspacePress: function(e) {
+      var val = e.target.value;
+      this._search(val);
+    },
+    /**
+     * Callback for keyup event
+     *
+     * @param {e} event
+     */
+    _keyup: function(e) {
+
+      var alreadySelected,
+          selectedItem,
+          suggestionsMenu,
+          children;
+
+      if (e.which === 40){ //down Arrow
+        this._downArrowPress(e);
+      } else if (e.which === 38){  //up arrow
+        this._upArrowPress(e);
+      } else if (e.which === 13){ //enter key
+         this._enterPress(e);
+      } else if (e.which === 8){ //enter or space keys
+         this._backspacePress(e);
+      } else {
+        var input = this.$.search;
+        this._checkIfSingleResult(e);
+      }
+    },
+    _checkIfSingleResult: function(e) {
+      var results = Polymer.dom(this.root).querySelectorAll('.result');
+      if (this._suggestions.length === 1) {
+        this.toggleClass('item-selected', true, results[0]);
+      }
+    },
+    _localCandidatesSearch: function(term) {
+      var matched = [];
+
+      matched = this.localCandidates.filter(function(candidate) {
+        return candidate.trim().toLowerCase().indexOf(term.trim().toLowerCase()) > -1;
+      });
+      return matched;
+    },
+    _prefetchedCandidatesSearch: function(term) {
+      var matched = [];
+          matched = this._prefetchedCandidates.filter(function(candidate) {
+            return candidate.trim().toLowerCase().indexOf(term.trim().toLowerCase()) > -1;
+          });
+      return matched;
+    },
+    _remoteUrlSearch: function(term) {
+      var matched = [];
+
+      var pt_element = this;
+
+      var ironAjaxEl = document.createElement('iron-ajax'),
+          ptinput = pt_element,
+          url = pt_element.remoteUrl.replace("%QUERY", term);
+
+      ironAjaxEl.handleAs = "json";
+      ironAjaxEl.url = url;
+
+      ironAjaxEl.addEventListener('response', function(evt) {
+        if(evt.detail.response) {
+          var resp = evt.detail.response,
+              remoteMatched = JSON.parse(resp),
+              cuttedMatched = remoteMatched.slice(0,parseInt(ptinput.maxSuggestions)),
+              matched = matched.concat(cuttedMatched);
+
+        ptinput._suggestions = matched;
+        pt_element.set('remoteUrlSearching',false);
+          pt_element.fire('px-typeahead-remote-searching-end',pt_element);
+        } else {
+          return;
+        }
+
+      });
+
+      this.debounce('remoteUrlSearch', function(){
+        ironAjaxEl.generateRequest();
+        pt_element.fire('px-typeahead-remote-searching-start',pt_element);
+        pt_element.set('remoteUrlSearching', true);
+      },this.remoteUrlWaitMs);
+      return matched;
+    },
+    /*
+     * Bolds matching letters
+     */
+    _boldResults: function(items, term) {
+      var resultsList = items.base.map(function(fullString) {
+        var termLocation = fullString.trim().toLowerCase().indexOf(term.trim().toLowerCase());
+          if (termLocation > -1) {
+            return {
+            prefix: fullString.trim().substr(0, termLocation),
+            highlight: fullString.trim().substr(termLocation, term.length),
+            suffix: fullString.trim().substr(termLocation+ term.length)
+          };
+        }
+      });
+      resultsList = resultsList.filter(function(result) {
+        return result !== "undefined";
+      });
+      return resultsList;
+    },
+    _search:function(term){
+      if(this._isFocused){
+        this.debounce('search', function() {
+          var matched = [],
+          resultListUl,
+          searchResultsLi,
+          fullString,
+          termLocation,
+          newString;
+
+          if (!term){
+            this.set('_suggestions',[]);
+            return;
+          }
+
+          if (this.localCandidates && this.localCandidates.length){
+            matched = this._localCandidatesSearch(term);
+          }
+
+          if (this._prefetchedCandidates && this._prefetchedCandidates.length){
+            matched = this._prefetchedCandidatesSearch(term);
+          }
+
+          if (this.remoteUrl){
+            matched = this._remoteUrlSearch(term);
+          }
+
+          this.set('_suggestions',matched);
+
+          //make sure the results are the same size as the input box.
+          this.async(function() {
+            this._setSearchResultSize();
+          },5);
+        },100);
+
+      }
+    }
+    /**
+     * this event is fired when the searching has begun on a remote data source
+     * @event px-typeahead-remote-searching-start
+     */
+    /**
+     * this event is fired when the searching has ended on a remote data source
+     * @event px-typeahead-remote-searching-end
+     */
+  });
+
+</script>

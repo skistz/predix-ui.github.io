@@ -1,0 +1,44 @@
+{
+  "name": "px-tabs",
+  "version": "0.7.0",
+  "main": [
+    "px-tab-set.html"
+  ],
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "gulpfile.js",
+    "sass",
+    "*.md",
+    "test",
+    "scripts",
+    ".github",
+    "OSS_Notice.pdf",
+    "wct.conf.json",
+    "*.png",
+    "npm-debug.log"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.0",
+    "px-theme": "^2.0.1",
+    "iron-pages": "PolymerElements/iron-pages",
+    "iron-a11y-keys": "^1.0.7"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-code-design": "^1.1.0",
+    "px-toggle-design": "^1.1.0",
+    "px-demo": "^1.4.8"
+  },
+  "homepage": "https://github.com/PredixDev/px-tabs",
+  "_release": "0.7.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.0",
+    "commit": "7d7e298c0a7b282995393fa46dc3c3d9f1bac083"
+  },
+  "_source": "https://github.com/PredixDev/px-tabs.git",
+  "_target": "^0.7.0",
+  "_originalSource": "px-tabs"
+}

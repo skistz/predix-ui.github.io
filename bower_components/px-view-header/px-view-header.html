@@ -1,0 +1,100 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="css/px-view-header-styles.html"/>
+
+<!--
+The view header is located at the top of the page/view, as an alternative to px-context-browser. The view header provides the user an overview of the content they are viewing and interacting with. The header contains two content insertion points that will automatically render anything with classes "left" and "right" to the appropriate spots in the header.
+
+##### Usage
+
+    <px-view-header title="Title"></px-view-header>
+
+    <px-view-header title="Title" subtitle="Subtitle"></px-view-header>
+
+    <px-view-header title="Title" subtitle="Subtitle">
+      <div class="left actionable">&lt; Back</div>
+      <button class="right btn btn--primary">Save</div>
+    </px-view-header>
+
+    <px-view-header use-deck-selector="true">
+      <px-deck-selector decks='[...]' config-options='...'></px-deck-selector>
+    </px-view-header>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-view-header-background-color` | Background color for the view header | `$white`
+
+@element px-view-header
+@blurb The view header is located at the top of the page/view, as an alternative to px-context-browser.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-view-header">
+  <template>
+    <style include="px-view-header-styles"></style>
+    
+    <div id="container" class="header flex flex--justify">
+      <div id="left" class="flex flex--col flex--center">
+        <content select=".left"></content>
+      </div>
+      <div id="center" class="flex flex--col flex--middle flex--center">
+        <template is="dom-if" if="{{useDeckSelector}}">
+          <content select="px-deck-selector"></content>
+        </template>
+        <template is="dom-if" if="{{!useDeckSelector}}">
+          <span id="title" class="epsilon">[[title]]</span>
+          <template is="dom-if" if="{{subtitle}}">
+            <span id="subtitle" class="zeta">[[subtitle]]</span>
+          </template>
+        </template>
+      </div>
+      <div id="right" class="flex flex--col flex--center">
+        <content select=".right"></content>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-view-header',
+
+    properties: {
+      /**
+      * The title displayed in the center of the header.
+      * @property title
+      * @type String
+      */
+      title: {
+        type: String
+      },
+      /**
+      * The (optional) subtitle displayed in the center of the header.
+      * @property subtitle
+      * @type String
+      */
+      subtitle: {
+        type: String
+      },
+      /**
+      * Whether the deck selector will be passed in between the opening and closing tags of px-view-header.
+      * If true, title and subtitle are ignored.
+      * @property useDeckSelector
+      * @type Boolean
+      */
+      useDeckSelector: {
+        type: Boolean,
+        value: false
+      }
+    }
+  });
+</script>

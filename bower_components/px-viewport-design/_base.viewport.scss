@@ -1,0 +1,48 @@
+////
+/// PX-VIEWPORT-DESIGN
+/// Defines viewport parameters.
+/// @group px-viewport-design
+////
+
+/// Set this to the desired width of the "page" element, div.viewport. Will be inserted as the widest breakpoint for the responsive mixin. This variable is overridden in px-theme.
+///
+/// @group px-viewport-design:variables:style
+/// @type Number [default] - Viewport width
+$desk-wide-width    : 100% !default;
+
+/// Set this to the desired value of widest possible viewport width. Will be inserted as the widest breakpoint for the responsive mixin. This variable is overridden in px-theme.
+///
+/// @group px-viewport-design:variables:style
+/// @type Number [default] - Widest viewport
+$desk-wide-max-width: 80rem !default;
+
+/// Set this to the desired value of margin-left and margin-right for viewport. This variable is overridden in px-theme.
+///
+/// @group px-viewport-design:variables:style
+/// @type Number [default] - Left and Right margin on viewport
+$viewport-margin    : auto !default;
+
+
+/// @type List | String - Array of different breakpoints
+$breakpoints: (
+    "palm"          "screen and (max-width: 47.9rem)",
+    "lap"           "screen and (min-width: 48rem) and (max-width: 63.9rem)",
+    "lap-and-up"    "screen and (min-width: 48rem)",
+    "portable"      "screen and (max-width: 63.9rem)",
+    "desk"          "screen and (min-width: 63.9rem)",
+    "desk-wide"     "screen and (min-width: #{$desk-wide-width})",
+    "retina"        "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)"
+);
+
+// .viewport is the primary class applied to div containing app nav and content (body>div.viewport)
+// .viewport width, max-width, and margins are configurable via Sass variables
+.viewport {
+  width: $desk-wide-width;
+  max-width: $desk-wide-max-width;
+  margin-right: $viewport-margin;
+  margin-left: $viewport-margin;
+}
+
+.viewport--full-height {
+  min-height: 100vh;
+}

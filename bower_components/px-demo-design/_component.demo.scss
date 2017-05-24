@@ -1,0 +1,149 @@
+
+////
+/// PX-DEMO-DESIGN
+/// Defines styles for component documention pages.
+/// @group px-demo-design
+////
+
+@import "px-defaults-design/_settings.defaults.scss";
+@import "px-colors-design/_settings.colors.scss"; 
+
+.demo-background--base{
+  background-color: var(--px-demo-base-background-color, $white);
+}
+
+//.apiContainer
+.demo-background--api {
+  background-color: var(--px-demo-api-background-color, $white);
+} 
+
+//.mega-demo
+.demo-background--interactive{
+  background-color: var(--px-demo-interactive-background-color, $gray1);
+}
+
+//.footer
+.demo-background--footer{
+  background-color: var(--px-footer-background-color, $gray7);
+}
+
+.demo-u-pb\00002b\00002b\00002b{
+  padding-bottom: calculateRem(60px); 
+}
+
+//.description-text
+.demo-text-width--max{
+  max-width: calculateRem(700px);
+}
+
+.demo-container-flex {  
+  display: flex;
+}
+
+//.properties
+.demo-properties-container{
+  flex: 0 0 calculateRem(250px);
+  background: var(--px-demo-properties-background-color, $white);
+  border: 1px solid var(--px-demo-containers-border-color, $gray4);
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-right: calculateRem(20px);
+}
+
+//.demoContainer
+.demo-component-code-container {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+//.demo
+.demo-component-container{
+  min-height: calculateRem(400px);
+  background: var(--px-demo-component-background-color, $white);
+  border: 1px solid var(--px-demo-containers-border-color, $gray4);
+  overflow: auto;
+}
+
+//childrenAssociated
+.demo-associated {
+  :first-of-type {
+    margin-right: calculateRem(50px);
+  }
+}
+
+//.componentHeader
+//.demo-associated-header
+.demo-border-bottom  {
+  border-bottom: 1px solid var(--px-demo-containers-border-color, $gray4);
+}
+
+.demo-hr {
+  border: 0;
+  border-top: 1px solid var(--px-demo-containers-border-color, $gray4);
+}
+
+//.api
+.demo-layout--center {
+  width:80%;
+  margin:0 auto;
+  max-width:calculateRem(1200px);
+}
+
+.demo-overflow-visible{
+  overflow: visible; 
+}
+
+//.footer__container
+.demo-footer__container{
+  flex-basis: 90%;
+  color:  var(--px-footer-text-color, $gray4);
+  font-size: 12px;
+  align-items: center;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+//.footer__list--lnk
+.demo-footer__list--lnk{
+  color: var(--px-footer-text-color,$gray4);
+  text-decoration: none;
+  cursor: pointer;
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-footer-text-color,$gray4);
+  }
+  &:hover{
+    color: var(--px-footer-text-color--hover,$gray2);
+  }
+  &:active {
+    color: var(--px-footer-text-color--pressed,$grey4);
+  }
+}
+
+//.footer__img
+.demo-footer__img{
+  width: 150px;
+}
+
+@media screen  and (max-width: calculateRem(672px)){
+  //.mega-demo
+  .demo-container-flex {  
+    flex-direction: column;
+  }
+  //.properties
+  .demo-properties-container{
+    margin-right: 0px;
+  }
+  //.footer__container
+  .demo-footer__container{
+    flex-direction: column;
+  }
+  //.footer__list
+  .demo-footer__list{
+    padding-top: $inuit-base-spacing-unit--small;
+    text-align: center;
+  }
+}
+

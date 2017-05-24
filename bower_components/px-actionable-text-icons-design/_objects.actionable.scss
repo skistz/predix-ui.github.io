@@ -1,0 +1,92 @@
+////
+/// PX-ACTIONABLE-TEXT-ICONS-DESIGN
+/// Defines simple actionable text and icons classes
+/// @group px-actionable-text-icons-design
+////
+
+@import "px-defaults-design/_settings.defaults.scss";
+@import "px-colors-design/_settings.colors.scss";
+
+.actionable{
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+  white-space: nowrap;
+  line-height: inherit;
+  text-decoration: none;
+  font: inherit;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-actionable-text-color, $primary-blue);
+  }
+  &:hover{
+    color: var(--px-actionable-text-color--hover, $primary-blue-hover);
+  }
+  &:active {
+    color: var(--px-actionable-text-color--active, $primary-blue-pressed);
+  }
+}
+
+.actionable--select{
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-selectable-text-color, $select-blue-default);
+  }
+  &:hover{
+    color: var(--px-selectable-text-color--hover, $select-blue-hover);
+  }
+  &:active {
+      color: var(--px-selectable-text-color--active, $select-blue-pressed);
+    }
+  }
+
+.actionable--action{
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-actionable-alt-text-color, $gray8);
+  }
+  &:hover{
+    color: var(--px-actionable-alt-text-color--hover, $primary-blue);
+  }
+  &:active {
+      color: var(--px-actionable-alt-text-color--active, $primary-blue-pressed);
+    }
+  }
+
+.actionable--disabled,
+.actionable[disabled] {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      cursor: not-allowed;
+      color: var(--px-disabled-text-color, $gray4);
+    }
+  }
+
+.actionable--small {
+   font-size: calculateRem(12px);
+}
+
+.actionable--large {
+    font-size: $inuit-base-spacing-unit--large;
+}
+
+.actionable--huge {
+    font-size: $inuit-base-spacing-unit--huge;
+}

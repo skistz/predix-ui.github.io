@@ -1,0 +1,190 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../px-typeahead.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-typeahead"
+        description="px-typeahead is a Predix UI component that show possible completion options for the search term entered.">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]" class="flex__item"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+        <div style="width:250px">
+          <px-typeahead
+            local-candidates="{{props.localCandidates.value}}"
+            disabled="{{props.disabled.value}}"
+            prefetch-url="{{props.prefetchUrl.value}}"
+            placeholder="[[props.placeholder.value]]">
+          </px-typeahead>
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-typeahead"
+          links-includes="[[linksIncludes]]">
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-typeahead"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    properties: {
+
+      /**
+       * @property demoProps
+       * @type {Object}
+       */
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      /**
+       * @property demoProps
+       * @type {Array}
+       */
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { 
+              configName: "Default",
+              configReset: true,
+              prefetchUrl: ''
+            },
+            { 
+              configName: "Prefetch URL",
+              disabled: false,
+              localCandidates: '',
+              placeholder: "the list is being brought in from a json file",
+              prefetchUrl: "https://www.predix-ui.com/px-typeahead/px-typeahead/countries.json"
+            }
+          ];
+        }
+      }
+    },
+
+    /**
+     * A reference for `this.props`. Read the documentation there.
+     */
+    demoProps: {
+      placeholder: {
+        type: String,
+        defaultValue: "Enter Your Search Query",
+        inputType: 'text'
+      },
+      disabled: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+      localCandidates: {
+        type: Array,
+        defaultValue: [
+           "Alabama",
+           "Alaska",
+           "American Samoa",
+           "Arizona",
+           "Arkansas",
+           "California",
+           "Colorado",
+           "Connecticut",
+           "Delaware",
+           "District Of Columbia",
+           "Federated States Of Micronesia",
+           "Florida",
+           "Georgia",
+           "Guam",
+           "Hawaii",
+           "Idaho",
+           "Illinois",
+           "Indiana",
+           "Iowa",
+           "Kansas",
+           "Kentucky",
+           "Louisiana",
+           "Maine",
+           "Marshall Islands",
+           "Maryland",
+           "Massachusetts",
+           "Michigan",
+           "Minnesota",
+           "Mississippi",
+           "Missouri",
+           "Montana",
+           "Nebraska",
+           "Nevada",
+           "New Hampshire",
+           "New Jersey",
+           "New Mexico",
+           "New York",
+           "North Carolina",
+           "North Dakota",
+           "Northern Mariana Islands",
+           "Ohio",
+           "Oklahoma",
+           "Oregon",
+           "Palau",
+           "Pennsylvania",
+           "Puerto Rico",
+           "Rhode Island",
+           "South Carolina",
+           "South Dakota",
+           "Tennessee",
+           "Texas",
+           "Utah",
+           "Vermont",
+           "Virgin Islands",
+           "Virginia",
+           "Washington",
+           "West Virginia",
+           "Wisconsin",
+           "Wyoming"
+          ]
+      },
+      prefetchUrl: {
+        type: String,
+        defaultValue: "https://www.predix-ui.com/px-typeahead/px-typeahead/countries.json"
+      }
+    }
+  });
+</script>

@@ -1,0 +1,277 @@
+<!-- Import Polymer -->
+<link rel="import" href="../polymer/polymer.html" />
+
+<!--
+REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
+
+##### Usage
+
+    <px-code-editor counter-value="1"><a href="javascript:" on-click="handleClick">Click here to increment counter:</a><span>{{counterValue}}</span></px-code-editor>
+
+@element px-code-editor-converter
+@blurb REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
+@homepage index.html
+@demo index.html
+-->
+<script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'px-code-editor-converter',
+
+      properties: {
+
+        /**
+         * Raw complex JavaScript Object to be converted to a string.
+         * The resulting parsed String will be assigned to `parsedCode`.
+         *
+         * Complex objects that may have a non-string key or a non-primitive
+         * value (i.e. a function). They cannot be parsed with JSON.stringify().
+         *
+         * Example:
+         *
+         * {
+         *   name: 'George',
+         *   age: function() { return this.age.toString() }
+         * }
+         *
+         * @type {Object}
+         */
+        complexRawObject: {
+          type: Object,
+          observer: '_parseComplexObject'
+        },
+
+        /**
+         * Raw complex JavaScript Array of Objects to be converted to a string.
+         * The resulting parsed String will be assigned to `parsedCode`.
+         *
+         * Complex objects that may have a non-string key or a non-primitive
+         * value (i.e. a function). They cannot be parsed with JSON.stringify().
+         *
+         * Example:
+         *
+         * [{
+         *   name: 'George',
+         *   age: function() { return this.age.toString() }
+         * }, ...]
+         *
+         * @type {Array}
+         */
+        complexRawArray: {
+          type: Array,
+          observer: '_parseComplexArray'
+        },
+
+        /**
+         * An object or array that can stringified using JSON.stringify().
+         *
+         * @type {Object|Array}
+         */
+        simpleJSON: {
+          type: Array,
+          observer: '_parseJSON'
+        },
+
+        /**
+         * If parsing a complex object, will be the name of the variable the
+         * output is assigned to.
+         *
+         * @type {String}
+         */
+        variableName: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * Internal store for our stringified code, so we can assign a varible
+         * in the `stringifiedCode` output if configured in `variableName`.
+         *
+         * @type {Object}
+         */
+        _intialStringifiedCode: {
+          type: String
+        },
+
+        /**
+         * The last block of code parsed, in String format.
+         *
+         * @type {String}
+         */
+        stringifiedCode: {
+          type: String,
+          notify: true,
+          computed: '_computeFinalStringified(_intialStringifiedCode, variableName)'
+        },
+
+        /**
+         * Allows the use of `eval()` to parse JavaScript strings into executable
+         * code. Note that turning this on may cause security risks like XSS/
+         * CSRF, so be careful.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        enableEval: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+      attached: function() {
+        this.listen(document, 'px-code-editor-converter-convert-to-string', '_handleConvertToStringRequest');
+        this.listen(document, 'px-code-editor-converter-convert-from-string', '_handleConvertFromStringRequest');
+      },
+
+      detached: function() {
+        this.unlisten(document, 'px-code-editor-converter-convert-to-string', '_handleConvertToStringRequest');
+        this.listen(document, 'px-code-editor-converter-convert-from-string', '_handleConvertFromStringRequest');
+      },
+
+      /**
+       * When another element on the page requests a conversion from code to
+       * string, handle the request and execute a callback function with the
+       * converted code.
+       */
+      _handleConvertToStringRequest: function(evt) {
+        if (evt.detail && evt.detail.type && evt.detail.source && evt.detail.done) {
+          var stringifiedCode;
+          if (evt.detail.type === 'simpleJSON') {
+            stringifiedCode = this._parseJSON(evt.detail.source);
+          }
+          if (evt.detail.type === 'complexRawObject') {
+            stringifiedCode = this._parseComplexObject(evt.detail.source);
+          }
+          if (evt.detail.type === 'complexRawArray') {
+            stringifiedCode = this._parseComplexArray(evt.detail.source);
+          }
+          evt.detail.done(null, stringifiedCode);
+        }
+      },
+
+      /**
+       * When another element on the page requests a conversion from string to
+       * executable JavaScript, handle the request and execute a callback
+       * function with the converted code.
+       */
+      _handleConvertFromStringRequest: function(evt) {
+        if (evt.detail && evt.detail.source && evt.detail.done) {
+          var parsedCode = this._parseStr(evt.detail.source);
+          evt.detail.done(null, parsedCode);
+        }
+      },
+
+      /**
+       * Combines the assigned `variableName` property with the `_intialStringifiedCode`
+       * output to create the final `stringifiedCode`.
+       *
+       * @return {String}
+       */
+      _computeFinalStringified: function(codeString, variableName) {
+        if (codeString && (typeof codeString === 'string')) {
+          if (!variableName || !variableName.length) return codeString;
+          return 'var ' + variableName + ' = ' + codeString + ';';
+        }
+      },
+
+      /**
+       * Parses a new `complexRawObject` and assigns the result to `_intialStringifiedCode`.
+       */
+      _parseComplexObject: function(obj) {
+        if (obj && (typeof obj === 'object')) {
+          var parsedStr = this._stringifyObj(obj);
+          this.set('_intialStringifiedCode', parsedStr);
+          return parsedStr;
+        }
+      },
+
+      /**
+       * Parses a new `complexRawArray` and assigns the result to `_intialStringifiedCode`.
+       */
+      _parseComplexArray: function(arr) {
+        if (arr && Array.isArray(arr) && arr.length) {
+          var parsedArrs = [];
+          for (var i = 0; i < arr.length; i++) {
+            parsedArrs.push(this._stringifyObj(arr[i]));
+          }
+          var parsedStr = '[' + parsedArrs.join(',') + ']';
+          this.set('_intialStringifiedCode', parsedStr);
+          return parsedStr;
+        }
+      },
+
+      /**
+       * Parses a new `simpleJSON` and assigns the result to `_intialStringifiedCode`.
+       */
+      _parseJSON: function(source) {
+        if (source) {
+          var parsedStr = JSON.stringify(source);
+          this.set('_intialStringifiedCode', parsedStr);
+          return parsedStr;
+        }
+      },
+
+      /**
+       * Converts a complex JavaScript object that cannot be represeted as JSON
+       * to a string.
+       *
+       * @return {String}
+       */
+      _stringifyObj: function(obj) {
+        var keys = Object.keys(obj);
+        var str = '';
+        str += '{';
+
+        for (var i = 0; i < keys.length; i++) {
+          str += keys[i] + ':';
+
+          if (typeof obj[keys[i]] === 'function') {
+            str += obj[keys[i]].toString();
+          }
+          else {
+            str += JSON.stringify(obj[keys[i]]);
+          }
+
+          if (i !== (keys.length - 1)) str += ',';
+        }
+
+        str += '}';
+
+        return str;
+      },
+
+      /**
+       * Converts a stringified JavaScript object back to JavaScript.
+       *
+       * @return {Object}
+       */
+      _parseObj: function(str) {
+        return JSON.parse(str,function(key, value){
+         if (typeof value !== 'string') return value;
+         return ( value.substring(0,8) == 'function') ? eval('('+value+')') : value;
+        });
+      },
+
+      /**
+       * Parse arbitrary JavaScript from a string into a real object.
+       */
+      _parseStr: function(str) {
+        var parsed;
+        var enableEval = this.get('enableEval');
+        // First, try a JSON.parse()
+        try {
+          parsed = JSON.parse(str);
+        }
+        catch (err) {
+          if (enableEval && enableEval === true) {
+            parsed = eval(str);
+          }
+        }
+        return parsed || undefined;
+      }
+
+    });
+  })();
+</script>

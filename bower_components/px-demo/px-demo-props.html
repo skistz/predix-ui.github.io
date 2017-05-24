@@ -1,0 +1,529 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-dropdown/px-dropdown.html" />
+<link rel="import" href="../px-typeahead/px-typeahead.html" />
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!-- Common demo behaviors -->
+<link rel="import" href="px-demo-behaviors.html">
+
+<!--
+Creates inputs for configuration props.
+
+##### Usage
+
+        <px-demo-props></px-demo-props>
+
+@element px-demo-props
+@blurb Creates inputs for configuration props.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-props">
+  <template>
+    <style include="px-demo-styles"></style>
+      <template is="dom-if" if="{{_fields.length}}">
+        <p class="epsilon u-mb+">Properties</p>
+
+        <template is="dom-repeat" items="{{_fields}}" filter="_propIsVisible" observe="_visibleForConfig">
+
+          <!-- INPUT: 'toggle'  -->
+          <template is="dom-if" if="{{_itIs(item.inputType, 'toggle')}}">
+            <div class="flex flex--justify u-mb-">
+              <div aria-hidden="true">{{_getFieldLabel(item)}}</div>
+              <div class="u-ml-">
+                <input id="toggle-{{item.prop}}" role="switch" class="toggle__input toggle__input--small " type="checkbox" checked="{{item.value::change}}" aria-checked="{{item.value::change}}" prop="{{item.prop}}" data-debounce="{{item.inputDebounce}}" on-change="_handleToggleInput">
+                <label for$="toggle-{{item.prop}}" class$="{{_itIsDisabled(item.inputDisabled)}} toggle__label toggle__label--small">{{_getFieldLabel(item)}}</label>
+              </div>
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+          <!-- INPUT: 'text'  -->
+          <template is="dom-if" if="{{_itIs(item.inputType, 'text')}}">
+            <div class="u-mb-">
+              <label for$="text-{{item.prop}}">{{_getFieldLabel(item)}}</label>
+              <input id="text-{{item.prop}}" class="text-input u-mb--" type="text" placeholder="{{_getFieldPlaceholder(item)}}" disabled$="{{_itIsTrue(item.inputDisabled)}}" value="{{item.value}}" prop="{{item.prop}}" data-debounce="{{item.inputDebounce}}" on-input="_handleTextInput" />
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+          <!-- INPUT: 'number'  -->
+          <template is="dom-if" if="{{_itIs(item.inputType, 'number')}}">
+            <div class="u-mb-">
+              <label for$="text-{{item.prop}}">{{_getFieldLabel(item)}}</label>
+              <input id="text-{{item.prop}}" class="text-input u-mb--" type="number" placeholder="{{_getFieldPlaceholder(item)}}" disabled$="{{_itIsTrue(item.inputDisabled)}}" value="{{item.value}}" prop="{{item.prop}}" data-debounce="{{item.inputDebounce}}" on-input="_handleNumberInput" />
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+          <!-- INPUT: 'dropdown'  -->
+          <template is="dom-if" if="{{_itIs(item.inputType, 'dropdown')}}">
+            <div class="u-mb-">
+              <label for$="dropdown-{{item.prop}}">{{_getFieldLabel(item)}}</label>
+              <div style="width: 100%;" class="u-mb--">
+                <px-dropdown id="dropdown-{{item.prop}}" value="{{item.value::change}}" display-value="{{_getDropdownDisplayValue(item.value)}}" prop="{{item.prop}}" data-debounce="{{item.inputDebounce}}" on-px-dropdown-value-changed="_handleDropdownInput">
+                  <px-dropdown-content items="{{item.inputChoices}}" prop="{{item.prop}}"></px-dropdown-content>
+                </px-dropdown>
+              </div>
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text--dropdown">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+          <!-- INPUT: 'typeahead'  -->
+          <template is="dom-if" if="{{_itIs(item.inputType, 'typeahead')}}">
+            <div class="u-mb-">
+              <label for$="typeahead-{{item.prop}}">{{_getFieldLabel(item)}}</label>
+              <div style="width: 100%;" class="u-mb--">
+                <px-typeahead
+                  id="typeahead-{{item.prop}}"
+                  local-candidates="{{item.inputLocalCandidates}}"
+                  prefetch-url="{{item.inputPrefetchUrl}}"
+                  placeholder="[[item.inputPlaceholder]]"
+                  input-value="{{item.value}}"
+                  prop="{{item.prop}}"
+                  data-debounce="{{item.inputDebounce}}"
+                  on-px-typeahead-item-selected="_handleTypeaheadItemSelected">
+                </px-typeahead>
+              </div>
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text--dropdown">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+          <!-- INPUT: 'javascriptCode'  -->
+          <template is="dom-if" if="{{_itIsOneOf(item.inputType, 'code:JavaScriptObject', 'code:JSON')}}">
+            <div class="u-mb-">
+              <label for$="text-{{item.prop}}">{{_getFieldLabel(item)}}</label>
+              <div class="flex flex--row">
+                <input id="text-{{item.prop}}" class="text-input flex__item u-mb--" type="text" placeholder="{{item.inputPlaceholder}}" value="{...}" prop="{{item.prop}}" on-input="_editComplexJSON" disabled />
+                <button class="btn u-ml-" type="button" prop="{{item.prop}}" input-type="{{item.inputType}}" data-debounce="{{item.inputDebounce}}" on-tap="_handleCodeEditButton">Edit</button>
+              </div>
+            </div>
+            <template is="dom-if" if="{{item.inputHelpText}}">
+              <p class="zeta demo-props__helper-text">{{item.inputHelpText}}</p>
+            </template>
+          </template>
+
+      </template>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-props',
+
+    behaviors: [PxDemoBehaviors.manageProps],
+
+    properties: {
+      /**
+       * An object with keys describing the name of a possible input, the expected
+       * return value type, the choices, and the input to show.
+       *
+       * @property props
+       */
+      props: {
+        type: Object,
+        notify: true,
+        value: function(){ return {} }
+      },
+
+      /**
+       * The currently-chosen config. When this property is updated, any
+       * props defined in the config will be updated in the fields.
+       *
+       * @type {Object}
+       */
+      config: {
+        type: Object,
+        value: function(){ return {}; },
+        observer: '_handleConfigUpdate'
+      },
+
+      /**
+       * Indicates if any props are currently visible.
+       *
+       * @type {Boolean}
+       */
+      propsVisible: {
+        type: Boolean,
+        value: true,
+        notify: true,
+        readOnly: true,
+        observer: '_handlePropsVisibleChange'
+      },
+
+      /**
+       * An array of field names to be mounted in the DOM.
+       *
+       * @type {Array}
+       */
+      _fields: {
+        type: Array,
+        value: function(){ return []; }
+      },
+
+      /**
+       * An index of `_fields` entries by `propName`.
+       */
+      _fieldsIndex: {
+        type: Object,
+        value: function(){ return {}; }
+      }
+    },
+
+    observers: ['_computeFields(props)', '_syncToField(props.*)'],
+
+    ready: function() {
+      this.applyPropDefaults();
+    },
+
+    /**
+     * Extracts all field names to iterate over in a `dom-repeat`.
+     *
+     * @return {Array}
+     */
+    _computeFields: function() {
+      this.debounce('prepare-fields', function(){
+        var props = this.props;
+        var propKeys = Object.keys(props);
+
+        if (propKeys.length) {
+          for (var i = 0; i < propKeys.length; i++) {
+            this.push('_fields', Object.assign({}, { prop: propKeys[i], _visibleForConfig: true }, props[propKeys[i]]));
+            this.set('_fieldsIndex.'+propKeys[i], '#'+i);
+          }
+        }
+      }, 200);
+    },
+
+    /**
+     * Convenience method for comparing two references in a dom-if template.
+     *
+     * @return {Boolean}
+     */
+    _itIs: function(it1, it2) {
+      return it1 === it2;
+    },
+
+    /**
+     * Convenience method for checking if a references in a dom-if template exists
+     * in an array.
+     *
+     * @return {Boolean}
+     */
+    _itIsOneOf: function(it) {
+      // Slice off the end of args to check if any of them equal `it`
+      var shouldBeOneOf = Array.prototype.slice.call(arguments, 1);
+      // Iterate over args to see if `it` is equal to one of them
+      var itIsInArray = false;
+      var len = (shouldBeOneOf && Array.isArray(shouldBeOneOf)) ? shouldBeOneOf.length : 0;
+      for (var i = 0; i < len; i++) {
+        if (shouldBeOneOf[i] === it) itIsInArray = true;
+      }
+      return itIsInArray;
+    },
+
+    /**
+     * Convenience method for checking if a reference in a dom-if is true.
+     *
+     * @return {Boolean}
+     */
+    _itIsTrue: function(it) {
+      if (typeof it === 'boolean') return it === true;
+      if (it === 'true') return true;
+      if (it === 'false') return false;
+      return;
+    },
+
+    /**
+     * Convenience method for checking if toggle is disabled and returning appropriate class.
+     *
+     * @return {String}
+     */
+    _itIsDisabled: function(it) {
+      if (typeof it === 'boolean') return it === true ? 'toggle--disabled' : '';
+      if (it === 'true') return 'toggle--disabled';
+      if (it === 'false') return '';
+      return;
+    },
+
+    /**
+     * Returns the public name for the prop that should be shown to the user
+     *
+     * @param {String} field - The key of the property in the `props` object
+     * @return {String}
+     */
+    _getFieldLabel: function(field) {
+      if (field.inputLabel) return field.inputLabel;
+
+      return this._formatInputLabel(field.prop);
+    },
+
+    /**
+     * Returns the `field.inputPlaceholder` or an empty string if placeholder
+     * is not defined.
+     *
+     * @param {Object} field
+     * @return {String}
+     */
+    _getFieldPlaceholder: function(field) {
+      return field.inputPlaceholder || '';
+    },
+
+    /**
+     * Converts a camel-case string like 'isReallyNice' to a regular string
+     * like 'Is Really Nice'.
+     *
+     * @param {String} camelString
+     * @return {String}
+     */
+    _formatInputLabel: function(camelString) {
+      // First step converts 'isReallyNice' to 'is Really Nice'
+      var camelToWords = camelString.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1");
+      // Second step converts 'is Really Nice' to 'Is Really Nice'
+      return camelToWords.charAt(0).toUpperCase() + camelToWords.slice(1);
+    },
+
+    /**
+     * Retrieves the value to show for the dropdown element. If the current `dropdownVal` is
+     * not defined or an empty string, sets the display value to "Select".
+     *
+     * @param {String} dropdownVal
+     * @return {String}
+     */
+    _getDropdownDisplayValue: function(dropdownVal) {
+      if (!dropdownVal || !dropdownVal.length) return "Select";
+      return dropdownVal;
+    },
+
+    /**
+     * Binds a text input event to the prop.value it should change.
+     */
+    _handleTextInput: function(evt) {
+      this._syncToProp(evt.target.prop, evt.target.value, evt.target.dataDebounce);
+    },
+
+   /**
+    * Binds a text input event to the prop.value it should change.
+    */
+    _handleNumberInput: function(evt) {
+      this._syncToProp(evt.target.prop, Number(evt.target.value), evt.target.dataDebounce);
+    },
+
+    /**
+     * Binds a toggle input event to the prop.value it should change.
+     */
+    _handleToggleInput: function(evt) {
+      this._syncToProp(evt.target.prop, evt.target.checked, evt.target.dataDebounce);
+    },
+
+    /**
+     * Binds a dropdown input event to the prop.value it should change.
+     */
+    _handleDropdownInput: function(evt) {
+      this._syncToProp(evt.target.prop, evt.detail.val, evt.target.dataDebounce);
+    },
+    /**
+     * Binds a typeahead selected event to the prop.value it should change.
+     */
+    _handleTypeaheadItemSelected: function(evt) {
+      this._syncToProp(evt.target.prop, evt.detail, evt.target.dataDebounce);
+    },
+    /**
+     * Binds to a click on a code edit button.
+     */
+    _handleCodeEditButton: function(evt) {
+      var prop = this.get('props.' + evt.target.prop);
+      if (!prop) return;
+      var propType = prop.type;
+      var propVal = prop.value;
+      var propFriendlyName = this._formatInputLabel(prop.inputLabel || evt.target.prop);
+      if (propVal) {
+
+        this.fire('px-demo-props-code-edit-request', {
+          code: propVal,
+          expectedReturnType: propType,
+          editorType: evt.target.inputType,
+          editorTitle: "Property Editor: " + propFriendlyName,
+          done: function(err, newContent) {
+            if (newContent) {
+              propVal;
+              this._syncToProp(Polymer.dom(evt).rootTarget.prop, newContent, Polymer.dom(evt).rootTarget.dataDebounce);
+            }
+          }.bind(this)
+        });
+      }
+    },
+
+    /**
+     * Sync a value from a field to a prop.
+     *
+     * @param {String} propName - Name of prop, will also be its key in `props` object
+     * @param {Any} newVal - The updated value to set for the prop
+     */
+    _syncToProp: function(propName, newVal, debounceValue) {
+      if(debounceValue) {
+        this.debounce('sync-props', function() {
+          this.set('props.' + propName + '.value', newVal);
+        }, debounceValue);
+      }
+      else {
+        this.set('props.' + propName + '.value', newVal);
+      }
+    },
+
+    /**
+     * Sync a value from a prop to a field.
+     *
+     * @param {Object} propChangeInfo - Object emitted by the complex change listener watching deep paths in `props`
+     */
+    _syncToField: function(propChangeInfo) {
+
+      if (propChangeInfo && (typeof propChangeInfo === 'object') && propChangeInfo.path) {
+
+        var toSync = ['value', 'inputDisabled'];
+
+        //look for all things we might want to sync
+        for(var i=0; i< toSync.length; i++) {
+          //is this change about this prop?
+          if(propChangeInfo.path.indexOf('.' + toSync[i]) !== -1) {
+
+            this.debounce('sync-to-field' + propChangeInfo.path, function() {
+              // Get the name of the prop changed
+              var prop = propChangeInfo.path.replace('props.', '').replace('.' + toSync[i], '');
+              // Find the index of the prop in `_fields` array
+              var indexOfField = this.get('_fieldsIndex.' + prop);
+              // Pop the value
+              var fieldValPath = '_fields.' + indexOfField + '.' + toSync[i];
+              var fieldVal = this.get(fieldValPath);
+              // If an update is needed, make it
+              if ((typeof fieldVal !== 'undefined') && fieldVal !== propChangeInfo.value) {
+                this.set(fieldValPath, propChangeInfo.value);
+              }
+            }, 50);
+
+            //break so we keep the right index for this prop
+            break;
+          }
+        }
+      }
+    },
+
+    /**
+     * Determines if a prop should be shown.
+     *
+     * @param {Object} field
+     * @return {Boolean}
+     */
+    _propIsVisible: function(field) {
+      return field._visibleForConfig === true;
+    },
+
+    /**
+     * When the user's chosen `config` changes, attempt to update the visibility
+     * of each prop if the config shows/hides any.
+     *
+     * @param {Object} newConfig
+     */
+    _handleConfigUpdate: function(newConfig) {
+      if (newConfig && Object.keys(newConfig).length) {
+        if (newConfig.configShowProps && Array.isArray(newConfig.configShowProps)) {
+          this._setEachPropVisibily('showOnly', newConfig.configShowProps);
+        }
+        else if (newConfig.configHideProps && Array.isArray(newConfig.configHideProps) && newConfig.configHideProps.length) {
+          this._setEachPropVisibily('hideOnly', newConfig.configHideProps);
+        }
+        else  {
+          this._setEachPropVisibily('showAll');
+        }
+      }
+    },
+
+    /**
+     * Loops through all fields and shows/hides dependening on the configuration
+     * of the function.
+     *
+     * If `behavior` is 'showOnly', hides everything except what is in `propList`.
+     * If `behavior` is 'hideOnly', shows everything except what is in `propList`.
+     * If `behavior` is 'showAll', shows everything and ignores prop list.
+     *
+     * @param {String} behavior - How the function should show/hide things, choose from 'showOnly', 'hideOnly', 'showAll'
+     * @param {Array} propList - Array of string-y names for each prop
+     */
+    _setEachPropVisibily: function(behavior, propList) {
+      var fields = this.get('_fields');
+      var numberOfVisibleProps = 0;
+      if (fields && fields.length) {
+        for (var i = 0, len = fields.length; i < len; i++) {
+          var propName = fields[i].prop;
+          var shouldShowProp;
+          // If showOnly, set shouldShow to `true` if prop is in list
+          if (behavior === 'showOnly') shouldShowProp = (propList.indexOf(propName) !== -1);
+          // If hideOnly, set shouldShow to `true` if prop is not in list
+          if (behavior === 'hideOnly') shouldShowProp = (propList.indexOf(propName) === -1);
+          // If showAll, show all the prosp
+          if (behavior === 'showAll') shouldShowProp = true;
+
+          if (shouldShowProp === true) {
+            // Show this prop, and increment counter
+            this.set('_fields.' + i + '._visibleForConfig', true);
+            numberOfVisibleProps++;
+          }
+          else {
+            // Hide this prop
+            this.set('_fields.' + i + '._visibleForConfig', false);
+          }
+        }
+        // If any props are visible after filter, show them.
+        var areAnyPropsVisible = numberOfVisibleProps > 0;
+        this._setPropsVisible(areAnyPropsVisible)
+      }
+    },
+
+    /**
+     * When the `propsVisible` attribute is updated, send a manual notification
+     * out to the world.
+     *
+     * @param {Boolean} newVal - New `propsVisible` val
+     * @param {Boolean} oldVal - Previous `propsVisible` value
+     */
+    _handlePropsVisibleChange: function(newVal, oldVal) {
+      if (typeof newVal === 'boolean') {
+        if (newVal === true && newVal !== oldVal) {
+          this.fire('px-demo-props-some-visible');
+        }
+        if (newVal === false && newVal !== oldVal) {
+          this.fire('px-demo-props-none-visible');
+        }
+      }
+
+    },
+    /**
+     * Fires when no props are visible. The props container can be hidden.
+     * @event px-demo-props-none-visible
+     */
+    /**
+     * Fires when one or more props are visible. The props container should be shown.
+     * @event px-demo-props-some-visible
+     */
+
+  });
+</script>

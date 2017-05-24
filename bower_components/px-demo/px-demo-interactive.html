@@ -1,0 +1,125 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!--
+Component container code for Predix UI demos.
+
+##### Usage
+
+    <px-demo-interactive>
+    </px-demo-interactive>
+
+@element px-demo-header
+@blurb Creates a header for Predix UI demo pages.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-interactive">
+  <template>
+    <style include="px-demo-styles"></style>
+
+    <!-- If a code editor instance was given, it will go outside everything
+         because it appears as an overlay. -->
+    <content select="px-demo-code-editor"></content>
+
+    <section class="demo-background--interactive">
+      <!-- Tabs go above -->
+      <div class="[ u-ph++ u-pt++ ]">
+        <content select="px-demo-configs"></content>
+      </div>
+
+      <!-- Wraps around all interactive -->
+      <article class="demo-container-flex [ u-ph++ u-pb++ ]">
+
+        <!-- The demo properties go in here -->
+        <div class="flex demo-properties-container u-ph+ u-pb+ u-mt+" id="propsContainer">
+          <content select="px-demo-props"></content>
+        </div>
+
+        <!-- The demo component and snippet go in here -->
+        <div class="flex flex--col demo-component-code-container u-mt+">
+          <div class="flex__item flex__item--msfix flex demo-component-container u-p+">
+            <content select="px-demo-component" class="flex"></content>
+          </div>
+
+          <content select="px-demo-component-snippet"></content>
+        </div>
+
+      </article>
+    </section>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-interactive',
+
+    properties: {
+      /**
+       * If true, make sure the props container is shown. If false, hide it.
+       *
+       * @type {Object}
+       */
+      propsShouldBeVisible: {
+        type: Boolean,
+        value: true,
+        readOnly: true
+      }
+    },
+
+    listeners: {
+      'px-demo-props-some-visible' : '_ensurePropsContainerVisible',
+      'px-demo-props-none-visible' : '_ensurePropsContainerHidden'
+    },
+
+    /**
+     * When the `px-demo-props` component notifies that some props are visible,
+     * make sure the properties container is visible.
+     */
+    _ensurePropsContainerVisible: function() {
+      var propsContainer = this.$.propsContainer;
+      if (propsContainer && propsContainer.classList.contains('visuallyhidden')) {
+        propsContainer.classList.remove('visuallyhidden');
+      }
+    },
+
+    /**
+     * When the `px-demo-props` component notifies that no props are visible,
+     * make sure the properties container is hidden.
+     */
+    _ensurePropsContainerHidden: function() {
+      var propsContainer = this.$.propsContainer;
+      if (propsContainer && !propsContainer.classList.contains('visuallyhidden')) {
+        propsContainer.classList.add('visuallyhidden');
+      }
+    },
+
+    attached: function() {
+      //find the content tag associated with demo-component
+      var demoComponentContent = Polymer.dom(this.root).querySelector('content[select=px-demo-component]');
+      // and observe it, to find out when the light dom is loaded - once it's loaded, call the function that fires off a loaded event, making sure to bind the polymer component.
+      Polymer.dom(demoComponentContent).observeNodes(this._demoComponentLightDomLoaded.bind(this));
+    },
+    /**
+     * gets called when the light dom for demo-component is loaded, and fires
+     * an event.
+     */
+    _demoComponentLightDomLoaded: function() {
+      this.fire('px-demo-component-light-dom-loaded');
+    }
+    /**
+     * fired when the light DOM contgent has been loadedfor px-dom-component, which
+     * holds the component being demoed.
+     * @event px-demo-component-light-dom-loaded
+     */
+  });
+</script>

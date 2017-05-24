@@ -1,0 +1,49 @@
+{
+  "name": "px-viewport-design",
+  "version": "0.4.14",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "Viewport parameters for Predix UI",
+  "main": "_base.viewport.scss",
+  "keywords": [
+    "viewport",
+    "px",
+    "sass"
+  ],
+  "homepage": "https://github.com/PredixDev/px-viewport-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "inuit-responsive-tools": "~0.1.3"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-sass-doc": "^0.4.4"
+  },
+  "_release": "0.4.14",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.14",
+    "commit": "66129b2cf56c91bd9314d6661ca52730a450263e"
+  },
+  "_source": "https://github.com/predixDev/px-viewport-design.git",
+  "_target": "^0.4.1",
+  "_originalSource": "px-viewport-design"
+}

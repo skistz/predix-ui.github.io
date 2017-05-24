@@ -1,0 +1,198 @@
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+<!--
+Element which displays a dropdown of decks and returns the url for the selected deck.
+
+Use the px-deck-selector element to enable your users to choose a deck from a drop-down list. Set the decks using an array of objects with `name` and `url` properties. When a user selects a new deck, the `selected-deck` property will be updated and the `selected-deck-changed` event will be fired.
+
+##### Usage
+
+    <px-deck-selector decks="[{...}]" selected-deck="{...}"></px-deck-selector>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-deck-selector-border-color` | Border color for the dropdown | `$gray5`
+`--px-deck-selector-background-color` | Background color for the dropdown | `$gray1`
+`--px-deck-selector-text-color` | Text color | `$gray9`
+`--px-deck-selector-hover-background-color` | Hover color for the dropdown items | `$select-blue-hover`
+`--px-deck-selector-hover-text-color` | Text color for hovered dropdown items | `$white`
+
+
+@demo demo.html
+-->
+
+<link rel="import" href="css/px-deck-selector-styles.html">
+
+<dom-module id="px-deck-selector">
+  <template>
+    <style include="px-deck-selector-styles"></style>
+
+    <div class="dropdown-text" on-click="_toggleDropdown" hidden$="{{!_isDecks}}">
+      <span class="epsilon">{{selectedDeck.name}}</span>
+      <iron-icon icon="fa:fa-caret-down"></iron-icon>
+    </div>
+    <ul id="dropdown" class="dropdown-menu list-bare" hidden>
+      <template is="dom-repeat" items="{{decks}}" as="deck">
+        <li on-click="_selectDeck">
+          <div class="u-p--">{{deck.name}}</div>
+        </li>
+      </template>
+      <template is="dom-if" if="{{configOptions.edit}}">
+        <li on-click="_triggerDeckEvent" class="deck-editor">
+          <div class="u-p--">{{configOptions.actionType}}</div>
+        </li>
+      </template>
+    </ul>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-deck-selector',
+
+    properties: {
+
+      /**
+       * Array of deck objects to display. The first deck will always be selected initially.
+       * Each object needs a `name` and `url` property.
+       *
+       *      [
+       *          {id: 1, name: 'First Deck', url: '/deck1'},
+       *          {id: 2, name: 'Second Deck', url: '/deck2'},
+       *          {id: 3, name: 'Third Deck', url: '/deck3'}
+       *      ]
+       */
+      decks: {
+        type: Array,
+        value: function() {
+          return [];
+        },
+        observer: '_setDecks'
+      },
+
+      /**
+       * Used for getting or setting the currently selected deck.  If no deck is specified, the first one will be selected.
+       */
+      selectedDeck: {
+        type: Object,
+        value: function() {
+          return {};
+        },
+        notify: true
+      },
+      _isDecks: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * Needed for IE...
+       */
+      _isDropdownOpen: {
+        type: Boolean,
+        value: false
+      },
+      /*
+       * Config options appear after the list of decks in a separate section, and can be used by an application
+       * to add or remove decks from the menu, for example. The object should contain an `actionType` which is the
+       * text which will be displayed in the menu, and an `eventType` which will be included in evt.detail of
+       * the `deckEvent` event that is fired when the option is selected. Applications should listen for the `deckEvent`
+       * event and handle it accordingly (by displaying a modal for adding/removing decks, for example).
+       *
+       *      {
+       *          edit : true,
+       *          actionType : "Add Dashboard",
+       *          eventType : "addDashboard"
+       *      }
+       *
+       **/
+      configOptions: {
+        type: Object,
+        value: function() {
+          return {};
+        },
+        notify: true
+      }
+    },
+
+    _setDecks: function() {
+      this.set('_isDecks', this.decks && this.decks.length > 0);
+
+      if (this._isDecks && (this.selectedDeck == null || this.selectedDeck.constructor === Object)) {
+        this.set('selectedDeck', this.decks[0]);
+      }
+    },
+
+    _toggleDropdown: function(e) {
+
+      this._isDropdownOpen = !this._isDropdownOpen;
+      this.toggleAttribute('hidden', !this._isDropdownOpen, this.$.dropdown);
+      /*
+       * adding event listener to the document when menu is opened
+       * */
+      if (e) {
+        this._handleDocumentClick();
+      }
+    },
+
+    _selectDeck: function(e) {
+      this.set('selectedDeck', e.model.deck);
+      this._toggleDropdown(false);
+    },
+
+    /*
+     *  Fires the event "deckEvent" where evt.detail will contain the eventType specified in configOptions.
+     * */
+    _triggerDeckEvent: function(e) {
+      this.fire('deckEvent', e.model.configOptions.eventType);
+      this._toggleDropdown(false);
+    },
+
+    /*
+     * Called when the user clicks outside of the menu.
+     * */
+    _closeMenu: function(e, el) {
+      if (!el.contains(e.target)) {
+        this._isDropdownOpen = false;
+        el.setAttribute('hidden', true);
+        document.removeEventListener('mouseup', this.evtHandler, false);
+      }
+    },
+
+    /*
+     * Adding and removing event listener on the document
+     * */
+    _handleDocumentClick: function() {
+
+      var el = this.$.dropdown;
+      var self = this;
+
+      if (!el.hasAttribute('hidden')) {
+        document.addEventListener('mouseup', self.evtHandler = function(e) {
+          self._closeMenu(e, el)
+        }, false);
+        //document.ddMenu = this;
+      } else {
+        document.removeEventListener('mouseup', self.evtHandler, false);
+        //document.ddMenu = null;
+      }
+    }
+    /**
+    * Event that is fired when the user changes the selected deck in the dropdown.
+    * `evt.detail.value` will contain the object corresponding to the selected deck.
+    *
+    * @event selected-deck-changed
+    **/
+
+    /**
+    * Event fired when the option specified in configOptions is selected from the dropdown.
+    * `evt.detail` will contain the eventType specified in configOptions.
+    *
+    * @event deckEvent
+    **/
+  });
+</script>

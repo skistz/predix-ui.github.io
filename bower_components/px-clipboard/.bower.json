@@ -1,0 +1,48 @@
+{
+  "name": "px-clipboard",
+  "version": "0.2.3",
+  "main": [
+    "px-clipboard.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "gulpfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    ".github",
+    "OSS_Notice.pdf",
+    "scripts",
+    "px-clipboard.png",
+    "HISTORY.md",
+    "LICENSE.md",
+    "README.md",
+    "wct.conf.json",
+    "monogram-wdmk.png",
+    "CONTRIBUTING.md"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.0",
+    "px-theme": "^2.0.1",
+    "clipboard": "~1.5.12",
+    "px-polymer-font-awesome": "^1.1.0",
+    "px-spacing-design": "^0.4.0",
+    "px-actionable-text-icons-design": "^1.1.0"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-demo": "^1.2.3"
+  },
+  "homepage": "https://github.com/predixdev/px-clipboard",
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.3",
+    "commit": "5c6757d5d96cad1ac75056dc7cf5c2c0b5d5ff1a"
+  },
+  "_source": "https://github.com/predixdev/px-clipboard.git",
+  "_target": "^0.2.3",
+  "_originalSource": "px-clipboard"
+}

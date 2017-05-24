@@ -1,0 +1,51 @@
+{
+  "name": "px-actionable-text-icons-design",
+  "version": "1.1.8",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "Actionable Text and Icon styles for Predix Experience",
+  "main": "_objects.actionable.scss",
+  "keywords": [
+    "px",
+    "sass",
+    "actionable text",
+    "actionable icons"
+  ],
+  "homepage": "https://github.com/predixdev/px-actionable-text-icons-design.git",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "px-colors-design": "^0.3.0",
+    "px-defaults-design": "^1.0.2"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-sass-doc": "^0.4.0"
+  },
+  "_release": "1.1.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.8",
+    "commit": "6643787ff5d45a17e53a597a6b3545c489597297"
+  },
+  "_source": "https://github.com/predixDev/px-actionable-text-icons-design.git",
+  "_target": "^1.1.8",
+  "_originalSource": "px-actionable-text-icons-design"
+}

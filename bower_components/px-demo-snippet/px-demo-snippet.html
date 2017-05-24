@@ -1,0 +1,485 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../px-clipboard/px-clipboard.html" />
+<link rel="import" href="../prism-element/prism-highlighter.html" />
+<link rel="import" href="../iron-ajax/iron-ajax.html" />
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+<link rel="import" href="../prism-element/prism-theme-default.html">
+
+<!--
+px-demo-snippet is a helper element that displays the un-rendered code of the component requested, along with a clipboard button that - when clicked on - copies the output to the user's clipboard.
+
+### Usage
+
+Import the element:
+
+```
+<link rel="import" href="px-demo-snippet.html" />
+```
+
+And insert the element into your code.
+
+```
+    <px-demo-snippet
+      element-properties={{elemProps}}
+      element-name="px-modal">
+    </px-demo-snippet>
+```
+
+The last step is to data-bind an object with properties to the element (elemProps):
+
+```
+{
+  "sampleProp0": "value",
+  "sampleProp1": "value"
+  "lightDomContent": "this is placed inside the component output.",
+  "parentComponent": ["<my-element show-option='true'>","</my-element>"],
+  "siblingElement" : "<div>This is a sibling Element</div>"
+}
+```
+
+There are 3 special properties that demo-snippet looks for, and are NOT included in the output's attributes:
+  1. lightDomContent - the value of this is placed into the component between the opening and closing tags.
+
+  ##### example output for lightDomContent with the options above:
+
+  ```
+  <px-modal>this is placed inside the component output.</px-modal>
+  ```
+
+  2. parentComponent - this is an array that holds the opening and closing tags of the parent component. You may include attributes in these - just remember to use the correct quotes for attributes.
+
+  ##### example output for lightDomContent and parentComponent with the options above:
+
+  ```
+  <my-element show-option='true'><px-modal>this is placed inside the component output.</px-modal></my-element>
+  ```
+
+  3. siblingElement - this is a string that must open and close a tag.
+
+  ##### example:
+
+  ```
+  <my-element show-option='true'><px-modal>this is placed inside the component output.</px-modal><div>This is a sibling Element</div></my-element>
+  ```
+
+
+
+@element px-demo-snippet
+@blurb px-demo-snippet is a helper element that displays the un-rendered code of the component requested.
+@homepage index.html
+@demo demo.html
+-->
+<link rel="import" href="css/px-demo-snippet-styles.html">
+<dom-module id="px-demo-snippet">
+  <template>
+    <style include="px-demo-snippet-styles"></style>
+    <style is="custom-style" include="prism-theme-default"></style>
+
+    <prism-highlighter></prism-highlighter>
+    <div class="flex demoCode">
+      <div class="editor u-mr+ u-p-">
+        <div id="jeditor"></div>
+      </div>
+      <div class="clipboard u-pr+ u-pt- flex">
+        <div class="u-mr- codepen">
+          <iron-icon title="codepen" class="actionable actionable--action" icon="fa:fa-pencil" on-click="_openCodePenRequest"></iron-icon>
+        </div>
+        <div>
+          <px-clipboard data-clipboard-text="[[_output]]"></px-clipboard>
+        </div>
+      </div>
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-demo-snippet',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'notify'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /**
+       * A property that holds the name of the component
+       * for which we are displaying the source
+       *
+       * @property elementName
+       * @type String
+       */
+      elementName: {
+        type: String,
+        value: '',
+      },
+      /**
+       * A property that holds the name of the component parent
+       * for which we are displaying the source. this is used for the codepen import
+       *
+       * @property parentName
+       * @type String
+       */
+      parentName: {
+        type: String,
+        value: '',
+      },
+      /**
+       * An object that holds all the properties for the element
+       * for which we are displaying the source
+       *
+       * @property elementProperties
+       * @type Object
+       */
+      elementProperties: {
+        type: Object
+      },
+      /**
+       * An object that holds a reference to the component
+       * for which we are displaying the source
+       *
+       * @property _demoElement
+       * @type Object
+       */
+      _demoElement: {
+        type: Object
+      },
+      /**
+       * A string - that is created dynamically by the options selected on the page -
+       * that reflects the unrendered component code
+       *
+       * @property _demoElement
+       * @type Object
+       */
+      _output : {
+        type: String,
+        notify: true,
+        observer: '_render'
+      },
+      /**
+       * An array of additional PolyGit includes required to make the CodePen work.
+       *
+       * @property polygitIncludes
+       * @type Array
+       */
+      polygitIncludes: {
+        type: Array,
+        value: function() {return [];}
+      },
+      /**
+       * An array of <link> include URLs required to make the CodePen work.
+       *
+       * @property linksIncludes
+       * @type Array
+       */
+      linksIncludes: {
+        type: Array,
+        value: function() {return [];}
+      },
+      /**
+       * An array of <script> include URLs required to make the CodePen work.
+       *
+       * @property scriptsIncludes
+       * @type Array
+       */
+      scriptsIncludes: {
+        type: Array,
+        value: function() {return [];}
+      },
+      /**
+       * Some components (e.g. px-vis) are too complex to generate codepens
+       * this is a link to an existing codepen.
+       * @property codeLink
+       * @type String
+       */
+      codeLink: {
+        type: String,
+        value: ''
+      }
+    },
+    observers: ['_elementPropertyChanged(elementProperties.*)', '_setPropertyChanger(elementName)'],
+    attached: function() {
+      //first, make sure to find the component we are doing the demo on
+      this._findDemoElement();
+      this._formatComponentString();
+    },
+    /*
+    * We need to dynamically generate the content that goes into the codepen that open.
+    * This method creates a form element and a hidden field,
+    * populates the hidden field value of what's displaying on the page,
+    * and submits that over to codepen in a post request,
+    * creating a code pen on the fly.
+    *
+    * @method _openCodePenRequest
+    *
+     */
+    _openCodePenRequest: function() {
+
+      var formEl = document.createElement('form');
+
+      //if a codelink was passed using data binding on the px-demo-snippet component call, use that link
+      if (this.codeLink) {
+
+        var codeLink = this.codeLink;
+        formEl.setAttribute('action', codeLink);
+        formEl.setAttribute('target', '_blank');
+
+        //we must append the form for it to work in all browsers.
+        this.appendChild(formEl);
+        formEl.submit();
+      } else {
+        //no codelink was passed, we generate one ourselves. 
+        var hiddenInput = document.createElement('input'),
+            formData = {},
+            JSONstring,
+            //if a parent name was passed in, it's likely a sub component, and we still want to bring in the parent import, which should hold an import to the child (somewhere down the line).
+            importComponent = (this.parentName) ? this.parentName : this.elementName,
+            polygitString = '',
+            scriptsString = '',
+            linksString = '',
+            i,
+            inc,
+            len;
+        
+        // sometimes, we have to add organizations and repos to what polygit has access to - those
+        // are passed in using the polygitIncludes tag, and looped over here.
+        if (this.polygitIncludes.length) {
+          for (i = 0, inc = this.polygitIncludes, len=inc.length; i < len; i++) {
+            polygitString += inc[i];
+            if (inc[i].charAt(inc[i].length -1) !== '/') {
+              polygitString += '/';
+            }
+          }
+        }
+
+        // we also occsionally need to add script tag to the code pen, passed in through the scriptsIncludes.
+        // we loop through that here, and create script tags that will be added to the code pen content.
+        if (this.scriptsIncludes.length) {
+          for (i = 0, inc = this.scriptsIncludes, len=inc.length; i < len; i++) {
+            scriptsString += '<' + 'script src="' + inc[i]+ '"' + '></' + 'script' + '>\n';
+          }
+        }
+
+        //we also need to add link with rel imports occsionally uisng the linksIncludes attribute - we loop thorugh here, creating link tags.
+        if (this.linksIncludes.length) {
+          for (i = 0, inc = this.linksIncludes, len=inc.length; i < len; i++) {
+            linksString +=   '<link href="' + inc[i] + '" rel="import">\n';
+          }
+        }
+
+        // script tag must be broken or else the browser parses it.
+        formData.html = '<base href="https://polygit.org/px-*+PredixDev+*/' + polygitString + 'components/">\n' +
+        '<' + 'script src="webcomponentsjs/webcomponents-lite.min.js"' + '></' + 'script' + '>\n' +
+        //add our external scripts
+        scriptsString +
+        //make sure polymer is included
+        '<link href="polymer/polymer.html" rel="import">\n' +
+        //add our links
+        linksString +
+        //make sure our base links are included.
+        '<link rel="import" href="px-theme/px-theme-styles.html">\n' +
+        '<style include="px-theme-styles" is="custom-style"></style>\n' +
+        '<link href="' + importComponent + '/';
+        formData.html += (importComponent === 'px-tabs') ? 'px-tab-set' : importComponent;
+        formData.html += '.html" rel="import">\n' +
+        '<body>\n' +
+        this._output +
+        '\n</body>\n';
+
+        /*
+        these number tell codepen what windows it should show in its interface:
+        1 first number is for HTML console.
+        00 second and third are for css and JS.
+        1 the last 1 is for the browser console to be open.
+         */
+        formData.editors ="1001";
+        formData.title = this.elementName;
+        formData.description = "We've set up everything for you to work with " + this.elementName + ", feel free to play around!";
+
+        //quotes break the JSON, so we gotta replace 'em
+        JSONstring = JSON.stringify(formData).replace(/"/g, "&​quot;").replace(/'/g, "&apos;");
+
+        formEl.setAttribute('action', 'http://codepen.io/pen/define');
+        formEl.setAttribute('method', 'POST');
+        formEl.setAttribute('target', '_blank');
+
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'data');
+        hiddenInput.setAttribute('value', JSONstring);
+
+        formEl.appendChild(hiddenInput);
+
+        //we must append the form for it to work in all browsers.
+        this.appendChild(formEl);
+        formEl.submit();
+      }
+    },
+    /**
+    *
+    * prism-highlighter is weird. it expects to be at the top of the path, so when you fire a "syntax-highlight" event, it captures
+    * it. It then take the event.detail.code, does the syntax magic on it, and MUTATES THE event.detail.code object.
+    * this means that the way to get back the highlighted code is to fire an event, and assign the return value into a var
+    * (in this case, the var is output). The second weird thing about it is that there's no gaurantee that it's registered on the page
+    * when you fire said event, so, we have to fire, and check if the returned output is the highlighted one.
+    * the returned output is enclosed in a span, so (sad hack warning), we check for that. if it doesn't have a span, 
+    * we simply call ourselves with 50 ms delay, to give prism-highlighter time to register and pick up our stuff.
+    *
+    * @method {_render}
+    */
+    _render: function() {
+      var name= "prism-highlighter",
+          output = this._fireOutputEvent(this._output, 'html');
+      
+      //the correct output, assign it to the jeditor element.
+      if (output.substr(0,5) ==="<span") {
+          this.$.jeditor.innerHTML = output;
+       } else {
+         //prism highlighter hasn't loaded yet. run this again with async.
+         this.async(this._render,50);
+       }
+    },
+    /**
+    *
+    * This method fires a syntax-highlight event (meant for prism-highlighter), and returns the code, with formatting.
+    *
+    * @method _fireOutputEvent
+    * @return {Highlighted Code}
+    */
+    _fireOutputEvent: function(code, lang) {
+      //this fires an event that is changed through prism-element.
+
+      return this.fire('syntax-highlight', {code: code, lang: lang}).detail.code;
+    },
+    /**
+    * This method is called through the deep observer, whenever a property is changed
+    * by the user. it calls _setPropertyChanger and _formatComponentString.
+    *
+    * @method _elementPropertyChanged
+    */
+    _elementPropertyChanged: function(changeRecord) {
+      var prop = changeRecord.path,
+          value = changeRecord.value;
+      prop = prop.substr( prop.indexOf('.') + 1 );
+      this._setPropertyChanger(prop, value);
+      this._formatComponentString();
+    },
+    /**
+    * This method searches the document for the component demoed.
+    * and sets a reference in _demoElement to that component.
+    *
+    * @method _findDemoElement
+    */
+    _findDemoElement: function() {
+      //find the demo component
+      var demoElem = document.querySelector(this.elementName);
+      if (demoElem) { //and if it's there, set it inside _demoElement
+        this._demoElement = demoElem;
+      }
+    },
+    /**
+    * This method searches the document for the component demoed.
+    * and sets a reference in _demoElement to that component.
+    *
+    * @method _setPropertyChanger
+    */
+    /**
+    * This event is fired when a property is changed by the user.
+    *
+    * @event pxDemoPropertyChanged
+    */
+    _setPropertyChanger: function(prop, value) {
+      if (this._demoElement) { //make sure the component exists, and if so, call Polymer set directly on it.
+        this._demoElement.set(prop, value);
+        // and fire an event.
+        this.fire('pxDemoPropertyChanged', {"property" : prop, "value": value});
+      }
+    },
+    /**
+    * This method formats the string which is the unrendered code for the component
+    * we are domoing
+    *
+    * @method _formatComponentString
+    */
+    _formatComponentString: function() {
+      //define our opening string with an opening <
+      var result ='',
+          value,
+          lightDomContent,
+          siblingElement;
+
+      if (this.elementProperties) {
+        if (this.elementProperties['parentComponent']) {
+          result += this.elementProperties['parentComponent'][0];
+        }
+
+        //px-tabs is the only component we have that doesn't match the element name. sigh.
+        result +='<';
+        result += (this.elementName ==='px-tabs') ? 'px-tab-set' : this.elementName;
+
+        // and loop through all the properties passed to us.
+        for (var prop in this.elementProperties) {
+          var singleQuotes = false;
+          value = this.elementProperties[prop];
+          if (value && prop !== "lightDomContent" && prop !== "parentComponent" && prop !== "siblingElement") { //check that value is there AND is NOT false. false attributes should NOT be passed
+            if (typeof value === "object") { //if the passed value is an object, we have to stringify it, or else it shows [OBJECT OBJECT]
+              //JSON.Stringify might fail, and if it does, we don't want to kill the whole thing.
+              try {
+                value = JSON.stringify(value);
+              }
+              catch(e) {
+                console.log('stringify failed');
+                console.dir(value);
+                //so if it does fail, just continue.
+                continue;
+              }
+
+              singleQuotes = true;
+            } else if (Array.isArray(value)) {
+              singleQuotes = true;
+            }
+            //we are using the built in Polymer method of converting CamelCase to dashes-case, since the properties handed to us must be CamelCase.
+            result += ' ' + Polymer.CaseMap.camelToDashCase(prop) +
+            ((singleQuotes) ? '=\'' :  '="') + value + ((singleQuotes) ? '\'' :  '"');
+          } else if (prop === "lightDomContent") {
+            lightDomContent = value; //save the value to insert later - we have to close the tag first, and the order is never guaranteed with a for in loop.
+          } else if (prop === 'siblingElement') {
+            siblingElement = value;
+          }
+        }
+        //close off our string
+        result += '>';
+        //check if we have any light dom content, and if so, insert it to the string.
+        if (lightDomContent) { //if we have a light dom content, insert it now
+          result += lightDomContent;
+          lightDomContent = ''; //and empty it, just to be safe.
+        }
+        result += '</';
+        result += (this.elementName ==='px-tabs') ? 'px-tab-set' : this.elementName;
+        result += '>';
+
+        if (siblingElement) {
+          result += siblingElement;
+        }
+
+        if (this.elementProperties['parentComponent']) {
+          result += this.elementProperties['parentComponent'][1];
+        //px-tabs is the only component we have that doesn't match the element name. sigh.
+        } else if (this.elementName === 'px-tabs') {
+          result += '\n<px-tab-pages selected="1">\n';
+          result += '<!-- Please note that selected is usually data-bound in both px-tab-pages and px-tab-set to the same property - something we cannot do in Codepen. -->';
+          result += '<div>Tab 1 content</div>\n<div>Tab 2 content</div>\n<div>Tab 3 content</div>\n<div>Tab 4 content</div>\n</px-tab-pages>';
+        }
+        //and set _output, using data binding to pass it into ace widget and px-clipboard
+        this.set('_output',result);
+      }
+    }
+  });
+</script>

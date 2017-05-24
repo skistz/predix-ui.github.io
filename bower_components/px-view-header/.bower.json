@@ -1,0 +1,53 @@
+{
+  "name": "px-view-header",
+  "version": "0.2.5",
+  "main": [
+    "px-view-header.html"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "HISTORY.md",
+    "CONTRIBUTING.md",
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github",
+    ".editorconfig",
+    ".jshintrc",
+    ".gitignore",
+    "LICENSE.md",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "README.md",
+    "wct.conf.json",
+    "test/"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.0",
+    "px-theme": "^2.0.2",
+    "px-buttons-design": "^1.1.2",
+    "px-deck-selector": "^1.6.1",
+    "px-headings-design": "^0.3.1"
+  },
+  "devDependencies": {
+    "px-starter-kit-design": "^0.7.0",
+    "px-code-design": "^1.1.3",
+    "px-actionable-text-icons-design": "^1.1.3",
+    "px-toggle-design": "^1.1.4",
+    "px-forms-design": "^1.1.4",
+    "px-list-inline-design": "^0.3.2",
+    "px-demo": "^1.1.5"
+  },
+  "homepage": "https://github.com/PredixDev/px-view-header",
+  "_release": "0.2.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.5",
+    "commit": "56c1c028569b1523dc20bda4802f63fc32089b25"
+  },
+  "_source": "https://github.com/PredixDev/px-view-header.git",
+  "_target": "^0.2.3",
+  "_originalSource": "px-view-header"
+}

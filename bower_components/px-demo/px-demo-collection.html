@@ -1,0 +1,286 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../px-view-header/px-view-header.html"/>
+<link rel="import" href="../px-deck-selector/px-deck-selector.html"/>
+
+<!-- Import style module -->
+<link rel="import" href="css/px-demo-styles.html">
+
+<!--
+Creates a container for a collection of demos.
+
+##### Usage
+
+    <px-demo-collection></px-demo-collection>
+
+@element px-demo-collection
+@blurb Creates a container for a collection of demos.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-demo-collection">
+  <template>
+    <style include="px-demo-styles"></style>
+    <section class="demo-collection__header">
+      <px-view-header use-deck-selector="true">
+        <!-- CAN BE USED TO SHOW A "BACK TO PARENT COMPONENT" IF WANTED -->
+        <!--
+        <template is="dom-if" if="{{!_isInitialDeck(_selectedDeck)}}">
+          <a class="left actionable caps" on-tap="_handleBackToInitial">&lt; back to {{demos.0.name}}</a>
+        </template>
+        -->
+        <div class="left flex flex--row">
+          <p class="demo-collection__header__text">View Children:</p>
+          <px-deck-selector class="u-mt- demo-collection__header__selector" decks="{{_decks}}" selected-deck="{{_selectedDeck}}"></px-deck-selector>
+        </div>
+
+      </px-view-header>
+    </section>
+
+    <section class="demo-collection__body" id="demoCollection">
+    </section>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'px-demo-collection',
+
+    properties: {
+      /**
+       * A list of demo pages to make available. An array of objects, each with
+       * the name of a demo, and the name of the custom element loaded holding
+       * the demo.
+       *
+       * @example
+       *
+       *     [
+       *       { name: "px-context-browser", tagName: "px-context-browser-demo" },
+       *       { name: "px-context-browser-typeahead", tagName: "px-context-browser-typeahead-demo" }
+       *     ]
+       *
+       * @property demos
+       * @type {Array}
+       */
+      demos: {
+        type: Array
+      },
+
+      /**
+       * The name of the active demo. Can be set to update the currently visible
+       * demo, or listened to for notifications when the user changes the
+       * active demo.
+       *
+       * @property chosenDemoName
+       * @type {String}
+       */
+      chosenDemoName: {
+        type: String,
+        notify: true,
+        observer: '_handleChosenDemoNameChange'
+      },
+
+      /**
+       * An array of objects formatted for the `px-deck-selector` instance.
+       * This helps the user switch between demos.
+       *
+       * `px-deck-selector` expects this data format:
+       *
+       *     [{"id":"1","name":"Overview","url":"/overview"}]
+       *
+       * @type {Array}
+       */
+      _decks: {
+        type: Array,
+        computed: '_computeDecks(demos)'
+      },
+
+      /**
+       * The currently selected deck, notified out from `px-deck-selector`.
+       *
+       * @type {Array}
+       */
+      _selectedDeck: {
+        type: Object,
+        observer: '_handleSelectedDeckChange'
+      }
+    },
+
+    observers: ['_setInitialDemo(demos)'],
+
+    /**
+     * When the component is first initialized, ensures an active demo is set.
+     *
+     * @param {Array} demos
+     */
+    _setInitialDemo: function(demos) {
+      var currentDemoName = this.get('currentDemoName');
+      if (!currentDemoName && demos && Array.isArray(demos) && demos.length) {
+        this.set('chosenDemoName', this.get('demos.0.name'));
+      }
+    },
+
+    /**
+     * When the `chosenDemoName` is changed, update the visible demo on the
+     * screen to keep it in sync.
+     *
+     * @param {String} chosenDemoName
+     */
+    _handleChosenDemoNameChange: function(chosenDemoName) {
+      if ((typeof chosenDemoName === 'string') && chosenDemoName.length) {
+        // See what the visible demo is. If necessary, change it.
+        var chosenDemo = this.$$('px-demo-goes-here[name="'+chosenDemoName+'"]');
+
+        // If the chosen demo doesn't exist in the DOM, add it
+        if (!chosenDemo) {
+          var demoDetails = this._findDemoByName(chosenDemoName);
+          var newDemo = this._createDemoNode(demoDetails.name, demoDetails.tagName);
+          this.$.demoCollection.appendChild(newDemo);
+        }
+
+        // Only show the chosen demo
+        this._showDemo(chosenDemoName);
+
+        // Make sure the context browser instance is updated
+        this._syncChosenDemoContext(chosenDemoName);
+      }
+    },
+
+    /**
+     * Finds a demo object by its name.
+     *
+     * @param {String} demoName
+     */
+    _findDemoByName: function(demoName) {
+      var demos = this.get('demos') || [];
+      var demoObj;
+      for (var i = 0, len = demos.length; i < len; i++) {
+        if (demos[i].name === demoName) {
+          demoObj = demos[i];
+          break;
+        };
+      }
+      return demoObj || undefined;
+    },
+
+    /**
+     * Finds a deck object by its name.
+     *
+     * @param {String} deckName
+     */
+    _findDeckByName: function(deckName) {
+      var decks = this.get('_decks') || [];
+      var deckObj;
+      for (var i = 0, len = decks.length; i < len; i++) {
+        if (decks[i].name === deckName) {
+          deckObj = decks[i];
+          break;
+        };
+      }
+      return deckObj || undefined;
+    },
+
+    /**
+     * Creates a demo node inside of a `px-demo-goes-here` tag for insertion
+     * into the DOM.
+     *
+     * @param {String} name - Friendly name for the demo
+     * @param {String} tagName - Tag name for the demo
+     * @return {HTMLElement}
+     */
+    _createDemoNode: function(name, tagName) {
+      var wrapperEl = document.createElement('px-demo-goes-here');
+      wrapperEl.setAttribute('name', name);
+      wrapperEl.setAttribute('visible', false);
+      var el = document.createElement(tagName);
+      wrapperEl.appendChild(el);
+      return wrapperEl;
+    },
+
+    /**
+     * Loops over all the demos in the DOM. Ensures that `chosenDemoName` is
+     * visible and all other demos are hidden.
+     *
+     * @param {String} chosenDemoName
+     */
+    _showDemo: function(chosenDemoName) {
+      var demos = Polymer.dom(this.root).querySelectorAll('px-demo-goes-here');
+      for (var i = 0, len = demos.length; i < len; i++) {
+        var shouldBeVisible = (demos[i].getAttribute('name') === chosenDemoName);
+        if (shouldBeVisible) {
+          demos[i].removeAttribute('style');
+          continue;
+        }
+        demos[i].setAttribute('style','display:none;');
+      }
+    },
+
+    /**
+     * Builds the `_decks` array from the `demos` source format.
+     *
+     * @param {Array} demos
+     * @return {Array}
+     */
+    _computeDecks: function(demos) {
+      if (demos && Array.isArray(demos) && demos.length) {
+        var decks = [];
+        for (var i = 0, len = demos.length; i < len; i++) {
+          decks.push({
+            id: i,
+            name: demos[i].name,
+            tagName: demos[i].tagName
+          });
+        }
+        return decks;
+      }
+    },
+
+    /**
+     * When the selected deck is changed by the user, handle the change and
+     * update the `currentDemoName`.
+     *
+     * @param {Object} selectedDeck
+     */
+    _handleSelectedDeckChange: function(selectedDeck) {
+      var chosenDemoName = this.get('chosenDemoName');
+      if (chosenDemoName && selectedDeck.name && chosenDemoName !== selectedDeck.name) {
+        this.set('chosenDemoName', selectedDeck.name);
+      }
+    },
+
+    /**
+     * Checks if this is the initial demo. Useful to determine if we should
+     * show "back to initial-demo-name-here" link in header.
+     */
+    _isInitialDeck: function(selectedDeck) {
+      return (selectedDeck && typeof selectedDeck === 'object' && selectedDeck.id === 0);
+    },
+
+    /**
+     * When the user taps the 'Back to [initial-demo-name-here]' link, set the
+     * `chosenDemoName` to the `selectedDeck`.
+     */
+    _handleBackToInitial: function() {
+      this.set('chosenDemoName', this.get('demos.0.name'));
+    },
+
+    /**
+     * Ensures the `chosenDemoName` is reflected in the context browser.
+     *
+     * @param {String} chosenDemoName
+     */
+    _syncChosenDemoContext: function(chosenDemoName) {
+      var selectedDeck = this.get('_selectedDeck');
+
+      if (!selectedDeck || !selectedDeck.name || selectedDeck.name !== chosenDemoName) {
+        var newDeck = this._findDeckByName(chosenDemoName);
+        this.set('_selectedDeck', newDeck);
+      }
+    }
+  });
+</script>

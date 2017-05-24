@@ -1,0 +1,466 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../hydrolysis/hydrolysis-analyzer.html" />
+<link rel="import" href="../iron-doc-viewer/iron-doc-viewer.html" />
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+
+<!--
+Element providing API documentation for a requested Polymer component
+
+##### Usage
+
+    <px-api-viewer source="demo_component"></px-api-viewer>
+
+### Styling
+The following custom properties are available for styling. Use them with the default tooltip-style property (omit it, or use value "dark").
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-tooltip-text-color` | Text color for the tooltip | `$white`
+`--px-tooltip-background-color` | Background color for the tooltip | `$black`
+
+@element px-api-viewer
+@blurb Element providing API documentation for a requested Polymer component
+@homepage index.html
+@demo demo.html
+-->
+
+<link rel="import" href="css/px-api-viewer-styles.html">
+<link rel="import" href="../px-theme/px-theme-styles.html">
+<dom-module id="px-api-viewer">
+  <template>
+    <style include="px-api-viewer-styles"></style>
+    <style include="px-theme-styles"></style>
+    <template is="dom-if" if="[[_behaviorOn]]">
+      <div on-tap="_turnBehaviorOff" class="returnToApi"><iron-icon icon="fa:fa-chevron-left"></iron-icon> Return to [[source]]'s API</div>
+    </template>
+    <iron-doc-viewer descriptor="[[_elementDescriptor]]"></iron-doc-viewer>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-api-viewer',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'notify'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /*
+      * A json object, created by hydrolysis, which contains the actual
+      * documentation for the component
+      *
+      * @property _elementDescriptor
+      * @type Object
+      */
+      _elementDescriptor: {
+        type: Object,
+        notify: true
+      },
+      /*
+      * A string holding the name of the component.
+      * do not add `.html` to this attribute.
+      *
+      * @property source
+      * @type String
+      */
+      source: {
+        type: String,
+        value: '',
+        notify: true
+      },
+      /*
+      * The API object created by hydrolysis
+      *
+      * @property _analyzer
+      * @type Object
+      */
+      _analyzer: {
+        type: Object,
+        notify: true
+      },
+      /*
+      * A boolean that tells us if the user is currently viewing a behavior.
+      *
+      *
+      * @property _behaviorOn
+      * @type Boolean
+      */
+      _behaviorOn : {
+        type: Boolean,
+        value:false,
+        notify: true
+      },
+      /**
+       * An array which contains the names of properties/methods/events which will be removed
+       * from the hydrolysis object
+       * @type {Array}
+       */
+      hide: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * An array which contains the names of properties which will be marked
+       * as private
+       * @type {Array}
+       */
+      markPrivate: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * An array which contains the names of properties which will be marked
+       * as readonly
+       * @type {Array}
+       */
+      markReadOnly: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * an array which contains the names and new descriptions of
+       * properties we want to change the deccription of.
+       * @type {Array}
+       */
+      changeDescription: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * these are the 3 mutator types that can be passed into the componentto change items in
+       * the object we get back from hydrolysis. Hide would be on this list, but its behavior is different (it doesn't
+       * just change the item, it removes it), and so it's not included here.
+       * @type {Object}
+       */
+      _apiMutatorTypes: {
+        type: Array,
+        value: function() {
+          return ['markPrivate','markReadOnly','changeDescription'];
+        }
+      },
+      /**
+       * the two groups we are mutating in the object we get back from Hydrolysis.
+       * @type {Object}
+       */
+      _apiGroups: {
+        type: Array,
+        value: function() {
+          return ['elements','behaviors'];
+        }
+      },
+      /**
+       * represents a prefix that we filter the elements by when we mutate the hydrolysis object.
+       * @type {String}
+       */
+      filterTagByPrefix: {
+        type: String,
+        value: ''
+      }
+    },
+    listeners: {
+      'iron-doc-viewer-component-selected':'_behaviorClicked'
+    },
+    /**
+     * find the passed item in either the elements or behaviors arrays in the hydrolysis obj
+     * @param  {[String]}  item [The name of the property we wish to modify]
+     * @return {Object}      [an object containing the following properties: category, categoryIndex, propertiesIndex and item]
+     */
+    _cleanHydrolizerObj: function() {
+      var promises = [],
+          i,
+          len;
+
+      for (i = 0, len = this._apiGroups.length; i < len; i++) {
+        promises.push(this._loopsThroughGroups(this._apiGroups[i]));
+      }
+
+       return Promise.all(promises);
+
+    },
+    /**
+     * Loops through the categories ('elements' or 'behaviors'), and calls the properties looper
+     * @param  {[type]} category [description]
+     * @return {[type]}          [description]
+     */
+    _loopsThroughGroups: function(category) {
+      var promises = [],
+          i,
+          len;
+      for (i = 0, len = this._analyzer[category].length; i < len; i++) {
+        var name = this._analyzer[category][i].is,
+            prefixLength = this.filterTagByPrefix.length || 0;
+
+        if (this.filterTagByPrefix.length === 0 || ((typeof name === 'string') && name.substr(0, prefixLength).toLowerCase() === this.filterTagByPrefix)) {
+          promises.push(this._LoopThroughProperties(category,i));
+        }
+      }
+
+
+      return Promise.all(promises);
+    },
+    /**
+    *
+    * This method filters/removes any properties passed into using the hide attribute, by filtering out
+    * any matches between the
+    * @method _hideProperties
+    */
+    _hideProperties: function(category, categoryIndex) {
+      var properties = this._analyzer[category][categoryIndex].properties,
+          propertiesToMutate = [];
+      //hide is a special case, since it involves removal of the item,
+      //which messes up indexes. so, instead, we filter anything that needs hiding - effectively
+      //removing the items this way.
+      propertiesToMutate = properties.filter(function(currentProperty) {
+        return this.hide.indexOf(currentProperty.name) === -1;
+      }.bind(this));
+
+      // if we found anything that put in the propertiesToMutate array, we can what the references are pointing to
+      // for both the _analyzer and the properties object.
+      if (propertiesToMutate.length !== properties.length) {
+        properties = this._analyzer[category][categoryIndex].properties = propertiesToMutate;
+      }
+      return properties;
+    },
+    /**
+     *
+     * events are hidden inside the element, so, we have to loop through them,
+     * and find the ones that might have been passed in the "hide" attribute
+     * we are looping through the element found under elementsByTagName, since that's the one
+     * we end up passing to iron-doc-viewer.
+     * @method _hide_events
+     */
+    _hideEvents: function() {
+      var behaviors = this._analyzer.behaviors,
+          events,
+          mutatedevents = [],
+          currentElement = this._analyzer.elementsByTagName[this.source];
+
+      mutatedevents = currentElement.events.filter(function(event) {
+        return (this.hide.indexOf(event.name) === -1);
+      }.bind(this));
+
+      currentElement.events = mutatedevents;
+    },
+    /**
+     * Loops through the properties inside the Hydrolysis object category ('elements' or 'behaviors'), and calls _isInPassedOptions
+     * @param  {[String]}  category        the category in question
+     * @param  {[String]}  categoryIndex   the index of the category in question
+     *
+     */
+    _LoopThroughProperties: function(category, categoryIndex) {
+      var promises = [],
+          properties,
+          property,
+          j,
+          len,
+          mutatedBehaviors =[],
+          mutatedEvents = [],
+          events;
+
+      //first, let's hide the properties
+      properties = this._hideProperties(category, categoryIndex);
+
+      //now, we hide the events - which are hiding in a behavior, inside the element in question.
+
+      // Then try to apply other mutations
+      for (j = 0, len = properties.length; j < len; j++) {
+        property = this._analyzer[category][categoryIndex].properties[j];
+        promises.push(this._loopThroughMutators(category, categoryIndex, j));
+      }
+
+      return Promise.all(promises);
+
+    },
+    /**
+     * Loops through the available mutators (set inside _apiMutatorTypes), and calls _isInPassedMutators for each property.
+     * @param  {[String]}  category        the category in question
+     * @param  {[String]}  categoryIndex   the index of the category in question
+     * @param  {[String]}  propertiesIndex The index of the property in question
+     * @return {[type]}                 [description]
+     */
+    _loopThroughMutators: function(category, categoryIndex, propertiesIndex) {
+      //debugger;
+      var promises = [];
+      this._apiMutatorTypes
+      .forEach(function(mutator) {
+        promises.push(this._isInPassedMutators(category, categoryIndex, propertiesIndex, mutator));
+      }.bind(this));
+
+      return Promise.all(promises);
+    },
+    /**
+     * Check if the property in question is in the passed mutator array, and if it is, sends it along to the
+     * appropriate function, stored on the component as the mutator name with a prefix of _.
+     *
+     * @param  {[String]}  category        the category in question
+     * @param  {[String]}  categoryIndex   the index of the category in question
+     * @param  {[String]}  propertiesIndex The index of the property in question
+     * @param  {[String]}  mutator         a string representing a mutator object this a component property which can be passed by the user - for example hide, or changeDescription
+     *
+     */
+    _isInPassedMutators: function(category, categoryIndex, propertiesIndex, mutator) {
+      if (this[mutator] && this[mutator].length) {
+        var name = this._analyzer[category][categoryIndex].properties[propertiesIndex].name,
+            i,
+            len;
+
+        if (this[mutator].indexOf(name) !== -1) {
+          return this['_' + mutator](category, categoryIndex, propertiesIndex);
+        //next, we check if our mutator is changeDescription - which has a different data structure, and
+        //is an array of objects, as opposed to strings.
+        } else if (mutator === 'changeDescription'){
+          for (i = 0, len = this.changeDescription.length; i < len; i++) {
+            if (this.changeDescription[i].name === name) {
+              return this._changeDescription(category, categoryIndex, propertiesIndex, i);
+            }
+          }
+        // we wanna make sure that we return a promise
+        } else {
+          return Promise.resolve();
+        }
+      } else {
+        return Promise.resolve();
+      }
+    },
+    /**
+     * Marks a property as private in the hydrolysis object
+     * @param  {[object]} item [an object which contains the full path to the item in question. set in _findItemInHydrolysisObj]
+     * @method _markPrivate
+     */
+    _markPrivate: function(category, categoryIndex, propertiesIndex) {
+      this._analyzer[category][categoryIndex].properties[propertiesIndex].private = true;
+      return Promise.resolve();
+    },
+    /**
+     * marks the requested item as readOnly in the requested properties in the object we get back from hydrloysis
+     * @param  {[String]}  category        the category in question
+     * @param  {[String]}  categoryIndex   the index of the category in question
+     * @param  {[String]}  propertiesIndex The index of the property in question
+      * @return {[Promise]}                 [gotta return that promise...]
+     */
+    _markReadOnly: function(category, categoryIndex, propertiesIndex) {
+      this._analyzer[category][categoryIndex].properties[propertiesIndex].readOnly = true;
+      return Promise.resolve();
+    },
+    /**
+     * changes the description of the item in question. both the jsdoc.descriptiona nd .desc have to be changed for this change to take effect.
+     * @param  {[String]}  category        the category in question
+     * @param  {[String]}  categoryIndex   the index of the category in question
+     * @param  {[String]}  propertiesIndex The index of the property in question
+     * @param  {[Number]} changeDescriptionIndex [the index of the item in question in the changeDescription array]
+     * @return {[Promise]}                 [gotta return that promise...]
+     */
+    _changeDescription: function(category, categoryIndex, propertiesIndex, changeDescriptionIndex) {
+      this._analyzer[category][categoryIndex].properties[propertiesIndex].jsdoc.description = this.changeDescription[changeDescriptionIndex].desc;
+      this._analyzer[category][categoryIndex].properties[propertiesIndex].desc = this.changeDescription[changeDescriptionIndex].desc;
+      return Promise.resolve();
+    },
+    attached: function() {
+      var hyd = require('hydrolysis');
+      //have hydrolysis analyze the requested component
+      hyd.Analyzer.analyze(this.source + ".html")
+        .then(function(analyzer) {
+          this.set('_analyzer', analyzer);
+
+          this._cleanHydrolizerObj()
+          .then(function() {
+            this._hideEvents();
+          }.bind(this))
+          .then(function() {
+          this._setElementDescriptor(this._analyzer);
+        }.bind(this));
+      }.bind(this));
+
+        var renderer = new marked.Renderer();
+        renderer.link = function(href, title, text) {
+          if (this.options.sanitize) {
+            var prot;
+            try {
+              prot = decodeURIComponent(unescape(href))
+                .replace(/[^\w:]/g, '')
+                .toLowerCase();
+            } catch (e) {
+              return '';
+            }
+            if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
+              return '';
+            }
+          }
+          var out = '<a href="' + href + '"';
+          if (title) {
+            out += ' title="' + title + '"';
+          }
+          out += 'target="_blank">' + text + '</a>';
+          return out;
+        };
+        marked.setOptions({ renderer: renderer });
+    },
+    /*
+    * This method is called when the return button is clicked/tapped
+    * it sets behaviorOn to false, and changes the displayed API to the original one.
+    * @method _turnBehaviorOff
+    */
+    _turnBehaviorOff: function() {
+      this.set('_behaviorOn',false);
+      this._setElementDescriptor(this._analyzer);
+    },
+    /*
+    * This listener method is called when a behavior API is requested.
+    * It sets the active API to the clicked on behavior
+    * @method _behaviorClicked
+    */
+    _behaviorClicked: function(evt) {
+      this._setElementDescriptor(this._analyzer, evt.detail);
+    },
+    /*
+    * Fired when hydrolysis successfully passes the json for an element
+    * to iron-doc-viewer successfully.
+    * @event pxElementAPIReceived
+    */
+    /*
+    * Fired when hydrolysis successfully passes the json for a behavior
+    * to iron-doc-viewer successfully.
+    * @event pxBehaviorAPIReceived
+    */
+    /*
+    * Set the _elementDescriptor on the component, and fire an event.
+    * can seet either an element, or behavior.
+    * @method _setElementDescriptor
+    */
+    _setElementDescriptor: function(analyzer, elem) {
+      var behavior = false;
+      if (!elem) { //if an elem wasn't passed it, it's the initial load, and elem should be this.source
+        elem = this.source;
+      } else { //if one WAS passed, this is a behavior.
+        behavior = true;
+      }
+      //if behavior is false, we are analyzing an element
+      if (!behavior) {
+        this.set('_elementDescriptor', analyzer.elementsByTagName[elem]);
+        this.fire('pxElementAPIReceived', analyzer.elementsByTagName[elem]);
+      } else {
+        //if behavior is true, we are analyzing the behavior specified in elem.
+        this.set('_elementDescriptor', analyzer.behaviorsByName[elem]);
+        this.fire('pxBehaviorAPIReceived', analyzer.behaviorsByName[elem]);
+        this.set('_behaviorOn',true);
+      }
+    }
+  });
+</script>
