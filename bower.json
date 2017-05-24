@@ -14,11 +14,11 @@
     "test"
   ],
   "dependencies": {
-    "polymer": "^1.8.1",
+    "polymer": "^2.0.0",
     "px-theme": "^2.0.4",
     "px-spinner": "^1.0.0",
     "px-clipboard": "^0.2.3",
-    "iron-collapse": "PolymerElements/iron-collapse#^1.2.0",
+    "iron-collapse": "PolymerElements/iron-collapse#^2.0.0",
     "px-list-inline-design": "^0.3.3",
     "px-code-design": "^1.1.5",
     "px-typography-design": "^1.2.6",
@@ -29,12 +29,16 @@
     "px-buttons-design": "^1.1.7",
     "px-starter-kit-design": "^0.7.4",
     "hydrolysis": "^1.24.1",
-    "app-route": "PolymerElements/app-route#^0.9.3",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3",
+    "app-route": "PolymerElements/app-route#^2.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.0",
     "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
     "px-iconography-design": "^0.3.10",
     "px-demo-design": "^1.2.0",
     "px-helpers-design": "^0.3.20",
     "px-demo": "^1.5.10"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0",
+    "webcomponentsjs": "^v1.0.0"
   }
 }
