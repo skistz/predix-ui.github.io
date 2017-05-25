@@ -1,4 +1,4 @@
-v0.2.15
+v0.2.16
 ==================
 * Perf tweaks
 * Design changes to make it look like predix.io
