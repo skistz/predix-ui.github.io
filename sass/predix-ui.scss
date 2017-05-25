@@ -66,10 +66,6 @@ $px-catalog-blue: rgb(40,134,175);
 $px-catalog-blue--hover: rgb(58,180,212);
 $px-catalog-dark-blue: rgb(1, 41, 57);
 
-html,body{
-  font: GE Inspira Sans;
-  overflow: hidden;
-}
 
 /*
  * Page wrapper
@@ -96,6 +92,7 @@ html,body{
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
 }
+
 .header-img{
   height:18px;
   margin-bottom: -2px;

@@ -1,3 +1,11 @@
+v0.2.15
+==================
+* Perf tweaks
+* Design changes to make it look like predix.io
+* Remvoe px-catalog-footer
+* Add px-demo
+* Fix gulp git build to allow us to check in more assets
+
 v0.2.14
 ==================
 * removed px-input-group-design
