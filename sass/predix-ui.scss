@@ -251,6 +251,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
 }
 
 .iframe{
+  min-height: 100%; //needed coz IE11 & edge iframes don't play nice with flex.
   border: none;
   overflow: hidden;
   padding:0px;
