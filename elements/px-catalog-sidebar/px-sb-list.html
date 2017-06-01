@@ -144,14 +144,21 @@ Element providing a sidebar solution in the predix UI website.
           type = target.getAttribute('data-type'),
           path = (target.itemPath) ? target.itemPath : (target.getAttribute('item-path') === "0") ? "0" : '';
 
-
-        this.set('selected', 'nav.' + path);
-        if (this.searchKeyword) {
-          this.set('selectedElem', target);
+        if (type === 'redirect') {
+          var domRepeat = Polymer.dom(this.root).querySelector('template[is=dom-repeat]');
+          var el = Polymer.dom(evt).rootTarget;
+          var elSource = domRepeat.modelForElement(el).item;
+          window.location = '/#/' + elSource.redirectToRepoType + '/' + elSource.redirectToRepoName + '/';
         }
+        else {
+          this.set('selected', 'nav.' + path);
+          if (this.searchKeyword) {
+            this.set('selectedElem', target);
+          }
 
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
-        evt.preventDefault();
+          this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
+          evt.preventDefault();
+        }
     },
     /*
     *
