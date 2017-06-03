@@ -43,16 +43,6 @@
         "links":[
           {
             "dataType":"guides",
-            "repoName":"vis-guides-all",
-            "linkText":"All guides"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-web-workers",
-            "linkText":"Introducing web workers"
-          },
-          {
-            "dataType":"guides",
             "repoName":"vis-guides-configuring-charts",
             "linkText":"How to configure charts"
           }

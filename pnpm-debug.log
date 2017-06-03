@@ -1,0 +1,13 @@
+---
+  0 error pnpm: 
+    message: 
+      code: "MODULES_BREAKING_CHANGE"
+      relatedIssue: 678
+      relatedPR: 694
+      additionalInformation: "Packages having peer dependencies are linked to different variations. The variations depend on the set of resolved peer dependencies"
+      modulesPath: "/Users/105065910/src/predix-ui.github.io/node_modules"
+    err: 
+      name: "Error"
+      message: "The node_modules structure at /Users/105065910/src/predix-ui.github.io/node_modules was changed. Try running the same command with the --force parameter."
+      code: "MODULES_BREAKING_CHANGE"
+      stack: "Error: The node_modules structure at /Users/105065910/src/predix-ui.github.io/node_modules was changed. Try running the same command with the --force parameter.\n    at PnpmError (/usr/local/lib/node_modules/pnpm/lib/errorTypes.js:4:32)\n    at BreakingChangeError (/usr/local/lib/node_modules/pnpm/lib/api/checkCompatibility.js:92:23)\n    at ModulesBreakingChangeError (/usr/local/lib/node_modules/pnpm/lib/api/checkCompatibility.js:112:23)\n    at check (/usr/local/lib/node_modules/pnpm/lib/api/checkCompatibility.js:76:15)\n    at Object.checkCompatibility [as default] (/usr/local/lib/node_modules/pnpm/lib/api/checkCompatibility.js:20:5)\n    at Object.<anonymous> (/usr/local/lib/node_modules/pnpm/lib/api/getContext.js:32:45)\n    at next (native)\n    at fulfilled (/usr/local/lib/node_modules/pnpm/lib/api/getContext.js:4:58)"
