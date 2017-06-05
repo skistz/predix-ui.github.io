@@ -37,6 +37,16 @@
         "dataType":"guides",
         "repoName":"use-component-generator",
         "linkText":"Build your own components"
+      },
+      {
+        "linkText":"Vis Framework Guides",
+        "links":[
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-configuring-charts",
+            "linkText":"How to configure charts"
+          }
+        ]
       }
     ],
     "opened":true
@@ -595,6 +605,13 @@
               "viz",
               "framework"
             ]
+          },
+          {
+            "repoName":"vis-guides-redirect",
+            "dataType":"redirect",
+            "redirectToRepoName":"vis-guides-all",
+            "redirectToRepoType":"guides",
+            "linkText":"Vis Framework Guides"
           },
           {
             "repoName":"px-vis-parallel-coordinates",

@@ -222,7 +222,6 @@ Element providing sidebar for the predix ui website.
           //this will return null when it can't find anything, but if it does find something, we grab the array its returned, push that into another array, and return that.
           arr = this._findItemTrail(navArr[i].links, selectedItem, path);
           if (arr !== null) {
-            console.log('not null');
             navArr[i].path = path.substr(0,path.length - 7);
             arr.push(navArr[i]);
             //this is the final return, after the recursion is done
