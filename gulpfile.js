@@ -36,6 +36,9 @@ const del = require('del');
 const gitSync = require('gulp-git');
 const execSync = require('child_process').execSync;
 var request = require('request');
+const imagemin = require("imagemin");
+const webp = require("imagemin-webp");
+
 
 /*******************************************************************************
  * SETTINGS
@@ -338,3 +341,21 @@ gulp.task('default', ['localBuild']);
      templateFilePath: rootDir + '/sw.tmpl'
    }, callback);
  });
+
+gulp.task('compress-images', function(){
+  var outputFolder = "./img",            // Output folder
+  PNGImages = "./img/*.png",         // PNG images
+  JPEGImages = "./img/*.jpg";        // JPEG images
+
+  imagemin([PNGImages], outputFolder, {
+    plugins: [webp({
+      lossless: true // Losslessly encode images
+    })]
+  });
+
+  imagemin([JPEGImages], outputFolder, {
+    plugins: [webp({
+      quality: 65 // Quality setting from 0 to 100
+    })]
+  });
+});
