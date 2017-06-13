@@ -3,9 +3,9 @@
     siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
 -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
-<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
 <!--
 Element providing a sidebar solution in the predix UI website.
 
@@ -21,7 +21,7 @@ Element providing a sidebar solution in the predix UI website.
 @homepage index.html
 @demo demo.html
 -->
-<link rel="import" href="../../css/px-sb-list-styles.html">
+<link async rel="import" href="../../css/px-sb-list-styles.html">
 
 <dom-module id="px-sb-list">
   <template>
