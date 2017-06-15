@@ -345,9 +345,17 @@ gulp.task('default', ['localBuild']);
 gulp.task('compress-images', function(){
   var outputFolder = "./img",            // Output folder
   PNGImages = "./img/*.png",         // PNG images
-  JPEGImages = "./img/*.jpg";        // JPEG images
+  JPEGImages = "./img/*.jpg",        // JPEG images
+  outputVis = "./pages/guides/vis-resources",
+  PNGVis = "./pages/guides/vis-resources/*.png";
 
   imagemin([PNGImages], outputFolder, {
+    plugins: [webp({
+      lossless: true // Losslessly encode images
+    })]
+  });
+
+  imagemin([PNGVis], outputVis, {
     plugins: [webp({
       lossless: true // Losslessly encode images
     })]

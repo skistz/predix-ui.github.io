@@ -676,6 +676,15 @@ a.item__link {
   margin-right: 5px;
 }
 
+.vis__main {
+  max-width: 1600px;
+}
+
+.vis__snap-comment {
+  padding: 5px;
+  max-width: 300px;
+}
+
 // Trumps
 $inuit-enable-margins--tiny           : true;
 $inuit-enable-margins--small          : true;
