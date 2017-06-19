@@ -231,14 +231,15 @@ a component.
        * @return {String}
        */
       _findUrlByNameAndType: function(type, name, tail, useDarkTheme) {
+
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://' + document.location.hostname + '/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://' + document.location.hostname + '/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
