@@ -236,10 +236,10 @@ a component.
         if (type && type !== '') {
           knownTypes = {
             components: function(name) {
-              return 'https://' + document.location.hostname + '/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://' + document.location.hostname + '/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
