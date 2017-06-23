@@ -338,7 +338,9 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
-     templateFilePath: rootDir + '/sw.tmpl'
+     templateFilePath: rootDir + '/sw.tmpl',
+     navigateFallback: '/index.html',
+     navigateFallbackWhitelist: ['/index.html']     
    }, callback);
  });
 
