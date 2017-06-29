@@ -15,16 +15,15 @@
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
     <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
     <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
   </head>
-  <body class="body">
+  <body unresolved lass="body">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
 
     <template is="dom-bind">
       <section class="main u-mb++">
-        <p class="caps muted">Quick Start Guide</p>
         <h2 class="selected">Use Predix UI Components in your application</h2>
         <p>Predix UI Components are a set of user interface pieces that can be quickly snapped together to build an application. This guide covers the steps to install a single component (px-spinner).</p>
 
@@ -98,6 +97,6 @@
     </template>
 
     <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
+    <px-demo-footer></px-demo-footer>
   </body>
 </html>

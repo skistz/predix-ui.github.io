@@ -14,15 +14,14 @@
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
     <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
     <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
   </head>
-  <body class="body flex flex--col">
+  <body unresolved class="body flex flex--col">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
 
     <section class="main u-mb++ flex__item flex__item--msfix">
-      <p class="caps muted">Resource</p>
       <h2 class="selected">Build custom components with the generator</h2>
 
       <p>You can extend Predix UI to create custom components for any type of application. To speed things up, use the same generator tool that all Predix UI Components are built with to create your component scaffolding.</p>
@@ -34,7 +33,7 @@
     </section>
 
     <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
+    <px-demo-footer></px-demo-footer>
 
   </body>
 </html>

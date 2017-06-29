@@ -1,21 +1,21 @@
 <!-- Import Polymer -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
-<link rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../css/predix-ui-styles.html" />
 
 <!-- Import external dependencies -->
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
-<link rel="import" href="../../bower_components/app-route/app-route.html" />
-<link rel="import" href="../../bower_components/app-route/app-location.html" />
-<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
-<link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-<link rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+<link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
+<link async rel="import" href="../../bower_components/app-route/app-route.html" />
+<link defer rel="import" href="../../bower_components/app-route/app-location.html" />
+<link async rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+<link async rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+<link async rel="import" href="../../bower_components/px-toggle/px-toggle.html" />
 
 <!-- Import local dependencies -->
-<link rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
+<link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
 
 <dom-module id="px-catalog">
   <template>
@@ -65,7 +65,8 @@
         active-name="{{activeName}}"
         active-type="{{activeType}}"
         frame-url="{{frameUrl}}"
-        nav-JSON="{{navJSON}}">
+        nav-JSON="{{navJSON}}"
+        dark-theme="{{darkTheme}}">
     </px-catalog-router>
 
     <!-- App Header -->
@@ -76,13 +77,12 @@
       </span>
       <div class="flex__item flex flex--row flex--justify flex--middle">
         <div class="flex__item">
-          <a class="header-lnk" href="https://www.predix-ui.com">Predix UI Catalog</a>
+          <img src="../../img/px_logo.png" class="header-img" alt="Predix UI">
         </div>
-        <div>
-          <a class="header-lnk header-lnk--secondary" href="http://predix.io" target="_blank" rel="noopener">
-            <img class="header-img" src="../../img/Predix_small.png" alt="Predix Logo"/> <span class="dev-network">Developer Network</span>
-          </a>
-        </div>
+      </div>
+      <div class="flex flex--row flex--middle u-mr">
+        <small>Dark Theme</small>
+        <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}"></px-toggle>
       </div>
     </section>
 
@@ -103,7 +103,7 @@
             <px-spinner size="150"></px-spinner>
           </div>
         </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
+        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content">
           <p>Your browser does not support iframes.</p>
         </iframe>
       </div>
@@ -150,17 +150,6 @@
         },
 
         /**
-         * Updated to indicate if the browser is mobile-size. This is read only
-         * and cannot be set from the outside.
-         *
-         * @type {Boolean}
-         */
-        isMobile: {
-          type: Boolean,
-          value: true
-        },
-
-        /**
          * The navigation represented as JSON, loaded by an `iron-ajax` element
          * from the `navigation.json` file.
          *
@@ -188,11 +177,23 @@
         activeType: {
           type: String,
           observer: '_updateTitle'
-        }
-      },
+        },
 
-      attached: function() {
-        this.checkIfIsMobile();
+        /**
+         * Place to hang iframe loading poller
+         *
+         * @type {Object}
+         */
+        _loadingPoller: {
+          type: Object
+        },
+
+        /**
+         * Whether to enable the dark theme for each component.
+         */
+        darkTheme: {
+          type: Boolean
+        }
       },
 
       listeners: {
@@ -354,11 +355,36 @@
        * When the frame finishes loading, ensure the spinner is hidden.
        */
       _handleFrameLoad: function() {
+        var url = this.frameUrl;
+        var countNoOfTimesFailedToFindDemoEl = 0;
+        if(url.indexOf('/pages/') < 0){
+          clearInterval(this._loadingPoller);
+          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
+          function checkComponentDemoAttached() {
+            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
+            if(led && led.isAttached){
+              this._clearSpinner();
+              clearInterval(this._loadingPoller);
+            };
+            if(!led){
+              countNoOfTimesFailedToFindDemoEl += 1;
+              if (countNoOfTimesFailedToFindDemoEl === 10){
+                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
+                this._clearSpinner();
+                clearInterval(this._loadingPoller);
+              }
+            }
+          };
+        } else{
+          this._clearSpinner();
+        }
+      },
+
+      _clearSpinner: function(){
         if (this.get('spinnerIsActive') !== false) {
           this.set('spinnerIsActive', false);
         }
       },
-
       /**
        * When the `spinnerIsActive` property is updated, responds and attempts
        * to hide or show the spinner.
@@ -429,24 +455,6 @@
       _hideSpinner: function() {
         var spinner = this.$$('#spinner');
         spinner.classList.add('is__hidden');
-      },
-
-      /**
-       * Checks if we're on a mobile-size screen by inspecting the visibility of
-       * the menu icon, which we hide on small screens with CSS. Updates the
-       * `isMobile` property to keep track of state.
-       *
-       * @return {Boolean} - If `true`, indicates screen is mobile size.
-       */
-      checkIfIsMobile: function() {
-        var menu = document.getElementById('menu');
-        var screenIsMobile = getComputedStyle(menu, 'display').display !== 'none';
-        if (screenIsMobile) {
-          this.isMobile = true;
-          return true;
-        }
-        this.isMobile = false;
-        return false;
       }
     });
   </script>

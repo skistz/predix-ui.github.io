@@ -14,23 +14,22 @@
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
     <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
     <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
-    
+    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+
   </head>
-  <body class="body">
+  <body unresolved class="body">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
 
     <section class="main u-mb++">
-      <p class="caps muted">Introduction</p>
       <h2 class="selected">What is Predix UI?</h2>
       <p>Predix UI makes it easy to create powerful, user-friendly web applications with components that just work. The system is made up of three parts:</p>
 
       <ul>
         <li class="u-mv--">plug-and-play <strong>components</strong> that speed UI/UX development</li>
         <li class="u-mv--">composable and reusable <strong>CSS modules</strong> that establish consistent design</li>
-        <li class="u-mv--">a quick-start <strong>project seed</strong> with everything you need to start building now</li>
+        <li class="u-mv--">a quick-start <strong>web app</strong> with everything you need to start building now</li>
       </ul>
 
       <p>Used together, these tools help teams jumpstart the creation of Industrial Internet web applications running on top of Predix services and data.</p>
@@ -57,10 +56,10 @@
 
       <p><a target="_blank" href="https://www.predix-ui.com/#/guides/use-css/">Use the Predix UI CSS Starter Kit to create a consistent design base for your app.</a></p>
 
-      <h4 class="u-mt++ u-pt++">Predix UI Seed: App starter Kit that's ready for production.</h4>
+      <h4 class="u-mt++ u-pt++">Predix UI Web App Starter: App starter kit that's ready for production.</h4>
       <hr class="u--mt--">
 
-      <p>Predix UI Seed is a web application starter kit that can be copied, extended and deployed to production immediately. Everything you need is included:</p>
+      <p>Predix UI Web App Starter is a web application starter kit that can be copied, extended and deployed to production immediately. Everything you need is included:</p>
 
       <ul>
         <li class="u-mv--">A project structure to help teams write organized code using Polymer as an application framework</li>
@@ -69,21 +68,21 @@
         <li class="u-mv--">A Node/Express web server ready to connect to Predix services and APIs</li>
       </ul>
 
-      <p>Use the Predix UI Seed to jumpstart your next web application project and create a stable base that your team can extend and build on into the future.</p>
+      <p>Use the Predix UI Web App Starter to jumpstart your next web application project and create a stable base that your team can extend and build on into the future.</p>
 
-      <p><a target="_blank" href="https://github.com/predixdev/predix-seed">Open the Predix UI Seed on Github to see how its built, or to use it right now</a></p>
+      <p><a target="_blank" href="https://github.com/predixdev/predix-webapp-starter/">Open the Predix UI Web App Starter on Github to see how its built, or to use it right now</a></p>
 
       <h4 class="u-mt++ u-pt++">Build from scratch or use in an existing app. It's your choice.</h4>
       <hr class="u--mt--">
 
       <p>We know every team has a different workflow. We know each designer and developer likes different tools. That's why we built Predix UI to just work in your workflow and with your tools.</p>
 
-      <p>Developers have used Predix UI to save thousands of hours developing the UI base in huge Angular codebases. Some are using components inside React applications. Others have used the Predix UI Seed to build simple applications using just Polymer and vanilla JavaScript.</p>
+      <p>Developers have used Predix UI to save thousands of hours developing the UI base in huge Angular codebases. Some are using components inside React applications. Others have used the Predix UI Web App Starter to build simple applications using just Polymer and vanilla JavaScript.</p>
 
       <p><a target="_blank" href="https://www.predix-ui.com/#/guides/getting-started/">Start using Predix UI Components in your applications. See the Components Quick Start guide.</a></p>
     </section>
 
     <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
+    <px-demo-footer></px-demo-footer>
   </body>
 </html>

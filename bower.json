@@ -1,6 +1,6 @@
 {
   "name": "predix-ui",
-  "version": "0.2.13",
+  "version": "0.2.17",
   "main": [
     "index.html"
   ],
@@ -34,6 +34,8 @@
     "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
     "px-iconography-design": "^0.3.10",
     "px-demo-design": "^1.2.0",
-    "px-helpers-design": "^0.3.20"
+    "px-helpers-design": "^0.3.20",
+    "px-demo": "^1.5.10",
+    "px-toggle": "^1.0.5"
   }
 }

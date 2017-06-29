@@ -59,25 +59,32 @@ $inuit-list-inline-delimit-character: "| ";
 ************************************************************
 ***********************************************************/
 
-html,body{
-  font: GE Inspira Sans;
-  overflow: hidden;
-}
+$px-catalog-gray: rgb(234,234,234);
+$px-catalog-dark-gray: rgb(51,51,51);
+$px-catalog-light-gray: rgb(240,240,240);
+$px-catalog-blue: rgb(40,134,175);
+$px-catalog-blue--hover: rgb(58,180,212);
+$px-catalog-dark-blue: rgb(1, 41, 57);
+
 
 /*
  * Page wrapper
  */
 .wrapper {
   position: fixed;
-  top: 45px;
+  top: 80px;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /*
 * gray title bar
 */
 .gray-bar {
-  background-color: $gray9;
-  min-height: 45px;
+  background-color: $px-catalog-gray;
+  min-height: 80px;
   z-index: 2;
   position: fixed;
   top: 0;
@@ -85,6 +92,7 @@ html,body{
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
 }
+
 .header-img{
   height:18px;
   margin-bottom: -2px;
@@ -111,37 +119,37 @@ html,body{
 
 .menu{
   padding-right: $inuit-base-spacing-unit;
-  color: $gray3;
+  color: $px-catalog-dark-gray;
   cursor: pointer;
   &:link,
   &:visited,
   &:active,
   &:focus {
-    color: $gray3;
+    color: $px-catalog-dark-gray;
   }
   &:hover{
-    color: $gray3;
+    color: $px-catalog-dark-gray;
   }
   &:active {
-    color: $gray5;
+    color: $px-catalog-dark-gray;
   }
 }
 .menu_close-icon{
   padding-right: $inuit-base-spacing-unit;
-  color: $gray3;
+  color: $px-catalog-dark-gray;
   cursor: pointer;
   margin-top: -1px;
   &:link,
   &:visited,
   &:active,
   &:focus {
-    color: $gray3;
+    color: $px-catalog-dark-gray;
   }
   &:hover{
-    color: $gray5;
+    color: $px-catalog-dark-gray;
   }
   &:active {
-    color: $gray7;
+    color: $px-catalog-dark-gray;
   }
 }
 .is__hidden{
@@ -153,14 +161,13 @@ html,body{
 */
 .side-nav{
   min-width: 300px;
-  background: $gray8;
+  background: $px-catalog-dark-blue;
   color: $white;
   padding: 20px;
   padding-bottom: 60px;
   line-height: 300%;
   position: fixed;
   height: 100%;
-  // margin-top: 45px;
   z-index: 9999;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -234,16 +241,18 @@ html,body{
 * iframe sizing
 */
 .iframe__container{
+  display: flex;
   width: 100%;
-  height: 100vh;
   margin: 0px 0px 0px 0px;
-  position: fixed;
+  position: relative;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  flex-grow: 1;
 }
+
 .iframe{
+  min-height: 100%; //needed coz IE11 & edge iframes don't play nice with flex.
   border: none;
-  height: 97vh;
   overflow: hidden;
   padding:0px;
   margin: 0px;
@@ -268,7 +277,7 @@ html,body{
     display: inline;
   }
   .wrapper--flex{
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
     width: 100%;
   }
@@ -279,8 +288,7 @@ html,body{
     min-width: 300px;
     flex-basis: 350px;
     position: relative;
-    height: 100vh;
-    background: $gray8;
+    background: $px-catalog-dark-blue;
     overflow: auto;
     line-height: 200%;
   }
@@ -298,9 +306,25 @@ html,body{
     position: relative;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
   }
 
+}
+
+
+/*
+* mobile
+*/
+
+@media screen and (max-width: 719px) {
+
+  .header-img{
+    height: 14px;
+    margin-bottom: -4px;
+  }
+
+  .menu {
+    padding-right: $inuit-base-spacing-unit--tiny;
+  }
 }
 
 /***********************************************************
@@ -329,7 +353,7 @@ html,body{
   min-height: 100%;
   font-size: 1em;
   line-height: 1.25;
-  background-color: #fff;
+  background-color: $white;
   color: #000;
   overflow-y: scroll;
   -webkit-text-size-adjust: 100%;
@@ -399,7 +423,7 @@ img {
 hr {
   height: 0;
   border: 0;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid $px-catalog-gray;
   box-sizing: content-box;
   clear: both;
   margin: 2rem 0 2rem 0;
@@ -413,6 +437,30 @@ hr {
 
 small {
   font-size: 80%;
+}
+
+.btn--blue {
+  display: inline-block;
+  margin: 0;
+  padding: .625rem 1rem;
+  transition: all .5s;
+  border-radius: 3px;
+  color: $white;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1em;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  vertical-align: middle;
+  border: 1px solid $px-catalog-blue;
+  background-color: $px-catalog-blue;
+
+  &:hover {
+    border: 1px solid $px-catalog-blue--hover;
+    background-color: $px-catalog-blue--hover;
+  }
 }
 
 .text--center {
@@ -429,10 +477,6 @@ small {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6rem;
-}
-
-.text--gray {
-  color: #a9a9a9;
 }
 
 .pull-left {
@@ -470,7 +514,7 @@ a.item__link {
 }
 
 .embedded a,.embedded a:link,.embedded a:visited {
-  color: #005eb8;
+  color: $px-catalog-blue;
 }
 
 .embedded a:active,.embedded a:hover {
@@ -478,24 +522,15 @@ a.item__link {
 }
 
 .embedded a:hover {
-  color: #005eb8;
+  color: $px-catalog-blue--hover;
 }
 
 .embedded a.no-border {
   border: 0;
 }
 
-.embedded a.gray {
-  color: #d8d8d8;
-}
-
-.embedded a.darker {
-  color: #d1d0d8;
-}
-
 .icon {
-  height: 100px;
-  margin: 3%;
+  height: 50px;
 }
 
 .icon--small {
@@ -513,15 +548,20 @@ a.item__link {
 }
 
 .hero {
-  background-image: url('../img/pattern_hero.jpg');
-  background-repeat: repeat;
+  background-image: url('../img/px_banner.png');
+  background-repeat: no-repeat;
   text-align: left;
   color: white;
+  background-size: 1200px 350px;
+  background-color: $px-catalog-dark-blue;
   padding: 5%;
+  height: 350px;
 }
 
 .hero-header {
   vertical-align: top;
+  line-height: 1.5;
+  max-width: 500px;
 }
 
 .hero-logo {
@@ -531,7 +571,7 @@ a.item__link {
 .main {
   width: 100%;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: $white;
   padding: 5% 5% 2% 5%;
   overflow: hidden;
 }
@@ -550,13 +590,8 @@ a.item__link {
 }
 
 .halves {
-  margin-bottom: 10%;
   display: inline-block;
-  vertical-align: middle;
-}
-
-.halves img {
-  width: 100%;
+  vertical-align: top;
 }
 
 .thirds {
@@ -569,7 +604,7 @@ a.item__link {
 }
 
 .subHeader {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 400;
 }
 
@@ -601,7 +636,7 @@ a.item__link {
 
   .halves {
     width: 44%;
-    margin: 0 5% 10% 0;
+    margin: 0 5% 2% 0;
   }
 
   .thirds {
@@ -627,6 +662,26 @@ a.item__link {
 
 .container {
   padding: 20px;
+}
+
+.vis__horizontal-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vis__code-snippet {
+  max-width: 400px;
+  flex: 2 1 auto;
+  margin-right: 5px;
+}
+
+.vis__main {
+  max-width: 1600px;
+}
+
+.vis__snap-comment {
+  padding: 5px;
+  max-width: 300px;
 }
 
 // Trumps

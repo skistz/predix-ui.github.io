@@ -3,9 +3,9 @@
     siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
 -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
-<link rel="import" href="../../bower_components/px-polymer-font-awesome/polymer-font-awesome.html" />
-<link rel="import" href="px-sb-list.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link async rel="import" href="../../bower_components/px-polymer-font-awesome/polymer-font-awesome.html" />
+<link async rel="import" href="px-sb-list.html" />
 <!--
 Element providing sidebar for the predix ui website.
 
@@ -20,7 +20,7 @@ Element providing sidebar for the predix ui website.
 @homepage index.html
 @demo demo.html
 -->
-<link rel="import" href="../../css/px-sb-styles.html">
+<link async rel="import" href="../../css/px-sb-styles.html">
 
 <dom-module id="px-sb">
   <template>
@@ -222,7 +222,6 @@ Element providing sidebar for the predix ui website.
           //this will return null when it can't find anything, but if it does find something, we grab the array its returned, push that into another array, and return that.
           arr = this._findItemTrail(navArr[i].links, selectedItem, path);
           if (arr !== null) {
-            console.log('not null');
             navArr[i].path = path.substr(0,path.length - 7);
             arr.push(navArr[i]);
             //this is the final return, after the recursion is done

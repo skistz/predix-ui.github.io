@@ -34,7 +34,11 @@ const chmod = require('gulp-chmod');
 const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
+const execSync = require('child_process').execSync;
 var request = require('request');
+const imagemin = require("imagemin");
+const webp = require("imagemin-webp");
+
 
 /*******************************************************************************
  * SETTINGS
@@ -62,7 +66,7 @@ const browserSyncOptions = {
   server: ['./', 'bower_components']
 };
 
-var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'CNAME'];
+var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'CNAME', 'sw.tmpl'];
 
 /*******************************************************************************
  * BASIC UTILITIES
@@ -140,44 +144,6 @@ gulp.task('bump:major', function(){
 });
 
 /*******************************************************************************
- * COPY FILES INTO ROOT
- * This task loop through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
- * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
- * files/folders:
- * index.html
- * the pages folder (html files only)
- * the elements folder (html and json)
- * the css folder
- * the img folder
- * the type folder
- * the bower_components
- ******************************************************************************/
-
-gulp.task('copyFilesIntoRoot',function() {
-    //the full array of what we want to end up in the root folder/
-   let copyFrom = ['./dist/index.html', './dist/favicon.ico', './dist/manifest.json', './dist/pages/**/*.html', './dist/elements/**/*.{html,json}', './dist/service-worker.js', './dist/type/**/*.*', './dist/bower_components/**/*.*', './dist/img/**/*.*', './dist/css/**/*.*','CNAME', 'sw.tmpl'];
-
-   //loop through our array to add each stream into the mergeStream process.
-   copyFrom.forEach((fileOrFolder) => {
-     let current;
-     //do we have globbing? if not, just use the file/folder name.
-     if (fileOrFolder.indexOf('*') > -1) {
-      let firstIndex = fileOrFolder.indexOf('/');
-      let copyName = fileOrFolder.substr(0, firstIndex);
-      current = gulp.src(['./dist/' + copyName + '/**/*.*']).pipe(gulp.dest('./' + copyName));
-     } else {
-       current = gulp.src(['./dist/' + fileOrFolder]).pipe(gulp.dest('.'));
-     }
-     //add the current file/folder to the stream
-     stream.add(current);
-   });
-
-   //and make sure it's not empty before we return it.
-   return stream.isEmpty() ? null : stream;
-});
-
-
-/*******************************************************************************
  * COPY FILES INTO DIST
  * This task loops through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
  * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
@@ -229,23 +195,12 @@ gulp.task('serve', function() {
 });
 
 /*******************************************************************************
- * DELETE ALL FILES FOR PRODUCTION
- *
- * This removes all the files except the dist folder, cleaning up the way for
- * the orphan gh-pages branch
- ******************************************************************************/
-gulp.task('deleteFiles', function() {
-    return del(['./**/*.*', './.gitignore', '!./manifest.json', '!./type/**/*.*', '!.git/**/*.*', '!./index.html', '!./favicon.ico', '!./pages/**/*.html', '!./elements/**/*.{html,json}', '!./service-worker.js', '!./sw.tmpl', '!./bower_components/**/*.*', '!./img/**/*.*', '!./css/**/*.*', '!./node_modules/**/*.*']);
-});
-
-/*******************************************************************************
  * GIT PRODUCTION BUILD PIPELINE
  *
  * this task creates an orphan git branch, and does a git add/commit/push
  ******************************************************************************/
 
  gulp.task('gitStuff', function() {
-   var addOptions = {quiet: false, maxBuffer: Infinity};
 
    gitSync.checkout('master',{args : '--orphan', cwd : '.'}, (err) => {
      if (err) {
@@ -253,24 +208,33 @@ gulp.task('deleteFiles', function() {
      }
      console.log('finished checkout successfully');
      //set the source to our working directory and exclude node_modules
-     return gulp.src(src, {cwd:'.'}) //this line grabs everything and excludes the node_modules folder
-         .pipe(gitSync.add(addOptions)) //git add
-         .on('error', (err) => {
-           console.log('adding files to git');
-           console.log(err);
-          })
-         .pipe(gitSync.commit('master rebuild', {maxBuffer: 'infinity'})) //git commit
-         .on('error', (err) => {
-           console.log('git commit error:');
-           console.log(err);
-          })
-         .on('end', () => { //this is the only way i foudn to run this synchronously.
-           gitSync.push('origin', 'master', {cwd: '.', args: "--force"}, (errPush) => {
-             if (errPush) {
-               console.log('push error: ' + errPush);
-             }
-           });
-         });
+
+     execSync(`rm -f .gitignore`);
+     execSync(`touch .gitignore`);
+     const gitIgnore = [
+        'node_modules/',
+        'caddyfile',
+        'cert.crt',
+        'cert.key',
+        'HISTORY.md',
+        'LICENSE.md',
+        'README.md',
+        'bower.json',
+        'gulpfile.js',
+        'id_rsa.enc',
+        'package.json',
+        'sass/*.*',
+        'yarn.lock'];
+
+    gitIgnore.forEach((val) =>{
+      execSync(`echo "${val}" >> .gitignore`);
+    });
+
+     execSync(`git add --all`);
+     execSync(`git commit -m 'master rebuild'`);
+     execSync(`git push origin master --force`);
+
+
      });
  });
 
@@ -314,7 +278,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'deleteFiles', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 gulp.task('default', ['localBuild']);
@@ -344,6 +308,7 @@ gulp.task('default', ['localBuild']);
        console.log("isTravis = " + isTravis()  );
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
      staticFileGlobs: [rootDir + '/index.html',
+                       rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
                        rootDir + '/pages/**',
@@ -351,6 +316,8 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/css/**',
                        rootDir + '/bower_components/font-awesome/fonts/fontawesome*',
                        rootDir + '/bower_components/px-theme/**/*.html',
+                       rootDir + '/bower_components/px-demo/*.html',
+                       rootDir + '/bower_components/px-demo/css/*.html',
                        rootDir + '/bower_components/px-spinner/**/*.html',
                        rootDir + '/bower_components/polymer/polymer*.html',
                        rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
@@ -367,9 +334,38 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
-                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
+                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html',
+                       rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
-     templateFilePath: rootDir + '/sw.tmpl'
+     templateFilePath: rootDir + '/sw.tmpl',
+     navigateFallback: '/index.html',
+     navigateFallbackWhitelist: ['/index.html']
    }, callback);
  });
+
+gulp.task('compress-images', function(){
+  var outputFolder = "./img",            // Output folder
+  PNGImages = "./img/*.png",         // PNG images
+  JPEGImages = "./img/*.jpg",        // JPEG images
+  outputVis = "./pages/guides/vis-resources",
+  PNGVis = "./pages/guides/vis-resources/*.png";
+
+  imagemin([PNGImages], outputFolder, {
+    plugins: [webp({
+      lossless: true // Losslessly encode images
+    })]
+  });
+
+  imagemin([PNGVis], outputVis, {
+    plugins: [webp({
+      lossless: true // Losslessly encode images
+    })]
+  });
+
+  imagemin([JPEGImages], outputFolder, {
+    plugins: [webp({
+      quality: 65 // Quality setting from 0 to 100
+    })]
+  });
+});

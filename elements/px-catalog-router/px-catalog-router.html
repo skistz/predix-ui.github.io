@@ -9,12 +9,12 @@ under which the software has been supplied.
 -->
 
 <!-- Import Polymer -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 <!-- Import Promise polyfill from PolymerLabs team. We need to use this one
      because we also use `iron-ajax` which uses with polyfill at the window
      level. Placing this here in case `iron-ajax` is removed as a dependency
      in the future to ensure we don't lose Promise definition. -->
-<link rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
+<link async rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 
 <!--
 `px-catalog-router` is a bespoke router that handles URLs for the Predix UI
@@ -25,7 +25,7 @@ or handles necessary redirects.
 
 1. Redirect `/#/modules/:name` to the correct type
 
-When a URL like `/#/modules/px-context-browser` is recieved, redirects it to
+When a URL like `/#/modules/px-context-browser` is received, redirects it to
 the correct path with the module's type. In this case, the browser would be
 redirected to `/#/components/px-context-browser`, because px-context-browser is
 a component.
@@ -150,6 +150,13 @@ a component.
         navJson: {
           type: Object,
           value: function(){ return {}; }
+        },
+
+        /**
+         * Whether to enable the dark theme for each component.
+         */
+        darkTheme: {
+          type: Boolean
         }
       },
 
@@ -157,7 +164,7 @@ a component.
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
         '_redirectModulePathURLs(appPath, appPath.*)',
         '_handleActiveChange(activeName)',
-        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*)',
+        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*, darkTheme)',
         '_syncPathToActiveAttrs(appPath, appPath.*)'
       ],
 
@@ -231,6 +238,7 @@ a component.
        * @return {String}
        */
       _findUrlByNameAndType: function(type, name, tail, useDarkTheme) {
+
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
@@ -238,7 +246,7 @@ a component.
               return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
@@ -257,10 +265,10 @@ a component.
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-            // If we're using dark theme, and URL has .html in it, replace with -dark.html
-            if (useDarkTheme && url.slice(-5) === '.html') {
-              // turns `/path/foo.html` into `/path/foo-dark.html`
-              url = url.slice(0,-5) + '-dark.html';
+            // If we're using dark theme, and URL has .html in it, replace with -dark-theme.html
+            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css')) {
+              // turns `/path/foo.html` into `/path/foo-dark-theme.html`
+              url = url.slice(0,-5) + '-dark-theme.html';
             }
             return url;
           }
@@ -285,7 +293,7 @@ a component.
               name = appPath.name,
               frameUrl,
               tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail, // remove beginning slash
-              isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
+              isDarkTheme = this.darkTheme;
 
           if (type || name) {
             frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);

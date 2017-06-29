@@ -1,3 +1,19 @@
+v0.2.17
+==================
+* Replace references to Predix UI Seed with Predix UI Web App Starter
+
+v0.2.16
+==================
+* Perf tweaks
+* Design changes to make it look like predix.io
+* Remove px-catalog-footer
+* Add px-demo
+* Fix gulp git build to allow us to check in more assets
+
+v0.2.14
+==================
+* removed px-input-group-design
+
 v0.2.13
 ==================
 * removed px-chart
