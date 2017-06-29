@@ -66,10 +66,6 @@ $px-catalog-blue: rgb(40,134,175);
 $px-catalog-blue--hover: rgb(58,180,212);
 $px-catalog-dark-blue: rgb(1, 41, 57);
 
-html,body{
-  font: GE Inspira Sans;
-  overflow: hidden;
-}
 
 /*
  * Page wrapper
@@ -96,6 +92,7 @@ html,body{
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
 }
+
 .header-img{
   height:18px;
   margin-bottom: -2px;
@@ -164,7 +161,7 @@ html,body{
 */
 .side-nav{
   min-width: 300px;
-  background: $px-catalog-light-gray;
+  background: $px-catalog-dark-blue;
   color: $white;
   padding: 20px;
   padding-bottom: 60px;
@@ -254,6 +251,7 @@ html,body{
 }
 
 .iframe{
+  min-height: 100%; //needed coz IE11 & edge iframes don't play nice with flex.
   border: none;
   overflow: hidden;
   padding:0px;
@@ -290,8 +288,7 @@ html,body{
     min-width: 300px;
     flex-basis: 350px;
     position: relative;
-    height: 100vh;
-    background: $px-catalog-light-gray;
+    background: $px-catalog-dark-blue;
     overflow: auto;
     line-height: 200%;
   }
@@ -665,6 +662,26 @@ a.item__link {
 
 .container {
   padding: 20px;
+}
+
+.vis__horizontal-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vis__code-snippet {
+  max-width: 400px;
+  flex: 2 1 auto;
+  margin-right: 5px;
+}
+
+.vis__main {
+  max-width: 1600px;
+}
+
+.vis__snap-comment {
+  padding: 5px;
+  max-width: 300px;
 }
 
 // Trumps

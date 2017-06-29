@@ -3,8 +3,9 @@
     siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
 -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
 <!--
 Element providing a sidebar solution in the predix UI website.
 
@@ -144,14 +145,21 @@ Element providing a sidebar solution in the predix UI website.
           type = target.getAttribute('data-type'),
           path = (target.itemPath) ? target.itemPath : (target.getAttribute('item-path') === "0") ? "0" : '';
 
-
-        this.set('selected', 'nav.' + path);
-        if (this.searchKeyword) {
-          this.set('selectedElem', target);
+        if (type === 'redirect') {
+          var domRepeat = Polymer.dom(this.root).querySelector('template[is=dom-repeat]');
+          var el = Polymer.dom(evt).rootTarget;
+          var elSource = domRepeat.modelForElement(el).item;
+          window.location = '/#/' + elSource.redirectToRepoType + '/' + elSource.redirectToRepoName + '/';
         }
+        else {
+          this.set('selected', 'nav.' + path);
+          if (this.searchKeyword) {
+            this.set('selectedElem', target);
+          }
 
-        this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
-        evt.preventDefault();
+          this.fire('px-sb-list-selected-item-changed', {selectedItem: repoName, itemType: type, path:path});
+          evt.preventDefault();
+        }
     },
     /*
     *

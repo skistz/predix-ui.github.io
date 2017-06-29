@@ -4,18 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#2D2D30">
+    <meta name="google-site-verification" content="ZAlgMkIFy6EuAkUdpvdFDOiPROG2FkqroFQ78Gry--s" />
     <title>Predix UI</title>
 
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 
-    <link rel="preload" href="type/GEInspiraSans-Regular-v01.woff" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="elements/px-catalog/navigation.json" type="application/json" crossorigin>
-
+    <link defer rel="preload" href="type/GEInspiraSans-Regular-v01.woff" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com/">
     <!--
       Fast bootstrapping of the webcomponents-lite library. Only loads the library
       if the browser doesn't natively support web components.
     -->
-    <script type="text/javascript">
+    <script defer type="text/javascript">
     (function() {
       'use strict';
 
@@ -58,8 +58,8 @@
     <!--
       Load the app icon and manifest for Android devices.
     -->
-    <link defer rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link defer rel="manifest" href="manifest.json">
+    <link async rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link async rel="manifest" href="manifest.json">
 
     <!--
       Basic page styles.
@@ -128,7 +128,7 @@
       Attempt to register a service worker with the correct scope. Fail quietly
       if this doesn't work, but log the result to the console.
     -->
-    <script type="text/javascript">
+    <script async type="text/javascript">
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
           // Registration was successful

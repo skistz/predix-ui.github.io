@@ -1,20 +1,21 @@
 <!-- Import Polymer -->
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
-<link rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../css/predix-ui-styles.html" />
 
 <!-- Import external dependencies -->
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
-<link rel="import" href="../../bower_components/app-route/app-route.html" />
-<link rel="import" href="../../bower_components/app-route/app-location.html" />
-<link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-<link rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+<link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
+<link async rel="import" href="../../bower_components/app-route/app-route.html" />
+<link defer rel="import" href="../../bower_components/app-route/app-location.html" />
+<link async rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+<link async rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
+<link async rel="import" href="../../bower_components/px-toggle/px-toggle.html" />
 
 <!-- Import local dependencies -->
-<link rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
+<link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
 
 <dom-module id="px-catalog">
   <template>
@@ -64,7 +65,8 @@
         active-name="{{activeName}}"
         active-type="{{activeType}}"
         frame-url="{{frameUrl}}"
-        nav-JSON="{{navJSON}}">
+        nav-JSON="{{navJSON}}"
+        dark-theme="{{darkTheme}}">
     </px-catalog-router>
 
     <!-- App Header -->
@@ -77,6 +79,10 @@
         <div class="flex__item">
           <img src="../../img/px_logo.png" class="header-img" alt="Predix UI">
         </div>
+      </div>
+      <div class="flex flex--row flex--middle u-mr">
+        <small>Dark Theme</small>
+        <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}"></px-toggle>
       </div>
     </section>
 
@@ -97,7 +103,7 @@
             <px-spinner size="150"></px-spinner>
           </div>
         </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]">
+        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content">
           <p>Your browser does not support iframes.</p>
         </iframe>
       </div>
@@ -180,6 +186,13 @@
          */
         _loadingPoller: {
           type: Object
+        },
+
+        /**
+         * Whether to enable the dark theme for each component.
+         */
+        darkTheme: {
+          type: Boolean
         }
       },
 
