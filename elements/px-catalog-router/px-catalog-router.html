@@ -25,7 +25,7 @@ or handles necessary redirects.
 
 1. Redirect `/#/modules/:name` to the correct type
 
-When a URL like `/#/modules/px-context-browser` is recieved, redirects it to
+When a URL like `/#/modules/px-context-browser` is received, redirects it to
 the correct path with the module's type. In this case, the browser would be
 redirected to `/#/components/px-context-browser`, because px-context-browser is
 a component.
@@ -150,6 +150,13 @@ a component.
         navJson: {
           type: Object,
           value: function(){ return {}; }
+        },
+
+        /**
+         * Whether to enable the dark theme for each component.
+         */
+        darkTheme: {
+          type: Boolean
         }
       },
 
@@ -260,8 +267,8 @@ a component.
             var url = knownTypes[type](name);
             // If we're using dark theme, and URL has .html in it, replace with -dark.html
             if (useDarkTheme && url.slice(-5) === '.html') {
-              // turns `/path/foo.html` into `/path/foo-dark.html`
-              url = url.slice(0,-5) + '-dark.html';
+              // turns `/path/foo.html` into `/path/foo-dark-theme.html`
+              url = url.slice(0,-5) + '-dark-theme.html';
             }
             return url;
           }
@@ -286,7 +293,7 @@ a component.
               name = appPath.name,
               frameUrl,
               tail = (appTail.substring(0,1) === '/') ? appTail.substring(1) : appTail, // remove beginning slash
-              isDarkTheme = (this.queryParams.theme && this.queryParams.theme === 'dark') ? true : false;
+              isDarkTheme = this.darkTheme;
 
           if (type || name) {
             frameUrl = this._findUrlByNameAndType(type, name, tail, isDarkTheme);

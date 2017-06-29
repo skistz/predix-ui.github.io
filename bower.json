@@ -35,6 +35,7 @@
     "px-iconography-design": "^0.3.10",
     "px-demo-design": "^1.2.0",
     "px-helpers-design": "^0.3.20",
-    "px-demo": "^1.5.10"
+    "px-demo": "^1.5.10",
+    "px-toggle": "^1.0.5"
   }
 }
