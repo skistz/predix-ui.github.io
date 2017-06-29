@@ -265,8 +265,8 @@ a component.
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-            // If we're using dark theme, and URL has .html in it, replace with -dark.html
-            if (useDarkTheme && url.slice(-5) === '.html') {
+            // If we're using dark theme, and URL has .html in it, replace with -dark-theme.html
+            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css')) {
               // turns `/path/foo.html` into `/path/foo-dark-theme.html`
               url = url.slice(0,-5) + '-dark-theme.html';
             }

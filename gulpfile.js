@@ -334,7 +334,8 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
-                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
+                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html',
+                       rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
      templateFilePath: rootDir + '/sw.tmpl',
