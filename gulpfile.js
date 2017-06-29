@@ -213,7 +213,6 @@ gulp.task('serve', function() {
      execSync(`touch .gitignore`);
      const gitIgnore = [
         'node_modules/',
-        'dist/',
         'caddyfile',
         'cert.crt',
         'cert.key',
@@ -340,7 +339,7 @@ gulp.task('default', ['localBuild']);
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
      templateFilePath: rootDir + '/sw.tmpl',
      navigateFallback: '/index.html',
-     navigateFallbackWhitelist: ['/index.html']     
+     navigateFallbackWhitelist: ['/index.html']
    }, callback);
  });
 
