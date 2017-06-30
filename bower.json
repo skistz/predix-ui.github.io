@@ -21,6 +21,7 @@
     "iron-collapse": "PolymerElements/iron-collapse#^1.2.0",
     "px-list-inline-design": "^0.3.3",
     "px-code-design": "^1.1.5",
+    "px-modal": "^1.4.10",
     "px-typography-design": "^1.2.6",
     "px-colors-design": "^0.3.8",
     "px-forms-design": "^1.2.3",
@@ -35,6 +36,7 @@
     "px-iconography-design": "^0.3.10",
     "px-demo-design": "^1.2.0",
     "px-helpers-design": "^0.3.20",
-    "px-demo": "^1.5.10"
+    "px-demo": "^1.5.10",
+    "px-vis-timeseries": "^2.0.0"
   }
 }

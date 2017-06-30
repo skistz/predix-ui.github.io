@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en" class="embedded">
+  <head>
+    <title>Predix UI</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+    with industrial machines through analytics and data for better business outcomes." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../bower_components/polymer/polymer.html" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="import" href="../../css/predix-ui-styles.html"/>
+    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+    <link rel="import" href="../../bower_components/px-vis-timeseries/px-vis-timeseries.html">
+    <link rel="import" href="../../bower_components/px-modal/px-modal.html">
+    <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+  </head>
+  <body class="body">
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <template is="dom-bind">
+      <section class="main u-mb++ vis__main">
+
+        <h5>Last Updated June 29, 2017</h5>
+        <h2 class="selected">TOOLBAR</h2>
+
+        <iron-ajax
+          url="./vis-resources/toolbar_data.json"
+          handle-as="json"
+          auto
+          last-response="{{data}}">
+        </iron-ajax>
+        <px-modal id="modal" btn-modal-negative="Cancel"></px-modal>
+        <div id="holder" style="height: 500px">
+          <px-vis-timeseries
+            id="chart"
+            chart-data="[[data]]"
+            render-to-canvas
+            series-config='{
+              "y0":{"x":"timeStamp","y":"y0","type":"line","yAxisUnit":"u","xAxisUnit":"u","markerSize":64,"markerSymbol":"circle","markerScale":1,"markerFillOpacity":0.6,"markerStrokeOpacity":1},
+              "y1":{"x":"timeStamp","y":"y1","type":"line","yAxisUnit":"u","xAxisUnit":"u","markerSize":64,"markerSymbol":"circle","markerScale":1,"markerFillOpacity":0.6,"markerStrokeOpacity":1},
+              "y2":{"x":"timeStamp","y":"y2","type":"line","yAxisUnit":"u","xAxisUnit":"u","markerSize":64,"markerSymbol":"circle","markerScale":1,"markerFillOpacity":0.6,"markerStrokeOpacity":1},
+              "y3":{"x":"timeStamp","y":"y3","type":"line","yAxisUnit":"u","xAxisUnit":"u","markerSize":64,"markerSymbol":"circle","markerScale":1,"markerFillOpacity":0.6,"markerStrokeOpacity":1}}'
+            margin='{"left":0,"right":0,"top":0,"bottom":0}'
+          ></px-vis-timeseries>
+        </div>
+
+      </section>
+    </template>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </body>
+  <script>
+     document.addEventListener('WebComponentsReady', function() {
+
+       var modal = document.getElementById('modal'),
+           holder = document.getElementById('holder'),
+           chart = document.getElementById('chart'),
+            modalConfig = {
+              "config": {
+                "advancedZoom": true,
+                "pan": true,
+                "tooltip": true
+              }
+            },
+            expandConfig = {
+              "config": {
+                "expand": {
+                  "icon": "fa-arrows-alt",
+                  "onClick": function() {
+                        //remove chart from current page
+                        holder.removeChild(this);
+                        //set new toolbar config for interaction
+                        this.set('toolbarConfig', modalConfig);
+                        //append chart in modal
+                        Polymer.dom(modal).appendChild(this);
+                        //open modal
+                        modal.modalButtonClicked();
+                    }
+                }
+              }
+            };
+
+           chart.set('toolbarConfig', expandConfig);
+
+           modal.addEventListener('btnModalNegativeClicked', function() {
+             //remove chart from modal
+             Polymer.dom(modal).removeChild(chart);
+             //restore "expand" toolbar config
+             chart.set('toolbarConfig', expandConfig);
+             //ensure we "clean" the sub row
+             chart.set('toolbarSubConfig', {});
+             //move chart back to the page
+             holder.appendChild(chart);
+           });
+
+     });
+  </script>
+</html>
