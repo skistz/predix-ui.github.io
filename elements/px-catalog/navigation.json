@@ -55,6 +55,11 @@
             "dataType":"guides",
             "repoName":"vis-guides-introducing-web-workers",
             "linkText":"Introducing web workers"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-crosshair",
+            "linkText":"Introducing crosshair"
           }
         ]
       }

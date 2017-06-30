@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en" class="embedded">
+  <head>
+    <title>Predix UI</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+    with industrial machines through analytics and data for better business outcomes." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../bower_components/polymer/polymer.html" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="import" href="../../css/predix-ui-styles.html"/>
+    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+  </head>
+  <body unresolved class="body">
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <template is="dom-bind">
+      <section class="main u-mb++ vis__main">
+
+        <h5>Last Updated June 30, 2017</h5>
+        <h2 class="selected">Introducing the Crosshair Feature</h2>
+
+        <p>
+          Starting with version 2.0.0 of px-vis, the new crosshair feature became available. Crosshair provides users the ability to highlight corresponding data points, i.e. points which share the same timestamp - though not necessarily the same exact dataset - across multiple charts on a page.
+        </p>
+
+        <p>This article will walk you through the crosshair feature and explain how to add it to your charts and app.</p>
+
+        <p>For the demo of crosshair, go here: <a href="https://www.predix-ui.com/px-vis-demos/px-vis-demos/crosshair.html" target="_blank">https://www.predix-ui.com/px-vis-demos/px-vis-demos/crosshair.html</a></p>
+
+        <h4 class="u-pt u-mb++">Demo walkthrough and features</h4>
+        <p>
+          The crosshair functionality is triggered by selecting the crosshair icon from the chart toolbar. When in crosshair mode, as the user hovers over a point on a given chart, corresponding data point(s) on the rest of the charts on the page will be highlighted. You’ll also notice that the opacity of the charts’ series changes to indicate corresponding data points are found in other charts.
+          <ul>
+            <li>If a chart’s opacity has changed, but no highlighted data point is visible, try panning or zooming out, as the corresponding data points might be outside of the chart viewing range.</li>
+            <li>If a chart’s opacity doesn’t change at all, it indicates that no corresponding data point was found on that specific chart.</li>
+          </ul>
+        </p>
+
+        <br />
+        <div class="flex flex--col vis__horizontal-center" style="max-width: 800px">
+          <picture>
+            <source srcset="./vis-resources/crosshair.webp" type="image/webp">
+            <source srcset="./vis-resources/crosshair.png" type="image/jpeg">
+            <img src="./vis-resources/crosshair.png" alt="wrench">
+          </picture>
+          <h5>Crosshair feature in action, highlighting corresponding data on adjacent charts</h5>
+        </div>
+        <br />
+
+        <p>
+          The demo also provides the ability to freeze the crosshair view by clicking on the chart while hovering. Once frozen, the corresponding data points across all other charts will continue to be highlighted, and the crosshair icon in their toolbars will switch to a lock icon.  When in frozen view, you can perform other toolbar actions, such as hovering to see your data in the register, and panning or zooming to get a better view of your highlighted data. Clicking on the lock icon will un-freeze the charts and enable the crosshair search again.
+        </p>
+
+        <p>
+          Thanks to the new quadtree feature, the crosshair mode can use different types of spatial search to generate the resulting dataset of points near your cursor. These options are also available for the tooltip search in the XY and  Polar charts and include:
+          <ul>
+            <li><span class="weight--semibold">Closest point/closest timestamp:</span> searches for the closest datapoint to the cursor and returns the  corresponding data points within that chart. These values are displayed in the register and if date-time is displayed, the timestamp corresponds to all of the displayed values. Similarly, for crosshair, this will yield one set of data points with the same timestamp.</li>
+            <li><span class="weight--semibold">Point per series:</span> searches for the closest point for each series in the chart. This may mean that multiple datasets are returned, each containing a point that is closest to the cursor for that series. The values displayed in the register are the closest point for each series. The timestamp shown in the register only represents the timestamp of the absolute closest point, as represented by the color bar adjacent to the timestamp. For crosshair, you can end up with multiple timestamps, and thus, multiple sets of data highlighted on connected charts. </li>
+            <li><span class="weight--semibold">All in area:</span> similar to "point per series," this search type will return multiple sets of data adjacent to the cursor. The differences are, first, that it will return all the data within the search radius and, second, it will not return any datasets wholly outside of that radius. The dataset with the point closest to the cursor will be displayed in the register, and the timestamp will represent that set, similar to "closest point." For crosshair, multiple timestamps will be returned and multiple sets of data will be highlighted on the connected charts. </li>
+          </ul>
+        </p>
+        <p>
+          In addition to these new search types, a search radius can also be specified. While required for "all in area" to function, it can optionally be applied to the other search types also, limiting or expanding how far from the cursor the search will go.
+          <ul>
+            <li><span class="weight--semibold">Radius up:</span>increases the search radius (+5 each click)</li>
+            <li><span class="weight--semibold">Radius down:</span>decreases the search radius (-5 each click)</li>
+          </ul>
+        </p>
+
+        <h4 class="u-pt u-mb++">How to set up your own crosshair charts</h4>
+        <p>
+          The demo shows off several crosshair features, and can be used as a starting point for setting up your own crosshair charts. To do so, follow the guide below and check out the source code of the demo. You can find the source code here: <a href="https://github.com/PredixDev/px-vis-demos/blob/master/crosshair.html">https://github.com/PredixDev/px-vis-demos/blob/master/crosshair.html</a>
+        </p>
+
+        <h3>Relevant properties</h3>
+
+        <h3>crosshairData</h3>
+        <p>
+          The chart property which transmits the crosshair data from one chart to another. You shouldn't need to use the internal structure of this object, but it consists of two keys:
+          <ul>
+            <li><span class="weight--semibold">rawData:</span> the full data retrieved, extracted from <code class="code code--inline">chartData</code>. If all charts use the same datasets this data can just be displayed on the charts. </li>
+            <li><span class="weight--semibold">timeStamps:</span> a list of just the timestamps founds. If the other charts use different datasets, a search for the data closest in time at each point can be made. </li>
+          </ul>
+        </p>
+
+        <!--gaaaaaaah-->
+        <figure class="code">
+          <code>
+            {<br />
+            &nbsp;&nbsp;rawData:[{<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;time: 123456879,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;key1: 5,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;key2: 8<br />
+            &nbsp;&nbsp;}, { <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;time: 123654987,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;key1: 7,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;key2: 3<br />
+            &nbsp;&nbsp;}],<br />
+            &nbsp;&nbsp;timeStamps:[123456879, 123654987]<br />
+            }
+          </code>
+        </figure>
+        <br />
+        <p>In order to enable charts to share the <code class="code code--inline">crosshairData</code>, simply two-way-bind the <code class="code code--inline">crosshairData</code> property across all your charts. Example:</p>
+        <!--<figure class="code">-->
+        <figure class="code">
+          <code>
+            &lt;px-vis-timeseries<br />
+            &nbsp;&nbsp;…<br />
+            &nbsp;&nbsp;crosshair-data="{&shy;{crosshairData}}"&gt;<br />
+            &lt;/px-vis-timeseries&gt;<br />
+            <br />
+            &lt;px-vis-xy-chart<br />
+            &nbsp;&nbsp;…<br />
+            &nbsp;&nbsp;time-data="timeStamp"<br />
+            &nbsp;&nbsp;crosshair-data="{&shy;{crosshairData}}"&gt;<br />
+            &lt;/px-vis-xy-chart&gt;<br />
+            <br />
+            &lt;px-vis-radar<br />
+            &nbsp;&nbsp;…<br />
+            &nbsp;&nbsp;series-key="timeStamp"<br />
+            &nbsp;&nbsp;crosshair-data="{&shy;{crosshairData}}"<br />
+            &lt;/px-vis-radar&gt;<br />
+          </code>
+        </figure>
+        <br />
+
+        <p>In this way, an origin chart can create crosshairData and the receiving charts will automatically get the updated dataset.</p>
+
+        <p>
+          Note that on the example XY chart, the <code class="code code--inline">timeData</code> property is also specified. For  XY and Polar, the crosshair feature uses this property to know which key in your <code class="code code--inline">chartData</code> contains timestamps. For Radar and Parallel, the <code class="code code--inline">seriesKeys</code> property should point to the timestamp key. For timeseries, it just uses the <code class="code code--inline">x</code> key.
+        </p>
+
+        <p>All other relevant properties for the crosshair feature are not at the chart level, but rather properties of the highlighter, and should be passed down through a <code class="code code--inline">highlighterConfig</code> object:</p>
+
+        <figure class="code">
+          <code>
+            highlighter-config = '{ <br />
+            &nbsp;&nbsp;differentDataset: true,<br />
+            &nbsp;&nbsp;showTooltipData: true,<br />
+            &nbsp;&nbsp;fuzz: 1000000000<br />
+            }'
+          </code>
+        </figure>
+        <br />
+
+        <p>All settings are optional, and include:</p>
+
+        <h3>differentDataset</h3>
+        <p>
+          This Boolean property tells a chart receiving <code class="code code--inline">crosshairData</code> if it is using the same dataset as the origin chart. If it is using the same data (<code class="code code--inline">differentDataset: false</code>), then the receiving chart doesn’t have to search data to highlight and greatly improves performance.
+        </p>
+        <p>
+          If the chart does have a different dataset from the origin chart, set <code class="code code--inline">differentDataset</code>: true and the receiving chart will perform a search for corresponding data in its own dataset based on the timestamps in the <code class="code code--inline">crosshairData</code>. Ideally, you should do this dynamically based on which chart is sending the data.
+        </p>
+        <p>
+          By default, the receiving chart will only look for timestamps which are an exact match to those in <code class="code code--inline">crosshairData</code>. If you want to instead search for timestamps within a certain timeframe of the timestamps in crosshairData, add a <code class="code code--inline">fuzz</code> value.
+        </p>
+
+        <h3>fuzz</h3>
+        <p>
+          When <code class="code code--inline">differentDataset</code> is true, you can specify a <code class="code code--inline">fuzz</code> value. <code class="code code--inline">Fuzz</code> takes a numeric value that is used to create  an upper and lower bound for the receiving chart’s search. All data points' timestamps found within that range will be returned. Since crosshair works based on timestamp, the fuzz value is in milliseconds. So, a value of 3600000 corresponds to 1 hour, for example.
+        </p>
+
+        <h3>showTooltipData</h3>
+        <p>
+          If you want the crosshair data to be shown in the register, set <code class="code code--inline">showTooltipData</code> to true. Note that it will only show the first dataset.
+        </p>
+
+        <h3>drawWithLocalCrosshairData</h3>
+        <p>
+          Normally, the chart generating the <code class="code code--inline">crosshairData</code> will not draw the <code class="code code--inline">crosshairData</code>. If you want it to, set this Boolean to true.
+        </p>
+
+        <h3>Toolbar customization</h3>
+
+        <p>
+          In addition to configuring the highlights, you’ll have configure the toolbar on each chart for which you want a user to be able to generate crosshair data. We’ll walk you through how to do that below, but more information on configuring the toolbar can be found here: <a>######TBD##########</a>
+        </p>
+
+        <p>To enable a basic crosshair, just add crosshair to your <code class="code code--inline">toolbarConfig</code>:</p>
+
+        <figure class="code">
+          <code>
+            toolbar-config='{<br />
+            &nbsp;&nbsp;config: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;…<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;crosshair: true<br />
+            &nbsp;&nbsp;}<br />
+            }'
+          </code>
+        </figure>
+        <br />
+
+        <p>
+          For XY and Polar, using the above basic crosshair configuration uses "closest point" search. For these two charts, you can specify the advanced crosshair instead using <code class="code code--inline">crosshairWithOptions</code>, which allows users to choose the type of search:
+        </p>
+
+        <figure class="code">
+          <code>
+            toolbar-config='{<br />
+            &nbsp;&nbsp;config: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;…<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;crosshairWithOptions: true<br />
+            &nbsp;&nbsp;}<br />
+            }'
+          </code>
+        </figure>
+        <br />
+
+        <p>With the above configurations set, you’ll be able to implement a basic crosshair configuration on a set of charts without the ability to freeze the charts. Freezing requires more configuration on your app to enable.</p>
+
+        <h3>Setting up freezing</h3>
+
+        <p>
+          In addition to seeing corresponding data points highlighted on other charts, the ability to freeze those highlighted data points is quite powerful, allowing the user to drill down into the frozen charts. While a basic crosshair implementation requires minimal work on the application side, freezing the chart requires additional configuration and control logic to be built in your application. Please see the demo code for one example of how it can be accomplished.
+        </p>
+
+        <p>
+          Conceptually, freezing is quite easy; we simply take away the crosshair functionality temporarily. While crosshair data is defined on the charts, they will highlight the points in that property, so if we remove the crosshair ability while a user is hovering, the <code class="code code--inline">crosshairData</code> property will no longer update and will remain “locked” in its current state. So all we have to do is set up a listener to turn off the crosshair feature. Once we do that, you’ll also need a way to turn it back on and unfreeze the charts.
+        </p>
+
+        <p>As demonstrated in the demo, this can be accomplished with relative ease through the toolbar. First, you need to define two toolbar configurations: a normal unfrozen chart, and a frozen chart.</p>
+
+        <figure class="code">
+          <code>
+            normalConfig = {<br />
+            &nbsp;&nbsp;config: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;advancedZoom: { actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;pan: { actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;tooltip: {selected: true, actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;crosshair: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actionConfig: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;click: function() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.fire("px-freeze-crosshair");<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;}<br />
+            };<br />
+            <br />
+            frozenConfig = {<br />
+            &nbsp;&nbsp;config: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;advancedZoom: { actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;pan: { actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;tooltip: {selected: true, actionConfig: { click: null } },<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;frozen: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltipLabel: 'Crosshair Frozen',<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon: 'fa-lock',<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eventName: "px-unfreeze-crosshair",<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClickContext: "toolbar",<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customButtonStyle: "color: salmon;"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;}<br />
+            };
+          </code>
+        </figure>
+        <br />
+
+        <p>First, in the normal config, we are extending the basic crosshair feature by adding an on-click listener. </p>
+
+        <figure class="code">
+          <code>
+            crosshair: {<br />
+            &nbsp;&nbsp;actionConfig: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;click: function() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.fire("px-freeze-crosshair");<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;}<br />
+            }
+          </code>
+        </figure>
+        <br />
+
+        <p>This listener attaches the supplied callback to the chart’s interaction space and, in this case, the callback fires an event for your app to catch.</p>
+
+        <p>Since <code class="code code--inline">click</code> is not a normal event for the toolbar, we’ll also have to clear it on our other toolbar features when they are clicked. To do this, we extend the basic functionality in a similar manner:</p>
+
+        <figure class="code">
+          <code>
+            advancedZoom: { actionConfig: { click: null } },
+          </code>
+        </figure>
+        <br />
+
+        <p>
+          Next, we want to define the frozen toolbar config, which will look very similar, except it will not define crosshair. By not defining crosshair, we’re removing it from the toolbar and the ability to use it. We also add a fully custom option to unlock the chart:
+        </p>
+
+        <figure class="code">
+          <code>
+            frozen: {<br />
+            &nbsp;&nbsp;tooltipLabel: 'Crosshair Frozen',<br />
+            &nbsp;&nbsp;icon: 'fa-lock',<br />
+            &nbsp;&nbsp;eventName: "px-unfreeze-crosshair",<br />
+            &nbsp;&nbsp;onClickContext: "toolbar",<br />
+            &nbsp;&nbsp;customButtonStyle: "color: salmon;"<br />
+            }
+          </code>
+        </figure>
+        <br />
+
+        <p>
+          When this button gets clicked, it fires the <code class="code code--inline">px-unfreeze-crosshair event</code>, which your app can listen to. Note that it also uses a <code class="code code--inline">customButtonStyle</code> so you can make it look different from the other buttons to reinforce the frozen state / make it stand out from the other normal buttons.
+        </p>
+
+        <p>Next, you’ll want to set up your freeze listener:</p>
+
+        <figure class="code">
+          <code>
+          document.addEventListener('px-freeze-crosshair', function() {<br />
+          &nbsp;&nbsp;timeseries.set("highlighterConfig.drawWithLocalCrosshairData", true);<br />
+          &nbsp;&nbsp;xy.set("highlighterConfig.drawWithLocalCrosshairData", true);<br />
+          <br />
+          &nbsp;&nbsp;timeseries.set("toolbarConfig", configs.timeseriesFreeze);<br />
+          &nbsp;&nbsp;xy.set("toolbarConfig", configs.xyFreeze);<br />
+          });
+          </code>
+        </figure>
+        <br />
+
+        <p>In your listener, first, you want to tell the origin chart to draw the <code class="code code--inline">crosshairData</code> that it is creating. Then disable the crosshair feature by swapping out the toolbar config. </p>
+
+        <p>To unfreeze, create a similar listener for the unfreeze event:</p>
+
+        <figure class="code">
+          <code>
+            document.addEventListener('px-unfreeze-crosshair', function() {<br />
+            &nbsp;&nbsp;var empty = {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rawData: [],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeStamps: []<br />
+            &nbsp;&nbsp;};<br />
+            <br />
+            &nbsp;&nbsp;timeseries.set("highlighterConfig.drawWithLocalCrosshairData", false);<br />
+            &nbsp;&nbsp;xy.set("highlighterConfig.drawWithLocalCrosshairData", false);<br />
+            <br />
+            &nbsp;&nbsp;timeseries.set("toolbarConfig", configs.timeseries);<br />
+            &nbsp;&nbsp;xy.set("toolbarConfig", configs.xy);<br />
+            <br />
+            &nbsp;&nbsp;timeseries.set("crosshairData", empty);<br />
+            &nbsp;&nbsp;xy.set("crosshairData", empty);<br />
+            <br />
+            });
+          </code>
+        </figure>
+        <br />
+
+        <p>Aside from reversing the changes we made in the first listener, you’ll also have to clear the <code class="code code--inline">crosshairData</code> by defining an empty <code class="code code--inline">crosshairData</code> set and applying it on all your charts. </p>
+
+        <p>With that, you should now have the ability to freeze crosshairs across your charts!</p>
+
+        <h5>Note:</h5>
+        <p>Do not set <code class="code code--inline">preventWebWorkerSynchronization</code> on XY or Polar if you want to enable crosshair - the feature depends on access to the web worker. </p>
+
+      </section>
+    </template>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </body>
+</html>
