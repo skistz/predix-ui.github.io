@@ -58,6 +58,11 @@
           },
           {
             "dataType":"guides",
+            "repoName":"vis-guides-toolbar",
+            "linkText":"Configuring the toolbar"
+          },
+          {
+            "dataType":"guides",
             "repoName":"vis-guides-crosshair",
             "linkText":"Introducing crosshair"
           }
