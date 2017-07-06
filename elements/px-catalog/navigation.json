@@ -901,6 +901,18 @@
         ]
       },
       {
+        "repoName":"px-key-value-pair",
+        "dataType":"components",
+        "linkText":"Key-Value Pair",
+        "keywords":[
+          "px-key-value-pair",
+          "key",
+          "value",
+          "label",
+          "dashboard"
+        ]
+      },
+      {
         "repoName":"px-kpi",
         "dataType":"components",
         "linkText":"KPI",
