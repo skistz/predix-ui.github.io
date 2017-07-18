@@ -308,6 +308,7 @@ gulp.task('default', ['localBuild']);
        console.log("isTravis = " + isTravis()  );
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
      staticFileGlobs: [rootDir + '/index.html',
+                       rootDir + '/',
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
