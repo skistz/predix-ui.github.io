@@ -119,7 +119,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
 
 .menu{
   padding-right: $inuit-base-spacing-unit;
-  color: $px-catalog-dark-gray;
+  color: $px-catalog-dark-blue;
   cursor: pointer;
   &:link,
   &:visited,
@@ -346,6 +346,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   box-sizing: inherit;
 }
 
+
 .embedded {
   box-sizing: border-box;
   position: relative;
@@ -381,6 +382,11 @@ body:after {
   clear: both;
 }
 
+p {
+	color: $grey10;
+	line-height: 1.5em;
+}
+
 header,main,section {
   display: block;
 }
@@ -390,13 +396,15 @@ h1,h2,h3,h4,h5,h6,p,ul {
 }
 
 h2 {
-  font-size: 45px;
+  font-size: 36px;
   font-weight: 400;
 }
 
 h4 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
+  color: $dv-dark-pink;
+
 }
 
 li>ul {
@@ -554,13 +562,12 @@ a.item__link {
   color: white;
   background-size: 1200px 350px;
   background-color: $px-catalog-dark-blue;
-  padding: 5%;
-  height: 350px;
+  padding: 30px 45px;
+  min-height: 275px;
 }
 
 .hero-header {
   vertical-align: top;
-  line-height: 1.5;
   max-width: 500px;
 }
 
@@ -572,7 +579,7 @@ a.item__link {
   width: 100%;
   margin: 0 auto;
   background-color: $white;
-  padding: 5% 5% 2% 5%;
+  padding: 3% 5% 2% 5%;
   overflow: hidden;
 }
 
@@ -581,13 +588,77 @@ a.item__link {
   font-size: 1.1rem;
 }
 
-#tech-logo {
-  width: 40%;
+.tech-logo {
+width: 300px;
+float: right;
+padding: 10px 0px 40px 30px;
 }
 
-#tech-logo-2 {
-  width: 25%;
+
+
+
+b.title {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $gray9;
+	border-bottom: 2px solid $gray9;
 }
+
+b.do {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $green-dark;
+	border-bottom: 2px solid $green-dark;
+}
+
+b.dont {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $red-dark;
+	border-bottom: 2px solid $red-dark;
+}
+
+.guidelines em {
+	display: block;
+	padding-top: .5em;
+	color: $gray9;
+}
+
+
+.halves.guidelines {
+	border: 1px solid $gray4;
+	padding: .75em;
+}
+
+.halves.principles {
+	border: 1px solid $gray4;
+	padding: 1em;
+	color: black;
+	padding-left: 95px;
+	background-repeat: no-repeat;
+	background-position: 5% 45%;
+	min-height: 150px;
+}
+
+.halves.principles.purposeful {
+	background-image: url("../img/guidelines/icon_purposeful.png");
+}
+
+.halves.principles.efficient {
+	background-image: url("../img/guidelines/icon_efficient.png");
+}
+
+.halves.principles.consistent {
+	background-image: url("../img/guidelines/icon_consistent.png");
+}
+
+.halves.principles.elegant {
+	background-image: url("../img/guidelines/icon_elegant.png");
+}
+
 
 .halves {
   display: inline-block;
@@ -601,6 +672,7 @@ a.item__link {
   text-align: center;
   vertical-align: top;
   margin: 0% 5% 10% 0;
+
 }
 
 .subHeader {
@@ -642,6 +714,14 @@ a.item__link {
   .thirds {
     width: 31%;
     margin: 0 1% 5% 1%;
+  }
+   
+    
+  .full {
+    width: 95%;
+    margin: 2% 1% 5% 1%;
+    clear: both;
+    
   }
 
   .list-inline--delimited {

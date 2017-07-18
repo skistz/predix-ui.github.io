@@ -23,63 +23,65 @@
     <style include="px-theme-styles" is="custom-style"></style>
 
     <section class="main u-mb++">
-      <h2 class="selected">What is Predix UI?</h2>
-      <p>Predix UI makes it easy to create powerful, user-friendly web applications with components that just work. The system is made up of three parts:</p>
+      <h2 class="selected">About the Predix Design System</h2>
+      <p>The Predix Design System makes it easy to create powerful, user-friendly web applications with components built to withstand the demand of industrial use cases. The system is made up of three parts:</p>
 
       <ul>
-        <li class="u-mv--">plug-and-play <strong>components</strong> that speed UI/UX development</li>
+        <li class="u-mv--">plug-and-play <strong>Predix UI Components</strong> that speed UI/UX development</li>
         <li class="u-mv--">composable and reusable <strong>CSS modules</strong> that establish consistent design</li>
-        <li class="u-mv--">a quick-start <strong>web app</strong> with everything you need to start building now</li>
+        <li class="u-mv--">extensive <strong>stencils and guidelines</strong> to guide your application design</li>
+
       </ul>
 
-      <p>Used together, these tools help teams jumpstart the creation of Industrial Internet web applications running on top of Predix services and data.</p>
+      <p>Used together, these tools help teams jumpstart the creation of Industrial Internet web applications running on top of <a href="http://www.predix.com" target="_blank">Predix services</a> and data.</p>
+	      
+	      <p><b>Supported browsers:</b></p>
+	      <ul>
+		      <li class="u-mv--">MacOS: Last two versions of Chrome, Safari & Firefox</li>
+		      <li class="u-mv--">Windows: Last two versions of Edge, Firefox, Chrome on Windows + IE11</li>
+		      <li class="u-mv--">Android: last two versions of Chrome (Android)</li>
+		      <li class="u-mv--">iOS: last two versions of Safari</li>
+	      </ul>    
+ 	  <hr/>
+      <h4>Predix UI Components</h4>
+      <img class="tech-logo" src="../../img/polymer_logo.jpg" alt="Polymer Logo">
+      	      	      <p>Predix UI Components are a set of user interface building blocks based on the <a href="https://www.w3.org/standards/techs/components#w3c_all" target="_blank">W3C web components standard</a> that can be quickly assembled together to build an application. Components are available for a wide range UI elements such as drop down menus, data tables and tabs as well more specialized D3-based data visualization charting components designed specifically for industrial internet use cases.</p>
+      	      	     
+      	      	     	
+    	      	     	
+	     <p>The components are framework agnostic and can fit into many existing JavaScript web applications such as Angular, React or Ember. <a href="https://www.polymer-project.org" target="_blank">Google's Polymer</a> provides innovative "syntactic sugar" and polyfill libraries for practical adoption of modern web components. Polymer helps build web applications with custom, encapsulated, reusable components that work just like HTML elements.</p>
+	      
+       
+<!-- <p>Our team tests and explicitly guarantees support for the last two major releases of Chrome, Firefox, Safari, and Edge (including IE11). With the webcomponentsjs polyfills, our components are very likely to work in older releases too.</p> //-->
 
-      <h4 class="u-mt++ u-pt++">Predix UI Components: UI pieces you need. Already built.</h4>
-      <hr class="u--mt--">
 
-      <p>Predix UI Components are a set of user interface pieces that can be quickly snapped together to build an application. Components give you the basic building blocks of a web app, freeing up your time to spend on more important development tasks.</p>
+	  <hr/>
 
-      <p>The components are framework agnostic — they can fit into many existing JavaScript web applications (e.g. Angular, React, Ember), or serve as a starting point for a new project.</p>
+      <h4>CSS Modules</h4>
+         <img class="tech-logo" src="../../img/inuit.png" alt="Inuit CSS">
 
-      <p>Use the components to do everything from creating a UI foundation for your application to shipping interactive charts that feed off streaming data.</p>
+     <p>The second part of the Design System is a set of CSS modules written in Sass using the powerful BEM (Block-Element-Modifier) and OOCSS (Object-Oriented CSS) code patterns, ensuring your CSS codebase can grow quickly and still be easy to maintain.</p>
+     <p>Components consume the CSS, but you can also choose to use the CSS independently to create the base typography, layout, and content design of your application. <a target="_blank" href="https://github.com/predixdev/px-getting-started/">The CSS starter kit</a> has everything you need to get going.</p>
+      <hr/>
 
-      <p><a target="_blank" href="https://www.predix-ui.com/#/guides/getting-started/">Start using Predix UI Components in your applications. See the Components Quick Start guide.</a></p>
+       <h4>UI Stencils &amp Design Guidelines</h4>
+       <img class="tech-logo" src="../../img/sketch_logo2.png" alt="Sketch Logo">
+       <p>Finally, the Design Starter Kit combined with the design guidelines provide the tools to start the design process off in the right direction. The Starter Kit is a Sketch file that contains the most common layouts and components and themes in a flexible, ready to use format. The guidelines are documented best practices and assist designers and developers in making key decisions about an applications design.</p>
+      
+      <hr/>
 
-      <h4 class="u-mt++ u-pt++">Predix UI CSS: Consistent, modular design from the start.</h4>
-      <hr class="u--mt--">
+      <!--  	  
 
-      <p>Predix UI CSS is a collection of CSS modules that offer consistent design, useful defaults, and customizable styles for web applications. CSS modules can be mixed together to create a strong base for web applications of any size.</p>
+     <h4>Build from scratch or use in an existing app. It's your choice.</h4>
 
-      <p>Predix UI CSS modules are written in Sass using the powerful BEM (Block-Element-Modifier) and OOCSS (Object-Oriented CSS) code patterns, ensuring your CSS codebase can grow quickly and still be easy to maintain.</p>
-
-      <p>Use CSS modules to create the base typography, layout, and content design for your project, or use them to design new custom components unique to your application. Building with Predix UI CSS ensures consistent design across your entire application.</p>
-
-      <p><a target="_blank" href="https://www.predix-ui.com/#/guides/use-css/">Use the Predix UI CSS Starter Kit to create a consistent design base for your app.</a></p>
-
-      <h4 class="u-mt++ u-pt++">Predix UI Web App Starter: App starter kit that's ready for production.</h4>
-      <hr class="u--mt--">
-
-      <p>Predix UI Web App Starter is a web application starter kit that can be copied, extended and deployed to production immediately. Everything you need is included:</p>
-
-      <ul>
-        <li class="u-mv--">A project structure to help teams write organized code using Polymer as an application framework</li>
-        <li class="u-mv--">Example Predix UI Components and CSS modules composed to create a dashboard UI</li>
-        <li class="u-mv--">Developer tools that speed up the type, save, and reload workflow</li>
-        <li class="u-mv--">A Node/Express web server ready to connect to Predix services and APIs</li>
-      </ul>
-
-      <p>Use the Predix UI Web App Starter to jumpstart your next web application project and create a stable base that your team can extend and build on into the future.</p>
-
-      <p><a target="_blank" href="https://github.com/predixdev/predix-webapp-starter/">Open the Predix UI Web App Starter on Github to see how its built, or to use it right now</a></p>
-
-      <h4 class="u-mt++ u-pt++">Build from scratch or use in an existing app. It's your choice.</h4>
-      <hr class="u--mt--">
 
       <p>We know every team has a different workflow. We know each designer and developer likes different tools. That's why we built Predix UI to just work in your workflow and with your tools.</p>
 
-      <p>Developers have used Predix UI to save thousands of hours developing the UI base in huge Angular codebases. Some are using components inside React applications. Others have used the Predix UI Web App Starter to build simple applications using just Polymer and vanilla JavaScript.</p>
+      <p>Developers have used the Predix Design System to save thousands of hours developing the UI base in huge Angular codebases. Some are using components inside React applications. Others have used the Web App Starter to build simple applications using just Polymer and vanilla JavaScript.</p>
 
-      <p><a target="_blank" href="https://www.predix-ui.com/#/guides/getting-started/">Start using Predix UI Components in your applications. See the Components Quick Start guide.</a></p>
+      <p><b>To start using Predix UI Components in your applications see the <a target="_blank" href="https://www.predix-ui.com/#/guides/getting-started/">components quick start guide.</a></b></p>
+      
+      //-->
     </section>
 
     <!-- Footer -->

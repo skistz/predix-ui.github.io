@@ -5,64 +5,90 @@
     "dataType":"home"
   },
   {
-    "linkText":"About",
+    "linkText":"Getting Started",
     "links":[
       {
         "dataType":"about",
         "repoName":"what-is-predix-ui",
-        "linkText":"What is Predix UI?"
-      }
-    ],
-    "opened":true
-  },
-  {
-    "linkText":"Use Predix UI in your app",
-    "links":[
-      {
+        "linkText":"About the System"
+      },
+       {
         "dataType":"guides",
         "repoName":"getting-started",
-        "linkText":"Use the components"
+        "linkText":"Starting Development"
       },
       {
         "dataType":"guides",
-        "repoName":"use-css",
-        "linkText":"Use the CSS modules"
+        "repoName":"dev-resources",
+        "linkText":"Developer Resources"
       },
-      {
+       {
         "dataType":"guides",
-        "repoName":"use-seed",
-        "linkText":"Start a new app with the seed"
-      },
-      {
-        "dataType":"guides",
-        "repoName":"use-component-generator",
-        "linkText":"Build your own components"
-      },
-      {
-        "linkText":"Vis Framework Guides",
-        "links":[
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-terminology",
-            "linkText":"Vis terminology"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-configuring-charts",
-            "linkText":"How to configure charts"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-introducing-web-workers",
-            "linkText":"Introducing web workers"
-          }
-        ]
+        "repoName":"designer-resources",
+        "linkText":"Designer Resources"
       }
     ],
     "opened":true
   },
+   {
+    "linkText":"Design Guidelines",
+    "links":[
+      {
+        "dataType":"guidelines",
+        "repoName":"overview-principles",
+        "linkText":"Principles"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"navigation",
+        "linkText":"Navigation"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"page-layout",
+        "linkText":"Page Layout"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"materiality",
+        "linkText":"Materiality"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"typography",
+        "linkText":"Typography"
+      },
+       {
+        "dataType":"guidelines",
+        "repoName":"iconography",
+        "linkText":"Iconography"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"elevation-layering",
+        "linkText":"Elevation & Layering"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"data-input",
+        "linkText":"Data Input & Forms"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"data-vis",
+        "linkText":"Data Visualization"
+      },
+      {
+        "dataType":"mobile",
+        "repoName":"mobile",
+        "linkText":"Mobile"
+      }
+    ],
+    "opened":false
+  },
+
   {
-    "linkText":"Predix UI CSS",
+    "linkText":"CSS Modules",
     "links":[
       {
         "dataType":"css",
@@ -431,7 +457,7 @@
     ]
   },
   {
-    "linkText":"Predix UI Components",
+    "linkText":"Components",
     "links":[
       {
         "repoName":"px-alert-label",
@@ -509,100 +535,35 @@
           }
         ]
       },
+       {
+        "repoName":"px-clipboard",
+        "dataType":"components",
+        "linkText":"Clipboard",
+        "keywords":[
+          "px-clipboard",
+          "copy",
+          "paste"
+        ]
+      },
       {
-        "linkText":"Charts",
+        "repoName":"px-context-browser",
+        "dataType":"components",
+        "linkText":"Context Browser",
+        "keywords":[
+          "px-context-browser",
+          "miller",
+          "asset",
+          "assets"
+        ]
+      },
+           {
+        "linkText":"Data Visualization",
         "links":[
-          {
-            "repoName":"px-percent-circle",
-            "dataType":"components",
-            "linkText":"Percent Circle",
-            "keywords":[
-              "px-percent-circle",
-              "charts",
-              "graph",
-              "graphs",
-              "percent",
-              "percentage",
-              "gauge"
-            ]
-          },
-          {
-            "repoName":"px-gauge",
-            "dataType":"components",
-            "linkText":"Gauge",
-            "keywords":[
-              "px-gauge",
-              "charts",
-              "graph",
-              "graphs",
-              "percent",
-              "percentage",
-              "gauge"
-            ]
-          },
-          {
-            "repoName":"px-simple-area-chart",
-            "dataType":"components",
-            "linkText":"Simple Area Chart",
-            "keywords":[
-              "px-simple-area-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "area",
-              "stacked"
-            ]
-          },
-          {
-            "repoName":"px-simple-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Bar Chart",
-            "keywords":[
-              "px-simple-bar-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "bar",
-              "column"
-            ]
-          },
-          {
-            "repoName":"px-simple-horizontal-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Horizontal Bar Chart",
-            "keywords":[
-              "px-simple-horizontal-bar-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "bar"
-            ]
-          },
-          {
-            "repoName":"px-simple-line-chart",
-            "dataType":"components",
-            "linkText":"Simple Line Chart",
-            "keywords":[
-              "px-simple-line-chart",
-              "charts",
-              "graph",
-              "graphs"
-            ]
-          },
-          {
-            "repoName":"px-simple-win-loss-chart",
-            "dataType":"components",
-            "linkText":"Simple Win-Loss Chart",
-            "keywords":[
-              "px-simple-win-loss-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "win",
-              "loss"
-            ]
-          },
-          {
+         {
+    
+        "linkText":"Vis Framework Guides",
+        "links":[
+	        {
             "repoName":"px-vis",
             "dataType":"components",
             "linkText":"Vis Framework",
@@ -616,6 +577,24 @@
               "framework"
             ]
           },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-terminology",
+            "linkText":"Vis terminology"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-configuring-charts",
+            "linkText":"How to configure charts"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-introducing-web-workers",
+            "linkText":"Introducing web workers"
+      }
+    ],
+    "opened":false
+	},
           {
             "repoName":"px-vis-parallel-coordinates",
             "dataType":"components",
@@ -736,28 +715,97 @@
               "scatter",
               "sequence"
             ]
+          },
+          {
+            "repoName":"px-percent-circle",
+            "dataType":"components",
+            "linkText":"Percent Circle",
+            "keywords":[
+              "px-percent-circle",
+              "charts",
+              "graph",
+              "graphs",
+              "percent",
+              "percentage",
+              "gauge"
+            ]
+          },
+          {
+            "repoName":"px-gauge",
+            "dataType":"components",
+            "linkText":"Gauge",
+            "keywords":[
+              "px-gauge",
+              "charts",
+              "graph",
+              "graphs",
+              "percent",
+              "percentage",
+              "gauge"
+            ]
+          },
+          {
+            "repoName":"px-simple-area-chart",
+            "dataType":"components",
+            "linkText":"Simple Area Chart",
+            "keywords":[
+              "px-simple-area-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "area",
+              "stacked"
+            ]
+          },
+          {
+            "repoName":"px-simple-bar-chart",
+            "dataType":"components",
+            "linkText":"Simple Bar Chart",
+            "keywords":[
+              "px-simple-bar-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "bar",
+              "column"
+            ]
+          },
+          {
+            "repoName":"px-simple-horizontal-bar-chart",
+            "dataType":"components",
+            "linkText":"Simple Horizontal Bar Chart",
+            "keywords":[
+              "px-simple-horizontal-bar-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "bar"
+            ]
+          },
+          {
+            "repoName":"px-simple-line-chart",
+            "dataType":"components",
+            "linkText":"Simple Line Chart",
+            "keywords":[
+              "px-simple-line-chart",
+              "charts",
+              "graph",
+              "graphs"
+            ]
+          },
+          {
+            "repoName":"px-simple-win-loss-chart",
+            "dataType":"components",
+            "linkText":"Simple Win-Loss Chart",
+            "keywords":[
+              "px-simple-win-loss-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "win",
+              "loss"
+            ]
           }
-        ]
-      },
-      {
-        "repoName":"px-clipboard",
-        "dataType":"components",
-        "linkText":"Clipboard",
-        "keywords":[
-          "px-clipboard",
-          "copy",
-          "paste"
-        ]
-      },
-      {
-        "repoName":"px-context-browser",
-        "dataType":"components",
-        "linkText":"Context Browser",
-        "keywords":[
-          "px-context-browser",
-          "miller",
-          "asset",
-          "assets"
         ]
       },
       {
@@ -1110,6 +1158,7 @@
           "nav"
         ]
       }
-    ]
+    ],
+    "opened":true
   }
 ]
