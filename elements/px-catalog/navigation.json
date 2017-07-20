@@ -566,7 +566,7 @@
 	        {
             "repoName":"px-vis",
             "dataType":"components",
-            "linkText":"Vis Framework",
+            "linkText":"Framework",
             "keywords":[
               "px-vis",
               "charts",
@@ -580,17 +580,17 @@
           {
             "dataType":"guides",
             "repoName":"vis-guides-terminology",
-            "linkText":"Vis terminology"
+            "linkText":"Terminology"
           },
           {
             "dataType":"guides",
             "repoName":"vis-guides-configuring-charts",
-            "linkText":"How to configure charts"
+            "linkText":"Configuring Charts"
           },
           {
             "dataType":"guides",
             "repoName":"vis-guides-introducing-web-workers",
-            "linkText":"Introducing web workers"
+            "linkText":"Web Workers"
       }
     ],
     "opened":false
