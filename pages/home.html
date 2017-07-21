@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix Design System</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix Design System</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script>
-    (function() {
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {
       'use strict';
 
-      var onload = function() {
+      var onload = function () {
         // For native Imports, manually fire WebComponentsReady so user code
         // can use the same code path for native and polyfill'd imports.
         if (!window.HTMLImports) {
           document.dispatchEvent(
-            new CustomEvent('WebComponentsReady', {bubbles: true})
+            new CustomEvent('WebComponentsReady', { bubbles: true })
           );
         }
       };
@@ -35,43 +36,50 @@
         onload();
       }
     })();
-    </script>
-    <link rel="import" href="../bower_components/polymer/polymer.html" />
-    <link defer rel="shortcut icon" href="../favicon.ico" />
-    <link rel="import" href="../css/predix-ui-styles.html"/>
-    <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
-  </head>
-  <body unresolved class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
+  </script>
+  <link rel="import" href="../bower_components/polymer/polymer.html" />
+  <link defer rel="shortcut icon" href="../favicon.ico" />
+  <link rel="import" href="../css/predix-ui-styles.html" />
+  <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
+  <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+</head>
 
-    <section class="hero">
-      <div class="hero-header">
-        <h2 class="u-mb0">Predix Design System</h2>
-        <p class="">User interface components that enable you to quickly and easily create Industrial Internet web applications that run on dedicated Predix services and data.</p>
-        <button class="btn--blue">Learn more</button>
-      </div>
-    </section>
+<body unresolved class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
 
-    <section class="main">
-	    
-	   <div class="halves">
-		   <h2 class="subHeader">Design Starter Kit</h2>
-		   <p>
-			   The UI Starter Kit jump starts the design process with common core layouts, components, colors and fonts used by the Predix Design System. 
-			   <img src="../img/sketch_logo.png" alt="Sketch">
-		   </p>
-		    
-		    
+  <section class="hero">
+    <div class="hero-header">
+      <h2 class="u-mb0">Predix Design System</h2>
+      <p class="">User interface components that enable you to quickly and easily create Industrial Internet web applications that run
+        on dedicated Predix services and data.</p>
+      <button class="btn--blue">Learn more</button>
+    </div>
+  </section>
 
-	   </div>
-	   <div class="halves">
-		   <h2 class="subHeader">Web Components</h2>
-		   <p></p>
+  <section class="main">
 
-	   </div>
-    
+    <div class="halves">
+      <h2 class="subHeader">Design Starter Kit</h2>
+      <p>
+        The UI Starter Kit jump starts the design process with common core layouts, components, colors and fonts used by the Predix
+        Design System.
+      </p>
+      <picture>
+        <source srcset="../img/sketch_logo.webp" type="image/webp">
+        <source srcset="../img/sketch_logo.png" type="image/jpeg">
+        <img src="../img/sketch_logo.png" alt="Sketch">
+      </picture>
+
+
+
+    </div>
+    <div class="halves">
+      <h2 class="subHeader">Web Components</h2>
+      <p></p>
+
+    </div>
+
     <!--
       <div class="thirds text--left">
         <picture>
@@ -107,22 +115,24 @@
         </div>
       </div>
       //-->
-      <hr>
+    <hr>
 
-      <div class="halves">
-        <h2 class="subHeader">Framework-agnostic code</h2>
-        <p>Predix UI components are implemented using modern web application technologies, such as a powerful, scalable and Sass-based CSS framework. You'll find components powered by D3, the best of open source web tech, and we're going all-in on web components. It's framework-agnostic, so you can use Angular, Ember, Backbone, or pure Polymer.</p>
-        <p class="text--large"><a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" target="_blank"><button class="btn--blue">Predix UI GitHub </button></a></p>
-      </div>
-      <div class="halves">
-        <picture>
-          <source srcset="../img/Github-seed-shot.webp" type="image/webp">
-          <source srcset="../img/Github-seed-shot.png" type="image/jpeg">
-          <img src="../img/Github-seed-shot.png" alt="Github Predix Seed">
-        </picture>
-      </div>
-      <hr>
-     <!-- <div class="halves">
+    <div class="halves">
+      <h2 class="subHeader">Framework-agnostic code</h2>
+      <p>Predix UI components are implemented using modern web application technologies, such as a powerful, scalable and Sass-based
+        CSS framework. You'll find components powered by D3, the best of open source web tech, and we're going all-in on
+        web components. It's framework-agnostic, so you can use Angular, Ember, Backbone, or pure Polymer.</p>
+      <p class="text--large"><a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" target="_blank"><button class="btn--blue">Predix UI GitHub </button></a></p>
+    </div>
+    <div class="halves">
+      <picture>
+        <source srcset="../img/data-table.webp" type="image/webp">
+        <source srcset="../img/data-table.png" type="image/jpeg">
+        <img src="../img/data-table.png" alt="Data Table GitHub Repository">
+      </picture>
+    </div>
+    <hr>
+    <!-- <div class="halves">
         <p>Predix UI uses Google's Polymer, which provides innovative "syntactic sugar" and polyfill libraries for practical adoption of modern web components. Polymer helps build web applications with custom, encapsuled, reusable components that work just like HTML elements.</p>
         <p class="text--large"><a href="https://www.polymer-project.org" target="_blank"><button class="btn--blue">Learn More </button></a></p>
       </div>
@@ -169,16 +179,17 @@
         <p class="text--large"><a href="https://github.com/PredixDev/px-getting-started/blob/master/CONTRIBUTING.md" target="_blank"><button class="btn--blue">Contribute</button></a></p>
       </div>//-->
 
-      <div class="halves text--left">
-        <h2 class="subHeader">Have a question?</h2>
-        <p class="headerBottom">Having an issue with one of our components? General questions about getting up and running?</p>
-        <br />
-        <p class="text--large"><a href="https://forum.predix.io/" target="_blank"><button class="btn--blue">Forums</button>
+    <div class="halves text--left">
+      <h2 class="subHeader">Have a question?</h2>
+      <p class="headerBottom">Having an issue with one of our components? General questions about getting up and running?</p>
+      <br />
+      <p class="text--large"><a href="https://forum.predix.io/" target="_blank"><button class="btn--blue">Forums</button>
         </a></p>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <px-demo-footer></px-demo-footer>
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>

@@ -1,153 +1,163 @@
-
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix UI</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-  </head>
-  <body class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <link rel="import" href="../../css/predix-ui-styles.html" />
+  <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+</head>
 
-    <template is="dom-bind">
-      <section class="main u-mb++ vis__main">
+<body class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
-        <h5>Last Updated June 15, 2017</h5>
-        <h2 class="selected">Vis terminology</h2>
+  <template is="dom-bind">
+    <section class="main u-mb++ vis__main">
 
-        <p>When starting working with vis or the charts the terminology might be a bit confusing in terms of what to call each subpart of a chart. A timeseries chart is a good example because it has most of the available components.</p>
+      <h5>Last Updated June 15, 2017</h5>
+      <h2 class="selected">Vis terminology</h2>
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/TS_basic.webp" type="image/webp">
-            <source srcset="./vis-resources/TS_basic.png" type="image/jpeg">
-            <img src="./vis-resources/TS_basic.png" alt="wrench">
-          </picture>
-          <h5>simple Timeseries</h5>
-        </div>
+      <p>When starting working with vis or the charts the terminology might be a bit confusing in terms of what to call each
+        subpart of a chart. A timeseries chart is a good example because it has most of the available components.</p>
 
-        <p>Let's start by deconstructing the components in this timeseries chart.</p>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/TS_basic.webp" type="image/webp">
+          <source srcset="./vis-resources/TS_basic.png" type="image/jpeg">
+          <img src="./vis-resources/TS_basic.png" alt="wrench">
+        </picture>
+        <h5>simple Timeseries</h5>
+      </div>
 
-        <h4>Basic/common components</h4>
+      <p>Let's start by deconstructing the components in this timeseries chart.</p>
 
-        Those components can usually be found in any chart type.
+      <h4>Basic/common components</h4>
 
-        <h3 class="u-pt u-mb++">Series</h3>
+      Those components can usually be found in any chart type.
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/series.webp" type="image/webp">
-            <source srcset="./vis-resources/series.png" type="image/jpeg">
-            <img src="./vis-resources/series.png" alt="wrench">
-          </picture>
-        </div>
-        <p>Technically each series is a set of datapoints that we are trying to visualize on a chart. In this instance each series is represented with one colored line.</p>
+      <h3 class="u-pt u-mb++">Series</h3>
 
-        <h3 class="u-pt u-mb++">Register</h3>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/series.webp" type="image/webp">
+          <source srcset="./vis-resources/series.png" type="image/jpeg">
+          <img src="./vis-resources/series.png" alt="wrench">
+        </picture>
+      </div>
+      <p>Technically each series is a set of datapoints that we are trying to visualize on a chart. In this instance each series
+        is represented with one colored line.</p>
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/register.webp" type="image/webp">
-            <source srcset="./vis-resources/register.png" type="image/jpeg">
-            <img src="./vis-resources/register.png" alt="wrench">
-          </picture>
-        </div>
-        <p>The register displays values associated with each series, usually based on the mouse position on the chart.</p>
+      <h3 class="u-pt u-mb++">Register</h3>
 
-        <h3 class="u-pt u-mb++">Cursor</h3>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/register.webp" type="image/webp">
+          <source srcset="./vis-resources/register.png" type="image/jpeg">
+          <img src="./vis-resources/register.png" alt="wrench">
+        </picture>
+      </div>
+      <p>The register displays values associated with each series, usually based on the mouse position on the chart.</p>
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/cursor.webp" type="image/webp">
-            <source srcset="./vis-resources/cursor.png" type="image/jpeg">
-            <img src="./vis-resources/cursor.png" alt="wrench">
-          </picture>
-        </div>
-        <p>The cursor is a set of lines and circles highlighting sepcific data points, usually based on mouse position. The cursor and register are in sync.</p>
+      <h3 class="u-pt u-mb++">Cursor</h3>
+
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/cursor.webp" type="image/webp">
+          <source srcset="./vis-resources/cursor.png" type="image/jpeg">
+          <img src="./vis-resources/cursor.png" alt="wrench">
+        </picture>
+      </div>
+      <p>The cursor is a set of lines and circles highlighting sepcific data points, usually based on mouse position. The cursor
+        and register are in sync.</p>
 
 
-        <h3 class="u-pt u-mb++">Chart navigator</h3>
+      <h3 class="u-pt u-mb++">Chart navigator</h3>
 
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/chart_navigator.webp" type="image/webp">
-            <source srcset="./vis-resources/chart_navigator.png" type="image/jpeg">
-            <img src="./vis-resources/chart_navigator.png" alt="wrench">
-          </picture>
-        </div>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/chart_navigator.webp" type="image/webp">
+          <source srcset="./vis-resources/chart_navigator.png" type="image/jpeg">
+          <img src="./vis-resources/chart_navigator.png" alt="wrench">
+        </picture>
+      </div>
 
-        <p>The chart navigator allows to filter data based on time. In a timeseries chart this would mean an X based zoom, for other chart just less data showing up on the chart.</p>
+      <p>The chart navigator allows to filter data based on time. In a timeseries chart this would mean an X based zoom, for
+        other chart just less data showing up on the chart.</p>
 
-        <h3 class="u-pt u-mb++">Toolbar (and sub toolbar)</h3>
+      <h3 class="u-pt u-mb++">Toolbar (and sub toolbar)</h3>
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/toolbar.webp" type="image/webp">
-            <source srcset="./vis-resources/toolbar.png" type="image/jpeg">
-            <img src="./vis-resources/toolbar.png" alt="wrench">
-          </picture>
-        </div>
-        <p>The toolbar is a deeply configurable component allowing the user to choose what type of interaction to use on the chart. It is a set of fully customizable buttons and actions, as well as optional sub buttons.</p>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/toolbar.webp" type="image/webp">
+          <source srcset="./vis-resources/toolbar.png" type="image/jpeg">
+          <img src="./vis-resources/toolbar.png" alt="wrench">
+        </picture>
+      </div>
+      <p>The toolbar is a deeply configurable component allowing the user to choose what type of interaction to use on the chart.
+        It is a set of fully customizable buttons and actions, as well as optional sub buttons.</p>
 
-        <h3 class="u-pt u-mb++">Register dynamic menu</h3>
+      <h3 class="u-pt u-mb++">Register dynamic menu</h3>
 
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/dynamic_menus.webp" type="image/webp">
-            <source srcset="./vis-resources/dynamic_menus.png" type="image/jpeg">
-            <img src="./vis-resources/dynamic_menus.png" alt="wrench">
-          </picture>
-        </div>
-        <p>The register dynamic menu is a configurable menu with a set of action that would be run against a specific series. By default no actions are configured so it won't show unless you configure it.</p>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/dynamic_menus.webp" type="image/webp">
+          <source srcset="./vis-resources/dynamic_menus.png" type="image/jpeg">
+          <img src="./vis-resources/dynamic_menus.png" alt="wrench">
+        </picture>
+      </div>
+      <p>The register dynamic menu is a configurable menu with a set of action that would be run against a specific series.
+        By default no actions are configured so it won't show unless you configure it.</p>
 
-        <h4>Advanced components</h4>
+      <h4>Advanced components</h4>
 
-        <h3 class="u-pt u-mb++">Thresholds</h3>
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/thresholds.webp" type="image/webp">
-            <source srcset="./vis-resources/thresholds.png" type="image/jpeg">
-            <img src="./vis-resources/thresholds.png" alt="wrench">
-          </picture>
-        </div>
-        <p>Thresholds are visual indications of a specific limit on a Y axis. They can be used on timseries and XY charts.</p>
+      <h3 class="u-pt u-mb++">Thresholds</h3>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/thresholds.webp" type="image/webp">
+          <source srcset="./vis-resources/thresholds.png" type="image/jpeg">
+          <img src="./vis-resources/thresholds.png" alt="wrench">
+        </picture>
+      </div>
+      <p>Thresholds are visual indications of a specific limit on a Y axis. They can be used on timseries and XY charts.</p>
 
-        <h3 class="u-pt u-mb++">Events</h3>
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/event.webp" type="image/webp">
-            <source srcset="./vis-resources/event.png" type="image/jpeg">
-            <img src="./vis-resources/event.png" alt="wrench">
-          </picture>
-        </div>
-        <p>Events are a visual indication of a meaningful change at a specific time. They are used on timeseries chart and are visually customizable.</p>
+      <h3 class="u-pt u-mb++">Events</h3>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/event.webp" type="image/webp">
+          <source srcset="./vis-resources/event.png" type="image/jpeg">
+          <img src="./vis-resources/event.png" alt="wrench">
+        </picture>
+      </div>
+      <p>Events are a visual indication of a meaningful change at a specific time. They are used on timeseries chart and are
+        visually customizable.</p>
 
-        <h3 class="u-pt u-mb++">Brushes</h3>
-        <div class="flex flex--col flex--middle">
-          <picture>
-            <source srcset="./vis-resources/brushes.webp" type="image/webp">
-            <source srcset="./vis-resources/brushes.png" type="image/jpeg">
-            <img src="./vis-resources/brushes.png" alt="wrench">
-          </picture>
-        </div>
-        <p>Brushes are used to filter the data visible on the chart. They can be used to include or exclude the data contained within the brush. It can be used on parallel coordinates and radar charts.</p>
+      <h3 class="u-pt u-mb++">Brushes</h3>
+      <div class="flex flex--col flex--middle">
+        <picture>
+          <source srcset="./vis-resources/brushes.webp" type="image/webp">
+          <source srcset="./vis-resources/brushes.png" type="image/jpeg">
+          <img src="./vis-resources/brushes.png" alt="wrench">
+        </picture>
+      </div>
+      <p>Brushes are used to filter the data visible on the chart. They can be used to include or exclude the data contained
+        within the brush. It can be used on parallel coordinates and radar charts.</p>
 
-      </section>
-    </template>
+    </section>
+  </template>
 
-    <!-- Footer -->
-    <px-demo-footer></px-demo-footer>
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>
