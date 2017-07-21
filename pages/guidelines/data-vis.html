@@ -1,72 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix Design System</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix Design System</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <link rel="import" href="../../css/predix-ui-styles.html" />
+  <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+  <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+  <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-  </head>
-  <body class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+</head>
 
-    <section class="main u-mb++">
-      <h2 class="selected">Data Visualization</h2>
-      <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations that in turn could save lives and reduce maintenance costs.</p>
-      
-      <p>There are some basic questions one should ask before deciding what chart type would best address the needs of a specific situation.</p>
-      <ul>
-	      <li>What is the nature of the data?</li>
+<body class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
-		  <li>What is the expectation of the user on how the data will be presented?</li>
+  <section class="main u-mb++">
+    <h2 class="selected">Data Visualization</h2>
+    <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial
+      ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization,
+      a success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations
+      play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of
+      situations that in turn could save lives and reduce maintenance costs.</p>
 
-		  <li>How many points of data will need to be rendered onto the chart?</li>
+    <p>There are some basic questions one should ask before deciding what chart type would best address the needs of a specific
+      situation.</p>
+    <ul>
+      <li>What is the nature of the data?</li>
 
-		  <li>What are the interactions the user will need to evoke when consuming the data?</li>
-      </ul>
-      
-      <p>From there, you can start to have a better understanding of what chart from the vis framework will work best for your needs.</p>
-      
-      <h4>Chart Types:</h4>
-      <table border="1px">
-	      <tr>
-		      <td>
-			  <b>Percent Circle</b><br/>
-			  Used for conveying a single value as a percentage of a whole circle. </td>
-			  <td></td>
-	      </tr>
-		  <tr>
-			    
-		      <td><b>Gauge</b><br/>
-				  A simple data visualization component for conveying a single value as a percentage of a circular arc.</td>
-			<td></td>
-	      </tr>
-	      <tr>
-		      <td><b>Simple Area Chart</b></br>
-				  Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
-		      <td></td>
-	      </tr>
-	      <tr>
-		      <td></td>
-		      <td></td>
-		  </tr>
+      <li>What is the expectation of the user on how the data will be presented?</li>
 
-      
-    </section>
+      <li>How many points of data will need to be rendered onto the chart?</li>
 
-    <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
-  </body>
+      <li>What are the interactions the user will need to evoke when consuming the data?</li>
+    </ul>
+
+    <p>From there, you can start to have a better understanding of what chart from the vis framework will work best for your
+      needs.</p>
+
+    <h4>Chart Types:</h4>
+    <table class="table">
+      <tr>
+        <td>
+          <b>Percent Circle</b><br/> Used for conveying a single value as a percentage of a whole circle.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <b>Gauge</b><br/> A simple data visualization component for conveying a single value as a percentage of a circular
+          arc.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <b>Simple Area Chart</b></br>
+          Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+
+  </section>
+
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>

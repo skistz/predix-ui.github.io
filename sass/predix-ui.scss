@@ -37,6 +37,9 @@ $inuit-enable-code--inline: true;
 
 $inuit-webfont-path: '/type';
 @import "px-typography-design/_base.typography.scss";
+@import "px-tables-design/_base.tables.scss";
+
+// Objects
 $actionable: true;
 $actionable--action: true;
 $actionable--large: true;
@@ -44,7 +47,6 @@ $actionable--huge: true;
 @import "px-actionable-text-icons-design/_objects.actionable.scss";
 $inuit-enable-btn--primary: true;
 @import "px-buttons-design/_objects.buttons.scss";
-
 @import "px-layout-design/_objects.layout.scss";
 $inuit-enable-list-inline--delimited: true;
 $inuit-list-inline-delimit-character: "| ";
@@ -715,13 +717,13 @@ b.dont {
     width: 31%;
     margin: 0 1% 5% 1%;
   }
-   
-    
+
+
   .full {
     width: 95%;
     margin: 2% 1% 5% 1%;
     clear: both;
-    
+
   }
 
   .list-inline--delimited {

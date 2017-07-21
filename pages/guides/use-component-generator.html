@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix UI</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-  </head>
-  <body unresolved class="body flex flex--col">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <link rel="import" href="../../css/predix-ui-styles.html" />
+  <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+  <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+  <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+</head>
 
-    <section class="main u-mb++ flex__item flex__item--msfix">
-      <h2 class="selected">Build custom components with the generator</h2>
+<body unresolved class="body flex flex--col">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
-      <p>You can extend Predix UI to create custom components for any type of application. To speed things up, use the same generator tool that all Predix UI Components are built with to create your component scaffolding.</p>
+  <section class="main u-mb++ flex__item flex__item--msfix">
+    <h2 class="selected">Build custom components with the generator</h2>
 
-      <a class="info-box" target="_blank" href="https://github.com/predixdev/generator-px-comp/">
-        <h3 class="actionable"><strong>Get the generator from Github <i class="fa fa-external-link u-ml--"></i></strong></h3>
-        <p>The generator-px-comp repository hosts a Yeoman generator tool that will create the file structure for new components, install necessary Predix UI CSS modules, and prepare tests. See the repository README for instructions on using the generator.</p>
-      </a>
-    </section>
+    <p>You can extend Predix UI to create custom components for any type of application. To speed things up, use the same generator
+      tool that all Predix UI Components are built with to create your component scaffolding.</p>
 
-    <!-- Footer -->
-    <px-demo-footer></px-demo-footer>
+    <a class="info-box" target="_blank" href="https://github.com/predixdev/generator-px-comp/">
+      <h3 class="actionable"><strong>Get the generator from Github <i class="fa fa-external-link u-ml--"></i></strong></h3>
+      <p>The generator-px-comp repository hosts a Yeoman generator tool that will create the file structure for new components,
+        install necessary Predix UI CSS modules, and prepare tests. See the repository README for instructions on using the
+        generator.</p>
+    </a>
+  </section>
 
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+
+</body>
+
 </html>

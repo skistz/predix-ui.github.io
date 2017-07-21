@@ -36,6 +36,7 @@
     "px-demo-design": "^1.2.0",
     "px-helpers-design": "^0.3.20",
     "px-demo": "^1.5.10",
-    "px-toggle": "^1.0.5"
+    "px-toggle": "^1.0.5",
+    "px-tables-design": "^1.1.0"
   }
 }
