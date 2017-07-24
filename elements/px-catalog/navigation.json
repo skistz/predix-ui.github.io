@@ -15,19 +15,19 @@
        {
         "dataType":"guides",
         "repoName":"getting-started",
-        "linkText":"Starting Development"
+        "linkText":"How to use the System"
+      },
+      {
+        "dataType":"guides",
+        "repoName":"designer-resources",
+        "linkText":"Design Stencil Kit"
       },
       {
         "dataType":"guides",
         "repoName":"dev-resources",
         "linkText":"Developer Resources"
-      },
-       {
-        "dataType":"guides",
-        "repoName":"designer-resources",
-        "linkText":"Designer Resources"
       }
-    ],
+           ],
     "opened":true
   },
    {
