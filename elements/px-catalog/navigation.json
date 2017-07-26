@@ -39,6 +39,16 @@
         "linkText":"Build your own components"
       },
       {
+        "dataType":"guides",
+        "repoName":"internationalization",
+        "linkText":"Internationalization"
+      },
+      {
+        "dataType":"guides",
+        "repoName":"list-localize-strings",
+        "linkText":"List of localized strings"
+      },
+      {
         "linkText":"Vis Framework Guides",
         "links":[
           {

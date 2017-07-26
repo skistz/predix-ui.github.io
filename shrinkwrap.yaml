@@ -23,6 +23,7 @@ dependencies:
   imagemin-webp@^4.0.0: 4.0.0
   imagemin@^5.3.1: 5.3.1
   lazypipe@^1.0.1: 1.0.1
+  merge-stream@^1.0.1: 1.0.1
   node-sass-import-once@^1.2.0: 1.2.0
   request@^2.79.0: 2.81.0
   stream-combiner2@^1.1.1: 1.1.1
@@ -1708,7 +1709,7 @@ packages:
     resolution: 72cb668b425228290abbfa856892587308a801fb
   /merge-stream/1.0.1:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.3
     resolution: 4041202d508a342ba00174008df0c251b8c135e1
   /micromatch/2.3.11:
     dependencies:
@@ -2074,6 +2075,16 @@ packages:
       string_decoder: 1.0.1
       util-deprecate: 1.0.2
     resolution: cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8
+  /readable-stream/2.3.3:
+    dependencies:
+      core-util-is: 1.0.2
+      inherits: 2.0.3
+      isarray: 1.0.0
+      process-nextick-args: 1.0.7
+      safe-buffer: 5.1.1
+      string_decoder: 1.0.3
+      util-deprecate: 1.0.2
+    resolution: 368f2512d79f9d46fdfc71349ae7878bbc1eb95c
   /readdirp/2.1.0:
     dependencies:
       graceful-fs: 4.1.11
@@ -2177,6 +2188,7 @@ packages:
     resolution: c2338ec643df7a1b7fe5c54fa86f57428a55f33d
   /rx/4.1.0: a5f13ff79ef3b740fe30aa803fb09f98805d4782
   /safe-buffer/5.0.1: d263ca54696cd8a306b5ca6551e92de57918fbe7
+  /safe-buffer/5.1.1: 893312af69b2123def71f57889001671eeb2c853
   /sass-graph/2.2.4:
     dependencies:
       glob: 7.1.2
@@ -2347,6 +2359,10 @@ packages:
     dependencies:
       safe-buffer: 5.0.1
     resolution: b29e1f4e1125fa97a10382b8a533737b7491e179
+  /string_decoder/1.0.3:
+    dependencies:
+      safe-buffer: 5.1.1
+    resolution: 0fc67d7c141825de94282dd536bec6b9bce860ab
   /stringstream/0.0.5: 4e484cd4de5a0bbbee18e46307710a8a81621878
   /strip-ansi/0.3.0:
     dependencies:
