@@ -26,44 +26,198 @@
       <h2 class="selected">Data Visualization</h2>
       <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations that in turn could save lives and reduce maintenance costs.</p>
       
-      <p>There are some basic questions one should ask before deciding what chart type would best address the needs of a specific situation.</p>
-      <ul>
-	      <li>What is the nature of the data?</li>
-
-		  <li>What is the expectation of the user on how the data will be presented?</li>
-
-		  <li>How many points of data will need to be rendered onto the chart?</li>
-
-		  <li>What are the interactions the user will need to evoke when consuming the data?</li>
-      </ul>
+      <h4>Best Practices</h4>
+      <p><b>Consider the nature of the data</b><br/>
       
-      <p>From there, you can start to have a better understanding of what chart from the vis framework will work best for your needs.</p>
+      </p>
+
+	  <p><b>Account for the user's expectations of presentation</b><br/>
+		  
+	  </p>
+
+		<p><b>How many points of data will need to be rendered onto the chart?</b><br/>
+		
+		</p>
+
+		<p><b>What are the interactions the user will need to evoke when consuming the data?</b><br/>
+			
+		</p>
       
-      <h4>Chart Types:</h4>
-      <table border="1px">
+      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>
+           <table class="guidelines">
+      		  <tr>
+		      <td><b>Parallel Coordinates</b></td>
+			  <td>Used for analyzing multivariate data to look for comparisons.</td>
+		      <td></td>
+		  </tr>
+		  <tr>
+		      <td><b>Pie Chart</b></td>
+			  <td>Standard pie chart showing values relative to each other in a circular format.</td>
+		      <td></td>
+		  </tr>
+		   <tr>
+		      <td><b>Polar Chart/ Radar Chart</b></td>
+			  <td>Both are similar to the parallel coordinates chart in the sense that they are used to view multivariate data. The difference is the presentation is in a circular format. Often times, these charts are preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
+		      <td></td>
+		  </tr>
+		   <tr>
+		      <td><b>Spark</b></td>
+			  <td>A small line chart without axes or measures that provides a user a glimpse of a trend.</td>
+		      <td></td>
+		  </tr>
+		  <tr>
+		      <td><b>Timeseries</b></td>
+			  <td>provides means to analyze data over a period of time.</td>
+		      <td></td>
+		  </tr>
+		  		  <tr>
+		      <td><b>XY Chart</b></td>
+			  <td>Used to find correlations between two or more parameters or tags.</td>
+		      <td></td>
+		  </tr>
+		  </table>
+
+       <h4 class="u-mt+ u-pt+">Simple Charts</h4>
+       <table class="guidelines">
 	      <tr>
 		      <td>
-			  <b>Percent Circle</b><br/>
-			  Used for conveying a single value as a percentage of a whole circle. </td>
+			  <b>Percent Circle</b></td>
+			  <td>Used for conveying a single value as a percentage of a whole circle. </td>
 			  <td></td>
 	      </tr>
 		  <tr>
 			    
-		      <td><b>Gauge</b><br/>
-				  A simple data visualization component for conveying a single value as a percentage of a circular arc.</td>
+		      <td><b>Gauge</b></td>
+				 <td>A simple data visualization component for conveying a single value as a percentage of a circular arc.</td>
 			<td></td>
 	      </tr>
 	      <tr>
-		      <td><b>Simple Area Chart</b></br>
-				  Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
+		      <td><b>Simple Area Chart</b></td>
+				 <td>Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
 		      <td></td>
 	      </tr>
 	      <tr>
-		      <td></td>
+		      <td><b>Simple Bar Chart</b></td>
+			  <td>Provides a quick way to visualize data in single or stacked bars.</td>
 		      <td></td>
 		  </tr>
+		   <tr>
+		      <td><b>Simple Horizontal Bar Chart</b></td>
+			  <td>Provides a quick way to visualize data in single or stacked bars.</td>
+		      <td></td>
+		  </tr>
+		  <tr>
+		      <td><b>Simple Line Chart</b></td>
+			  <td>Used to visualize linear data in a simplified way for quick assessment.</td>
+		      <td></td>
+		  </tr>
+		  <tr>
+		      <td><b>Simple Win-Loss Chart</b></td>
+			  <td>Visualizes a series of positive & negative values as a bar chart.</td>
+		      <td></td>
+		  </tr>
+       </table>
+       
+         <h4 class="u-mt+ u-pt+">General Guidelines</h4>
+         <h4 class="subHeader u-mt+ u-pt+">Axis</h4><br/>
+          <p><b>Timeseries / Parallel /Bar</b></p>
+         X-Axis<br/>
+         <div class="halves guidelines">
+		<b class="do">Do</b> 
+		<picture>
+          <source srcset="../../../img/guidelines/xaxis_do.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/xaxis_do.png" type="image/jpeg">
+          <img src="../../../img/guidelines/xaxis_do.png" alt="Do center label values on the axis line and et a vertical orientation of the axis label.">
+        </picture>
+        <em>Do center label values on the axis line and et a vertical orientation of the axis label.</em>
+	</div>
 
-      
+	<div class="halves guidelines">
+		<b class="dont">Don't</b>
+		<picture>
+          <source srcset="../../../img/guidelines/xaxis_dont.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/xaxis_dont.png" type="image/jpeg">
+          <img src="../../../img/guidelines/xaxis_dont.png" alt="Don't offset label values or set a horizontal orientation of axis label.">
+        </picture>
+        <em>Don't offset label values or set a horizontal orientation of axis label.</em>
+	</div>
+	
+	Y-Axis<br/>
+	
+         <div class="halves guidelines">
+		<b class="do">Do</b> 
+		<picture>
+          <source srcset="../../../img/guidelines/yaxis_do.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/yaxis_do.png" type="image/jpeg">
+          <img src="../../../img/guidelines/yaxis_do.png" alt="Set label and values to a horizontal orientation.
+">
+        </picture>
+        <em>Do set label and values to a horizontal orientation with the axis.</em>
+	</div>
+
+	<div class="halves guidelines">
+		<b class="dont">Don't</b>
+		<picture>
+          <source srcset="../../../img/guidelines/yaxis_dont.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/yaxis_dont.png" type="image/jpeg">
+          <img src="../../../img/guidelines/yaxis_dont.png" alt="Don't create navigation scheme with two items.">
+        </picture>
+        <em>Don't offset label values or set a horizontal orientation of axis label.</em>
+	</div>
+	
+	Axis Lines<br/>
+	
+         <div class="halves guidelines">
+		<b class="do">Do</b> 
+		<picture>
+          <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/jpeg">
+          <img src="../../../img/guidelines/axis_lines_do.png" alt="Set label and values to a horizontal orientation.
+">
+        </picture>
+        <em>Do keep axis lines light to make the data stand out and increase scanability.</em>
+	</div>
+
+	<div class="halves guidelines">
+		<b class="dont">Don't</b>
+		<picture>
+          <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/jpeg">
+          <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't create navigation scheme with two items.">
+        </picture>
+        <em>Don't make axis lines dark or allow axis lines to float next to values.</em>
+	</div>
+
+	 <p>Radar &amp; Polar</p>
+	 
+     <div class="halves guidelines">
+		<b class="do">Do</b> 
+		<picture>
+          <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/jpeg">
+          <img src="../../../img/guidelines/axis_lines_do.png" alt="Set label and values to a horizontal orientation.
+">
+        </picture>
+        <em>Keep values centered on the axis line and in containers to allow for optimum readability. Labels should sit above or next to the axis line.</em>
+	</div>
+
+	<div class="halves guidelines">
+		<b class="dont">Don't</b>
+		<picture>
+          <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/jpeg">
+          <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't create navigation scheme with two items.">
+        </picture>
+        <em>Don't place values directly on the axis line without a container box or display labels inside the chart.</em>
+	</div>
+	
+	
+
+	<h4 class="u-mt+ u-pt+">Color Treatment</h4>
+	<p>The Predix UI visualization palette provides a diverse range of colors to construct visually impactful charts but more importantly, allows for distinction in the event of large, complex data groupings which are extremely common in the Industrial space.</p>
+       
+       <h4 class="u-mt+ u-pt+">Chart Register</h4>
+          <h4 class="u-mt+ u-pt+">Truncation</h4>
     </section>
 
     <!-- Footer -->

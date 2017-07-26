@@ -59,7 +59,8 @@ $inuit-list-inline-delimit-character: "| ";
 ************************************************************
 ***********************************************************/
 
-$px-catalog-gray: rgb(234,234,234);
+//$px-catalog-gray: rgb(234,234,234);
+$px-catalog-gray: rgb (234,239,241);
 $px-catalog-dark-gray: rgb(51,51,51);
 $px-catalog-light-gray: rgb(240,240,240);
 $px-catalog-blue: rgb(40,134,175);
@@ -161,7 +162,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
 */
 .side-nav{
   min-width: 300px;
-  background: $px-catalog-dark-blue;
+  background: #1b2a33;
   color: $white;
   padding: 20px;
   padding-bottom: 60px;
@@ -288,7 +289,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
     min-width: 300px;
     flex-basis: 350px;
     position: relative;
-    background: $px-catalog-dark-blue;
+    background: #1b2a33;
     overflow: auto;
     line-height: 200%;
   }
@@ -396,7 +397,7 @@ h1,h2,h3,h4,h5,h6,p,ul {
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 400;
 }
 
@@ -556,30 +557,47 @@ a.item__link {
 }
 
 .hero {
-  background-image: url('../img/px_banner.png');
-  background-repeat: no-repeat;
-  text-align: left;
-  color: white;
-  background-size: 1200px 350px;
-  background-color: $px-catalog-dark-blue;
-  padding: 30px 45px;
-  min-height: 275px;
+	background-color: #ebeff1;
 }
 
-.hero-header {
-  vertical-align: top;
-  max-width: 500px;
+.hero #heroimagelight_hype_container {
+	box-sizing: content-box !important;
 }
 
-.hero-logo {
-  max-width: 500px;
+.hero .welcometext {
+		z-index: 5000;
+		position: absolute;
+		margin: 5% 0% 0% 5%;
+}
+
+.hero h1 {
+	width: 252px;
+	height: 73px;
+	background: url('../../img/predix_ds_logo.png') 0 0 no-repeat;
+	text-indent: -5000px;
+}
+
+.hero p {
+	width: 270px;
+	font-size: .9em;
+}
+
+/* @2x Images (Pixel Ratio of 1.25+) */
+@media only screen and (-o-min-device-pixel-ratio: 5/4),
+       only screen and (-webkit-min-device-pixel-ratio: 1.25),
+       only screen and (min-device-pixel-ratio: 1.25),
+       only screen and (min-resolution: 1.25dppx) {
+    .hero h1 {
+	    background-image:url('../../img/predix_ds_logo@2x.png');
+	    background-size: 252px 73px;
+	    }
 }
 
 .main {
-  width: 100%;
-  margin: 0 auto;
-  background-color: $white;
-  padding: 3% 5% 2% 5%;
+ width: 100%;
+ margin: 0 auto;
+ background-color: $white;
+ padding: 3% 5% 2% 5%;
   overflow: hidden;
 }
 
@@ -626,6 +644,24 @@ b.dont {
 	padding-top: .5em;
 	color: $gray9;
 }
+
+table.guidelines {
+	width: 85%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+table.guidelines td {
+	border-bottom: 1px solid $gray2;
+	padding: .75em 0;
+}
+
+table.guidelines th {
+	border-bottom: 1px solid $gray6;
+	text-align: left;
+	font-weight: normal;
+	}
 
 
 .halves.guidelines {
