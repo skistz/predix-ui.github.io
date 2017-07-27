@@ -873,11 +873,11 @@
         ]
       },
       {
-        "repoName":"px-polymer-font-awesome",
+        "repoName":"px-icon-set",
         "dataType":"components",
-        "linkText":"Font Awesome",
+        "linkText":"Icons",
         "keywords":[
-          "px-polymer-font-awesome",
+          "px-icon-set",
           "icon",
           "icons",
           "font awesome",

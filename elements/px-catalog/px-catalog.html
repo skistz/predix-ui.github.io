@@ -12,6 +12,8 @@
 <link defer rel="import" href="../../bower_components/app-route/app-location.html" />
 <link async rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
 <link async rel="import" href="../../bower_components/px-toggle/px-toggle.html" />
+<link async rel="import" href="../../bower_components/px-icon-set/px-icon-set-navigation.html">
+<link async rel="import" href="../../bower_components/px-icon-set/px-icon.html">
 
 <!-- Import local dependencies -->
 <link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
@@ -73,8 +75,8 @@
     <!-- App Header -->
     <section class="gray-bar flex flex--row flex--middle flex--justify">
       <span id="menu" class="menu">
-        <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
-        <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
+        <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
+        <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
       </span>
       <div class="flex__item flex flex--row flex--justify flex--middle">
         <div class="flex__item">

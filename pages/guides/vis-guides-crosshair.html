@@ -13,7 +13,6 @@
     <link rel="shortcut icon" href="../../favicon.ico" />
     <link rel="import" href="../../css/predix-ui-styles.html"/>
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
   </head>
   <body unresolved class="body">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
@@ -253,7 +252,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;tooltip: {selected: true, actionConfig: { click: null } },<br />
             &nbsp;&nbsp;&nbsp;&nbsp;frozen: {<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltipLabel: 'Crosshair Frozen',<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon: 'fa-lock',<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon: 'px-utl:locked',<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eventName: "px-unfreeze-crosshair",<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClickContext: "toolbar",<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customButtonStyle: "color: salmon;"<br />
@@ -298,7 +297,7 @@
           <code>
             frozen: {<br />
             &nbsp;&nbsp;tooltipLabel: 'Crosshair Frozen',<br />
-            &nbsp;&nbsp;icon: 'fa-lock',<br />
+            &nbsp;&nbsp;icon: 'px-utl:locked',<br />
             &nbsp;&nbsp;eventName: "px-unfreeze-crosshair",<br />
             &nbsp;&nbsp;onClickContext: "toolbar",<br />
             &nbsp;&nbsp;customButtonStyle: "color: salmon;"<br />

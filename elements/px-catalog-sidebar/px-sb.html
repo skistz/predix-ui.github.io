@@ -4,8 +4,9 @@
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
 -->
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
-<link async rel="import" href="../../bower_components/px-polymer-font-awesome/polymer-font-awesome.html" />
 <link async rel="import" href="px-sb-list.html" />
+<link rel="import" href="../../bower_components/px-icon-set/px-icon-set-navigation.html">
+<link rel="import" href="../../bower_components/px-icon-set/px-icon.html">
 <!--
 Element providing sidebar for the predix ui website.
 
@@ -32,7 +33,7 @@ Element providing sidebar for the predix ui website.
         <input id="searchInput" class="text-input" type="text" value="{{initialSearchKeyword::input}}" placeholder="Type in a search term...">
       </div>
       <template is="dom-if" if="{{_isSearchKeywordTrue(searchKeyword)}}">
-        <div class="icon"><iron-icon icon="fa:fa-times" class="fa-x" on-click="_resetSearch" id="searchIcon"></iron-icon></div>
+        <div class="icon"><px-icon icon="px-nav:close" on-click="_resetSearch" id="searchIcon"></px-icon></div>
       </template>
     </div>
     <ul style="margin-top:40px;">
