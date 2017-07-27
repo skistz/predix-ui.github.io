@@ -26,61 +26,96 @@
       <h2 class="selected">Data Visualization</h2>
       <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations that in turn could save lives and reduce maintenance costs.</p>
       
-      <h4>Best Practices</h4>
+      <h4 class="u-mt+ u-pt+">Best Practices</h4>
       <p><b>Consider the nature of the data</b><br/>
-      
+      Different types of data are suited for different types of visualizations. 
       </p>
 
 	  <p><b>Account for the user's expectations of presentation</b><br/>
-		  
+		Some data is expected to be displayed in a specific way. For example, time-oriented data is best suited for a time-series chart while vibration data might be best suited for a polar chart.	  
 	  </p>
 
 		<p><b>How many points of data will need to be rendered onto the chart?</b><br/>
-		
+		The quantity and density of the data to be displayed may assist in deciding on the best visualization.
 		</p>
 
 		<p><b>What are the interactions the user will need to evoke when consuming the data?</b><br/>
+			Data consumed on a dashboard has very different interaction needs than data being used for analysis.
 			
 		</p>
       
-      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>
-           <table class="guidelines">
+      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>      	
+           <table class="guidelines datavis">
       		  <tr>
-		      <td><b>Parallel Coordinates</b></td>
-			  <td>Used for analyzing multivariate data to look for comparisons.</td>
-		      <td></td>
-		  </tr>
-		  <tr>
-		      <td><b>Pie Chart</b></td>
-			  <td>Standard pie chart showing values relative to each other in a circular format.</td>
-		      <td></td>
+	  		  <td>
+		  		  <picture>
+		  		  <source srcset="../../../img/guidelines/parallel_axis_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/parallel_axis_example.png" alt="Parallel Chart">
+		  		  </picture>
+		  	</td>
+	  		  <td>
+		  		  <picture>
+		  		  <source srcset="../../../img/guidelines/pie_chart.png" type="image/png">
+		  		  <img src="../../../img/guidelines/pie_chart.png" alt="Parallel Chart">
+		  		  </picture>
+		  		  </td>
+	  		  <td>
+		  		<picture>
+		  		  <source srcset="../../../img/guidelines/polar_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/polar_example.png" alt="Polar Example">
+		  		 </picture> 
+		  		 
+	  		  </td>
+      		  </tr>
+      		  <tr>
+		      <td><b>Parallel Coordinate</b>
+			      <br/>Used for analyzing multivariate data to look for comparisons.
+			  </td>
+			  <td><b>Pie Chart</b><br/>
+				  Standard pie chart showing values relative to each other in a circular format.
+			</td>
+		     
+		      <td><b>Polar Chart/Radar Chart</b><br/>
+			  Used to view multivariate data, preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
 		  </tr>
 		   <tr>
-		      <td><b>Polar Chart/ Radar Chart</b></td>
-			  <td>Both are similar to the parallel coordinates chart in the sense that they are used to view multivariate data. The difference is the presentation is in a circular format. Often times, these charts are preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
-		      <td></td>
-		  </tr>
+			    <td>
+				    <picture>
+		  		  <source srcset="../../../img/guidelines/spark_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/spark_example.png" alt="Spark Example">
+		  		 </picture> 
+
+			    </td>
+				<td>
+					 <picture>
+		  		  <source srcset="../../../img/guidelines/time_series_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/time_series_example.png" alt="Time Series Example">
+		  		 </picture> 
+				</td>
+	      		<td>
+		      		<picture>
+		  		  <source srcset="../../../img/guidelines/xy_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/xy_example.png" alt="XY Example">
+		  		 </picture> 
+	      		</td>
+		   </tr>
 		   <tr>
-		      <td><b>Spark</b></td>
-			  <td>A small line chart without axes or measures that provides a user a glimpse of a trend.</td>
-		      <td></td>
-		  </tr>
-		  <tr>
-		      <td><b>Timeseries</b></td>
-			  <td>provides means to analyze data over a period of time.</td>
-		      <td></td>
-		  </tr>
-		  		  <tr>
-		      <td><b>XY Chart</b></td>
-			  <td>Used to find correlations between two or more parameters or tags.</td>
-		      <td></td>
+		      <td><b>Spark</b><br/>
+			      A small line chart without axes or measures that provides a user a glimpse of a trend.
+			      </td>
+		 
+		      <td><b>Timeseries</b><br/>
+			      Provides means to analyze data over a period of time.</td>
+		  
+		      <td><b>XY Chart</b><br/>
+			  Used to find correlations between two or more parameters or tags.</td>
 		  </tr>
 		  </table>
 
        <h4 class="u-mt+ u-pt+">Simple Charts</h4>
-       <table class="guidelines">
+       <table class="guidelines datavis">
 	      <tr>
-		      <td>
+		      <td class="vistype">
 			  <b>Percent Circle</b></td>
 			  <td>Used for conveying a single value as a percentage of a whole circle. </td>
 			  <td></td>
@@ -126,7 +161,7 @@
 		<b class="do">Do</b> 
 		<picture>
           <source srcset="../../../img/guidelines/xaxis_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/xaxis_do.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/xaxis_do.png" type="image/png">
           <img src="../../../img/guidelines/xaxis_do.png" alt="Do center label values on the axis line and et a vertical orientation of the axis label.">
         </picture>
         <em>Do center label values on the axis line and et a vertical orientation of the axis label.</em>
@@ -136,7 +171,7 @@
 		<b class="dont">Don't</b>
 		<picture>
           <source srcset="../../../img/guidelines/xaxis_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/xaxis_dont.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/xaxis_dont.png" type="image/png">
           <img src="../../../img/guidelines/xaxis_dont.png" alt="Don't offset label values or set a horizontal orientation of axis label.">
         </picture>
         <em>Don't offset label values or set a horizontal orientation of axis label.</em>
@@ -148,7 +183,7 @@
 		<b class="do">Do</b> 
 		<picture>
           <source srcset="../../../img/guidelines/yaxis_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/yaxis_do.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/yaxis_do.png" type="image/png">
           <img src="../../../img/guidelines/yaxis_do.png" alt="Set label and values to a horizontal orientation.
 ">
         </picture>
@@ -159,7 +194,7 @@
 		<b class="dont">Don't</b>
 		<picture>
           <source srcset="../../../img/guidelines/yaxis_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/yaxis_dont.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/yaxis_dont.png" type="image/png">
           <img src="../../../img/guidelines/yaxis_dont.png" alt="Don't create navigation scheme with two items.">
         </picture>
         <em>Don't offset label values or set a horizontal orientation of axis label.</em>
@@ -171,7 +206,7 @@
 		<b class="do">Do</b> 
 		<picture>
           <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/png">
           <img src="../../../img/guidelines/axis_lines_do.png" alt="Set label and values to a horizontal orientation.
 ">
         </picture>
@@ -182,19 +217,19 @@
 		<b class="dont">Don't</b>
 		<picture>
           <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/png">
           <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't create navigation scheme with two items.">
         </picture>
         <em>Don't make axis lines dark or allow axis lines to float next to values.</em>
 	</div>
 
-	 <p>Radar &amp; Polar</p>
+	 <br>Radar &amp; Polar<br/>
 	 
      <div class="halves guidelines">
 		<b class="do">Do</b> 
 		<picture>
           <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/png">
           <img src="../../../img/guidelines/axis_lines_do.png" alt="Set label and values to a horizontal orientation.
 ">
         </picture>
@@ -205,7 +240,7 @@
 		<b class="dont">Don't</b>
 		<picture>
           <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/jpeg">
+          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/png">
           <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't create navigation scheme with two items.">
         </picture>
         <em>Don't place values directly on the axis line without a container box or display labels inside the chart.</em>

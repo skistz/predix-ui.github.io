@@ -20,25 +20,21 @@
       {
         "dataType":"guides",
         "repoName":"designer-resources",
-        "linkText":"Design Stencil Kit"
+        "linkText":"Design Starter Kit"
       },
       {
         "dataType":"guides",
         "repoName":"dev-resources",
         "linkText":"Developer Resources"
       }
+     
            ],
     "opened":true
   },
    {
     "linkText":"Design Guidelines",
     "links":[
-      {
-        "dataType":"guidelines",
-        "repoName":"overview-principles",
-        "linkText":"Principles"
-      },
-      {
+       {
         "dataType":"guidelines",
         "repoName":"navigation",
         "linkText":"Navigation"
@@ -63,25 +59,25 @@
         "repoName":"iconography",
         "linkText":"Iconography"
       },
-      {
-        "dataType":"guidelines",
-        "repoName":"elevation-layering",
-        "linkText":"Elevation & Layering"
-      },
-      {
-        "dataType":"guidelines",
-        "repoName":"data-input",
-        "linkText":"Data Input & Forms"
-      },
-      {
+       {
         "dataType":"guidelines",
         "repoName":"data-vis",
         "linkText":"Data Visualization"
       },
       {
+        "dataType":"guidelines",
+        "repoName":"elevation-layering",
+        "linkText":"Elevation & Layering"
+      },
+       {
         "dataType":"mobile",
         "repoName":"mobile",
         "linkText":"Mobile"
+      },
+       {
+        "dataType":"guides",
+        "repoName":"gallery",
+        "linkText":"App Gallery"
       }
     ],
     "opened":false
@@ -1159,6 +1155,6 @@
         ]
       }
     ],
-    "opened":true
+    "opened":false
   }
 ]
