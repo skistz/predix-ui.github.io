@@ -510,16 +510,6 @@
             ]
           },
           {
-            "repoName":"px-sample-cards",
-            "dataType":"components",
-            "linkText":"Sample Cards",
-            "keywords":[
-              "px-sample-cards",
-              "card",
-              "cards"
-            ]
-          },
-          {
             "repoName":"px-widget-cards",
             "dataType":"components",
             "linkText":"Widget Cards",
