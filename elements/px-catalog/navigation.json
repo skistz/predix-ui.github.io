@@ -55,6 +55,16 @@
             "dataType":"guides",
             "repoName":"vis-guides-introducing-web-workers",
             "linkText":"Introducing web workers"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-toolbar",
+            "linkText":"Configuring the toolbar"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-crosshair",
+            "linkText":"Introducing crosshair"
           }
         ]
       }
@@ -485,16 +495,6 @@
               "deck",
               "dropdown",
               "drop-down"
-            ]
-          },
-          {
-            "repoName":"px-sample-cards",
-            "dataType":"components",
-            "linkText":"Sample Cards",
-            "keywords":[
-              "px-sample-cards",
-              "card",
-              "cards"
             ]
           },
           {
