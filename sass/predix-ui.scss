@@ -559,27 +559,46 @@ a.item__link {
 	background-color: #ebeff1;
 }
 
+.darkhero {
+	background-color: #1a2a35;
+}
+
 .hero #heroimagelight_hype_container,
-.hero #heroimagedark_hype_container {
+.darkhero #heroimagedark_hype_container {
 	box-sizing: content-box !important;
 }
 
-.hero .welcometext {
+.hero .welcometext,
+.darkhero .welcometext {
 		z-index: 5000;
 		position: absolute;
 		margin: 5% 0% 0% 5%;
 }
 
-.hero h1 {
+.hero h1,
+.darkhero h1 {
 	width: 252px;
 	height: 73px;
-	background: url('../../img/predix_ds_logo.png') 0 0 no-repeat;
 	text-indent: -5000px;
 }
 
-.hero p {
+.hero h1 {
+	background: url('../../img/predix_ds_logo.png') 0 0 no-repeat;
+}
+	
+
+.darkhero h1 {
+		background: url('../../img/predix_ds_logo_dark.png') 0 0 no-repeat;
+}
+
+.hero p,
+.darkhero p {
 	width: 270px;
 	font-size: .9em;
+}
+
+.darkhero p {
+	color: $gray4;
 }
 
 /* @2x Images (Pixel Ratio of 1.25+) */
@@ -589,6 +608,10 @@ a.item__link {
        only screen and (min-resolution: 1.25dppx) {
     .hero h1 {
 	    background-image:url('../../img/predix_ds_logo@2x.png');
+	    background-size: 252px 73px;
+	    }
+	 .darkhero h1 {
+	    background-image:url('../../img/predix_ds_logo_dark@2x.png');
 	    background-size: 252px 73px;
 	    }
 }
