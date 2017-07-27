@@ -886,17 +886,6 @@
         ]
       },
       {
-        "repoName":"px-drawer",
-        "dataType":"components",
-        "linkText":"Drawer",
-        "keywords":[
-          "px-drawer",
-          "drawer",
-          "mobile",
-          "panel"
-        ]
-      },
-      {
         "repoName":"px-dropdown",
         "dataType":"components",
         "linkText":"Dropdown",
