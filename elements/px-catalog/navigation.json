@@ -585,9 +585,19 @@
           },
           {
             "dataType":"guides",
+            "repoName":"vis-guides-toolbar",
+            "linkText":"Configuring the Toolbar"
+          },
+          {
+            "dataType":"guides",
             "repoName":"vis-guides-introducing-web-workers",
             "linkText":"Web Workers"
-      }
+      		},
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-crosshair",
+            "linkText":"Introducing crosshair"
+          }
     ],
     "opened":false
 	},

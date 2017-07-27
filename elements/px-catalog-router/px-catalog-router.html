@@ -164,7 +164,7 @@ a component.
         '_redirectOldQueryURLs(queryParams, queryParams.*)',
         '_redirectModulePathURLs(appPath, appPath.*)',
         '_handleActiveChange(activeName)',
-        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*)',
+        '_updateFrameUrl(appPath, queryParams, appPath.*, queryParams.*, darkTheme)',
         '_syncPathToActiveAttrs(appPath, appPath.*)'
       ],
 
@@ -243,10 +243,10 @@ a component.
         if (type && type !== '') {
           knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://www.predix-ui.com/' + name + '-classic/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             css: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'https://www.predix-ui.com/' + name + '-classic/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
               return '../../pages/about/' + name + '.html';
@@ -269,7 +269,7 @@ a component.
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-            // If we're using dark theme, and URL has .html in it, replace with -dark.html
+			// If we're using dark theme, and URL has .html in it, replace with -dark.html
             if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css' || type === 'home')) {
               // turns `/path/foo.html` into `/path/foo-dark-theme.html`
               url = url.slice(0,-5) + '-dark-theme.html';

@@ -213,7 +213,6 @@ gulp.task('serve', function() {
      execSync(`touch .gitignore`);
      const gitIgnore = [
         'node_modules/',
-        'dist/',
         'caddyfile',
         'cert.crt',
         'cert.key',
@@ -309,6 +308,7 @@ gulp.task('default', ['localBuild']);
        console.log("isTravis = " + isTravis()  );
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
      staticFileGlobs: [rootDir + '/index.html',
+                       rootDir + '/',
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
@@ -335,12 +335,13 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
-                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html'],
+                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html',
+                       rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
      templateFilePath: rootDir + '/sw.tmpl',
      navigateFallback: '/index.html',
-     navigateFallbackWhitelist: ['/index.html']     
+     navigateFallbackWhitelist: ['/index.html']
    }, callback);
  });
 
