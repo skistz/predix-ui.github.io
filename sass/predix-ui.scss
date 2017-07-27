@@ -661,13 +661,18 @@ table.guidelines th {
 	text-align: left;
 	font-weight: normal;
 	}
+
+table.guidelines.datavis {
+	width: 80%
+}
+
+
 	
-.datavis td {
-	width: 33%;
+table.guidelines.datavis td {
+	width: 25%;
 	padding: .5em;
 	border: none;
 	}
-
 
 .halves.guidelines {
 	border: 1px solid $gray4;

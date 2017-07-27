@@ -70,12 +70,12 @@
         "linkText":"Elevation & Layering"
       },
        {
-        "dataType":"mobile",
+        "dataType":"guidelines",
         "repoName":"mobile",
         "linkText":"Mobile"
       },
        {
-        "dataType":"guides",
+        "dataType":"guidelines",
         "repoName":"gallery",
         "linkText":"App Gallery"
       }

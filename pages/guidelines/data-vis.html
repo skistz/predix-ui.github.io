@@ -44,8 +44,10 @@
 			
 		</p>
       
-      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>      	
-           <table class="guidelines datavis">
+      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>  
+      <p>These charts are part of the D3-based data visualization framework. They are highly interactive and configurable and built to be performant with large amounts of data. More on our data visualization framework is <a href="https://medium.com/ge-design/introducing-ges-data-visualization-framework-for-iot-27c350b02c04" target="_blank">here</a>.</p>
+      <p>Px-vis was created in close collaboration with the GE Digital Asset Performance Management team, and with substantial input from users about how they look at data in monitoring and diagnostics scenarios.</p>    	
+           <table class="guidelines datavis u-mb++">
       		  <tr>
 	  		  <td>
 		  		  <picture>
@@ -78,6 +80,7 @@
 		      <td><b>Polar Chart/Radar Chart</b><br/>
 			  Used to view multivariate data, preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
 		  </tr>
+
 		   <tr>
 			    <td>
 				    <picture>
@@ -113,50 +116,92 @@
 		  </table>
 
        <h4 class="u-mt+ u-pt+">Simple Charts</h4>
+       <p>For lighter weight use cases, simple charts offer basic functionality with minimal interactivity and less configuration options.</p>	    
        <table class="guidelines datavis">
 	      <tr>
-		      <td class="vistype">
-			  <b>Percent Circle</b></td>
-			  <td>Used for conveying a single value as a percentage of a whole circle. </td>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/percent_circle_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/percent_circle_example.png" alt="Percent Circle Example">
+		  		 </picture>
+		  		 </td>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/gauge_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/gauge_example.png" alt="Gauge Example">
+		  		 </picture>
+		  		</td>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/area_chart_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/area_chart_example.png" alt="Area Chart Example">
+		  		 </picture>
+		      </td>
+	      </tr>
+	      <tr>
+		      <td><b>Percent Circle</b><br/>
+			  Used for conveying a single value as a percentage of a whole circle. </td>
+			  <td><b>Gauge</b><br/>
+			A simple data visualization component for conveying a single value as a percentage of a circular arc.
+			</td>
+	  
+		      <td><b>Simple Area Chart</b><br/>
+			Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
+		 
+	      </tr>
+  
+	      <tr>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/simple_bar_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/simple_bar_example.png" alt="Simple Bar Chart Example">
+		  		 </picture>
+
+		      </td>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/horiz_bar_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/horiz_bar_example.png" alt="Simple Bar Chart Example">
+		  		 </picture>
+		      </td>
+		      <td>
+			      <picture>
+		  		  <source srcset="../../../img/guidelines/simple_line_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/simple_line_example.png" alt="Simple Line Chart Example">
+		  		 </picture>
+		      </td>
+	      </tr>
+	      <tr>
+		      <td><b>Simple Bar Chart</b><br/>
+			  Provides a quick way to visualize data in single or stacked bars.
+			  </td>
+		      
+		      <td><b>Simple Horizontal Bar Chart</b><br/>
+			 Provides a quick way to visualize data in single or stacked bars.</td>
+		 
+		      <td><b>Simple Line Chart</b></br>
+			 Used to visualize linear data in a simplified way for quick assessment.</td>
+		  </tr>
+		  <tr>
+			  <td>
+				  <picture>
+		  		  <source srcset="../../../img/guidelines/win_loss_example.png" type="image/png">
+		  		  <img src="../../../img/guidelines/win_loss_example.png" alt="Simple Line Chart Example">
+		  		 </picture>
+			  </td>
 			  <td></td>
-	      </tr>
-		  <tr>
-			    
-		      <td><b>Gauge</b></td>
-				 <td>A simple data visualization component for conveying a single value as a percentage of a circular arc.</td>
-			<td></td>
-	      </tr>
-	      <tr>
-		      <td><b>Simple Area Chart</b></td>
-				 <td>Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
-		      <td></td>
-	      </tr>
-	      <tr>
-		      <td><b>Simple Bar Chart</b></td>
-			  <td>Provides a quick way to visualize data in single or stacked bars.</td>
-		      <td></td>
-		  </tr>
-		   <tr>
-		      <td><b>Simple Horizontal Bar Chart</b></td>
-			  <td>Provides a quick way to visualize data in single or stacked bars.</td>
-		      <td></td>
+			  <td></td>
 		  </tr>
 		  <tr>
-		      <td><b>Simple Line Chart</b></td>
-			  <td>Used to visualize linear data in a simplified way for quick assessment.</td>
-		      <td></td>
-		  </tr>
-		  <tr>
-		      <td><b>Simple Win-Loss Chart</b></td>
-			  <td>Visualizes a series of positive & negative values as a bar chart.</td>
-		      <td></td>
-		  </tr>
+			   <td><b>Simple Win-Loss Chart</b><br/>
+			  Visualizes a series of positive & negative values as a bar chart.</td>
+			  <td></td>
+			  <td></td>
        </table>
        
          <h4 class="u-mt+ u-pt+">General Guidelines</h4>
-         <h4 class="subHeader u-mt+ u-pt+">Axis</h4><br/>
-          <p><b>Timeseries / Parallel /Bar</b></p>
-         X-Axis<br/>
+         <b>Axis Layout &amp; Treatment</b><br/>
+      
          <div class="halves guidelines">
 		<b class="do">Do</b> 
 		<picture>
@@ -177,7 +222,6 @@
         <em>Don't offset label values or set a horizontal orientation of axis label.</em>
 	</div>
 	
-	Y-Axis<br/>
 	
          <div class="halves guidelines">
 		<b class="do">Do</b> 
@@ -200,7 +244,7 @@
         <em>Don't offset label values or set a horizontal orientation of axis label.</em>
 	</div>
 	
-	Axis Lines<br/>
+
 	
          <div class="halves guidelines">
 		<b class="do">Do</b> 
@@ -222,8 +266,6 @@
         </picture>
         <em>Don't make axis lines dark or allow axis lines to float next to values.</em>
 	</div>
-
-	 <br>Radar &amp; Polar<br/>
 	 
      <div class="halves guidelines">
 		<b class="do">Do</b> 
