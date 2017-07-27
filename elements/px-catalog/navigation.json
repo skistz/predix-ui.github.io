@@ -27,7 +27,7 @@
         "repoName":"dev-resources",
         "linkText":"Developer Resources"
       }
-     
+
            ],
     "opened":true
   },
@@ -82,6 +82,54 @@
     ],
     "opened":false
   },
+
+  {
+
+        "linkText":"Data Vis Framework Guide",
+        "links":[
+	        {
+            "repoName":"px-vis",
+            "dataType":"components",
+            "linkText":"About the Framework",
+            "keywords":[
+              "px-vis",
+              "charts",
+              "chart",
+              "graph",
+              "graphs",
+              "viz",
+              "framework"
+            ]
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-terminology",
+            "linkText":"Terminology"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-configuring-charts",
+            "linkText":"Configuring Charts"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-toolbar",
+            "linkText":"Configuring the Toolbar"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-introducing-web-workers",
+            "linkText":"Web Workers"
+      		},
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-crosshair",
+            "linkText":"Introducing crosshair"
+          }
+    ],
+    "opened":false
+	},
+
 
   {
     "linkText":"CSS Modules",
@@ -545,53 +593,7 @@
            {
         "linkText":"Data Visualization",
         "links":[
-         {
-    
-        "linkText":"Vis Framework Guides",
-        "links":[
-	        {
-            "repoName":"px-vis",
-            "dataType":"components",
-            "linkText":"Framework",
-            "keywords":[
-              "px-vis",
-              "charts",
-              "chart",
-              "graph",
-              "graphs",
-              "viz",
-              "framework"
-            ]
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-terminology",
-            "linkText":"Terminology"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-configuring-charts",
-            "linkText":"Configuring Charts"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-toolbar",
-            "linkText":"Configuring the Toolbar"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-introducing-web-workers",
-            "linkText":"Web Workers"
-      		},
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-crosshair",
-            "linkText":"Introducing crosshair"
-          }
-    ],
-    "opened":false
-	},
-          {
+                   {
             "repoName":"px-vis-parallel-coordinates",
             "dataType":"components",
             "linkText":"Vis Parallel Coordinates",

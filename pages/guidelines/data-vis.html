@@ -25,6 +25,7 @@
     <section class="main u-mb++">
       <h2 class="selected">Data Visualization</h2>
       <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations that in turn could save lives and reduce maintenance costs.</p>
+      <p>The  <a target="_top" href="/#/guides/vis-guides-terminology">Vis Framework Guides</a> provide a general overview of data vis terminology as well as technical guidance on how to <a  target="_top" href="/#/guides/vis-guides-configuring-charts">configure charts</a> and <a  target="_top" href="/#/guides/vis-guides-toolbar">the toolbar</a>.
 
       <h4 class="u-mt+ u-pt+">Best Practices</h4>
       <p><b>Consider the nature of the data</b><br/>
@@ -337,9 +338,9 @@
 
        <h4 class="u-mt+ u-pt+">Chart Register</h4>
        <p>The chart register houses the list of mapped values and their associated colors. Depending on your use case it can be placed to the top or the right of a data visualization. It is not recommended that it is placed to the left or below the chart. </p>
-       <p>Tooltips work in conjunction with the register and display metadata about a particular item on the chart. It's important to keep tooltips succinct and as small as possible so they don't obscure the data they are augmenting.</p>
+       <p>Tooltips can work with or instead of the register and display metadata about a particular item on the chart. It's important to keep tooltips succinct and as small as possible so they don't obscure the data they are augmenting.</p>
 
-       	<div class="halves guidelines">
+  <div class="halves guidelines">
 		<b class="do">Do</b>
 	<picture>
           <source srcset="../../../img/guidelines/vis_register_do.webp" type="image/webp">
@@ -357,9 +358,28 @@
           <source srcset="../../../img/guidelines/vis_register_dont.png" type="image/png">
           <img src="../../../img/guidelines/vis_register_dont.png" alt="Place register to the left or below the chart space.">
         </picture>
-
-
         <em>Don't place the register to the left or below the chart space.</em>
+	</div>
+
+<div class="halves guidelines">
+		<b class="do">Do</b>
+	<picture>
+          <source srcset="../../../img/guidelines/vis_tooltip_do.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/vis_tooltip_do.png" type="image/png">
+          <img src="../../../img/guidelines/vis_tooltip_do.png" alt="Keep tags to a minimum height and consider splitting them into columns">
+        </picture>
+
+
+        <em>Keep tags to a minimum height and consider splitting them into columns.</em>
+	</div>
+	<div class="halves guidelines">
+		<b class="dont">Don't</b>
+	<picture>
+          <source srcset="../../../img/guidelines/vis_tooltip_dont.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/vis_tooltip_dont.png" type="image/png">
+          <img src="../../../img/guidelines/vis_tooltip_dont.png" alt="Keep tags to minimum in tooltips.">
+        </picture>
+        <em>Don't insert a large number of tags into the tooltip. Consider using the register instead.</em>
 	</div>
 
 
