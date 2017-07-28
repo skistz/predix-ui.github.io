@@ -39,6 +39,16 @@
         "linkText":"Build your own components"
       },
       {
+        "dataType":"guides",
+        "repoName":"internationalization",
+        "linkText":"Internationalization"
+      },
+      {
+        "dataType":"guides",
+        "repoName":"list-localize-strings",
+        "linkText":"List of localized strings"
+      },
+      {
         "linkText":"Vis Framework Guides",
         "links":[
           {
@@ -55,6 +65,16 @@
             "dataType":"guides",
             "repoName":"vis-guides-introducing-web-workers",
             "linkText":"Introducing web workers"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-toolbar",
+            "linkText":"Configuring the toolbar"
+          },
+          {
+            "dataType":"guides",
+            "repoName":"vis-guides-crosshair",
+            "linkText":"Introducing crosshair"
           }
         ]
       }
@@ -488,16 +508,6 @@
             ]
           },
           {
-            "repoName":"px-sample-cards",
-            "dataType":"components",
-            "linkText":"Sample Cards",
-            "keywords":[
-              "px-sample-cards",
-              "card",
-              "cards"
-            ]
-          },
-          {
             "repoName":"px-widget-cards",
             "dataType":"components",
             "linkText":"Widget Cards",
@@ -840,17 +850,6 @@
         ]
       },
       {
-        "repoName":"px-drawer",
-        "dataType":"components",
-        "linkText":"Drawer",
-        "keywords":[
-          "px-drawer",
-          "drawer",
-          "mobile",
-          "panel"
-        ]
-      },
-      {
         "repoName":"px-dropdown",
         "dataType":"components",
         "linkText":"Dropdown",
@@ -874,11 +873,11 @@
         ]
       },
       {
-        "repoName":"px-polymer-font-awesome",
+        "repoName":"px-icon-set",
         "dataType":"components",
-        "linkText":"Font Awesome",
+        "linkText":"Icons",
         "keywords":[
-          "px-polymer-font-awesome",
+          "px-icon-set",
           "icon",
           "icons",
           "font awesome",

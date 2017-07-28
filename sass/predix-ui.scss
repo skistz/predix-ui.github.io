@@ -31,6 +31,7 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 // Base
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
 
 $inuit-enable-code--inline: true;
 @import "px-code-design/_base.code.scss";
@@ -49,6 +50,7 @@ $inuit-enable-btn--primary: true;
 $inuit-enable-list-inline--delimited: true;
 $inuit-list-inline-delimit-character: "| ";
 @import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
 
 
 // Component
@@ -178,11 +180,11 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   }
 
   & a:hover{
-    color: $select-blue-default;
+    color: $select-default;
   }
 
   & a:active{
-    color: $select-blue-pressed;
+    color: $select-pressed;
   }
 
   & ul{
@@ -206,7 +208,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   transform: translate3d(-300px, 0px, 0px);
 }
 .selected {
- color: $select-blue-default !important;
+ color: $select-default !important;
 }
 .arrow-right {
   width: 0;
@@ -288,7 +290,6 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
     min-width: 300px;
     flex-basis: 350px;
     position: relative;
-    height: 100vh;
     background: $px-catalog-dark-blue;
     overflow: auto;
     line-height: 200%;
@@ -628,7 +629,7 @@ a.item__link {
   color: $black;
   &:hover {
     color: $black;
-    .actionable { color: $primary-blue-pressed; }
+    .actionable { color: $primary-pressed; }
   }
   p:last-child { margin-bottom: 0 }
 }
@@ -701,7 +702,6 @@ $inuit-enable-paddings--none           : true;
 $inuit-enable-paddings--large          : true;
 $inuit-enable-paddings--huge           : true;
 $inuit-enable-paddings--negative-tiny  : true;
-@import "px-spacing-design/_trumps.spacing.scss";
-@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-design/_trumps.spacing.scss"; 
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 @import "px-widths-responsive-design/_trumps.widths-responsive.scss";

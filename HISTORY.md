@@ -1,3 +1,7 @@
+v0.2.18
+==================
+* Adding vis crosshair article
+
 v0.2.17
 ==================
 * Replace references to Predix UI Seed with Predix UI Web App Starter
