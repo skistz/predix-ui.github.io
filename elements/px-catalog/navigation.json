@@ -522,6 +522,18 @@
     "linkText":"Components",
     "links":[
       {
+        "repoName":"px-accordion",
+        "dataType":"components",
+        "linkText":"Accordion",
+        "keywords":[
+          "px-accordion",
+          "collapse",
+          "expand",
+          "accordion",
+          "accordian"
+        ]
+      },
+      {
         "repoName":"px-alert-label",
         "dataType":"components",
         "linkText":"Alert Label",
@@ -542,6 +554,18 @@
         ]
       },
       {
+        "repoName":"px-app-helpers/px-app-header",
+        "dataType":"components",
+        "linkText":"App Header",
+        "keywords":[
+          "px-app-header",
+          "header",
+          "page",
+          "layout",
+          "scroll"
+        ]
+      },
+      {
         "repoName":"px-app-nav",
         "dataType":"components",
         "linkText":"App Nav",
@@ -550,6 +574,30 @@
           "navigation",
           "nav",
           "sidebar"
+        ]
+      },
+      {
+        "repoName":"px-app-helpers/px-app-route",
+        "dataType":"components",
+        "linkText":"App Route",
+        "keywords":[
+          "px-app-route",
+          "router",
+          "navigation",
+          "nav",
+          "route"
+        ]
+      },
+      {
+        "repoName":"px-branding-bar",
+        "dataType":"components",
+        "linkText":"Branding Bar",
+        "keywords":[
+          "px-branding-bar",
+          "brand",
+          "header",
+          "logo",
+          "title"
         ]
       },
       {
@@ -954,6 +1002,18 @@
         ]
       },
       {
+        "repoName":"px-key-value-pair",
+        "dataType":"components",
+        "linkText":"Key-Value Pair",
+        "keywords":[
+          "px-key-value-pair",
+          "key",
+          "value",
+          "label",
+          "dashboard"
+        ]
+      },
+      {
         "repoName":"px-kpi",
         "dataType":"components",
         "linkText":"KPI",
@@ -1123,6 +1183,16 @@
           "hover",
           "help",
           "tip"
+        ]
+      },
+      {
+        "repoName":"px-tree",
+        "dataType":"components",
+        "linkText":"Tree",
+        "keywords":[
+          "px-tree",
+          "tree",
+          "treeview"
         ]
       },
       {
