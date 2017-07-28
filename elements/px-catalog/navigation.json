@@ -4,7 +4,7 @@
     "repoName":"landing-page",
     "dataType":"home"
   },
-  {
+     {
     "linkText":"Getting Started",
     "links":[
       {
@@ -12,6 +12,7 @@
         "repoName":"what-is-predix-ui",
         "linkText":"About the System"
       },
+
        {
         "dataType":"guides",
         "repoName":"getting-started",
@@ -25,7 +26,12 @@
       {
         "dataType":"guides",
         "repoName":"dev-resources",
-        "linkText":"Developer Resources"
+        "linkText":"Additional Resources"
+      },
+      {
+        "dataType":"about",
+        "repoName":"release-notes",
+        "linkText":"Release Notes"
       }
 
            ],
@@ -82,14 +88,17 @@
     ],
     "opened":false
   },
-  {
-        "linkText":"Data Vis Framework Guide",
-        "links":[
-	        {
-            "repoName":"px-vis",
-            "dataType":"components",
-            "linkText":"About the Framework",
-            "keywords":[
+   {
+    "linkText":"Developer Guides",
+    "links":[
+	     {
+          "linkText":"Data Vis Framework",
+          "links":[
+            {
+              "repoName":"px-vis",
+              "dataType":"components",
+              "linkText":"About the Framework",
+              "keywords":[
               "px-vis",
               "charts",
               "chart",
@@ -97,39 +106,50 @@
               "graphs",
               "viz",
               "framework"
+              ]
+            },
+              {
+                "dataType":"guides",
+                "repoName":"vis-guides-terminology",
+                "linkText":"Terminology"
+              },
+                {
+                 "dataType":"guides",
+                 "repoName":"vis-guides-configuring-charts",
+                 "linkText":"Configuring Charts"
+              },
+                {
+                  "dataType":"guides",
+                  "repoName":"vis-guides-toolbar",
+                  "linkText":"Configuring the Toolbar"
+              },
+                {
+                  "dataType":"guides",
+                  "repoName":"vis-guides-introducing-web-workers",
+                  "linkText":"Web Workers"
+              },
+                {
+                "dataType":"guides",
+                "repoName":"vis-guides-crosshair",
+                "linkText":"Introducing Crosshair"
+              }
             ]
           },
+        {
+          "dataType":"guides",
+          "repoName":"internationalization",
+           "linkText":"Internationalization"
+        },
           {
             "dataType":"guides",
-            "repoName":"vis-guides-terminology",
-            "linkText":"Terminology"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-configuring-charts",
-            "linkText":"Configuring Charts"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-toolbar",
-            "linkText":"Configuring the Toolbar"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-introducing-web-workers",
-            "linkText":"Web Workers"
-      		},
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-crosshair",
-            "linkText":"Introducing Crosshair"
+            "repoName":"list-localize-strings",
+            "linkText":"List of localized strings"
           }
-    ],
+        ],
     "opened":false
 	},
 
-
-  {
+    {
     "linkText":"CSS Modules",
     "links":[
       {
@@ -907,11 +927,11 @@
         ]
       },
       {
-        "repoName":"px-polymer-font-awesome",
+        "repoName":"px-icon-set",
         "dataType":"components",
-        "linkText":"Font Awesome",
+        "linkText":"Icons",
         "keywords":[
-          "px-polymer-font-awesome",
+          "px-icon-set",
           "icon",
           "icons",
           "font awesome",

@@ -31,6 +31,7 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 // Base
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
 
 $inuit-enable-code--inline: true;
 @import "px-code-design/_base.code.scss";
@@ -49,6 +50,7 @@ $inuit-enable-btn--primary: true;
 $inuit-enable-list-inline--delimited: true;
 $inuit-list-inline-delimit-character: "| ";
 @import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
 
 
 // Component
@@ -65,6 +67,7 @@ $px-catalog-light-gray: rgb(240,240,240);
 $px-catalog-blue: rgb(40,134,175);
 $px-catalog-blue--hover: rgb(58,180,212);
 $px-catalog-dark-blue: rgb(1, 41, 57);
+$px-catalog-magenta: rgb(192,0,42);
 
 
 /*
@@ -178,11 +181,11 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   }
 
   & a:hover{
-    color: $select-blue-default;
+    color: $select-default;
   }
 
   & a:active{
-    color: $select-blue-pressed;
+    color: $select-pressed;
   }
 
   & ul{
@@ -206,7 +209,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   transform: translate3d(-300px, 0px, 0px);
 }
 .selected {
- color: $select-blue-default !important;
+ color: $select-default !important;
 }
 .arrow-right {
   width: 0;
@@ -383,7 +386,7 @@ body:after {
 }
 
 p {
-	color: $grey10;
+	color: $gray17;
 	line-height: 1.5em;
 }
 
@@ -403,7 +406,7 @@ h2 {
 h4 {
   font-size: 28px;
   font-weight: 400;
-  color: $dv-dark-pink;
+  color: $px-catalog-magenta;
 
 }
 
@@ -648,16 +651,16 @@ b.do {
 	display: block;
 	padding-bottom:.5em;
 	margin-bottom: .75em;
-	color: $green-dark;
-	border-bottom: 2px solid $green-dark;
+	color: $green6;
+	border-bottom: 2px solid $green6;
 }
 
 b.dont {
 	display: block;
 	padding-bottom:.5em;
 	margin-bottom: .75em;
-	color: $red-dark;
-	border-bottom: 2px solid $red-dark;
+	color: $red6;
+	border-bottom: 2px solid $red6;
 }
 
 .guidelines em {
@@ -773,7 +776,7 @@ table.guidelines.datavis td {
   color: $black;
   &:hover {
     color: $black;
-    .actionable { color: $primary-blue-pressed; }
+    .actionable { color: $primary-pressed; }
   }
   p:last-child { margin-bottom: 0 }
 }
@@ -855,6 +858,5 @@ $inuit-enable-paddings--large          : true;
 $inuit-enable-paddings--huge           : true;
 $inuit-enable-paddings--negative-tiny  : true;
 @import "px-spacing-design/_trumps.spacing.scss";
-@import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 @import "px-widths-responsive-design/_trumps.widths-responsive.scss";

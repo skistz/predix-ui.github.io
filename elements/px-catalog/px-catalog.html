@@ -3,15 +3,17 @@
 
 <!-- Import style module -->
 <link defer rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
 
 <!-- Import external dependencies -->
 <link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
 <link async rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link async rel="import" href="../../bower_components/app-route/app-route.html" />
 <link defer rel="import" href="../../bower_components/app-route/app-location.html" />
-<link async rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
 <link async rel="import" href="../../bower_components/px-spinner/px-spinner.html" />
 <link async rel="import" href="../../bower_components/px-toggle/px-toggle.html" />
+<link defer rel="import" href="../../bower_components/px-icon-set/px-icon-set-navigation.html">
+<link defer rel="import" href="../../bower_components/px-icon-set/px-icon.html">
 
 <!-- Import local dependencies -->
 <link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
@@ -20,6 +22,7 @@
 <dom-module id="px-catalog">
   <template>
     <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
     <style>
       #spinner {
         position: absolute;
@@ -72,8 +75,8 @@
     <!-- App Header -->
     <section class="gray-bar flex flex--row flex--middle flex--justify">
       <span id="menu" class="menu">
-        <iron-icon id="menu__open-icon" class="menu__open-icon" icon="fa:fa-bars"></iron-icon>
-        <iron-icon id="menu__close-icon" class="menu__close-icon is__hidden" icon="fa:fa-times"></iron-icon>
+        <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
+        <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
       </span>
       <div class="flex__item flex flex--row flex--justify flex--middle">
         <div class="flex__item">
@@ -103,7 +106,7 @@
       <!-- App iFrame -->
       <div class="iframe__container">
         <div id="spinner" class="flex flex--row flex--center">
-          <div class="flex__item flex__item--middle">
+          <div class="flex__item--middle ">
             <px-spinner size="150"></px-spinner>
           </div>
         </div>

@@ -27,10 +27,11 @@
 
       <p>The Predix Design System contains multiple CSS modules to facilitate page layout. When building mobile applications, consider using <a href="/#/css/px-widths-responsive-design/" target="_top">px-widths-responsive-design</a> to add mobile breakpoints to your app. Most Predix UI components are flexible and support multiple screen sizes and when combined with px-responsive-design, you'll be able to tailor your app for desktop, tablet or mobile experiences.</p>
 
+
         <h4 class="u-mt+ u-pt+">Navigation</h4>
-        <p>The <a href="/#/components/px-app-nav/" target="_top">px-appnav</a> and <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a> components was built with mobile breakpoints in mind so it will adapt gracefully from desktop to mobile. It is recommended to use either the drop down or vertical configurations for mobile devices and phones.</p>
-        <div class="full">
-   <div class="thirds text--center">
+        <p>The <a href="/#/components/px-app-nav/" target="_top">px-appnav</a> and <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a> components was built with mobile breakpoints in mind so it will adapt gracefully from desktop to mobile. It is recommended to use either the drop down or vertical configurations for mobile devices and phones.
+        <div class="full text--center">
+   <div class="thirds">
 			<picture>
           <source srcset="../../../img/guidelines/mobile_nav_dropdown.png" type="image/png">
           <img src="../../../img/guidelines/mobile_nav_dropdown.png" alt="Dropdown Nav">
@@ -44,16 +45,38 @@
         </picture>
  	 </div>
         </div>
-
+</p>
        <h4 class="u-mt+ u-pt+">Page Layout</h4>
-       <p>Most Predix mobile applications should utilize a single column layout on a phone with cards stacked on top of each other.
-               <p>Break information into small chunks. Stack where it makes sense. Side scroll through data visualization.</p>
+       <p>Generally speaking, most desktop layouts will translate relatively well to tablets. On a phone or a small handheld device there's much less screen real estate. In that case, Predix mobile applications should utilize a single column card layout with stacked cards.</p>
+
+       <p>To minimize page length and scrolling consider a left to right horizontal gesture to switch between cards. This interaction is especially valuable for dashboards where on the desktop there's typically two or three charts per card.</p>
+
+
+      <div class="halves">
+			<picture>
+          <source srcset="../../../img/guidelines/mobile_card.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/mobile_card.png" type="image/png">
+          <img src="../../../img/guidelines/mobile_card.png" alt="Mobile Cards">
+        </picture>
+ 	 </div>
+
+ 	 <div class="halves ">
+			<picture>
+          <source srcset="../../../img/guidelines/mobile_swiping.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/mobile_swiping.png" type="image/png">
+          <img src="../../../img/guidelines/mobile_swiping.png" alt="Mobile Swiping">
+        </picture>
+ 	 </div>
                <h4 class="u-mt+ u-pt+">Data Tables</h4>
-               <p>While many desktop apps rely on data tables to display grids of information, data tables don't translate very well to mobile phones. Instead, consider using <a href="/#/components/px-table-view/" target="_top">px-table-view</a> which provides a more mobile-friendly way of viewing data.</p>
-
-              <h4 class="u-mt+ u-pt+">Dashboards</h4>
-              <p></p>
-
+               <p>While many desktop apps rely on data tables to display grids of information, data tables don't translate very well to mobile phones. Instead, consider using <a href="/#/components/px-table-view/" target="_top">px-table-view</a> which provides a more mobile-friendly way of viewing data.
+<div class="full text--center">
+			<picture>
+          <source srcset="../../../img/guidelines/mobile_data_table.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/mobile_data_table.png" type="image/png">
+          <img src="../../../img/guidelines/mobile_data_table.png" alt="Mobile Data Table">
+        </picture>
+ 	 </div>
+</p>
 
     </section>
 
