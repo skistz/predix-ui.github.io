@@ -454,6 +454,18 @@
     "linkText":"Predix UI Components",
     "links":[
       {
+        "repoName":"px-accordion",
+        "dataType":"components",
+        "linkText":"Accordion",
+        "keywords":[
+          "px-accordion",
+          "collapse",
+          "expand",
+          "accordion",
+          "accordian"
+        ]
+      },
+      {
         "repoName":"px-alert-label",
         "dataType":"components",
         "linkText":"Alert Label",
