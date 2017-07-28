@@ -347,27 +347,26 @@ gulp.task('default', ['localBuild']);
  });
 
 gulp.task('compress-images', function(){
-  var outputFolder = "./img",            // Output folder
-  PNGImages = "./img/*.png",         // PNG images
-  JPEGImages = "./img/*.jpg",        // JPEG images
-  outputVis = "./pages/guides/vis-resources",
-  PNGVis = "./pages/guides/vis-resources/*.png";
 
-  imagemin([PNGImages], outputFolder, {
-    plugins: [webp({
-      lossless: true // Losslessly encode images
-    })]
+  let imgFolders = [
+    './img',
+    './pages/guides/vis-resources',
+    './img/gallery',
+    './img/guidelines'
+  ];
+
+  imgFolders.forEach((folder) =>{
+    console.log(folder)
+    imagemin([`${folder}/*.png`], folder, {
+      plugins: [webp({
+        lossless: true // Losslessly encode images
+      })]
+    });
+    imagemin([`${folder}/*.jpg`], folder, {
+      plugins: [webp({
+        quality: 65 // Quality setting from 0 to 100
+      })]
+    });
   });
 
-  imagemin([PNGVis], outputVis, {
-    plugins: [webp({
-      lossless: true // Losslessly encode images
-    })]
-  });
-
-  imagemin([JPEGImages], outputFolder, {
-    plugins: [webp({
-      quality: 65 // Quality setting from 0 to 100
-    })]
-  });
 });
