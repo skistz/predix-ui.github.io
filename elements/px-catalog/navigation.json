@@ -1084,6 +1084,16 @@
         ]
       },
       {
+        "repoName":"px-tree",
+        "dataType":"components",
+        "linkText":"Tree",
+        "keywords":[
+          "px-tree",
+          "tree",
+          "treeview"
+        ]
+      },
+      {
         "repoName":"px-typeahead",
         "dataType":"components",
         "linkText":"Typeahead",
