@@ -509,6 +509,18 @@
         ]
       },
       {
+        "repoName":"px-app-helpers/px-app-route",
+        "dataType":"components",
+        "linkText":"App Route",
+        "keywords":[
+          "px-app-route",
+          "router",
+          "navigation",
+          "nav",
+          "route"
+        ]
+      },
+      {
         "repoName":"px-branding-bar",
         "dataType":"components",
         "linkText":"Branding Bar",
