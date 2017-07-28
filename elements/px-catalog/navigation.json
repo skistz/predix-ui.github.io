@@ -305,6 +305,17 @@
             ]
           },
           {
+            "repoName":"px-shadows-design",
+            "dataType":"css",
+            "linkText":"Shadows",
+            "keywords":[
+              "px-shadows-design",
+              "shadow",
+              "shadows",
+              "drop shadow"
+            ]
+          },
+          {
             "repoName":"px-tables-design",
             "dataType":"css",
             "linkText":"Tables",
