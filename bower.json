@@ -41,7 +41,8 @@
     "px-demo": "^2.0.0",
     "px-toggle": "^2.0.0",
     "px-vis-timeseries": "^3.0.0",
-    "px-accordion": "^1.0.0"
+    "px-accordion": "^1.0.0",
+    "px-icon-set": "^2.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
