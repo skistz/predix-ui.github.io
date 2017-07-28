@@ -24,67 +24,82 @@
 
     <section class="main u-mb++">
       <h2 class="selected">Iconography</h2>
-      <p>The Predix Icon suite is built with a balanced combination of crisp, geometric line work, and subtle rounded corners to soften the forms and make them feel humanistic. The full set can be viewed as part of the <a href="/px-icon/">px-icon component</a>.</p>
+      <p>The Predix Icon suite is built with a balanced combination of crisp, geometric line work, and subtle rounded corners to soften the forms and make them feel humanistic. The full set can be viewed as part of the <a href="/#/components/px-icon-set/">px-icon-set component</a>.</p>
       <h4 class="u-mt+ u-pt+">Best Practices</h4>
       <b>Make the icons meaningful</b><br/>
       <p>Avoid using icons solely for visual interest. Make sure they'll be meaningful to the end user and have a purpose in the UI.</p>
       <b>Minimal color usage</b><br/>
       <p>The icons come with standard color treatments. Should you choose to override the colors, select a single color for each state and use it uniformly throughout your app.</p>
-      <b>Use the proper type</b>
-      <p>Icons are categorized into usage categories based on their intended use. Do not use an icon from the utility set where a feature icon should be used.</p>
+      <b>Use the proper icon class</b>
+      <p>Icons are categorized into classes based on their intended use. Do not use an icon from the utility set where a feature icon should be used. Extending the set with new icons is preferred over scaling existing icons to fit.</p>
       <b>Follow the guidelines when extending</b>
       <p>It's important for the iconography to feel like a family that belongs together in an application. If you choose to extend the set, follow the guidelines.</p>
-   
+
 		<h4 class="u-mt+ u-pt+">Style</h4>
 		<p>
 The Icons are built with a clean, 1px stroke weight with .5px rounded corners to give them a slight softening of the edges. The icons have squared off  end caps, to give the a sense of rigidity and crispness with 90 degree angles.</p>
- <picture>
+ <div class="full text--center">
+   <picture>
           <source srcset="../../../img/guidelines/icon_style.webp" type="image/webp">
           <source srcset="../../../img/guidelines/icon_style.png" type="image/png">
           <img src="../../../img/guidelines/icon_style.png" alt="Predix Icon Style">
         </picture>
+ </div>
 		 <h4 class="u-mt+ u-pt+">Classes &amp; Sizes</h4>
 		 <p>The Predix Icon suite is structured into different category types; Feature, Object, Navigation, and Utility icons. The typical icon size used with most of the icons is 32px, but the icons used for secondary, smaller elements within the UI are set to 22px. The smallest used size for utility purposes is 16px. All icons still maintain the 1px line weight to keep with consistency at their @1x size</p>
-		<b>Feature & Object: 32x32</b><br/>
-				 <p>For use in AppNav or as visual anchors on cards. They are the largest icons in the system and intended to be used to indicate top level features.</p>
-			
-					 <p class="u-mb+">
-						 <picture>
-          <source srcset="../../../img/guidelines/feature_icons.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/feature_icons.png" type="image/png">
-          <img src="../../../img/guidelines/feature_icons.png" alt="Feature Icons">
-        </picture></p>
-				
+
+		  <b>Utility: 16x16</b><br/>
+				 <p>Used to indicate an interaction inside a component such as a drop down menu or a date picker.</p>			 <p class="u-mb+">
+						 <div class="full text--center">
+  						 <picture>
+          <source srcset="../../../img/guidelines/utility_icons.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/utility_icons.png" type="image/png">
+          <img src="../../../img/guidelines/utility_icons.png" alt="Utility Icons">
+        </picture>
+  						 </div>
+  						 </p>
+
 				 <b>Navigation: 22x22</b><br/>
-				 <p>Way-finding iconography used to navigate UI elements such as wizards, dialog boxes or open/close panels. They can also be used as secondary navigation elements inside AppNav, such as to access a user profile or notifications.</p>	
+				 <p>Way-finding iconography used to navigate UI elements such as wizards, dialog boxes or open/close panels. They can also be used as secondary navigation elements inside AppNav, such as to access a user profile or notifications.</p>
 				 <p class="u-mb+">
+  				 <div class="full text--center">
 						 <picture>
           <source srcset="../../../img/guidelines/navigation_icons.webp" type="image/webp">
           <source srcset="../../../img/guidelines/navigation_icons.png" type="image/png">
           <img src="../../../img/guidelines/navigation_icons.png" alt="Navigation Icons">
-        </picture></p>
-		
-				 <b>Utility: 16x16</b><br/>
-				 <p>Used to indicate an interaction inside a component such as a drop down menu or a date picker.</p>			 <p class="u-mb+">
+        </picture>
+  				 </div>
+        </p>
+
+				<b>Feature & Object: 32x32</b><br/>
+				 <p>For use in AppNav or as visual anchors on cards. They are the largest icons in the system and intended to be used to indicate top level features.</p>
+
+					 <p class="u-mb+">
+  					  <div class="full text--center">
 						 <picture>
-          <source srcset="../../../img/guidelines/utility_icons.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/utility_icons.png" type="image/png">
-          <img src="../../../img/guidelines/utility_icons.png" alt="Utility Icons">
-        </picture></p>
+          <source srcset="../../../img/guidelines/feature_icons.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/feature_icons.png" type="image/png">
+          <img src="../../../img/guidelines/feature_icons.png" alt="Feature Icons">
+        </picture>
+  					  </div>
+        </p>
 
 		<h4 class="u-mt+ u-pt+">Color</h4>
 		<p>The icons are based upon a mono-tone color system. The custom color palette is used for selected states and areas for added emphasis/interest. Icons are typically grey when not highlighted or selected. The signature Predix blue is the main color used, but when needing to add different colors for categories, the other colors in the system may be used.</p>
 		 <p class="u-mb+">
+  		 <div class="full text--center">
 						 <picture>
           <source srcset="../../../img/guidelines/icon_color.webp" type="image/webp">
           <source srcset="../../../img/guidelines/icon_color.png" type="image/png">
           <img src="../../../img/guidelines/icon_color.png" alt="Color Usage">
-        </picture></p>
-    
-		 <h4 class="u-mt+ u-pt+">Extension Guidelines</h4>
+        </picture>
+  		 </div>
+        </p>
+
+		 <h4 class="u-mt+ u-pt+">Icon Design Guidelines</h4>
 		 <p>The icon set is intended to be extended as needed for specialized applications.  Follow the Predix Icon Guidelines to ensure additional icons match the core set.</p>
 		 <a target="_blank" href="Predix_Iconography_Guidelines.pdf"><button class="btn--blue">Download Icon Guidelines</button></a>
-      
+
     </section>
 
     <!-- Footer -->

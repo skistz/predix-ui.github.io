@@ -24,13 +24,36 @@
 
     <section class="main u-mb++">
       <h2 class="selected">Mobile</h2>
+
+      <p>The Predix Design System contains multiple CSS modules to facilitate page layout. When building mobile applications, consider using <a href="/#/css/px-widths-responsive-design/" target="_top">px-widths-responsive-design</a> to add mobile breakpoints to your app. Most Predix UI components are flexible and support multiple screen sizes and when combined with px-responsive-design, you'll be able to tailor your app for desktop, tablet or mobile experiences.</p>
+
         <h4 class="u-mt+ u-pt+">Navigation</h4>
-        <p>The AppNav component is responsive with built in mobile breakpoints. It's recommended to default to either the drop down or vertical navigation configurations for phones.</p>
-      <h4 class="u-mt+ u-pt+">Context Browser</h4>
+        <p>The <a href="/#/components/px-app-nav/" target="_top">px-appnav</a> and <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a> components was built with mobile breakpoints in mind so it will adapt gracefully from desktop to mobile. It is recommended to use either the drop down or vertical configurations for mobile devices and phones.</p>
+        <div class="full">
+   <div class="thirds text--center">
+			<picture>
+          <source srcset="../../../img/guidelines/mobile_nav_dropdown.png" type="image/png">
+          <img src="../../../img/guidelines/mobile_nav_dropdown.png" alt="Dropdown Nav">
+        </picture>
+ 	 </div>
+    <div class="thirds">
+			<picture>
+          <source srcset="../../../img/guidelines/mobile_nav_hamburger.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/mobile_nav_hamburger.png" type="image/png">
+          <img src="../../../img/guidelines/mobile_nav_hamburger.png" alt="Hamburger Nav">
+        </picture>
+ 	 </div>
+        </div>
+
        <h4 class="u-mt+ u-pt+">Page Layout</h4>
+       <p>Most Predix mobile applications should utilize a single column layout on a phone with cards stacked on top of each other.
                <p>Break information into small chunks. Stack where it makes sense. Side scroll through data visualization.</p>
-      <h4 class="u-mt+ u-pt+">Page Height</h4>
-      
+               <h4 class="u-mt+ u-pt+">Data Tables</h4>
+               <p>While many desktop apps rely on data tables to display grids of information, data tables don't translate very well to mobile phones. Instead, consider using <a href="/#/components/px-table-view/" target="_top">px-table-view</a> which provides a more mobile-friendly way of viewing data.</p>
+
+              <h4 class="u-mt+ u-pt+">Dashboards</h4>
+              <p></p>
+
 
     </section>
 
