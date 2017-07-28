@@ -485,6 +485,18 @@
         ]
       },
       {
+        "repoName":"px-branding-bar",
+        "dataType":"components",
+        "linkText":"Branding Bar",
+        "keywords":[
+          "px-branding-bar",
+          "brand",
+          "header",
+          "logo",
+          "title"
+        ]
+      },
+      {
         "linkText":"Cards",
         "links":[
           {
