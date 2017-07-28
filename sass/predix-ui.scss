@@ -566,8 +566,8 @@ a.item__link {
 	background-color: #1a2a35;
 }
 
-.hero #heroimagelight_hype_container,
-.darkhero #heroimagedark_hype_container {
+.hero .hero-image,
+.darkhero .hero-image {
 	box-sizing: content-box !important;
 }
 
@@ -576,6 +576,10 @@ a.item__link {
 		z-index: 5000;
 		position: absolute;
 		margin: 5% 0% 0% 5%;
+}
+
+.hero-image {
+  height: 370px;
 }
 
 .hero h1,
