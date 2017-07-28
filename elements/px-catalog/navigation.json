@@ -486,6 +486,18 @@
         ]
       },
       {
+        "repoName":"px-app-helpers/px-app-header",
+        "dataType":"components",
+        "linkText":"App Header",
+        "keywords":[
+          "px-app-header",
+          "header",
+          "page",
+          "layout",
+          "scroll"
+        ]
+      },
+      {
         "repoName":"px-app-nav",
         "dataType":"components",
         "linkText":"App Nav",
