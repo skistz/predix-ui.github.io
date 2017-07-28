@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix Design System</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script>
-    (function() {
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {
       'use strict';
 
 
-      var onload = function() {
+      var onload = function () {
         // For native Imports, manually fire WebComponentsReady so user code
         // can use the same code path for native and polyfill'd imports.
         if (!window.HTMLImports) {
           document.dispatchEvent(
-            new CustomEvent('WebComponentsReady', {bubbles: true})
+            new CustomEvent('WebComponentsReady', { bubbles: true })
           );
         }
       };
@@ -34,134 +35,115 @@
         document.head.appendChild(script);
       } else {
         onload();
-      }
+      };
+
+      window.onload = function () {
+        var animationDiv = document.getElementById("heroimagelight_hype_container");
+        var loadAnimation = document.createElement("script");
+        loadAnimation.setAttribute("type", "text/javascript");
+        loadAnimation.setAttribute("charset", "utf-8");
+        loadAnimation.setAttribute("src", "hero-image-light.hyperesources/heroimagelight_hype_generated_script.js?70708");
+        animationDiv.appendChild(loadAnimation);
+      };
+
+
     })();
-    </script>
-    <link rel="import" href="../bower_components/polymer/polymer.html" />
-    <link defer rel="shortcut icon" href="../favicon.ico" />
-    <link rel="import" href="../css/predix-ui-styles.html"/>
-    <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
-  </head>
-  <body unresolved class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
+  </script>
+  <link rel="import" href="../bower_components/polymer/polymer.html" />
+  <link defer rel="shortcut icon" href="../favicon.ico" />
+  <link rel="import" href="../css/predix-ui-styles.html" />
+  <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
+  <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+</head>
 
-    <section class="hero">
-      <div class="halves hero-header">
-        <h2 class="u-mb0">Welcome to Predix UI</h2>
-        <p>Our user interface components enable you to quickly and easily create Industrial Internet web applications that run on dedicated Predix services and data.</p>
-      </div>
-    </section>
+<body unresolved class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
 
-    <section class="main">
-      <h2>New to Predix UI?</h2>
-      <p>Follow the links below to get started using our components in your Industrial Internet web applications.
-      <div class="thirds text--left">
-        <picture>
-          <source srcset="../img/px_icon_web.webp" type="image/webp">
-          <source srcset="../img/px_icon_web.png" type="image/jpeg">
-          <img class="icon" src="../img/px_icon_web.png" alt="wrench">
-        </picture>
-        <div>
-          <a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/example-get-started-with-predix-ui-components"  class="subHeader" target="_blank">Custom Web Components</a>
-          <p>Find out how to use the Predix UI components in your application.</p>
-       </div>
+  <section>
+    <div class="hero">
+      <div class="welcometext">
+        <h1>Predix Design System</h1>
+        <p>Our user interface components enable you to quickly and easily create Industrial Internet web applications that run
+          on dedicated Predix services and data.</p>
+        <a href="about/what-is-predix-ui.html"><button class="btn--blue">Learn More</button></a>
       </div>
-      <div class="thirds text--left">
-        <picture>
-          <source srcset="../img/px_icon_code.webp" type="image/webp">
-          <source srcset="../img/px_icon_code.png" type="image/jpeg">
-          <img class="icon" src="../img/px_icon_code.png" alt="Blocks">
-        </picture>
-        <div>
-          <a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/example-get-started-with-predix-ui-css"  class="subHeader" target="_blank">Reusable Custom CSS</a>
-          <p>Predix UI CSS is an Object Oriented, BEM based resuable approach to CSS.</p>
-        </div>
-      </div>
-      <div class="thirds text--left">
-        <picture>
-          <source srcset="../img/px_icon_apps.webp" type="image/webp">
-          <source srcset="../img/px_icon_apps.png" type="image/jpeg">
-          <img class="icon" src="../img/px_icon_apps.png" alt="Laptop">
-        </picture>
-        <div>
-          <a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/customize-web-applications-with-predix-ui"  class="subHeader" target="_blank">Customize Applications</a>
-          <p>Use Custom Components and CSS to customize your applications.</p>
-        </div>
-      </div>
-      <hr>
+      <div id="heroimagelight_hype_container" style="height:370px"></div>
 
+    </div>
+
+  </section>
+
+  <section class="main">
+
+    <div class="halves">
+      <h2 class="subHeader">Design Starter Kit</h2>
       <div class="halves">
-        <h2 class="subHeader">Tried-and-true technology</h2>
-        <p>Predix UI is implemented using modern web application technologies, such as a powerful, scalable and Sass-based CSS framework. You'll find components powered by D3, the best of open source web tech, and we're going all-in on web components. Predix UI is also framework-agnostic, so you can use Angular, Ember, Backbone, or pure Polymer.</p>
-        <p class="text--large"><a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" target="_blank"><button class="btn--blue">Predix UI GitHub </button></a></p>
+        <p>A Sketch file that the contains core layouts, components, colors and fonts, the Design Starter Kit makes designing
+          a consistent app simple.</p>
       </div>
       <div class="halves">
         <picture>
-          <source srcset="../img/Github-seed-shot.webp" type="image/webp">
-          <source srcset="../img/Github-seed-shot.png" type="image/jpeg">
-          <img src="../img/Github-seed-shot.png" alt="Github Predix Seed">
+          <source srcset="../img/sketch_stencil.webp" type="image/webp">
+          <source srcset="../img/sketch_stencil.png" type="image/jpeg">
+          <img src="..img/sketch_stencil.png" alt="Sketch Kit">
         </picture>
       </div>
-      <hr>
+      <a href="guides/designer-resources.html"><button class="btn--blue">Download the Starter Kit</button></a>
+
+      <br/>
+    </div>
+    <div class="halves">
+      <h2 class="subHeader">Web Components &amp; CSS</h2>
       <div class="halves">
-        <p>Predix UI uses Google's Polymer, which provides innovative "syntactic sugar" and polyfill libraries for practical adoption of modern web components. Polymer helps build web applications with custom, encapsuled, reusable components that work just like HTML elements.</p>
-        <p class="text--large"><a href="https://www.polymer-project.org" target="_blank"><button class="btn--blue">Learn More </button></a></p>
-      </div>
-      <div class="halves text--center">
-        <picture>
-          <source srcset="../img/polymer_logo.webp" type="image/webp">
-          <source srcset="../img/polymer_logo.jpg" type="image/jpeg">
-          <img id="tech-logo" src="../img/polymer_logo.jpg" alt="Polymer">
-        </picture>
-
-        <picture>
-          <source srcset="../img/webSocket.webp" type="image/webp">
-          <source srcset="../img/webSocket.png" type="image/jpeg">
-          <img id="tech-logo-2" src="../img/webSocket.png" alt="Web Sockets">
-        </picture>
-
-        <picture>
-          <source srcset="../img/inuit.webp" type="image/webp">
-          <source srcset="../img/inuit.png" type="image/jpeg">
-          <img id="tech-logo" src="../img/inuit.png" alt="Inuit CSS">
-        </picture>
-
-      </div>
-
-      <hr>
-      <div class="halves">
-        <h2 class="subHeader">Wire it up to real data</h2>
-        <p>Use Time Series management and data analysis to efficiently manage, distribute, ingest, and store time series data for display in a Predix UI application.</p>
-        <p class="text--large"><a href="https://www.predix.io/services/service.html?id=1177" target="_blank">
-          <button class="btn--blue">View Options </button></a></p>
+        <p>The Predix Design System is built using modern web component standards so developers can start using our building
+          blocks with minimal ramp-up.</p>
       </div>
       <div class="halves">
         <picture>
-          <source srcset="../img/time_series_3d.webp" type="image/webp">
-          <source srcset="../img/time_series_3d.png" type="image/jpeg">
-          <img src="../img/time_series_3d.png" alt="Time Series Data">
+          <source srcset="../img/using_the_system.png" type="image/jpeg">
+          <img src="..img/using_the_system.png" alt="Web Components">
         </picture>
+      </div>
+      <a href="guides/getting-started.html"><button class="btn--blue">Start Developing</button></a>
+    </div>
 
-      </div>
-      <hr>
-      <div class="halves text--left">
-        <h2 class="subHeader">Contribute to Predix UI</h2>
-        <p class="headerBottom">Have you developed a component and want to share it with the community?</p>
-        <br />
-        <p class="text--large"><a href="https://github.com/PredixDev/px-getting-started/blob/master/CONTRIBUTING.md" target="_blank"><button class="btn--blue">Contribute</button></a></p>
-      </div>
-      <div class="halves text--left">
-        <h2 class="subHeader">Have a question?</h2>
-        <p class="headerBottom">Having an issue with one of our components? General questions about getting up and running?</p>
-        <br />
-        <p class="text--large"><a href="https://forum.predix.io/" target="_blank"><button class="btn--blue">Forums</button>
+    <hr>
+
+    <div class="halves">
+      <h2 class="subHeader">Framework-agnostic Code</h2>
+      <p>Predix UI components are implemented using modern web application technologies, such as a powerful, scalable and Sass-based
+        CSS framework. You'll find components powered by D3, the best of open source web tech, and we're going all-in on
+        web components. It's framework-agnostic, so you can use Angular, Ember, Backbone, or pure Polymer.</p>
+      <p class="text--large"><a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" target="_blank"><button class="btn--blue">Predix UI on GitHub </button></a></p>
+    </div>
+    <div class="halves">
+      <picture>
+        <source srcset="../img/Github-seed-shot.webp" type="image/webp">
+        <source srcset="../img/Github-seed-shot.png" type="image/jpeg">
+        <img src="../img/Github-seed-shot.png" alt="Github Predix Seed">
+      </picture>
+    </div>
+    <hr>
+    <div class="halves text--left">
+      <h2 class="subHeader">Contribute to the Predix Design System</h2>
+      <p class="headerBottom">Do you have a proposed change to and existing component or a brand new component you'd like to contribute back? Learn
+        how to file an issue or make a contribution to the Design System.</p>
+      <br />
+      <p class="text--large"><a href="https://github.com/PredixDev/px-getting-started/blob/master/CONTRIBUTING.md" target="_blank"><button class="btn--blue">Learn How</button></a></p>
+    </div>
+
+    <div class="halves text--left">
+      <h2 class="subHeader">Questions &amp; Support</h2>
+      <p class="headerBottom">Having an issue with one of our components? General questions about getting up and running? The <a href="http://forum.predix.io">predix.io forums</a>        are a great resource.</p>
+      <br />
+      <p class="text--large"><a href="https://forum.predix.io/" target="_blank"><button class="btn--blue">Forums</button>
         </a></p>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <px-demo-footer></px-demo-footer>
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>

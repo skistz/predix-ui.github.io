@@ -254,19 +254,23 @@ a component.
             guides: function(name) {
               return '../../pages/guides/' + name + '.html';
             },
+            guidelines: function(name) {
+              return '../../pages/guidelines/' + name + '.html';
+            },
             home: function() {
               return '../../pages/home.html';
             },
             external: function(name) {
               return 'https://github.com/predixdev/' + name;
+
             }
           };
           var knownTypesKeys = Object.keys(knownTypes);
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-            // If we're using dark theme, and URL has .html in it, replace with -dark-theme.html
-            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css')) {
+			// If we're using dark theme, and URL has .html in it, replace with -dark.html
+            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css' || type === 'home')) {
               // turns `/path/foo.html` into `/path/foo-dark-theme.html`
               url = url.slice(0,-5) + '-dark-theme.html';
             }

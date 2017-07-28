@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="embedded">
+  <head>
+    <title>Predix Design System</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+    with industrial machines through analytics and data for better business outcomes." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../bower_components/polymer/polymer.html" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="import" href="../../css/predix-ui-styles.html"/>
+    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
+    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+
+  </head>
+  <body class="body">
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Page Layout</h2>
+      <p></p>
+      <h4>Best Practices</h4>
+      <b>Efficient use of real estate</b>
+	  <p>Strive for an edge-to-edge layout that takes advantage of screen real estate.</p>
+
+	  <b>Adhere to a layout grid</b>
+	  <p>Choose a consistent layout grid to use across your product's pages. Consider the horizontal and vertical alignment of page components and content to aid in predictability and scan-ability.</p>
+
+	  <b>Use negative space to cluster information</b>
+	  <p>Predix app pages are clean and easy to scan. Use negative space or light weight rules to cluster information. Px-layout has padding built into it's cells for this purpose.</p>
+
+	  <b>Establish a family</b>
+	  <p>Structural consistency is critical in creating efficiency in a workflow. Choose layouts that are predicable and expected when designing your product.</p>
+
+
+
+	<h4 class="u-mt+ u-pt+">Basic Structure</h4>
+	<p>The basic components of a page include an optional branding area, navigation, cards to group similar content, and an optional footer. Navigation may live on the left side or the top of the page structure.</p>
+
+		<div class="halves guidelines">
+		<b class="title">Page assembly with horizontal navigation</b>
+		<picture>
+          <source srcset="../../../img/guidelines/horizontal_layout.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/horizontal_layout.png" type="image/jpeg">
+          <img src="../../../img/guidelines/horizontal_layout.png" alt="Horizontal navigation layout.">
+        </picture>
+	</div>
+
+	<div class="halves guidelines">
+		<b class="title">Page assembly with vertical navigation
+</b>
+		<picture>
+          <source srcset="../../../img/guidelines/vertical_layout.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/vertical_layout.png" type="image/jpeg">
+          <img src="../../../img/guidelines/vertical_layout.png" alt="Vertical navigation layout">
+        </picture>
+
+	</div>
+
+<h4 class="u-mt+ u-pt+">Base Screen Sizes</h4>
+<table class="guidelines">
+	<tr><td>Desktop</td><td>1280x960</td></tr>
+	<tr><td>Tablet</td><td>1024x768</td></tr>
+	<tr><td>Mobile</td><td>320x568</td></tr>
+</table>
+
+<h4 class="u-mt+ u-pt+">Layout Grid</h4>
+<p>The layout grid is a 12 column, 15px grid supporting horizontal and vertical navigation as well as the inbox layout. Grids are available in the Design Starter Kit.</p>
+
+ <div class="full text--center">
+      	  <picture>
+          <source srcset="../../../img/guidelines/layout_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/layout_grid.png" type="image/jpeg">
+          <img src="../../../img/guidelines/layout_grid.png" alt="Layout Grid">
+        </picture>
+
+      </div>
+
+<p>There are several components available in the design system that can be used for layout:</p>
+
+<ul>
+	<li><b>px-layout-design:</b> The Predix UI Layout module defines the 'grid' for Predix UI. Layout items can be autosized, or given a specific width, and layouts reflow responsively on smaller viewports.</li>
+
+	<li><b>px-flexbox-design:</b> Flexbox creates layout classes to give elements sizes and dynamically put elements in the right place. The flexbox module a wrapper around all of CSS flexbox's non-unit-based properties.</li>
+
+	<li><b>px-widths-responsive-design:</b> Provides breakpoint-based classes for widths on elements.</li>
+</ul>
+
+<h4 class="u-mt+ u-pt+">Grid Variations</h4>
+<p>There are five variations of the grid to supporting a one to six column layout, allowing a designer to choose a layout that matches the information to display.</p>
+
+<p><b>Six Column Grid</b><br/>
+For information-dense screens and workflows such as cases, or asset records.</p>
+<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/six_column_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/six_column_grid.png" type="image/png">
+          <img src="../../../img/guidelines/six_column_grid.png" alt="Six column grid layout.">
+        </picture>
+</div>
+	<div class="halves">
+        <source srcset="../../../img/guidelines/6_column_example.png" type="image/png">
+          <img src="../../../img/guidelines/6_column_example.png" alt="Six column grid example.">
+        </picture>
+
+	</div>
+
+<p><b>Three &amp; Four Column Grids</b><br/>
+Commonly used for dashboards or layouts with large widgets displaying high level information.</p>
+	<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/three_column_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/three_column_grid.png" type="image/png">
+          <img src="../../../img/guidelines/three_column_grid.png" alt="Three column grid layout.">
+        </picture>
+	</div>
+	<div class="halves">
+		<picture>
+		<source srcset="../../../img/guidelines/three_column_example.png" type="image/png">
+          <img src="../../../img/guidelines/three_column_example_grid.png" alt="Three column grid example.">
+        </picture>
+	</div>
+
+	<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/four_column_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/four_column_grid.png" type="image/png">
+          <img src="../../../img/guidelines/four_column_grid.png" alt="Four column grid example.">
+        </picture>
+	</div>
+	<div class="halves">
+		<picture>
+		<source srcset="../../../img/guidelines/4_column_example.png" type="image/png">
+          <img src="../../../img/guidelines/4_column_example_grid.png" alt="Four column grid example.">
+        </picture>
+	</div>
+
+
+<p><b>Single Column</b><br/>
+Commonly used for dashboards or layouts with large widgets displaying high level information.</p>
+<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/single_column_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/single_column_grid.png" type="image/png">
+          <img src="../../../img/guidelines/single_column_grid.png" alt="Single column grid layout.">
+        </picture>
+</div>
+<div class="halves">
+	<source srcset="../../../img/guidelines/single_column_example.png" type="image/png">
+          <img src="../../../img/guidelines/single_column_example.png" alt="Single column grid example.">
+        </picture>
+</div>
+
+<b>Combine column layouts to create variations that best fit your data:</b><br/>
+
+<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/combined_grid.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/combined_grid.png" type="image/png">
+          <img src="../../../img/guidelines/combined_grid.png" alt="Combination grid layout.">
+        </picture>
+</div>
+<div class="halves">
+	<picture>
+          <source srcset="../../../img/guidelines/multi_column_example.png" type="image/png">
+          <img src="../../../img/guidelines/multi_column_example.png" alt="Combination grid example.">
+        </picture>
+</div>
+
+
+<h4 class="u-mt++">Cards</h4>
+<p>Cards are used to group similar information into logical groups to make it easier for people to consume and act. They consist of a header area and content area, with spacing in between. The header can optionally contain a descriptive icon in the top left corner and/or a chevron button in the top right corner for configuration options or other menu items.</p>
+<p>Information in cards can be clustered based on the grid layout of your choice.</p>
+
+<div class="thirds">
+		<picture>
+          <source srcset="../../../img/guidelines/card_1up.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/card_1up.png" type="image/png">
+          <img src="../../../img/guidelines/card_1up.png" alt="Card layout example">
+        </picture>
+</div>
+
+<div class="thirds">
+		<picture>
+          <source srcset="../../../img/guidelines/card_2up.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/card_2up.png" type="image/png">
+          <img src="../../../img/guidelines/card_2up.png" alt="Card layout example">
+        </picture>
+</div>
+
+<div class="thirds">
+		<picture>
+          <source srcset="../../../img/guidelines/card_3up.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/card_3up.png" type="image/png">
+          <img src="../../../img/guidelines/card_3up.png" alt="Card layout example">
+        </picture>
+</div>
+
+
+<div class="halves">
+		<picture>
+          <source srcset="../../../img/guidelines/card_example.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/card_example.png" type="image/png">
+          <img src="../../../img/guidelines/card_example.png" alt="Card layout">
+        </picture>
+</div>
+<div class="halves">
+		<picture>
+          <source srcset="../../../img/guidelines/card_example_redline.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/card_example_redline.png" type="image/png">
+          <img src="../../../img/guidelines/card_example.png" alt="Card layout redline">
+        </picture>
+</div>
+
+    </section>
+
+    <!-- Footer -->
+    <px-catalog-footer></px-catalog-footer>
+  </body>
+</html>
