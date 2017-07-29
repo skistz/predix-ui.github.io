@@ -612,6 +612,17 @@
         ]
       },
       {
+        "repoName":"px-breadcrumbs",
+        "dataType":"components",
+        "linkText":"Breadcrumbs",
+        "keywords":[
+          "px-breadcrumbs",
+          "bread",
+          "crumbs",
+          "breadcrumbs"
+        ]
+      },
+      {
         "linkText":"Cards",
         "links":[
           {
