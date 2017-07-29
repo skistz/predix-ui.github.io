@@ -1246,5 +1246,15 @@
       }
     ],
     "opened":false
+  },
+  {
+ "linkText":"Tools",
+ "links":[
+   {
+     "dataType":"tools",
+     "repoName":"version-finder",
+     "linkText":"Version Finder"
+   }
+    ]
   }
 ]
