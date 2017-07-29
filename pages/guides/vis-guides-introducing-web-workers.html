@@ -30,7 +30,7 @@
         <h4 class="u-pt u-mb++">Background</h4>
         <p>With the introduction of the new crosshair feature, which allows users to hover over a chart to target a datapoint and see that same datapoint highlighted on other charts throughout the page, we looked back at our approach to finding datapoints closest to the user’s mouse. Previously, we were using the rather naïve approach of iterating through every datapoint and measuring the distance to the mouse. Although fine with typical, non-industrial datasets, the size of the datasets used on px-vis charts makes this approach a poor choice. Searching through every point is an O(n) operation each time the user moves their mouse which caused noticeable lag on large datasets and/or on IE 11. To optimize this search time algorithm, we decided to preprocess our data and store it in a quadtree data structure.</p>
 
-        <p>A quadtree stores our data spatially in a tree hierarchy, allowing for testing only a small subset of data when searching for the closest point. You can read more about quadtrees on <a href="https://en.wikipedia.org/wiki/Quadtree">Wikipedia</a>.</p>
+        <p>A quadtree stores our data spatially in a tree hierarchy, allowing for testing only a small subset of data when searching for the closest point. You can read more about quadtrees on <a href="https://en.wikipedia.org/wiki/Quadtree" target="_top">Wikipedia</a>.</p>
 
         <div class="flex flex--col flex--middle">
 
@@ -38,7 +38,7 @@
           <h5>Visual representation of the quadtrees we use</h5>
         </div>
 
-        <p>I won't expand much more on the actual quadtree search since this isn't the point of this article, but if you are interested here is <a href="https://medium.com/@agafonkin/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a">another article</a> that is worth reading and talks about similar spatial tree structures.
+        <p>I won't expand much more on the actual quadtree search since this isn't the point of this article, but if you are interested here is <a href="https://medium.com/@agafonkin/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a" target="_top">another article</a> that is worth reading and talks about similar spatial tree structures.
         </p>
 
         <p>Long story short, the quadtree search helps us find those points a lot faster, but we have to pay a price to build and rebuild it: anywhere between 1ms and 2000ms depending on your dataset, browser (who said IE?) and CPU.</p>
