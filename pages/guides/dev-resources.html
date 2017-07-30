@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en" class="embedded">
+  <head>
+    <title>Predix Design System</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+    with industrial machines through analytics and data for better business outcomes." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../bower_components/polymer/polymer.html" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="import" href="../../css/predix-ui-styles.html"/>
+    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+  </head>
+  <body unresolved class="body">
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <template is="dom-bind">
+      <section class="main u-mb++">
+        <h2 class="selected">Additional Resources</h2>
+              <h4 class="u-mt++ u-pt++">Articles</h4>
+       <ul>
+	      <li><a href="https://www.predix.io/blog/article.html?article_id=2261" target="_blank">What you need to know about Predix UI, Bower, and SemVer
+</a></li>
+        <li class="u-mv--"><a href="https://medium.com/ge-design/predix-design-system-components-that-work-everywhere-97b774028b37" taget="_blank">Predix Design System: Components that work in your framework and everywhere else too</a></li>
+        <li class="u-mv--"><a href="https://medium.com/@davcron/27c350b02c04" target="_blank">Introducing GE’s data visualization framework for IoT</a></li>
+      </ul>
+
+      <h4 class="u-mt++">Tutorials</h4>
+
+      <ul>
+        <li class="u-mv--"><a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/predix-ui-overview" target="_blank">Predix UI Overview</a></li>
+        <li class="u-mv--"><a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/example-theme-web-applications-with-predix-ui#task_n4l_jnc_yv" target="_blank">Setting up your dev environment</a></li>
+        <li class="u-mv--"><a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/example-get-started-with-predix-ui-css" target="_blank">Get Started with Predix UI CSS</a></li>
+        <li><a href="https://www.predix.io/resources/tutorials/journey.html#2100" target="_blank">Predix Web App Starter Developer Guide</a></li>
+      </ul>
+     	   <h4 class="u-mt++">Tools</h4>
+	   <ul>
+		   <li class="u-mv--"><a href="https://github.com/davidrleonard/pxtools-menubar" target="_blank">Mac OS Px Tools Menubar</a>: Quickly look up colors & icons</li>
+		   <li class="u-mv--"><a href="https://www.predix.io/services/starter-pack.html?id=1225" target="_blank">Web Application Starter Kit</a></li>
+	   </ul>
+
+	   <h4 class="u-mt++">Help &amp; Support</h4>
+	   <ul>
+		   <li><a href="https://github.com/PredixDev/px-getting-started/blob/master/CONTRIBUTING.md" target="_blank">Reporting issues &amp; contributing back to the Predix Design System</a></li>
+        <li class="u-mv--"><a href="https://forum.predix.io/index.html" target="_blank">Predix.io Developer Forums</a></li>
+	   </ul>
+
+            </section>
+    </template>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </body>
+</html>

@@ -4,75 +4,153 @@
     "repoName":"landing-page",
     "dataType":"home"
   },
-  {
-    "linkText":"About",
+     {
+    "linkText":"Getting Started",
     "links":[
       {
         "dataType":"about",
         "repoName":"what-is-predix-ui",
-        "linkText":"What is Predix UI?"
-      }
-    ],
-    "opened":true
-  },
-  {
-    "linkText":"Use Predix UI in your app",
-    "links":[
-      {
+        "linkText":"About the System"
+      },
+
+       {
         "dataType":"guides",
         "repoName":"getting-started",
-        "linkText":"Use the components"
+        "linkText":"Developing with the System"
       },
       {
         "dataType":"guides",
-        "repoName":"use-css",
-        "linkText":"Use the CSS modules"
+        "repoName":"designer-resources",
+        "linkText":"Design Starter Kit"
       },
       {
         "dataType":"guides",
-        "repoName":"use-seed",
-        "linkText":"Start a new app with the seed"
+        "repoName":"dev-resources",
+        "linkText":"Additional Resources"
       },
       {
-        "dataType":"guides",
-        "repoName":"use-component-generator",
-        "linkText":"Build your own components"
-      },
-      {
-        "linkText":"Vis Framework Guides",
-        "links":[
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-terminology",
-            "linkText":"Vis terminology"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-configuring-charts",
-            "linkText":"How to configure charts"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-introducing-web-workers",
-            "linkText":"Introducing web workers"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-toolbar",
-            "linkText":"Configuring the toolbar"
-          },
-          {
-            "dataType":"guides",
-            "repoName":"vis-guides-crosshair",
-            "linkText":"Introducing crosshair"
-          }
-        ]
+        "dataType":"about",
+        "repoName":"release-notes",
+        "linkText":"Release Notes"
       }
-    ],
+
+           ],
     "opened":true
   },
-  {
-    "linkText":"Predix UI CSS",
+   {
+    "linkText":"Design Guidelines",
+    "links":[
+       {
+        "dataType":"guidelines",
+        "repoName":"navigation",
+        "linkText":"Navigation"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"page-layout",
+        "linkText":"Page Layout"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"materiality",
+        "linkText":"Materiality"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"typography",
+        "linkText":"Typography"
+      },
+       {
+        "dataType":"guidelines",
+        "repoName":"iconography",
+        "linkText":"Iconography"
+      },
+      {
+        "dataType":"guidelines",
+        "repoName":"elevation-layering",
+        "linkText":"Elevation & Layering"
+      },
+       {
+        "dataType":"guidelines",
+        "repoName":"data-vis",
+        "linkText":"Data Visualization"
+      },
+       {
+        "dataType":"guidelines",
+        "repoName":"mobile",
+        "linkText":"Mobile"
+      },
+       {
+        "dataType":"guidelines",
+        "repoName":"gallery",
+        "linkText":"Gallery"
+      }
+    ],
+    "opened":false
+  },
+   {
+    "linkText":"Developer Guides",
+    "links":[
+	     {
+          "linkText":"Data Vis Framework",
+          "links":[
+            {
+              "repoName":"px-vis",
+              "dataType":"components",
+              "linkText":"About the Framework",
+              "keywords":[
+              "px-vis",
+              "charts",
+              "chart",
+              "graph",
+              "graphs",
+              "viz",
+              "framework"
+              ]
+            },
+              {
+                "dataType":"guides",
+                "repoName":"vis-guides-terminology",
+                "linkText":"Terminology"
+              },
+                {
+                 "dataType":"guides",
+                 "repoName":"vis-guides-configuring-charts",
+                 "linkText":"Configuring Charts"
+              },
+                {
+                  "dataType":"guides",
+                  "repoName":"vis-guides-toolbar",
+                  "linkText":"Configuring the Toolbar"
+              },
+                {
+                  "dataType":"guides",
+                  "repoName":"vis-guides-introducing-web-workers",
+                  "linkText":"Web Workers"
+              },
+                {
+                "dataType":"guides",
+                "repoName":"vis-guides-crosshair",
+                "linkText":"Introducing Crosshair"
+              }
+            ]
+          },
+        {
+          "dataType":"guides",
+          "repoName":"internationalization",
+           "linkText":"Internationalization"
+        },
+          {
+            "dataType":"guides",
+            "repoName":"list-localize-strings",
+            "linkText":"List of localized strings"
+          }
+        ],
+    "opened":false
+	},
+
+    {
+    "linkText":"CSS Modules",
     "links":[
       {
         "dataType":"css",
@@ -83,11 +161,11 @@
         "linkText":"Visual",
         "links":[
           {
-            "repoName":"px-actionable-text-icons-design",
+            "repoName":"px-actionable-design",
             "dataType":"css",
-            "linkText":"Actionable Text & Icons",
+            "linkText":"Actionable Text/Icons",
             "keywords":[
-              "px-actionable-text-icons-design",
+              "px-actionable-design",
               "disabled",
               "icons",
               "link"
@@ -224,6 +302,17 @@
                   "lists"
                 ]
               }
+            ]
+          },
+          {
+            "repoName":"px-shadows-design",
+            "dataType":"css",
+            "linkText":"Shadows",
+            "keywords":[
+              "px-shadows-design",
+              "shadow",
+              "shadows",
+              "drop shadow"
             ]
           },
           {
@@ -441,8 +530,20 @@
     ]
   },
   {
-    "linkText":"Predix UI Components",
+    "linkText":"Components",
     "links":[
+      {
+        "repoName":"px-accordion",
+        "dataType":"components",
+        "linkText":"Accordion",
+        "keywords":[
+          "px-accordion",
+          "collapse",
+          "expand",
+          "accordion",
+          "accordian"
+        ]
+      },
       {
         "repoName":"px-alert-label",
         "dataType":"components",
@@ -464,6 +565,18 @@
         ]
       },
       {
+        "repoName":"px-app-helpers/px-app-header",
+        "dataType":"components",
+        "linkText":"App Header",
+        "keywords":[
+          "px-app-header",
+          "header",
+          "page",
+          "layout",
+          "scroll"
+        ]
+      },
+      {
         "repoName":"px-app-nav",
         "dataType":"components",
         "linkText":"App Nav",
@@ -472,6 +585,41 @@
           "navigation",
           "nav",
           "sidebar"
+        ]
+      },
+      {
+        "repoName":"px-app-helpers/px-app-route",
+        "dataType":"components",
+        "linkText":"App Route",
+        "keywords":[
+          "px-app-route",
+          "router",
+          "navigation",
+          "nav",
+          "route"
+        ]
+      },
+      {
+        "repoName":"px-branding-bar",
+        "dataType":"components",
+        "linkText":"Branding Bar",
+        "keywords":[
+          "px-branding-bar",
+          "brand",
+          "header",
+          "logo",
+          "title"
+        ]
+      },
+      {
+        "repoName":"px-breadcrumbs",
+        "dataType":"components",
+        "linkText":"Breadcrumbs",
+        "keywords":[
+          "px-breadcrumbs",
+          "bread",
+          "crumbs",
+          "breadcrumbs"
         ]
       },
       {
@@ -509,114 +657,31 @@
           }
         ]
       },
+       {
+        "repoName":"px-clipboard",
+        "dataType":"components",
+        "linkText":"Clipboard",
+        "keywords":[
+          "px-clipboard",
+          "copy",
+          "paste"
+        ]
+      },
       {
-        "linkText":"Charts",
+        "repoName":"px-context-browser",
+        "dataType":"components",
+        "linkText":"Context Browser",
+        "keywords":[
+          "px-context-browser",
+          "miller",
+          "asset",
+          "assets"
+        ]
+      },
+           {
+        "linkText":"Data Visualization",
         "links":[
-          {
-            "repoName":"px-percent-circle",
-            "dataType":"components",
-            "linkText":"Percent Circle",
-            "keywords":[
-              "px-percent-circle",
-              "charts",
-              "graph",
-              "graphs",
-              "percent",
-              "percentage",
-              "gauge"
-            ]
-          },
-          {
-            "repoName":"px-gauge",
-            "dataType":"components",
-            "linkText":"Gauge",
-            "keywords":[
-              "px-gauge",
-              "charts",
-              "graph",
-              "graphs",
-              "percent",
-              "percentage",
-              "gauge"
-            ]
-          },
-          {
-            "repoName":"px-simple-area-chart",
-            "dataType":"components",
-            "linkText":"Simple Area Chart",
-            "keywords":[
-              "px-simple-area-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "area",
-              "stacked"
-            ]
-          },
-          {
-            "repoName":"px-simple-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Bar Chart",
-            "keywords":[
-              "px-simple-bar-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "bar",
-              "column"
-            ]
-          },
-          {
-            "repoName":"px-simple-horizontal-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Horizontal Bar Chart",
-            "keywords":[
-              "px-simple-horizontal-bar-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "bar"
-            ]
-          },
-          {
-            "repoName":"px-simple-line-chart",
-            "dataType":"components",
-            "linkText":"Simple Line Chart",
-            "keywords":[
-              "px-simple-line-chart",
-              "charts",
-              "graph",
-              "graphs"
-            ]
-          },
-          {
-            "repoName":"px-simple-win-loss-chart",
-            "dataType":"components",
-            "linkText":"Simple Win-Loss Chart",
-            "keywords":[
-              "px-simple-win-loss-chart",
-              "charts",
-              "graph",
-              "graphs",
-              "win",
-              "loss"
-            ]
-          },
-          {
-            "repoName":"px-vis",
-            "dataType":"components",
-            "linkText":"Vis Framework",
-            "keywords":[
-              "px-vis",
-              "charts",
-              "chart",
-              "graph",
-              "graphs",
-              "viz",
-              "framework"
-            ]
-          },
-          {
+                   {
             "repoName":"px-vis-parallel-coordinates",
             "dataType":"components",
             "linkText":"Vis Parallel Coordinates",
@@ -736,28 +801,97 @@
               "scatter",
               "sequence"
             ]
+          },
+          {
+            "repoName":"px-percent-circle",
+            "dataType":"components",
+            "linkText":"Percent Circle",
+            "keywords":[
+              "px-percent-circle",
+              "charts",
+              "graph",
+              "graphs",
+              "percent",
+              "percentage",
+              "gauge"
+            ]
+          },
+          {
+            "repoName":"px-gauge",
+            "dataType":"components",
+            "linkText":"Gauge",
+            "keywords":[
+              "px-gauge",
+              "charts",
+              "graph",
+              "graphs",
+              "percent",
+              "percentage",
+              "gauge"
+            ]
+          },
+          {
+            "repoName":"px-simple-area-chart",
+            "dataType":"components",
+            "linkText":"Simple Area Chart",
+            "keywords":[
+              "px-simple-area-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "area",
+              "stacked"
+            ]
+          },
+          {
+            "repoName":"px-simple-bar-chart",
+            "dataType":"components",
+            "linkText":"Simple Bar Chart",
+            "keywords":[
+              "px-simple-bar-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "bar",
+              "column"
+            ]
+          },
+          {
+            "repoName":"px-simple-horizontal-bar-chart",
+            "dataType":"components",
+            "linkText":"Simple Horizontal Bar Chart",
+            "keywords":[
+              "px-simple-horizontal-bar-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "bar"
+            ]
+          },
+          {
+            "repoName":"px-simple-line-chart",
+            "dataType":"components",
+            "linkText":"Simple Line Chart",
+            "keywords":[
+              "px-simple-line-chart",
+              "charts",
+              "graph",
+              "graphs"
+            ]
+          },
+          {
+            "repoName":"px-simple-win-loss-chart",
+            "dataType":"components",
+            "linkText":"Simple Win-Loss Chart",
+            "keywords":[
+              "px-simple-win-loss-chart",
+              "charts",
+              "graph",
+              "graphs",
+              "win",
+              "loss"
+            ]
           }
-        ]
-      },
-      {
-        "repoName":"px-clipboard",
-        "dataType":"components",
-        "linkText":"Clipboard",
-        "keywords":[
-          "px-clipboard",
-          "copy",
-          "paste"
-        ]
-      },
-      {
-        "repoName":"px-context-browser",
-        "dataType":"components",
-        "linkText":"Context Browser",
-        "keywords":[
-          "px-context-browser",
-          "miller",
-          "asset",
-          "assets"
         ]
       },
       {
@@ -840,17 +974,6 @@
         ]
       },
       {
-        "repoName":"px-drawer",
-        "dataType":"components",
-        "linkText":"Drawer",
-        "keywords":[
-          "px-drawer",
-          "drawer",
-          "mobile",
-          "panel"
-        ]
-      },
-      {
         "repoName":"px-dropdown",
         "dataType":"components",
         "linkText":"Dropdown",
@@ -874,11 +997,11 @@
         ]
       },
       {
-        "repoName":"px-polymer-font-awesome",
+        "repoName":"px-icon-set",
         "dataType":"components",
-        "linkText":"Font Awesome",
+        "linkText":"Icons",
         "keywords":[
-          "px-polymer-font-awesome",
+          "px-icon-set",
           "icon",
           "icons",
           "font awesome",
@@ -898,6 +1021,18 @@
           "queue",
           "alerts",
           "cases"
+        ]
+      },
+      {
+        "repoName":"px-key-value-pair",
+        "dataType":"components",
+        "linkText":"Key-Value Pair",
+        "keywords":[
+          "px-key-value-pair",
+          "key",
+          "value",
+          "label",
+          "dashboard"
         ]
       },
       {
@@ -1073,6 +1208,16 @@
         ]
       },
       {
+        "repoName":"px-tree",
+        "dataType":"components",
+        "linkText":"Tree",
+        "keywords":[
+          "px-tree",
+          "tree",
+          "treeview"
+        ]
+      },
+      {
         "repoName":"px-typeahead",
         "dataType":"components",
         "linkText":"Typeahead",
@@ -1110,6 +1255,17 @@
           "nav"
         ]
       }
+    ],
+    "opened":false
+  },
+  {
+ "linkText":"Tools",
+ "links":[
+   {
+     "dataType":"tools",
+     "repoName":"version-finder",
+     "linkText":"Version Finder"
+   }
     ]
   }
 ]

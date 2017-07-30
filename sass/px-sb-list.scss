@@ -44,10 +44,10 @@ a, .sb-list__category{
 
 a {
    &:hover {
-       color: $select-blue-default;
+       color: $select-default;
    }
    &:active {
-     color: $select-blue-pressed;
+     color: $select-pressed;
    }
  }
 
@@ -60,6 +60,7 @@ ul {
 li {
    list-style: none;
    cursor: pointer;
+   line-height: 2rem;
 }
 
 // Component
@@ -122,7 +123,7 @@ li {
 }
 
 .selected {
-  color: $select-blue-default !important;
+  color: $select-default !important;
 }
 
 .arrow-right {
@@ -160,6 +161,5 @@ li {
 // Trumps
 $inuit-enable-margins--tiny: true;
 @import "px-spacing-design/_trumps.spacing.scss";
-@import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 @import "px-widths-responsive-design/_trumps.widths-responsive.scss";

@@ -315,7 +315,6 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/pages/**',
                        rootDir + '/elements/**/*.{html,json}',
                        rootDir + '/css/**',
-                       rootDir + '/bower_components/font-awesome/fonts/fontawesome*',
                        rootDir + '/bower_components/px-theme/**/*.html',
                        rootDir + '/bower_components/px-demo/*.html',
                        rootDir + '/bower_components/px-demo/css/*.html',
@@ -328,6 +327,8 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/iron-ajax/iron-*.html',
                        rootDir + '/bower_components/iron-location/iron-*.html',
                        rootDir + '/bower_components/iron-collapse/iron-collapse.html',
+                       rootDir + '/bower_components/iron-label/iron-label.html',
+                       rootDir + '/bower_components/iron-checked-element-behavior/iron-checked-element-behavior.html',
                        rootDir + '/bower_components/iron-iconset-svg/iron-iconset-svg.html',
                        rootDir + '/bower_components/iron-icon/iron-icon.html',
                        rootDir + '/bower_components/iron-meta/iron-meta.html',
@@ -335,7 +336,7 @@ gulp.task('default', ['localBuild']);
                        rootDir + '/bower_components/promise-polyfill/Promise.js',
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
-                       rootDir + '/bower_components/px-polymer-font-awesome/*polymer-font-awesome.html',
+                       rootDir + '/bower_components/px-icon-set/*.html',
                        rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
@@ -346,27 +347,26 @@ gulp.task('default', ['localBuild']);
  });
 
 gulp.task('compress-images', function(){
-  var outputFolder = "./img",            // Output folder
-  PNGImages = "./img/*.png",         // PNG images
-  JPEGImages = "./img/*.jpg",        // JPEG images
-  outputVis = "./pages/guides/vis-resources",
-  PNGVis = "./pages/guides/vis-resources/*.png";
 
-  imagemin([PNGImages], outputFolder, {
-    plugins: [webp({
-      lossless: true // Losslessly encode images
-    })]
+  let imgFolders = [
+    './img',
+    './pages/guides/vis-resources',
+    './img/gallery',
+    './img/guidelines'
+  ];
+
+  imgFolders.forEach((folder) =>{
+    console.log(folder)
+    imagemin([`${folder}/*.png`], folder, {
+      plugins: [webp({
+        lossless: true // Losslessly encode images
+      })]
+    });
+    imagemin([`${folder}/*.jpg`], folder, {
+      plugins: [webp({
+        quality: 65 // Quality setting from 0 to 100
+      })]
+    });
   });
 
-  imagemin([PNGVis], outputVis, {
-    plugins: [webp({
-      lossless: true // Losslessly encode images
-    })]
-  });
-
-  imagemin([JPEGImages], outputFolder, {
-    plugins: [webp({
-      quality: 65 // Quality setting from 0 to 100
-    })]
-  });
 });

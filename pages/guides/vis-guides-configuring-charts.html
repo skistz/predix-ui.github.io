@@ -13,7 +13,6 @@
     <link rel="shortcut icon" href="../../favicon.ico" />
     <link rel="import" href="../../css/predix-ui-styles.html"/>
     <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
   </head>
   <body unresolved class="body">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
@@ -114,7 +113,7 @@
           </div>
         </div>
         <br>
-        <p>'x' and 'y' define how each series relates to the dataset, so for a series on the XY Chart they could respectively be 'asset1' and 'asset2' but for a Timeseries chart each series should have the timestamp as its X value. Each series definition in seriesConfig has a lot more options that can be added such as the X and Y units, color, marker shape/size/opacity/stroke, interpolation function for lines, dash pattern, and an Axis definition if using multiple Y axis (Timeseries and XY charts only). The options will be listed in the <a href="https://www.predix-ui.com/#/components/px-vis-timeseries/">API of a chart</a> under the seriesConfig property and more feature can be added over time.</p>
+        <p>'x' and 'y' define how each series relates to the dataset, so for a series on the XY Chart they could respectively be 'asset1' and 'asset2' but for a Timeseries chart each series should have the timestamp as its X value. Each series definition in seriesConfig has a lot more options that can be added such as the X and Y units, color, marker shape/size/opacity/stroke, interpolation function for lines, dash pattern, and an Axis definition if using multiple Y axis (Timeseries and XY charts only). The options will be listed in the <a href="https://www.predix-ui.com/#/components/px-vis-timeseries/" target="_top">API of a chart</a> under the seriesConfig property and more feature can be added over time.</p>
         <p>When all series need to have the same subset of configuration, for example the timestamp definition for x for a timeseries or all/the majority of series should be scatter, you can use the defaultSeriesConfig object. This default object properties will be applied to each series definition in seriesConfig if this property doesn't already exit in the seriesConfig series definition. The previous example would become:</p>
 
         <div class="flex">
@@ -284,7 +283,7 @@
         <br>
         <p>In this case the register of the chart will have its "forceDateTimeDisplay" property changed, but all other properties of the px-vis-register will stay unchanged.</p>
         <p>This also means that every time a new feature/property is added to a sub component it is automatically available at the chart level through the appropriate config object without us having to update the chart code.</p>
-        <p>The downside is that some of the configuration is hidden at first sight, in particular for developers that use vis for the first time. In general, the documentation of the chart will mention all the config objects available and the developer will then have to go to <a href="https://www.predix-ui.com/#/components/px-vis/">the appropriate vis component API</a> to find all the options available.</p>
+        <p>The downside is that some of the configuration is hidden at first sight, in particular for developers that use vis for the first time. In general, the documentation of the chart will mention all the config objects available and the developer will then have to go to <a href="https://www.predix-ui.com/#/components/px-vis/" target="_top">the appropriate vis component API</a> to find all the options available.</p>
 
         <h4 class="u-pt u-mb++">PreventResize</h4>
 

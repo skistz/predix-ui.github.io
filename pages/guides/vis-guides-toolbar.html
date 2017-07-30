@@ -17,7 +17,6 @@
     <link rel="import" href="../../bower_components/px-modal/px-modal.html">
     <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
     <link rel="import" href="../../bower_components/marked-element/marked-element.html">
-    <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
   </head>
   <body class="body">
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
@@ -209,8 +208,8 @@
           <code>
             'advancedZoom': {<br>
               &nbsp;'tooltipLabel': 'Zoom',<br>
-              &nbsp;'icon': 'fa-search',<br>
-              &nbsp;'cursorIcon': 'fa-search',<br>
+              &nbsp;'icon': 'px-nav:search',<br>
+              &nbsp;'cursorIcon': 'px-nav:search',<br>
               &nbsp;'buttonGroup': 1,<br>
               &nbsp;'selectable': true,<br>
               &nbsp;'onClick': 'function() {this.set("_internalShowTooltip", false); this.set("extentsAction", "zoom");}',<br>
@@ -242,22 +241,22 @@
                   &nbsp;&nbsp;&nbsp;'onClick': 'function() { this.set("selectionType", "xy");}'<br>
                 &nbsp;&nbsp;},<br>
                 &nbsp;&nbsp;'zoomIn': {<br>
-                  &nbsp;&nbsp;&nbsp;'icon': 'fa-plus',<br>
+                  &nbsp;&nbsp;&nbsp;'icon': 'px-utl:add',<br>
                   &nbsp;&nbsp;&nbsp;'tooltipLabel': 'Zoom in',<br>
                   &nbsp;&nbsp;&nbsp;'eventName': 'px-vis-toolbar-zoom-in'<br>
                 &nbsp;&nbsp;},<br>
                 &nbsp;&nbsp;'zoomOut': {<br>
-                  &nbsp;&nbsp;&nbsp;'icon': 'fa-minus',<br>
+                  &nbsp;&nbsp;&nbsp;'icon': 'px-utl:remove',<br>
                   &nbsp;&nbsp;&nbsp;'tooltipLabel': 'Zoom out',<br>
                   &nbsp;&nbsp;&nbsp;'eventName': 'px-vis-toolbar-zoom-out'<br>
                 &nbsp;&nbsp;},<br>
                 &nbsp;&nbsp;'undoZoom': {<br>
-                  &nbsp;&nbsp;&nbsp;'icon': 'fa-undo',<br>
+                  &nbsp;&nbsp;&nbsp;'icon': 'px-utl:reply',<br>
                   &nbsp;&nbsp;&nbsp;'tooltipLabel': 'Undo zoom',<br>
                   &nbsp;&nbsp;&nbsp;'eventName': 'px-vis-toolbar-undo-zoom'<br>
                 &nbsp;&nbsp;},<br>
                 &nbsp;&nbsp;'resetZoom': {<br>
-                  &nbsp;&nbsp;&nbsp;'icon': 'fa-expand',<br>
+                  &nbsp;&nbsp;&nbsp;'icon': 'px-nav:expand',<br>
                   &nbsp;&nbsp;&nbsp;'tooltipLabel': 'Reset zoom',<br>
                   &nbsp;&nbsp;&nbsp;'eventName': 'px-vis-toolbar-reset-zoom'<br>
                 &nbsp;&nbsp;}<br>
@@ -278,7 +277,7 @@
             smallModeConfig = {<br>
               &nbsp;"config": {<br>
                 &nbsp;&nbsp;"expand": {<br>
-                  &nbsp;&nbsp;&nbsp;"icon": "fa-arrows-alt",<br>
+                  &nbsp;&nbsp;&nbsp;"icon": "px-nav:expand",<br>
                   &nbsp;&nbsp;&nbsp;"onClick": function() {<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;//remove chart from current page, holder is the current parent of the chart<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;holder.removeChild(this);<br>
@@ -462,7 +461,7 @@
             expandConfig = {
               "config": {
                 "expand": {
-                  "icon": "fa-arrows-alt",
+                  "icon": "px-nav:expand",
                   "onClick": function() {
                         //remove chart from current page
                         holder.removeChild(this);

@@ -189,8 +189,7 @@ self.addEventListener('fetch', function(event) {
       'webcomponents-lite.js',
       'webcomponents-lite.min.js',
       'hydrolysis.js',
-      'polymer-font-awesome.html',
-      'px-polymer-font-awesome.html'
+      'polymer-font-awesome.html'
     ];
 
     for (var resource of resourcesToRemap) {

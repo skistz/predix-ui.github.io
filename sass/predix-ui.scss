@@ -31,6 +31,7 @@ Predix branding rules go in px-demo-site-predix.scss, not in this file.
 // Base
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
 
 $inuit-enable-code--inline: true;
 @import "px-code-design/_base.code.scss";
@@ -49,6 +50,7 @@ $inuit-enable-btn--primary: true;
 $inuit-enable-list-inline--delimited: true;
 $inuit-list-inline-delimit-character: "| ";
 @import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
 
 
 // Component
@@ -59,12 +61,13 @@ $inuit-list-inline-delimit-character: "| ";
 ************************************************************
 ***********************************************************/
 
-$px-catalog-gray: rgb(234,234,234);
+$px-catalog-gray: rgb(234,239,241);
 $px-catalog-dark-gray: rgb(51,51,51);
 $px-catalog-light-gray: rgb(240,240,240);
 $px-catalog-blue: rgb(40,134,175);
 $px-catalog-blue--hover: rgb(58,180,212);
 $px-catalog-dark-blue: rgb(1, 41, 57);
+$px-catalog-magenta: rgb(192,0,42);
 
 
 /*
@@ -91,7 +94,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   left: 0;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
-}
+  }
 
 .header-img{
   height:18px;
@@ -119,7 +122,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
 
 .menu{
   padding-right: $inuit-base-spacing-unit;
-  color: $px-catalog-dark-gray;
+  color: $px-catalog-dark-blue;
   cursor: pointer;
   &:link,
   &:visited,
@@ -161,7 +164,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
 */
 .side-nav{
   min-width: 300px;
-  background: $px-catalog-dark-blue;
+  background: #1b2a33;
   color: $white;
   padding: 20px;
   padding-bottom: 60px;
@@ -178,11 +181,11 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   }
 
   & a:hover{
-    color: $select-blue-default;
+    color: $select-default;
   }
 
   & a:active{
-    color: $select-blue-pressed;
+    color: $select-pressed;
   }
 
   & ul{
@@ -206,7 +209,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   transform: translate3d(-300px, 0px, 0px);
 }
 .selected {
- color: $select-blue-default !important;
+ color: $select-default !important;
 }
 .arrow-right {
   width: 0;
@@ -288,7 +291,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
     min-width: 300px;
     flex-basis: 350px;
     position: relative;
-    background: $px-catalog-dark-blue;
+    background: #1b2a33;
     overflow: auto;
     line-height: 200%;
   }
@@ -346,6 +349,7 @@ $px-catalog-dark-blue: rgb(1, 41, 57);
   box-sizing: inherit;
 }
 
+
 .embedded {
   box-sizing: border-box;
   position: relative;
@@ -381,6 +385,11 @@ body:after {
   clear: both;
 }
 
+p {
+	color: $gray17;
+	line-height: 1.5em;
+}
+
 header,main,section {
   display: block;
 }
@@ -390,13 +399,15 @@ h1,h2,h3,h4,h5,h6,p,ul {
 }
 
 h2 {
-  font-size: 45px;
+  font-size: 34px;
   font-weight: 400;
 }
 
 h4 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
+  color: $px-catalog-magenta;
+
 }
 
 li>ul {
@@ -548,31 +559,75 @@ a.item__link {
 }
 
 .hero {
-  background-image: url('../img/px_banner.png');
-  background-repeat: no-repeat;
-  text-align: left;
-  color: white;
-  background-size: 1200px 350px;
-  background-color: $px-catalog-dark-blue;
-  padding: 5%;
-  height: 350px;
+	background-color: #ebeff1;
 }
 
-.hero-header {
-  vertical-align: top;
-  line-height: 1.5;
-  max-width: 500px;
+.darkhero {
+	background-color: #1a2a35;
 }
 
-.hero-logo {
-  max-width: 500px;
+.hero .hero-image,
+.darkhero .hero-image {
+	box-sizing: content-box !important;
+}
+
+.hero .welcometext,
+.darkhero .welcometext {
+		z-index: 5000;
+		position: absolute;
+		margin: 5% 0% 0% 5%;
+}
+
+.hero-image {
+  height: 370px;
+}
+
+.hero h1,
+.darkhero h1 {
+	width: 252px;
+	height: 73px;
+	text-indent: -5000px;
+}
+
+.hero h1 {
+	background: url('../../img/predix_ds_logo.png') 0 0 no-repeat;
+}
+
+
+.darkhero h1 {
+		background: url('../../img/predix_ds_logo_dark.png') 0 0 no-repeat;
+}
+
+.hero p,
+.darkhero p {
+	width: 270px;
+	font-size: .9em;
+}
+
+.darkhero p {
+	color: $gray4;
+}
+
+/* @2x Images (Pixel Ratio of 1.25+) */
+@media only screen and (-o-min-device-pixel-ratio: 5/4),
+       only screen and (-webkit-min-device-pixel-ratio: 1.25),
+       only screen and (min-device-pixel-ratio: 1.25),
+       only screen and (min-resolution: 1.25dppx) {
+    .hero h1 {
+	    background-image:url('../../img/predix_ds_logo@2x.png');
+	    background-size: 252px 73px;
+	    }
+	 .darkhero h1 {
+	    background-image:url('../../img/predix_ds_logo_dark@2x.png');
+	    background-size: 252px 73px;
+	    }
 }
 
 .main {
-  width: 100%;
-  margin: 0 auto;
-  background-color: $white;
-  padding: 5% 5% 2% 5%;
+ width: 100%;
+ margin: 0 auto;
+ background-color: $white;
+ padding: 3% 5% 2% 5%;
   overflow: hidden;
 }
 
@@ -581,13 +636,110 @@ a.item__link {
   font-size: 1.1rem;
 }
 
-#tech-logo {
-  width: 40%;
+.tech-logo {
+width: 300px;
+float: right;
+padding: 10px 0px 40px 30px;
 }
 
-#tech-logo-2 {
-  width: 25%;
+
+b.title {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $gray9;
+	border-bottom: 2px solid $gray9;
 }
+
+b.do {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $green6;
+	border-bottom: 2px solid $green6;
+}
+
+b.dont {
+	display: block;
+	padding-bottom:.5em;
+	margin-bottom: .75em;
+	color: $red6;
+	border-bottom: 2px solid $red6;
+}
+
+.guidelines em {
+	display: block;
+	padding-top: .5em;
+	color: $gray9;
+}
+
+table.guidelines {
+	width: 95%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+table.guidelines td {
+	border-bottom: 1px solid $gray2;
+	padding: .75em 0;
+	vertical-align: top;
+}
+
+table.guidelines th {
+	border-bottom: 1px solid $gray6;
+	text-align: left;
+	font-weight: normal;
+	}
+
+table.guidelines.datavis {
+	width: 80%;
+	margin: auto;
+}
+
+
+
+table.guidelines.datavis td {
+	width: 25%;
+	padding: .5em 5em 0 0;
+	border: none;
+	}
+
+	table td.description {
+  width: 60%;
+}
+
+.halves.guidelines {
+	border: 1px solid $gray4;
+	padding: .75em;
+}
+
+.halves.principles {
+	border: 1px solid $gray4;
+	padding: 1em;
+	color: black;
+	padding-left: 95px;
+	background-repeat: no-repeat;
+	background-position: 5% 45%;
+	min-height: 150px;
+}
+
+.halves.principles.purposeful {
+	background-image: url("../img/guidelines/icon_purposeful.png");
+}
+
+.halves.principles.efficient {
+	background-image: url("../img/guidelines/icon_efficient.png");
+}
+
+.halves.principles.consistent {
+	background-image: url("../img/guidelines/icon_consistent.png");
+}
+
+.halves.principles.elegant {
+	background-image: url("../img/guidelines/icon_elegant.png");
+}
+
 
 .halves {
   display: inline-block;
@@ -601,6 +753,7 @@ a.item__link {
   text-align: center;
   vertical-align: top;
   margin: 0% 5% 10% 0;
+
 }
 
 .subHeader {
@@ -627,7 +780,7 @@ a.item__link {
   color: $black;
   &:hover {
     color: $black;
-    .actionable { color: $primary-blue-pressed; }
+    .actionable { color: $primary-pressed; }
   }
   p:last-child { margin-bottom: 0 }
 }
@@ -642,6 +795,14 @@ a.item__link {
   .thirds {
     width: 31%;
     margin: 0 1% 5% 1%;
+  }
+
+
+  .full {
+    width: 95%;
+    margin: 2% 1% 5% 1%;
+    clear: both;
+
   }
 
   .list-inline--delimited {
@@ -701,6 +862,5 @@ $inuit-enable-paddings--large          : true;
 $inuit-enable-paddings--huge           : true;
 $inuit-enable-paddings--negative-tiny  : true;
 @import "px-spacing-design/_trumps.spacing.scss";
-@import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 @import "px-widths-responsive-design/_trumps.widths-responsive.scss";
