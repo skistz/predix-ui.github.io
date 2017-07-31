@@ -1,3 +1,12 @@
+v0.2.21
+==================
+* Applied dark theme to side nav
+* Rebuilt sass to take forms design fixes
+
+v0.2.20
+==================
+* fix #64
+
 v0.2.19
 ==================
 * Ken's pr with animation and guidelines

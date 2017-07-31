@@ -378,10 +378,36 @@ $px-catalog-magenta: rgb(192,0,42);
     padding-right: $inuit-base-spacing-unit--small;
   }
 
-  //change hero image to static here
-    .hero-animation {
-      display: none;
-    }
+  .hero-animation {
+    display: none;
+  }
+
+  .hero-image--background--light{
+    background-image: url("../img/mobile_hero_bkd_light.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .hero-image--background--dark{
+    background-image: url("../img/mobile_hero_bkd_dark.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .hero-image--mobile{
+    display: block;
+    padding: 20px;
+  }
+
+}
+
+@media screen and (min-width: 719px) {
+  .hero-image--mobile{
+    display: none;
+  }
+
+  .welcometext{
+    position: absolute;
+  }
 }
 
 /***********************************************************
@@ -614,16 +640,19 @@ a.item__link {
 
 .hero {
 	background-color: #ebeff1;
-  height: 370px;
 }
+
 
 .darkhero {
 	background-color: #1a2a35;
 }
 
-.hero .hero-animation,
-.darkhero .hero-animation {
-	box-sizing: content-box !important;
+.hero,
+.darkhero {
+  position: relative;
+}
+.hero-animation {
+	box-sizing: content-box;
   position: relative;
 }
 
@@ -634,8 +663,7 @@ a.item__link {
 .hero .welcometext,
 .darkhero .welcometext {
 		z-index: 5000;
-		position: absolute;
-		margin: 5% 0% 0% 5%;
+		padding: 5% 0% 0% 5%;
 }
 
 .hero h1,
