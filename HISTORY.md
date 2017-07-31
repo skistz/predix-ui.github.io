@@ -1,3 +1,8 @@
+v0.2.19
+==================
+* Ken's pr with animation and guidelines
+* added shadows design
+
 v0.2.18
 ==================
 * Adding vis crosshair article

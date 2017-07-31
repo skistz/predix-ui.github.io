@@ -69,6 +69,63 @@ $px-catalog-blue--hover: rgb(58,180,212);
 $px-catalog-dark-blue: rgb(1, 41, 57);
 $px-catalog-magenta: rgb(192,0,42);
 
+/*
+ * UPDATED LOGO STYLES (MOBILE RESPONSIVE FROM SMALL SCREEN TO LARGE)
+ */
+
+// BREAKPOINTS:
+// mobile: default
+// medium-up (larger than mobile): 719px
+// large-up (larger than iPad): 1024px
+
+.logo {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: center;
+
+  .logo__image {
+    display: none;
+  }
+
+  .logo__text {
+    position: relative;
+    top: -2px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 719px) {
+    .logo__image {
+      display: initial;
+      height: 18px;
+      position: relative;
+      top: 4px;
+    }
+
+    .logo__text {
+      padding-left: 15px;
+    }
+
+    .logo__text:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 6px;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background-color: rgba(0,0,0,0.3);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .logo__image {
+      height: 20px;
+    }
+  }
+}
 
 /*
  * Page wrapper
@@ -94,12 +151,8 @@ $px-catalog-magenta: rgb(192,0,42);
   left: 0;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
-  }
-
-.header-img{
-  height:18px;
-  margin-bottom: -2px;
 }
+
 .dev-network{
   display: none;
 }
@@ -272,10 +325,6 @@ $px-catalog-magenta: rgb(192,0,42);
       font-size: 18px;
     }
   }
-  .header-img{
-    height: 20px;
-    margin-bottom: -4px;
-  }
   .dev-network{
     display: inline;
   }
@@ -320,13 +369,13 @@ $px-catalog-magenta: rgb(192,0,42);
 
 @media screen and (max-width: 719px) {
 
-  .header-img{
+  .header-img {
     height: 14px;
-    margin-bottom: -4px;
+    top: 2px;
   }
 
   .menu {
-    padding-right: $inuit-base-spacing-unit--tiny;
+    padding-right: $inuit-base-spacing-unit--small;
   }
 }
 
@@ -566,8 +615,8 @@ a.item__link {
 	background-color: #1a2a35;
 }
 
-.hero #heroimagelight_hype_container,
-.darkhero #heroimagedark_hype_container {
+.hero .hero-image,
+.darkhero .hero-image {
 	box-sizing: content-box !important;
 }
 
@@ -576,6 +625,10 @@ a.item__link {
 		z-index: 5000;
 		position: absolute;
 		margin: 5% 0% 0% 5%;
+}
+
+.hero-image {
+  height: 370px;
 }
 
 .hero h1,

@@ -78,15 +78,16 @@
         <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
         <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
       </span>
-      <div class="flex__item flex flex--row flex--justify flex--middle">
-        <div class="flex__item">
-		<picture>
-            <source srcset="../../img/px_logo.webp" type="image/webp">
-            <source srcset="../../img/px_logo.png" type="image/png">
-            <img src="../../img/px_logo.png" class="header-img" alt="Predix Design System">
-          </picture>
-        </div>
+
+      <div class="logo">
+        <picture>
+          <source srcset="../../img/px-dev-logo.webp" class="logo__image" type="image/webp">
+          <source srcset="../../img/px-dev-logo.png"  class="logo__image" type="image/png">
+          <img    src="../../img/px-dev-logo.png"     class="logo__image" alt="Predix Design System">
+          <span class="logo__text">Predix Design System</span>
+        </picture>
       </div>
+
       <div class="flex flex--row flex--middle u-mr">
         <small>Dark Theme</small>
         <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}"></px-toggle>

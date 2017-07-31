@@ -161,11 +161,11 @@
         "linkText":"Visual",
         "links":[
           {
-            "repoName":"px-actionable-text-icons-design",
+            "repoName":"px-actionable-design",
             "dataType":"css",
-            "linkText":"Actionable Text & Icons",
+            "linkText":"Actionable Text/Icons",
             "keywords":[
-              "px-actionable-text-icons-design",
+              "px-actionable-design",
               "disabled",
               "icons",
               "link"
@@ -302,6 +302,17 @@
                   "lists"
                 ]
               }
+            ]
+          },
+          {
+            "repoName":"px-shadows-design",
+            "dataType":"css",
+            "linkText":"Shadows",
+            "keywords":[
+              "px-shadows-design",
+              "shadow",
+              "shadows",
+              "drop shadow"
             ]
           },
           {
@@ -598,6 +609,17 @@
           "header",
           "logo",
           "title"
+        ]
+      },
+      {
+        "repoName":"px-breadcrumbs",
+        "dataType":"components",
+        "linkText":"Breadcrumbs",
+        "keywords":[
+          "px-breadcrumbs",
+          "bread",
+          "crumbs",
+          "breadcrumbs"
         ]
       },
       {
@@ -1235,5 +1257,15 @@
       }
     ],
     "opened":false
+  },
+  {
+ "linkText":"Tools",
+ "links":[
+   {
+     "dataType":"tools",
+     "repoName":"version-finder",
+     "linkText":"Version Finder"
+   }
+    ]
   }
 ]
