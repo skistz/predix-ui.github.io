@@ -44,7 +44,8 @@
     "px-accordion": "^1.0.0",
     "px-icon-set": "^2.0.0",
     "px-tabs": "^1.0.0",
-    "px-typeahead": "^2.0.2"
+    "px-typeahead": "^2.0.2",
+    "iron-media-query": "PolymerElements/iron-media-query#^2.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",

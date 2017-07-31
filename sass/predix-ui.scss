@@ -377,6 +377,11 @@ $px-catalog-magenta: rgb(192,0,42);
   .menu {
     padding-right: $inuit-base-spacing-unit--small;
   }
+
+  //change hero image to static here
+    .hero-animation {
+      display: none;
+    }
 }
 
 /***********************************************************
@@ -609,15 +614,21 @@ a.item__link {
 
 .hero {
 	background-color: #ebeff1;
+  height: 370px;
 }
 
 .darkhero {
 	background-color: #1a2a35;
 }
 
-.hero .hero-image,
-.darkhero .hero-image {
+.hero .hero-animation,
+.darkhero .hero-animation {
 	box-sizing: content-box !important;
+  position: relative;
+}
+
+.hero-image-container {
+  overflow: hidden;
 }
 
 .hero .welcometext,
@@ -625,10 +636,6 @@ a.item__link {
 		z-index: 5000;
 		position: absolute;
 		margin: 5% 0% 0% 5%;
-}
-
-.hero-image {
-  height: 370px;
 }
 
 .hero h1,

@@ -303,7 +303,7 @@ gulp.task('default', ['localBuild']);
 
  gulp.task('generate-service-worker', function(callback) {
    var swPrecache = require('sw-precache'),
-       rootDir =  (isTravis()) ? '.' : './dist';
+       rootDir =  '.'; //(isTravis()) ? '.' : './dist';
 
        console.log("isTravis = " + isTravis()  );
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
