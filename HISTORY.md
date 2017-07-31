@@ -1,5 +1,9 @@
 v0.2.21
 ==================
+* made hero image responsive
+
+v0.2.21
+==================
 * Applied dark theme to side nav
 * Rebuilt sass to take forms design fixes
 
