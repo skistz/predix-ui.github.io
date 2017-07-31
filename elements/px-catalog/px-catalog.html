@@ -29,7 +29,9 @@
         z-index: 999;
         width: 100%;
         height: 100%;
-        background: #fff;
+      }
+      .dark-theme {
+        background: #23343F;
       }
       #spinner px-spinner {
         margin-left: auto;
@@ -106,7 +108,7 @@
 
       <!-- App iFrame -->
       <div class="iframe__container">
-        <div id="spinner" class="flex flex--row flex--center">
+        <div id="spinner" class$="flex flex--row flex--center {{_getClass(darkTheme)}}">
           <div class="flex__item--middle ">
             <px-spinner size="150"></px-spinner>
           </div>
@@ -463,6 +465,12 @@
       _hideSpinner: function() {
         var spinner = this.$$('#spinner');
         spinner.classList.add('is__hidden');
+      },
+      /**
+      * Sets the background color of the page (using class) based on the darkTheme toggle.
+      */
+      _getClass: function(darkTheme) {
+        return darkTheme ? 'dark-theme' : '';
       }
     });
   </script>
