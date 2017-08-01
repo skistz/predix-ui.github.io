@@ -12,6 +12,30 @@
     (function () {
       'use strict';
 
+      //don't allow the hero anmiation to be loading on mobile
+      window.addEventListener('WebComponentsReady', function() {
+        var query = document.createElement('iron-media-query');
+        var hasLoadedAnimation = false;
+
+        query.addEventListener('query-matches-changed', function(evt) {
+          if (evt.detail.value === true && !hasLoadedAnimation) {
+            hasLoadedAnimation = true;
+            loadAnimation();
+          }
+        });
+
+        query.query = '(min-width: 719px)';
+      });
+
+      function loadAnimation() {
+        var animationDiv = document.getElementById("heroimagedark_hype_container");
+        var loadAnimation = document.createElement("script");
+        loadAnimation.setAttribute("type", "text/javascript");
+        loadAnimation.setAttribute("charset", "utf-8");
+        loadAnimation.setAttribute("src", "hero-image-dark.hyperesources/heroimagedark_hype_generated_script.js?15569");
+        animationDiv.appendChild(loadAnimation);
+      };
+
       var onload = function () {
         // For native Imports, manually fire WebComponentsReady so user code
         // can use the same code path for native and polyfill'd imports.
@@ -36,15 +60,6 @@
         onload();
       }
 
-      window.onload = function () {
-        var animationDiv = document.getElementById("heroimagedark_hype_container");
-        var loadAnimation = document.createElement("script");
-        loadAnimation.setAttribute("type", "text/javascript");
-        loadAnimation.setAttribute("charset", "utf-8");
-        loadAnimation.setAttribute("src", "hero-image-dark.hyperesources/heroimagedark_hype_generated_script.js?15569");
-        animationDiv.appendChild(loadAnimation);
-      };
-
     })();
   </script>
   <link rel="import" href="../bower_components/polymer/polymer.html" />
@@ -52,6 +67,7 @@
   <link rel="import" href="../css/predix-ui-styles.html" />
   <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
   <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+  <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
 </head>
 
 <body unresolved class="body">
@@ -59,15 +75,24 @@
   <style include="predix-ui-styles" is="custom-style"></style>
 
   <section>
-    <div class="darkhero">
+    <div class="darkhero hero-image--background--dark">
       <div class="welcometext">
         <h1>Predix Design System</h1>
         <p>Our user interface components enable you to quickly and easily create Industrial Internet web applications that run
           on dedicated Predix services and data.</p>
         <a href="about/what-is-predix-ui.html"><button class="btn--blue">Learn More</button></a>
       </div>
-      <div id="heroimagedark_hype_container" class="hero-image"></div>
+      <div class="hero-image-container">
+        <div id="heroimagedark_hype_container" class="hero-animation"></div>
+      </div>
 
+      <div class="hero-image--mobile">
+        <picture>
+          <source srcset="../img/mobile_hero_dark.webp" type="image/webp">
+          <source srcset="../img/mobile_hero_dark.png" type="image/jpeg">
+          <img src="..img/mobile_hero_dark.png" alt="Sketch Kit">
+        </picture>
+      </div>
     </div>
 
   </section>
@@ -83,7 +108,7 @@
       <div class="halves">
         <picture>
           <source srcset="../img/sketch_stencil.webp" type="image/webp">
-          <source srcset="../img/sketch_stencil.png" type="image/jpeg">
+          <source srcset="../img/sketch_stencil.png" type="image/png">
           <img src="..img/sketch_stencil.png" alt="Sketch Kit">
         </picture>
       </div>
@@ -98,7 +123,8 @@
       </div>
       <div class="halves">
         <picture>
-          <source srcset="../img/using_the_system.png" type="image/jpeg">
+          <source srcset="../img/using_the_system.webp" type="image/webp">
+          <source srcset="../img/using_the_system.png" type="image/png">
           <img src="..img/using_the_system.png" alt="Web Components">
         </picture>
       </div>
@@ -118,7 +144,7 @@
     <div class="halves">
       <picture>
         <source srcset="../img/Github-seed-shot.webp" type="image/webp">
-        <source srcset="../img/Github-seed-shot.png" type="image/jpeg">
+        <source srcset="../img/Github-seed-shot.png" type="image/png">
         <img src="../img/Github-seed-shot.png" alt="Github Predix Seed">
       </picture>
     </div>
