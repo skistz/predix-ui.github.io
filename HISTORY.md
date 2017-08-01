@@ -1,3 +1,7 @@
+v0.2.24
+==================
+* fix spinner issue
+
 v0.2.23
 ==================
 * added px-hero-image component

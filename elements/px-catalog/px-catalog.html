@@ -109,7 +109,7 @@
 
       <!-- App iFrame -->
       <div class="iframe__container">
-        <div id="spinner" class$="catalog__spinner flex flex--row flex--center {{_getClass(darkTheme)}}">
+        <div id="spinner" class="catalog__spinner flex flex--row flex--center">
           <div class="flex__item--middle ">
             <px-spinner size="150"></px-spinner>
           </div>
@@ -203,7 +203,8 @@
          * Whether to enable the dark theme for each component.
          */
         darkTheme: {
-          type: Boolean
+          type: Boolean,
+          observer: '_handleDarkThemeChanged'
         }
       },
 
@@ -468,10 +469,11 @@
         spinner.classList.add('is__hidden');
       },
       /**
-      * Sets the background color of the page (using class) based on the darkTheme toggle.
+      * Sets the background color of the spinner background based on the darkTheme toggle.
       */
-      _getClass: function(darkTheme) {
-        return darkTheme ? 'dark-theme' : '';
+      _handleDarkThemeChanged: function(newValue) {
+        this.toggleClass('dark-theme', newValue, this.$.spinner);
+        this.fire('px-dark-theme-changed', {"darkTheme": newValue});
       }
     });
   </script>
