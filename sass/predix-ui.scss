@@ -382,12 +382,23 @@ $px-catalog-magenta: rgb(192,0,42);
     display: none;
   }
 
-  .hero-image--background--light{
+  .webp .hero-image--background--light{
     background-image: url("../img/mobile_hero_bkd_light.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
   }
-  .hero-image--background--dark{
+  .no-webp .hero-image--background--light{
+    background-image: url("../img/mobile_hero_bkd_light.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .webp .hero-image--background--dark{
+    background-image: url("../img/mobile_hero_bkd_dark.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .no-webp .hero-image--background--dark{
     background-image: url("../img/mobile_hero_bkd_dark.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
