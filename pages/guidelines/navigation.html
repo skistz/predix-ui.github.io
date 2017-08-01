@@ -34,9 +34,10 @@
 
   <section class="main u-mb++">
     <h2 class="selected">Navigation</h2>
-    <p>When choosing a navigation construct, consider the key use cases and workflows of your application as well as the display size and devices it will be delivered on. An effective navigation system is critical in making your application purposeful and
-      efficient. The Predix Design System includes several components such as <a target="_top" href="/#/components/px-app-nav/">px-app-nav</a>, px-breadcrumbs and <a target="_top" href="/#/components/px-context-browser/">px-context-browser</a> that are
-      designed to work together to guide a user through an application.</p>
+       <p>When choosing a navigation construct, consider the key use cases and workflows of your application as well as the display size and devices it will be delivered on.  An effective navigation system is critical in making your application purposeful and efficient. The Predix Design System includes several components that are designed to work together as main navigation.</p>
+        <p><a target="_top" href="/#/components/px-app-nav/">Px-app-nav</a> is the core navigation component and offers several configurations to suit a variety of use cases. It can be configured horizontally, vertically or as a dropdown menu. <a href="/#/components/px-breadcrumbs/" target="_"top"">Px-breadcrumbs</a> provides the ability to show the user their path through your application and easily navigate up to a parent level. <a target="_top" href="/#/components/px-context-browser/">Px-context-browser</a> works in conjunction with the breadcrumb component to allow a user to set the context of their app. Finally, <a href="/px-branding-bar/" target="_top">px-branding-bar</a> provides a space to apply a custom branding element such as an application name, logo or specific color.</p>
+
+   The <a href="/#/components/px-app-helpers/px-app-header/" target="_top">px-app-header</a> component illustrates how some of these components can work together in an assembly.</p>
 
     <h4 class="u-mt+ u-pt+">Best Practices</h4>
 
@@ -137,7 +138,7 @@
     <h4 class="u-mt+ u-pt+">Wayfinding</h4>
     <p>Many Predix applications are used to display information about a specific machine or a group of machines. Being clear about where a user is in a hierarchy or what machine they are viewing is extremely important.</p>
     <b>Breadcrumbs</b><br/>
-    <p>Breadcrumbs indicate the path a user has taken to a particular page or object. They are used in conjunction with global navigation and are typically displayed below the main navigation and above the page title. The component for breadcrumbs is px-breadcrumbs.</p>
+<p>Breadcrumbs indicate the path a user has taken to a particular page or object. They are used in conjunction with global navigation and are typically displayed below the main navigation and above the page title. The component for breadcrumbs is <a href="/#/components/px-breadcrumbs/" target="_top">px-breadcrumbs</a>.</p>
 
     <div class="full text--center">
       <picture>
@@ -149,7 +150,7 @@
 
     <b>Context Browser</b><br/>
     <p>The context browser works in conjunction with breadcrumbs. It may live below, above or with the main navigation depending on your application's information architecture. In cases where setting the context is the main function of the application, it
-      can even serve as the main navigation. The component for breadcrumbs is px-context-browser.</p>
+      can even serve as the main navigation. The component for breadcrumbs is <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a>.</p>
     <div class="full text--center">
       <picture>
         <source srcset="../../../img/guidelines/context-browser.webp" type="image/webp">
@@ -160,11 +161,9 @@
 
     <h4 class="u-mt+ u-pt+">In-Page Navigation</h4>
     <b>Tabs</b><br/>
-    <p>Tabs can be used as a page element to switch between different types of information that apply to the same context. It's recommended to keep tabs to a maximum number of 6, avoid nested tabs and keep labels concise at one or two words.</p>
+<p>Tabs can be used as a page element to switch between different types of information that apply to the same context. It's recommended to keep tabs to a maximum number of 6, avoid nested tabs and keep labels concise at one or two words. The <a href="/#/components/px-tabs/" target="_top">px-tabs</a> component provides this functionality.</p>
 
-    <p>Tabs are typically placed below the page header above the main content, but can also be found as part of the main content area or within components. Only one tab should be active at one time and should cluster like-content or tasks to avoid switching
-      frequently between tabs.</p>
-
+<p>Tabs are typically placed below the page header above the main content, but can also be found as part of the main content area or within components. Only one tab should be active at one time and should cluster like-content or tasks to avoid switching frequently between tabs.</p>
 
     <div class="halves guidelines">
       <b class="do">Do</b>
@@ -216,5 +215,4 @@
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
 </body>
-
 </html>

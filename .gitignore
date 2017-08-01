@@ -4,3 +4,7 @@ dist/
 caddyfile
 cert.crt
 cert.key
+
+css/predix-ui copy-styles.html
+
+css/predix-ui-styles.html
