@@ -128,6 +128,22 @@ $px-catalog-magenta: rgb(192,0,42);
 }
 
 /*
+ * Refresh banner (on homepage, below the hero)
+ */
+.refresh-banner {
+  background-color: $px-catalog-blue;
+  padding: $inuit-base-spacing-unit 5%;
+}
+.refresh-banner p {
+  color: white;
+  margin: 0;
+}
+.refresh-banner a {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+/*
  * Page wrapper
  */
 .wrapper {
