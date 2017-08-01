@@ -14,7 +14,7 @@
       && 'content' in document.createElement('template'));
       if (!webComponentsSupported) {
         var script = document.createElement('script');
-        script.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';
+        script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
         document.head.appendChild(script);
       }
     </script>
@@ -45,7 +45,7 @@
 		 </p>
 
 		<p><b>Don't invent new layers</b><br/>
-		When creating a new component, take the use case into account to determine the appropriate existing layer.</p>
+		Use <a href="/#/css/px-shadows-design/" target="_top">px-shadows-design</a> when applying layering and elevation to your app. Take the use case into account to determine the appropriate existing layer.</p>
 
       <h4 class="u-mt+ u-pt+">Component Layering</h4>
       <p>There are six layers elements can reside on in a Predix application. Each layer is dedicated for a specific purpose and resides in it's own z-index so that elements can be stacked on top of each other when required.</p>
