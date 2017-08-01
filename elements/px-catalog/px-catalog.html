@@ -76,22 +76,22 @@
     </px-catalog-router>
 
     <!-- App Header -->
-    <section class="gray-bar flex flex--row flex--middle flex--justify">
+    <section class="gray-bar flex flex--middle flex--justify">
       <span id="menu" class="menu">
         <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
         <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
       </span>
 
       <div class="logo">
-        <picture>
+        <picture style="flex: 1 1 auto">
           <source srcset="../../img/px-dev-logo.webp" class="logo__image" type="image/webp">
           <source srcset="../../img/px-dev-logo.png"  class="logo__image" type="image/png">
-          <img    src="../../img/px-dev-logo.png"     class="logo__image" alt="Predix Design System">
+          <img src="../../img/px-dev-logo.png" class="logo__image" alt="Predix Developer Network">
           <span class="logo__text">Predix Design System</span>
         </picture>
       </div>
 
-      <div class="flex flex--row flex--middle u-mr">
+      <div class="flex flex--middle u-mr">
         <small>Dark Theme</small>
         <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}" role="button" aria-pressed="false"></px-toggle>
       </div>
