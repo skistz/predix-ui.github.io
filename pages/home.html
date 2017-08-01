@@ -62,17 +62,18 @@
 
     })();
   </script>
-  <link rel="import" href="../bower_components/polymer/polymer.html" />
+  <link defer rel="import" href="../bower_components/polymer/polymer.html" />
   <link defer rel="shortcut icon" href="../favicon.ico" />
-  <link rel="import" href="../css/predix-ui-styles.html" />
-  <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
-  <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
-  <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+  <link defer rel="import" href="../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+  <link async rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
 </head>
 
 <body unresolved class="body">
   <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
   <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
   <section>
     <div class="hero hero-image--background--light">

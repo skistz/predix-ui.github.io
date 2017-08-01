@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix UI</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script type="text/javascript">
-      // Load Web Components when not supported
-      var webComponentsSupported = ('registerElement' in document
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template'));
-      if (!webComponentsSupported) {
-        var script = document.createElement('script');
-        script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-        document.head.appendChild(script);
-      }
-    </script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script type="text/javascript">
+    // Load Web Components when not supported
+    var webComponentsSupported = ('registerElement' in document &&
+      'import' in document.createElement('link') &&
+      'content' in document.createElement('template'));
+    if (!webComponentsSupported) {
+      var script = document.createElement('script');
+      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
+      document.head.appendChild(script);
+    }
+  </script>
+  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link async rel="shortcut icon" href="../../favicon.ico" />
+  <link defer rel="import" href="../../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-  </head>
-  <body unresolved class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+</head>
 
-    <section class="main u-mb++">
-      <h2 class="selected">Layering & Elevation</h2>
-            <p>Predix applications make use of layering and elevation between screen elements to create a sense of tactility and reinforce task hierarchy.</p>
+<body unresolved class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
-            <h4 class="u-mt+ u-pt+">Best Practices</h4>
-      <p><b>Be consistent with layering</b><br/>
-      Follow the guidelines and layer elements appropriately based on their use. Carry the metaphor throughout your app for a consistent experience.
-      </p>
+  <section class="main u-mb++">
+    <h2 class="selected">Layering & Elevation</h2>
+    <p>Predix applications make use of layering and elevation between screen elements to create a sense of tactility and reinforce task hierarchy.</p>
 
-	  <p><b>Respect the z-axis</b><br/>
-		 If two objects are on the same layer, they can't occupy the same space.
-		 </p>
+    <h4 class="u-mt+ u-pt+">Best Practices</h4>
+    <p><b>Be consistent with layering</b><br/> Follow the guidelines and layer elements appropriately based on their use. Carry the metaphor throughout your app for a consistent experience.
+    </p>
 
-		<p><b>Don't invent new layers</b><br/>
-		Use <a href="/#/css/px-shadows-design/" target="_top">px-shadows-design</a> when applying layering and elevation to your app. Take the use case into account to determine the appropriate existing layer.</p>
+    <p><b>Respect the z-axis</b><br/> If two objects are on the same layer, they can't occupy the same space.
+    </p>
 
-      <h4 class="u-mt+ u-pt+">Component Layering</h4>
-      <p>There are six layers elements can reside on in a Predix application. Each layer is dedicated for a specific purpose and resides in it's own z-index so that elements can be stacked on top of each other when required.</p>
-      <p>When an element in a specified layer contains content, the content resides on that layer as well. To retain a sense of depth, elements that are on the same layer cannot occupy the same space on the screen. </p>
+    <p><b>Don't invent new layers</b><br/> Use <a href="/#/css/px-shadows-design/" target="_top">px-shadows-design</a> when applying layering and elevation to your app. Take the use case into account to determine the appropriate existing layer.</p>
 
-      <div class="full text--center">
-       <picture>
-          <source srcset="../../../img/guidelines/layering.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/layering.png" type="image/png">
-          <img src="../../../img/guidelines/layering.png" alt="Layering ">
-        </picture>
-      </div>
+    <h4 class="u-mt+ u-pt+">Component Layering</h4>
+    <p>There are six layers elements can reside on in a Predix application. Each layer is dedicated for a specific purpose and resides in it's own z-index so that elements can be stacked on top of each other when required.</p>
+    <p>When an element in a specified layer contains content, the content resides on that layer as well. To retain a sense of depth, elements that are on the same layer cannot occupy the same space on the screen. </p>
+
+    <div class="full text--center">
+      <picture>
+        <source srcset="../../../img/guidelines/layering.webp" type="image/webp">
+        <source srcset="../../../img/guidelines/layering.png" type="image/png">
+        <img src="../../../img/guidelines/layering.png" alt="Layering ">
+      </picture>
+    </div>
 
 
-      <table class="guidelines">
-        <tr>
-          <th>Class</th>
-          <th>Description</th>
-          <th>Example</th>
-        </tr>
-        <tr>
-          <td><b>Base</b></td>
-          <td class="description">The page structure, layout, cards and content. There is no elevation or shadows displayed on this layer.</td>
-          <td><a href="/#/components/px-card/" target="_top">px-card</a></td>
-        </tr>
-        <tr>
-          <td><b>Component</b></td>
-          <td>Tactile elements within a component such as toggles and shadows to indicate a depth.</td>
-          <td><a href="/#/components/px-toggle/" target="_top">px-toggle</a></td>
-        </tr>
-        <tr>
-          <td><b>Temporary State</b></td>
-          <td>Tooltips, drop down menus and overlays and objects that are displayed for a very short period of time.</td>
-          <td><a href="/#/components/px-tooltip/" target="_top">px-tooltip</a></td>
-        </tr>
-        <tr>
-          <td><b>Navigation</b></td>
-          <td>Reserved for application navigation and associated menus.</td>
-          <td><a href="/#/components/px-app-nav/" target="_top">px-app-nav</a></td>
-        </tr>
-        <tr>
-          <td><b>Notifications</b></td>
-          <td>Intended for elements that are important but aren't critical for the user to acknowledge to complete a task.</td>
-          <td><a href="/#/components/px-alert-message/" target="_top">px-alert-message</a></td>
-        </tr>
-        <tr>
-          <td><b>Modal</b></td>
-          <td>For elements that require the user's full attention to complete a task.</td>
-          <td><a href="/#/components/px-modal/" target="_top">px-modal</a></td>
-        </tr>
+    <table class="guidelines">
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+      <tr>
+        <td><b>Base</b></td>
+        <td class="description">The page structure, layout, cards and content. There is no elevation or shadows displayed on this layer.</td>
+        <td><a href="/#/components/px-card/" target="_top">px-card</a></td>
+      </tr>
+      <tr>
+        <td><b>Component</b></td>
+        <td>Tactile elements within a component such as toggles and shadows to indicate a depth.</td>
+        <td><a href="/#/components/px-toggle/" target="_top">px-toggle</a></td>
+      </tr>
+      <tr>
+        <td><b>Temporary State</b></td>
+        <td>Tooltips, drop down menus and overlays and objects that are displayed for a very short period of time.</td>
+        <td><a href="/#/components/px-tooltip/" target="_top">px-tooltip</a></td>
+      </tr>
+      <tr>
+        <td><b>Navigation</b></td>
+        <td>Reserved for application navigation and associated menus.</td>
+        <td><a href="/#/components/px-app-nav/" target="_top">px-app-nav</a></td>
+      </tr>
+      <tr>
+        <td><b>Notifications</b></td>
+        <td>Intended for elements that are important but aren't critical for the user to acknowledge to complete a task.</td>
+        <td><a href="/#/components/px-alert-message/" target="_top">px-alert-message</a></td>
+      </tr>
+      <tr>
+        <td><b>Modal</b></td>
+        <td>For elements that require the user's full attention to complete a task.</td>
+        <td><a href="/#/components/px-modal/" target="_top">px-modal</a></td>
+      </tr>
 
-      </table>
+    </table>
 
 
 
- <h4 class="u-mt+ u-pt+">Elevation</h4>
- <p>The layers of elevation are labeled by the blur radius on the shadow. The representation of the elevation is driven by the styling of the shadow. All shadows are black with a 20% opacity and the shadow offset is half of the blur radius.</p>
+    <h4 class="u-mt+ u-pt+">Elevation</h4>
+    <p>The layers of elevation are labeled by the blur radius on the shadow. The representation of the elevation is driven by the styling of the shadow. All shadows are black with a 20% opacity and the shadow offset is half of the blur radius.</p>
 
-<div class="full text--center">
-       <picture>
-          <source srcset="../../../img/guidelines/shadow_scale.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/shadow_scale.png" type="image/png">
-          <img src="../../../img/guidelines/layering.png" alt="Layering ">
-        </picture>
-      </div>
+    <div class="full text--center">
+      <picture>
+        <source srcset="../../../img/guidelines/shadow_scale.webp" type="image/webp">
+        <source srcset="../../../img/guidelines/shadow_scale.png" type="image/png">
+        <img src="../../../img/guidelines/layering.png" alt="Layering ">
+      </picture>
+    </div>
 
-    </section>
+  </section>
 
 
-    <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>
