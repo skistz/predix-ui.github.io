@@ -1,3 +1,7 @@
+v0.2.23
+==================
+* added px-hero-image component
+
 v0.2.22
 ==================
 * made hero image responsive

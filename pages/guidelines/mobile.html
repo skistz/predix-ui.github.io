@@ -1,96 +1,102 @@
 <!DOCTYPE html>
 <html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
+
+<head>
+  <title>Predix UI</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
     with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script type="text/javascript">
-      // Load Web Components when not supported
-      var webComponentsSupported = ('registerElement' in document
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template'));
-      if (!webComponentsSupported) {
-        var script = document.createElement('script');
-        script.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';
-        document.head.appendChild(script);
-      }
-    </script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script type="text/javascript">
+    // Load Web Components when not supported
+    var webComponentsSupported = ('registerElement' in document &&
+      'import' in document.createElement('link') &&
+      'content' in document.createElement('template'));
+    if (!webComponentsSupported) {
+      var script = document.createElement('script');
+      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
+      document.head.appendChild(script);
+    }
+  </script>
+  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link async rel="shortcut icon" href="../../favicon.ico" />
+  <link defer rel="import" href="../../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-  </head>
-  <body unresolved class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+</head>
 
-    <section class="main u-mb++">
-      <h2 class="selected">Mobile</h2>
+<body unresolved class="body">
+  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+  <style include="predix-ui-styles" is="custom-style"></style>
+  <style include="px-theme-styles" is="custom-style"></style>
 
-      <p>The Predix Design System contains multiple CSS modules to facilitate page layout. When building mobile applications, consider using <a href="/#/css/px-widths-responsive-design/" target="_top">px-widths-responsive-design</a> to add mobile breakpoints to your app. Most Predix UI components are flexible and support multiple screen sizes and when combined with px-responsive-design, you'll be able to tailor your app for desktop, tablet or mobile experiences.</p>
+  <section class="main u-mb++">
+    <h2 class="selected">Mobile</h2>
+
+    <p>The Predix Design System contains multiple CSS modules to facilitate page layout. When building mobile applications, consider using <a href="/#/css/px-widths-responsive-design/" target="_top">px-widths-responsive-design</a> to add mobile breakpoints
+      to your app. Most Predix UI components are flexible and support multiple screen sizes and when combined with px-responsive-design, you'll be able to tailor your app for desktop, tablet or mobile experiences.</p>
 
 
-        <h4 class="u-mt+ u-pt+">Navigation</h4>
-        <p>The <a href="/#/components/px-app-nav/" target="_top">px-appnav</a> and <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a> components was built with mobile breakpoints in mind so it will adapt gracefully from desktop to mobile. It is recommended to use either the drop down or vertical configurations for mobile devices and phones.
-        <div class="full text--center">
-   <div class="thirds">
-			<picture>
-          <source srcset="../../../img/guidelines/mobile_nav_dropdown.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/mobile_nav_dropdown.png" type="image/png">
-          <img src="../../../img/guidelines/mobile_nav_dropdown.png" alt="Dropdown Nav">
-        </picture>
- 	 </div>
-    <div class="thirds">
-			<picture>
-          <source srcset="../../../img/guidelines/mobile_nav_hamburger.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/mobile_nav_hamburger.png" type="image/png">
-          <img src="../../../img/guidelines/mobile_nav_hamburger.png" alt="Hamburger Nav">
-        </picture>
- 	 </div>
+    <h4 class="u-mt+ u-pt+">Navigation</h4>
+    <p>The <a href="/#/components/px-app-nav/" target="_top">px-appnav</a> and <a href="/#/components/px-context-browser/" target="_top">px-context-browser</a> components was built with mobile breakpoints in mind so it will adapt gracefully from desktop
+      to mobile. It is recommended to use either the drop down or vertical configurations for mobile devices and phones.
+      <div class="full text--center">
+        <div class="thirds">
+          <picture>
+            <source srcset="../../../img/guidelines/mobile_nav_dropdown.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/mobile_nav_dropdown.png" type="image/png">
+            <img src="../../../img/guidelines/mobile_nav_dropdown.png" alt="Dropdown Nav">
+          </picture>
         </div>
-</p>
-       <h4 class="u-mt+ u-pt+">Page Layout</h4>
-       <p>Generally speaking, most desktop layouts will translate relatively well to tablets. On a phone or a small handheld device there's much less screen real estate. In that case, Predix mobile applications should utilize a single column card layout with stacked cards.</p>
+        <div class="thirds">
+          <picture>
+            <source srcset="../../../img/guidelines/mobile_nav_hamburger.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/mobile_nav_hamburger.png" type="image/png">
+            <img src="../../../img/guidelines/mobile_nav_hamburger.png" alt="Hamburger Nav">
+          </picture>
+        </div>
+      </div>
+    </p>
+    <h4 class="u-mt+ u-pt+">Page Layout</h4>
+    <p>Generally speaking, most desktop layouts will translate relatively well to tablets. On a phone or a small handheld device there's much less screen real estate. In that case, Predix mobile applications should utilize a single column card layout with
+      stacked cards.</p>
 
-       <p>To minimize page length and scrolling consider a left to right horizontal gesture to switch between cards. This interaction is especially valuable for dashboards where on the desktop there's typically two or three charts per card.</p>
+    <p>To minimize page length and scrolling consider a left to right horizontal gesture to switch between cards. This interaction is especially valuable for dashboards where on the desktop there's typically two or three charts per card.</p>
 
 
-      <div class="halves">
-			<picture>
-          <source srcset="../../../img/guidelines/mobile_card.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/mobile_card.png" type="image/png">
-          <img src="../../../img/guidelines/mobile_card.png" alt="Mobile Cards">
-        </picture>
- 	 </div>
+    <div class="halves">
+      <picture>
+        <source srcset="../../../img/guidelines/mobile_card.webp" type="image/webp">
+        <source srcset="../../../img/guidelines/mobile_card.png" type="image/png">
+        <img src="../../../img/guidelines/mobile_card.png" alt="Mobile Cards">
+      </picture>
+    </div>
 
- 	 <div class="halves ">
-			<picture>
-          <source srcset="../../../img/guidelines/mobile_swiping.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/mobile_swiping.png" type="image/png">
-          <img src="../../../img/guidelines/mobile_swiping.png" alt="Mobile Swiping">
-        </picture>
- 	 </div>
-               <h4 class="u-mt+ u-pt+">Data Tables</h4>
-               <p>While many desktop apps rely on data tables to display grids of information, data tables don't translate very well to mobile phones. Instead, consider using <a href="/#/components/px-table-view/" target="_top">px-table-view</a> which provides a more mobile-friendly way of viewing data.
-<div class="full text--center">
-			<picture>
+    <div class="halves ">
+      <picture>
+        <source srcset="../../../img/guidelines/mobile_swiping.webp" type="image/webp">
+        <source srcset="../../../img/guidelines/mobile_swiping.png" type="image/png">
+        <img src="../../../img/guidelines/mobile_swiping.png" alt="Mobile Swiping">
+      </picture>
+    </div>
+    <h4 class="u-mt+ u-pt+">Data Tables</h4>
+    <p>While many desktop apps rely on data tables to display grids of information, data tables don't translate very well to mobile phones. Instead, consider using <a href="/#/components/px-table-view/" target="_top">px-table-view</a> which provides a more
+      mobile-friendly way of viewing data.
+      <div class="full text--center">
+        <picture>
           <source srcset="../../../img/guidelines/mobile_data_table.webp" type="image/webp">
           <source srcset="../../../img/guidelines/mobile_data_table.png" type="image/png">
           <img src="../../../img/guidelines/mobile_data_table.png" alt="Mobile Data Table">
         </picture>
- 	 </div>
-</p>
+      </div>
+    </p>
 
-    </section>
+  </section>
 
-    <!-- Footer -->
-    <px-catalog-footer></px-catalog-footer>
-  </body>
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</body>
+
 </html>

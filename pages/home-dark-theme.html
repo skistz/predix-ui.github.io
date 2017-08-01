@@ -34,22 +34,23 @@
         document.head.appendChild(script);
       } else {
         onload();
-      }
+      };
 
     })();
   </script>
-  <link rel="import" href="../bower_components/polymer/polymer.html" />
+  <link defer rel="import" href="../bower_components/polymer/polymer.html" />
   <link defer rel="shortcut icon" href="../favicon.ico" />
-  <link rel="import" href="../css/predix-ui-styles.html" />
-  <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
-  <link rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+
+  <link defer rel="import" href="../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../bower_components/px-dark-theme/px-dark-theme-styles.html">
+  <link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
   <link defer rel="import" href="../elements/px-hero-image/px-hero-image.html" />
 </head>
 
 <body unresolved class="body">
   <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
   <style include="predix-ui-styles" is="custom-style"></style>
-
+  <style include="px-dark-theme-styles" is="custom-style"></style>
   <section>
     <px-hero-image class="hero hero--dark" dark>
       <div class="hero__text" slot="content">
@@ -64,6 +65,10 @@
       </div>
     </px-hero-image>
 
+    <div class="refresh-banner">
+      <p>New, refreshed versions of all Predix Design system components were released on July 28, 2017.</p>
+      <p>For documentation on the pre-refresh components, see the <a href="https://archive.predix-ui.com/" target="_blank">archive</a> site.</p>
+    </div>
   </section>
 
   <section class="main maindark">
@@ -71,7 +76,7 @@
     <div class="halves">
       <h2 class="subHeader">Design Starter Kit</h2>
       <div class="halves">
-        <p>A Sketch file that the contains core layouts, components, colors and fonts, the Design Starter Kit makes designing
+        <p>A Sketch file that the contains core layouts, components, colors and fonts. The Design Starter Kit makes designing
           a consistent app simple.</p>
       </div>
       <div class="halves">

@@ -96,7 +96,7 @@ $px-catalog-magenta: rgb(192,0,42);
 
   @media screen and (min-width: 719px) {
     .logo__image {
-      display: initial;
+      display: inline-block;
       height: 18px;
       position: relative;
       top: 4px;
@@ -212,7 +212,7 @@ $px-catalog-magenta: rgb(192,0,42);
 */
 .gray-bar {
   background-color: $px-catalog-gray;
-  min-height: 80px;
+  height: 80px;
   z-index: 2;
   position: fixed;
   top: 0;

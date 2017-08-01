@@ -10,22 +10,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script type="text/javascript">
     // Load Web Components when not supported
-    var webComponentsSupported = ('registerElement' in document
-    && 'import' in document.createElement('link')
-    && 'content' in document.createElement('template'));
+    var webComponentsSupported = ('registerElement' in document &&
+      'import' in document.createElement('link') &&
+      'content' in document.createElement('template'));
     if (!webComponentsSupported) {
       var script = document.createElement('script');
-      script.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';
+      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
       document.head.appendChild(script);
     }
   </script>
-  <link rel="import" href="../../bower_components/polymer/polymer.html" />
-  <link rel="shortcut icon" href="../../favicon.ico" />
-  <link rel="import" href="../../css/predix-ui-styles.html" />
-  <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-  <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-  <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link async rel="shortcut icon" href="../../favicon.ico" />
+  <link defer rel="import" href="../../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
 </head>
 
@@ -73,7 +71,7 @@
         <img src="../../../img/guidelines/vertical_layout.png" alt="Vertical navigation layout">
       </picture>
 
-    </div>
+	</div>
 
     <h4 class="u-mt+ u-pt+">Base Screen Sizes</h4>
     <table class="guidelines">
@@ -91,7 +89,7 @@
       </tr>
     </table>
 
-    <h4 class="u-mt+ u-pt+">Layout Grid</h4>
+   <h4 class="u-mt+ u-pt+">Layout Grid</h4>
     <p>The layout grid is a 12 column, 15px grid supporting horizontal and vertical navigation as well as the inbox layout. Grids are available in the Design Starter Kit.</p>
 
     <div class="full text--center">
@@ -103,18 +101,21 @@
 
     </div>
 
-    <p>There are several components available in the design system that can be used for layout:</p>
+    <p>There are several CSS modules in the design system that can be used to create a page layout:</p>
 
     <ul>
-      <li><b>px-layout-design:</b> The Predix UI Layout module defines the 'grid' for Predix UI. Layout items can be autosized, or given a specific width, and layouts reflow responsively on smaller viewports.</li>
+      <li class="u-mv--"><a href="/#/css/px-layout-design/" target="_top">px-layout-design</a>: Defines the 'grid' for Predix UI. Layout items can be autosized or given a specific width, and layouts reflow responsively on smaller viewports.</li>
 
-      <li><b>px-flexbox-design:</b> Flexbox creates layout classes to give elements sizes and dynamically put elements in the right place. The flexbox module a wrapper around all of CSS flexbox's non-unit-based properties.</li>
+      <li class="u-mv--"><a href="/#/css/px-spacing-design/" target="top">px-spacing</a>: A collection of helper classes for spacing such as margin and padding.</li>
 
-      <li><b>px-widths-responsive-design:</b> Provides breakpoint-based classes for widths on elements.</li>
-    </ul>
 
-    <h4 class="u-mt+ u-pt+">Grid Variations</h4>
-    <p>There are five variations of the grid to supporting a one to six column layout, allowing a designer to choose a layout that matches the information to display.</p>
+      <li class="u-mv--"><a href="/#/css/px-flexbox-design/" target="top">px-flexbox-design</a>: Creates layout classes to give elements sizes and dynamically put elements in the right place. The flexbox module is a wrapper around all of CSS flexbox's non-unit-based properties.</li>
+
+      <li class="u-mv--"><a href="/#/css/px-widths-design/" target="top">px-widths-responsive-design:</a> Provides breakpoint-based classes for widths on elements.</li>
+  </ul>
+
+<h4 class="u-mt+ u-pt+">Grid Variations</h4>
+<p>There are five variations of the grid to supporting a one to six column layout, allowing a designer to choose a layout that matches the information to display.</p>
 
     <p><b>Six Column Grid</b><br/> For information-dense screens and workflows such as cases, or asset records.</p>
     <div class="halves">
@@ -197,11 +198,9 @@
       </picture>
     </div>
 
-
-    <h4 class="u-mt++">Cards</h4>
-    <p>Cards are used to group similar information into logical groups to make it easier for people to consume and act. They consist of a header area and content area, with spacing in between. The header can optionally contain a descriptive icon in the top
-      left corner and/or a chevron button in the top right corner for configuration options or other menu items.</p>
-    <p>Information in cards can be clustered based on the grid layout of your choice.</p>
+<h4 class="u-mt++">Cards</h4>
+<p>Cards are used to group similar information into logical groups to make it easier for people to consume. They consist of a header area and content area, with spacing in between. The header can optionally contain a descriptive icon in the top left corner and/or a chevron button in the top right corner for configuration options or other menu items. The <a href="/#/components/px-card/" target="_top">px-card</a> component provides this functionality.</p>
+<p>Information in cards can be clustered based on the grid layout of your choice.</p>
 
     <div class="thirds">
       <picture>
@@ -245,8 +244,7 @@
 
   </section>
 
-  <!-- Footer -->
-  <px-catalog-footer></px-catalog-footer>
-</body>
-
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </body>
 </html>

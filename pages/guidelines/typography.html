@@ -15,16 +15,15 @@
     && 'content' in document.createElement('template'));
     if (!webComponentsSupported) {
       var script = document.createElement('script');
-      script.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';
+      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
       document.head.appendChild(script);
     }
   </script>
-  <link rel="import" href="../../bower_components/polymer/polymer.html" />
-  <link rel="shortcut icon" href="../../favicon.ico" />
-  <link rel="import" href="../../css/predix-ui-styles.html" />
-  <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-  <link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+  <link async rel="shortcut icon" href="../../favicon.ico" />
+  <link defer rel="import" href="../../css/predix-ui-styles.html" />
+  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
 </head>
 
@@ -189,7 +188,7 @@
   </section>
 
   <!-- Footer -->
-  <px-catalog-footer></px-catalog-footer>
+  <px-demo-footer></px-demo-footer>
 </body>
 
 </html>
