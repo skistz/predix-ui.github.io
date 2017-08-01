@@ -24,11 +24,12 @@
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
     <style>
-      #spinner {
+      .catalog__spinner {
         position: absolute;
         z-index: 999;
         width: 100%;
         height: 100%;
+        background: #fff;
       }
       .dark-theme {
         background: #23343F;
@@ -108,7 +109,7 @@
 
       <!-- App iFrame -->
       <div class="iframe__container">
-        <div id="spinner" class$="flex flex--row flex--center {{_getClass(darkTheme)}}">
+        <div id="spinner" class$="catalog__spinner flex flex--row flex--center {{_getClass(darkTheme)}}">
           <div class="flex__item--middle ">
             <px-spinner size="150"></px-spinner>
           </div>
