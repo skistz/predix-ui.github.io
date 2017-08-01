@@ -10,9 +10,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script type="text/javascript">
     // Load Web Components when not supported
-    var webComponentsSupported = ('registerElement' in document
-    && 'import' in document.createElement('link')
-    && 'content' in document.createElement('template'));
+    var webComponentsSupported = ('registerElement' in document &&
+      'import' in document.createElement('link') &&
+      'content' in document.createElement('template'));
     if (!webComponentsSupported) {
       var script = document.createElement('script');
       script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
@@ -22,10 +22,8 @@
   <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
   <link async rel="shortcut icon" href="../../favicon.ico" />
   <link defer rel="import" href="../../css/predix-ui-styles.html" />
-  <link async rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link async rel="import" href="../../bower_components/px-polymer-font-awesome/px-polymer-font-awesome.html" />
-  <link async rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html"/>
+  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
 
 </head>
@@ -304,7 +302,8 @@
 
       <h4 class="u-mt+ u-pt+">Color Treatment</h4>
       <p>The Predix UI visualization palette provides a diverse range of colors to construct visually impactful charts but more importantly, allows for distinction in the event of large, complex data groupings which are extremely common in the Industrial
-        space.</p>
+        space.
+      </p>
 
       <div class="halves guidelines">
         <b class="do">Do</b>
@@ -350,7 +349,7 @@
 
       <h4 class="u-mt+ u-pt+">Chart Register</h4>
       <p>The chart register houses the list of mapped values and their associated colors. Depending on your use case it can be placed to the top or the right of a data visualization. It is not recommended that it is placed to the left or below the chart.
-        </p>
+      </p>
       <p>Tooltips can work with or instead of the register and display metadata about a particular item on the chart. It's important to keep tooltips succinct and as small as possible so they don't obscure the data they are augmenting.</p>
 
       <div class="halves guidelines">
