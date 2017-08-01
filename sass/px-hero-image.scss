@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+:host {
+  display: block;
+  overflow: hidden;
+}
+*,*::before, *::after{
+  box-sizing: border-box;
+}
+img{
+  max-width: 100%;
+}
+.hero-animation-slot > ::slotted(.hero-image--desktop){
+  box-sizing: content-box;
+  position: relative;
+}
+:host([large-screen]) .hero-slot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  z-index: 99;
+}
+.hero-image--background{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+.hero-image--foreground{
+  display: block;
+  padding: 5%;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+.hero-container{
+  position: relative;
+}

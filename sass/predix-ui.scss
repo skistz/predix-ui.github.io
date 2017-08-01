@@ -125,6 +125,60 @@ $px-catalog-magenta: rgb(192,0,42);
   }
 }
 
+.hero {
+  display: block;
+  background-color: #ebeff1;
+
+  .hero__text{
+    padding: 30px;
+    max-width: 350px;
+    font-size: .9em;
+  }
+  .hero__text--dark{
+    color: $gray4;
+  }
+  .hero__picture{
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .hero__text{
+    position: relative;
+    z-index: 2;
+  }
+
+  //ipad and up
+  @media screen and (min-width: 719px) {
+    min-height: 350px;
+  }
+}
+.hero--dark {
+  background-color: #1a2a35;
+}
+
+@media screen and (max-width: 719px) {
+
+  .header-img {
+    height: 14px;
+    top: 2px;
+  }
+
+  .menu {
+    padding-right: $inuit-base-spacing-unit--small;
+  }
+
+}
+
+@media screen and (min-width: 719px) {
+  .hero-image--mobile{
+    display: none;
+  }
+
+  .welcometext{
+    position: absolute;
+  }
+}
+
+
 /*
  * Refresh banner (on homepage, below the hero)
  */
@@ -381,59 +435,6 @@ $px-catalog-magenta: rgb(192,0,42);
 * mobile
 */
 
-@media screen and (max-width: 719px) {
-
-  .header-img {
-    height: 14px;
-    top: 2px;
-  }
-
-  .menu {
-    padding-right: $inuit-base-spacing-unit--small;
-  }
-
-  .hero-animation {
-    display: none;
-  }
-
-  .webp .hero-image--background--light{
-    background-image: url("../img/mobile_hero_bkd_light.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-  .no-webp .hero-image--background--light{
-    background-image: url("../img/mobile_hero_bkd_light.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-
-  .webp .hero-image--background--dark{
-    background-image: url("../img/mobile_hero_bkd_dark.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-  .no-webp .hero-image--background--dark{
-    background-image: url("../img/mobile_hero_bkd_dark.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-
-  .hero-image--mobile{
-    display: block;
-    padding: 20px;
-  }
-
-}
-
-@media screen and (min-width: 719px) {
-  .hero-image--mobile{
-    display: none;
-  }
-
-  .welcometext{
-    position: absolute;
-  }
-}
 
 /***********************************************************
 ************************************************************
@@ -663,76 +664,6 @@ a.item__link {
   text-align: left!important;
 }
 
-.hero {
-	background-color: #ebeff1;
-  min-height: 350px;
-}
-
-.darkhero {
-	background-color: #1a2a35;
-  min-height: 350px;
-}
-
-.hero,
-.darkhero {
-  position: relative;
-}
-.hero-animation {
-	box-sizing: content-box;
-  position: relative;
-}
-
-.hero-image-container {
-  overflow: hidden;
-}
-
-.hero .welcometext,
-.darkhero .welcometext {
-		z-index: 5000;
-		padding: 5% 0% 0% 5%;
-}
-
-.hero h1,
-.darkhero h1 {
-	width: 252px;
-	height: 73px;
-	text-indent: -5000px;
-}
-
-.hero h1 {
-	background: url('../../img/predix_ds_logo.png') 0 0 no-repeat;
-}
-
-
-.darkhero h1 {
-		background: url('../../img/predix_ds_logo_dark.png') 0 0 no-repeat;
-}
-
-.hero p,
-.darkhero p {
-	width: 270px;
-	font-size: .9em;
-}
-
-.darkhero p {
-	color: $gray4;
-}
-
-/* @2x Images (Pixel Ratio of 1.25+) */
-@media only screen and (-o-min-device-pixel-ratio: 5/4),
-       only screen and (-webkit-min-device-pixel-ratio: 1.25),
-       only screen and (min-device-pixel-ratio: 1.25),
-       only screen and (min-resolution: 1.25dppx) {
-    .hero h1 {
-	    background-image:url('../../img/predix_ds_logo@2x.png');
-	    background-size: 252px 73px;
-	    }
-	 .darkhero h1 {
-	    background-image:url('../../img/predix_ds_logo_dark@2x.png');
-	    background-size: 252px 73px;
-	    }
-}
-
 .main {
  width: 100%;
  margin: 0 auto;
@@ -919,9 +850,7 @@ table.guidelines.datavis td {
     font-size: 1.3em;
   }
 
-  .hero-header {
-    vertical-align: top;
-  }
+
 
 }
 
