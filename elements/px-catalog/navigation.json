@@ -1264,7 +1264,7 @@
    {
      "dataType":"tools",
      "repoName":"version-finder",
-     "linkText":"Version Finder"
+     "linkText":"Bower Version Finder"
    }
     ]
   }
