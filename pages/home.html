@@ -36,6 +36,42 @@
         onload();
       };
 
+      // Only accept messages from this domain, for security reasons
+      // var MESSAGE_TARGET = 'https://www.predix-ui.com';
+      var MESSAGE_TARGET = 'http://localhost:8080';
+
+      /* Listen for messages from the parent iFrame */
+      window.addEventListener('message', handleParentMessage, false);
+      function handleParentMessage(evt) {
+        if (evt.origin !== MESSAGE_TARGET || evt.data.type !== 'THEME_STATUS') return;
+        var isDarkTheme = evt.data.IS_DARK_THEME;
+        _switchTheme(isDarkTheme)
+      };
+      function requestThemeFromParent() {
+        if (inFrame()) {
+          parent.postMessage({ type: 'REQUEST_THEME_STATUS' }, MESSAGE_TARGET);
+        }
+      };
+      function inFrame() {
+        try { return window.self !== window.top; }
+        catch (e) { return true; }
+      };
+      requestThemeFromParent();
+
+      function _switchTheme(isDarkTheme){
+        var a = document.querySelector("#hero-image");
+        if(a === null){return;}
+        if(isDarkTheme){
+          a.setAttribute("dark", "");
+          document.body.classList.add('dark-theme');
+        }else if(!isDarkTheme){
+          a.removeAttribute("dark");
+          document.body.classList.remove('dark-theme');
+        }
+
+
+      };
+
     })();
   </script>
   <link defer rel="import" href="../bower_components/polymer/polymer.html" />
@@ -53,7 +89,7 @@
   <style include="px-theme-styles" is="custom-style"></style>
 
   <section>
-    <px-hero-image class="hero">
+    <px-hero-image class="hero" id="hero-image">
       <div class="hero__text" slot="content">
         <picture class="hero__picture">
           <source srcset="../img/predix_ds_logo.webp" type="image/webp">

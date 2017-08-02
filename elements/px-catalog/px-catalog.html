@@ -474,6 +474,29 @@
       _handleDarkThemeChanged: function(newValue) {
         this.toggleClass('dark-theme', newValue, this.$.spinner);
         this.fire('px-dark-theme-changed', {"darkTheme": newValue});
+
+        this._notifyChildThemeStatus(newValue);
+      },
+
+      created: function() {
+        // Only attempt to message this domain, for security reasons
+        // this._MESSAGE_TARGET = 'https://www.predix-ui.com';
+        this._MESSAGE_TARGET = 'http://localhost:8080';
+
+        window.addEventListener('message', this._handleChildMessage.bind(this), false);
+      },
+
+      _handleChildMessage: function(evt) {
+        if (evt.origin !== this._MESSAGE_TARGET || evt.data.type !== 'REQUEST_THEME_STATUS') return;
+
+        this._notifyChildThemeStatus(this.darkTheme);
+      },
+
+      _notifyChildThemeStatus: function(themeStatus) {
+        var frame = Polymer.dom(this.root).querySelector('#frameEl');
+        if (frame !== null) {
+          frame.contentWindow.postMessage({ IS_DARK_THEME: themeStatus, type: 'THEME_STATUS' }, this._MESSAGE_TARGET);
+        }
       }
     });
   </script>
