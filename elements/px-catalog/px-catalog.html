@@ -480,8 +480,8 @@
 
       created: function() {
         // Only attempt to message this domain, for security reasons
-        // this._MESSAGE_TARGET = 'https://www.predix-ui.com';
-        this._MESSAGE_TARGET = 'http://localhost:8080';
+        this._MESSAGE_TARGET = 'https://www.predix-ui.com';
+        // this._MESSAGE_TARGET = 'http://localhost:8080';
 
         window.addEventListener('message', this._handleChildMessage.bind(this), false);
       },
