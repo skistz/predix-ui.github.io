@@ -35,43 +35,6 @@
       } else {
         onload();
       };
-
-      // Only accept messages from this domain, for security reasons
-      var MESSAGE_TARGET = 'https://www.predix-ui.com';
-      // var MESSAGE_TARGET = 'http://localhost:8080';
-
-      /* Listen for messages from the parent iFrame */
-      window.addEventListener('message', handleParentMessage, false);
-      function handleParentMessage(evt) {
-        if (evt.origin !== MESSAGE_TARGET || evt.data.type !== 'THEME_STATUS' || typeof evt.data.IS_DARK_THEME !== "boolean") return;
-        var isDarkTheme = evt.data.IS_DARK_THEME;
-        _switchTheme(isDarkTheme)
-      };
-      function requestThemeFromParent() {
-        if (inFrame()) {
-          parent.postMessage({ type: 'REQUEST_THEME_STATUS' }, MESSAGE_TARGET);
-        }
-      };
-      function inFrame() {
-        try { return window.self !== window.top; }
-        catch (e) { return true; }
-      };
-      requestThemeFromParent();
-
-      function _switchTheme(isDarkTheme){
-        var a = document.querySelector("#hero-image");
-        if(a === null){return;}
-        if(isDarkTheme){
-          a.setAttribute("dark", "");
-          document.body.classList.add('dark-theme');
-        }else if(!isDarkTheme){
-          a.removeAttribute("dark");
-          document.body.classList.remove('dark-theme');
-        }
-
-
-      };
-
     })();
   </script>
   <link defer rel="import" href="../bower_components/polymer/polymer.html" />
@@ -80,6 +43,7 @@
   <link defer rel="import" href="../css/predix-ui-styles.html" />
   <link defer rel="import" href="../bower_components/px-theme/px-theme-styles.html">
   <link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+  <link defer rel="import" href="../bower_components/px-demo/px-demo-theme-switcher.html" />
   <link defer rel="import" href="../elements/px-hero-image/px-hero-image.html" />
 </head>
 
@@ -87,6 +51,27 @@
   <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
   <style include="predix-ui-styles" is="custom-style"></style>
   <style include="px-theme-styles" is="custom-style"></style>
+
+  <!-- Bind theme switcher -->
+  <px-demo-theme-switcher-frame id="parentMessenger" origin="http://www.predix-ui.com"></px-demo-theme-switcher-frame>
+  <script>
+    var msg = document.getElementById('parentMessenger');
+    msg.addEventListener('is-dark-theme-changed', function(evt) {
+      var isDarkTheme = evt.detail.value;
+      var pxHeroImageEl = document.getElementById("hero-image");
+      if (pxHeroImageEl === null) {
+        return;
+      }
+      if (isDarkTheme === true) {
+        pxHeroImageEl.setAttribute("dark", "");
+        document.body.classList.add('dark-theme');
+      }
+      else if(isDarkTheme === false) {
+        pxHeroImageEl.removeAttribute("dark");
+        document.body.classList.remove('dark-theme');
+      }
+    });
+  </script>
 
   <section>
     <px-hero-image class="hero" id="hero-image">
