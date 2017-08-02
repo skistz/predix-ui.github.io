@@ -37,11 +37,11 @@ img{
   z-index: 99;
 }
 :host([large-screen][dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--dark){
-  display: initial;
+  display: block;
   visibility: visible;
 }
 :host([large-screen]):not([dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--light){
-  display: initial;
+  display: block;
   visibility: visible;
 }
 .hero-image--background{

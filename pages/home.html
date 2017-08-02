@@ -43,7 +43,7 @@
       /* Listen for messages from the parent iFrame */
       window.addEventListener('message', handleParentMessage, false);
       function handleParentMessage(evt) {
-        if (evt.origin !== MESSAGE_TARGET || evt.data.type !== 'THEME_STATUS') return;
+        if (evt.origin !== MESSAGE_TARGET || evt.data.type !== 'THEME_STATUS' || typeof evt.data.IS_DARK_THEME !== "boolean") return;
         var isDarkTheme = evt.data.IS_DARK_THEME;
         _switchTheme(isDarkTheme)
       };
