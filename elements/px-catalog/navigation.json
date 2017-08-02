@@ -10,23 +10,48 @@
       {
         "dataType":"about",
         "repoName":"what-is-predix-ui",
-        "linkText":"About the System"
+        "linkText":"About the System",
+        "keywords":[
+          "overview",
+          "framework",
+          "polymer",
+          "inuitcss",
+          "introduction"
+          ]
       },
 
        {
         "dataType":"guides",
         "repoName":"getting-started",
-        "linkText":"Developing with the System"
+        "linkText":"Developing with the System",
+        "keywords":[
+          "how to",
+          "bower",
+          "inuitcss",
+          "generator"
+          ]
       },
       {
         "dataType":"guides",
         "repoName":"designer-resources",
-        "linkText":"Design Starter Kit"
+        "linkText":"Design Starter Kit",
+        "keywords":[
+          "sketch",
+          "stencil",
+          "prototype"
+          ]
       },
       {
         "dataType":"guides",
         "repoName":"dev-resources",
-        "linkText":"Additional Resources"
+        "linkText":"Additional Resources",
+        "keywords":[
+          "articles",
+          "tutorials",
+          "tools",
+          "help",
+          "support"
+          ]
       },
       {
         "dataType":"about",
