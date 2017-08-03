@@ -249,19 +249,19 @@ a component.
               return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
             },
             about: function(name) {
-              return '../../pages/about/' + name + '.html';
+              return window.location.origin + '/pages/about/' + name + '.html';
             },
             guides: function(name) {
-              return '../../pages/guides/' + name + '.html';
+              return window.location.origin + '/pages/guides/' + name + '.html';
             },
             tools: function(name) {
-              return '../../pages/tools/' + name + '.html';
+              return window.location.origin + '/pages/tools/' + name + '.html';
             },
             guidelines: function(name) {
-              return '../../pages/guidelines/' + name + '.html';
+              return window.location.origin + '/pages/guidelines/' + name + '.html';
             },
             home: function() {
-              return '../../pages/home.html';
+              return window.location.origin + '/pages/home.html';
             },
             external: function(name) {
               return 'https://github.com/predixdev/' + name;
