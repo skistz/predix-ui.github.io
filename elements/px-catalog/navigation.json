@@ -1,195 +1,178 @@
 [
   {
-    "linkText":"Home",
-    "repoName":"landing-page",
-    "dataType":"home"
+    "linkText": "Home",
+    "repoName": "landing-page",
+    "dataType": "home"
   },
-     {
-    "linkText":"Getting Started",
-    "links":[
+  {
+    "linkText": "Getting Started",
+    "links": [
       {
-        "dataType":"about",
-        "repoName":"what-is-predix-ui",
-        "linkText":"About the System",
-        "keywords":[
+        "dataType": "about",
+        "repoName": "what-is-predix-ui",
+        "linkText": "About the System",
+        "keywords": [
           "overview",
           "framework",
           "polymer",
           "inuitcss",
           "introduction"
-          ]
+        ]
       },
-
-       {
-        "dataType":"guides",
-        "repoName":"getting-started",
-        "linkText":"Developing with the System",
-        "keywords":[
+      {
+        "dataType": "guides",
+        "repoName": "getting-started",
+        "linkText": "Developing with the System",
+        "keywords": [
           "how to",
           "bower",
           "inuitcss",
           "generator"
-          ]
+        ]
       },
       {
-        "dataType":"guides",
-        "repoName":"designer-resources",
-        "linkText":"Design Starter Kit",
-        "keywords":[
+        "dataType": "guides",
+        "repoName": "designer-resources",
+        "linkText": "Design Starter Kit",
+        "keywords": [
           "sketch",
           "stencil",
           "prototype"
-          ]
+        ]
       },
       {
-        "dataType":"guides",
-        "repoName":"dev-resources",
-        "linkText":"Additional Resources",
-        "keywords":[
+        "dataType": "guides",
+        "repoName": "dev-resources",
+        "linkText": "Additional Resources",
+        "keywords": [
           "articles",
           "tutorials",
           "tools",
           "help",
           "support"
-          ]
+        ]
       },
       {
-        "dataType":"about",
-        "repoName":"release-notes",
-        "linkText":"Release Notes"
-      }
-
-           ],
-    "opened":true
-  },
-   {
-    "linkText":"Design Guidelines",
-    "links":[
-       {
-        "dataType":"guidelines",
-        "repoName":"navigation",
-        "linkText":"Navigation"
-      },
-      {
-        "dataType":"guidelines",
-        "repoName":"page-layout",
-        "linkText":"Page Layout"
-      },
-      {
-        "dataType":"guidelines",
-        "repoName":"materiality",
-        "linkText":"Materiality"
-      },
-      {
-        "dataType":"guidelines",
-        "repoName":"typography",
-        "linkText":"Typography"
-      },
-       {
-        "dataType":"guidelines",
-        "repoName":"iconography",
-        "linkText":"Iconography"
-      },
-      {
-        "dataType":"guidelines",
-        "repoName":"elevation-layering",
-        "linkText":"Elevation & Layering"
-      },
-       {
-        "dataType":"guidelines",
-        "repoName":"data-vis",
-        "linkText":"Data Visualization"
-      },
-       {
-        "dataType":"guidelines",
-        "repoName":"mobile",
-        "linkText":"Mobile"
-      },
-       {
-        "dataType":"guidelines",
-        "repoName":"gallery",
-        "linkText":"Gallery"
+        "dataType": "about",
+        "repoName": "release-notes",
+        "linkText": "Release Notes"
       }
     ],
-    "opened":false
+    "opened": true
   },
-   {
-    "linkText":"Developer Guides",
-    "links":[
-	     {
-          "linkText":"Data Vis Framework",
-          "links":[
-            {
-              "repoName":"px-vis",
-              "dataType":"components",
-              "linkText":"About the Framework",
-              "keywords":[
-              "px-vis",
-              "charts",
-              "chart",
-              "graph",
-              "graphs",
-              "viz",
-              "framework"
-              ]
-            },
-              {
-                "dataType":"guides",
-                "repoName":"vis-guides-terminology",
-                "linkText":"Terminology"
-              },
-                {
-                 "dataType":"guides",
-                 "repoName":"vis-guides-configuring-charts",
-                 "linkText":"Configuring Charts"
-              },
-                {
-                  "dataType":"guides",
-                  "repoName":"vis-guides-toolbar",
-                  "linkText":"Configuring the Toolbar"
-              },
-                {
-                  "dataType":"guides",
-                  "repoName":"vis-guides-introducing-web-workers",
-                  "linkText":"Web Workers"
-              },
-                {
-                "dataType":"guides",
-                "repoName":"vis-guides-crosshair",
-                "linkText":"Introducing Crosshair"
-              }
-            ]
-          },
-        {
-          "dataType":"guides",
-          "repoName":"internationalization",
-           "linkText":"Internationalization"
-        },
-          {
-            "dataType":"guides",
-            "repoName":"list-localize-strings",
-            "linkText":"List of localized strings"
-          }
-        ],
-    "opened":false
-	},
-
-    {
-    "linkText":"CSS Modules",
-    "links":[
+  {
+    "linkText": "Design Guidelines",
+    "links": [
       {
-        "dataType":"css",
-        "repoName":"px-starter-kit-design",
-        "linkText":"CSS Starter Kit"
+        "dataType": "guidelines",
+        "repoName": "navigation",
+        "linkText": "Navigation"
       },
       {
-        "linkText":"Visual",
-        "links":[
+        "dataType": "guidelines",
+        "repoName": "page-layout",
+        "linkText": "Page Layout"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "materiality",
+        "linkText": "Materiality"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "typography",
+        "linkText": "Typography"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "iconography",
+        "linkText": "Iconography"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "elevation-layering",
+        "linkText": "Elevation & Layering"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "data-vis",
+        "linkText": "Data Visualization"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "mobile",
+        "linkText": "Mobile"
+      },
+      {
+        "dataType": "guidelines",
+        "repoName": "gallery",
+        "linkText": "Gallery"
+      }
+    ],
+    "opened": false
+  },
+  {
+    "linkText": "Developer Guides",
+    "links": [
+      {
+        "linkText": "Data Vis Framework",
+        "links": [
           {
-            "repoName":"px-actionable-design",
-            "dataType":"css",
-            "linkText":"Actionable Text/Icons",
-            "keywords":[
+            "dataType": "guides",
+            "repoName": "vis-guides-terminology",
+            "linkText": "Terminology"
+          },
+          {
+            "dataType": "guides",
+            "repoName": "vis-guides-configuring-charts",
+            "linkText": "Configuring Charts"
+          },
+          {
+            "dataType": "guides",
+            "repoName": "vis-guides-toolbar",
+            "linkText": "Configuring the Toolbar"
+          },
+          {
+            "dataType": "guides",
+            "repoName": "vis-guides-introducing-web-workers",
+            "linkText": "Web Workers"
+          },
+          {
+            "dataType": "guides",
+            "repoName": "vis-guides-crosshair",
+            "linkText": "Introducing Crosshair"
+          }
+        ]
+      },
+      {
+        "dataType": "guides",
+        "repoName": "internationalization",
+        "linkText": "Internationalization"
+      },
+      {
+        "dataType": "guides",
+        "repoName": "list-localize-strings",
+        "linkText": "List of localized strings"
+      }
+    ],
+    "opened": false
+  },
+  {
+    "linkText": "CSS Modules",
+    "links": [
+      {
+        "dataType": "css",
+        "repoName": "px-starter-kit-design",
+        "linkText": "CSS Starter Kit"
+      },
+      {
+        "linkText": "Visual",
+        "links": [
+          {
+            "repoName": "px-actionable-design",
+            "dataType": "css",
+            "linkText": "Actionable Text/Icons",
+            "keywords": [
               "px-actionable-design",
               "disabled",
               "icons",
@@ -197,22 +180,22 @@
             ]
           },
           {
-            "linkText":"Buttons",
-            "links":[
+            "linkText": "Buttons",
+            "links": [
               {
-                "repoName":"px-button-group-design",
-                "dataType":"css",
-                "linkText":"Button Group",
-                "keywords":[
+                "repoName": "px-button-group-design",
+                "dataType": "css",
+                "linkText": "Button Group",
+                "keywords": [
                   "px-button-group-design",
                   "buttons"
                 ]
               },
               {
-                "repoName":"px-buttons-design",
-                "dataType":"css",
-                "linkText":"Buttons",
-                "keywords":[
+                "repoName": "px-buttons-design",
+                "dataType": "css",
+                "linkText": "Buttons",
+                "keywords": [
                   "px-buttons-design",
                   "icon",
                   "icons",
@@ -220,10 +203,10 @@
                 ]
               },
               {
-                "repoName":"px-meta-buttons-design",
-                "dataType":"css",
-                "linkText":"Buttons (Meta)",
-                "keywords":[
+                "repoName": "px-meta-buttons-design",
+                "dataType": "css",
+                "linkText": "Buttons (Meta)",
+                "keywords": [
                   "px-meta-buttons-design",
                   "buttons"
                 ]
@@ -231,29 +214,29 @@
             ]
           },
           {
-            "repoName":"px-code-design",
-            "dataType":"css",
-            "linkText":"Code",
-            "keywords":[
+            "repoName": "px-code-design",
+            "dataType": "css",
+            "linkText": "Code",
+            "keywords": [
               "px-code-design",
               "pre"
             ]
           },
           {
-            "repoName":"px-colors-design",
-            "dataType":"css",
-            "linkText":"Colors",
-            "keywords":[
+            "repoName": "px-colors-design",
+            "dataType": "css",
+            "linkText": "Colors",
+            "keywords": [
               "px-colors-design",
               "light",
               "dark"
             ]
           },
           {
-            "repoName":"px-forms-design",
-            "dataType":"css",
-            "linkText":"Forms",
-            "keywords":[
+            "repoName": "px-forms-design",
+            "dataType": "css",
+            "linkText": "Forms",
+            "keywords": [
               "checkbox",
               "input",
               "select",
@@ -266,20 +249,20 @@
             ]
           },
           {
-            "repoName":"px-headings-design",
-            "dataType":"css",
-            "linkText":"Headings",
-            "keywords":[
+            "repoName": "px-headings-design",
+            "dataType": "css",
+            "linkText": "Headings",
+            "keywords": [
               "px-headings-design",
               "text",
               "typography"
             ]
           },
           {
-            "repoName":"px-helpers-design",
-            "dataType":"css",
-            "linkText":"Helpers",
-            "keywords":[
+            "repoName": "px-helpers-design",
+            "dataType": "css",
+            "linkText": "Helpers",
+            "keywords": [
               "px-helpers-design",
               "utilities",
               "float",
@@ -289,40 +272,40 @@
             ]
           },
           {
-            "linkText":"Lists",
-            "links":[
+            "linkText": "Lists",
+            "links": [
               {
-                "repoName":"px-list-bare-design",
-                "dataType":"css",
-                "linkText":"List Bare",
-                "keywords":[
+                "repoName": "px-list-bare-design",
+                "dataType": "css",
+                "linkText": "List Bare",
+                "keywords": [
                   "px-list-bare-design",
                   "lists"
                 ]
               },
               {
-                "repoName":"px-list-inline-design",
-                "dataType":"css",
-                "linkText":"List Inline",
-                "keywords":[
+                "repoName": "px-list-inline-design",
+                "dataType": "css",
+                "linkText": "List Inline",
+                "keywords": [
                   "px-list-inline-design",
                   "lists"
                 ]
               },
               {
-                "repoName":"px-list-ui-design",
-                "dataType":"css",
-                "linkText":"List UI",
-                "keywords":[
+                "repoName": "px-list-ui-design",
+                "dataType": "css",
+                "linkText": "List UI",
+                "keywords": [
                   "px-list-ui-design",
                   "lists"
                 ]
               },
               {
-                "repoName":"px-meta-lists-design",
-                "dataType":"css",
-                "linkText":"Lists (Meta)",
-                "keywords":[
+                "repoName": "px-meta-lists-design",
+                "dataType": "css",
+                "linkText": "Lists (Meta)",
+                "keywords": [
                   "px-meta-lists-design",
                   "lists"
                 ]
@@ -330,10 +313,10 @@
             ]
           },
           {
-            "repoName":"px-shadows-design",
-            "dataType":"css",
-            "linkText":"Shadows",
-            "keywords":[
+            "repoName": "px-shadows-design",
+            "dataType": "css",
+            "linkText": "Shadows",
+            "keywords": [
               "px-shadows-design",
               "shadow",
               "shadows",
@@ -341,20 +324,20 @@
             ]
           },
           {
-            "repoName":"px-tables-design",
-            "dataType":"css",
-            "linkText":"Tables",
-            "keywords":[
+            "repoName": "px-tables-design",
+            "dataType": "css",
+            "linkText": "Tables",
+            "keywords": [
               "px-tables-design",
               "rows",
               "columns"
             ]
           },
           {
-            "repoName":"px-toggle-design",
-            "dataType":"css",
-            "linkText":"Toggle",
-            "keywords":[
+            "repoName": "px-toggle-design",
+            "dataType": "css",
+            "linkText": "Toggle",
+            "keywords": [
               "px-toggle-design",
               "checkbox"
             ]
@@ -362,31 +345,31 @@
         ]
       },
       {
-        "linkText":"Layout",
-        "links":[
+        "linkText": "Layout",
+        "links": [
           {
-            "repoName":"px-box-design",
-            "dataType":"css",
-            "linkText":"Box",
-            "keywords":[
+            "repoName": "px-box-design",
+            "dataType": "css",
+            "linkText": "Box",
+            "keywords": [
               "px-box-design",
               "container"
             ]
           },
           {
-            "repoName":"px-flag-design",
-            "dataType":"css",
-            "linkText":"Flag",
-            "keywords":[
+            "repoName": "px-flag-design",
+            "dataType": "css",
+            "linkText": "Flag",
+            "keywords": [
               "px-flag-design",
               "image"
             ]
           },
           {
-            "repoName":"px-flexbox-design",
-            "dataType":"css",
-            "linkText":"Flexbox",
-            "keywords":[
+            "repoName": "px-flexbox-design",
+            "dataType": "css",
+            "linkText": "Flexbox",
+            "keywords": [
               "px-flexbox-design",
               "flex",
               "layout",
@@ -394,29 +377,29 @@
             ]
           },
           {
-            "repoName":"px-layout-design",
-            "dataType":"css",
-            "linkText":"Layout",
-            "keywords":[
+            "repoName": "px-layout-design",
+            "dataType": "css",
+            "linkText": "Layout",
+            "keywords": [
               "px-layout-design",
               "grid"
             ]
           },
           {
-            "repoName":"px-spacing-design",
-            "dataType":"css",
-            "linkText":"Spacing",
-            "keywords":[
+            "repoName": "px-spacing-design",
+            "dataType": "css",
+            "linkText": "Spacing",
+            "keywords": [
               "px-spacing-design",
               "margin",
               "padding"
             ]
           },
           {
-            "repoName":"px-spacing-responsive-design",
-            "dataType":"css",
-            "linkText":"Spacing (Responsive)",
-            "keywords":[
+            "repoName": "px-spacing-responsive-design",
+            "dataType": "css",
+            "linkText": "Spacing (Responsive)",
+            "keywords": [
               "px-spacing-responsive-design",
               "margin",
               "padding",
@@ -426,10 +409,10 @@
             ]
           },
           {
-            "repoName":"px-widths-design",
-            "dataType":"css",
-            "linkText":"Widths",
-            "keywords":[
+            "repoName": "px-widths-design",
+            "dataType": "css",
+            "linkText": "Widths",
+            "keywords": [
               "px-widths-design",
               "sizing",
               "layout",
@@ -437,10 +420,10 @@
             ]
           },
           {
-            "repoName":"px-widths-responsive-design",
-            "dataType":"css",
-            "linkText":"Widths (Responsive)",
-            "keywords":[
+            "repoName": "px-widths-responsive-design",
+            "dataType": "css",
+            "linkText": "Widths (Responsive)",
+            "keywords": [
               "px-widths-responsive-design",
               "sizing",
               "responsive",
@@ -450,10 +433,10 @@
             ]
           },
           {
-            "repoName":"px-widths-tools-design",
-            "dataType":"css",
-            "linkText":"Widths Tools",
-            "keywords":[
+            "repoName": "px-widths-tools-design",
+            "dataType": "css",
+            "linkText": "Widths Tools",
+            "keywords": [
               "px-widths-tools-design",
               "sizing",
               "layout",
@@ -463,37 +446,37 @@
         ]
       },
       {
-        "linkText":"Utilities",
-        "links":[
+        "linkText": "Utilities",
+        "links": [
           {
-            "repoName":"px-box-sizing-design",
-            "dataType":"css",
-            "linkText":"Box Sizing",
-            "keywords":[
+            "repoName": "px-box-sizing-design",
+            "dataType": "css",
+            "linkText": "Box Sizing",
+            "keywords": [
               "px-box-sizing-design"
             ]
           },
           {
-            "repoName":"px-clearfix-design",
-            "dataType":"css",
-            "linkText":"Clearfix",
-            "keywords":[
+            "repoName": "px-clearfix-design",
+            "dataType": "css",
+            "linkText": "Clearfix",
+            "keywords": [
               "px-clearfix-design"
             ]
           },
           {
-            "repoName":"px-defaults-design",
-            "dataType":"css",
-            "linkText":"Defaults",
-            "keywords":[
+            "repoName": "px-defaults-design",
+            "dataType": "css",
+            "linkText": "Defaults",
+            "keywords": [
               "px-defaults-design"
             ]
           },
           {
-            "repoName":"px-functions-design",
-            "dataType":"css",
-            "linkText":"Functions",
-            "keywords":[
+            "repoName": "px-functions-design",
+            "dataType": "css",
+            "linkText": "Functions",
+            "keywords": [
               "px-functions-design",
               "rem",
               "pixels",
@@ -501,20 +484,20 @@
             ]
           },
           {
-            "repoName":"px-iconography-design",
-            "dataType":"css",
-            "linkText":"Iconography",
-            "keywords":[
+            "repoName": "px-iconography-design",
+            "dataType": "css",
+            "linkText": "Iconography",
+            "keywords": [
               "px-iconography-design",
               "icons",
               "font awesome"
             ]
           },
           {
-            "repoName":"px-mixins-design",
-            "dataType":"css",
-            "linkText":"Mixins",
-            "keywords":[
+            "repoName": "px-mixins-design",
+            "dataType": "css",
+            "linkText": "Mixins",
+            "keywords": [
               "px-mixins-design",
               "font",
               "border",
@@ -522,18 +505,18 @@
             ]
           },
           {
-            "repoName":"px-normalize-design",
-            "dataType":"css",
-            "linkText":"Normalize",
-            "keywords":[
+            "repoName": "px-normalize-design",
+            "dataType": "css",
+            "linkText": "Normalize",
+            "keywords": [
               "px-normalize-design"
             ]
           },
           {
-            "repoName":"px-typography-design",
-            "dataType":"css",
-            "linkText":"Typography",
-            "keywords":[
+            "repoName": "px-typography-design",
+            "dataType": "css",
+            "linkText": "Typography",
+            "keywords": [
               "px-typography-design",
               "type",
               "font",
@@ -541,10 +524,10 @@
             ]
           },
           {
-            "repoName":"px-viewport-design",
-            "dataType":"css",
-            "linkText":"Viewport",
-            "keywords":[
+            "repoName": "px-viewport-design",
+            "dataType": "css",
+            "linkText": "Viewport",
+            "keywords": [
               "px-viewport-design",
               "responsive",
               "breakpoint"
@@ -555,13 +538,13 @@
     ]
   },
   {
-    "linkText":"Components",
-    "links":[
+    "linkText": "Components",
+    "links": [
       {
-        "repoName":"px-accordion",
-        "dataType":"components",
-        "linkText":"Accordion",
-        "keywords":[
+        "repoName": "px-accordion",
+        "dataType": "components",
+        "linkText": "Accordion",
+        "keywords": [
           "px-accordion",
           "collapse",
           "expand",
@@ -570,30 +553,30 @@
         ]
       },
       {
-        "repoName":"px-alert-label",
-        "dataType":"components",
-        "linkText":"Alert Label",
-        "keywords":[
+        "repoName": "px-alert-label",
+        "dataType": "components",
+        "linkText": "Alert Label",
+        "keywords": [
           "px-alert-label",
           "pill",
           "text"
         ]
       },
       {
-        "repoName":"px-alert-message",
-        "dataType":"components",
-        "linkText":"Alert Message",
-        "keywords":[
+        "repoName": "px-alert-message",
+        "dataType": "components",
+        "linkText": "Alert Message",
+        "keywords": [
           "px-alert-message",
           "notification",
           "toast"
         ]
       },
       {
-        "repoName":"px-app-helpers/px-app-header",
-        "dataType":"components",
-        "linkText":"App Header",
-        "keywords":[
+        "repoName": "px-app-helpers/px-app-header",
+        "dataType": "components",
+        "linkText": "App Header",
+        "keywords": [
           "px-app-header",
           "header",
           "page",
@@ -602,10 +585,10 @@
         ]
       },
       {
-        "repoName":"px-app-nav",
-        "dataType":"components",
-        "linkText":"App Nav",
-        "keywords":[
+        "repoName": "px-app-nav",
+        "dataType": "components",
+        "linkText": "App Nav",
+        "keywords": [
           "px-app-nav",
           "navigation",
           "nav",
@@ -613,10 +596,10 @@
         ]
       },
       {
-        "repoName":"px-app-helpers/px-app-route",
-        "dataType":"components",
-        "linkText":"App Route",
-        "keywords":[
+        "repoName": "px-app-helpers/px-app-route",
+        "dataType": "components",
+        "linkText": "App Route",
+        "keywords": [
           "px-app-route",
           "router",
           "navigation",
@@ -625,10 +608,10 @@
         ]
       },
       {
-        "repoName":"px-branding-bar",
-        "dataType":"components",
-        "linkText":"Branding Bar",
-        "keywords":[
+        "repoName": "px-branding-bar",
+        "dataType": "components",
+        "linkText": "Branding Bar",
+        "keywords": [
           "px-branding-bar",
           "brand",
           "header",
@@ -637,10 +620,10 @@
         ]
       },
       {
-        "repoName":"px-breadcrumbs",
-        "dataType":"components",
-        "linkText":"Breadcrumbs",
-        "keywords":[
+        "repoName": "px-breadcrumbs",
+        "dataType": "components",
+        "linkText": "Breadcrumbs",
+        "keywords": [
           "px-breadcrumbs",
           "bread",
           "crumbs",
@@ -648,22 +631,22 @@
         ]
       },
       {
-        "linkText":"Cards",
-        "links":[
+        "linkText": "Cards",
+        "links": [
           {
-            "repoName":"px-card",
-            "dataType":"components",
-            "linkText":"Card",
-            "keywords":[
+            "repoName": "px-card",
+            "dataType": "components",
+            "linkText": "Card",
+            "keywords": [
               "px-card",
               "card"
             ]
           },
           {
-            "repoName":"px-deck-selector",
-            "dataType":"components",
-            "linkText":"Deck Selector",
-            "keywords":[
+            "repoName": "px-deck-selector",
+            "dataType": "components",
+            "linkText": "Deck Selector",
+            "keywords": [
               "px-deck-selector",
               "deck",
               "dropdown",
@@ -671,10 +654,10 @@
             ]
           },
           {
-            "repoName":"px-widget-cards",
-            "dataType":"components",
-            "linkText":"Widget Cards",
-            "keywords":[
+            "repoName": "px-widget-cards",
+            "dataType": "components",
+            "linkText": "Widget Cards",
+            "keywords": [
               "px-widget-cards",
               "card",
               "cards"
@@ -682,35 +665,49 @@
           }
         ]
       },
-       {
-        "repoName":"px-clipboard",
-        "dataType":"components",
-        "linkText":"Clipboard",
-        "keywords":[
+      {
+        "repoName": "px-clipboard",
+        "dataType": "components",
+        "linkText": "Clipboard",
+        "keywords": [
           "px-clipboard",
           "copy",
           "paste"
         ]
       },
       {
-        "repoName":"px-context-browser",
-        "dataType":"components",
-        "linkText":"Context Browser",
-        "keywords":[
+        "repoName": "px-context-browser",
+        "dataType": "components",
+        "linkText": "Context Browser",
+        "keywords": [
           "px-context-browser",
           "miller",
           "asset",
           "assets"
         ]
       },
-           {
-        "linkText":"Data Visualization",
-        "links":[
-                   {
-            "repoName":"px-vis-parallel-coordinates",
-            "dataType":"components",
-            "linkText":"Vis Parallel Coordinates",
-            "keywords":[
+      {
+        "linkText": "Data Visualization",
+        "links": [
+          {
+            "repoName": "px-vis",
+            "dataType": "components",
+            "linkText": "Vis Framework",
+            "keywords": [
+              "px-vis",
+              "charts",
+              "chart",
+              "graph",
+              "graphs",
+              "viz",
+              "framework"
+            ]
+          },
+          {
+            "repoName": "px-vis-parallel-coordinates",
+            "dataType": "components",
+            "linkText": "Vis Parallel Coordinates",
+            "keywords": [
               "px-vis-parallel-coordinates",
               "charts",
               "chart",
@@ -724,10 +721,10 @@
             ]
           },
           {
-            "repoName":"px-vis-pie-chart",
-            "dataType":"components",
-            "linkText":"Vis Pie Chart",
-            "keywords":[
+            "repoName": "px-vis-pie-chart",
+            "dataType": "components",
+            "linkText": "Vis Pie Chart",
+            "keywords": [
               "px-vis-pie-chart",
               "charts",
               "graph",
@@ -748,10 +745,10 @@
             ]
           },
           {
-            "repoName":"px-vis-polar",
-            "dataType":"components",
-            "linkText":"Vis Polar Chart",
-            "keywords":[
+            "repoName": "px-vis-polar",
+            "dataType": "components",
+            "linkText": "Vis Polar Chart",
+            "keywords": [
               "px-vis-polar",
               "charts",
               "chart",
@@ -761,10 +758,10 @@
             ]
           },
           {
-            "repoName":"px-vis-radar",
-            "dataType":"components",
-            "linkText":"Vis Radar Chart",
-            "keywords":[
+            "repoName": "px-vis-radar",
+            "dataType": "components",
+            "linkText": "Vis Radar Chart",
+            "keywords": [
               "px-vis-radar",
               "charts",
               "chart",
@@ -776,10 +773,10 @@
             ]
           },
           {
-            "repoName":"px-vis-spark",
-            "dataType":"components",
-            "linkText":"Vis Spark",
-            "keywords":[
+            "repoName": "px-vis-spark",
+            "dataType": "components",
+            "linkText": "Vis Spark",
+            "keywords": [
               "px-vis-spark",
               "charts",
               "chart",
@@ -794,10 +791,10 @@
             ]
           },
           {
-            "repoName":"px-vis-timeseries",
-            "dataType":"components",
-            "linkText":"Vis Timeseries",
-            "keywords":[
+            "repoName": "px-vis-timeseries",
+            "dataType": "components",
+            "linkText": "Vis Timeseries",
+            "keywords": [
               "px-vis-timeseries",
               "time-series",
               "charts",
@@ -810,10 +807,10 @@
             ]
           },
           {
-            "repoName":"px-vis-xy-chart",
-            "dataType":"components",
-            "linkText":"Vis XY Chart",
-            "keywords":[
+            "repoName": "px-vis-xy-chart",
+            "dataType": "components",
+            "linkText": "Vis XY Chart",
+            "keywords": [
               "px-vis-xy-chart",
               "charts",
               "chart",
@@ -828,10 +825,10 @@
             ]
           },
           {
-            "repoName":"px-percent-circle",
-            "dataType":"components",
-            "linkText":"Percent Circle",
-            "keywords":[
+            "repoName": "px-percent-circle",
+            "dataType": "components",
+            "linkText": "Percent Circle",
+            "keywords": [
               "px-percent-circle",
               "charts",
               "graph",
@@ -842,10 +839,10 @@
             ]
           },
           {
-            "repoName":"px-gauge",
-            "dataType":"components",
-            "linkText":"Gauge",
-            "keywords":[
+            "repoName": "px-gauge",
+            "dataType": "components",
+            "linkText": "Gauge",
+            "keywords": [
               "px-gauge",
               "charts",
               "graph",
@@ -856,10 +853,10 @@
             ]
           },
           {
-            "repoName":"px-simple-area-chart",
-            "dataType":"components",
-            "linkText":"Simple Area Chart",
-            "keywords":[
+            "repoName": "px-simple-area-chart",
+            "dataType": "components",
+            "linkText": "Simple Area Chart",
+            "keywords": [
               "px-simple-area-chart",
               "charts",
               "graph",
@@ -869,10 +866,10 @@
             ]
           },
           {
-            "repoName":"px-simple-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Bar Chart",
-            "keywords":[
+            "repoName": "px-simple-bar-chart",
+            "dataType": "components",
+            "linkText": "Simple Bar Chart",
+            "keywords": [
               "px-simple-bar-chart",
               "charts",
               "graph",
@@ -882,10 +879,10 @@
             ]
           },
           {
-            "repoName":"px-simple-horizontal-bar-chart",
-            "dataType":"components",
-            "linkText":"Simple Horizontal Bar Chart",
-            "keywords":[
+            "repoName": "px-simple-horizontal-bar-chart",
+            "dataType": "components",
+            "linkText": "Simple Horizontal Bar Chart",
+            "keywords": [
               "px-simple-horizontal-bar-chart",
               "charts",
               "graph",
@@ -894,10 +891,10 @@
             ]
           },
           {
-            "repoName":"px-simple-line-chart",
-            "dataType":"components",
-            "linkText":"Simple Line Chart",
-            "keywords":[
+            "repoName": "px-simple-line-chart",
+            "dataType": "components",
+            "linkText": "Simple Line Chart",
+            "keywords": [
               "px-simple-line-chart",
               "charts",
               "graph",
@@ -905,10 +902,10 @@
             ]
           },
           {
-            "repoName":"px-simple-win-loss-chart",
-            "dataType":"components",
-            "linkText":"Simple Win-Loss Chart",
-            "keywords":[
+            "repoName": "px-simple-win-loss-chart",
+            "dataType": "components",
+            "linkText": "Simple Win-Loss Chart",
+            "keywords": [
               "px-simple-win-loss-chart",
               "charts",
               "graph",
@@ -920,23 +917,23 @@
         ]
       },
       {
-        "repoName":"px-data-table",
-        "dataType":"components",
-        "linkText":"Data Table",
-        "keywords":[
+        "repoName": "px-data-table",
+        "dataType": "components",
+        "linkText": "Data Table",
+        "keywords": [
           "px-data-table",
           "grid",
           "datagrid"
         ]
       },
       {
-        "linkText":"Datetime Components",
-        "links":[
+        "linkText": "Datetime Components",
+        "links": [
           {
-            "repoName":"px-calendar-picker",
-            "dataType":"components",
-            "linkText":"Calendar Picker",
-            "keywords":[
+            "repoName": "px-calendar-picker",
+            "dataType": "components",
+            "linkText": "Calendar Picker",
+            "keywords": [
               "px-calendar-picker",
               "datetime",
               "date",
@@ -946,50 +943,50 @@
             ]
           },
           {
-            "repoName":"px-datetime-field",
-            "dataType":"components",
-            "linkText":"Datetime Field",
-            "keywords":[
+            "repoName": "px-datetime-field",
+            "dataType": "components",
+            "linkText": "Datetime Field",
+            "keywords": [
               "px-datetime-field",
               "form",
               "input"
             ]
           },
           {
-            "repoName":"px-datetime-picker",
-            "dataType":"components",
-            "linkText":"Datetime Picker",
-            "keywords":[
+            "repoName": "px-datetime-picker",
+            "dataType": "components",
+            "linkText": "Datetime Picker",
+            "keywords": [
               "px-datetime-picker",
               "form",
               "input"
             ]
           },
           {
-            "repoName":"px-datetime-range-field",
-            "dataType":"components",
-            "linkText":"Datetime Range Field",
-            "keywords":[
+            "repoName": "px-datetime-range-field",
+            "dataType": "components",
+            "linkText": "Datetime Range Field",
+            "keywords": [
               "px-datetime-range-field",
               "form",
               "input"
             ]
           },
           {
-            "repoName":"px-datetime-range-panel",
-            "dataType":"components",
-            "linkText":"Datetime Range Panel",
-            "keywords":[
+            "repoName": "px-datetime-range-panel",
+            "dataType": "components",
+            "linkText": "Datetime Range Panel",
+            "keywords": [
               "px-datetime-range-panel",
               "form",
               "input"
             ]
           },
           {
-            "repoName":"px-rangepicker",
-            "dataType":"components",
-            "linkText":"Rangepicker",
-            "keywords":[
+            "repoName": "px-rangepicker",
+            "dataType": "components",
+            "linkText": "Rangepicker",
+            "keywords": [
               "px-rangepicker",
               "datetime",
               "form",
@@ -999,10 +996,10 @@
         ]
       },
       {
-        "repoName":"px-dropdown",
-        "dataType":"components",
-        "linkText":"Dropdown",
-        "keywords":[
+        "repoName": "px-dropdown",
+        "dataType": "components",
+        "linkText": "Dropdown",
+        "keywords": [
           "px-dropdown",
           "menu",
           "picker",
@@ -1010,10 +1007,10 @@
         ]
       },
       {
-        "repoName":"px-file-upload",
-        "dataType":"components",
-        "linkText":"File Upload",
-        "keywords":[
+        "repoName": "px-file-upload",
+        "dataType": "components",
+        "linkText": "File Upload",
+        "keywords": [
           "px-file-upload",
           "form",
           "input",
@@ -1022,10 +1019,10 @@
         ]
       },
       {
-        "repoName":"px-icon-set",
-        "dataType":"components",
-        "linkText":"Icons",
-        "keywords":[
+        "repoName": "px-icon-set",
+        "dataType": "components",
+        "linkText": "Icons",
+        "keywords": [
           "px-icon-set",
           "icon",
           "icons",
@@ -1034,10 +1031,10 @@
         ]
       },
       {
-        "repoName":"px-inbox",
-        "dataType":"components",
-        "linkText":"Inbox",
-        "keywords":[
+        "repoName": "px-inbox",
+        "dataType": "components",
+        "linkText": "Inbox",
+        "keywords": [
           "px-inbox",
           "list",
           "detail",
@@ -1049,10 +1046,10 @@
         ]
       },
       {
-        "repoName":"px-key-value-pair",
-        "dataType":"components",
-        "linkText":"Key-Value Pair",
-        "keywords":[
+        "repoName": "px-key-value-pair",
+        "dataType": "components",
+        "linkText": "Key-Value Pair",
+        "keywords": [
           "px-key-value-pair",
           "key",
           "value",
@@ -1061,10 +1058,10 @@
         ]
       },
       {
-        "repoName":"px-kpi",
-        "dataType":"components",
-        "linkText":"KPI",
-        "keywords":[
+        "repoName": "px-kpi",
+        "dataType": "components",
+        "linkText": "KPI",
+        "keywords": [
           "px-kpi",
           "dashboard",
           "key performance indicator",
@@ -1074,10 +1071,10 @@
         ]
       },
       {
-        "repoName":"px-login",
-        "dataType":"components",
-        "linkText":"Login",
-        "keywords":[
+        "repoName": "px-login",
+        "dataType": "components",
+        "linkText": "Login",
+        "keywords": [
           "px-login",
           "log-in",
           "log in",
@@ -1086,10 +1083,10 @@
         ]
       },
       {
-        "repoName":"px-map",
-        "dataType":"components",
-        "linkText":"Map",
-        "keywords":[
+        "repoName": "px-map",
+        "dataType": "components",
+        "linkText": "Map",
+        "keywords": [
           "px-map",
           "map",
           "maps",
@@ -1101,10 +1098,10 @@
         ]
       },
       {
-        "repoName":"px-modal",
-        "dataType":"components",
-        "linkText":"Modal",
-        "keywords":[
+        "repoName": "px-modal",
+        "dataType": "components",
+        "linkText": "Modal",
+        "keywords": [
           "px-modal",
           "modal",
           "dialog",
@@ -1112,10 +1109,10 @@
         ]
       },
       {
-        "repoName":"px-number-formatter",
-        "dataType":"components",
-        "linkText":"Number Formatter",
-        "keywords":[
+        "repoName": "px-number-formatter",
+        "dataType": "components",
+        "linkText": "Number Formatter",
+        "keywords": [
           "px-number-formatter",
           "number",
           "currency",
@@ -1124,37 +1121,37 @@
         ]
       },
       {
-        "repoName":"px-overlay",
-        "dataType":"components",
-        "linkText":"Overlay",
-        "keywords":[
+        "repoName": "px-overlay",
+        "dataType": "components",
+        "linkText": "Overlay",
+        "keywords": [
           "px-overlay",
           "transparency"
         ]
       },
       {
-        "repoName":"px-popover",
-        "dataType":"components",
-        "linkText":"Popover",
-        "keywords":[
+        "repoName": "px-popover",
+        "dataType": "components",
+        "linkText": "Popover",
+        "keywords": [
           "px-popover",
           "pop-over"
         ]
       },
       {
-        "repoName":"px-progress-bar",
-        "dataType":"components",
-        "linkText":"Progress Bar",
-        "keywords":[
+        "repoName": "px-progress-bar",
+        "dataType": "components",
+        "linkText": "Progress Bar",
+        "keywords": [
           "px-progress-bar",
           "loading"
         ]
       },
       {
-        "repoName":"px-slider",
-        "dataType":"components",
-        "linkText":"Slider",
-        "keywords":[
+        "repoName": "px-slider",
+        "dataType": "components",
+        "linkText": "Slider",
+        "keywords": [
           "px-slider",
           "range",
           "form",
@@ -1162,10 +1159,10 @@
         ]
       },
       {
-        "repoName":"px-spinner",
-        "dataType":"components",
-        "linkText":"Spinner",
-        "keywords":[
+        "repoName": "px-spinner",
+        "dataType": "components",
+        "linkText": "Spinner",
+        "keywords": [
           "px-spinner",
           "wait",
           "loading",
@@ -1173,10 +1170,10 @@
         ]
       },
       {
-        "repoName":"px-table-view",
-        "dataType":"components",
-        "linkText":"Table View",
-        "keywords":[
+        "repoName": "px-table-view",
+        "dataType": "components",
+        "linkText": "Table View",
+        "keywords": [
           "px-table-view",
           "table",
           "view",
@@ -1185,10 +1182,10 @@
         ]
       },
       {
-        "repoName":"px-tabs",
-        "dataType":"components",
-        "linkText":"Tabs",
-        "keywords":[
+        "repoName": "px-tabs",
+        "dataType": "components",
+        "linkText": "Tabs",
+        "keywords": [
           "px-tabs",
           "navigation",
           "nav",
@@ -1196,10 +1193,10 @@
         ]
       },
       {
-        "repoName":"px-timeline",
-        "dataType":"components",
-        "linkText":"Timeline",
-        "keywords":[
+        "repoName": "px-timeline",
+        "dataType": "components",
+        "linkText": "Timeline",
+        "keywords": [
           "px-timeline",
           "time",
           "line",
@@ -1211,10 +1208,10 @@
         ]
       },
       {
-        "repoName":"px-toggle",
-        "dataType":"components",
-        "linkText":"Toggle",
-        "keywords":[
+        "repoName": "px-toggle",
+        "dataType": "components",
+        "linkText": "Toggle",
+        "keywords": [
           "px-toggle",
           "switch",
           "checkbox",
@@ -1222,10 +1219,10 @@
         ]
       },
       {
-        "repoName":"px-tooltip",
-        "dataType":"components",
-        "linkText":"Tooltip",
-        "keywords":[
+        "repoName": "px-tooltip",
+        "dataType": "components",
+        "linkText": "Tooltip",
+        "keywords": [
           "px-tooltip",
           "hover",
           "help",
@@ -1233,20 +1230,20 @@
         ]
       },
       {
-        "repoName":"px-tree",
-        "dataType":"components",
-        "linkText":"Tree",
-        "keywords":[
+        "repoName": "px-tree",
+        "dataType": "components",
+        "linkText": "Tree",
+        "keywords": [
           "px-tree",
           "tree",
           "treeview"
         ]
       },
       {
-        "repoName":"px-typeahead",
-        "dataType":"components",
-        "linkText":"Typeahead",
-        "keywords":[
+        "repoName": "px-typeahead",
+        "dataType": "components",
+        "linkText": "Typeahead",
+        "keywords": [
           "px-typeahead",
           "typeahead",
           "autocomplete",
@@ -1255,10 +1252,10 @@
         ]
       },
       {
-        "repoName":"px-validation",
-        "dataType":"components",
-        "linkText":"Validation",
-        "keywords":[
+        "repoName": "px-validation",
+        "dataType": "components",
+        "linkText": "Validation",
+        "keywords": [
           "px-validation",
           "form",
           "field",
@@ -1269,10 +1266,10 @@
         ]
       },
       {
-        "repoName":"px-view-header",
-        "dataType":"components",
-        "linkText":"View Header",
-        "keywords":[
+        "repoName": "px-view-header",
+        "dataType": "components",
+        "linkText": "View Header",
+        "keywords": [
           "px-view-header",
           "page",
           "deck",
@@ -1281,16 +1278,16 @@
         ]
       }
     ],
-    "opened":false
+    "opened": false
   },
   {
- "linkText":"Tools",
- "links":[
-   {
-     "dataType":"tools",
-     "repoName":"version-finder",
-     "linkText":"Bower Version Finder"
-   }
+    "linkText": "Tools",
+    "links": [
+      {
+        "dataType": "tools",
+        "repoName": "version-finder",
+        "linkText": "Bower Version Finder"
+      }
     ]
   }
 ]
