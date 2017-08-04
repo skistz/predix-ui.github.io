@@ -2,7 +2,7 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
-<link defer rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-styles.html" />
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
 
 <!-- Import external dependencies -->
@@ -24,8 +24,9 @@
 
 <dom-module id="px-catalog">
   <template>
-    <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
+    <style include="px-catalog-styles" is="custom-style"></style>
+
     <style>
       .catalog__spinner {
         position: absolute;
@@ -88,10 +89,8 @@
         dark-theme="{{darkTheme}}">
     </px-catalog-router>
 
-    <!-- CATALOG -->
-    <section class="catalog">
       <!-- CATALOG HEADER -->
-      <div class="catalog__header">
+      <div class="catalog-header">
         <!-- Menu button -->
         <div class="menu-button" on-tap="toggleMenu">
           <px-icon icon="[[_getMenuIcon(menuOpened)]]"></px-icon>
@@ -112,23 +111,20 @@
         </div>
       </div>
 
-      <!-- CATALOG MAIN -->
-      <div class="catalog__main">
-        <!-- Frame container -->
-        <div class="page">
-          <div class="page__spinner" active$="[[spinnerActive]]">
-            <px-spinner size="150"></px-spinner>
-          </div>
-          <iframe class="page__iframe" src="../../pages/home.html" id="frameEl" name="iframe_a" allowfullscreen data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content"></iframe>
+      <!-- CATALOG PAGE -->
+      <div class="catalog-page">
+        <div class="catalog-page__spinner" active$="[[spinnerActive]]">
+          <px-spinner size="150"></px-spinner>
         </div>
-        <!-- Navigation drawer -->
-        <app-drawer class="nav-drawer" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
-          <div class="nav-drawer__tree">
-            <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
-          </div>
-        </app-drawer>
+        <iframe class="catalog-page__iframe" src="../../pages/home.html" id="frameEl" name="iframe_a" allowfullscreen data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content"></iframe>
       </div>
-    </section>
+
+      <!-- CATALOG NAV -->
+      <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
+        <div class="catalog-nav__tree">
+          <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
+        </div>
+      </app-drawer>
 
   </template>
   <script>
