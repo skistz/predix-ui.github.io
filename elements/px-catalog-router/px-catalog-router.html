@@ -273,7 +273,7 @@ a component.
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
             // px-tree uses frame comms for now
-            if (type === 'components' && (name === 'px-tree' || name === 'px-breadcrumbs' || name === 'px-app-nav' || name === 'px-context-browser' || name === 'px-map' || name === 'px-calendar-picker' || name === 'px-accordion' || name === 'px-alert-label')) {
+            if (type === 'components' && (name === 'px-tree' || name === 'px-breadcrumbs' || name === 'px-app-nav' || name === 'px-context-browser' || name === 'px-map' || name === 'px-calendar-picker' || name === 'px-accordion' || name === 'px-alert-label' || name === 'px-widths-tools-design')) {
               return url;
             }
             // If we're using dark theme, and URL has .html in it, replace with -dark.html
