@@ -37,7 +37,7 @@ Element providing sidebar for the predix ui website.
         <div class="icon"><px-icon icon="px-nav:close" on-click="_resetSearch" id="searchIcon"></px-icon></div>
       </template>
     </div>
-    <ul style="margin-top:40px;">
+    <ul style="margin-top:20px;">
       <template is="dom-repeat" items="{{nav}}">
         <px-sb-list nav-item="[[item]]" selected="{{selected}}" search-keyword="{{searchKeyword}}" item-path="[[index]].links" selected-elem="{{selectedElem}}"></px-sb-list>
       </template>

@@ -236,11 +236,15 @@ $inuit-list-inline-delimit-character: "| ";
  */
 .wrapper {
   position: fixed;
-  top: 80px;
-  height: calc(100vh - 80px);
+  top: 45px;
+  height: calc(100vh - 45px);
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media screen and (min-width: 719px) {
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
 }
 
 /*
@@ -248,13 +252,16 @@ $inuit-list-inline-delimit-character: "| ";
 */
 .gray-bar {
   background-color: $px-catalog-gray;
-  height: 80px;
+  height: 45px;
   z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
   padding-left: $inuit-base-spacing-unit--large;
   width: 100%;
+  @media screen and (min-width: 719px) {
+    height: 80px;
+  }
 }
 
 .dev-network{
@@ -723,6 +730,7 @@ table.guidelines.datavis td {
 .halves {
   display: inline-block;
   vertical-align: top;
+  margin-bottom: 5%;
 }
 
 .thirds {

@@ -4,3 +4,4 @@ dist/
 caddyfile
 cert.crt
 cert.key
+*.pem
