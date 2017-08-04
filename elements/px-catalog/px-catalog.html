@@ -15,6 +15,8 @@
 <link defer rel="import" href="../../bower_components/px-icon-set/px-icon-set-navigation.html">
 <link defer rel="import" href="../../bower_components/px-icon-set/px-icon.html">
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
+<link defer rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link defer rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <!-- Import local dependencies -->
 <link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
@@ -51,6 +53,13 @@
         last-response="{{navJSON}}">
     </iron-ajax>
 
+    <!-- Media query to update the nav width on landscape-size screens. The
+         Shady DOM shim won't re-evaluate the --app-nav-width style variable
+         in a media query in our CSS; this query helps force an update. -->
+    <iron-media-query query="(min-width: 450px)" query-matches="{{isLandscapeUp}}"></iron-media-query>
+    <!-- Media query to fix nav open on desktop-up screens -->
+    <iron-media-query query="(min-width: 1024px)" query-matches="{{isDesktopUp}}"></iron-media-query>
+
     <!-- Catch the route and send it to `app-route` to munge the path -->
     <app-location
         route="{{_route}}"
@@ -79,50 +88,48 @@
         dark-theme="{{darkTheme}}">
     </px-catalog-router>
 
-    <!-- App Header -->
-    <section class="gray-bar flex flex--middle flex--justify">
-      <span id="menu" class="menu">
-        <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
-        <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
-      </span>
-
-      <div class="logo">
-        <picture style="flex: 1 1 auto">
-          <source srcset="../../img/px-dev-logo.webp" class="logo__image" type="image/webp">
-          <source srcset="../../img/px-dev-logo.png"  class="logo__image" type="image/png">
-          <img src="../../img/px-dev-logo.png" class="logo__image" alt="Predix Developer Network">
-          <span class="logo__text">Predix Design System</span>
-        </picture>
+    <!-- CATALOG -->
+    <section class="catalog">
+      <!-- CATALOG HEADER -->
+      <div class="catalog__header">
+        <!-- Menu button -->
+        <div class="menu-button" on-tap="toggleMenu">
+          <px-icon icon="[[_getMenuIcon(menuOpened)]]"></px-icon>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+          <picture class="logo__picture">
+            <source srcset="../../img/px-dev-logo.webp" class="logo__image" type="image/webp">
+            <source srcset="../../img/px-dev-logo.png"  class="logo__image" type="image/png">
+            <img src="../../img/px-dev-logo.png" class="logo__image" alt="Predix Developer Network">
+            <span class="logo__text">Predix Design System</span>
+          </picture>
+        </div>
+        <!-- Theme toggle -->
+        <div class="theme-toggle">
+          <span class="theme-toggle__text">Dark Theme</span>
+          <px-toggle size="small" checked="{{darkTheme}}" role="button" aria-pressed="false"></px-toggle>
+        </div>
       </div>
 
-      <div class="flex flex--middle u-mr">
-        <small>Dark Theme</small>
-        <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}" role="button" aria-pressed="false"></px-toggle>
+      <!-- CATALOG MAIN -->
+      <div class="catalog__main">
+        <!-- Frame container -->
+        <div class="page">
+          <div class="page__spinner" active$="[[spinnerActive]]">
+            <px-spinner size="150"></px-spinner>
+          </div>
+          <iframe class="page__iframe" src="../../pages/home.html" id="frameEl" name="iframe_a" allowfullscreen data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content"></iframe>
+        </div>
+        <!-- Navigation drawer -->
+        <app-drawer class="nav-drawer" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
+          <div class="nav-drawer__tree">
+            <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
+          </div>
+        </app-drawer>
       </div>
     </section>
 
-    <!-- App Wrapper -->
-    <div class="wrapper wrapper--flex">
-      <!-- App Overlay -->
-      <div id="overlay" class="overlay"></div>
-
-      <!-- App Side Nav -->
-      <div id="side-nav" class="side-nav side-nav__default">
-        <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
-      </div>
-
-      <!-- App iFrame -->
-      <div class="iframe__container">
-        <div id="spinner" class="catalog__spinner flex flex--row flex--center">
-          <div class="flex__item--middle ">
-            <px-spinner size="150"></px-spinner>
-          </div>
-        </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
-      </div>
-    </div>
   </template>
   <script>
     Polymer({
@@ -142,26 +149,13 @@
         },
 
         /**
-         * Set to `true` when the menu should be visible. Set to `false` when
-         * it should be hidden.
-         *
-         * @type {Boolean}
-         */
-        menuIsVisible: {
-          type: Boolean,
-          value: false,
-          observer: '_handleMenuVisibilityChange'
-        },
-
-        /**
          * Set to `true` to show the spinner. Set to `false` to hide the spinner.
          *
          * @type {Boolean}
          */
-        spinnerIsActive: {
+        spinnerActive: {
           type: Boolean,
-          value: true,
-          observer: '_handleSpinnerVisibility'
+          value: true
         },
 
         /**
@@ -211,15 +205,36 @@
           observer: '_handleDarkThemeChanged'
         },
 
+        /**
+         * Opens and closes the menu. The menu should remain open all the time
+         * on desktop-up viewports.
+         */
+        menuOpened: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * When the viewport width becomes larger than
+         * @type {Object}
+         */
+        isDesktopUp: {
+          type: Boolean,
+          observer: '_desktopBreakpointHit'
+        },
+
+        isLandscapeUp: {
+          type: Boolean,
+          observer: '_landscapeBreakpointHit'
+        },
+
         childFrame: {
           type: HTMLElement
         }
       },
 
       listeners: {
-        'menu.tap' : '_handleMenuTapped',
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
-        'overlay.tap' : '_handleOverlayTapped',
         'frameEl.load' : '_handleFrameLoad'
       },
 
@@ -317,7 +332,7 @@
             // history stack. The router will do that for us.
             window.frames['iframe_a'].location.replace(newUrl);
             // Activate the spinner
-            this.set('spinnerIsActive', true);
+            this.set('spinnerActive', true);
           }
         }
       },
@@ -342,33 +357,57 @@
         return linkTag.pathname || '';
       },
 
-      /**
-       * When the menu button is tapped, toggle the visibility of the menu.
-       * This should only fire during user interaction with the menu.
-       */
-      _handleMenuTapped: function() {
-        var currentMenuState = this.get('menuIsVisible');
-        this.set('menuIsVisible', !currentMenuState);
-      },
 
       /**
-       * When the selected list item changes, ensure the menu is hidden.
-       * This event will fire on initial load so it doesn't always indicate
-       * user interaction.
+       * If a new page is selected and the viewport is smaller than desktop,
+       * ensures the menu is closed.
        */
       _handleListItemChanged: function() {
-        if (this.get('menuIsVisible') !== false) {
-          this.set('menuIsVisible', false);
+        if (!this.isDesktopUp && this.menuOpened) {
+          this.menuOpened = false;
         }
       },
 
       /**
-       * When the overlay is tapped, ensure the menu is hidden.
+       * When the viewport expands to desktop-up, ensure the menu is opened.
+       * When the viewport shrinks to desktop-down, ensure the menu is closed.
        */
-      _handleOverlayTapped: function() {
-        if (this.get('menuIsVisible') !== false) {
-          this.set('menuIsVisible', false);
+      _desktopBreakpointHit: function(isDesktopUp) {
+        if (isDesktopUp && !this.menuOpened) {
+          this.menuOpened = true;
         }
+        else if (!isDesktopUp && this.menuOpened) {
+          this.menuOpened = false;
+        }
+      },
+
+      /**
+       * A media query is used in the CSS to change the app-drawer component's
+       * --app-drawer-width style variable. In Shady DOM that variable will not
+       * be automatically re-evaluated when the screen size changes. When the
+       * screen moves above or below that breakpoint, the app-drawer will be
+       * forced to update its style variables.
+       */
+      _landscapeBreakpointHit: function(newVal, oldVal) {
+        if (typeof newVal === 'boolean' && typeof oldVal === 'boolean') {
+          var drawer = Polymer.dom(this.root).querySelector('app-drawer');
+          if (drawer !== null && drawer.updateStyles) {
+            drawer.updateStyles();
+          }
+        }
+      },
+
+      _getMenuIcon: function(menuOpened) {
+        if (menuOpened) {
+          return 'px-nav:close';
+        }
+        else {
+          return 'px-nav:hamburger';
+        }
+      },
+
+      toggleMenu: function() {
+        this.menuOpened = !this.menuOpened;
       },
 
       /**
@@ -399,85 +438,16 @@
           this._clearSpinner();
         }
 
+        // Update the child frame
         this.childFrame = this.$.frameEl;
       },
 
       _clearSpinner: function(){
-        if (this.get('spinnerIsActive') !== false) {
-          this.set('spinnerIsActive', false);
-        }
-      },
-      /**
-       * When the `spinnerIsActive` property is updated, responds and attempts
-       * to hide or show the spinner.
-       */
-      _handleSpinnerVisibility: function(newVal, oldVal) {
-        if ((typeof newVal !== "undefined") && newVal) {
-          this._showSpinner();
-        }
-        if ((typeof newVal !== "undefined") && !newVal) {
-          this._hideSpinner();
+        if (this.spinnerActive) {
+          this.spinnerActive = false;
         }
       },
 
-      /**
-       * When the visibility state of the menu changes, make updates to the DOM
-       * to reflect its state.
-       */
-      _handleMenuVisibilityChange: function(newState, oldState) {
-        if ((typeof newState !== "undefined") && newState) {
-          this._showMenu();
-        }
-        if ((typeof newState !== "undefined") && !newState) {
-          this._hideMenu();
-        }
-      },
-
-      /**
-       * Shows the menu by manipulating classes in the DOM.
-       */
-      _showMenu: function() {
-        var sideNav = this.$$("#side-nav");
-        var overlay = this.$$("#overlay");
-        var menuOpenIcon = this.$$("#menu__open-icon");
-        var menuCloseIcon = this.$$("#menu__close-icon");
-
-        if (sideNav.classList.contains('side-nav__default')) { sideNav.classList.remove('side-nav__default');   }
-        if (!overlay.classList.contains('overlay--visible'))   { overlay.classList.add('overlay--visible'); }
-        if (!menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.add('is__hidden');  }
-        if (menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.remove('is__hidden');    }
-      },
-
-      /**
-       * Hides the menu by manipulating classes in the DOM.
-       */
-      _hideMenu: function() {
-        var sideNav = this.$$("#side-nav");
-        var overlay = this.$$("#overlay");
-        var menuOpenIcon = this.$$("#menu__open-icon");
-        var menuCloseIcon = this.$$("#menu__close-icon");
-
-        if (!sideNav.classList.contains('side-nav__default')) { sideNav.classList.add('side-nav__default');   }
-        if (overlay.classList.contains('overlay--visible'))   { overlay.classList.remove('overlay--visible'); }
-        if (menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.remove('is__hidden');  }
-        if (!menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.add('is__hidden');    }
-      },
-
-      /**
-       * Shows the spinner by manipulating classes in the DOM.
-       */
-      _showSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.remove('is__hidden');
-      },
-
-      /**
-       * Hides the spinner by manipulating classes in the DOM.
-       */
-      _hideSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.add('is__hidden');
-      },
       /**
       * Sets the background color of the spinner background based on the darkTheme toggle.
       */

@@ -45,8 +45,9 @@
     "px-icon-set": "^2.0.0",
     "px-tabs": "^1.0.0",
     "px-typeahead": "^2.0.2",
-    "iron-media-query": "PolymerElements/iron-media-query#^2.0.0",
-    "px-dark-theme": "^2.0.8"
+    "iron-media-query": "^2.0.0",
+    "px-dark-theme": "^2.0.8",
+    "app-layout": "^2.0.1"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
