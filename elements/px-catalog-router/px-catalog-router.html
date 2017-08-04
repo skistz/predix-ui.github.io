@@ -272,13 +272,9 @@ a component.
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-            // px-tree uses frame comms for now
-            if (type === 'components' && (name === 'px-tree' || name === 'px-breadcrumbs' || name === 'px-app-nav' || name === 'px-context-browser' || name === 'px-map' || name === 'px-calendar-picker' || name === 'px-accordion' || name === 'px-alert-label' || name === 'px-widths-tools-design')) {
-              return url;
-            }
-            // If we're using dark theme, and URL has .html in it, replace with -dark.html
-            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css')) {
-              // turns `/path/foo.html` into `/path/foo-dark-theme.html`
+            // right now, only the px-vis-* components don't have runtime theming
+            // stick with the old trick to load 'index-dark-theme.html'
+            if (useDarkTheme && type === 'components' && name.slice(0,7) === 'px-vis') {
               url = url.slice(0,-5) + '-dark-theme.html';
             }
             return url;
