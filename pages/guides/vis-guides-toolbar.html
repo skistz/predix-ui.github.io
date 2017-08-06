@@ -22,9 +22,9 @@
 
        <div class="flex flex--col flex--middle">
           <picture>
-            <source srcset="./vis-resources/toolbar.webp" type="image/webp">
-            <source srcset="./vis-resources/toolbar.png" type="image/png">
-            <img src="./vis-resources/toolbar.png" alt="wrench">
+            <source srcset="pages/guides/vis-resources/toolbar.webp" type="image/webp">
+            <source srcset="pages/guides/vis-resources/toolbar.png" type="image/png">
+            <img src="pages/guides/vis-resources/toolbar.png" alt="wrench">
           </picture>
           <h5>Toolbar with the "zoom" main item selected</h5>
         </div>
@@ -324,7 +324,7 @@
         <p>This example is implemented below. We try to fit the modal in the available space, this is a crude approach and a lot more could be done.</p>
 
         <iron-ajax
-          url="./vis-resources/toolbar_data.json"
+          url="vis-resources/toolbar_data.json"
           handle-as="json"
           auto
           last-response="{{data}}">

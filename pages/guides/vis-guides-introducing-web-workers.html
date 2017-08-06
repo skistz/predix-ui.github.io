@@ -23,7 +23,7 @@
 
         <div class="flex flex--col flex--middle">
 
-          <img src="./vis-resources/visual_qt_optimized.gif" width="600" height="338"></img>
+          <img src="vis-resources/visual_qt_optimized.gif" width="600" height="338"></img>
           <h5>Visual representation of the quadtrees we use</h5>
         </div>
 
@@ -49,12 +49,12 @@
         <p>At the moment, the only charts building quadtrees are px-vis-xy-chart and px-vis-polar. Px-vis-timeseries also duplicates the data for searching for its extents in the web worker, but doesn't use the quadtree search (it is already using a binary search relying on the time data being already sorted). Prior to implementing a quadtree with web workers, finding the closest point for a modest 40k dataset took ~50ms per search. Since the search ran on every mouse move, this had a huge negative impact on performance. With our quadtree, each search takes <0.5ms, even on a 4 millions point dataset.</p>
 
         <div class="flex flex--col flex--middle">
-          <img src="./vis-resources/4_millions_old.gif" ></img>
+          <img src="vis-resources/4_millions_old.gif" ></img>
           <h5>4 millions points dataset with old search.</h5>
         </div>
 
         <div class="flex flex--col flex--middle">
-          <img src="./vis-resources/4_millions.gif" ></img>
+          <img src="vis-resources/4_millions.gif" ></img>
           <h5>4 millions points dataset with quadtree search. Snappy.</h5>
         </div>
 
