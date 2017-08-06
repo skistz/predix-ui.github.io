@@ -19,6 +19,7 @@
 <!-- Import local dependencies -->
 <link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
 <link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="../../pages/home.html" />
 
 <dom-module id="px-catalog">
   <template>
@@ -112,15 +113,15 @@
       </div>
 
       <!-- App iFrame -->
-      <div class="iframe__container">
-        <div id="spinner" class="catalog__spinner flex flex--row flex--center">
-          <div class="flex__item--middle ">
-            <px-spinner size="150"></px-spinner>
-          </div>
-        </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
+      <div class="doc__container">
+        <!-- <div id="spinner" class="catalog__spinner flex flex--row flex--center"> -->
+          <!-- <div class="flex__item--middle "> -->
+            <!-- <px-spinner size="150"></px-spinner> -->
+          <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- <px-toggle-demo style="width:100%;"></px-toggle-demo> -->
+        <!-- <px-home></px-home> -->
       </div>
     </div>
   </template>
@@ -219,8 +220,8 @@
       listeners: {
         'menu.tap' : '_handleMenuTapped',
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
-        'overlay.tap' : '_handleOverlayTapped',
-        'frameEl.load' : '_handleFrameLoad'
+        'overlay.tap' : '_handleOverlayTapped'//,
+        // 'frameEl.load' : '_handleFrameLoad'
       },
 
       /**
@@ -302,24 +303,38 @@
        * the iFrame on the page.
        */
       _handleFrameUrlChanged: function(newUrl) {
-        var frame = this.$.frameEl;
-        if ((typeof newUrl === 'string') && frame) {
-          // Try to get the frame location
-          var frameLocation = window.frames['iframe_a'].location;
-          // If the location is blank, this is a first load and we can assume
-          // the current page is `iframe.src`'s normalized pathname'
-          var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
-          // Normalize the new path
-          var newPath = this._normalizePath(newUrl);
+        this.importHref(
+            newUrl,
+            null,
+            null,
+            true);
 
-          if (currentPath !== newPath) {
-            // Replace location like this so we don't add an entry to the
-            // history stack. The router will do that for us.
-            window.frames['iframe_a'].location.replace(newUrl);
-            // Activate the spinner
-            this.set('spinnerIsActive', true);
-          }
-        }
+        var importName = newUrl.substr(newUrl.lastIndexOf('/')+1),
+            eleName = importName.substr(0,importName.indexOf('.'));
+
+        var ele = Polymer.Base.create(eleName);
+
+        this.$$('.doc__container').innerHTML = '';
+        this.$$('.doc__container').appendChild(ele);
+
+        // var frame = this.$.frameEl;
+        // if ((typeof newUrl === 'string') && frame) {
+        //   // Try to get the frame location
+        //   var frameLocation = window.frames['iframe_a'].location;
+        //   // If the location is blank, this is a first load and we can assume
+        //   // the current page is `iframe.src`'s normalized pathname'
+        //   var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
+        //   // Normalize the new path
+        //   var newPath = this._normalizePath(newUrl);
+        //
+        //   if (currentPath !== newPath) {
+        //     // Replace location like this so we don't add an entry to the
+        //     // history stack. The router will do that for us.
+        //     window.frames['iframe_a'].location.replace(newUrl);
+        //     // Activate the spinner
+        //     this.set('spinnerIsActive', true);
+        //   }
+        // }
       },
 
       /**
@@ -468,16 +483,16 @@
        * Shows the spinner by manipulating classes in the DOM.
        */
       _showSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.remove('is__hidden');
+        // var spinner = this.$$('#spinner');
+        // spinner.classList.remove('is__hidden');
       },
 
       /**
        * Hides the spinner by manipulating classes in the DOM.
        */
       _hideSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.add('is__hidden');
+        // var spinner = this.$$('#spinner');
+        // spinner.classList.add('is__hidden');
       },
       /**
       * Sets the background color of the spinner background based on the darkTheme toggle.

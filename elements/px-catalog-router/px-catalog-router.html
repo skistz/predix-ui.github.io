@@ -243,10 +243,11 @@ a component.
         if (type && type !== '') {
           knownTypes = {
             components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+
+              return 'bower_components/' + name + '/demo/' + name + '-demo.html';
             },
             css: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'bower_components/' + name + '/demo/' + name + '-demo.html';
             },
             about: function(name) {
               return window.location.origin + '/pages/about/' + name + '.html';

@@ -389,7 +389,7 @@ $px-catalog-magenta: rgb(192,0,42);
 /*
 * iframe sizing
 */
-.iframe__container{
+.doc__container{
   display: flex;
   width: 100%;
   margin: 0px 0px 0px 0px;
@@ -446,7 +446,7 @@ $px-catalog-magenta: rgb(192,0,42);
   .overlay{
     visibility: hidden;
   }
-  .iframe__container{
+  .doc__container{
     flex-grow: 1;
     position: relative;
     overflow-y: auto;
