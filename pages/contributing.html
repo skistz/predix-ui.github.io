@@ -1,46 +1,22 @@
-<!doctype html>
-<!--
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/zero-md/zero-md.html">
+<link rel="import" href="../css/predix-ui-styles.html"/>
+<link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
 
-This page isn't implemented, and zero-md would need to be inserted back into bower for it to work.
-
-It's here as a prrof od concept to bring in MD files easily, but... it's not pretty.
-
- -->
-<html class="embedded">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Predix Design System</title>
-    <script type="text/javascript">
-      // Load Web Components when not supported
-      var webComponentsSupported = ('registerElement' in document
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template'));
-      if (!webComponentsSupported) {
-        var script = document.createElement('script');
-        script.src = '../bower_components/webcomponentsjs/webcomponents-lite.js';
-        document.head.appendChild(script);
-      }
-    </script>
-    <link rel="import" href="../bower_components/polymer/polymer.html" />
-    <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
-    <link rel="import" href="../bower_components/zero-md/zero-md.html">
-    <link rel="import" href="../css/predix-ui-styles.html"/>
-    <link rel="import" href="../bower_components/px-theme/px-theme-styles.html">
-  </head>
-  <body unresolved class="body">
-    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+<dom-module id="px-contributing">
+  <template>
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
-    <template is="dom-bind">
-      <style include="predix-ui-styles" is="custom-style"></style>
-      <div class="container">
-        <zero-md file="https://cdn.rawgit.com/PredixDev/px-context-browser/master/CONTRIBUTING.md">
-         <!-- Remember to pass in empty container of class="md-html". -->
-         <div class="md-html"></div>
-        </zero-md>
-      </div>
-    </template>
-
-  </body>
-</html>
+    <div class="container">
+      <zero-md file="https://cdn.rawgit.com/PredixDev/px-context-browser/master/CONTRIBUTING.md">
+        <!-- Remember to pass in empty container of class="md-html". -->
+        <div class="md-html"></div>
+      </zero-md>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-contributing'
+    });
+  </script>
+</dom-module>

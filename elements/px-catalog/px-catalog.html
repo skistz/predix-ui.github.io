@@ -120,7 +120,7 @@
         <!-- </div> -->
 
         <!-- <px-toggle-demo style="width:100%;"></px-toggle-demo> -->
-        <!-- <px-home></px-home> -->
+        <!-- <home></home> -->
       </div>
     </div>
   </template>
@@ -137,7 +137,7 @@
          */
         frameUrl: {
           type: String,
-          value: '../../pages/px-home.html',
+          value: '../../pages/home.html',
           observer: '_handleFrameUrlChanged'
         },
 
@@ -311,6 +311,7 @@
         var importName = newUrl.substr(newUrl.lastIndexOf('/')+1),
             eleName = importName.substr(0,importName.indexOf('.'));
 
+        ((eleName.indexOf('-') === -1) ? eleName = 'px-' + eleName : eleName = eleName);
         var ele = Polymer.Base.create(eleName);
 
         ele.style.width = "100%";
