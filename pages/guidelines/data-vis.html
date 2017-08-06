@@ -1,402 +1,383 @@
-<!DOCTYPE html>
-<html lang="en" class="embedded">
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-<head>
-  <title>Predix Design System</title>
-  <meta charset="utf-8" />
-  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="text/javascript">
-    // Load Web Components when not supported
-    var webComponentsSupported = ('registerElement' in document &&
-      'import' in document.createElement('link') &&
-      'content' in document.createElement('template'));
-    if (!webComponentsSupported) {
-      var script = document.createElement('script');
-      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-      document.head.appendChild(script);
-    }
+<dom-module id="data-vis">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Data Visualization</h2>
+      <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a
+        success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations
+        that in turn could save lives and reduce maintenance costs.</p>
+      <p>The <a target="_top" href="/#/guides/vis-guides-terminology">Vis Framework Guides</a> provide a general overview of data vis terminology as well as technical guidance on how to <a target="_top" href="/#/guides/vis-guides-configuring-charts">configure charts</a>      and <a target="_top" href="/#/guides/vis-guides-toolbar">the toolbar</a>.
+
+        <h4 class="u-mt+ u-pt+">Best Practices</h4>
+        <p><b>Consider the nature of the data</b><br/> Different types of data are suited for different types of visualizations.
+        </p>
+
+        <p><b>Account for the user's expectations of presentation</b><br/> Some data is expected to be displayed in a specific way. For example, time-oriented data is best suited for a time-series chart while vibration data might be best suited for a polar
+          chart.
+        </p>
+
+        <p><b>How many points of data will need to be rendered onto the chart?</b><br/> The quantity and density of the data to be displayed may assist in deciding on the best visualization.
+        </p>
+
+        <p><b>What are the interactions the user will need to evoke when consuming the data?</b><br/> Data consumed on a dashboard has very different interaction needs than data being used for analysis.
+
+        </p>
+
+        <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>
+        <p>These charts are part of the D3-based data visualization framework. They are highly interactive and configurable and built to be performant with large amounts of data. More on our data visualization framework is <a href="https://medium.com/ge-design/introducing-ges-data-visualization-framework-for-iot-27c350b02c04"
+            target="_blank">here</a>.</p>
+        <p>Px-vis was created in close collaboration with the GE Digital Asset Performance Management team, and with substantial input from users about how they look at data in monitoring and diagnostics scenarios.</p>
+        <table class="guidelines datavis u-mb++">
+          <tr>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/parallel_axis_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/parallel_axis_example.png" type="image/png">
+                <img src="../../../img/guidelines/parallel_axis_example.png" alt="Parallel Chart">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/pie_chart.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/pie_chart.png" type="image/png">
+                <img src="../../../img/guidelines/pie_chart.png" alt="Parallel Chart">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/polar_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/polar_example.png" type="image/png">
+                <img src="../../../img/guidelines/polar_example.png" alt="Polar Example">
+              </picture>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b>Parallel Coordinate</b>
+              <br/>Used for analyzing multivariate data to look for comparisons.
+            </td>
+            <td><b>Pie Chart</b><br/> Standard pie chart showing values relative to each other in a circular format.
+            </td>
+
+            <td><b>Polar Chart/Radar Chart</b><br/> Used to view multivariate data, preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
+          </tr>
+
+          <tr>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/spark_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/spark_example.png" type="image/png">
+                <img src="../../../img/guidelines/spark_example.png" alt="Spark Example">
+              </picture>
+
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/time_series_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/time_series_example.png" type="image/png">
+                <img src="../../../img/guidelines/time_series_example.png" alt="Time Series Example">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/xy_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/xy_example.png" type="image/png">
+                <img src="../../../img/guidelines/xy_example.png" alt="XY Example">
+              </picture>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Spark</b><br/> A small line chart without axes or measures that provides a user a glimpse of a trend.
+            </td>
+
+            <td><b>Timeseries</b><br/> Provides means to analyze data over a period of time.</td>
+
+            <td><b>XY Chart</b><br/> Used to find correlations between two or more parameters or tags.</td>
+          </tr>
+        </table>
+
+        <h4 class="u-mt+ u-pt+">Simple Charts</h4>
+        <p>For lighter weight use cases, simple charts offer basic functionality with minimal interactivity and less configuration options.</p>
+        <table class="guidelines datavis">
+          <tr>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/percent_circle_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/percent_circle_example.png" type="image/png">
+                <img src="../../../img/guidelines/percent_circle_example.png" alt="Percent Circle Example">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/gauge_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/gauge_example.png" type="image/png">
+                <img src="../../../img/guidelines/gauge_example.png" alt="Gauge Example">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/area_chart_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/area_chart_example.png" type="image/png">
+                <img src="../../../img/guidelines/area_chart_example.png" alt="Area Chart Example">
+              </picture>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Percent Circle</b><br/> Used for conveying a single value as a percentage of a whole circle. </td>
+            <td><b>Gauge</b><br/> A simple data visualization component for conveying a single value as a percentage of a circular arc.
+            </td>
+
+            <td><b>Simple Area Chart</b><br/> Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
+
+          </tr>
+
+          <tr>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/simple_bar_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/simple_bar_example.png" type="image/png">
+                <img src="../../../img/guidelines/simple_bar_example.png" alt="Simple Bar Chart Example">
+              </picture>
+
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/horiz_bar_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/horiz_bar_example.png" type="image/png">
+                <img src="../../../img/guidelines/horiz_bar_example.png" alt="Simple Bar Chart Example">
+              </picture>
+            </td>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/simple_line_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/simple_line_example.png" type="image/png">
+                <img src="../../../img/guidelines/simple_line_example.png" alt="Simple Line Chart Example">
+              </picture>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Simple Bar Chart</b><br/> Provides a quick way to visualize data in single or stacked bars.
+            </td>
+
+            <td><b>Simple Horizontal Bar Chart</b><br/> Provides a quick way to visualize data in single or stacked bars.</td>
+
+            <td><b>Simple Line Chart</b></br>
+              Used to visualize linear data in a simplified way for quick assessment.</td>
+          </tr>
+          <tr>
+            <td>
+              <picture>
+                <source srcset="../../../img/guidelines/win_loss_example.webp" type="image/webp">
+                <source srcset="../../../img/guidelines/win_loss_example.png" type="image/png">
+                <img src="../../../img/guidelines/win_loss_example.png" alt="Simple Line Chart Example">
+              </picture>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><b>Simple Win-Loss Chart</b><br/> Visualizes a series of positive & negative values as a bar chart.</td>
+            <td></td>
+            <td></td>
+        </table>
+
+        <h4 class="u-mt+ u-pt+">Axis Layout</h4>
+        <p>Effective treatment and layout of the axis in data visualizations makes it easier and faster to comprehend the data. Follow these guidelines as best practices when configuring data vis for your application.</p>
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/xaxis_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/xaxis_do.png" type="image/png">
+            <img src="../../../img/guidelines/xaxis_do.png" alt="Do center label values on the axis line and et a vertical orientation of the axis label.">
+          </picture>
+          <em>Do center label values on the axis line and et a vertical orientation of the axis label.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/xaxis_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/xaxis_dont.png" type="image/png">
+            <img src="../../../img/guidelines/xaxis_dont.png" alt="Don't offset label values or set a horizontal orientation of axis label.">
+          </picture>
+          <em>Don't offset label values or set a horizontal orientation of axis label.</em>
+        </div>
+
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/yaxis_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/yaxis_do.png" type="image/png">
+            <img src="../../../img/guidelines/yaxis_do.png" alt="Set label and values to a horizontal orientation.">
+          </picture>
+          <em>Do set label and values to a horizontal orientation with the axis.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/yaxis_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/yaxis_dont.png" type="image/png">
+            <img src="../../../img/guidelines/yaxis_dont.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+          <em>Don't offset label values or set a horizontal orientation of axis label.</em>
+        </div>
+
+
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/png">
+            <img src="../../../img/guidelines/axis_lines_do.png" alt="Keep axis lines light.">
+          </picture>
+          <em>Do keep axis lines light to make the data stand out and increase scanability.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/png">
+            <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't make axis dark axis lines.">
+          </picture>
+          <em>Don't make axis lines dark or allow axis lines to float next to values.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/radial_axis_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/radial_axis_do.png" type="image/png">
+            <img src="../../../img/guidelines/radial_axis_do.png" alt="Keep values centered onthe.">
+          </picture>
+          <em>Keep values centered on the axis line and in containers to allow for optimum readability. Labels should sit above or next to the axis line.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/radial_axis_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/radial_axis_dont.png" type="image/png">
+            <img src="../../../img/guidelines/radial_axis_dont.png" alt="Don't place values directly on the axis.">
+          </picture>
+          <em>Don't place values directly on the axis line without a container box or display labels inside the chart.</em>
+        </div>
+
+
+
+        <h4 class="u-mt+ u-pt+">Color Treatment</h4>
+        <p>The Predix UI visualization palette provides a diverse range of colors to construct visually impactful charts but more importantly, allows for distinction in the event of large, complex data groupings which are extremely common in the Industrial
+          space.
+        </p>
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_color_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_color_do.png" type="image/png">
+            <img src="../../../img/guidelines/vis_color_do.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+          <em>Use a variation of colors from different families to denote separation of series and provide better contrast.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_color_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_color_dont.png" type="image/png">
+            <img src="../../../img/guidelines/vis_color_dont.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+          <em>Visually similar colors can make it difficult to parse the information in the visualization.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_opacity_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_opacity_do.png" type="image/png">
+            <img src="../../../img/guidelines/vis_opacity_do.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+
+          <em>Use opacity to easily show clusters of data.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_opacity_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_opacity_dont.png" type="image/png">
+            <img src="../../../img/guidelines/vis_opacity_dont.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+
+          <em>Solid colors can obscure data rendered on the chart.</em>
+        </div>
+
+        <h4 class="u-mt+ u-pt+">Chart Register</h4>
+        <p>The chart register houses the list of mapped values and their associated colors. Depending on your use case it can be placed to the top or the right of a data visualization. It is not recommended that it is placed to the left or below the chart.
+        </p>
+        <p>Tooltips can work with or instead of the register and display metadata about a particular item on the chart. It's important to keep tooltips succinct and as small as possible so they don't obscure the data they are augmenting.</p>
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_register_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_register_do.png" type="image/png">
+            <img src="../../../img/guidelines/vis_register_do.png" alt="Place register at the top or the right of the chart space">
+          </picture>
+
+
+          <em>Place register at the top or the right of the chart space.</em>
+        </div>
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_register_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_register_dont.png" type="image/png">
+            <img src="../../../img/guidelines/vis_register_dont.png" alt="Place register to the left or below the chart space.">
+          </picture>
+          <em>Don't place the register to the left or below the chart space.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_tooltip_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_tooltip_do.png" type="image/png">
+            <img src="../../../img/guidelines/vis_tooltip_do.png" alt="Keep tags to a minimum height and consider splitting them into columns">
+          </picture>
+
+
+          <em>Keep tags to a minimum height and consider splitting them into columns.</em>
+        </div>
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/vis_tooltip_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/vis_tooltip_dont.png" type="image/png">
+            <img src="../../../img/guidelines/vis_tooltip_dont.png" alt="Keep tags to minimum in tooltips.">
+          </picture>
+          <em>Don't insert a large number of tags into the tooltip. Consider using the register instead.</em>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'data-vis'
+    });
   </script>
-  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
-  <link async rel="shortcut icon" href="../../favicon.ico" />
-  <link defer rel="import" href="../../css/predix-ui-styles.html" />
-  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-
-
-</head>
-
-<body unresolved class="body">
-  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-  <style include="predix-ui-styles" is="custom-style"></style>
-  <style include="px-theme-styles" is="custom-style"></style>
-
-  <section class="main u-mb++">
-    <h2 class="selected">Data Visualization</h2>
-    <p>Our Data Visualization tools provide vital information to our customers to ensure optimum performance of their Industrial ecosystem. Some key areas where our Vis tools can be used are monitoring the health of assets for maintenance optimization, a
-      success or failure of factory processes, or the operational status of a group of plants. Creating readable visualizations play a vital role in helping our customers make split second decisions on how to proceed with handling a variety of situations
-      that in turn could save lives and reduce maintenance costs.</p>
-    <p>The <a target="_top" href="/#/guides/vis-guides-terminology">Vis Framework Guides</a> provide a general overview of data vis terminology as well as technical guidance on how to <a target="_top" href="/#/guides/vis-guides-configuring-charts">configure charts</a>      and <a target="_top" href="/#/guides/vis-guides-toolbar">the toolbar</a>.
-
-      <h4 class="u-mt+ u-pt+">Best Practices</h4>
-      <p><b>Consider the nature of the data</b><br/> Different types of data are suited for different types of visualizations.
-      </p>
-
-      <p><b>Account for the user's expectations of presentation</b><br/> Some data is expected to be displayed in a specific way. For example, time-oriented data is best suited for a time-series chart while vibration data might be best suited for a polar
-        chart.
-      </p>
-
-      <p><b>How many points of data will need to be rendered onto the chart?</b><br/> The quantity and density of the data to be displayed may assist in deciding on the best visualization.
-      </p>
-
-      <p><b>What are the interactions the user will need to evoke when consuming the data?</b><br/> Data consumed on a dashboard has very different interaction needs than data being used for analysis.
-
-      </p>
-
-      <h4 class="u-mt+ u-pt+">Data Vis Framework Charts</h4>
-      <p>These charts are part of the D3-based data visualization framework. They are highly interactive and configurable and built to be performant with large amounts of data. More on our data visualization framework is <a href="https://medium.com/ge-design/introducing-ges-data-visualization-framework-for-iot-27c350b02c04"
-          target="_blank">here</a>.</p>
-      <p>Px-vis was created in close collaboration with the GE Digital Asset Performance Management team, and with substantial input from users about how they look at data in monitoring and diagnostics scenarios.</p>
-      <table class="guidelines datavis u-mb++">
-        <tr>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/parallel_axis_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/parallel_axis_example.png" type="image/png">
-              <img src="../../../img/guidelines/parallel_axis_example.png" alt="Parallel Chart">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/pie_chart.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/pie_chart.png" type="image/png">
-              <img src="../../../img/guidelines/pie_chart.png" alt="Parallel Chart">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/polar_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/polar_example.png" type="image/png">
-              <img src="../../../img/guidelines/polar_example.png" alt="Polar Example">
-            </picture>
-
-          </td>
-        </tr>
-        <tr>
-          <td><b>Parallel Coordinate</b>
-            <br/>Used for analyzing multivariate data to look for comparisons.
-          </td>
-          <td><b>Pie Chart</b><br/> Standard pie chart showing values relative to each other in a circular format.
-          </td>
-
-          <td><b>Polar Chart/Radar Chart</b><br/> Used to view multivariate data, preferred when sensors are displayed in a circular fashion on an asset or the element spins.</td>
-        </tr>
-
-        <tr>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/spark_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/spark_example.png" type="image/png">
-              <img src="../../../img/guidelines/spark_example.png" alt="Spark Example">
-            </picture>
-
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/time_series_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/time_series_example.png" type="image/png">
-              <img src="../../../img/guidelines/time_series_example.png" alt="Time Series Example">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/xy_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/xy_example.png" type="image/png">
-              <img src="../../../img/guidelines/xy_example.png" alt="XY Example">
-            </picture>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Spark</b><br/> A small line chart without axes or measures that provides a user a glimpse of a trend.
-          </td>
-
-          <td><b>Timeseries</b><br/> Provides means to analyze data over a period of time.</td>
-
-          <td><b>XY Chart</b><br/> Used to find correlations between two or more parameters or tags.</td>
-        </tr>
-      </table>
-
-      <h4 class="u-mt+ u-pt+">Simple Charts</h4>
-      <p>For lighter weight use cases, simple charts offer basic functionality with minimal interactivity and less configuration options.</p>
-      <table class="guidelines datavis">
-        <tr>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/percent_circle_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/percent_circle_example.png" type="image/png">
-              <img src="../../../img/guidelines/percent_circle_example.png" alt="Percent Circle Example">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/gauge_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/gauge_example.png" type="image/png">
-              <img src="../../../img/guidelines/gauge_example.png" alt="Gauge Example">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/area_chart_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/area_chart_example.png" type="image/png">
-              <img src="../../../img/guidelines/area_chart_example.png" alt="Area Chart Example">
-            </picture>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Percent Circle</b><br/> Used for conveying a single value as a percentage of a whole circle. </td>
-          <td><b>Gauge</b><br/> A simple data visualization component for conveying a single value as a percentage of a circular arc.
-          </td>
-
-          <td><b>Simple Area Chart</b><br/> Similar to the line chart with the area below the line filled in. Provides an easy way to quickly compare data.</td>
-
-        </tr>
-
-        <tr>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/simple_bar_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/simple_bar_example.png" type="image/png">
-              <img src="../../../img/guidelines/simple_bar_example.png" alt="Simple Bar Chart Example">
-            </picture>
-
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/horiz_bar_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/horiz_bar_example.png" type="image/png">
-              <img src="../../../img/guidelines/horiz_bar_example.png" alt="Simple Bar Chart Example">
-            </picture>
-          </td>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/simple_line_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/simple_line_example.png" type="image/png">
-              <img src="../../../img/guidelines/simple_line_example.png" alt="Simple Line Chart Example">
-            </picture>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Simple Bar Chart</b><br/> Provides a quick way to visualize data in single or stacked bars.
-          </td>
-
-          <td><b>Simple Horizontal Bar Chart</b><br/> Provides a quick way to visualize data in single or stacked bars.</td>
-
-          <td><b>Simple Line Chart</b></br>
-            Used to visualize linear data in a simplified way for quick assessment.</td>
-        </tr>
-        <tr>
-          <td>
-            <picture>
-              <source srcset="../../../img/guidelines/win_loss_example.webp" type="image/webp">
-              <source srcset="../../../img/guidelines/win_loss_example.png" type="image/png">
-              <img src="../../../img/guidelines/win_loss_example.png" alt="Simple Line Chart Example">
-            </picture>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><b>Simple Win-Loss Chart</b><br/> Visualizes a series of positive & negative values as a bar chart.</td>
-          <td></td>
-          <td></td>
-      </table>
-
-      <h4 class="u-mt+ u-pt+">Axis Layout</h4>
-      <p>Effective treatment and layout of the axis in data visualizations makes it easier and faster to comprehend the data. Follow these guidelines as best practices when configuring data vis for your application.</p>
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/xaxis_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/xaxis_do.png" type="image/png">
-          <img src="../../../img/guidelines/xaxis_do.png" alt="Do center label values on the axis line and et a vertical orientation of the axis label.">
-        </picture>
-        <em>Do center label values on the axis line and et a vertical orientation of the axis label.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/xaxis_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/xaxis_dont.png" type="image/png">
-          <img src="../../../img/guidelines/xaxis_dont.png" alt="Don't offset label values or set a horizontal orientation of axis label.">
-        </picture>
-        <em>Don't offset label values or set a horizontal orientation of axis label.</em>
-      </div>
-
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/yaxis_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/yaxis_do.png" type="image/png">
-          <img src="../../../img/guidelines/yaxis_do.png" alt="Set label and values to a horizontal orientation.">
-        </picture>
-        <em>Do set label and values to a horizontal orientation with the axis.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/yaxis_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/yaxis_dont.png" type="image/png">
-          <img src="../../../img/guidelines/yaxis_dont.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-        <em>Don't offset label values or set a horizontal orientation of axis label.</em>
-      </div>
-
-
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/axis_lines_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_do.png" type="image/png">
-          <img src="../../../img/guidelines/axis_lines_do.png" alt="Keep axis lines light.">
-        </picture>
-        <em>Do keep axis lines light to make the data stand out and increase scanability.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/axis_lines_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/axis_lines_dont.png" type="image/png">
-          <img src="../../../img/guidelines/axis_lines_dont.png" alt="Don't make axis dark axis lines.">
-        </picture>
-        <em>Don't make axis lines dark or allow axis lines to float next to values.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/radial_axis_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/radial_axis_do.png" type="image/png">
-          <img src="../../../img/guidelines/radial_axis_do.png" alt="Keep values centered onthe.">
-        </picture>
-        <em>Keep values centered on the axis line and in containers to allow for optimum readability. Labels should sit above or next to the axis line.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/radial_axis_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/radial_axis_dont.png" type="image/png">
-          <img src="../../../img/guidelines/radial_axis_dont.png" alt="Don't place values directly on the axis.">
-        </picture>
-        <em>Don't place values directly on the axis line without a container box or display labels inside the chart.</em>
-      </div>
-
-
-
-      <h4 class="u-mt+ u-pt+">Color Treatment</h4>
-      <p>The Predix UI visualization palette provides a diverse range of colors to construct visually impactful charts but more importantly, allows for distinction in the event of large, complex data groupings which are extremely common in the Industrial
-        space.
-      </p>
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_color_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_color_do.png" type="image/png">
-          <img src="../../../img/guidelines/vis_color_do.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-        <em>Use a variation of colors from different families to denote separation of series and provide better contrast.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_color_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_color_dont.png" type="image/png">
-          <img src="../../../img/guidelines/vis_color_dont.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-        <em>Visually similar colors can make it difficult to parse the information in the visualization.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_opacity_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_opacity_do.png" type="image/png">
-          <img src="../../../img/guidelines/vis_opacity_do.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-
-        <em>Use opacity to easily show clusters of data.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_opacity_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_opacity_dont.png" type="image/png">
-          <img src="../../../img/guidelines/vis_opacity_dont.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-
-        <em>Solid colors can obscure data rendered on the chart.</em>
-      </div>
-
-      <h4 class="u-mt+ u-pt+">Chart Register</h4>
-      <p>The chart register houses the list of mapped values and their associated colors. Depending on your use case it can be placed to the top or the right of a data visualization. It is not recommended that it is placed to the left or below the chart.
-      </p>
-      <p>Tooltips can work with or instead of the register and display metadata about a particular item on the chart. It's important to keep tooltips succinct and as small as possible so they don't obscure the data they are augmenting.</p>
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_register_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_register_do.png" type="image/png">
-          <img src="../../../img/guidelines/vis_register_do.png" alt="Place register at the top or the right of the chart space">
-        </picture>
-
-
-        <em>Place register at the top or the right of the chart space.</em>
-      </div>
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_register_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_register_dont.png" type="image/png">
-          <img src="../../../img/guidelines/vis_register_dont.png" alt="Place register to the left or below the chart space.">
-        </picture>
-        <em>Don't place the register to the left or below the chart space.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_tooltip_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_tooltip_do.png" type="image/png">
-          <img src="../../../img/guidelines/vis_tooltip_do.png" alt="Keep tags to a minimum height and consider splitting them into columns">
-        </picture>
-
-
-        <em>Keep tags to a minimum height and consider splitting them into columns.</em>
-      </div>
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/vis_tooltip_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/vis_tooltip_dont.png" type="image/png">
-          <img src="../../../img/guidelines/vis_tooltip_dont.png" alt="Keep tags to minimum in tooltips.">
-        </picture>
-        <em>Don't insert a large number of tags into the tooltip. Consider using the register instead.</em>
-      </div>
-  </section>
-
-  <!-- Footer -->
-  <px-demo-footer></px-demo-footer>
-</body>
-
-</html>
+</dom-module>

@@ -1,157 +1,138 @@
-<!DOCTYPE html>
-<html lang="en" class="embedded">
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-<head>
-  <title>Predix Design System</title>
-  <meta charset="utf-8" />
-  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="text/javascript">
-    // Load Web Components when not supported
-    var webComponentsSupported = ('registerElement' in document &&
-      'import' in document.createElement('link') &&
-      'content' in document.createElement('template'));
-    if (!webComponentsSupported) {
-      var script = document.createElement('script');
-      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-      document.head.appendChild(script);
-    }
+<dom-module id="px-materiality">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Materiality</h2>
+      <p>A distinctive element of the Predix Design System is to use material breaks to create a unique appearance for your application. Applications can be created with an entirely dark theme, a high contrast theme or a combination of the two. While the decision
+        to use a light or dark theme is at the designer's discretion, there are some general guidelines for color combinations.</p>
+      <h4 class="u-mt+ u-pt+">Best Practices</h4>
+      <b>Consider the application's environment</b>
+      <p>The Predix Design System offers a lot of flexibility to allow you to design an application to best suit your use case. For low or no-light environments, consider a consistent dark theme to combat eye fatigue.</p>
+
+      <b>Be consistent across pages in your app</b>
+      <p>Pick a theme and stick with it. Audit your pages and workflows to make sure the layout and color usage will remain expected and consistent.</p>
+
+      <b>Use color with purpose</b>
+      <p>Highlight important data visualizations and high impact information and do it consistently across your app. Cascade backgrounds from dark to light to reinforce information hierarchy.</p>
+
+      <b>Avoid nesting containers</b>
+      <p>Avoid nesting containers as they eat up space and create visual noise making the information hard to scan. Instead, use spacing and padding as cues to separate information into digestible chunks.</p>
+
+      <h4 class="u-mt+ u-pt+">Color Usage</h4>
+      <p>The Design System <a href="/#/css/px-colors-design/" target="_top">color palette</a> contains an extensive palette of greys designed to be used as material breaks on a page layout. Using colors intended for data visualizations can be distracting and
+        hinder readability and usability.
+
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/color_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/color_do.png" type="image/jpeg">
+            <img src="../../../img/guidelines/color_do.png" alt="Use greys and neutrals for material breaks.">
+          </picture>
+          <em>Use subtle neutral colors from the Predix palette of greys for material breaks.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/color_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/color_dont.png" type="image/jpeg">
+            <img src="../../../img/guidelines/color_dont.png" alt="Don't use data vis colors for materials.">
+          </picture>
+          <em>Don't use data visualization or alert colors as backgrounds for information.</em>
+        </div>
+
+        <h4 class="u-mt+ u-pt+">Recommended Combinations</h4>
+        <p>When applying material breaks, use colors within the same range. For example, with a dark theme use greys 16, 17, 18 and 19 together. Keep dramatic material breaks to a minimum, choosing only to do so when it augments certain important information
+          such as data visualizations.</p>
+        <b>Example Color Combinations</b><br/>
+        <div class="full text--center">
+          <picture>
+            <source srcset="../../../img/guidelines/example_color_combinations.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/example_color_combinations.png" type="image/png">
+            <img src="../../../img/guidelines/example_color_combinations.png" alt="Example color combinations.">
+          </picture>
+        </div>
+
+
+        <h4 class="u-mt+ u-pt+">Spacing and Separation</h4>
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/nesting_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/nesting_do.png" type="image/png">
+            <img src="../../../img/guidelines/nesting_do.png" alt="Use content to navigate in smaller apps.">
+          </picture>
+          <em>Use space and similar colors to suggest information regions.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/nesting_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/nesting_dont.png" type="image/png">
+            <img src="../../../img/guidelines/nesting_dont.png" alt="Don't create navigation scheme with two items.">
+          </picture>
+          <em>Avoid nesting blocks of color to separate information.</em>
+        </div>
+
+        <h4 class="u-mt+ u-pt+">Reinforcing Hierarchy</h4>
+        <p>Data viz on dark - reinforce information hierarchy</p>
+        <div class="halves guidelines">
+          <b class="do">Do</b>
+          <picture>
+            <source srcset="../../../img/guidelines/cascade_do.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/cascade_do.png" type="image/png">
+            <img src="../../../img/guidelines/cascade_do.png" alt="Gently cascade color">
+          </picture>
+          <em>Cascade color to indicate an information hierarchy, use minimal dramatic breaks.</em>
+        </div>
+
+        <div class="halves guidelines">
+          <b class="dont">Don't</b>
+          <picture>
+            <source srcset="../../../img/guidelines/cascade_dont.webp" type="image/webp">
+            <source srcset="../../../img/guidelines/cascade_dont.png" type="image/png">
+            <img src="../../../img/guidelines/cascade_dont.png" alt="Avoid exessive material breaks and banding.">
+          </picture>
+          <em>Avoid using excessive color banding to separate information.</em>
+        </div>
+
+        <h4 class="u-mt+ u-pt+">Contrast and Accessibility</h4>
+        <p>In their default states, the Predix Design System components pass accessibility contrast test with an AAA or AA18 . The color palette allows for expanded choices should you have more stringent requirements or an extreme environment that calls for
+          a unique design.</p>
+
+        <p>Check your contrast ratios to ensure they fall within accessibility standards with <a href="http://contrast-grid.eightshapes.com/" target="_blank">EightShapes' Contrast Grid</a>.</p>
+
+        <ul>
+          <li><a href="http://contrast-grid.eightshapes.com/?background-colors=ffffff%2C%20%24white%0D%0A%23EBEFF2%2C%20%24gray%201%0D%0A%23E2E8ED%2C%20%24gray2&foreground-colors=%23677E8C%2C%20%24gray10%0D%0A%232C404C%2C%20%24gray15&es-color-form__tile-size=compact"
+              target="_blank">Light Theme</a></li>
+          <li><a href="http://contrast-grid.eightshapes.com/?background-colors=%2323343F%2C%20%24gray16%0D%0A%231B2A33%2C%20%24gray17%0D%0A%23121F26%2C%20%24gray18&foreground-colors=%23B6C3CC%2C%20%24gray5%0D%0A%23677E8C%2C%20%24gray10%0D%0A&es-color-form__tile-size=compact"
+              target="_blank">Dark Theme</a></li>
+
+        </ul>
+        <picture>
+          <source srcset="../../../img/guidelines/contrast_chart.webp" type="image/webp">
+          <source srcset="../../../img/guidelines/contrast_chart.png" type="image/png">
+          <img src="../../../img/guidelines/contrast_chart.png" alt="Eight Shapes Contrast Chart.">
+        </picture>
+
+    </section>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-materiality'
+    });
   </script>
-  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
-  <link async rel="shortcut icon" href="../../favicon.ico" />
-  <link defer rel="import" href="../../css/predix-ui-styles.html" />
-  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-
-</head>
-
-<body unresolved class="body">
-  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-  <style include="predix-ui-styles" is="custom-style"></style>
-  <style include="px-theme-styles" is="custom-style"></style>
-
-  <section class="main u-mb++">
-    <h2 class="selected">Materiality</h2>
-    <p>A distinctive element of the Predix Design System is to use material breaks to create a unique appearance for your application. Applications can be created with an entirely dark theme, a high contrast theme or a combination of the two. While the decision
-      to use a light or dark theme is at the designer's discretion, there are some general guidelines for color combinations.</p>
-    <h4 class="u-mt+ u-pt+">Best Practices</h4>
-    <b>Consider the application's environment</b>
-    <p>The Predix Design System offers a lot of flexibility to allow you to design an application to best suit your use case. For low or no-light environments, consider a consistent dark theme to combat eye fatigue.</p>
-
-    <b>Be consistent across pages in your app</b>
-    <p>Pick a theme and stick with it. Audit your pages and workflows to make sure the layout and color usage will remain expected and consistent.</p>
-
-    <b>Use color with purpose</b>
-    <p>Highlight important data visualizations and high impact information and do it consistently across your app. Cascade backgrounds from dark to light to reinforce information hierarchy.</p>
-
-    <b>Avoid nesting containers</b>
-    <p>Avoid nesting containers as they eat up space and create visual noise making the information hard to scan. Instead, use spacing and padding as cues to separate information into digestible chunks.</p>
-
-    <h4 class="u-mt+ u-pt+">Color Usage</h4>
-    <p>The Design System <a href="/#/css/px-colors-design/" target="_top">color palette</a> contains an extensive palette of greys designed to be used as material breaks on a page layout. Using colors intended for data visualizations can be distracting and
-      hinder readability and usability.
-
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/color_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/color_do.png" type="image/jpeg">
-          <img src="../../../img/guidelines/color_do.png" alt="Use greys and neutrals for material breaks.">
-        </picture>
-        <em>Use subtle neutral colors from the Predix palette of greys for material breaks.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/color_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/color_dont.png" type="image/jpeg">
-          <img src="../../../img/guidelines/color_dont.png" alt="Don't use data vis colors for materials.">
-        </picture>
-        <em>Don't use data visualization or alert colors as backgrounds for information.</em>
-      </div>
-
-      <h4 class="u-mt+ u-pt+">Recommended Combinations</h4>
-      <p>When applying material breaks, use colors within the same range. For example, with a dark theme use greys 16, 17, 18 and 19 together. Keep dramatic material breaks to a minimum, choosing only to do so when it augments certain important information
-        such as data visualizations.</p>
-      <b>Example Color Combinations</b><br/>
-      <div class="full text--center">
-        <picture>
-          <source srcset="../../../img/guidelines/example_color_combinations.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/example_color_combinations.png" type="image/png">
-          <img src="../../../img/guidelines/example_color_combinations.png" alt="Example color combinations.">
-        </picture>
-      </div>
-
-
-      <h4 class="u-mt+ u-pt+">Spacing and Separation</h4>
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/nesting_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/nesting_do.png" type="image/png">
-          <img src="../../../img/guidelines/nesting_do.png" alt="Use content to navigate in smaller apps.">
-        </picture>
-        <em>Use space and similar colors to suggest information regions.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/nesting_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/nesting_dont.png" type="image/png">
-          <img src="../../../img/guidelines/nesting_dont.png" alt="Don't create navigation scheme with two items.">
-        </picture>
-        <em>Avoid nesting blocks of color to separate information.</em>
-      </div>
-
-      <h4 class="u-mt+ u-pt+">Reinforcing Hierarchy</h4>
-      <p>Data viz on dark - reinforce information hierarchy</p>
-      <div class="halves guidelines">
-        <b class="do">Do</b>
-        <picture>
-          <source srcset="../../../img/guidelines/cascade_do.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/cascade_do.png" type="image/png">
-          <img src="../../../img/guidelines/cascade_do.png" alt="Gently cascade color">
-        </picture>
-        <em>Cascade color to indicate an information hierarchy, use minimal dramatic breaks.</em>
-      </div>
-
-      <div class="halves guidelines">
-        <b class="dont">Don't</b>
-        <picture>
-          <source srcset="../../../img/guidelines/cascade_dont.webp" type="image/webp">
-          <source srcset="../../../img/guidelines/cascade_dont.png" type="image/png">
-          <img src="../../../img/guidelines/cascade_dont.png" alt="Avoid exessive material breaks and banding.">
-        </picture>
-        <em>Avoid using excessive color banding to separate information.</em>
-      </div>
-
-      <h4 class="u-mt+ u-pt+">Contrast and Accessibility</h4>
-      <p>In their default states, the Predix Design System components pass accessibility contrast test with an AAA or AA18 . The color palette allows for expanded choices should you have more stringent requirements or an extreme environment that calls for
-        a unique design.</p>
-
-      <p>Check your contrast ratios to ensure they fall within accessibility standards with <a href="http://contrast-grid.eightshapes.com/" target="_blank">EightShapes' Contrast Grid</a>.</p>
-
-      <ul>
-        <li><a href="http://contrast-grid.eightshapes.com/?background-colors=ffffff%2C%20%24white%0D%0A%23EBEFF2%2C%20%24gray%201%0D%0A%23E2E8ED%2C%20%24gray2&foreground-colors=%23677E8C%2C%20%24gray10%0D%0A%232C404C%2C%20%24gray15&es-color-form__tile-size=compact"
-            target="_blank">Light Theme</a></li>
-        <li><a href="http://contrast-grid.eightshapes.com/?background-colors=%2323343F%2C%20%24gray16%0D%0A%231B2A33%2C%20%24gray17%0D%0A%23121F26%2C%20%24gray18&foreground-colors=%23B6C3CC%2C%20%24gray5%0D%0A%23677E8C%2C%20%24gray10%0D%0A&es-color-form__tile-size=compact"
-            target="_blank">Dark Theme</a></li>
-
-      </ul>
-      <picture>
-        <source srcset="../../../img/guidelines/contrast_chart.webp" type="image/webp">
-        <source srcset="../../../img/guidelines/contrast_chart.png" type="image/png">
-        <img src="../../../img/guidelines/contrast_chart.png" alt="Eight Shapes Contrast Chart.">
-      </picture>
-
-  </section>
-
-  <!-- Footer -->
-  <px-demo-footer></px-demo-footer>
-</body>
-
-</html>
+</dom-module>

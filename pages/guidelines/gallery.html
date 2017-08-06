@@ -1,163 +1,145 @@
-<!DOCTYPE html>
-<html lang="en" class="embedded">
 
-<head>
-  <title>Predix Design System</title>
-  <meta charset="utf-8" />
-  <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="text/javascript">
-    // Load Web Components when not supported
-    var webComponentsSupported = ('registerElement' in document &&
-      'import' in document.createElement('link') &&
-      'content' in document.createElement('template'));
-    if (!webComponentsSupported) {
-      var script = document.createElement('script');
-      script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-      document.head.appendChild(script);
-    }
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../css/predix-ui-styles.html" />
+<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+
+<dom-module id="px-gallery">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Gallery</h2>
+      <p>Example layouts and color configurations for common screens within Predix applications. Note the flexible use of color breaks to configure layouts as a light theme, dark theme or a combination of the two. These examples are included in the Design
+        Starter Kit.</p>
+      <h4>Inbox</h4>
+      <div class="thirds">
+        <a href="/img/gallery/inbox_light.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/inbox_light.webp" type="image/webp">
+            <source srcset="../../../img/gallery/inbox_light.png" type="image/png">
+            <img src="../../../img/guidelines/inbox_light.png" alt="Inbox Layout">
+          </picture>
+        </a>
+      </div>
+
+      <div class="thirds">
+        <a href="/img/gallery/inbox_dark_top.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/inbox_dark_top.webp" type="image/webp">
+            <source srcset="../../../img/gallery/inbox_dark_top.png" type="image/png">
+            <img src="../../../img/guidelines/inbox_dark_top.png" alt="Inbox Layout">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/inbox_dark.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/inbox_dark.webp" type="image/webp">
+            <source srcset="../../../img/gallery/inbox_dark.png" type="image/png">
+            <img src="../../../img/guidelines/inbox_dark.png" alt="Inbox Layout">
+          </picture>
+        </a>
+      </div>
+      <h4>Dashboards</h4>
+      <div class="thirds">
+        <a href="/img/gallery/dashboard-light.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/dashboard-light.webp" type="image/webp">
+            <source srcset="../../../img/gallery/dashboard-light.png" type="image/png">
+            <img src="../../../img/guidelines/dashboard-light.png" alt="Dashboard">
+          </picture>
+        </a>
+      </div>
+
+      <div class="thirds">
+        <a href="/img/gallery/dashboard_dark_top.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/dashboard_dark_top.webp" type="image/webp">
+            <source srcset="../../../img/gallery/dashboard_dark_top.png" type="image/png">
+            <img src="../../../img/guidelines/dashboard_dark_top.png" alt="Dashboard">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/dashboard_dark.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/dashboard_dark.webp" type="image/webp">
+            <source srcset="../../../img/gallery/dashboard_dark.png" type="image/png">
+            <img src="../../../img/guidelines/dashboard_dark.png" alt="Dashboard">
+          </picture>
+        </a>
+      </div>
+
+      <h4>List View</h4>
+      <div class="thirds">
+        <a href="/img/gallery/filtered_list_light.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/filtered_list_light.webp" type="image/webp">
+            <source srcset="../../../img/gallery/filtered_list_light.png" type="image/png">
+            <img src="../../../img/guidelines/filtered_list_light.png" alt="List View">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/filtered_list_dark_top.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/filtered_list_dark_top.webp" type="image/webp">
+            <source srcset="../../../img/gallery/filtered_list_dark_top.png" type="image/png">
+            <img src="../../../img/guidelines/filtered_list_dark_top.png" alt="List View">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/filtered_list_dark.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/filtered_list_dark.webp" type="image/webp">
+            <source srcset="../../../img/gallery/filtered_list_dark.png" type="image/png">
+            <img src="../../../img/guidelines/filtered_list_dark.png" alt="List View">
+          </picture>
+        </a>
+      </div>
+
+      <h4>Forms</h4>
+      <div class="thirds">
+        <a href="/img/gallery/form_light.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/form_light.webp" type="image/webp">
+            <source srcset="../../../img/gallery/form_light.png" type="image/png">
+            <img src="../../../img/guidelines/form_light.png" alt="Form">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/form_dark_top.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/form_dark_top.webp" type="image/webp">
+            <source srcset="../../../img/gallery/form_dark_top.png" type="image/png">
+            <img src="../../../img/guidelines/form_dark_top.png" alt="Form">
+          </picture>
+        </a>
+      </div>
+      <div class="thirds">
+        <a href="/img/gallery/form_dark.png" target="_blank">
+          <picture>
+            <source srcset="../../../img/gallery/form_dark.webp" type="image/webp">
+            <source srcset="../../../img/gallery/form_dark.png" type="image/png">
+            <img src="../../../img/guidelines/form_dark.png" alt="Form">
+          </picture>
+        </a>
+      </div>
+
+
+    </section>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-gallery'
+    });
   </script>
-  <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
-  <link async rel="shortcut icon" href="../../favicon.ico" />
-  <link defer rel="import" href="../../css/predix-ui-styles.html" />
-  <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-  <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-
-</head>
-
-<body unresolved class="body">
-  <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
-  <style include="predix-ui-styles" is="custom-style"></style>
-  <style include="px-theme-styles" is="custom-style"></style>
-
-  <section class="main u-mb++">
-    <h2 class="selected">Gallery</h2>
-    <p>Example layouts and color configurations for common screens within Predix applications. Note the flexible use of color breaks to configure layouts as a light theme, dark theme or a combination of the two. These examples are included in the Design
-      Starter Kit.</p>
-    <h4>Inbox</h4>
-    <div class="thirds">
-      <a href="/img/gallery/inbox_light.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/inbox_light.webp" type="image/webp">
-          <source srcset="../../../img/gallery/inbox_light.png" type="image/png">
-          <img src="../../../img/guidelines/inbox_light.png" alt="Inbox Layout">
-        </picture>
-      </a>
-    </div>
-
-    <div class="thirds">
-      <a href="/img/gallery/inbox_dark_top.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/inbox_dark_top.webp" type="image/webp">
-          <source srcset="../../../img/gallery/inbox_dark_top.png" type="image/png">
-          <img src="../../../img/guidelines/inbox_dark_top.png" alt="Inbox Layout">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/inbox_dark.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/inbox_dark.webp" type="image/webp">
-          <source srcset="../../../img/gallery/inbox_dark.png" type="image/png">
-          <img src="../../../img/guidelines/inbox_dark.png" alt="Inbox Layout">
-        </picture>
-      </a>
-    </div>
-    <h4>Dashboards</h4>
-    <div class="thirds">
-      <a href="/img/gallery/dashboard-light.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/dashboard-light.webp" type="image/webp">
-          <source srcset="../../../img/gallery/dashboard-light.png" type="image/png">
-          <img src="../../../img/guidelines/dashboard-light.png" alt="Dashboard">
-        </picture>
-      </a>
-    </div>
-
-    <div class="thirds">
-      <a href="/img/gallery/dashboard_dark_top.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/dashboard_dark_top.webp" type="image/webp">
-          <source srcset="../../../img/gallery/dashboard_dark_top.png" type="image/png">
-          <img src="../../../img/guidelines/dashboard_dark_top.png" alt="Dashboard">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/dashboard_dark.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/dashboard_dark.webp" type="image/webp">
-          <source srcset="../../../img/gallery/dashboard_dark.png" type="image/png">
-          <img src="../../../img/guidelines/dashboard_dark.png" alt="Dashboard">
-        </picture>
-      </a>
-    </div>
-
-    <h4>List View</h4>
-    <div class="thirds">
-      <a href="/img/gallery/filtered_list_light.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/filtered_list_light.webp" type="image/webp">
-          <source srcset="../../../img/gallery/filtered_list_light.png" type="image/png">
-          <img src="../../../img/guidelines/filtered_list_light.png" alt="List View">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/filtered_list_dark_top.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/filtered_list_dark_top.webp" type="image/webp">
-          <source srcset="../../../img/gallery/filtered_list_dark_top.png" type="image/png">
-          <img src="../../../img/guidelines/filtered_list_dark_top.png" alt="List View">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/filtered_list_dark.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/filtered_list_dark.webp" type="image/webp">
-          <source srcset="../../../img/gallery/filtered_list_dark.png" type="image/png">
-          <img src="../../../img/guidelines/filtered_list_dark.png" alt="List View">
-        </picture>
-      </a>
-    </div>
-
-    <h4>Forms</h4>
-    <div class="thirds">
-      <a href="/img/gallery/form_light.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/form_light.webp" type="image/webp">
-          <source srcset="../../../img/gallery/form_light.png" type="image/png">
-          <img src="../../../img/guidelines/form_light.png" alt="Form">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/form_dark_top.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/form_dark_top.webp" type="image/webp">
-          <source srcset="../../../img/gallery/form_dark_top.png" type="image/png">
-          <img src="../../../img/guidelines/form_dark_top.png" alt="Form">
-        </picture>
-      </a>
-    </div>
-    <div class="thirds">
-      <a href="/img/gallery/form_dark.png" target="_blank">
-        <picture>
-          <source srcset="../../../img/gallery/form_dark.webp" type="image/webp">
-          <source srcset="../../../img/gallery/form_dark.png" type="image/png">
-          <img src="../../../img/guidelines/form_dark.png" alt="Form">
-        </picture>
-      </a>
-    </div>
-
-
-  </section>
-
-  <!-- Footer -->
-  <px-demo-footer></px-demo-footer>
-</body>
-
-</html>
+</dom-module>
