@@ -1,34 +1,13 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html"/>
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-vis-timeseries/px-vis-timeseries.html">
+<link rel="import" href="../../bower_components/px-modal/px-modal.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
 
-<!DOCTYPE html>
-<html lang="en" class="embedded">
-  <head>
-    <title>Predix UI</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script type="text/javascript">
-      // Load Web Components when not supported
-      var webComponentsSupported = ('registerElement' in document
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template'));
-      if (!webComponentsSupported) {
-        var script = document.createElement('script');
-        script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-        document.head.appendChild(script);
-      }
-    </script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-vis-timeseries/px-vis-timeseries.html">
-    <link rel="import" href="../../bower_components/px-modal/px-modal.html">
-    <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-    <link rel="import" href="../../bower_components/marked-element/marked-element.html">
-  </head>
-  <body unresolved class="body">
+<dom-module id="vis-guides-toolbar">
+  <template>
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
@@ -454,58 +433,59 @@
 
     <!-- Footer -->
     <px-demo-footer></px-demo-footer>
-  </body>
+  </template>
   <script>
-     document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'vis-guides-toolbar',
+      ready: function(){
+          var modal = document.getElementById('modal'),
+              holder = document.getElementById('holder'),
+              chart = document.getElementById('chart'),
+               modalConfig = {
+                 "config": {
+                   "advancedZoom": true,
+                   "pan": true,
+                   "tooltip": true
+                 }
+               },
+               expandConfig = {
+                 "config": {
+                   "expand": {
+                     "icon": "px-nav:expand",
+                     "onClick": function() {
+                           //remove chart from current page
+                           holder.removeChild(this);
+                           //set new toolbar config for interaction
+                           this.set('toolbarConfig', modalConfig);
+                           //make the chart bigger
+                           var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+                           var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+                           this.set('width', w - 360);
+                           this.set('height', h - 350);
+                           //append chart in modal
+                           Polymer.dom(modal).appendChild(this);
+                           //open modal
+                           modal.modalButtonClicked();
+                       }
+                   }
+                 }
+               };
 
-       var modal = document.getElementById('modal'),
-           holder = document.getElementById('holder'),
-           chart = document.getElementById('chart'),
-            modalConfig = {
-              "config": {
-                "advancedZoom": true,
-                "pan": true,
-                "tooltip": true
-              }
-            },
-            expandConfig = {
-              "config": {
-                "expand": {
-                  "icon": "px-nav:expand",
-                  "onClick": function() {
-                        //remove chart from current page
-                        holder.removeChild(this);
-                        //set new toolbar config for interaction
-                        this.set('toolbarConfig', modalConfig);
-                        //make the chart bigger
-                        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                        this.set('width', w - 360);
-                        this.set('height', h - 350);
-                        //append chart in modal
-                        Polymer.dom(modal).appendChild(this);
-                        //open modal
-                        modal.modalButtonClicked();
-                    }
-                }
-              }
-            };
+              chart.set('toolbarConfig', expandConfig);
 
-           chart.set('toolbarConfig', expandConfig);
-
-           modal.addEventListener('btnModalNegativeClicked', function() {
-             //remove chart from modal
-             Polymer.dom(modal).removeChild(chart);
-             //restore "expand" toolbar config
-             chart.set('toolbarConfig', expandConfig);
-             chart.set('width', 550);
-             chart.set('height', 200);
-             //ensure we "clean" the sub row
-             chart.set('toolbarSubConfig', []);
-             //move chart back to the page
-             holder.appendChild(chart);
-           });
-
-     });
+              modal.addEventListener('btnModalNegativeClicked', function() {
+                //remove chart from modal
+                Polymer.dom(modal).removeChild(chart);
+                //restore "expand" toolbar config
+                chart.set('toolbarConfig', expandConfig);
+                chart.set('width', 550);
+                chart.set('height', 200);
+                //ensure we "clean" the sub row
+                chart.set('toolbarSubConfig', []);
+                //move chart back to the page
+                holder.appendChild(chart);
+              });
+      }
+    });
   </script>
-</html>
+</dom-module>

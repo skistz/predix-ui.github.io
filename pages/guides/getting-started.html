@@ -1,32 +1,11 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html"/>
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+<link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 
-<!DOCTYPE html>
-<html lang="en" class="embedded">
-  <head>
-    <title>Predix Design System</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Predix UI (IoT PaaS) helps you develop apps that connect people
-    with industrial machines through analytics and data for better business outcomes." />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script type="text/javascript">
-      // Load Web Components when not supported
-      var webComponentsSupported = ('registerElement' in document
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template'));
-      if (!webComponentsSupported) {
-        var script = document.createElement('script');
-        script.src = '../../bower_components/webcomponentsjs/webcomponents-lite.js';
-        document.head.appendChild(script);
-      }
-    </script>
-    <link rel="import" href="../../bower_components/polymer/polymer.html" />
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="import" href="../../css/predix-ui-styles.html"/>
-    <link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-    <link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
-    <link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-  </head>
-  <body unresolved lass="body">
+<dom-module id="getting-started">
+  <template>
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles" is="custom-style"></style>
     <style include="px-theme-styles" is="custom-style"></style>
@@ -183,5 +162,10 @@
 
     <!-- Footer -->
     <px-demo-footer></px-demo-footer>
-  </body>
-</html>
+  </template>
+  <script>
+    Polymer({
+      is: 'getting-started'
+    });
+  </script>
+</dom-module>
