@@ -113,14 +113,12 @@
 
       <!-- App iFrame -->
       <div class="doc__container">
-        <!-- <div id="spinner" class="catalog__spinner flex flex--row flex--center"> -->
-          <!-- <div class="flex__item--middle "> -->
-            <!-- <px-spinner size="150"></px-spinner> -->
-          <!-- </div> -->
-        <!-- </div> -->
-
-        <!-- <px-toggle-demo style="width:100%;"></px-toggle-demo> -->
-        <!-- <home></home> -->
+        <div id="spinner" class="catalog__spinner flex flex--row flex--center">
+          <div class="flex__item--middle ">
+            <px-spinner size="150"></px-spinner>
+          </div>
+        </div>
+        <div class="doc__item"
       </div>
     </div>
   </template>
@@ -302,11 +300,14 @@
        * the iFrame on the page.
        */
       _handleFrameUrlChanged: function(newUrl) {
+        this._showSpinner();
         this.importHref(
             newUrl,
+            function(){
+              this._hideSpinner();
+            },
             null,
-            null,
-            true);
+            false);
 
         var importName = newUrl.substr(newUrl.lastIndexOf('/')+1),
             eleName = importName.substr(0,importName.indexOf('.'));
@@ -315,8 +316,8 @@
         var ele = Polymer.Base.create(eleName);
 
         ele.style.width = "100%";
-        this.$$('.doc__container').innerHTML = '';
-        this.$$('.doc__container').appendChild(ele);
+        this.$$('.doc__item').innerHTML = '';
+        this.$$('.doc__item').appendChild(ele);
 
         // var frame = this.$.frameEl;
         // if ((typeof newUrl === 'string') && frame) {
@@ -484,16 +485,15 @@
        * Shows the spinner by manipulating classes in the DOM.
        */
       _showSpinner: function() {
-        // var spinner = this.$$('#spinner');
-        // spinner.classList.remove('is__hidden');
+        this.toggleClass('is__hidden', false, this.$$('#spinner'));
       },
 
       /**
        * Hides the spinner by manipulating classes in the DOM.
        */
       _hideSpinner: function() {
-        // var spinner = this.$$('#spinner');
-        // spinner.classList.add('is__hidden');
+        this.toggleClass('is__hidden', true, this.$$('#spinner'));
+
       },
       /**
       * Sets the background color of the spinner background based on the darkTheme toggle.
