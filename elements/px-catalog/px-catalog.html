@@ -229,16 +229,32 @@
         },
 
         /**
-         * Reference to the child iFrame element, used to bind for communications
-         * about theme changes.
+         * Reference to the active demo element.
          */
-        childFrame: {
+        activeModule: {
           type: HTMLElement
         }
       },
 
+      observers: [
+        '_updateDarkThemeStatus(darkTheme, activeModule)'
+      ],
+
       listeners: {
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
+      },
+
+      _updateDarkThemeStatus: function(isDarkTheme, activeModule) {
+        if (typeof isDarkTheme !== 'boolean' || typeof activeModule !== 'object') {
+          return;
+        }
+
+        if (isDarkTheme && !activeModule.hasAttribute('dark-theme')) {
+          activeModule.setAttribute('dark-theme', '');
+        }
+        if (!isDarkTheme && activeModule.hasAttribute('dark-theme')) {
+          activeModule.removeAttribute('dark-theme');
+        }
       },
 
       /**
@@ -338,6 +354,7 @@
         ele.style.width = "100%";
         this.$.page.innerHTML = '';
         this.$.page.appendChild(ele);
+        this.activeModule = ele;
       },
 
 
