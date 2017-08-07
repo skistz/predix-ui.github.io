@@ -1,0 +1,224 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-defaults-design/_settings.defaults.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+
+// Component
+
+@import 'util';
+
+$px-catalog-header-size-small: 45px;
+$px-catalog-header-size-large: 80px;
+$px-catalog-nav-width-large: 300px;
+
+/*******************************************************************************
+ * HOST
+ ******************************************************************************/
+
+:host {
+  display: block;
+}
+
+/*******************************************************************************
+ * CATALOG-HEADER
+ ******************************************************************************/
+
+.catalog-header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $px-catalog-header-size-small;
+  padding: 0 1.33rem;
+  z-index: 2;
+  background-color: $px-catalog-gray;
+
+  @include media-query($px-catalog-screen-tablet-up) {
+    height: $px-catalog-header-size-large;
+  }
+}
+
+/*******************************************************************************
+ * PAGE
+ ******************************************************************************/
+
+.catalog-page {
+  display: flex;
+  position: absolute;
+  top: $px-catalog-header-size-small;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  @include media-query($px-catalog-screen-tablet-up) {
+    top: $px-catalog-header-size-large;
+  }
+
+  @include media-query($px-catalog-screen-desktop-up) {
+    left: $px-catalog-nav-width-large;
+  }
+}
+
+.catalog-page__spinner {
+  display: none;
+}
+
+.catalog-page__spinner[active] {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-page__module {
+  flex: 1 1 auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*******************************************************************************
+ * CATALOG_NAV
+ ******************************************************************************/
+
+.catalog-nav {
+  --app-drawer-width: 100%;
+  --app-drawer-scrim-background: rgba(0,0,0,0.4);
+
+  @include media-query($px-catalog-screen-landscape-up) {
+    --app-drawer-width: $px-catalog-nav-width-large;
+  }
+}
+
+.catalog-nav__tree {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding-top: $px-catalog-header-size-small + 20;
+  padding-right: 1.33rem;
+  padding-left: 1.33rem;
+  padding-bottom: $px-catalog-header-size-small;
+  background-color: $px-catalog-nav-background;
+
+  @include media-query($px-catalog-screen-landscape-up) {
+    width: $px-catalog-nav-width-large;
+  }
+
+  @include media-query($px-catalog-screen-tablet-up) {
+    padding-top: $px-catalog-header-size-large + 20;
+    padding-bottom: $px-catalog-header-size-large;
+  }
+}
+
+/*******************************************************************************
+ * THEME-TOGGLE
+ ******************************************************************************/
+
+.theme-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: .8rem;
+}
+
+.theme-toggle__text {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  margin-right: $inuit-base-spacing-unit--tiny;
+}
+
+/*******************************************************************************
+ * LOGO
+ ******************************************************************************/
+
+.logo {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: center;
+
+  .logo__image {
+    display: none;
+  }
+
+  .logo__picture {
+    flex: 1 1 auto;
+  }
+
+  .logo__text {
+    position: relative;
+    top: -2px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  @include media-query($px-catalog-screen-tablet-up) {
+    .logo__image {
+      display: inline-block;
+      height: 18px;
+      position: relative;
+      top: 4px;
+    }
+
+    .logo__text {
+      padding-left: 15px;
+    }
+
+    .logo__text:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 6px;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background-color: rgba(0,0,0,0.3);
+    }
+  }
+
+  @include media-query($px-catalog-screen-desktop-up) {
+    .logo__image {
+      height: 20px;
+    }
+  }
+}
+
+/*******************************************************************************
+ * MENU-BUTTON
+ ******************************************************************************/
+
+.menu-button {
+  margin-right: .5rem;
+  cursor: pointer;
+
+  @include media-query($px-catalog-screen-desktop-up) {
+    display: none;
+    visibility: hidden;
+  }
+}
