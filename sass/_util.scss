@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+// VARIABLES
+////////////////////////////////////////////////////////////////////////////////
+
+$px-catalog-gray: rgb(234,239,241);
+$px-catalog-dark-gray: rgb(51,51,51);
+$px-catalog-light-gray: rgb(240,240,240);
+$px-catalog-blue: rgb(40,134,175);
+$px-catalog-blue--hover: rgb(58,180,212);
+$px-catalog-dark-blue: rgb(1, 41, 57);
+$px-catalog-magenta: rgb(192,0,42);
+$px-catalog-nav-background: rgb(27,42,51); /* #1b2a33 */
+$px-catalog-screen-landscape-up: 450px; /* mobile landscape -> tablet */
+$px-catalog-screen-tablet-up: 719px; /* tablet -> desktop */
+$px-catalog-screen-desktop-up: 1024px; /* desktop -> anything */
+
+////////////////////////////////////////////////////////////////////////////////
+// MIXINS/HELPERS
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin media-query($bp) {
+  @media screen and (min-width: #{$bp}) {
+    @content;
+  }
+}
