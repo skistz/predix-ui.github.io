@@ -217,8 +217,7 @@
       listeners: {
         'menu.tap' : '_handleMenuTapped',
         'px-sb-list-selected-item-changed': '_handleListItemChanged',
-        'overlay.tap' : '_handleOverlayTapped'//,
-        // 'frameEl.load' : '_handleFrameLoad'
+        'overlay.tap' : '_handleOverlayTapped'
       },
 
       /**
@@ -318,45 +317,6 @@
         ele.style.width = "100%";
         this.$$('.doc__item').innerHTML = '';
         this.$$('.doc__item').appendChild(ele);
-
-        // var frame = this.$.frameEl;
-        // if ((typeof newUrl === 'string') && frame) {
-        //   // Try to get the frame location
-        //   var frameLocation = window.frames['iframe_a'].location;
-        //   // If the location is blank, this is a first load and we can assume
-        //   // the current page is `iframe.src`'s normalized pathname'
-        //   var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
-        //   // Normalize the new path
-        //   var newPath = this._normalizePath(newUrl);
-        //
-        //   if (currentPath !== newPath) {
-        //     // Replace location like this so we don't add an entry to the
-        //     // history stack. The router will do that for us.
-        //     window.frames['iframe_a'].location.replace(newUrl);
-        //     // Activate the spinner
-        //     this.set('spinnerIsActive', true);
-        //   }
-        // }
-      },
-
-      /**
-       * Given a relative or absolute URL, returns the normalized pathname.
-       *
-       * Example:
-       *
-       *     _normalizePath('../../pages/home.html');
-       *     //=> '/pages/home.html'
-       *
-       *     _normalizePath('http://predix-ui.com/px-component/px-component/')
-       *     //=> '/px-component/px-component/'
-       *
-       * @param {String} url
-       * @return {String}
-       */
-      _normalizePath: function(url) {
-        var linkTag = document.createElement('a');
-        linkTag.href = url;
-        return linkTag.pathname || '';
       },
 
       /**
@@ -386,38 +346,6 @@
         if (this.get('menuIsVisible') !== false) {
           this.set('menuIsVisible', false);
         }
-      },
-
-      /**
-       * When the frame finishes loading, ensure the spinner is hidden.
-       */
-      _handleFrameLoad: function() {
-        var url = this.frameUrl;
-        var countNoOfTimesFailedToFindDemoEl = 0;
-        if(url.indexOf('/pages/') < 0){
-          clearInterval(this._loadingPoller);
-          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
-          function checkComponentDemoAttached() {
-            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
-            if(led && led.isAttached){
-              this._clearSpinner();
-              clearInterval(this._loadingPoller);
-            };
-            if(!led){
-              countNoOfTimesFailedToFindDemoEl += 1;
-              if (countNoOfTimesFailedToFindDemoEl === 10){
-                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
-                this._clearSpinner();
-                clearInterval(this._loadingPoller);
-              }
-            }
-          };
-        } else{
-          this._clearSpinner();
-        }
-
-        this.childFrame = null;
-        this.childFrame = this.$.frameEl;
       },
 
       _clearSpinner: function(){
