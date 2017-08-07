@@ -211,19 +211,27 @@
         },
 
         /**
-         * When the viewport width becomes larger than
-         * @type {Object}
+         * Automatically set to true when the viewport becomes larger than
+         * desktop size.
          */
         isDesktopUp: {
           type: Boolean,
           observer: '_desktopBreakpointHit'
         },
 
+        /**
+         * Automatically set to true when the viewport becomes larger than
+         * mobile landscape size (when the phone is on its side).
+         */
         isLandscapeUp: {
           type: Boolean,
           observer: '_landscapeBreakpointHit'
         },
 
+        /**
+         * Reference to the child iFrame element, used to bind for communications
+         * about theme changes.
+         */
         childFrame: {
           type: HTMLElement
         }
