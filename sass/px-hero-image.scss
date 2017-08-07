@@ -18,18 +18,18 @@
   display: block;
   overflow: hidden;
 }
+
 *,*::before, *::after{
   box-sizing: border-box;
 }
-img{
-  max-width: 100%;
-}
+
 .hero-animation-slot > ::slotted(.hero-image--desktop){
   box-sizing: content-box;
   position: relative;
   display: none;
   visibility: hidden;
 }
+
 :host([large-screen]) .hero-slot {
   position: absolute;
   left: 0;
@@ -37,15 +37,18 @@ img{
   display: block;
   z-index: 99;
 }
+
 :host([large-screen][dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--dark){
   display: block;
   visibility: visible;
 }
+
 :host([large-screen]):not([dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--light){
   display: block;
   visibility: visible;
 }
-.hero-image--background{
+
+.hero-picture--bg{
   display: block;
   position: absolute;
   left: 0;
@@ -54,7 +57,8 @@ img{
   width: 100%;
   z-index: 0;
 }
-.hero-image--foreground{
+
+.hero-picture--fg{
   display: block;
   padding: 5%;
   position: relative;
@@ -62,6 +66,7 @@ img{
   height: 100%;
   width: 100%;
 }
+
 .hero-container{
   position: relative;
 }
