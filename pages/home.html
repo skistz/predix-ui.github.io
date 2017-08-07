@@ -116,23 +116,26 @@
   <script>
     Polymer({
       is: 'px-home',
-      ready: function(){
-        // var msg = document.getElementById('parentMessenger');
-        // msg.addEventListener('is-dark-theme-changed', function(evt) {
-        //   var isDarkTheme = evt.detail.value;
-        //   var pxHeroImageEl = document.getElementById("hero-image");
-        //   if (pxHeroImageEl === null) {
-        //     return;
-        //   }
-        //   if (isDarkTheme === true) {
-        //     pxHeroImageEl.setAttribute("dark", "");
-        //     document.body.classList.add('dark-theme');
-        //   }
-        //   else if(isDarkTheme === false) {
-        //     pxHeroImageEl.removeAttribute("dark");
-        //     document.body.classList.remove('dark-theme');
-        //   }
-        // });
+      properties: {
+        darkTheme: {
+          type: Boolean,
+          reflectToAttribute: true,
+          observer: 'darkThemeChanged'
+        }
+      },
+
+      darkThemeChanged: function(isDarkTheme) {
+        var heroImageEl = this._heroImageEl = (this._heroImageEl || Polymer.dom(this.root).querySelector('#hero-image'));
+        if (!heroImageEl) {
+          return;
+        }
+
+        if (isDarkTheme === true) {
+          heroImageEl.setAttribute('dark', '');
+        }
+        else if (isDarkTheme === false) {
+          heroImageEl.removeAttribute('dark');
+        }
       }
     });
   </script>

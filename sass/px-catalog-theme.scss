@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+@import "px-colors-design/_settings.colors.scss";
+@import 'util';
+
+:host {
+  /* App shell theme */
+  --px-catalog-header-background-color       : $px-catalog-gray;
+  --px-catalog-header-text-color             : $gray17;
+  --px-catalog-nav-background-color          : $px-catalog-nav-background;
+  --px-catalog-nav-text-color                : white;
+  --px-cataog-nav-text-color--selected       : $select-default;
+  /* Page theme */
+  --px-catalog-page-background-color         : white;
+  --px-catalog-page-border-color             : $gray4;
+  --px-catalog-page-text-color               : $gray17;
+  --px-catalog-page-text-color--light        : $gray9;
+  --px-catalog-page-accent-color--primary    : $select-default;
+  --px-catalog-page-accent-color--secondary  : #c0002a;
+  --px-catalog-page-success-color            : $green6;
+  --px-catalog-page-alert-color              : $red6;
+}
+
+:host([dark-theme]) {
+  /* App shell theme */
+  --px-catalog-header-background-color       : $gray19;
+  --px-catalog-header-text-color             : $gray4;
+  --px-catalog-nav-background-color          : $gray18;
+  --px-catalog-nav-text-color                : $gray5;
+  --px-cataog-nav-text-color--selected       : $select-default;
+  /* Page theme */
+  --px-catalog-page-background-color         : $gray16;
+  --px-catalog-page-border-color             : $gray14;
+  --px-catalog-page-text-color               : $gray4;
+  --px-catalog-page-text-color--light        : $gray6;
+  --px-catalog-page-accent-color--primary    : $select-default;
+  --px-catalog-page-accent-color--secondary  : $red6;
+  --px-catalog-page-success-color            : $green6;
+  --px-catalog-page-alert-color              : $red6;
+}

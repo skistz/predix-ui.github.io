@@ -542,7 +542,7 @@ table.guidelines.datavis td {
   }
 }
 
-.dark-theme {
+:host([dark-theme]) {
   .hero__text p {
     color: $gray4;
   }
