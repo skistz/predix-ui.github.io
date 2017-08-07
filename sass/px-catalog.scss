@@ -22,6 +22,7 @@
 
 $px-catalog-header-size-small: 45px;
 $px-catalog-header-size-large: 80px;
+$px-catalog-nav-width-large: 300px;
 
 /*******************************************************************************
  * HOST
@@ -70,7 +71,7 @@ $px-catalog-header-size-large: 80px;
   }
 
   @include media-query($px-catalog-screen-desktop-up) {
-    left: 300px;
+    left: $px-catalog-nav-width-large;
   }
 }
 
@@ -107,7 +108,7 @@ $px-catalog-header-size-large: 80px;
   --app-drawer-scrim-background: rgba(0,0,0,0.4);
 
   @include media-query($px-catalog-screen-landscape-up) {
-    --app-drawer-width: 300px;
+    --app-drawer-width: $px-catalog-nav-width-large;
   }
 }
 
@@ -124,7 +125,7 @@ $px-catalog-header-size-large: 80px;
   background-color: $px-catalog-nav-background;
 
   @include media-query($px-catalog-screen-landscape-up) {
-    width: 300px;
+    width: $px-catalog-nav-width-large;
   }
 
   @include media-query($px-catalog-screen-tablet-up) {
