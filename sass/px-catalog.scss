@@ -47,7 +47,8 @@ $px-catalog-nav-width-large: 300px;
   height: $px-catalog-header-size-small;
   padding: 0 1.33rem;
   z-index: 2;
-  background-color: $px-catalog-gray;
+  background-color: var(--px-catalog-header-background-color, gray);
+  color: var(--px-catalog-header-text-color, black);
 
   @include media-query($px-catalog-screen-tablet-up) {
     height: $px-catalog-header-size-large;
@@ -97,6 +98,8 @@ $px-catalog-nav-width-large: 300px;
   border: none;
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /*******************************************************************************
@@ -122,7 +125,7 @@ $px-catalog-nav-width-large: 300px;
   padding-right: 1.33rem;
   padding-left: 1.33rem;
   padding-bottom: $px-catalog-header-size-small;
-  background-color: $px-catalog-nav-background;
+  background-color: var(--px-catalog-nav-background-color, darkgray);
 
   @include media-query($px-catalog-screen-landscape-up) {
     width: $px-catalog-nav-width-large;
@@ -199,6 +202,8 @@ $px-catalog-nav-width-large: 300px;
       height: 100%;
       width: 1px;
       background-color: rgba(0,0,0,0.3);
+      background-color: var(--px-catalog-header-text-color, gray);
+      opacity: 0.5;
     }
   }
 

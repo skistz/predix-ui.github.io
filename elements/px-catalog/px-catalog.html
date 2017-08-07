@@ -2,8 +2,11 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
+<link defer rel="import" href="../../css/px-catalog-theme-styles.html" />
 <link defer rel="import" href="../../css/px-catalog-styles.html" />
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-theme/px-dark-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-demo-theme/px-dark-demo-theme-styles.html" />
 
 <!-- Import external dependencies -->
 <link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
@@ -17,14 +20,17 @@
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
 <link defer rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link defer rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
 
 <!-- Import local dependencies -->
+<link async rel="import" href="px-catalog-theme-switcher.html" />
 <link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
 <link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
 
 <dom-module id="px-catalog">
   <template>
     <style include="px-theme-styles" is="custom-style"></style>
+    <style include="px-catalog-theme-styles" is="custom-style"></style>
     <style include="px-catalog-styles" is="custom-style"></style>
 
     <style>
@@ -45,7 +51,8 @@
     </style>
 
     <!-- Communicates the state of dark theme toggle to child iframes -->
-    <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent>
+    <!-- <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent> -->
+    <px-catalog-theme-switcher global dark-theme="[[darkTheme]]" target="[[activeModule]]"></px-catalog-theme-switcher>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
@@ -198,7 +205,8 @@
          */
         darkTheme: {
           type: Boolean,
-          observer: '_handleDarkThemeChanged'
+          observer: '_handleDarkThemeChanged',
+          reflectToAttribute: true
         },
 
         /**
@@ -251,9 +259,11 @@
 
         if (isDarkTheme && !activeModule.hasAttribute('dark-theme')) {
           activeModule.setAttribute('dark-theme', '');
+          activeModule.updateStyles();
         }
         if (!isDarkTheme && activeModule.hasAttribute('dark-theme')) {
           activeModule.removeAttribute('dark-theme');
+          activeModule.updateStyles();
         }
       },
 

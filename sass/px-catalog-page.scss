@@ -1,0 +1,279 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
+
+$inuit-enable-code--inline: true;
+@import "px-code-design/_base.code.scss";
+
+$actionable: true;
+$actionable--action: true;
+$actionable--large: true;
+$actionable--huge: true;
+@import "px-actionable-design/_objects.actionable.scss";
+$inuit-enable-btn--primary: true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+@import "px-layout-design/_objects.layout.scss";
+$inuit-enable-list-inline--delimited: true;
+$inuit-list-inline-delimit-character: "| ";
+@import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
+
+// Component
+
+@import 'util';
+
+/*******************************************************************************
+ * TEMPORARY DARK THEME HACK
+ ******************************************************************************/
+
+:host([dark-theme]) img {
+  // background-color: white;
+}
+
+/*******************************************************************************
+ * HOST + PAGE MAIN
+ ******************************************************************************/
+
+:host {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  background-color: var(--px-catalog-page-background-color, white);
+  color: var(--px-catalog-page-text-color, black);
+  color: var(--px-catalog-page-text-color, black);
+}
+
+.page-main {
+  padding: 3% 5% 2% 5%;
+  margin-bottom: 4rem;
+}
+.page-main p {
+  max-width: 45rem;
+}
+
+/*******************************************************************************
+ * TYPOGRAPHY
+ ******************************************************************************/
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+h2 {
+  font-size: calculateRem(34px);
+}
+
+h3 {
+  font-size: calculateRem(28px);
+}
+
+h4 {
+  font-size: calculateRem(15px);
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+h4 + p {
+  margin-top: 0;
+}
+
+// *** ACCENT COLORS *** //
+
+h2, .text-accent--primary {
+  color: var(--px-catalog-page-accent-color--primary, red);
+}
+
+h3, .text-accent--secondary {
+  color: var(--px-catalog-page-accent-color--secondary, blue);
+}
+
+// *** SPECIAL USE CLASSES **/
+
+.page-title {
+  margin: 0;
+}
+
+/*******************************************************************************
+ * BLOCK-LEVEL STYLES
+ ******************************************************************************/
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+ul {
+  margin-left: 1.875rem;
+}
+
+li > ul {
+  margin-bottom: 0;
+}
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid $px-catalog-gray;
+  box-sizing: content-box;
+  clear: both;
+  margin: 2rem 0;
+}
+
+/*******************************************************************************
+ * LAYOUTS
+ ******************************************************************************/
+
+.havles {
+  display: block;
+}
+
+.halves > * + * {
+  margin-top: 1rem;
+}
+
+@include media-query($px-catalog-screen-tablet-up) {
+  .halves {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .halves > * + * {
+    margin-top: 0;
+  }
+
+  .halves > * {
+    width: 48%;
+  }
+
+  .halves > *:first-child {
+    margin-right: calculateRem(15px);
+  }
+}
+
+/*******************************************************************************
+ * COMPONENT: GUIDELINE BOX
+ ******************************************************************************/
+
+.guideline-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--px-catalog-page-border-color, gray);
+  padding: .75rem;
+}
+
+.guideline-box__image {
+  flex: 1 1 auto;
+}
+
+.guideline-box__info {
+  margin-top: .5em;
+  margin-bottom: 0;
+  font-style: italic;
+  color: var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header {
+  display: block;
+  padding-bottom: .5rem;
+  margin-top: 0;
+  margin-bottom: .75rem;
+  font-weight: 700;
+  color: var(--px-catalog-page-text-color--light, gray);
+  border-bottom: 2px solid var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header--do {
+  color: var(--px-catalog-page-success-color, green);
+  border-bottom: 2px solid var(--px-catalog-page-success-color, green);
+}
+
+.guideline-box__header--dont {
+  color: var(--px-catalog-page-alert-color, red);
+  border-bottom: 2px solid var(--px-catalog-page-alert-color, red);
+}
+
+/*******************************************************************************
+ * COMPONENT: GUIDELINES TABLE
+ ******************************************************************************/
+
+// table.guidelines {
+//   width: 95%;
+//   margin: 0px;
+//   padding: 0px;
+//   border-collapse: collapse;
+// }
+//
+// table.guidelines td {
+//   border-bottom: 1px solid $gray2;
+//   padding: .75em 0;
+//   vertical-align: top;
+// }
+//
+// table.guidelines th {
+//   border-bottom: 1px solid $gray6;
+//   text-align: left;
+//   font-weight: normal;
+// }
+//
+// table.guidelines.datavis {
+//   width: 80%;
+//   margin: auto;
+// }
+//
+// table.guidelines.datavis td {
+//   width: 25%;
+//   padding: .5em 5em 0 0;
+//   border: none;
+// }
+//
+// table td.description {
+//   width: 60%;
+// }
+//
+// .halves.guidelines {
+//   border: 1px solid $gray4;
+//   padding: .75em;
+// }
+//
+// .halves {
+//   display: inline-block;
+//   vertical-align: top;
+//   margin-bottom: 5%;
+// }
+//
+// .thirds {
+//   display: inline-block;
+//   width: 100%;
+//   /*max-width: 500px;*/
+//   text-align: center;
+//   vertical-align: top;
+//   margin: 0% 5% 10% 0;
+// }
