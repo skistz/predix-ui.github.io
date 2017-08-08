@@ -19,12 +19,7 @@
   overflow: hidden;
 }
 
-*,*::before, *::after{
-  box-sizing: border-box;
-}
-
 .hero-animation-slot > ::slotted(.hero-image--desktop){
-  box-sizing: content-box;
   position: relative;
   display: none;
   visibility: hidden;
@@ -35,7 +30,6 @@
   left: 0;
   top: 0;
   display: block;
-  z-index: 99;
 }
 
 :host([large-screen][dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--dark){
@@ -55,14 +49,12 @@
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 0;
 }
 
 .hero-picture--fg{
   display: block;
   padding: 5%;
   position: relative;
-  z-index: 2;
   height: 100%;
   width: 100%;
 }

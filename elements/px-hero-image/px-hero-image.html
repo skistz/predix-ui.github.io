@@ -13,13 +13,6 @@
     </iron-media-query>
     <div class="hero-container">
 
-      <div class="hero-slot">
-        <slot name="content"></slot>
-      </div>
-
-      <div class="hero-animation-slot">
-        <slot name="animation"></slot>
-      </div>
 
       <!--MOBILE-->
       <template is="dom-if" if="{{!largeScreen}}">
@@ -57,7 +50,7 @@
       <!--DESKTOP-->
       <template is="dom-if" if="{{largeScreen}}">
         <template is="dom-if" if="{{!dark}}">
-          <picture class="hero-image--background">
+          <picture class="hero-picture--bg">
             <source srcset="../../img/desktop_hero_bkd_light.webp" type="image/webp">
             <source srcset="../../img/desktop_hero_bkd_light.png" type="image/png">
             <img src="../../img/desktop_hero_bkd_light.png" alt="hero-background-image" style="height: 370px; max-width: none;">
@@ -65,7 +58,7 @@
         </template>
 
         <template is="dom-if" if="{{dark}}">
-          <picture class="hero-image--background">
+          <picture class="hero-picture--bg">
             <source srcset="../../img/desktop_hero_bkd_dark.webp" type="image/webp">
             <source srcset="../../img/desktop_hero_bkd_dark.png" type="image/png">
             <img src="../../img/desktop_hero_bkd_dark.png" alt="hero-background-image" style="height: 370px; max-width: none; ">
@@ -73,6 +66,10 @@
         </template>
 
       </template>
+
+      <div class="hero-slot">
+        <slot name="content"></slot>
+      </div>
 
 
     </div>
