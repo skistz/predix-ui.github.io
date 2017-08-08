@@ -519,42 +519,11 @@ table.guidelines.datavis td {
     min-height: 350px;
   }
 
-  .hero__text {
-    padding: 30px;
-    max-width: 350px;
-    font-size: .9em;
-  }
-  .hero__picture {
-    margin-bottom: 1rem;
-    display: block;
-  }
-  .hero__picture--light {
-    display: block;
-    visibility: visible;
-  }
-  .hero__picture--dark {
-    display: none;
-    visibility: hidden;
-  }
-  .hero__text {
-    position: relative;
-  }
 }
 
 :host([dark-theme]) {
-  .hero__text p {
-    color: $gray4;
-  }
   .hero {
     background-color: #1a2a35;
-  }
-  .hero__picture--light {
-    display: none;
-    visibility: hidden;
-  }
-  .hero__picture--dark {
-    display: block;
-    visibility: visible;
   }
 }
 
