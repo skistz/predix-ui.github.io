@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+.filled {
+  fill: var(--animation-img-background-color,#EBEFF1);
+}
+
+.notfilled {
+  fill: none;
+}
+
+.icons {
+  stroke: #4C6472;
+  stroke-width: var(--animation-icon-stroke-width, 1);
+}
+
+.chart-color-1 {
+  fill: var(--animation-chart-color-1, #e18d26)
+}
+.chart-color-2 {
+  fill: var(--animation-chart-color-1, #a5d06b);
+}
+.chart-color-3 {
+  fill: var(--animation-chart-color-3, #9279b7);
+}

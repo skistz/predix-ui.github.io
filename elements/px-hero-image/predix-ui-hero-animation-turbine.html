@@ -1,0 +1,61 @@
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../css/predix-ui-hero-animation-icons-styles.html">
+
+<dom-module id="predix-ui-hero-animation-turbine">
+  <template>
+    <style include="predix-ui-hero-animation-icons-styles" is="custom-style">
+      #turbine {
+        animation: spin 5s linear infinite;
+      }
+      @keyframes spin {
+        from { transform:rotate(0deg); }
+        to { transform:rotate(360deg); }
+      }
+
+      #twapper {
+        animation: spin 2s ease infinite;
+        animation-play-state: paused;
+      }
+
+      #twapper:hover {
+        animation-play-state: running;
+      }
+    </style>
+
+    <svg
+      id="base"
+      xmlns="http://www.w3.org/2000/svg"
+      width$="[[size]]"
+      height$="250"
+      viewBox="0 0 32 36">
+      <g transform="translate(16 16)">
+        <g>
+          <path class="filled" d="M-1.5,2.8L-3.2,18L3.2,18L1.4,2.8Z"/>
+          <line class="icons notfilled" x1="-1.5" y1="2.8" x2="-3.2" y2="18"/>
+          <line class="icons notfilled" x1="3.2" y1="18" x2="1.4" y2="2.8"/>
+          <line class="icons notfilled" x1="-7" y1="18" x2="7" y2="18"/>
+        </g>
+        <g id="twapper">
+          <g id="turbine">
+            <path class="icons filled" d="M2,1.5l2.3-0.2c0.7-0.1,1.4,0.3,1.7,0.8l4,6l-0.9,1.6l-8.4-7Z"/>
+            <path class="icons filled" d="M-2,1l-1,2.1c-0.3,0.6-1.2,0.7-1.9,0.7l-7,0.8l-0.9-1.6l10.3-3.8Z"/>
+            <path class="icons filled" d="M0,-2l-1.4-1.9c-0.4-0.6-0.5-1.3-0.1-1.9l3.2-6.5h1.9l-1.9,10.8Z"/>
+            <circle class="icons filled" cx="0" cy="0" r="2.3"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'predix-ui-hero-animation-turbine',
+    properties: {
+      size: {
+        type: Number,
+        value: 32
+      }
+    }
+  });
+</script>

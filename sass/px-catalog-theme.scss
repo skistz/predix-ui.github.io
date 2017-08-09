@@ -28,6 +28,22 @@
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
   --px-catalog-page-code-background-color    : $gray2;
+
+  // animation theme
+  --animation-img-background-color     : #EBEFF1;
+  --animation-banner-color             : #FFFFFF;
+  --animation-banner-corner-color      : #D8E0E5;
+  --animation-computer-stroke          : #677E8C;
+  --animation-computer-bar             : #002939;
+  --animation-computer-bottom-bar      : #EBEFF1;
+  --animation-kpi-color                : #2D414D;
+  --animation-kpi-arrow-color          : #6EA341;
+  --animation-chart-color-1            : #e18d26;
+  --animation-chart-color-2            : #a5d06b;
+  --animation-chart-color-3            : #9279b7;
+  --animation-chart-background-color   : #FFFFFF;
+  --animation-chart-labels-color       : #D8E0E5;
+  --animation-gauge-background-color   : #b6c3cc;
 }
 
 :host([dark-theme]) {
@@ -47,4 +63,20 @@
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
   --px-catalog-page-code-background-color    : $gray2;
+
+    // animation theme
+  --animation-img-background-color     : #1d2b34;
+  --animation-banner-color             : #10171b;
+  --animation-banner-corner-color      : #132027;
+  --animation-computer-stroke          : #4f6572;
+  --animation-computer-bar             : #0f171b;
+  --animation-computer-bottom-bar      : #0f171b;
+  --animation-kpi-color                : #c2cccf;
+  --animation-kpi-arrow-color          : #6EA341;
+  --animation-chart-color-1            : #df8c34;
+  --animation-chart-color-2            : #a6cf70;
+  --animation-chart-color-3            : #917ab5;
+  --animation-chart-background-color   : #24343e;
+  --animation-chart-labels-color       : #435662;
+  --animation-gauge-background-color   : #1c2a33;
 }

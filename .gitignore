@@ -6,3 +6,4 @@ cert.crt
 cert.key
 *.pem
 pages/
+shrinkwrap.yml
