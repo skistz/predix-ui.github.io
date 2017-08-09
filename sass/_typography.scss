@@ -1,0 +1,43 @@
+/*******************************************************************************
+ * TYPOGRAPHY
+ ******************************************************************************/
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+h2 {
+  font-size: calculateRem(34px);
+}
+
+h3 {
+  font-size: calculateRem(28px);
+}
+
+h4 {
+  font-size: calculateRem(15px);
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+h4 + p {
+  margin-top: 0;
+}
+
+// *** ACCENT COLORS *** //
+
+h2, .text-accent--primary {
+  color: var(--px-catalog-page-accent-color--primary, red);
+}
+
+h3, .text-accent--secondary {
+  color: var(--px-catalog-page-accent-color--secondary, blue);
+}

@@ -1,0 +1,98 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<script>
+(function(){
+  'use strict';
+
+  window.PxCatalogBehavior = (window.PxCatalogBehavior || {});
+  PxCatalogBehavior.Page = {
+    properties: {
+      _shouldCollapseToc: {
+        type: Boolean,
+        observer: '_resizeToc'
+      },
+      _tocIsStickied: {
+        type: Boolean,
+        value: false
+      },
+      _tocCollapseUnder: {
+        type: String,
+        value: '(max-width: 719px)'
+      }
+    },
+    attached: function() {
+      this._tocElement = Polymer.dom(this.root).querySelector('#toc');
+      this._stickyTocOffset = this._getStickyOffset();
+      this._stickyScrollHandler = this._onScroll.bind(this);
+      this._parentElement = this.parentElement;
+      this._parentElement.addEventListener('scroll', this._stickyScrollHandler, false);
+    },
+    detached: function() {
+      if (this._stickyScrollHandler && this._parentElement) {
+        this._parentElement.removeEventListener('scroll', this._stickyScrollHandler, false);
+      }
+    },
+    scrollToAnchor: function(anchor) {
+      if (!this._parentElement) {
+        return;
+      }
+      var el = Polymer.dom(this.root).querySelector(anchor);
+      if (el) {
+        var elTop = el.getBoundingClientRect().top;
+        var contentTop = this.getBoundingClientRect().top;
+        var offset = elTop - contentTop;
+        this._parentElement.scrollTop = offset;
+      }
+    },
+    _handleTocTapped: function(evt) {
+      evt.preventDefault();
+      var anchor = Polymer.dom(evt).rootTarget.getAttribute('anchor');
+      if (anchor) {
+        this.scrollToAnchor(anchor);
+      }
+    },
+    _getStickyOffset: function() {
+      if (!this._tocElement) {
+        return;
+      }
+      var tocRect = this._tocElement.getBoundingClientRect();
+      var thisRect = this.getBoundingClientRect();
+      return {
+        contentOffset: tocRect.top - thisRect.top,
+        windowOffset: tocRect.top
+      };
+    },
+    _onScroll: function() {
+      if (!this._tocElement || !this._parentElement || this._shouldCollapseToc) {
+        return;
+      }
+
+      var scrollTop = this._parentElement.scrollTop;
+      this._resizeToc(scrollTop);
+    },
+    _resizeToc: function(scrollTop) {
+      if (!this._tocElement || !this._stickyTocOffset) {
+        return;
+      }
+
+      this.debounce('resize-toc', function() {
+        if ((this._shouldCollapseToc || scrollTop < this._stickyTocOffset.contentOffset) && this._tocIsStickied) {
+          // Should be unstuck
+          this._tocElement.style.removeProperty('position');
+          this._tocElement.style.removeProperty('top');
+          this._tocIsStickied = false;
+          return;
+        }
+
+        if (scrollTop > this._stickyTocOffset.contentOffset && !this._tocIsStickied) {
+          // Should be stuck
+          this._tocElement.style.top = this._stickyTocOffset.windowOffset + 'px';
+          this._tocElement.style.position = 'fixed';
+          this._tocIsStickied = true;
+          return;
+        }
+      }, 1);
+    }
+  };
+})();
+</script>

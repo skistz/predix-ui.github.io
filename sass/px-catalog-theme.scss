@@ -20,13 +20,14 @@
   --px-cataog-nav-text-color--selected       : $select-default;
   /* Page theme */
   --px-catalog-page-background-color         : white;
-  --px-catalog-page-border-color             : $gray4;
+  --px-catalog-page-border-color             : $gray2;
   --px-catalog-page-text-color               : $gray17;
   --px-catalog-page-text-color--light        : $gray9;
   --px-catalog-page-accent-color--primary    : $select-default;
   --px-catalog-page-accent-color--secondary  : #c0002a;
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
+  --px-catalog-page-code-background-color    : $gray2;
 }
 
 :host([dark-theme]) {
@@ -45,4 +46,5 @@
   --px-catalog-page-accent-color--secondary  : $red6;
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
+  --px-catalog-page-code-background-color    : $gray2;
 }

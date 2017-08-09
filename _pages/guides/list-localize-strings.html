@@ -1,0 +1,188 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html"/>
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+
+<dom-module id="list-localize-strings">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <template is="dom-bind">
+      <section class="main u-mb++ vis__main">
+        <h5>Last Updated July 26, 2017</p>
+        <h2 class="selected">Localize your application</h2>
+
+          <p>This temporary list indicates all strings that can currently be localized in Predix UI. The strings are displayed in a 'key':'value' format, because those strings represents the english language the keys and values match. Everything that doesn't look like a 'key':'value' format represents that this component holds a subcomponent and hence should also include this subcomponent list of strings.</p>
+
+          <p>For example the following definition:</p>
+          <figure class="code vis__code-snippet">
+            <code>
+              'Cancel': 'Cancel',<br>
+              'Apply': 'Apply',<br>
+              validate
+            </code>
+          </figure>
+          <p></p>
+          <p>means that this component would hold the 'Cancel' and 'Apply' strings as well as any strings defined in the validate component (defined somewhere else on the page).</p>
+
+          <p>Please note that letter casing matters.</p>
+
+
+        <p class="delta u-mt++">Datetime components</p>
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-buttons</p>
+        <ul class="list-bare">
+          <li >'Cancel': 'Cancel'</li>
+          <li >'Apply': 'Apply'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-presets</p>
+        <ul class="list-bare">
+          <li >'Presets': 'Presets'</li>
+        </ul>
+
+
+        <p class="epsilon u-mb-- u-mt+">validate</p>
+        <ul class="list-bare">
+          <li>'Future dates are not allowed': 'Future dates are not allowed'</li>
+          <li>'Past dates are not allowed': 'Past dates are not allowed'</li>
+          <li>'Year': 'Year'</li>
+          <li>'Month': 'Month'</li>
+          <li>'Day': 'Day'</li>
+          <li>'Hour': 'Hour'</li>
+          <li>'Minute': 'Minute'</li>
+          <li>'Second': 'Second'</li>
+          <li>'Millisecond': 'Millisecond'</li>
+          <li>'is not valid': 'is not valid'</li>
+          <li>'This hour is not within a 12 hour clock': 'This hour is not within a 12 hour clock'</li>
+        </ul>
+
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-range-field</p>
+        <ul class="list-bare">
+          <li>'from can not be later than to': 'from can not be later than to'</li>
+          <li>'from': 'from'</li>
+          <li>'TO': 'TO'</li>
+          <li>px-datetime-buttons</li>
+          <li>validate</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-field</p>
+        <ul class="list-bare">
+          <li>validate</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-picker</p>
+        <ul class="list-bare">
+          <li>'Today': 'Today'</li>
+          <li>px-datetime-buttons</li>
+          <li>validate</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-datetime-range-panel</p>
+        <ul class="list-bare">
+          <li>validate</li>
+          <li>px-datetime-buttons</li>
+          <li>px-datetime-presets</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-rangepicker</p>
+        <ul class="list-bare">
+          <li>px-datetime-range-panel</li>
+          <li>px-datetime-range-field</li>
+        </ul>
+
+        <p class="delta u-mt++">Vis components</p>
+
+        <p class="epsilon u-mb-- u-mt+">px-vis-events</p>
+        <ul class="list-bare">
+          <li>'Event': 'Event'</li>
+          <li>'ID': 'ID'</li>
+          <li>'Timestamp': 'Timestamp'</li>
+          <li>'X': 'X'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-vis-xy-chart</p>
+        <ul class="list-bare">
+          <li>px-vis-events</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-vis-timeseries</p>
+        <ul class="list-bare">
+          <li>px-vis-events</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-vis-polar</p>
+        <ul class="list-bare">
+          <li>'clockwise': 'clockwise'</li>
+          <li>'counter clockwise': 'counter clockwise'</li>
+        </ul>
+
+        <p class="delta u-mt++">Data table components</p>
+        <p class="epsilon u-mb-- u-mt+">px-pagination</p>
+        <ul class="list-bare">
+          <li>'of': 'of'</li>
+          <li>'Rows per page': 'Rows per page'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">aha-table</p>
+        <ul class="list-bare">
+          <li>'Show/Hide Column': 'Show/Hide Column'</li>
+          <li>'Filter': 'Filter'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-data-table</p>
+        <ul class="list-bare">
+          <li>pagination</li>
+          <li>aha-table</li>
+        </ul>
+
+        <p class="delta u-mt++">Others</p>
+
+        <p class="epsilon u-mb-- u-mt+">px-timeline</p>
+        <ul class="list-bare">
+          <li>'TODAY': 'TODAY'</li>
+          <li>'THIS WEEK': 'THIS WEEK'</li>
+          <li>'THIS MONTH': 'THIS MONTH'</li>
+          <li>'THIS YEAR': 'THIS YEAR'</li>
+          <li>'LAST YEAR': 'LAST YEAR'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-login</p>
+        <ul class="list-bare">
+          <li>'Sign In': 'Sign In'</li>
+          <li>'Sign Out': 'Sign Out'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-alert-message</p>
+        <ul class="list-bare">
+          <li>"Show More": "Show More"</li>
+          <li>"OK": "OK"</li>
+          <li>"Open": "Open"</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-context-browser</p>
+        <ul class="list-bare">
+          <li>'Open': 'Open'</li>
+        </ul>
+
+        <p class="epsilon u-mb-- u-mt+">px-inbox</p>
+        <ul class="list-bare">
+          <li>'localize': 'localize'</li>
+        </ul>
+
+
+      </section>
+    </template>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'list-localize-strings'
+    });
+  </script>
+</dom-module>

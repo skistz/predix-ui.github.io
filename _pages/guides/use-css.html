@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html"/>
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+<link rel="import" href="../../bower_components/px-icon-set/px-icon-set-utility.html">
+<link rel="import" href="../../bower_components/px-icon-set/px-icon.html">
+<link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+
+<dom-module id="use-css">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++ flex__item flex__item--msfix">
+      <h2 class="selected">Use Predix UI CSS to design your application</h2>
+      <p>Build your application with Predix UI CSS to ensure consistent design across your entire application. Use CSS modules to create the base typography, layout, and content design for your project.</p>
+
+      <a class="info-box" target="_blank" href="https://github.com/predixdev/px-getting-started/">
+        <h3 class="actionable"><strong>Learn to use the CSS modules on Github <px-icon icon="px-utl:link"></px-icon></strong></h3>
+        <p>The px-getting-started README breaks down everything you need to know to use Predix UI CSS modules. Use the guide to get started or refresh your knowledge.</p>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'use-css'
+    });
+  </script>
+</dom-module>

@@ -16,6 +16,7 @@
  *                  *.html files.
  ******************************************************************************/
 
+const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const pkg = require('./package.json');
@@ -38,7 +39,9 @@ const execSync = require('child_process').execSync;
 var request = require('request');
 const imagemin = require("imagemin");
 const webp = require("imagemin-webp");
-
+const glob = require("glob");
+const fse = require('fs-extra');
+const md = require('./scripts/page-builder');
 
 /*******************************************************************************
  * SETTINGS
@@ -190,6 +193,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
 
 gulp.task('serve', function() {
   browserSync.init(browserSyncOptions);
+  gulp.watch(['_pages/**/*'], ['docs']);
   gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
 });
@@ -267,7 +271,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -369,4 +373,50 @@ gulp.task('compress-images', function(){
     });
   });
 
+});
+
+function readFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', (err, contents) => {
+      if (err) reject(err);
+      resolve(contents);
+    });
+  });
+};
+
+function buildMdFile(filePath) {
+  const srcFilePath = path.join(__dirname, filePath);
+  const destFilePath = path.join(__dirname, filePath.replace(/^\_pages/, 'pages').replace(/\.md$/, '.html'));
+  return readFile(srcFilePath)
+    .then(text => md.fromText(text))
+    .then(html => fse.outputFile(destFilePath, html));
+};
+
+gulp.task('docs:clean', function(){
+  return gulp.src(['pages'], {
+    read: false
+  })
+  .pipe($.clean());
+});
+
+/*
+ * Reads any markdown (suffix .md) files in _pages/, renders the markdown into
+ * HTML, and writes file to pages/ at the same path with a .html suffix.
+ */
+gulp.task('docs:md', function(cb){
+  glob('_pages/**/*.md', (err, files) => {
+    Promise.all(files.map(buildMdFile)).then(() => cb());
+  });
+});
+
+/*
+ * Copies any files in _pages/ that do not end with .md to the pages/ dir.
+ */
+gulp.task('docs:copy-non-md', function(){
+  return gulp.src(['./_pages/**/*', '!./_pages/**/*.md'])
+    .pipe(gulp.dest('./pages/'));
+});
+
+gulp.task('docs', function(callback) {
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md')(callback);
 });

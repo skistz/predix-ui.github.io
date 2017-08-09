@@ -1,0 +1,68 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html" />
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+<link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+
+
+<dom-module id="release-notes">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Release Notes</h2>
+
+      <h4>Q2 2017 Release</h4>
+
+  		       <p>Introducing the Predix Design System refresh which brings a more contemporary and sophisticated visual style to the Predix Design System and more diversity of design patterns.</p>
+
+<b>Included in this release is:</b>
+<ul>
+<li class="u-mv--">New visual language for all components</li>
+<li class="u-mv--">Fresh code for all 117 Predix UI CSS and Components</li>
+<li class="u-mv--">Sketch stencils with a Stencil Starter Kit</li>
+<li class="u-mv--">Design guidelines</li>
+<li class="u-mv--">A new single column Context Browser component and separate Breadcrumb component</li>
+<li class="u-mv--">New navigation patterns; horizontal, vertical, and collapsible to improve web app navigation</li>
+<li class="u-mv--">New page header/branding bar</li>
+<li class="u-mv--">New set of 177 icons which replaces the font-awesome icons</li>
+</ul>
+<p>We’re really excited about the new designs, and very much appreciative of all the contributions to this effort from the community. For specifics on the release, please read the <a href="https://docs.predix.io/en-US/content/platform/web_application_development/predix_ui/predix-design-system-release-notes" target="_blank">Q2 2017 release notes</a>.</p>
+
+
+
+<h4 class="u-mt+ u-pt+">FAQ</h4>
+<p><b>Q: Why release a Refresh to the Predix Design System?</b><br/>
+A: The previous Predix Design System was over 2 years old. Based on learnings and feedback from our users, we were excited to collaborate with our community to release a more contemporary and sophisticated visual style.</p>
+
+<p class="u-mt+ u-pt+"><b>Q: I’m using a pre-Refresh Predix UI component, can I still use this version and make a fix or enhancement to it myself?</b><br/>
+A: Yes you can but you should also make the fix/enhancement in the Design Refresh version of the component.</p>
+
+<p class="u-mt+ u-pt+"><b>Q: I need the Predix UI team to make an enhancement to a component or chart. Can you do this on the pre-Refresh component?</b><br/>
+A: No. We are maintaining and enhancing only the Design Refresh version of the components going forward. Please contact the Predix UI team if there is an urgent business case for your request.</p>
+
+<p class="u-mt+ u-pt+"><b>Q: Can I take one of the Design Refresh components or charts without upgrading all of my components?</b><br/>
+A: No –there are dependencies between components, so this is not recommended. You should upgrade your app to be in sync and have a harmonious user experience.</p>
+
+
+<p class="u-mt+ u-pt+"><b>Q: I have other non-Predix UI components mixed in with Predix UI components in my application, how do I apply Refresh to these?</b><br/>
+A: There are Design Guidelines to help your designers to redesign these components and Predix UI designers have internal office hours to support.</p>
+
+<p class="u-mt+ u-pt+"><b>Q: I have a need for a design that is not part of the Predix Design System? How can I get this included?</b><br/>
+A: We love contributions back to the Predix Design System. Please contact the Predix UI team to discuss the proposed contribution.</p>
+
+
+      </section>
+
+    <!-- Footer -->
+<px-demo-footer></px-demo-footer>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'release-notes'
+    });
+  </script>
+</dom-module>

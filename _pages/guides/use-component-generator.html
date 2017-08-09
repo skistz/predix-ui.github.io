@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html"/>
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+<link rel="import" href="../../bower_components/px-icon-set/px-icon-set-utility.html">
+<link rel="import" href="../../bower_components/px-icon-set/px-icon.html">
+<link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+
+<dom-module id="use-component-generator">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++ flex__item flex__item--msfix">
+      <h2 class="selected">Build custom components with the generator</h2>
+
+      <p>You can extend Predix UI to create custom components for any type of application. To speed things up, use the same generator tool that all Predix UI Components are built with to create your component scaffolding.</p>
+
+      <a class="info-box" target="_blank" href="https://github.com/predixdev/generator-px-comp/">
+        <h3 class="actionable"><strong>Get the generator from Github <px-icon icon="px-utl:link"></px-icon></strong></h3>
+        <p>The generator-px-comp repository hosts a Yeoman generator tool that will create the file structure for new components, install necessary Predix UI CSS modules, and prepare tests. See the repository README for instructions on using the generator.</p>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </template>
+  <script>
+    Polymer({
+      is: 'use-component-generator'
+    });
+  </script>
+</dom-module>

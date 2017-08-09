@@ -1,0 +1,122 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/px-catalog-page-styles.html" />
+
+<dom-module id="catalog-picture">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: .75rem;
+        border: 1px solid var(--px-catalog-page-border-color, lightgray);
+        margin-bottom: 1rem;
+      }
+      .caption {
+        margin: 1rem 0 0 0;
+        font-style: italic;
+        color: var(--px-catalog-page-text-color--light, gray);
+      }
+      picture, img {
+        max-width: 100%;
+      }
+      picture {
+        display: block;
+        align-self: center;
+      }
+    </style>
+
+    <picture>
+      <source srcset$="[[imgSrc]].webp" type="image/webp">
+      <source srcset$="[[imgSrc]].png" type="image/png">
+      <img src$="[[imgSrc]].png" alt$="[[imgAlt]]">
+      <p class="caption">[[caption]]</p>
+    </picture>
+  </template>
+  <script>
+    Polymer({
+      is: 'catalog-picture',
+      properties: {
+        imgSrc: String,
+        imgAlt: String,
+        caption: String
+      }
+    });
+  </script>
+</dom-module>
+
+<dom-module id="catalog-code-split">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: 1px solid var(--px-catalog-page-border-color, lightgray);
+        margin-bottom: 1rem;
+      }
+      /*.wrapper {
+        display: block;
+        padding: .75rem;
+        border: 1px solid var(--px-catalog-page-border-color, lightgray);
+      }*/
+      .caption {
+        margin: 0;
+        padding: .75rem;
+        font-style: italic;
+        color: var(--px-catalog-page-text-color--light, gray);
+        border-top: 1px solid var(--px-catalog-page-border-color, lightgray);
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      :host([horizontal]) .wrapper {
+        flex-direction: row;
+      }
+      .wrapper ::slotted():first-child {
+        margin: 0;
+        display: flex;
+      }
+      .wrapper ::slotted():last-child {
+        margin: 0;
+        display: flex;
+      }
+      .wrapper ::slotted(catalog-picture) {
+        border: none;
+      }
+    </style>
+
+    <div class="wrapper">
+      <slot></slot>
+    </div>
+    <template is="dom-if" if="[[caption]]">
+      <p class="caption">[[caption]]</p>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'catalog-code-split',
+      properties: {
+        horizontal: {
+          type: Boolean,
+          reflectToAttribute: true
+        },
+        caption: String,
+        left: String,
+        right: String,
+        _firstChild: HTMLElement,
+        _lastChild: HTMLElement
+      },
+      observers: [
+        '_applyWidths(_firstChild, left)',
+        '_applyWidths(_lastChild, right)'
+      ],
+      attached: function() {
+        this._firstChild = Polymer.dom(this).querySelector('.wrapper > *:first-child');
+        this._lastChild = Polymer.dom(this).querySelector('.wrapper > *:last-child');
+      },
+      _applyWidths: function(el, width) {
+        if (el instanceof HTMLElement && typeof width === 'string') {
+          el.style.width = width;
+        }
+      }
+    });
+  </script>
+</dom-module>

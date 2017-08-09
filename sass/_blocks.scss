@@ -1,0 +1,25 @@
+/*******************************************************************************
+ * BLOCK-LEVEL STYLES
+ ******************************************************************************/
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+ul {
+  margin-left: 1.875rem;
+}
+
+li > ul {
+  margin-bottom: 0;
+}
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid $px-catalog-gray;
+  box-sizing: content-box;
+  clear: both;
+  margin: 2rem 0;
+}

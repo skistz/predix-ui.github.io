@@ -1,0 +1,30 @@
+/*******************************************************************************
+ * LAYOUTS
+ ******************************************************************************/
+
+.havles {
+  display: block;
+}
+
+.halves > * + * {
+  margin-top: 1rem;
+}
+
+@include media-query($px-catalog-screen-tablet-up) {
+  .halves {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .halves > * + * {
+    margin-top: 0;
+  }
+
+  .halves > * {
+    width: 48%;
+  }
+
+  .halves > *:first-child {
+    margin-right: calculateRem(15px);
+  }
+}

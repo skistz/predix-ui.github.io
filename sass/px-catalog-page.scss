@@ -20,6 +20,7 @@
 @import "px-flexbox-design/_base.flexbox.scss";
 @import "px-viewport-design/_base.viewport.scss";
 @import "px-headings-design/_base.headings.scss";
+@import "px-code-design/_base.code.scss";
 
 $inuit-enable-code--inline: true;
 @import "px-code-design/_base.code.scss";
@@ -41,6 +42,13 @@ $inuit-list-inline-delimit-character: "| ";
 // Component
 
 @import 'util';
+@import 'typography';
+@import 'blocks';
+@import 'layout';
+
+$px-catalog-page-toc-width: 300px;
+$px-catalog-page-padding-vertical: 50px;
+$px-catalog-page-padding-horizontal: 50px;
 
 /*******************************************************************************
  * TEMPORARY DARK THEME HACK
@@ -51,131 +59,55 @@ $inuit-list-inline-delimit-character: "| ";
 }
 
 /*******************************************************************************
- * HOST + PAGE MAIN
+ * HOST
  ******************************************************************************/
 
 :host {
   box-sizing: border-box;
   display: block;
   overflow: hidden;
+  position: relative;
+  padding: {
+    top: $px-catalog-page-padding-vertical;
+    bottom: $px-catalog-page-padding-vertical;
+    right: $px-catalog-page-padding-horizontal;
+    left: $px-catalog-page-padding-horizontal;
+  };
   background-color: var(--px-catalog-page-background-color, white);
   color: var(--px-catalog-page-text-color, black);
   color: var(--px-catalog-page-text-color, black);
 }
 
-.page-main {
-  padding: 3% 5% 2% 5%;
-  margin-bottom: 4rem;
-}
-.page-main p {
-  max-width: 45rem;
-}
-
 /*******************************************************************************
- * TYPOGRAPHY
+ * PAGE RULES
  ******************************************************************************/
 
-h1, h2, h3, h4, h5, h6, p, ul {
-  margin-bottom: 1rem;
+.page {
+  display: block;
+  margin-bottom: 4rem;
+  max-width: 1200px;
 }
 
-p {
-  line-height: 1.5em;
+.page-anchors {
+  display: none;
+
+  @include media-query($px-catalog-screen-tablet-up) {
+    display: block;
+    width: $px-catalog-page-toc-width;
+    position: absolute;
+    top: $px-catalog-page-padding-vertical;
+    right: $px-catalog-page-padding-horizontal;
+  }
 }
 
-h1, h2, h3 {
-  font-weight: 400;
+.page-content {
+  @include media-query($px-catalog-screen-tablet-up) {
+    margin-right: $px-catalog-page-toc-width + 30px;
+  }
 }
-
-h2 {
-  font-size: calculateRem(34px);
-}
-
-h3 {
-  font-size: calculateRem(28px);
-}
-
-h4 {
-  font-size: calculateRem(15px);
-  font-weight: 700;
-  margin-bottom: .25rem;
-}
-
-h4 + p {
-  margin-top: 0;
-}
-
-// *** ACCENT COLORS *** //
-
-h2, .text-accent--primary {
-  color: var(--px-catalog-page-accent-color--primary, red);
-}
-
-h3, .text-accent--secondary {
-  color: var(--px-catalog-page-accent-color--secondary, blue);
-}
-
-// *** SPECIAL USE CLASSES **/
 
 .page-title {
   margin: 0;
-}
-
-/*******************************************************************************
- * BLOCK-LEVEL STYLES
- ******************************************************************************/
-
-img {
-  border: 0;
-  max-width: 100%;
-}
-
-ul {
-  margin-left: 1.875rem;
-}
-
-li > ul {
-  margin-bottom: 0;
-}
-
-hr {
-  height: 0;
-  border: 0;
-  border-top: 1px solid $px-catalog-gray;
-  box-sizing: content-box;
-  clear: both;
-  margin: 2rem 0;
-}
-
-/*******************************************************************************
- * LAYOUTS
- ******************************************************************************/
-
-.havles {
-  display: block;
-}
-
-.halves > * + * {
-  margin-top: 1rem;
-}
-
-@include media-query($px-catalog-screen-tablet-up) {
-  .halves {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .halves > * + * {
-    margin-top: 0;
-  }
-
-  .halves > * {
-    width: 48%;
-  }
-
-  .halves > *:first-child {
-    margin-right: calculateRem(15px);
-  }
 }
 
 /*******************************************************************************
@@ -218,6 +150,52 @@ hr {
 .guideline-box__header--dont {
   color: var(--px-catalog-page-alert-color, red);
   border-bottom: 2px solid var(--px-catalog-page-alert-color, red);
+}
+
+/*******************************************************************************
+ * COMPONENT: TOC
+ ******************************************************************************/
+
+.toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Nested tocs are set off left
+.toc__item > .toc {
+  padding-left: 1rem;
+}
+
+.toc__item {
+  margin-top: .35rem;
+}
+
+a.toc__item__link {
+  color: var(--px-catalog-page-text-color, black);
+  text-decoration: none;
+}
+
+a.toc__item__link:hover {
+  text-decoration: underline;
+}
+
+// Nested tocs links have a lighter color
+.toc__item > .toc a.toc__item__link {
+  color: var(--px-catalog-page-text-color--light, gray);
+}
+
+/*******************************************************************************
+ * COMPONENT: CODE BLOCK
+ ******************************************************************************/
+
+.code-block {
+  background-color: var(--px-catalog-page-code-background-color, lightgray);
+  padding: 1rem;
+}
+
+.code-block code {
+  font-size: .675rem;
 }
 
 /*******************************************************************************
