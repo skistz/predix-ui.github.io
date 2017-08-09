@@ -1,3 +1,7 @@
+v0.2.26
+==================
+* add heatmap grid to navigation
+
 v0.2.25
 ==================
 * a few responsive usability tweaks

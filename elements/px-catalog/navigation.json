@@ -1019,6 +1019,17 @@
         ]
       },
       {
+        "repoName": "px-heatmap-grid",
+        "dataType": "components",
+        "linkText": "Heatmap Grid",
+        "keywords": [
+          "px-heatmap-grid",
+          "table",
+          "datagrid",
+          "matrix"
+        ]
+      },
+      {
         "repoName": "px-icon-set",
         "dataType": "components",
         "linkText": "Icons",

@@ -1,5 +1,11 @@
 [
   {
+    "name": "px-accordion",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
+  },
+  {
     "name": "px-actionable-design",
     "postRefreshRange": "^2.0.0",
     "preRefreshRange": "^1.1.0",
@@ -246,6 +252,12 @@
     "preRefreshRangeExact": "^v0.3.5"
   },
   {
+    "name": "px-heatmap-grid",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
+  },
+  {
     "name": "px-helpers-design",
     "postRefreshRange": "^1.0.0",
     "preRefreshRange": "^0.3.0",
@@ -268,6 +280,12 @@
     "postRefreshRange": "^2.0.0",
     "preRefreshRange": "^1.0.0",
     "preRefreshRangeExact": "^v1.0.1"
+  },
+  {
+    "name": "px-key-value-pair",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
   },
   {
     "name": "px-kpi",
@@ -384,6 +402,12 @@
     "preRefreshRangeExact": "^v0.4.6"
   },
   {
+    "name": "px-shadows-design",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
+  },
+  {
     "name": "px-simple-area-chart",
     "postRefreshRange": "^2.0.0",
     "preRefreshRange": "^1.1.0",
@@ -496,6 +520,12 @@
     "postRefreshRange": "^1.0.0",
     "preRefreshRange": "^0.10.0",
     "preRefreshRangeExact": "^v0.10.20"
+  },
+  {
+    "name": "px-tree",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
   },
   {
     "name": "px-typeahead",
