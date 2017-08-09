@@ -2,13 +2,18 @@
  * BLOCK-LEVEL STYLES
  ******************************************************************************/
 
-img {
+img, iframe, video {
   border: 0;
   max-width: 100%;
 }
 
 ul {
-  margin-left: 1.875rem;
+  margin-left: 1.1rem;
+  padding-left: 0;
+}
+
+ul > li + li {
+  margin-top: .35rem;
 }
 
 li > ul {
@@ -22,4 +27,8 @@ hr {
   box-sizing: content-box;
   clear: both;
   margin: 2rem 0;
+}
+
+iframe {
+  margin: 1rem 0;
 }

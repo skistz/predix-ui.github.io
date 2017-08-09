@@ -33,7 +33,6 @@ md.use(mdAnchor, {
   }
 });
 
-
 /*
  * PLUGIN : FRONTMATTER
  * Extracts frontmatter from file.
@@ -60,7 +59,7 @@ md.use(mdFrontmatter, fm => {
 const headerTags = {
   '#'     : 'h3',
   '##'    : 'h4',
-  '###'   : 'p',
+  '###'   : 'h4',
   '####'  : 'p',
   '#####' : 'p'
 };
@@ -104,7 +103,7 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
     return '<pre class="code-block"><code class="language-'+ langName +'">'+ highlighted +'</code></pre>';
   }
   else {
-    return '<pre class="code-block"><code>' + md.utils.escapeHTML(token.content) + '</pre></code>';
+    return '<pre class="code-block"><code>' + md.utils.escapeHtml(token.content) + '</pre></code>';
   }
 };
 

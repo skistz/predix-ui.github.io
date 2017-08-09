@@ -2,12 +2,13 @@
  * TYPOGRAPHY
  ******************************************************************************/
 
+
 h1, h2, h3, h4, h5, h6, p, ul {
   margin-bottom: 1rem;
 }
 
-p {
-  line-height: 1.5em;
+p, li {
+  line-height: 1.6em;
 }
 
 h1, h2, h3 {
@@ -40,4 +41,30 @@ h2, .text-accent--primary {
 
 h3, .text-accent--secondary {
   color: var(--px-catalog-page-accent-color--secondary, blue);
+}
+
+// *** CUSTOM BUTTON COLORS ** //
+
+.catalog-button {
+  display: inline-block;
+  margin: 0;
+  padding: .625rem 1rem;
+  transition: all .5s;
+  border-radius: 3px;
+  color: $white;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1em;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  vertical-align: middle;
+  border: 1px solid $px-catalog-blue;
+  background-color: $px-catalog-blue;
+
+  &:hover {
+    border: 1px solid $px-catalog-blue--hover;
+    background-color: $px-catalog-blue--hover;
+  }
 }
