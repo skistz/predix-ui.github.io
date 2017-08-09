@@ -11,45 +11,74 @@
 
     <iron-media-query query='(min-width: 719px)' query-matches="{{largeScreen}}">
     </iron-media-query>
-    <div class="hero-container">
+    <div>
 
-      <div class="hero-slot">
-        <slot name="content"></slot>
+      <div class="hero__text">
+        <template is="dom-if" if="{{!dark}}">
+          <picture class="hero__picture">
+            <source srcset="../img/predix_ds_logo.webp" type="image/webp">
+            <source srcset="../img/predix_ds_logo.png" type="image/png">
+            <img src="../img/predix_ds_logo.png" alt="Predix Design System">
+          </picture>
+        </template>
+        <template is="dom-if" if="{{dark}}">
+          <picture class="hero__picture">
+            <source srcset="../img/predix_ds_logo_dark.webp" type="image/webp">
+            <source srcset="../img/predix_ds_logo_dark.png" type="image/png">
+            <img src="../img/predix_ds_logo_dark.png" alt="Predix Design System">
+          </picture>
+        </template>
+        <p>Our user interface components enable you to quickly and easily create Industrial Internet web applications that run
+          on dedicated Predix services and data.</p>
+        <a href="/#/about/what-is-predix-ui" target="_top"><button class="btn--blue">Learn More</button></a>
       </div>
 
-      <div class="hero-animation-slot">
-        <slot name="animation"></slot>
-      </div>
 
+      <!--MOBILE-->
       <template is="dom-if" if="{{!largeScreen}}">
         <template is="dom-if" if="{{!dark}}">
-
-          <picture class="hero-image--background">
+          <picture class="hero-picture--bg">
             <source srcset="../../img/mobile_hero_bkd_light.webp" type="image/webp">
             <source srcset="../../img/mobile_hero_bkd_light.png" type="image/png">
-            <img src="../../img/mobile_hero_bkd_light.png" alt="hero-background-image" style="width:100%; height: 100%">
+            <img src="../../img/mobile_hero_bkd_light.png" alt="hero-background-image" style="width:100%; height: 100%;">
           </picture>
-          <picture class="hero-image--foreground">
+          <picture class="hero-picture--fg">
             <source srcset="../../img/mobile_hero_light.webp" type="image/webp">
             <source srcset="../../img/mobile_hero_light.png" type="image/png">
-            <img src="../../img/mobile_hero_light.png" alt="hero-image">
+            <img src="../../img/mobile_hero_light.png" alt="hero-image" style="max-width: 100%;">
           </picture>
-
         </template>
 
         <template is="dom-if" if="{{dark}}">
-
-          <picture class="hero-image--background">
+          <picture class="hero-picture--bg">
             <source srcset="../../img/mobile_hero_bkd_dark.webp" type="image/webp">
             <source srcset="../../img/mobile_hero_bkd_dark.png" type="image/png">
-            <img src="../../img/mobile_hero_bkd_dark.png" alt="hero-background-image" style="width:100%; height: 100%">
+            <img src="../../img/mobile_hero_bkd_dark.png" alt="hero-background-image" style="width:100%; height: 100%;">
           </picture>
-          <picture class="hero-image--foreground">
+          <picture class="hero-picture--fg">
             <source srcset="../../img/mobile_hero_dark.webp" type="image/webp">
             <source srcset="../../img/mobile_hero_dark.png" type="image/png">
-            <img src="../../img/mobile_hero_dark.png" alt="hero-image">
+            <img src="../../img/mobile_hero_dark.png" alt="hero-image" style="max-width: 100%;">
           </picture>
+        </template>
+      </template>
 
+      <!--DESKTOP-->
+      <template is="dom-if" if="{{largeScreen}}">
+        <template is="dom-if" if="{{!dark}}">
+          <picture class="hero-picture--bg">
+            <source srcset="../../img/desktop_hero_bkd_light.webp" type="image/webp">
+            <source srcset="../../img/desktop_hero_bkd_light.png" type="image/png">
+            <img src="../../img/desktop_hero_bkd_light.png" alt="hero-background-image" style="height: 370px; max-width: none;">
+          </picture>
+        </template>
+
+        <template is="dom-if" if="{{dark}}">
+          <picture class="hero-picture--bg">
+            <source srcset="../../img/desktop_hero_bkd_dark.webp" type="image/webp">
+            <source srcset="../../img/desktop_hero_bkd_dark.png" type="image/png">
+            <img src="../../img/desktop_hero_bkd_dark.png" alt="hero-background-image" style="height: 370px; max-width: none; ">
+          </picture>
         </template>
       </template>
 
@@ -71,53 +100,6 @@
           value: false,
           reflectToAttribute: true
         },
-
-      },
-
-      observers: [
-        '_tryLoadAnimation(largeScreen, dark)'
-      ],
-
-      created: function() {
-        this.lightAnimationLoaded = false;
-        this.darkAnimationLoaded = false;
-      },
-
-      _tryLoadAnimation: function(isLargeScreen, isDark){
-        if (isLargeScreen && (isDark && !this.darkAnimationLoaded || !isDark && !this.lightAnimationLoaded)) {
-
-          if(isDark) {
-            this.darkAnimationLoaded = true;
-            var entrypointId = 'heroimagedark_hype_container';
-            var loadAnimationSrc = '../../pages/hero-image-dark.hyperesources/heroimagedark_hype_generated_script.js?70708';
-            var className = 'hero-image--desktop hero-image--desktop--dark';
-          }
-          else {
-            this.lightAnimationLoaded = true;
-            var entrypointId = 'heroimagelight_hype_container'
-            var loadAnimationSrc = '../../pages/hero-image-light.hyperesources/heroimagelight_hype_generated_script.js?70708'
-            var className = 'hero-image--desktop hero-image--desktop--light';
-          }
-
-          // Create animation container and append to the light DOM so
-          // the Hype script can find it in the document
-          var animationContainer = document.createElement('div');
-          animationContainer.id = 'animationContainer';
-          animationContainer.className = className;
-          animationContainer.setAttribute('slot', 'animation');
-          var animationEntrypoint = document.createElement('div');
-          animationEntrypoint.id = entrypointId;
-          animationEntrypoint.className = 'hero-animation';
-          Polymer.dom(this).appendChild(animationContainer);
-          Polymer.dom(animationContainer).appendChild(animationEntrypoint);
-
-          // Create and append the Hype script
-          var loadAnimation = document.createElement('script');
-          loadAnimation.setAttribute('type', 'text/javascript');
-          loadAnimation.setAttribute('charset', 'utf-8');
-          loadAnimation.setAttribute('src', loadAnimationSrc);
-          document.head.appendChild(loadAnimation);
-        }
       }
 
     })

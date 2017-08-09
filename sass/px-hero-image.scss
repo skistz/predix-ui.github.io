@@ -10,58 +10,83 @@
 
 // Settings
 @import "px-colors-design/_settings.colors.scss";
+
 // Generic
 @import "px-normalize-design/_generic.normalize.scss";
 @import "px-box-sizing-design/_generic.box-sizing.scss";
 
+// Base
+$inuit-enable-btn--primary: true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+// Component
+@import 'util';
+
+
 :host {
   display: block;
   overflow: hidden;
-}
-*,*::before, *::after{
-  box-sizing: border-box;
-}
-img{
-  max-width: 100%;
-}
-.hero-animation-slot > ::slotted(.hero-image--desktop){
-  box-sizing: content-box;
+  z-index: 0;
   position: relative;
-  display: none;
-  visibility: hidden;
 }
-:host([large-screen]) .hero-slot {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: block;
-  z-index: 99;
-}
-:host([large-screen][dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--dark){
-  display: block;
-  visibility: visible;
-}
-:host([large-screen]):not([dark]) .hero-animation-slot > ::slotted(.hero-image--desktop--light){
-  display: block;
-  visibility: visible;
-}
-.hero-image--background{
+
+.hero-picture--bg{
   display: block;
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 0;
 }
-.hero-image--foreground{
+
+.hero-picture--fg{
   display: block;
   padding: 5%;
   position: relative;
-  z-index: 2;
   height: 100%;
   width: 100%;
 }
-.hero-container{
+
+.hero__text {
+  padding: 30px;
+  max-width: 350px;
+  font-size: .9em;
   position: relative;
+  z-index: 1;
+}
+
+.hero__picture {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+:host([dark-theme]) {
+  .hero__text p {
+    color: $gray4;
+  }
+}
+
+//io code that needs to be refactore out
+.btn--blue {
+  display: inline-block;
+  margin: 0;
+  padding: .625rem 1rem;
+  transition: all .5s;
+  border-radius: 3px;
+  color: $white;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1em;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  vertical-align: middle;
+  border: 1px solid $px-catalog-blue;
+  background-color: $px-catalog-blue;
+
+  &:hover {
+    border: 1px solid $px-catalog-blue--hover;
+    background-color: $px-catalog-blue--hover;
+  }
 }
