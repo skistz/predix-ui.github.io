@@ -66,7 +66,8 @@ const browserSyncOptions = {
   logPrefix: `${pkg.name}`,
   https: false,
   files: ['*.*'],
-  server: ['./', 'bower_components']
+  server: ['./', 'bower_components'],
+  reloadDebounce: 1000
 };
 
 var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'CNAME', 'sw.tmpl'];
@@ -191,11 +192,28 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
  * the browser when files are updated.
  ******************************************************************************/
 
-gulp.task('serve', function() {
+gulp.task('serve', ['sass', 'docs'], function() {
   browserSync.init(browserSyncOptions);
   gulp.watch(['_pages/**/*'], ['docs']);
-  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
+  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
+});
+
+gulp.task('default', function(callback) {
+  console.log(`
+!!! DEFAULT GULP TASK HAS CHANGED
+
+Previously, running \`gulp\` on the predix-ui.github.io repo would create a
+local build of the site in the dist/ folder that looked like the production
+version TravisCI builds. The default task no longer does this.
+
+The task now compiles the sass/ files to css/ and builds the _pages/ files
+to the pages/ directory. Run \`gulp localBuild\` to build the site into
+a dist/ directory.
+
+You probably want to run \`gulp serve\` instead.
+    `);
+  gulpSequence('sass', 'docs')(callback);
 });
 
 /*******************************************************************************
@@ -284,8 +302,6 @@ gulp.task('localBuild', function(callback) {
 gulp.task('prodBuild', function(callback) {
    gulpSequence('sass', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
-
-gulp.task('default', ['localBuild']);
 
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
