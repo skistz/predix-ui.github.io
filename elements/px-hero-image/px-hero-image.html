@@ -1,6 +1,7 @@
 <!-- Dependencies -->
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 <link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="predix-ui-hero-animation.html">
 
 <!-- Styles -->
 <link rel="import" href="../../css/px-hero-image-styles.html">
@@ -65,21 +66,9 @@
 
       <!--DESKTOP-->
       <template is="dom-if" if="{{largeScreen}}">
-        <template is="dom-if" if="{{!dark}}">
-          <picture class="hero-picture--bg">
-            <source srcset="../../img/desktop_hero_bkd_light.webp" type="image/webp">
-            <source srcset="../../img/desktop_hero_bkd_light.png" type="image/png">
-            <img src="../../img/desktop_hero_bkd_light.png" alt="hero-background-image" style="height: 370px; max-width: none;">
-          </picture>
-        </template>
-
-        <template is="dom-if" if="{{dark}}">
-          <picture class="hero-picture--bg">
-            <source srcset="../../img/desktop_hero_bkd_dark.webp" type="image/webp">
-            <source srcset="../../img/desktop_hero_bkd_dark.png" type="image/png">
-            <img src="../../img/desktop_hero_bkd_dark.png" alt="hero-background-image" style="height: 370px; max-width: none; ">
-          </picture>
-        </template>
+        <div class="hero-picture--bg">
+          <predix-ui-hero-animation></predix-ui-hero-animation>
+        </div>
       </template>
 
     </div>
