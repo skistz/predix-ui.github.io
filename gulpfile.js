@@ -205,15 +205,17 @@ gulp.task('default', function(callback) {
 
 Previously, running \`gulp\` on the predix-ui.github.io repo would create a
 local build of the site in the dist/ folder that looked like the production
-version TravisCI builds. The default task no longer does this.
+version TravisCI builds. This task no longer does this. Run \`gulp localBuild\`
+if you want to perform this task.
 
-The task now compiles the sass/ files to css/ and builds the _pages/ files
-to the pages/ directory. Run \`gulp localBuild\` to build the site into
-a dist/ directory.
+This task now does the following:
+  * compiles the sass/ files to css/
+  * builds the _pages/ files to the pages/ directory
+  * re-generates the service worker
 
-You probably want to run \`gulp serve\` instead.
+And... you probably want to run \`gulp serve\` instead of this task. :)
     `);
-  gulpSequence('sass', 'docs')(callback);
+  gulpSequence('sass', 'docs', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
