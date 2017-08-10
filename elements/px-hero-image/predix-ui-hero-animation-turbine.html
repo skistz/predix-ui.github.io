@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
-<link rel="import" href="../css/predix-ui-hero-animation-icons-styles.html">
+<link rel="import" href="css/predix-ui-hero-animation-icons-styles.html">
 
 <dom-module id="predix-ui-hero-animation-turbine">
   <template>
@@ -17,8 +17,8 @@
         animation-play-state: paused;
       }
 
-      #twapper:hover {
-        animation-play-state: running;
+      .spinfaster {
+        animation-play-state: running !important;
       }
     </style>
 
@@ -44,6 +44,7 @@
           </g>
         </g>
       </g>
+      <rect x="0" y="0" width="32" height="29" fill="none" pointer-events="all" on-mouseenter="_spinMore" on-mouseleave="_spinLess"/>
     </svg>
   </template>
 </dom-module>
@@ -56,6 +57,13 @@
         type: Number,
         value: 32
       }
+    },
+
+    _spinMore: function() {
+      this.$.twapper.classList.add("spinfaster");
+    },
+    _spinLess: function() {
+      this.$.twapper.classList.remove("spinfaster");
     }
   });
 </script>
