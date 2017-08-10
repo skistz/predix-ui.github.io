@@ -194,9 +194,9 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
 
 gulp.task('serve', ['sass', 'docs'], function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['_pages/**/*'], ['docs']);
+  gulp.watch(['_pages/**/*.md'], ['docs']);
   gulp.watch(['sass/*.scss'], ['sass']);
-  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html']).on('change', browserSync.reload);
 });
 
 gulp.task('default', function(callback) {
