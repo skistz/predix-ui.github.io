@@ -49,6 +49,7 @@
     "yargs": "^8.0.2"
   },
   "dependencies": {
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "polymer-analyzer": "^2.2.2"
   }
 }

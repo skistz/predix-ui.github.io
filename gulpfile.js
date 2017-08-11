@@ -42,6 +42,7 @@ const webp = require("imagemin-webp");
 const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
+const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
 
 /*******************************************************************************
  * SETTINGS
@@ -411,6 +412,34 @@ function buildMdFile(filePath) {
     .then(html => fse.outputFile(destFilePath, html));
 };
 
+function buildAPIAnalyzerFiles(pxElementPaths){
+  // Set up Polymer Analyzer with 'bower_components' as its base directory
+  let analyzer = new Analyzer({
+      urlLoader: new FSUrlLoader('./bower_components')
+  });
+
+  // Run analyzer separately for each so we can write the descriptors into separate files.
+  // Promise.all to prevent premature completion
+  Promise.all(pxElementPaths.map(elementName => {
+    elementName = elementName.substr(elementName.indexOf('/') + 1);
+    elementName = elementName.slice(0, -1);
+    console.log(`Analyzing ${elementName}/${elementName}.html`);
+    return analyzer.analyze([`${elementName}/${elementName}.html`])
+      .then(analysis => {
+        return new Promise(resolve => {
+          console.log(`Writing output to ${elementName}/${elementName}-api.json`);
+          // console.log(analysis)
+          fs.writeFileSync(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
+          resolve();
+        });
+      });
+  })).then(() => {
+    console.log('DONE!');
+    // completedCallback();
+  })
+}
+
+
 gulp.task('docs:clean', function(){
   return gulp.src(['pages'], {
     read: false
@@ -425,6 +454,12 @@ gulp.task('docs:clean', function(){
 gulp.task('docs:md', function(cb){
   glob('_pages/**/*.md', (err, files) => {
     Promise.all(files.map(buildMdFile)).then(() => cb());
+  });
+});
+
+gulp.task('docs:api', function(cb){
+  glob('bower_components/px-*/', (err, files) => {
+    buildAPIAnalyzerFiles(files);
   });
 });
 
