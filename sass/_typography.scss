@@ -54,17 +54,50 @@ h3, .text-accent--secondary {
   color: $white;
   font: inherit;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1em;
   text-align: center;
   cursor: pointer;
   overflow: visible;
   vertical-align: middle;
-  border: 1px solid $px-catalog-blue;
-  background-color: $px-catalog-blue;
+  border: 1px solid $primary-default;
+  background-color: $primary-default;
 
   &:hover {
-    border: 1px solid $px-catalog-blue--hover;
-    background-color: $px-catalog-blue--hover;
+    border: 1px solid $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+// *** LINK COLORS *** //
+
+a {
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+  white-space: nowrap;
+  line-height: inherit;
+  text-decoration: none;
+  font: inherit;
+  -webkit-font-smoothing: antitodoed;
+  cursor: pointer;
+  outline: none;
+  transition: color .4s;
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-catalog-page-link-color, blue);
+    outline: inherit;
+  }
+  &:hover{
+    // color: $inuit-actionable-text-color--hover;
+  }
+  &:active {
+    // color: $inuit-actionable-text-color--active;
   }
 }

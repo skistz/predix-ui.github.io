@@ -171,17 +171,17 @@ $px-catalog-page-padding-horizontal: 50px;
 }
 
 a.toc__item__link {
-  color: var(--px-catalog-page-text-color, black);
+  color: var(--px-catalog-page-anchor-color, black);
   text-decoration: none;
 }
 
 a.toc__item__link:hover {
-  text-decoration: underline;
+  color: var(--px-catalog-page-anchor-color--hover, blue);
 }
 
 // Nested tocs links have a lighter color
 .toc__item > .toc a.toc__item__link {
-  color: var(--px-catalog-page-text-color--light, gray);
+  color: var(--px-catalog-page-anchor-color--light, gray);
 }
 
 /*******************************************************************************
