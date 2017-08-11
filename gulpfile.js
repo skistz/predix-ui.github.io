@@ -303,7 +303,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs','generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
@@ -423,12 +423,10 @@ function buildAPIAnalyzerFiles(pxElementPaths){
   Promise.all(pxElementPaths.map(elementName => {
     elementName = elementName.substr(elementName.indexOf('/') + 1);
     elementName = elementName.slice(0, -1);
-    console.log(`Analyzing ${elementName}/${elementName}.html`);
     return analyzer.analyze([`${elementName}/${elementName}.html`])
       .then(analysis => {
         return new Promise(resolve => {
-          console.log(`Writing output to ${elementName}/${elementName}-api.json`);
-          // console.log(analysis)
+          console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
           fs.writeFileSync(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
           resolve();
         });
@@ -472,5 +470,5 @@ gulp.task('docs:copy-non-md', function(){
 });
 
 gulp.task('docs', function(callback) {
-  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md')(callback);
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:api')(callback);
 });
