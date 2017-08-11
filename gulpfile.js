@@ -420,21 +420,15 @@ function buildAPIAnalyzerFiles(pxElementPaths){
 
   // Run analyzer separately for each so we can write the descriptors into separate files.
   // Promise.all to prevent premature completion
-  Promise.all(pxElementPaths.map(elementName => {
+  return Promise.all(pxElementPaths.map(elementName => {
     elementName = elementName.substr(elementName.indexOf('/') + 1);
     elementName = elementName.slice(0, -1);
     return analyzer.analyze([`${elementName}/${elementName}.html`])
       .then(analysis => {
-        return new Promise(resolve => {
-          console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
-          fs.writeFileSync(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
-          resolve();
-        });
+        console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
+        return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
       });
-  })).then(() => {
-    console.log('DONE!');
-    // completedCallback();
-  })
+  }));
 }
 
 
@@ -457,7 +451,8 @@ gulp.task('docs:md', function(cb){
 
 gulp.task('docs:api', function(cb){
   glob('bower_components/px-*/', (err, files) => {
-    buildAPIAnalyzerFiles(files);
+    buildAPIAnalyzerFiles(files)
+      .then(() => cb());
   });
 });
 
