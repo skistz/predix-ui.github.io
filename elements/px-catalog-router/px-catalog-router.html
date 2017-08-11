@@ -242,7 +242,7 @@ a component.
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
-            components: function(name) {
+            elements: function(name) {
               return 'bower_components/' + name + '/demo/' + name + '-demo.html';
             },
             css: function(name) {
@@ -253,6 +253,9 @@ a component.
             },
             guides: function(name) {
               return 'pages/guides/' + name + '.html';
+            },
+            migration: function(name) {
+              return 'pages/migration/' + name + '.html';
             },
             tools: function(name) {
               return 'pages/tools/' + name + '.html';
@@ -453,6 +456,9 @@ a component.
                 // Otherwise, set the new `appPath` to update the URL
                 this.set('appPath', { type: foundType, name: name });
               }
+            } else if (type === 'components'){
+              // redirect all 'components' URLS onto 'elements'.
+              this.set('appPath', { type: 'elements', name: name });
             }
           }, 100);
         }

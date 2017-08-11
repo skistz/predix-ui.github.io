@@ -171,17 +171,17 @@ $px-catalog-page-padding-horizontal: 50px;
 }
 
 a.toc__item__link {
-  color: var(--px-catalog-page-text-color, black);
+  color: var(--px-catalog-page-anchor-color, black);
   text-decoration: none;
 }
 
 a.toc__item__link:hover {
-  text-decoration: underline;
+  color: var(--px-catalog-page-anchor-color--hover, blue);
 }
 
 // Nested tocs links have a lighter color
 .toc__item > .toc a.toc__item__link {
-  color: var(--px-catalog-page-text-color--light, gray);
+  color: var(--px-catalog-page-anchor-color--light, gray);
 }
 
 /*******************************************************************************
@@ -196,61 +196,3 @@ a.toc__item__link:hover {
 .code-block code {
   font-size: .675rem;
 }
-
-/*******************************************************************************
- * COMPONENT: GUIDELINES TABLE
- ******************************************************************************/
-
-// table.guidelines {
-//   width: 95%;
-//   margin: 0px;
-//   padding: 0px;
-//   border-collapse: collapse;
-// }
-//
-// table.guidelines td {
-//   border-bottom: 1px solid $gray2;
-//   padding: .75em 0;
-//   vertical-align: top;
-// }
-//
-// table.guidelines th {
-//   border-bottom: 1px solid $gray6;
-//   text-align: left;
-//   font-weight: normal;
-// }
-//
-// table.guidelines.datavis {
-//   width: 80%;
-//   margin: auto;
-// }
-//
-// table.guidelines.datavis td {
-//   width: 25%;
-//   padding: .5em 5em 0 0;
-//   border: none;
-// }
-//
-// table td.description {
-//   width: 60%;
-// }
-//
-// .halves.guidelines {
-//   border: 1px solid $gray4;
-//   padding: .75em;
-// }
-//
-// .halves {
-//   display: inline-block;
-//   vertical-align: top;
-//   margin-bottom: 5%;
-// }
-//
-// .thirds {
-//   display: inline-block;
-//   width: 100%;
-//   /*max-width: 500px;*/
-//   text-align: center;
-//   vertical-align: top;
-//   margin: 0% 5% 10% 0;
-// }

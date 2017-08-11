@@ -42,6 +42,7 @@ const webp = require("imagemin-webp");
 const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
+const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
 
 /*******************************************************************************
  * SETTINGS
@@ -302,7 +303,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs','generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
@@ -374,7 +375,8 @@ gulp.task('compress-images', function(){
     './img',
     './pages/guides/vis-resources',
     './img/gallery',
-    './img/guidelines'
+    './img/guidelines',
+    './pages/migration/img'
   ];
 
   imgFolders.forEach((folder) =>{
@@ -410,6 +412,26 @@ function buildMdFile(filePath) {
     .then(html => fse.outputFile(destFilePath, html));
 };
 
+function buildAPIAnalyzerFiles(pxElementPaths){
+  // Set up Polymer Analyzer with 'bower_components' as its base directory
+  let analyzer = new Analyzer({
+      urlLoader: new FSUrlLoader('./bower_components')
+  });
+
+  // Run analyzer separately for each so we can write the descriptors into separate files.
+  // Promise.all to prevent premature completion
+  return Promise.all(pxElementPaths.map(elementName => {
+    elementName = elementName.substr(elementName.indexOf('/') + 1);
+    elementName = elementName.slice(0, -1);
+    return analyzer.analyze([`${elementName}/${elementName}.html`])
+      .then(analysis => {
+        console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
+        return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
+      });
+  }));
+}
+
+
 gulp.task('docs:clean', function(){
   return gulp.src(['pages'], {
     read: false
@@ -427,6 +449,13 @@ gulp.task('docs:md', function(cb){
   });
 });
 
+gulp.task('docs:api', function(cb){
+  glob('bower_components/px-*/', (err, files) => {
+    buildAPIAnalyzerFiles(files)
+      .then(() => cb());
+  });
+});
+
 /*
  * Copies any files in _pages/ that do not end with .md to the pages/ dir.
  */
@@ -436,5 +465,5 @@ gulp.task('docs:copy-non-md', function(){
 });
 
 gulp.task('docs', function(callback) {
-  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md')(callback);
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:api')(callback);
 });

@@ -26,7 +26,6 @@
     "px-actionable-design": "^2.0.1",
     "px-alert-label": "^2.0.3",
     "px-alert-message": "^1.0.2",
-    "px-api-viewer": "^1.0.0",
     "px-app-helpers": "^1.1.2",
     "px-app-nav": "^2.0.3",
     "px-box-design": "^1.0.0",
@@ -130,10 +129,15 @@
     "px-widget-cards": "^3.0.2",
     "px-widths-design": "^1.0.0",
     "px-widths-responsive-design": "^1.0.0",
-    "px-widths-tools-design": "^1.0.0"
+    "px-widths-tools-design": "^1.0.0",
+    "px-api-viewer": "^2.0.0",
+    "iron-doc-viewer": "^3.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
-    "promise-polyfill": "^2.0.0"
+    "promise-polyfill": "^2.0.0",
+    "iron-location": "1 - 2",
+    "px-api-viewer": "^2.0.0",
+    "iron-doc-viewer": "^3.0.0"
   }
 }

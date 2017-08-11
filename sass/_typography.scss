@@ -7,10 +7,6 @@ h1, h2, h3, h4, h5, h6, p, ul {
   margin-bottom: 1rem;
 }
 
-p, li {
-  // line-height: 1.6em;
-}
-
 h1, h2, h3 {
   font-weight: 400;
 }
@@ -25,9 +21,11 @@ h3 {
 }
 
 h4 {
-  font-size: calculateRem(15px);
+  font-size: calculateRem(20px);
   margin-bottom: .25rem;
-
+  font-weight: 400;
+  padding-top: calculateRem(3px);
+  padding-bottom: calculateRem(3px);
 }
 
 h4 + p {
@@ -40,23 +38,11 @@ h2, .text-accent--primary {
   color: var(--px-catalog-page-accent-color--primary, red);
 }
 
-h3, .text-accent--secondary {
+h3, h4, .text-accent--secondary {
   color: var(--px-catalog-page-accent-color--secondary, blue);
 }
 
-a {
-  text-decoration: none;
-  &,
-  &:link,
-  &:visited,
-  &:active,
-  &:focus {
-    color: var(--px-catalog-page-link-color, blue);
-  }
-  &:hover{
-    color: var(--px-catalog-page-link-color--hover, navy);
-  }
-}
+
 
 // *** CUSTOM BUTTON COLORS ** //
 
@@ -69,17 +55,32 @@ a {
   color: $white;
   font: inherit;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1em;
   text-align: center;
   cursor: pointer;
   overflow: visible;
   vertical-align: middle;
-  border: 1px solid $px-catalog-blue;
-  background-color: $px-catalog-blue;
+  border: 1px solid $primary-default;
+  background-color: $primary-default;
 
   &:hover {
-    border: 1px solid $px-catalog-blue--hover;
-    background-color: $px-catalog-blue--hover;
+    border: 1px solid $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+// *** LINK COLORS *** //
+a {
+  text-decoration: none;
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-catalog-page-link-color, blue);
+  }
+  &:hover{
+    color: var(--px-catalog-page-link-color--hover, navy);
   }
 }
