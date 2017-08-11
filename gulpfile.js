@@ -374,7 +374,8 @@ gulp.task('compress-images', function(){
     './img',
     './pages/guides/vis-resources',
     './img/gallery',
-    './img/guidelines'
+    './img/guidelines',
+    './pages/migration/img'
   ];
 
   imgFolders.forEach((folder) =>{

@@ -153,6 +153,21 @@
         "dataType": "guides",
         "repoName": "list-localize-strings",
         "linkText": "List of localized strings"
+      },
+      {
+        "linkText": "Design Refresh Migration",
+        "links": [
+          {
+            "dataType": "migration",
+            "repoName": "applying-theme",
+            "linkText": "Applying a Theme"
+          },
+          {
+            "dataType": "migration",
+            "repoName": "vis-migration",
+            "linkText": "Vis Migration"
+          }
+        ]
       }
     ],
     "opened": false
