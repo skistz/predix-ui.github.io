@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 p, li {
-  line-height: 1.6em;
+  // line-height: 1.6em;
 }
 
 h1, h2, h3 {
@@ -21,12 +21,13 @@ h2 {
 
 h3 {
   font-size: calculateRem(28px);
+  margin-top: calculateRem(50px);
 }
 
 h4 {
   font-size: calculateRem(15px);
-  font-weight: 700;
   margin-bottom: .25rem;
+
 }
 
 h4 + p {
@@ -41,6 +42,20 @@ h2, .text-accent--primary {
 
 h3, .text-accent--secondary {
   color: var(--px-catalog-page-accent-color--secondary, blue);
+}
+
+a {
+  text-decoration: none;
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-catalog-page-link-color, blue);
+  }
+  &:hover{
+    color: var(--px-catalog-page-link-color--hover, navy);
+  }
 }
 
 // *** CUSTOM BUTTON COLORS ** //

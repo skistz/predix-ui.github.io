@@ -119,6 +119,11 @@
         "links": [
           {
             "dataType": "guides",
+            "repoName": "vis-framework-overview",
+            "linkText": "Framework Overview"
+          },
+          {
+            "dataType": "guides",
             "repoName": "vis-guides-terminology",
             "linkText": "Terminology"
           },
