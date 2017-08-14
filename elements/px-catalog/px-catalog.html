@@ -191,11 +191,19 @@
          */
         appData: {
           type: Object
+        },
+
+        /**
+         * The URL hash `path` from app-location. This is read-write: observe
+         * to be notified of changes the URL, and set to change the URL.
+         */
+        path: {
+          type: String
         }
       },
 
       observers: [
-        '_routeChanged(path, appData.routes)'
+        '_routeChanged(path, appData)'
       ],
 
       created: function() {
@@ -210,17 +218,27 @@
         }
       },
 
-      _routeChanged: function(route, appRoutes) {
-        if (typeof route !== 'string' || typeof appRoutes !== 'object') {
+      _routeChanged: function(route, appData) {
+        if (typeof route !== 'string' || typeof appData !== 'object') {
           return;
         }
 
-        this.spinnerActive = true;
-        var pageInfo = appRoutes[route];
-        if (!pageInfo) {
-          // 404, don't know this page
+        var redirectTo = appData.redirects[route];
+        if (redirectTo) {
+          // This path is redirected, rewrite path to the new destination
+          this.path = redirectTo;
           return;
         }
+
+        var pageInfo = appData.routes[route];
+        if (!pageInfo) {
+          // This path is not defined, fall back to the homepage
+          this.path = '/home';
+          return;
+        }
+
+        // Load and/or show the module for this path
+        this.spinnerActive = true;
         if (this._loadedRoutes.indexOf(pageInfo.entrypoint) === -1) {
           // Page entrypoint not yet loaded
           var url = this.resolveUrl(pageInfo.entrypoint);
