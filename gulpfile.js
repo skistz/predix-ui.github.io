@@ -200,6 +200,10 @@ gulp.task('serve', ['sass', 'docs'], function() {
   gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html']).on('change', browserSync.reload);
 });
 
+gulp.task('serve:sass', ['sass'], function() {
+  gulp.watch(['sass/*.scss'], ['sass']);
+});
+
 gulp.task('default', function(callback) {
   console.log(`
 !!! DEFAULT GULP TASK HAS CHANGED
@@ -429,8 +433,49 @@ function buildAPIAnalyzerFiles(pxElementPaths){
         return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
       });
   }));
-}
+};
 
+function processPagesJSON(text) {
+  const pages = JSON.parse(text);
+  const redirects = {};
+  const routes = {};
+  let queue = pages.map(page => ({ page: page, route: `/${page.path}` }));
+  while (queue.length) {
+    let {page, route} = queue.shift();
+    // Assign path from root to route
+    page._route = route;
+    // Inline keywords
+    if (Array.isArray(page.keywords) && page.keywords.length) {
+      page._keywords = page.keywords.join(' ');
+    }
+    // Parse out redirects and add to global redirects list
+    if (Array.isArray(page.redirects) && page.redirects.length) {
+      for (let redirect of page.redirects) {
+        if (redirects[redirect]) {
+          console.error(`
+Redirects cannot appear more than once. The direct to ${redirect}
+is set by ${path} and ${redirects[redirect]}. Delete duplicates.
+          `);
+        }
+        redirects[redirect] = route;
+      }
+    }
+    // Add to global routes list
+    if (routes[route]) {
+      console.error(`
+Routes cannot appear more than once. The following route is defined
+more than once, delete any duplicates:
+${routes[route]}
+      `);
+    }
+    routes[route] = Object.assign(page, {});
+    // Add children to queue, if any
+    if (Array.isArray(page.pages) && page.pages.length) {
+      queue = queue.concat(page.pages.map(p => ({ page: p, route: `${route}/${p.path}` })));
+    }
+  }
+  return Promise.resolve({ pages: pages, redirects: redirects, routes: routes });
+};
 
 gulp.task('docs:clean', function(){
   return gulp.src(['pages'], {
@@ -456,6 +501,16 @@ gulp.task('docs:api', function(cb){
   });
 });
 
+gulp.task('docs:pages-json', function(cb){
+  const pagesPath = path.join(__dirname, 'elements', 'px-catalog', 'pages.json');
+  const outputPath = path.join(__dirname, 'pages', 'app-data.json');
+  readFile(pagesPath)
+    .then(processPagesJSON)
+    .then(pagesData => fse.outputFile(outputPath, JSON.stringify(pagesData,null,'')))
+    .then(() => cb())
+    .catch(e => console.error(`The pages.json file is invalid: ${e}`));
+});
+
 /*
  * Copies any files in _pages/ that do not end with .md to the pages/ dir.
  */
@@ -465,5 +520,5 @@ gulp.task('docs:copy-non-md', function(){
 });
 
 gulp.task('docs', function(callback) {
-  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:api')(callback);
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:api', 'docs:pages-json')(callback);
 });

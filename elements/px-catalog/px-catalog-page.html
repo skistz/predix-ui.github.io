@@ -1,0 +1,110 @@
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-util.html"/>
+
+<dom-module id="px-catalog-page">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex: 1 1 auto;
+        background-color: var(--px-catalog-page-background-color, white);
+      }
+
+      :host([dark-theme]) {
+        background-color: var(--px-catalog-page-background-color, black);
+      }
+
+      #pages {
+        flex: 1 1 auto;
+        margin: 0;
+        padding: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #pages > ::slotted(:not(.active)) {
+        display: none;
+      }
+    </style>
+    <!-- Pages will be distributed here -->
+    <div id="pages"></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-catalog-page',
+      properties: {
+        activeModule: {
+          type: String,
+          observer: '_activeModuleChanged'
+        },
+        darkTheme: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        _activeModuleEl: {
+          type: HTMLElement
+        }
+      },
+      observers: [
+        '_applyTheme(_activeModuleEl, darkTheme)'
+      ],
+      created: function() {
+        this._modules = {};
+      },
+      _activeModuleChanged: function(newModuleName, oldModuleName) {
+        var lastActive = Polymer.dom(this.$.pages).querySelector('.active');
+        if (lastActive !== null) {
+          lastActive.classList.remove('active');
+          if (lastActive.hasAttribute('dark-theme')) {
+            lastActive.removeAttribute('dark-theme');
+          }
+        }
+        if (newModuleName && !this._modules[newModuleName]) {
+          var el = document.createElement(newModuleName);
+          Polymer.dom(this.$.pages).appendChild(el);
+          this._modules[newModuleName] = el;
+        }
+        if (newModuleName) {
+          this._modules[newModuleName].classList.add('active');
+          if (this.darkTheme && !this._modules[newModuleName].hasAttribute('darkTheme')) {
+            this._modules[newModuleName].setAttribute('dark-theme', '');
+          }
+          this._activeModuleEl = this._modules[newModuleName];
+        }
+      },
+      _applyTheme: function(el, darkTheme, retry) {
+        retry = retry || 1;
+        if (!el) {
+          return;
+        }
+        if (!el.is && retry < 100) {
+          var retries = (retry+1);
+          var timeout = (retries > 10) ? 10 : 100;
+          this.async(this._applyTheme.bind(this, el, darkTheme, retries), timeout);
+          return;
+        }
+
+        var componentDemoRe = /px\-[a-zA-Z0-9-]+-demo/;
+        var isComponentDemo = componentDemoRe.test(el.nodeName.toLowerCase());
+
+        if (darkTheme && isComponentDemo) {
+          var darkTheme = PxDemo.ThemeUtil.getDarkThemeProperties();
+          el.updateStyles(darkTheme);
+        }
+        else if (!darkTheme && isComponentDemo) {
+          var defaultTheme = PxDemo.ThemeUtil.getDefaultThemeProperties();
+          el.updateStyles(defaultTheme);
+        }
+        else if (darkTheme && !isComponentDemo) {
+          el.setAttribute('dark-theme', '');
+          el.updateStyles();
+        }
+        else if (!darkTheme && !isComponentDemo) {
+          el.removeAttribute('dark-theme');
+          el.updateStyles();
+        }
+      }
+    })
+  </script>
+</dom-module>

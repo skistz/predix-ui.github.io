@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-defaults-design/_settings.defaults.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+// Component
+
+.link__container {
+  margin: 0;
+  line-height: 2rem;
+  padding-left: 15px;
+  display: block;
+  position: relative;
+}
+
+a.link__a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--px-catalog-nav-text-color, lightgray);
+  &:hover {
+    color: var(--px-cataog-nav-text-color--selected, blue);
+  }
+}
+
+:host([selected]) > .link > .link__container > a.link__a {
+  color: var(--px-cataog-nav-text-color--selected, blue);
+}
+
+.link__container__arrow {
+  display: none;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--px-catalog-nav-text-color, lightgray);
+}
+.link__container__arrow--visible {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+.link__container__arrow--opened {
+  transform: rotate(90deg);
+}
+
+ul.sublinks {
+  margin: 0;
+  padding: {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 14px;
+  };
+}

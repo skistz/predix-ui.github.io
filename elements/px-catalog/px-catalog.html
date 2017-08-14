@@ -24,8 +24,8 @@
 
 <!-- Import local dependencies -->
 <link async rel="import" href="px-catalog-theme-switcher.html" />
-<link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="px-catalog-page.html" />
+<link async rel="import" href="../px-catalog-treenav/px-catalog-treenav.html" />
 
 <dom-module id="px-catalog">
   <template>
@@ -52,13 +52,18 @@
 
     <!-- Communicates the state of dark theme toggle to child iframes -->
     <!-- <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent> -->
-    <px-catalog-theme-switcher global dark-theme="[[darkTheme]]" target="[[activeModule]]"></px-catalog-theme-switcher>
+    <px-catalog-theme-switcher global dark-theme="[[darkTheme]]"></px-catalog-theme-switcher>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
         auto
         url="navigation.json"
         last-response="{{navJSON}}">
+    </iron-ajax>
+    <iron-ajax
+        auto
+        url="/pages/app-data.json"
+        last-response="{{appData}}">
     </iron-ajax>
 
     <!-- Media query to update the nav width on landscape-size screens. The
@@ -70,31 +75,11 @@
 
     <!-- Catch the route and send it to `app-route` to munge the path -->
     <app-location
-        route="{{_route}}"
-        query-params="{{_queryParams}}"
-        path="{{_path}}"
+        route="{{route}}"
+        path="{{path}}"
+        query-params="{{query}}"
         use-hash-as-path>
     </app-location>
-    <!-- Fetch the base route information we need (type/name) and assign to `route` -->
-    <app-route
-        route="{{_route}}"
-        pattern="/:type/:name"
-        data="{{route}}"
-        tail="{{_routeTail}}">
-    </app-route>
-    <!-- Pass the routing data to the custom router to handle state and redirects -->
-    <px-catalog-router
-        raw-route="{{_route}}"
-        raw-path="{{_path}}"
-        query-params="{{_queryParams}}"
-        app-path="{{route}}"
-        app-tail="{{_routeTail.path}}"
-        active-name="{{activeName}}"
-        active-type="{{activeType}}"
-        frame-url="{{frameUrl}}"
-        nav-JSON="{{navJSON}}"
-        dark-theme="{{darkTheme}}">
-    </px-catalog-router>
 
       <!-- CATALOG HEADER -->
       <div class="catalog-header">
@@ -123,13 +108,13 @@
         <div class="catalog-page__spinner" active$="[[spinnerActive]]">
           <px-spinner size="150"></px-spinner>
         </div>
-        <div class="catalog-page__module" id="page"></div>
+        <px-catalog-page active-module="[[activeModule]]" dark-theme="[[darkTheme]]"></px-catalog-page>
       </div>
 
       <!-- CATALOG NAV -->
       <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
         <div class="catalog-nav__tree">
-          <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
+          <px-catalog-treenav pages="[[appData.pages]]" routes="[[appData.routes]]" selected-route="[[path]]"></px-catalog-treenav>
         </div>
       </app-drawer>
 
@@ -139,18 +124,6 @@
       is: 'px-catalog',
 
       properties: {
-        /**
-         * The URL for the currently active iFrame. If nothing is set, defaults
-         * to the catalog homepage.
-         *
-         * @type {String}
-         */
-        frameUrl: {
-          type: String,
-          value: '../../pages/home.html',
-          observer: '_handleFrameUrlChanged'
-        },
-
         /**
          * Set to `true` to show the spinner. Set to `false` to hide the spinner.
          *
@@ -162,42 +135,11 @@
         },
 
         /**
-         * The navigation represented as JSON, loaded by an `iron-ajax` element
-         * from the `navigation.json` file.
-         *
-         * @type {Object}
-         */
-        navJSON: {
-          type: Object
-        },
-
-        /**
          * The active page name, from the sidebar (e.g. 'px-sass-doc')
-         *
-         * @type {String}
          */
         activeName: {
           type: String,
           observer: '_updateTitle'
-        },
-
-        /**
-         * The active page type, from the sidebar (e.g. 'component')
-         *
-         * @type {String}
-         */
-        activeType: {
-          type: String,
-          observer: '_updateTitle'
-        },
-
-        /**
-         * Place to hang iframe loading poller
-         *
-         * @type {Object}
-         */
-        _loadingPoller: {
-          type: Object
         },
 
         /**
@@ -237,34 +179,62 @@
         },
 
         /**
-         * Reference to the active demo element.
+         * Name of the active demo element tag.
          */
         activeModule: {
-          type: HTMLElement
+          type: String,
+          observer: '_handleNewModuleSelected'
+        },
+
+        /**
+         * Holds the pages, routes, and redirect data.
+         */
+        appData: {
+          type: Object
         }
       },
 
       observers: [
-        '_updateDarkThemeStatus(darkTheme, activeModule)'
+        '_routeChanged(path, appData.routes)'
       ],
 
-      listeners: {
-        'px-sb-list-selected-item-changed': '_handleListItemChanged',
+      created: function() {
+        this._loadedRoutes = [];
       },
 
-      _updateDarkThemeStatus: function(isDarkTheme, activeModule) {
-        if (typeof isDarkTheme !== 'boolean' || typeof activeModule !== 'object') {
+      attached: function() {
+        // If there is no hash URL when the page first loads, use the
+        // homepage route
+        if (window.location.hash === "") {
+          this.path = '/home';
+        }
+      },
+
+      _routeChanged: function(route, appRoutes) {
+        if (typeof route !== 'string' || typeof appRoutes !== 'object') {
           return;
         }
 
-        if (isDarkTheme && !activeModule.hasAttribute('dark-theme')) {
-          activeModule.setAttribute('dark-theme', '');
-          activeModule.updateStyles();
+        this.spinnerActive = true;
+        var pageInfo = appRoutes[route];
+        if (!pageInfo) {
+          // 404, don't know this page
+          return;
         }
-        if (!isDarkTheme && activeModule.hasAttribute('dark-theme')) {
-          activeModule.removeAttribute('dark-theme');
-          activeModule.updateStyles();
+        if (this._loadedRoutes.indexOf(pageInfo.entrypoint) === -1) {
+          // Page entrypoint not yet loaded
+          var url = this.resolveUrl(pageInfo.entrypoint);
+          this.importHref(url, function() {
+            this.spinnerActive = false;
+            this._loadedRoutes.push(pageInfo.entrypoint);
+          }.bind(this), null, false);
         }
+        else {
+          this.spinnerActive = false;
+        }
+
+        this.activeName = pageInfo.label;
+        this.activeModule = pageInfo.module;
       },
 
       /**
@@ -272,107 +242,19 @@
        */
       _updateTitle: function() {
         this.debounce('update-title', function() {
-          var type = this._formatType(this.activeType || '');
-          var name = this._formatName(this.activeName || '');
-          if (name || type) {
-            document.title = 'Predix Design System' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '');
+          if (this.activeName) {
+            document.title = 'Predix Design System | ' + this.activeName;
+          } else {
+            document.title = 'Predix Design System';
           }
         }, 100);
       },
 
       /**
-       * Takes a URL routing `type` value, splits and capitalizes words.
-       *
-       * For example:
-       * 'css' would become 'CSS'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
-       */
-      _formatType: function(type) {
-        if (!type || !type.length) {return '';}
-
-        // CSS is a special case, capitalize it and return
-        if (type === 'css') {return 'CSS';}
-
-        return type
-        // Split on '-' char
-          .split('-')
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
-      },
-
-      /**
-       * Takes a URL routing `name` value, cleans up the words and capitalizes.
-       *
-       * For example:
-       * 'px-app-nav' would become 'App Nav'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
-       */
-      _formatName: function(name) {
-        if (!name || !name.length) {return '';}
-
-        return name
-        // Split on '-' char
-          .split('-')
-        // Remove 'px' (['px','app','nav'] -> ['app','nav'])
-          .filter(function(part){ return part !== 'px'; })
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
-      },
-
-      /**
-       * Capitalizes the first character of a string if it is a letter.
-       *
-       * @param {String} str - 'hello'
-       * @return {String} - 'Hello'
-       */
-      _capitalizeFirstLetter: function(str) {
-        return str.substring(0,1).toUpperCase() + str.substring(1);
-      },
-
-      /**
-       * When the URL the iFrame should show is updated, sync the new URL with
-       * the iFrame on the page.
-       */
-      _handleFrameUrlChanged: function(newUrl) {
-        this.spinnerActive = true;
-        this.importHref(
-            newUrl,
-            function(){
-              this.spinnerActive = false;
-            },
-            null,
-            false);
-
-        var importName = newUrl.substr(newUrl.lastIndexOf('/')+1),
-            eleName = importName.substr(0,importName.indexOf('.'));
-
-        ((eleName.indexOf('-') === -1) ? eleName = 'px-' + eleName : eleName = eleName);
-        var ele = Polymer.Base.create(eleName);
-
-        ele.style.width = "100%";
-        this.$.page.innerHTML = '';
-        this.$.page.appendChild(ele);
-        this.activeModule = ele;
-      },
-
-
-      /**
        * If a new page is selected and the viewport is smaller than desktop,
        * ensures the menu is closed.
        */
-      _handleListItemChanged: function() {
+      _handleNewModuleSelected: function() {
         if (!this.isDesktopUp && this.menuOpened) {
           this.menuOpened = false;
         }

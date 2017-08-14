@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-moduleName: release-notes
+moduleName: view-about-release-notes
 pathToRoot: ../../
 layout: default
 ---

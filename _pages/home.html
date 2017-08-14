@@ -7,7 +7,7 @@
 <link defer rel="import" href="../bower_components/px-demo/px-demo-theme-switcher.html" />
 <link defer rel="import" href="../elements/px-hero-image/px-hero-image.html" />
 
-<dom-module id="px-home">
+<dom-module id="view-home">
   <template>
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="predix-ui-styles"></style>
@@ -114,7 +114,7 @@
   </template>
   <script>
     Polymer({
-      is: 'px-home',
+      is: 'view-home',
       properties: {
         darkTheme: {
           type: Boolean,
