@@ -826,7 +826,7 @@
     ]
   },
   {
-    "path": "components",
+    "path": "elements",
     "label": "Components",
     "pages": [
       {
@@ -835,7 +835,7 @@
         "module": "px-accordion-demo",
         "entrypoint": "/bower_components/px-accordion/demo/px-accordion-demo.html",
         "redirects": [
-          "/css/px-accordion",
+          "/components/px-accordion",
           "/modules/px-accordion"
         ],
         "keywords": [
@@ -852,7 +852,7 @@
         "module": "px-alert-label-demo",
         "entrypoint": "/bower_components/px-alert-label/demo/px-alert-label-demo.html",
         "redirects": [
-          "/css/px-alert-label",
+          "/components/px-alert-label",
           "/modules/px-alert-label"
         ],
         "keywords": [
@@ -867,7 +867,7 @@
         "module": "px-alert-message-demo",
         "entrypoint": "/bower_components/px-alert-message/demo/px-alert-message-demo.html",
         "redirects": [
-          "/css/px-alert-message",
+          "/components/px-alert-message",
           "/modules/px-alert-message"
         ],
         "keywords": [
@@ -882,7 +882,7 @@
         "module": "px-app-header-demo",
         "entrypoint": "/bower_components/px-app-helpers/px-app-header/demo/px-app-header-demo.html",
         "redirects": [
-          "/css/px-app-helpers/px-app-header",
+          "/components/px-app-helpers/px-app-header",
           "/modules/px-app-helpers/px-app-header"
         ],
         "keywords": [
@@ -899,7 +899,7 @@
         "module": "px-app-nav-demo",
         "entrypoint": "/bower_components/px-app-nav/demo/px-app-nav-demo.html",
         "redirects": [
-          "/css/px-app-nav",
+          "/components/px-app-nav",
           "/modules/px-app-nav"
         ],
         "keywords": [
@@ -915,7 +915,7 @@
         "module": "px-app-route-demo",
         "entrypoint": "/bower_components/px-app-helpers/px-app-route/demo/px-app-route-demo.html",
         "redirects": [
-          "/css/px-app-helpers/px-app-route",
+          "/components/px-app-helpers/px-app-route",
           "/modules/px-app-helpers/px-app-route"
         ],
         "keywords": [
@@ -932,7 +932,7 @@
         "module": "px-branding-bar-demo",
         "entrypoint": "/bower_components/px-branding-bar/demo/px-branding-bar-demo.html",
         "redirects": [
-          "/css/px-branding-bar",
+          "/components/px-branding-bar",
           "/modules/px-branding-bar"
         ],
         "keywords": [
@@ -949,7 +949,7 @@
         "module": "px-breadcrumbs-demo",
         "entrypoint": "/bower_components/px-breadcrumbs/demo/px-breadcrumbs-demo.html",
         "redirects": [
-          "/css/px-breadcrumbs",
+          "/components/px-breadcrumbs",
           "/modules/px-breadcrumbs"
         ],
         "keywords": [
@@ -977,7 +977,7 @@
                 "module": "px-card-demo",
                 "entrypoint": "/bower_components/px-card/demo/px-card-demo.html",
                 "redirects": [
-                  "/css/px-card",
+                  "/components/px-card",
                   "/modules/px-card"
                 ]
               },
@@ -987,7 +987,7 @@
                 "module": "px-card-behavior-demo",
                 "entrypoint": "/bower_components/px-card/demo/px-card-behavior-demo.html",
                 "redirects": [
-                  "/css/px-card-behavior",
+                  "/components/px-card-behavior",
                   "/modules/px-card-behavior"
                 ]
               },
@@ -997,7 +997,7 @@
                 "module": "px-dashboard-demo",
                 "entrypoint": "/bower_components/px-card/demo/px-dashboard-demo.html",
                 "redirects": [
-                  "/css/px-dashboard",
+                  "/components/px-dashboard",
                   "/modules/px-dashboard"
                 ]
               },
@@ -1007,7 +1007,7 @@
                 "module": "px-deck-demo",
                 "entrypoint": "/bower_components/px-card/demo/px-deck-demo.html",
                 "redirects": [
-                  "/css/px-deck",
+                  "/components/px-deck",
                   "/modules/px-deck"
                 ]
               }
@@ -1019,7 +1019,7 @@
             "module": "px-deck-selector-demo",
             "entrypoint": "/bower_components/px-deck-selector/demo/px-deck-selector-demo.html",
             "redirects": [
-              "/css/px-deck-selector",
+              "/components/px-deck-selector",
               "/modules/px-deck-selector"
             ],
             "keywords": [
@@ -1035,7 +1035,7 @@
             "module": "px-widget-cards-demo",
             "entrypoint": "/bower_components/px-widget-cards/demo/px-widget-cards-demo.html",
             "redirects": [
-              "/css/px-widget-cards",
+              "/components/px-widget-cards",
               "/modules/px-widget-cards"
             ],
             "keywords": [
@@ -1052,7 +1052,7 @@
         "module": "px-clipboard-demo",
         "entrypoint": "/bower_components/px-clipboard/demo/px-clipboard-demo.html",
         "redirects": [
-          "/css/px-clipboard",
+          "/components/px-clipboard",
           "/modules/px-clipboard"
         ],
         "keywords": [
@@ -1077,7 +1077,7 @@
             "module": "px-context-browser-demo",
             "entrypoint": "/bower_components/px-context-browser/demo/px-context-browser-demo.html",
             "redirects": [
-              "/css/px-context-browser",
+              "/components/px-context-browser",
               "/modules/px-context-browser"
             ]
           },
@@ -1087,7 +1087,7 @@
             "module": "px-context-browser-trigger-demo",
             "entrypoint": "/bower_components/px-context-browser/demo/px-context-browser-trigger-demo.html",
             "redirects": [
-              "/css/px-context-browser-trigger",
+              "/components/px-context-browser-trigger",
               "/modules/px-context-browser-trigger"
             ]
           }
@@ -1103,7 +1103,7 @@
             "module": "local-element-demo",
             "entrypoint": "/bower_components/px-vis/demo/index.html",
             "redirects": [
-              "/css/px-vis",
+              "/components/px-vis",
               "/modules/px-vis"
             ],
             "keywords": [
@@ -1122,7 +1122,7 @@
             "module": "px-vis-parallel-coordinates-demo",
             "entrypoint": "/bower_components/px-vis-parallel-coordinates/demo/px-vis-parallel-coordinates-demo.html",
             "redirects": [
-              "/css/px-vis-parallel-coordinates",
+              "/components/px-vis-parallel-coordinates",
               "/modules/px-vis-parallel-coordinates"
             ],
             "keywords": [
@@ -1144,7 +1144,7 @@
             "module": "px-vis-pie-chart-demo",
             "entrypoint": "/bower_components/px-vis-pie-chart/demo/px-vis-pie-chart-demo.html",
             "redirects": [
-              "/css/px-vis-pie-chart",
+              "/components/px-vis-pie-chart",
               "/modules/px-vis-pie-chart"
             ],
             "keywords": [
@@ -1173,7 +1173,7 @@
             "module": "px-vis-polar-demo",
             "entrypoint": "/bower_components/px-vis-polar/demo/px-vis-polar-demo.html",
             "redirects": [
-              "/css/px-vis-polar",
+              "/components/px-vis-polar",
               "/modules/px-vis-polar"
             ],
             "keywords": [
@@ -1191,7 +1191,7 @@
             "module": "px-vis-radar-demo",
             "entrypoint": "/bower_components/px-vis-radar/demo/px-vis-radar-demo.html",
             "redirects": [
-              "/css/px-vis-radar",
+              "/components/px-vis-radar",
               "/modules/px-vis-radar"
             ],
             "keywords": [
@@ -1211,7 +1211,7 @@
             "module": "px-vis-spark-demo",
             "entrypoint": "/bower_components/px-vis-spark/demo/px-vis-spark-demo.html",
             "redirects": [
-              "/css/px-vis-spark",
+              "/components/px-vis-spark",
               "/modules/px-vis-spark"
             ],
             "keywords": [
@@ -1234,7 +1234,7 @@
             "module": "px-vis-timeseries-demo",
             "entrypoint": "/bower_components/px-vis-timeseries/demo/px-vis-timeseries-demo.html",
             "redirects": [
-              "/css/px-vis-timeseries",
+              "/components/px-vis-timeseries",
               "/modules/px-vis-timeseries"
             ],
             "keywords": [
@@ -1255,7 +1255,7 @@
             "module": "px-vis-xy-chart-demo",
             "entrypoint": "/bower_components/px-vis-xy-chart/demo/px-vis-xy-chart-demo.html",
             "redirects": [
-              "/css/px-vis-xy-chart",
+              "/components/px-vis-xy-chart",
               "/modules/px-vis-xy-chart"
             ],
             "keywords": [
@@ -1278,7 +1278,7 @@
             "module": "px-percent-circle-demo",
             "entrypoint": "/bower_components/px-percent-circle/demo/px-percent-circle-demo.html",
             "redirects": [
-              "/css/px-percent-circle",
+              "/components/px-percent-circle",
               "/modules/px-percent-circle"
             ],
             "keywords": [
@@ -1297,7 +1297,7 @@
             "module": "px-gauge-demo",
             "entrypoint": "/bower_components/px-gauge/demo/px-gauge-demo.html",
             "redirects": [
-              "/css/px-gauge",
+              "/components/px-gauge",
               "/modules/px-gauge"
             ],
             "keywords": [
@@ -1316,7 +1316,7 @@
             "module": "px-simple-area-chart-demo",
             "entrypoint": "/bower_components/px-simple-area-chart/demo/px-simple-area-chart-demo.html",
             "redirects": [
-              "/css/px-simple-area-chart",
+              "/components/px-simple-area-chart",
               "/modules/px-simple-area-chart"
             ],
             "keywords": [
@@ -1334,7 +1334,7 @@
             "module": "px-simple-bar-chart-demo",
             "entrypoint": "/bower_components/px-simple-bar-chart/demo/px-simple-bar-chart-demo.html",
             "redirects": [
-              "/css/px-simple-bar-chart",
+              "/components/px-simple-bar-chart",
               "/modules/px-simple-bar-chart"
             ],
             "keywords": [
@@ -1352,7 +1352,7 @@
             "module": "px-simple-horizontal-bar-chart-demo",
             "entrypoint": "/bower_components/px-simple-horizontal-bar-chart/demo/px-simple-horizontal-bar-chart-demo.html",
             "redirects": [
-              "/css/px-simple-horizontal-bar-chart",
+              "/components/px-simple-horizontal-bar-chart",
               "/modules/px-simple-horizontal-bar-chart"
             ],
             "keywords": [
@@ -1369,7 +1369,7 @@
             "module": "px-simple-line-chart-demo",
             "entrypoint": "/bower_components/px-simple-line-chart/demo/px-simple-line-chart-demo.html",
             "redirects": [
-              "/css/px-simple-line-chart",
+              "/components/px-simple-line-chart",
               "/modules/px-simple-line-chart"
             ],
             "keywords": [
@@ -1385,7 +1385,7 @@
             "module": "px-simple-win-loss-chart-demo",
             "entrypoint": "/bower_components/px-simple-win-loss-chart/demo/px-simple-win-loss-chart-demo.html",
             "redirects": [
-              "/css/px-simple-win-loss-chart",
+              "/components/px-simple-win-loss-chart",
               "/modules/px-simple-win-loss-chart"
             ],
             "keywords": [
@@ -1414,7 +1414,7 @@
             "module": "px-data-table-demo",
             "entrypoint": "/bower_components/px-data-table/demo/px-data-table-demo.html",
             "redirects": [
-              "/css/px-data-table",
+              "/components/px-data-table",
               "/modules/px-data-table"
             ]
           },
@@ -1424,7 +1424,7 @@
             "module": "px-data-table-column-demo",
             "entrypoint": "/bower_components/px-data-table/demo/px-data-table-column-demo.html",
             "redirects": [
-              "/css/px-data-table-column",
+              "/components/px-data-table-column",
               "/modules/px-data-table-column"
             ]
           },
@@ -1434,7 +1434,7 @@
             "module": "px-data-table-highlight-demo",
             "entrypoint": "/bower_components/px-data-table/demo/px-data-table-highlight-demo.html",
             "redirects": [
-              "/css/px-data-table-highlight",
+              "/components/px-data-table-highlight",
               "/modules/px-data-table-highlight"
             ]
           }
@@ -1450,7 +1450,7 @@
             "module": "px-calendar-picker-demo",
             "entrypoint": "/bower_components/px-calendar-picker/demo/px-calendar-picker-demo.html",
             "redirects": [
-              "/css/px-calendar-picker",
+              "/components/px-calendar-picker",
               "/modules/px-calendar-picker"
             ],
             "keywords": [
@@ -1468,7 +1468,7 @@
             "module": "px-datetime-field-demo",
             "entrypoint": "/bower_components/px-datetime-field/demo/px-datetime-field-demo.html",
             "redirects": [
-              "/css/px-datetime-field",
+              "/components/px-datetime-field",
               "/modules/px-datetime-field"
             ],
             "keywords": [
@@ -1483,7 +1483,7 @@
             "module": "px-datetime-picker-demo",
             "entrypoint": "/bower_components/px-datetime-picker/demo/px-datetime-picker-demo.html",
             "redirects": [
-              "/css/px-datetime-picker",
+              "/components/px-datetime-picker",
               "/modules/px-datetime-picker"
             ],
             "keywords": [
@@ -1498,7 +1498,7 @@
             "module": "px-datetime-range-field-demo",
             "entrypoint": "/bower_components/px-datetime-range-field/demo/px-datetime-range-field-demo.html",
             "redirects": [
-              "/css/px-datetime-range-field",
+              "/components/px-datetime-range-field",
               "/modules/px-datetime-range-field"
             ],
             "keywords": [
@@ -1513,7 +1513,7 @@
             "module": "px-datetime-range-panel-demo",
             "entrypoint": "/bower_components/px-datetime-range-panel/demo/px-datetime-range-panel-demo.html",
             "redirects": [
-              "/css/px-datetime-range-panel",
+              "/components/px-datetime-range-panel",
               "/modules/px-datetime-range-panel"
             ],
             "keywords": [
@@ -1528,7 +1528,7 @@
             "module": "px-rangepicker-demo",
             "entrypoint": "/bower_components/px-rangepicker/demo/px-rangepicker-demo.html",
             "redirects": [
-              "/css/px-rangepicker",
+              "/components/px-rangepicker",
               "/modules/px-rangepicker"
             ],
             "keywords": [
@@ -1546,7 +1546,7 @@
         "module": "px-dropdown-demo",
         "entrypoint": "/bower_components/px-dropdown/demo/px-dropdown-demo.html",
         "redirects": [
-          "/css/px-dropdown",
+          "/components/px-dropdown",
           "/modules/px-dropdown"
         ],
         "keywords": [
@@ -1562,7 +1562,7 @@
         "module": "px-file-upload-demo",
         "entrypoint": "/bower_components/px-file-upload/demo/px-file-upload-demo.html",
         "redirects": [
-          "/css/px-file-upload",
+          "/components/px-file-upload",
           "/modules/px-file-upload"
         ],
         "keywords": [
@@ -1579,7 +1579,7 @@
         "module": "px-icon-set-demo",
         "entrypoint": "/bower_components/px-icon-set/demo/px-icon-set-demo.html",
         "redirects": [
-          "/css/px-icon-set",
+          "/components/px-icon-set",
           "/modules/px-icon-set"
         ],
         "keywords": [
@@ -1596,7 +1596,7 @@
         "module": "px-inbox-demo",
         "entrypoint": "/bower_components/px-inbox/demo/px-inbox-demo.html",
         "redirects": [
-          "/css/px-inbox",
+          "/components/px-inbox",
           "/modules/px-inbox"
         ],
         "keywords": [
@@ -1616,7 +1616,7 @@
         "module": "px-key-value-pair-demo",
         "entrypoint": "/bower_components/px-key-value-pair/demo/px-key-value-pair-demo.html",
         "redirects": [
-          "/css/px-key-value-pair",
+          "/components/px-key-value-pair",
           "/modules/px-key-value-pair"
         ],
         "keywords": [
@@ -1645,7 +1645,7 @@
             "module": "px-kpi-demo",
             "entrypoint": "/bower_components/px-kpi/demo/px-kpi-demo.html",
             "redirects": [
-              "/css/px-kpi",
+              "/components/px-kpi",
               "/modules/px-kpi"
             ]
           },
@@ -1655,7 +1655,7 @@
             "module": "px-kpi-list-demo",
             "entrypoint": "/bower_components/px-kpi/demo/px-kpi-list-demo.html",
             "redirects": [
-              "/css/px-kpi-list",
+              "/components/px-kpi-list",
               "/modules/px-kpi-list"
             ]
           }
@@ -1667,7 +1667,7 @@
         "module": "px-login-demo",
         "entrypoint": "/bower_components/px-login/demo/px-login-demo.html",
         "redirects": [
-          "/css/px-login",
+          "/components/px-login",
           "/modules/px-login"
         ],
         "keywords": [
@@ -1698,7 +1698,7 @@
             "module": "px-map-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-demo.html",
             "redirects": [
-              "/css/px-map",
+              "/components/px-map",
               "/modules/px-map"
             ]
           },
@@ -1708,7 +1708,7 @@
             "module": "px-map-tile-layer-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-tile-layer-demo.html",
             "redirects": [
-              "/css/px-map-tile-layer",
+              "/components/px-map-tile-layer",
               "/modules/px-map-tile-layer"
             ]
           },
@@ -1718,7 +1718,7 @@
             "module": "px-map-tile-layer-bing-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-tile-layer-bing-demo.html",
             "redirects": [
-              "/css/px-map-tile-layer-bing",
+              "/components/px-map-tile-layer-bing",
               "/modules/px-map-tile-layer-bing"
             ]
           },
@@ -1728,7 +1728,7 @@
             "module": "px-map-layer-geojson-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-layer-geojson-demo.html",
             "redirects": [
-              "/css/px-map-layer-geojson",
+              "/components/px-map-layer-geojson",
               "/modules/px-map-layer-geojson"
             ]
           },
@@ -1738,7 +1738,7 @@
             "module": "px-map-layer-group-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-layer-group-demo.html",
             "redirects": [
-              "/css/px-map-layer-group",
+              "/components/px-map-layer-group",
               "/modules/px-map-layer-group"
             ]
           },
@@ -1748,7 +1748,7 @@
             "module": "px-map-control-locate-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-control-locate-demo.html",
             "redirects": [
-              "/css/px-map-control-locate",
+              "/components/px-map-control-locate",
               "/modules/px-map-control-locate"
             ]
           },
@@ -1758,7 +1758,7 @@
             "module": "px-map-control-scale-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-control-scale-demo.html",
             "redirects": [
-              "/css/px-map-control-scale",
+              "/components/px-map-control-scale",
               "/modules/px-map-control-scale"
             ]
           },
@@ -1768,7 +1768,7 @@
             "module": "px-map-control-zoom-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-control-zoom-demo.html",
             "redirects": [
-              "/css/px-map-control-zoom",
+              "/components/px-map-control-zoom",
               "/modules/px-map-control-zoom"
             ]
           },
@@ -1778,7 +1778,7 @@
             "module": "px-map-marker-locate-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-marker-locate-demo.html",
             "redirects": [
-              "/css/px-map-marker-locate",
+              "/components/px-map-marker-locate",
               "/modules/px-map-marker-locate"
             ]
           },
@@ -1788,7 +1788,7 @@
             "module": "px-map-marker-static-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-marker-static-demo.html",
             "redirects": [
-              "/css/px-map-marker-static",
+              "/components/px-map-marker-static",
               "/modules/px-map-marker-static"
             ]
           },
@@ -1798,7 +1798,7 @@
             "module": "px-map-marker-symbol-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-marker-symbol-demo.html",
             "redirects": [
-              "/css/px-map-marker-symbol",
+              "/components/px-map-marker-symbol",
               "/modules/px-map-marker-symbol"
             ]
           },
@@ -1808,7 +1808,7 @@
             "module": "px-map-marker-group-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-marker-group-demo.html",
             "redirects": [
-              "/css/px-map-marker-group",
+              "/components/px-map-marker-group",
               "/modules/px-map-marker-group"
             ]
           },
@@ -1818,7 +1818,7 @@
             "module": "px-map-popup-info-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-popup-info-demo.html",
             "redirects": [
-              "/css/px-map-popup-info",
+              "/components/px-map-popup-info",
               "/modules/px-map-popup-info"
             ]
           },
@@ -1828,7 +1828,7 @@
             "module": "px-map-popup-data-demo",
             "entrypoint": "/bower_components/px-map/demo/px-map-popup-data-demo.html",
             "redirects": [
-              "/css/px-map-popup-data",
+              "/components/px-map-popup-data",
               "/modules/px-map-popup-data"
             ]
           }
@@ -1840,7 +1840,7 @@
         "module": "px-modal-demo",
         "entrypoint": "/bower_components/px-modal/demo/px-modal-demo.html",
         "redirects": [
-          "/css/px-modal",
+          "/components/px-modal",
           "/modules/px-modal"
         ],
         "keywords": [
@@ -1856,7 +1856,7 @@
         "module": "px-number-formatter-demo",
         "entrypoint": "/bower_components/px-number-formatter/demo/px-number-formatter-demo.html",
         "redirects": [
-          "/css/px-number-formatter",
+          "/components/px-number-formatter",
           "/modules/px-number-formatter"
         ],
         "keywords": [
@@ -1873,7 +1873,7 @@
         "module": "px-overlay-demo",
         "entrypoint": "/bower_components/px-overlay/demo/px-overlay-demo.html",
         "redirects": [
-          "/css/px-overlay",
+          "/components/px-overlay",
           "/modules/px-overlay"
         ],
         "keywords": [
@@ -1887,7 +1887,7 @@
         "module": "px-popover-demo",
         "entrypoint": "/bower_components/px-popover/demo/px-popover-demo.html",
         "redirects": [
-          "/css/px-popover",
+          "/components/px-popover",
           "/modules/px-popover"
         ],
         "keywords": [
@@ -1901,7 +1901,7 @@
         "module": "px-progress-bar-demo",
         "entrypoint": "/bower_components/px-progress-bar/demo/px-progress-bar-demo.html",
         "redirects": [
-          "/css/px-progress-bar",
+          "/components/px-progress-bar",
           "/modules/px-progress-bar"
         ],
         "keywords": [
@@ -1915,7 +1915,7 @@
         "module": "px-slider-demo",
         "entrypoint": "/bower_components/px-slider/demo/px-slider-demo.html",
         "redirects": [
-          "/css/px-slider",
+          "/components/px-slider",
           "/modules/px-slider"
         ],
         "keywords": [
@@ -1931,7 +1931,7 @@
         "module": "px-spinner-demo",
         "entrypoint": "/bower_components/px-spinner/demo/px-spinner-demo.html",
         "redirects": [
-          "/css/px-spinner",
+          "/components/px-spinner",
           "/modules/px-spinner"
         ],
         "keywords": [
@@ -1958,7 +1958,7 @@
             "module": "px-table-view-demo",
             "entrypoint": "/bower_components/px-table-view/demo/px-table-view-demo.html",
             "redirects": [
-              "/css/px-table-view",
+              "/components/px-table-view",
               "/modules/px-table-view"
             ]
           },
@@ -1968,7 +1968,7 @@
             "module": "px-table-view-sortable-list-demo",
             "entrypoint": "/bower_components/px-table-view/demo/px-table-view-sortable-list-demo.html",
             "redirects": [
-              "/css/px-table-view-sortable-list",
+              "/components/px-table-view-sortable-list",
               "/modules/px-table-view-sortable-list"
             ]
           },
@@ -1978,7 +1978,7 @@
             "module": "px-table-row-demo",
             "entrypoint": "/bower_components/px-table-view/demo/px-table-row-demo.html",
             "redirects": [
-              "/css/px-table-row",
+              "/components/px-table-row",
               "/modules/px-table-row"
             ]
           },
@@ -1988,7 +1988,7 @@
             "module": "px-table-row-action-button-demo",
             "entrypoint": "/bower_components/px-table-view/demo/px-table-row-action-button-demo.html",
             "redirects": [
-              "/css/px-table-row-action-button",
+              "/components/px-table-row-action-button",
               "/modules/px-table-row-action-button"
             ]
           }
@@ -2000,7 +2000,7 @@
         "module": "px-tabs-demo",
         "entrypoint": "/bower_components/px-tabs/demo/px-tabs-demo.html",
         "redirects": [
-          "/css/px-tabs",
+          "/components/px-tabs",
           "/modules/px-tabs"
         ],
         "keywords": [
@@ -2016,7 +2016,7 @@
         "module": "px-timeline-demo",
         "entrypoint": "/bower_components/px-timeline/demo/px-timeline-demo.html",
         "redirects": [
-          "/css/px-timeline",
+          "/components/px-timeline",
           "/modules/px-timeline"
         ],
         "keywords": [
@@ -2036,7 +2036,7 @@
         "module": "px-toggle-demo",
         "entrypoint": "/bower_components/px-toggle/demo/px-toggle-demo.html",
         "redirects": [
-          "/css/px-toggle",
+          "/components/px-toggle",
           "/modules/px-toggle"
         ],
         "keywords": [
@@ -2052,7 +2052,7 @@
         "module": "px-tooltip-demo",
         "entrypoint": "/bower_components/px-tooltip/demo/px-tooltip-demo.html",
         "redirects": [
-          "/css/px-tooltip",
+          "/components/px-tooltip",
           "/modules/px-tooltip"
         ],
         "keywords": [
@@ -2077,7 +2077,7 @@
             "module": "px-tree-demo",
             "entrypoint": "/bower_components/px-tree/demo/px-tree-demo.html",
             "redirects": [
-              "/css/px-tree",
+              "/components/px-tree",
               "/modules/px-tree"
             ]
           },
@@ -2087,7 +2087,7 @@
             "module": "px-tree-node-demo",
             "entrypoint": "/bower_components/px-tree/demo/px-tree-node-demo.html",
             "redirects": [
-              "/css/px-tree-node",
+              "/components/px-tree-node",
               "/modules/px-tree-node"
             ]
           }
@@ -2099,7 +2099,7 @@
         "module": "px-typeahead-demo",
         "entrypoint": "/bower_components/px-typeahead/demo/px-typeahead-demo.html",
         "redirects": [
-          "/css/px-typeahead",
+          "/components/px-typeahead",
           "/modules/px-typeahead"
         ],
         "keywords": [
@@ -2116,7 +2116,7 @@
         "module": "px-validation-demo",
         "entrypoint": "/bower_components/px-validation/demo/px-validation-demo.html",
         "redirects": [
-          "/css/px-validation",
+          "/components/px-validation",
           "/modules/px-validation"
         ],
         "keywords": [
@@ -2135,7 +2135,7 @@
         "module": "px-view-header-demo",
         "entrypoint": "/bower_components/px-view-header/demo/px-view-header-demo.html",
         "redirects": [
-          "/css/px-view-header",
+          "/components/px-view-header",
           "/modules/px-view-header"
         ],
         "keywords": [
