@@ -7,10 +7,6 @@ h1, h2, h3, h4, h5, h6, p, ul {
   margin-bottom: 1rem;
 }
 
-p, li {
-  line-height: 1.6em;
-}
-
 h1, h2, h3 {
   font-weight: 400;
 }
@@ -21,12 +17,15 @@ h2 {
 
 h3 {
   font-size: calculateRem(28px);
+  margin-top: calculateRem(50px);
 }
 
 h4 {
-  font-size: calculateRem(15px);
-  font-weight: 700;
+  font-size: calculateRem(20px);
   margin-bottom: .25rem;
+  font-weight: 400;
+  padding-top: calculateRem(3px);
+  padding-bottom: calculateRem(3px);
 }
 
 h4 + p {
@@ -39,9 +38,11 @@ h2, .text-accent--primary {
   color: var(--px-catalog-page-accent-color--primary, red);
 }
 
-h3, .text-accent--secondary {
+h3, h4, .text-accent--secondary {
   color: var(--px-catalog-page-accent-color--secondary, blue);
 }
+
+
 
 // *** CUSTOM BUTTON COLORS ** //
 
@@ -70,34 +71,16 @@ h3, .text-accent--secondary {
 }
 
 // *** LINK COLORS *** //
-
 a {
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  background: none;
-  white-space: nowrap;
-  line-height: inherit;
   text-decoration: none;
-  font: inherit;
-  -webkit-font-smoothing: antitodoed;
-  cursor: pointer;
-  outline: none;
-  transition: color .4s;
   &,
   &:link,
   &:visited,
   &:active,
   &:focus {
     color: var(--px-catalog-page-link-color, blue);
-    outline: inherit;
   }
   &:hover{
-    // color: $inuit-actionable-text-color--hover;
-  }
-  &:active {
-    // color: $inuit-actionable-text-color--active;
+    color: var(--px-catalog-page-link-color--hover, navy);
   }
 }
