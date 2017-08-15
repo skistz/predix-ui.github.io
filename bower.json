@@ -130,14 +130,14 @@
     "px-widths-design": "^1.0.0",
     "px-widths-responsive-design": "^1.0.0",
     "px-widths-tools-design": "^1.0.0",
-    "px-api-viewer": "^2.0.0",
+    "px-api-viewer": "^2.0.3",
     "iron-doc-viewer": "^3.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
     "promise-polyfill": "^2.0.0",
     "iron-location": "1 - 2",
-    "px-api-viewer": "^2.0.0",
+    "px-api-viewer": "^2.0.3",
     "iron-doc-viewer": "^3.0.0"
   }
 }

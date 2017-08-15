@@ -424,15 +424,51 @@ function buildAPIAnalyzerFiles(pxElementPaths){
 
   // Run analyzer separately for each so we can write the descriptors into separate files.
   // Promise.all to prevent premature completion
-  return Promise.all(pxElementPaths.map(elementName => {
-    elementName = elementName.substr(elementName.indexOf('/') + 1);
-    elementName = elementName.slice(0, -1);
-    return analyzer.analyze([`${elementName}/${elementName}.html`])
-      .then(analysis => {
-        console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
-        return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(generateAnalysis(analysis, './bower_components')));
-      });
-  }));
+  return Promise.all(pxElementPaths.map(elementDir => analyzeRepo(elementDir, analyzer)));
+};
+
+function analyzeRepo(elementDir, analyzer) {
+  // takes '/bower_components/px-foo-bar/' and extracts 'px-foo-bar'
+  const elementName = elementDir.match(/\/(px\-.*)\//)[1];
+  // find all elements in this folder that begin with the element name
+  return getFilesForRepo(elementDir, elementName)
+    .then(files => {
+      if (!files.length) {
+        // No .html files found, likely a -design repo
+        return Promise.reject('NO_HTML_FILE');
+      }
+      // console.log(`Analyzing ${elementName} files: ${files.join(', ')}`)
+      return analyzer.analyze(files);
+    })
+    .then(analysis => {
+      analysis = filterAnalysis(generateAnalysis(analysis, './bower_components'), elementName);
+      // console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
+      return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(analysis));
+    })
+    .catch(e => {
+      if (e !== 'NO_HTML_FILE') {
+        console.log(`Error for ${elementName}:\n${e}`);
+      }
+    });
+};
+
+function filterAnalysis(analysis, elementName) {
+  let belongsToElement = new RegExp(`^\.\.\/${elementName}\/`);
+  return {
+    schema_version: analysis.schema_version,
+    elements: analysis.elements ? analysis.elements.filter(a => belongsToElement.test(a.path)) : []
+  };
+};
+
+function getFilesForRepo(elementDir, elementName) {
+  return new Promise((resolve) => {
+    glob(`${elementDir}${elementName}*.html`, (err, files) => {
+      if (!files.length) {
+        return resolve([]);
+      }
+      return resolve(files.map(f => f.match(/bower_components\/(px-.+\/px\-.+html)/)[1]));
+    });
+  });
 };
 
 function processPagesJSON(text) {
