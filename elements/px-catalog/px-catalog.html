@@ -199,11 +199,35 @@
          */
         path: {
           type: String
+        },
+
+        /**
+         * The portion of the hash that precedes the ':' symbol. This is used to
+         * route to the correct view.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _pagePath would be '/elements/px-alert-message'
+         */
+        _pagePath: {
+          type: String,
+          computed: '_getPagePath(path)'
+        },
+
+        /**
+         * The portion of the hash that follows the ':' symbol, if any. This is
+         * used to route to jump to a section on the page.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _anchorPath would be 'property-message'
+         */
+        _anchorPath: {
+          type: String,
+          computed: '_getAnchorPath(path)'
         }
       },
 
       observers: [
-        '_routeChanged(path, appData)'
+        '_routeChanged(_pagePath, appData)'
       ],
 
       created: function() {
@@ -216,6 +240,20 @@
         if (window.location.hash === "") {
           this.path = '/home';
         }
+      },
+
+      _getPagePath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[0].trim();
+        }
+        return path;
+      },
+
+      _getAnchorPath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[1].trim();
+        }
+        return null;
       },
 
       _routeChanged: function(route, appData) {
@@ -245,6 +283,7 @@
           this.importHref(url, function() {
             this.spinnerActive = false;
             this._loadedRoutes.push(pageInfo.entrypoint);
+            window.dispatchEvent(new CustomEvent('page-loaded'));
           }.bind(this), null, false);
         }
         else {
