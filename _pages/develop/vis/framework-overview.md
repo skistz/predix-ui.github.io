@@ -1,8 +1,7 @@
 ---
-title: The Vis Framework Overview
-updated: July 27, 2017
+title: Vis Framework Overview
 layout: default
-moduleName: vis-framework-overview
+moduleName: view-develop-vis-framework-overview
 pathToRoot: ../../../
 ---
 
@@ -291,7 +290,7 @@ Draws multiple Axes positioned ordinally. Each axis can have an individual or sh
 
 ### Pie
 Draws a pie or donut representation of your data, using SVG. Includes a tooltip and popover. The colors need to be included in the data set, through a colorIndex property.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)67`
+</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
 
 
 ### Radar Grid

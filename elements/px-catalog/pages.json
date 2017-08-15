@@ -174,6 +174,12 @@
         "label": "Data Visualization",
         "pages": [
           {
+            "path": "framework-overview",
+            "label": "Framework Overview",
+            "module": "view-develop-vis-framework-overview",
+            "entrypoint": "/pages/develop/vis/framework-overview.html"
+          },
+          {
             "path": "terminology",
             "label": "Terminology",
             "module": "view-develop-vis-terminology",
@@ -1100,12 +1106,6 @@
           {
             "path": "px-vis",
             "label": "Vis Framework",
-            "module": "local-element-demo",
-            "entrypoint": "/bower_components/px-vis/demo/index.html",
-            "redirects": [
-              "/components/px-vis",
-              "/modules/px-vis"
-            ],
             "keywords": [
               "px-vis",
               "charts",
@@ -1114,6 +1114,564 @@
               "graphs",
               "viz",
               "framework"
+            ],
+            "pages": [
+              {
+                "path": "px-vis",
+                "label": "Vis Framework",
+                "module": "local-element-demo",
+                "entrypoint": "/bower_components/px-vis/demo/index.html",
+                "redirects": [
+                  "/components/px-vis",
+                  "/modules/px-vis"
+                ]
+              },
+              {
+                "path": "px-vis-area-svg",
+                "label": "Vis Area Svg",
+                "module": "px-vis-area-svg-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-area-svg-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-area-svg",
+                  "/modules/px-vis-area-svg"
+                ]
+              },
+              {
+                "path": "px-vis-axis",
+                "label": "Vis Axis",
+                "module": "px-vis-axis-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-axis-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-axis",
+                  "/modules/px-vis-axis"
+                ]
+              },
+              {
+                "path": "px-vis-axis-brush",
+                "label": "Vis Axis Brush",
+                "module": "px-vis-axis-brush-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-axis-brush-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-axis-brush",
+                  "/modules/px-vis-axis-brush"
+                ]
+              },
+              {
+                "path": "px-vis-bar-svg",
+                "label": "Vis Bar Svg",
+                "module": "px-vis-bar-svg-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-bar-svg-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-bar-svg",
+                  "/modules/px-vis-bar-svg"
+                ]
+              },
+              {
+                "path": "px-vis-brush",
+                "label": "Vis Brush",
+                "module": "px-vis-brush-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-brush-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-brush",
+                  "/modules/px-vis-brush"
+                ]
+              },
+              {
+                "path": "px-vis-canvas",
+                "label": "Vis Canvas",
+                "module": "px-vis-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-canvas",
+                  "/modules/px-vis-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-chart-navigator",
+                "label": "Vis Chart Navigator",
+                "module": "px-vis-chart-navigator-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-chart-navigator-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-chart-navigator",
+                  "/modules/px-vis-chart-navigator"
+                ]
+              },
+              {
+                "path": "px-vis-clip-path",
+                "label": "Vis Clip Path",
+                "module": "px-vis-clip-path-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-clip-path-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-clip-path",
+                  "/modules/px-vis-clip-path"
+                ]
+              },
+              {
+                "path": "px-vis-clip-path-complex-area",
+                "label": "Vis Clip Path Complex Area",
+                "module": "px-vis-clip-path-complex-area-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-clip-path-complex-area-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-clip-path-complex-area",
+                  "/modules/px-vis-clip-path-complex-area"
+                ]
+              },
+              {
+                "path": "px-vis-cursor",
+                "label": "Vis Cursor",
+                "module": "px-vis-cursor-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-cursor-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-cursor",
+                  "/modules/px-vis-cursor"
+                ]
+              },
+              {
+                "path": "px-vis-cursor-line",
+                "label": "Vis Cursor Line",
+                "module": "px-vis-cursor-line-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-cursor-line-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-cursor-line",
+                  "/modules/px-vis-cursor-line"
+                ]
+              },
+              {
+                "path": "px-vis-data-converter",
+                "label": "Vis Data Converter",
+                "module": "px-vis-data-converter-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-data-converter-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-data-converter",
+                  "/modules/px-vis-data-converter"
+                ]
+              },
+              {
+                "path": "px-vis-dynamic-menu",
+                "label": "Vis Dynamic Menu",
+                "module": "px-vis-dynamic-menu-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-dynamic-menu-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-dynamic-menu",
+                  "/modules/px-vis-dynamic-menu"
+                ]
+              },
+              {
+                "path": "px-vis-event",
+                "label": "Vis Event",
+                "module": "px-vis-event-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-event-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-event",
+                  "/modules/px-vis-event"
+                ]
+              },
+              {
+                "path": "px-vis-gridlines",
+                "label": "Vis Gridlines",
+                "module": "px-vis-gridlines-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-gridlines-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-gridlines",
+                  "/modules/px-vis-gridlines"
+                ]
+              },
+              {
+                "path": "px-vis-highlight-line-canvas",
+                "label": "Vis Highlight Line Canvas",
+                "module": "px-vis-highlight-line-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-highlight-line-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-highlight-line-canvas",
+                  "/modules/px-vis-highlight-line-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-highlight-line",
+                "label": "Vis Highlight Line",
+                "module": "px-vis-highlight-line-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-highlight-line-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-highlight-line",
+                  "/modules/px-vis-highlight-line"
+                ]
+              },
+              {
+                "path": "px-vis-highlight-point-canvas",
+                "label": "Vis Highlight Point Canvas",
+                "module": "px-vis-highlight-point-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-highlight-point-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-highlight-point-canvas",
+                  "/modules/px-vis-highlight-point-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-highlight-point",
+                "label": "Vis Highlight Point",
+                "module": "px-vis-highlight-point-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-highlight-point-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-highlight-point",
+                  "/modules/px-vis-highlight-point"
+                ]
+              },
+              {
+                "path": "px-vis-interactive-axis",
+                "label": "Vis Interactive Axis",
+                "module": "px-vis-interactive-axis-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-interactive-axis-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-interactive-axis",
+                  "/modules/px-vis-interactive-axis"
+                ]
+              },
+              {
+                "path": "px-vis-interaction-space",
+                "label": "Vis Interaction Space",
+                "module": "px-vis-interaction-space-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-interaction-space-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-interaction-space",
+                  "/modules/px-vis-interaction-space"
+                ]
+              },
+              {
+                "path": "px-vis-line-canvas",
+                "label": "Vis Line Canvas",
+                "module": "px-vis-line-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-line-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-line-canvas",
+                  "/modules/px-vis-line-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-line-svg",
+                "label": "Vis Line Svg",
+                "module": "px-vis-line-svg-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-line-svg-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-line-svg",
+                  "/modules/px-vis-line-svg"
+                ]
+              },
+              {
+                "path": "px-vis-multi-axis",
+                "label": "Vis Multi Axis",
+                "module": "px-vis-multi-axis-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-multi-axis-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-multi-axis",
+                  "/modules/px-vis-multi-axis"
+                ]
+              },
+              {
+                "path": "px-vis-multi-scale",
+                "label": "Vis Multi Scale",
+                "module": "px-vis-multi-scale-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-multi-scale-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-multi-scale",
+                  "/modules/px-vis-multi-scale"
+                ]
+              },
+              {
+                "path": "px-vis-pie",
+                "label": "Vis Pie",
+                "module": "px-vis-pie-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-pie-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-pie",
+                  "/modules/px-vis-pie"
+                ]
+              },
+              {
+                "path": "px-vis-radar-grid",
+                "label": "Vis Radar Grid",
+                "module": "px-vis-radar-grid-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-radar-grid-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-radar-grid",
+                  "/modules/px-vis-radar-grid"
+                ]
+              },
+              {
+                "path": "px-vis-radial-gridlines",
+                "label": "Vis Radial Gridlines",
+                "module": "px-vis-radial-gridlines-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-radial-gridlines-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-radial-gridlines",
+                  "/modules/px-vis-radial-gridlines"
+                ]
+              },
+              {
+                "path": "px-vis-radial-scale",
+                "label": "Vis Radial Scale",
+                "module": "px-vis-radial-scale-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-radial-scale-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-radial-scale",
+                  "/modules/px-vis-radial-scale"
+                ]
+              },
+              {
+                "path": "px-vis-register",
+                "label": "Vis Register",
+                "module": "px-vis-register-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-register-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-register",
+                  "/modules/px-vis-register"
+                ]
+              },
+              {
+                "path": "px-vis-scale",
+                "label": "Vis Scale",
+                "module": "px-vis-scale-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-scale-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-scale",
+                  "/modules/px-vis-scale"
+                ]
+              },
+              {
+                "path": "px-vis-scatter",
+                "label": "Vis Scatter",
+                "module": "px-vis-scatter-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-scatter-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-scatter",
+                  "/modules/px-vis-scatter"
+                ]
+              },
+              {
+                "path": "px-vis-scatter-canvas",
+                "label": "Vis Scatter Canvas",
+                "module": "px-vis-scatter-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-scatter-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-scatter-canvas",
+                  "/modules/px-vis-scatter-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-striping",
+                "label": "Vis Striping",
+                "module": "px-vis-striping-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-striping-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-striping",
+                  "/modules/px-vis-striping"
+                ]
+              },
+              {
+                "path": "px-vis-svg",
+                "label": "Vis Svg",
+                "module": "px-vis-svg-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-svg-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-svg",
+                  "/modules/px-vis-svg"
+                ]
+              },
+              {
+                "path": "px-vis-svg-canvas",
+                "label": "Vis Svg Canvas",
+                "module": "px-vis-svg-canvas-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-svg-canvas-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-svg-canvas",
+                  "/modules/px-vis-svg-canvas"
+                ]
+              },
+              {
+                "path": "px-vis-threshold",
+                "label": "Vis Threshold",
+                "module": "px-vis-threshold-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-threshold-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-threshold",
+                  "/modules/px-vis-threshold"
+                ]
+              },
+              {
+                "path": "px-vis-toolbar",
+                "label": "Vis Toolbar",
+                "module": "px-vis-toolbar-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-toolbar-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-toolbar",
+                  "/modules/px-vis-toolbar"
+                ]
+              },
+              {
+                "path": "px-vis-tooltip",
+                "label": "Vis Tooltip",
+                "module": "px-vis-tooltip-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-tooltip-demo.html",
+                "keywords": [
+                  "vis",
+                  "px-vis"
+                ],
+                "redirects": [
+                  "/components/px-vis-tooltip",
+                  "/modules/px-vis-tooltip"
+                ]
+              }
             ]
           },
           {
