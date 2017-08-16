@@ -453,6 +453,13 @@ function analyzeRepo(elementDir, analyzer) {
 };
 
 function filterAnalysis(analysis, elementName) {
+  // The analysis paths go from each component's folder up to the bower_components/
+  // directory, so the element at px-foo/px-foo.html will have a path
+  // ../px-foo/px-foo.html. This filter makes sure the only things that end
+  // up in the api.json file for this element are things in its folder,
+  // not a bunch of other muck in 3rd-party components.
+
+  // The regex that comes out for px-foo would be /^\.\.\/px-foo\//
   let belongsToElement = new RegExp(`^\.\.\/${elementName}\/`);
   return {
     schema_version: analysis.schema_version,
