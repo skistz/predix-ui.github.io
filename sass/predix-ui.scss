@@ -206,11 +206,11 @@ small {
   text-align: center;
 }
 
-.text--large {
-  font-size: 1.1rem;
-  font-weight: 400;
-  line-height: 1.1rem;
-}
+// .text--large {
+//   font-size: 1.1rem;
+//   font-weight: 400;
+//   line-height: 1.1rem;
+// }
 
 .text--small {
   font-size: 1rem;
@@ -282,17 +282,17 @@ a.item__link {
   height: 500px;
 }
 
-.text--left {
-  text-align: left!important;
-}
+// .text--left {
+//   text-align: left!important;
+// }
 
-.main {
- width: 100%;
- margin: 0 auto;
- background-color: $white;
- padding: 3% 5% 2% 5%;
-  overflow: hidden;
-}
+// .main {
+//  width: 100%;
+//  margin: 0 auto;
+//  background-color: $white;
+//  padding: 3% 5% 2% 5%;
+//   overflow: hidden;
+// }
 
 .platform {
   margin: 0 auto;
@@ -431,10 +431,10 @@ table.guidelines.datavis td {
   font-size: 1.5rem;
 }
 
-.headerBottom {
-  max-width: 1000px;
-  margin: 0 auto;
-}
+// .headerBottom {
+//   max-width: 1000px;
+//   margin: 0 auto;
+// }
 
 .info-box, a.info-box, a:link.info-box, a:visited.info-box {
   padding: $inuit-base-spacing-unit;
@@ -511,39 +511,39 @@ table.guidelines.datavis td {
  * HERO
  ******************************************************************************/
 
-.hero {
-  display: block;
-  background-color: #ebeff1;
+// .hero {
+//   display: block;
+//   background-color: #ebeff1;
 
-  @include media-query($px-catalog-screen-tablet-up) {
-    min-height: 350px;
-  }
+//   @include media-query($px-catalog-screen-tablet-up) {
+//     min-height: 350px;
+//   }
 
-}
+// }
 
-:host([dark-theme]) {
-  .hero {
-    background-color: #1a2a35;
-  }
-}
+// :host([dark-theme]) {
+//   .hero {
+//     background-color: #1a2a35;
+//   }
+// }
 
 
-/*******************************************************************************
- * REFRESH-BANNER
- ******************************************************************************/
+// /*******************************************************************************
+//  * REFRESH-BANNER
+//  ******************************************************************************/
 
-.refresh-banner {
-  background-color: $px-catalog-blue;
-  padding: $inuit-base-spacing-unit 5%;
-}
-.refresh-banner p {
-  color: white;
-  margin: 0;
-}
-.refresh-banner a {
-  color: white !important;
-  text-decoration: underline !important;
-}
+// .refresh-banner {
+//   background-color: $px-catalog-blue;
+//   padding: $inuit-base-spacing-unit 5%;
+// }
+// .refresh-banner p {
+//   color: white;
+//   margin: 0;
+// }
+// .refresh-banner a {
+//   color: white !important;
+//   text-decoration: underline !important;
+// }
 
 // Trumps
 $inuit-enable-margins--tiny           : true;

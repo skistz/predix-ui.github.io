@@ -10,7 +10,7 @@
   margin-top: 1rem;
 }
 
-@include media-query($px-catalog-screen-tablet-up) {
+@include px-media-query($px-catalog-screen-tablet-up) {
   .halves {
     display: flex;
     justify-content: space-between;

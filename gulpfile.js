@@ -193,9 +193,9 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
  * the browser when files are updated.
  ******************************************************************************/
 
-gulp.task('serve', ['sass', 'docs'], function() {
+gulp.task('serve', ['sass', 'docs', 'generate-api'], function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['_pages/**/*.md'], ['docs']);
+  gulp.watch(['_pages/**/*.md', '_pages/**/*.html', 'elements/px-catalog/pages.json'], ['docs']);
   gulp.watch(['sass/*.scss'], ['sass']);
   gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html']).on('change', browserSync.reload);
 });
@@ -220,7 +220,7 @@ This task now does the following:
 
 And... you probably want to run \`gulp serve\` instead of this task. :)
     `);
-  gulpSequence('sass', 'docs', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -296,7 +296,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -307,7 +307,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'docs','generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
@@ -494,7 +494,7 @@ gulp.task('docs:md', function(cb){
   });
 });
 
-gulp.task('docs:api', function(cb){
+gulp.task('generate-api', function(cb){
   glob('bower_components/px-*/', (err, files) => {
     buildAPIAnalyzerFiles(files)
       .then(() => cb());
@@ -520,5 +520,5 @@ gulp.task('docs:copy-non-md', function(){
 });
 
 gulp.task('docs', function(callback) {
-  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:api', 'docs:pages-json')(callback);
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:pages-json')(callback);
 });

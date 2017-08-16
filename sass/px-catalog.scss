@@ -50,7 +50,7 @@ $px-catalog-nav-width-large: 300px;
   background-color: var(--px-catalog-header-background-color, gray);
   color: var(--px-catalog-header-text-color, black);
 
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     height: $px-catalog-header-size-large;
   }
 }
@@ -67,11 +67,11 @@ $px-catalog-nav-width-large: 300px;
   right: 0;
   bottom: 0;
 
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     top: $px-catalog-header-size-large;
   }
 
-  @include media-query($px-catalog-screen-desktop-up) {
+  @include px-media-query($px-catalog-screen-desktop-up) {
     left: $px-catalog-nav-width-large;
   }
 }
@@ -109,7 +109,7 @@ $px-catalog-nav-width-large: 300px;
   --app-drawer-width: 100%;
   --app-drawer-scrim-background: rgba(0,0,0,0.4);
 
-  @include media-query($px-catalog-screen-landscape-up) {
+  @include px-media-query($px-catalog-screen-landscape-up) {
     --app-drawer-width: $px-catalog-nav-width-large;
   }
 }
@@ -126,11 +126,11 @@ $px-catalog-nav-width-large: 300px;
   padding-bottom: $px-catalog-header-size-small;
   background-color: var(--px-catalog-nav-background-color, darkgray);
 
-  @include media-query($px-catalog-screen-landscape-up) {
+  @include px-media-query($px-catalog-screen-landscape-up) {
     width: $px-catalog-nav-width-large;
   }
 
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     padding-top: $px-catalog-header-size-large + 20;
     padding-bottom: $px-catalog-header-size-large;
   }
@@ -180,7 +180,7 @@ $px-catalog-nav-width-large: 300px;
     text-transform: uppercase;
   }
 
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     .logo__image {
       display: inline-block;
       height: 18px;
@@ -206,7 +206,7 @@ $px-catalog-nav-width-large: 300px;
     }
   }
 
-  @include media-query($px-catalog-screen-desktop-up) {
+  @include px-media-query($px-catalog-screen-desktop-up) {
     .logo__image {
       height: 20px;
     }
@@ -221,7 +221,7 @@ $px-catalog-nav-width-large: 300px;
   margin-right: .5rem;
   cursor: pointer;
 
-  @include media-query($px-catalog-screen-desktop-up) {
+  @include px-media-query($px-catalog-screen-desktop-up) {
     display: none;
     visibility: hidden;
   }
