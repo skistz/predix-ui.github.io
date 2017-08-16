@@ -253,7 +253,8 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
         'id_rsa.enc',
         'package.json',
         'sass/*.*',
-        'yarn.lock'];
+        'yarn.lock',
+        'bower_components/leaflet/docs/*'];
 
     gitIgnore.forEach((val) =>{
       execSync(`echo "${val}" >> .gitignore`);
