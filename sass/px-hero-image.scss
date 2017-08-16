@@ -22,6 +22,12 @@ $inuit-enable-btn--primary: true;
 // Component
 @import 'util';
 
+:root {
+  --px-btn-primary-color: $white;
+  --px-btn-primary-background: $select-default;
+  --px-btn-primary-background--hover: $select-hover;
+  --px-btn-primary-background--pressed: $select-pressed;
+}
 
 :host {
   display: block;
@@ -66,27 +72,8 @@ $inuit-enable-btn--primary: true;
   }
 }
 
-//io code that needs to be refactore out
-.btn--blue {
-  display: inline-block;
-  margin: 0;
-  padding: .625rem 1rem;
-  transition: all .5s;
-  border-radius: 3px;
-  color: $white;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1em;
-  text-align: center;
-  cursor: pointer;
-  overflow: visible;
-  vertical-align: middle;
-  border: 1px solid $px-catalog-blue;
-  background-color: $px-catalog-blue;
-
-  &:hover {
-    border: 1px solid $px-catalog-blue--hover;
-    background-color: $px-catalog-blue--hover;
+@include px-media-query($px-catalog-screen-tablet-up) {
+  .wrapper {
+    height: 365px;
   }
 }

@@ -90,7 +90,7 @@ $px-catalog-page-padding-horizontal: 50px;
 .page-anchors {
   display: none;
 
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     display: block;
     width: $px-catalog-page-toc-width;
     position: absolute;
@@ -100,7 +100,7 @@ $px-catalog-page-padding-horizontal: 50px;
 }
 
 .page-content {
-  @include media-query($px-catalog-screen-tablet-up) {
+  @include px-media-query($px-catalog-screen-tablet-up) {
     margin-right: $px-catalog-page-toc-width + 30px;
   }
 }
