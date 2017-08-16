@@ -281,7 +281,6 @@
         "module": "px-starter-kit-design-demo",
         "entrypoint": "/bower_components/px-starter-kit-design/demo/px-starter-kit-design-demo.html",
         "redirects": [
-          "/css/px-starter-kit-design",
           "/modules/px-starter-kit-design"
         ]
       },
