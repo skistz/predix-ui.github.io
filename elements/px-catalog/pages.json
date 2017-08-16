@@ -1120,8 +1120,8 @@
               {
                 "path": "px-vis",
                 "label": "Vis Framework",
-                "module": "local-element-demo",
-                "entrypoint": "/bower_components/px-vis/demo/index.html",
+                "module": "px-vis-catalog",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-catalog.html",
                 "redirects": [
                   "/components/px-vis",
                   "/modules/px-vis"
@@ -1156,17 +1156,17 @@
                 ]
               },
               {
-                "path": "px-vis-axis-brush",
-                "label": "Vis Axis Brush",
-                "module": "px-vis-axis-brush-demo",
-                "entrypoint": "/bower_components/px-vis/demo/px-vis-axis-brush-demo.html",
+                "path": "px-vis-axis-interaction-space",
+                "label": "Vis Axis Interaction Space",
+                "module": "px-vis-axis-interaction-space-demo",
+                "entrypoint": "/bower_components/px-vis/demo/px-vis-axis-interaction-space-demo.html",
                 "keywords": [
                   "vis",
                   "px-vis"
                 ],
                 "redirects": [
-                  "/components/px-vis-axis-brush",
-                  "/modules/px-vis-axis-brush"
+                  "/components/px-vis-axis-interaction-space",
+                  "/modules/px-vis-axis-interaction-space"
                 ]
               },
               {
