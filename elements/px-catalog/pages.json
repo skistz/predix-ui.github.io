@@ -2705,5 +2705,17 @@
         ]
       }
     ]
+  },
+  {
+    "path": "tools",
+    "label": "Tools",
+    "pages": [
+      {
+        "path": "version-finder",
+        "label": "Bower Version Finder",
+        "module": "view-tools-version-finder",
+        "entrypoint": "/pages/tools/version-finder.html"
+      }
+    ]
   }
 ]
