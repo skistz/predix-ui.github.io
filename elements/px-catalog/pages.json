@@ -260,12 +260,13 @@
         ]
       },
       {
-        "path": "localize-strings",
-        "label": "Localize Strings",
+        "path": "localizable-strings",
+        "label": "Localizable Strings",
         "module": "view-develop-localize-strings",
-        "entrypoint": "/pages/develop/localize-strings.html",
+        "entrypoint": "/pages/develop/localizable-strings.html",
         "redirects": [
-          "/guides/list-localize-strings"
+          "/guides/list-localize-strings",
+          "/guides/localize-strings"
         ]
       }
     ]

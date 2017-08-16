@@ -469,7 +469,13 @@ function filterAnalysis(analysis, elementName) {
 
 function getFilesForRepo(elementDir, elementName) {
   return new Promise((resolve) => {
-    glob(`${elementDir}${elementName}*.html`, (err, files) => {
+    var globPattern;
+    if (elementName === 'px-app-helpers') {
+      globPattern = `${elementDir}px-*/px-*.html`;
+    } else {
+      globPattern = `${elementDir}${elementName}*.html`;
+    }
+    glob(globPattern, (err, files) => {
       if (!files.length) {
         return resolve([]);
       }
