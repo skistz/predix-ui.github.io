@@ -31,7 +31,12 @@ html {
 
 a, .sb-list__category{
   color: rgb(255,255,255);
+  color: var(--px-catalog-nav-text-color, lightgray);
   text-decoration: none;
+}
+
+.selected {
+  color: var(--px-catalog-nav-text-color--selected, blue) !important;
 }
 
 a {
@@ -112,10 +117,6 @@ li {
 
 .side-nav__default {
   transform: translate3d(-300px, 0px, 0px);
-}
-
-.selected {
-  color: $select-default !important;
 }
 
 .arrow-right {

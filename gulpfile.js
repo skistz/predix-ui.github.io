@@ -16,6 +16,7 @@
  *                  *.html files.
  ******************************************************************************/
 
+const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const pkg = require('./package.json');
@@ -38,7 +39,10 @@ const execSync = require('child_process').execSync;
 var request = require('request');
 const imagemin = require("imagemin");
 const webp = require("imagemin-webp");
-
+const glob = require("glob");
+const fse = require('fs-extra');
+const md = require('./scripts/page-builder');
+const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
 
 /*******************************************************************************
  * SETTINGS
@@ -63,7 +67,8 @@ const browserSyncOptions = {
   logPrefix: `${pkg.name}`,
   https: false,
   files: ['*.*'],
-  server: ['./', 'bower_components']
+  server: ['./', 'bower_components'],
+  reloadDebounce: 1000
 };
 
 var src = ['index.html', 'favicon.ico', 'manifest.json', 'pages/**/*.html', 'elements/**/*.{html,json}', 'service-worker.js', 'type/**/*.*', 'bower_components/**/*.*', 'img/**/*.*', 'css/**/*.*', 'CNAME', 'sw.tmpl'];
@@ -188,10 +193,34 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
  * the browser when files are updated.
  ******************************************************************************/
 
-gulp.task('serve', function() {
+gulp.task('serve', ['sass', 'docs', 'generate-api'], function() {
   browserSync.init(browserSyncOptions);
-  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html', 'pages/*.html']).on('change', browserSync.reload);
+  gulp.watch(['_pages/**/*.md', '_pages/**/*.html', 'elements/px-catalog/pages.json'], ['docs']);
   gulp.watch(['sass/*.scss'], ['sass']);
+  gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html']).on('change', browserSync.reload);
+});
+
+gulp.task('serve:sass', ['sass'], function() {
+  gulp.watch(['sass/*.scss'], ['sass']);
+});
+
+gulp.task('default', function(callback) {
+  console.log(`
+!!! DEFAULT GULP TASK HAS CHANGED
+
+Previously, running \`gulp\` on the predix-ui.github.io repo would create a
+local build of the site in the dist/ folder that looked like the production
+version TravisCI builds. This task no longer does this. Run \`gulp localBuild\`
+if you want to perform this task.
+
+This task now does the following:
+  * compiles the sass/ files to css/
+  * builds the _pages/ files to the pages/ directory
+  * re-generates the service worker
+
+And... you probably want to run \`gulp serve\` instead of this task. :)
+    `);
+  gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -267,7 +296,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -278,10 +307,8 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
-
-gulp.task('default', ['localBuild']);
 
 /*******************************************************************************
  * ARE WE INSIDE TRAVIS?
@@ -309,6 +336,7 @@ gulp.task('default', ['localBuild']);
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
      staticFileGlobs: [rootDir + '/index.html',
                        rootDir + '/',
+                       rootDir + '!/service-worker-registration.js',
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
@@ -352,7 +380,8 @@ gulp.task('compress-images', function(){
     './img',
     './pages/guides/vis-resources',
     './img/gallery',
-    './img/guidelines'
+    './img/guidelines',
+    './pages/migration/img'
   ];
 
   imgFolders.forEach((folder) =>{
@@ -369,4 +398,177 @@ gulp.task('compress-images', function(){
     });
   });
 
+});
+
+function readFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', (err, contents) => {
+      if (err) reject(err);
+      resolve(contents);
+    });
+  });
+};
+
+function buildMdFile(filePath) {
+  const srcFilePath = path.join(__dirname, filePath);
+  const destFilePath = path.join(__dirname, filePath.replace(/^\_pages/, 'pages').replace(/\.md$/, '.html'));
+  return readFile(srcFilePath)
+    .then(text => md.fromText(text))
+    .then(html => fse.outputFile(destFilePath, html));
+};
+
+function buildAPIAnalyzerFiles(pxElementPaths){
+  // Set up Polymer Analyzer with 'bower_components' as its base directory
+  let analyzer = new Analyzer({
+      urlLoader: new FSUrlLoader('./bower_components')
+  });
+
+  // Run analyzer separately for each so we can write the descriptors into separate files.
+  // Promise.all to prevent premature completion
+  return Promise.all(pxElementPaths.map(elementDir => analyzeRepo(elementDir, analyzer)));
+};
+
+function analyzeRepo(elementDir, analyzer) {
+  // takes '/bower_components/px-foo-bar/' and extracts 'px-foo-bar'
+  const elementName = elementDir.match(/\/(px\-.*)\//)[1];
+  // find all elements in this folder that begin with the element name
+  return getFilesForRepo(elementDir, elementName)
+    .then(files => {
+      if (!files.length) {
+        // No .html files found, likely a -design repo
+        return Promise.reject('NO_HTML_FILE');
+      }
+      // console.log(`Analyzing ${elementName} files: ${files.join(', ')}`)
+      return analyzer.analyze(files);
+    })
+    .then(analysis => {
+      analysis = filterAnalysis(generateAnalysis(analysis, './bower_components'), elementName);
+      // console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
+      return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(analysis));
+    })
+    .catch(e => {
+      if (e !== 'NO_HTML_FILE') {
+        console.log(`Error for ${elementName}:\n${e}`);
+      }
+    });
+};
+
+function filterAnalysis(analysis, elementName) {
+  // The analysis paths go from each component's folder up to the bower_components/
+  // directory, so the element at px-foo/px-foo.html will have a path
+  // ../px-foo/px-foo.html. This filter makes sure the only things that end
+  // up in the api.json file for this element are things in its folder,
+  // not a bunch of other muck in 3rd-party components.
+
+  // The regex that comes out for px-foo would be /^\.\.\/px-foo\//
+  let belongsToElement = new RegExp(`^\.\.\/${elementName}\/`);
+  return {
+    schema_version: analysis.schema_version,
+    elements: analysis.elements ? analysis.elements.filter(a => belongsToElement.test(a.path)) : []
+  };
+};
+
+function getFilesForRepo(elementDir, elementName) {
+  return new Promise((resolve) => {
+    var globPattern;
+    if (elementName === 'px-app-helpers') {
+      globPattern = `${elementDir}px-*/px-*.html`;
+    } else {
+      globPattern = `${elementDir}${elementName}*.html`;
+    }
+    glob(globPattern, (err, files) => {
+      if (!files.length) {
+        return resolve([]);
+      }
+      return resolve(files.map(f => f.match(/bower_components\/(px-.+\/px\-.+html)/)[1]));
+    });
+  });
+};
+
+function processPagesJSON(text) {
+  const pages = JSON.parse(text);
+  const redirects = {};
+  const routes = {};
+  let queue = pages.map(page => ({ page: page, route: `/${page.path}` }));
+  while (queue.length) {
+    let {page, route} = queue.shift();
+    // Assign path from root to route
+    page._route = route;
+    // Inline keywords
+    if (Array.isArray(page.keywords) && page.keywords.length) {
+      page._keywords = page.keywords.join(' ');
+    }
+    // Parse out redirects and add to global redirects list
+    if (Array.isArray(page.redirects) && page.redirects.length) {
+      for (let redirect of page.redirects) {
+        if (redirects[redirect]) {
+          console.error(`
+Redirects cannot appear more than once. The direct to ${redirect}
+is set by ${path} and ${redirects[redirect]}. Delete duplicates.
+          `);
+        }
+        redirects[redirect] = route;
+      }
+    }
+    // Add to global routes list
+    if (routes[route]) {
+      console.error(`
+Routes cannot appear more than once. The following route is defined
+more than once, delete any duplicates:
+${routes[route]}
+      `);
+    }
+    routes[route] = Object.assign(page, {});
+    // Add children to queue, if any
+    if (Array.isArray(page.pages) && page.pages.length) {
+      queue = queue.concat(page.pages.map(p => ({ page: p, route: `${route}/${p.path}` })));
+    }
+  }
+  return Promise.resolve({ pages: pages, redirects: redirects, routes: routes });
+};
+
+gulp.task('docs:clean', function(){
+  return gulp.src(['pages'], {
+    read: false
+  })
+  .pipe($.clean());
+});
+
+/*
+ * Reads any markdown (suffix .md) files in _pages/, renders the markdown into
+ * HTML, and writes file to pages/ at the same path with a .html suffix.
+ */
+gulp.task('docs:md', function(cb){
+  glob('_pages/**/*.md', (err, files) => {
+    Promise.all(files.map(buildMdFile)).then(() => cb());
+  });
+});
+
+gulp.task('generate-api', function(cb){
+  glob('bower_components/px-*/', (err, files) => {
+    buildAPIAnalyzerFiles(files)
+      .then(() => cb());
+  });
+});
+
+gulp.task('docs:pages-json', function(cb){
+  const pagesPath = path.join(__dirname, 'elements', 'px-catalog', 'pages.json');
+  const outputPath = path.join(__dirname, 'pages', 'app-data.json');
+  readFile(pagesPath)
+    .then(processPagesJSON)
+    .then(pagesData => fse.outputFile(outputPath, JSON.stringify(pagesData,null,'')))
+    .then(() => cb())
+    .catch(e => console.error(`The pages.json file is invalid: ${e}`));
+});
+
+/*
+ * Copies any files in _pages/ that do not end with .md to the pages/ dir.
+ */
+gulp.task('docs:copy-non-md', function(){
+  return gulp.src(['./_pages/**/*', '!./_pages/**/*.md'])
+    .pipe(gulp.dest('./pages/'));
+});
+
+gulp.task('docs', function(callback) {
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:pages-json')(callback);
 });

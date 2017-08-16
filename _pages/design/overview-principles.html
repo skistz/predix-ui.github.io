@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/predix-ui-styles.html" />
+<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link rel="import" href="../../bower_components/px-clipboard/px-clipboard.html">
+<link rel="import" href="../../elements/px-catalog-footer/px-catalog-footer.html" />
+
+<dom-module id="overview-principles">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="predix-ui-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <section class="main u-mb++">
+      <h2 class="selected">Design Principles</h2>
+
+      <p class="u-mb++">The Predix apps are built around our four design principles that are prioritized by the needs of industrial application users. When building Predix applications, use them as a tool to aid in to making design decisions.</p>
+
+      <div class="halves principles purposeful u-mb++">
+      	<h4 class="u-mb0">Purposeful</h4>
+      	<p>Design for clarity in purpose by utilizing context and clear calls to action that allow for fast orientation.</p>
+      </div>
+
+      <div class="halves principles efficient u-mb++">
+      	<h4 class="u-mb0">Efficient</h4>
+      	<p>Be respectful of a user's time and recognize their workflow. Anticipate ways for people to work better and faster.</p>
+      </div>
+
+      <div class="halves principles consistent u-mb++">
+      	<h4 class="u-mb0">Consistent</h4>
+      	<p>Rely on familiar visual styles and similar interactions for common patterns across the suite of Predix apps.</p>
+      </div>
+
+      <div class="halves principles elegant u-mb++">
+      	<h4 class="u-mb0">Elegant</h4>
+      	<p>Utilize modern visual and interaction conventions. Recognize opportunities to create and own magic moments.</p>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <px-catalog-footer></px-catalog-footer>
+
+
+  </template>
+  <script>
+    Polymer({
+      is: 'overview-principles'
+    });
+  </script>
+</dom-module>

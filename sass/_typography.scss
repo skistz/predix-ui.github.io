@@ -1,0 +1,84 @@
+/*******************************************************************************
+ * TYPOGRAPHY
+ ******************************************************************************/
+
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+h2 {
+  font-size: calculateRem(34px);
+}
+
+h3 {
+  font-size: calculateRem(28px);
+  margin-top: calculateRem(50px);
+}
+
+h4 {
+  font-size: calculateRem(20px);
+  margin-bottom: .25rem;
+  font-weight: 400;
+  padding-top: calculateRem(3px);
+  padding-bottom: calculateRem(3px);
+}
+
+h4 + p {
+  margin-top: 0;
+}
+
+// *** ACCENT COLORS *** //
+
+h2, .text-accent--primary {
+  color: var(--px-catalog-page-accent-color--primary, red);
+}
+
+h3, h4, .text-accent--secondary {
+  color: var(--px-catalog-page-accent-color--secondary, blue);
+}
+
+// *** CUSTOM BUTTON COLORS ** //
+
+.catalog-button {
+  display: inline-block;
+  margin: 0;
+  padding: .625rem 1rem;
+  transition: all .5s;
+  border-radius: 3px;
+  color: $white;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1em;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  vertical-align: middle;
+  border: 1px solid $primary-default;
+  background-color: $primary-default;
+
+  &:hover {
+    border: 1px solid $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+// *** LINK COLORS *** //
+a {
+  text-decoration: none;
+  &,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: var(--px-catalog-page-link-color, blue);
+  }
+  &:hover{
+    color: var(--px-catalog-page-link-color--hover, navy);
+  }
+}

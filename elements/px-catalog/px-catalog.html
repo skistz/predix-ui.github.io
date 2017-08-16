@@ -2,11 +2,15 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
+<link defer rel="import" href="../../css/px-catalog-theme-styles.html" />
 <link defer rel="import" href="../../css/px-catalog-styles.html" />
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-theme/px-dark-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-demo-theme/px-dark-demo-theme-styles.html" />
 
 <!-- Import external dependencies -->
 <link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link async rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link async rel="import" href="../../bower_components/app-route/app-route.html" />
 <link defer rel="import" href="../../bower_components/app-route/app-location.html" />
@@ -17,14 +21,18 @@
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
 <link defer rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link defer rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
+<link defer rel="import" href="../../bower_components/px-alert-message/px-alert-message.html" />
 
 <!-- Import local dependencies -->
-<link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="px-catalog-theme-switcher.html" />
+<link async rel="import" href="px-catalog-page.html" />
+<link async rel="import" href="../px-catalog-treenav/px-catalog-treenav.html" />
 
 <dom-module id="px-catalog">
   <template>
     <style include="px-theme-styles" is="custom-style"></style>
+    <style include="px-catalog-theme-styles" is="custom-style"></style>
     <style include="px-catalog-styles" is="custom-style"></style>
 
     <style>
@@ -42,16 +50,37 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .alert-message-container {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1020;
+        height: 200px;
+        overflow-y: hidden;
+      }
     </style>
 
     <!-- Communicates the state of dark theme toggle to child iframes -->
-    <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent>
+    <!-- <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent> -->
+    <px-catalog-theme-switcher global dark-theme="[[darkTheme]]"></px-catalog-theme-switcher>
+
+    <!-- Bind alert messages -->
+    <template is="dom-if" if="[[updateAvailable]]">
+      <div class="alert-message-container">
+        <px-alert-message
+            message-title="This site has been updated. Refresh your browser to get the newest information."
+            auto-dismiss="30000"
+            hide-badge
+            action="acknowledge">
+        </px-alert-message>
+      </div>
+    </template>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
         auto
-        url="navigation.json"
-        last-response="{{navJSON}}">
+        url="/pages/app-data.json"
+        last-response="{{appData}}">
     </iron-ajax>
 
     <!-- Media query to update the nav width on landscape-size screens. The
@@ -63,31 +92,11 @@
 
     <!-- Catch the route and send it to `app-route` to munge the path -->
     <app-location
-        route="{{_route}}"
-        query-params="{{_queryParams}}"
-        path="{{_path}}"
+        route="{{route}}"
+        path="{{path}}"
+        query-params="{{query}}"
         use-hash-as-path>
     </app-location>
-    <!-- Fetch the base route information we need (type/name) and assign to `route` -->
-    <app-route
-        route="{{_route}}"
-        pattern="/:type/:name"
-        data="{{route}}"
-        tail="{{_routeTail}}">
-    </app-route>
-    <!-- Pass the routing data to the custom router to handle state and redirects -->
-    <px-catalog-router
-        raw-route="{{_route}}"
-        raw-path="{{_path}}"
-        query-params="{{_queryParams}}"
-        app-path="{{route}}"
-        app-tail="{{_routeTail.path}}"
-        active-name="{{activeName}}"
-        active-type="{{activeType}}"
-        frame-url="{{frameUrl}}"
-        nav-JSON="{{navJSON}}"
-        dark-theme="{{darkTheme}}">
-    </px-catalog-router>
 
       <!-- CATALOG HEADER -->
       <div class="catalog-header">
@@ -116,13 +125,13 @@
         <div class="catalog-page__spinner" active$="[[spinnerActive]]">
           <px-spinner size="150"></px-spinner>
         </div>
-        <iframe class="catalog-page__iframe" src="../../pages/home.html" id="frameEl" name="iframe_a" allowfullscreen data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content"></iframe>
+        <px-catalog-page active-module="[[activeModule]]" dark-theme="[[darkTheme]]"></px-catalog-page>
       </div>
 
       <!-- CATALOG NAV -->
       <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
         <div class="catalog-nav__tree">
-          <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
+          <px-catalog-treenav pages="[[appData.pages]]" routes="[[appData.routes]]" selected-route="[[path]]"></px-catalog-treenav>
         </div>
       </app-drawer>
 
@@ -132,18 +141,6 @@
       is: 'px-catalog',
 
       properties: {
-        /**
-         * The URL for the currently active iFrame. If nothing is set, defaults
-         * to the catalog homepage.
-         *
-         * @type {String}
-         */
-        frameUrl: {
-          type: String,
-          value: '../../pages/home.html',
-          observer: '_handleFrameUrlChanged'
-        },
-
         /**
          * Set to `true` to show the spinner. Set to `false` to hide the spinner.
          *
@@ -155,19 +152,7 @@
         },
 
         /**
-         * The navigation represented as JSON, loaded by an `iron-ajax` element
-         * from the `navigation.json` file.
-         *
-         * @type {Object}
-         */
-        navJSON: {
-          type: Object
-        },
-
-        /**
          * The active page name, from the sidebar (e.g. 'px-sass-doc')
-         *
-         * @type {String}
          */
         activeName: {
           type: String,
@@ -175,30 +160,12 @@
         },
 
         /**
-         * The active page type, from the sidebar (e.g. 'component')
-         *
-         * @type {String}
-         */
-        activeType: {
-          type: String,
-          observer: '_updateTitle'
-        },
-
-        /**
-         * Place to hang iframe loading poller
-         *
-         * @type {Object}
-         */
-        _loadingPoller: {
-          type: Object
-        },
-
-        /**
          * Whether to enable the dark theme for each component.
          */
         darkTheme: {
           type: Boolean,
-          observer: '_handleDarkThemeChanged'
+          observer: '_handleDarkThemeChanged',
+          reflectToAttribute: true
         },
 
         /**
@@ -229,17 +196,138 @@
         },
 
         /**
-         * Reference to the child iFrame element, used to bind for communications
-         * about theme changes.
+         * Name of the active demo element tag.
          */
-        childFrame: {
-          type: HTMLElement
+        activeModule: {
+          type: String,
+          observer: '_handleNewModuleSelected'
+        },
+
+        /**
+         * Holds the pages, routes, and redirect data.
+         */
+        appData: {
+          type: Object
+        },
+
+        /**
+         * The URL hash `path` from app-location. This is read-write: observe
+         * to be notified of changes the URL, and set to change the URL.
+         */
+        path: {
+          type: String
+        },
+
+        /**
+         * The portion of the hash that precedes the ':' symbol. This is used to
+         * route to the correct view.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _pagePath would be '/elements/px-alert-message'
+         */
+        _pagePath: {
+          type: String,
+          computed: '_getPagePath(path)'
+        },
+
+        /**
+         * The portion of the hash that follows the ':' symbol, if any. This is
+         * used to route to jump to a section on the page.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _anchorPath would be 'property-message'
+         */
+        _anchorPath: {
+          type: String,
+          computed: '_getAnchorPath(path)'
+        },
+
+        /**
+         * Set to `true` when the service worker detects new content, shows an
+         * alert message so the user can refresh to get the updates.
+         */
+        updateAvailable: {
+          type: Boolean,
+          value: false
         }
       },
 
-      listeners: {
-        'px-sb-list-selected-item-changed': '_handleListItemChanged',
-        'frameEl.load' : '_handleFrameLoad'
+      observers: [
+        '_routeChanged(_pagePath, appData)'
+      ],
+
+      created: function() {
+        this._loadedRoutes = [];
+      },
+
+      attached: function() {
+        this._swUpdatedHandler = this._swUpdated.bind(this);
+        window.addEventListener('service-worker-changes-available', this._swUpdatedHandler, false);
+        // If there is no hash URL when the page first loads, use the
+        // homepage route
+        if (window.location.hash === "") {
+          this.path = '/home';
+        }
+      },
+
+      detached: function() {
+        window.removeEventListener('service-worker-changes-available', this._swUpdatedHandler, false);
+      },
+
+      _swUpdated: function() {
+        this.updateAvailable = true;
+      },
+
+      _getPagePath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[0].trim();
+        }
+        return path;
+      },
+
+      _getAnchorPath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[1].trim();
+        }
+        return null;
+      },
+
+      _routeChanged: function(route, appData) {
+        if (typeof route !== 'string' || typeof appData !== 'object') {
+          return;
+        }
+
+        var redirectTo = appData.redirects[route];
+        if (redirectTo) {
+          // This path is redirected, rewrite path to the new destination
+          this.path = redirectTo;
+          return;
+        }
+
+        var pageInfo = appData.routes[route];
+        if (!pageInfo) {
+          // This path is not defined, fall back to the homepage
+          this.path = '/home';
+          return;
+        }
+
+        // Load and/or show the module for this path
+        this.spinnerActive = true;
+        if (this._loadedRoutes.indexOf(pageInfo.entrypoint) === -1) {
+          // Page entrypoint not yet loaded
+          var url = this.resolveUrl(pageInfo.entrypoint);
+          this.importHref(url, function() {
+            this.spinnerActive = false;
+            this._loadedRoutes.push(pageInfo.entrypoint);
+            window.dispatchEvent(new CustomEvent('page-loaded'));
+          }.bind(this), null, false);
+        }
+        else {
+          this.spinnerActive = false;
+        }
+
+        this.activeName = pageInfo.label;
+        this.activeModule = pageInfo.module;
       },
 
       /**
@@ -247,126 +335,19 @@
        */
       _updateTitle: function() {
         this.debounce('update-title', function() {
-          var type = this._formatType(this.activeType || '');
-          var name = this._formatName(this.activeName || '');
-          if (name || type) {
-            document.title = 'Predix Design System' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '');
+          if (this.activeName) {
+            document.title = 'Predix Design System | ' + this.activeName;
+          } else {
+            document.title = 'Predix Design System';
           }
         }, 100);
       },
 
       /**
-       * Takes a URL routing `type` value, splits and capitalizes words.
-       *
-       * For example:
-       * 'css' would become 'CSS'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
-       */
-      _formatType: function(type) {
-        if (!type || !type.length) {return '';}
-
-        // CSS is a special case, capitalize it and return
-        if (type === 'css') {return 'CSS';}
-
-        return type
-        // Split on '-' char
-          .split('-')
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
-      },
-
-      /**
-       * Takes a URL routing `name` value, cleans up the words and capitalizes.
-       *
-       * For example:
-       * 'px-app-nav' would become 'App Nav'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
-       */
-      _formatName: function(name) {
-        if (!name || !name.length) {return '';}
-
-        return name
-        // Split on '-' char
-          .split('-')
-        // Remove 'px' (['px','app','nav'] -> ['app','nav'])
-          .filter(function(part){ return part !== 'px'; })
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
-      },
-
-      /**
-       * Capitalizes the first character of a string if it is a letter.
-       *
-       * @param {String} str - 'hello'
-       * @return {String} - 'Hello'
-       */
-      _capitalizeFirstLetter: function(str) {
-        return str.substring(0,1).toUpperCase() + str.substring(1);
-      },
-
-      /**
-       * When the URL the iFrame should show is updated, sync the new URL with
-       * the iFrame on the page.
-       */
-      _handleFrameUrlChanged: function(newUrl) {
-        var frame = this.$.frameEl;
-        if ((typeof newUrl === 'string') && frame) {
-          // Try to get the frame location
-          var frameLocation = window.frames['iframe_a'].location;
-          // If the location is blank, this is a first load and we can assume
-          // the current page is `iframe.src`'s normalized pathname'
-          var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
-          // Normalize the new path
-          var newPath = this._normalizePath(newUrl);
-
-          if (currentPath !== newPath) {
-            // Replace location like this so we don't add an entry to the
-            // history stack. The router will do that for us.
-            window.frames['iframe_a'].location.replace(newUrl);
-            // Activate the spinner
-            this.set('spinnerActive', true);
-          }
-        }
-      },
-
-      /**
-       * Given a relative or absolute URL, returns the normalized pathname.
-       *
-       * Example:
-       *
-       *     _normalizePath('../../pages/home.html');
-       *     //=> '/pages/home.html'
-       *
-       *     _normalizePath('http://predix-ui.com/px-component/px-component/')
-       *     //=> '/px-component/px-component/'
-       *
-       * @param {String} url
-       * @return {String}
-       */
-      _normalizePath: function(url) {
-        var linkTag = document.createElement('a');
-        linkTag.href = url;
-        return linkTag.pathname || '';
-      },
-
-
-      /**
        * If a new page is selected and the viewport is smaller than desktop,
        * ensures the menu is closed.
        */
-      _handleListItemChanged: function() {
+      _handleNewModuleSelected: function() {
         if (!this.isDesktopUp && this.menuOpened) {
           this.menuOpened = false;
         }
@@ -412,44 +393,6 @@
 
       toggleMenu: function() {
         this.menuOpened = !this.menuOpened;
-      },
-
-      /**
-       * When the frame finishes loading, ensure the spinner is hidden.
-       */
-      _handleFrameLoad: function() {
-        var url = this.frameUrl;
-        var countNoOfTimesFailedToFindDemoEl = 0;
-        if(url.indexOf('/pages/') < 0){
-          clearInterval(this._loadingPoller);
-          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
-          function checkComponentDemoAttached() {
-            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
-            if(led && led.isAttached){
-              this._clearSpinner();
-              clearInterval(this._loadingPoller);
-            };
-            if(!led){
-              countNoOfTimesFailedToFindDemoEl += 1;
-              if (countNoOfTimesFailedToFindDemoEl === 10){
-                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
-                this._clearSpinner();
-                clearInterval(this._loadingPoller);
-              }
-            }
-          };
-        } else{
-          this._clearSpinner();
-        }
-
-        this.childFrame = null;
-        this.childFrame = this.$.frameEl;
-      },
-
-      _clearSpinner: function(){
-        if (this.spinnerActive) {
-          this.spinnerActive = false;
-        }
       },
 
       /**

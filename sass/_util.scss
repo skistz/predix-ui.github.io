@@ -18,7 +18,7 @@ $px-catalog-screen-desktop-up: 1024px; /* desktop -> anything */
 // MIXINS/HELPERS
 ////////////////////////////////////////////////////////////////////////////////
 
-@mixin media-query($bp) {
+@mixin px-media-query($bp) {
   @media screen and (min-width: #{$bp}) {
     @content;
   }

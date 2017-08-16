@@ -1,0 +1,40 @@
+/*******************************************************************************
+ * BLOCK-LEVEL STYLES
+ ******************************************************************************/
+
+img, iframe, video {
+  border: 0;
+  max-width: 100%;
+}
+
+ul {
+  margin-left: 1.25rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+ol {
+  margin-left: 2.5rem;
+  padding-left: 0;
+}
+
+ul > li + li {
+  margin-top: .35rem;
+}
+
+li > ul {
+  margin-bottom: 0;
+}
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--px-catalog-page-border-color, lightgray);
+  box-sizing: content-box;
+  clear: both;
+  margin: 2rem 0;
+}
+
+iframe {
+  margin: 1rem 0;
+}

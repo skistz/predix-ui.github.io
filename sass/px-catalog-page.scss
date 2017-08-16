@@ -1,0 +1,198 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
+@import "px-code-design/_base.code.scss";
+
+$inuit-enable-code--inline: true;
+@import "px-code-design/_base.code.scss";
+
+$actionable: true;
+$actionable--action: true;
+$actionable--large: true;
+$actionable--huge: true;
+@import "px-actionable-design/_objects.actionable.scss";
+$inuit-enable-btn--primary: true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+@import "px-layout-design/_objects.layout.scss";
+$inuit-enable-list-inline--delimited: true;
+$inuit-list-inline-delimit-character: "| ";
+@import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
+
+// Component
+
+@import 'util';
+@import 'typography';
+@import 'blocks';
+@import 'layout';
+
+$px-catalog-page-toc-width: 300px;
+$px-catalog-page-padding-vertical: 50px;
+$px-catalog-page-padding-horizontal: 50px;
+
+/*******************************************************************************
+ * TEMPORARY DARK THEME HACK
+ ******************************************************************************/
+
+:host([dark-theme]) img {
+  // background-color: white;
+}
+
+/*******************************************************************************
+ * HOST
+ ******************************************************************************/
+
+:host {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  padding: {
+    top: $px-catalog-page-padding-vertical;
+    bottom: $px-catalog-page-padding-vertical;
+    right: $px-catalog-page-padding-horizontal;
+    left: $px-catalog-page-padding-horizontal;
+  };
+  background-color: var(--px-catalog-page-background-color, white);
+  color: var(--px-catalog-page-text-color, black);
+  color: var(--px-catalog-page-text-color, black);
+}
+
+/*******************************************************************************
+ * PAGE RULES
+ ******************************************************************************/
+
+.page {
+  display: block;
+  margin-bottom: 4rem;
+  max-width: 1200px;
+}
+
+.page-anchors {
+  display: none;
+
+  @include px-media-query($px-catalog-screen-tablet-up) {
+    display: block;
+    width: $px-catalog-page-toc-width;
+    position: absolute;
+    top: $px-catalog-page-padding-vertical;
+    right: $px-catalog-page-padding-horizontal;
+  }
+}
+
+.page-content {
+  @include px-media-query($px-catalog-screen-tablet-up) {
+    margin-right: $px-catalog-page-toc-width + 30px;
+  }
+}
+
+.page-title {
+  margin: 0;
+}
+
+/*******************************************************************************
+ * COMPONENT: GUIDELINE BOX
+ ******************************************************************************/
+
+.guideline-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--px-catalog-page-border-color, gray);
+  padding: .75rem;
+}
+
+.guideline-box__image {
+  flex: 1 1 auto;
+}
+
+.guideline-box__info {
+  margin-top: .5em;
+  margin-bottom: 0;
+  font-style: italic;
+  color: var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header {
+  display: block;
+  padding-bottom: .5rem;
+  margin-top: 0;
+  margin-bottom: .75rem;
+  font-weight: 700;
+  color: var(--px-catalog-page-text-color--light, gray);
+  border-bottom: 2px solid var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header--do {
+  color: var(--px-catalog-page-success-color, green);
+  border-bottom: 2px solid var(--px-catalog-page-success-color, green);
+}
+
+.guideline-box__header--dont {
+  color: var(--px-catalog-page-alert-color, red);
+  border-bottom: 2px solid var(--px-catalog-page-alert-color, red);
+}
+
+/*******************************************************************************
+ * COMPONENT: TOC
+ ******************************************************************************/
+
+.toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Nested tocs are set off left
+.toc__item > .toc {
+  padding-left: 1rem;
+}
+
+.toc__item {
+  margin-top: .35rem;
+}
+
+a.toc__item__link {
+  color: var(--px-catalog-page-anchor-color, black);
+  text-decoration: none;
+}
+
+a.toc__item__link:hover {
+  color: var(--px-catalog-page-anchor-color--hover, blue);
+}
+
+// Nested tocs links have a lighter color
+.toc__item > .toc a.toc__item__link {
+  color: var(--px-catalog-page-anchor-color--light, gray);
+}
+
+/*******************************************************************************
+ * COMPONENT: CODE BLOCK
+ ******************************************************************************/
+
+.code-block {
+  background-color: var(--px-catalog-page-code-background-color, lightgray);
+  padding: 1rem;
+}
+
+.code-block code {
+  font-size: .675rem;
+}

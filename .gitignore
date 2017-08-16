@@ -1,7 +1,9 @@
 node_modules/
-bower_components/
+/bower_components/
+/pages/
 dist/
 caddyfile
 cert.crt
 cert.key
 *.pem
+shrinkwrap.yml
