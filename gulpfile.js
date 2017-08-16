@@ -336,6 +336,7 @@ gulp.task('prodBuild', function(callback) {
    swPrecache.write(path.join(rootDir, '/service-worker.js'), {
      staticFileGlobs: [rootDir + '/index.html',
                        rootDir + '/',
+                       rootDir + '!/service-worker-registration.js',
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
