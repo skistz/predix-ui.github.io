@@ -19,23 +19,37 @@
 
 .link__container {
   margin: 0;
-  line-height: 2rem;
-  padding-left: 15px;
+  line-height: 1rem;
+  padding: {
+    top: 8px;
+    right: 0;
+    left: 15px;
+    bottom: 8px;
+  };
   display: block;
   position: relative;
+}
+:host([top-level-link]) > .link > .link__container {
+  padding-top: 11px;
+  padding-bottom: 11px;
 }
 
 a.link__a {
   display: inline-block;
   text-decoration: none;
-  color: var(--px-catalog-nav-text-color, lightgray);
+  color: var(--px-catalog-nav-text-color--light, lightgray);
   &:hover {
-    color: var(--px-cataog-nav-text-color--selected, blue);
+    color: var(--px-catalog-nav-text-color--selected, blue);
   }
 }
 
 :host([selected]) > .link > .link__container > a.link__a {
-  color: var(--px-cataog-nav-text-color--selected, blue);
+  color: var(--px-catalog-nav-text-color--selected, blue);
+}
+
+:host([top-level-link]) > .link > .link__container > a.link__a {
+  font-size: 18px;
+  color: var(--px-cataog-nav-text-color, white);
 }
 
 .link__container__arrow {
@@ -44,7 +58,7 @@ a.link__a {
   height: 0;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 8px solid var(--px-catalog-nav-text-color, lightgray);
+  border-left: 8px solid var(--px-catalog-nav-text-color--light, lightgray);
 }
 .link__container__arrow--visible {
   cursor: pointer;
@@ -56,6 +70,12 @@ a.link__a {
 .link__container__arrow--opened {
   transform: rotate(90deg);
 }
+:host([top-level-link]) > .link > .link__container > .link__container__arrow {
+  border-left-color: var(--px-catalog-nav-text-color, white);
+}
+:host([top-level-link]) > .link > .link__container > .link__container__arrow--visible {
+  top: 14px;
+}
 
 ul.sublinks {
   margin: 0;
@@ -65,4 +85,8 @@ ul.sublinks {
     bottom: 0;
     left: 14px;
   };
+}
+:host([top-level-link]) > .link > iron-collapse > ul.sublinks {
+  position: relative;
+  top: -3px;
 }

@@ -20,6 +20,7 @@
     <div class="tree">
       <template is="dom-repeat" items="[[pages]]" as="item">
         <px-catalog-treenav-link
+            top-level-link
             label="[[item.label]]"
             route="[[item._route]]"
             subpages="[[item.pages]]"
