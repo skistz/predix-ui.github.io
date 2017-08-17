@@ -22,7 +22,9 @@ Used together, these tools help teams jumpstart the creation of Industrial Inter
 
 ## Video: Introduction to Predix UI
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wLbnwS-y3XM" frameborder="0" allowfullscreen></iframe>
+<div class="video-wrapper">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/wLbnwS-y3XM" frameborder="0" allowfullscreen></iframe>
+</div>
 
 --------------------------------------------------------------------------------
 
