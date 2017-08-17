@@ -342,7 +342,6 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
-                       rootDir + '!/pages/_*',
                        rootDir + '/pages/**',
                        rootDir + '/elements/**/*.{html,json}',
                        rootDir + '/css/**',
@@ -541,7 +540,8 @@ gulp.task('docs:clean', function(){
  * HTML, and writes file to pages/ at the same path with a .html suffix.
  */
 gulp.task('docs:md', function(cb){
-  glob('_pages/**/*.md', (err, files) => {
+  // This glob pattern matches all files/directories not prefixed with `_`
+  glob('_pages/[^_]**/[^_]*.md', (err, files) => {
     Promise.all(files.map(buildMdFile)).then(() => cb());
   });
 });
@@ -567,7 +567,8 @@ gulp.task('docs:pages-json', function(cb){
  * Copies any files in _pages/ that do not end with .md to the pages/ dir.
  */
 gulp.task('docs:copy-non-md', function(){
-  return gulp.src(['./_pages/**/*', '!./_pages/**/*.md'])
+  // This glob pattern matches all files/directories not prefixed with `_`
+  return gulp.src(['./_pages/**/*', '!./_pages/**/*.md', '!./_pages/**/_*', '!./_pages/**/_*/*'])
     .pipe(gulp.dest('./pages/'));
 });
 
