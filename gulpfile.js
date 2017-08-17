@@ -541,7 +541,7 @@ gulp.task('docs:clean', function(){
  */
 gulp.task('docs:md', function(cb){
   // This glob pattern matches all files/directories not prefixed with `_`
-  glob('_pages/[^_]**/[^_]*.md', (err, files) => {
+  glob('_pages/**/*.md', { ignore: ['_pages/**/_*', '_pages/**/_*/**'] }, (err, files) => {
     Promise.all(files.map(buildMdFile)).then(() => cb());
   });
 });
