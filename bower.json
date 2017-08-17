@@ -39,7 +39,7 @@
     "px-clearfix-design": "^1.0.0",
     "px-clipboard": "^1.0.0",
     "px-code-design": "^2.0.0",
-    "px-code-editor": "^2.0.0",
+    "px-code-editor": "^3.0.0",
     "px-colors-design": "^1.0.0",
     "px-context-browser": "^2.0.2",
     "px-d3-imports": "^2.0.0",
@@ -138,6 +138,7 @@
     "promise-polyfill": "^2.0.0",
     "iron-location": "1 - 2",
     "px-api-viewer": "^2.0.3",
-    "iron-doc-viewer": "^3.0.0"
+    "iron-doc-viewer": "^3.0.0",
+    "px-code-editor": "^3.0.0"
   }
 }
