@@ -17,7 +17,9 @@ Each one is a web component — a self-contained bundle of HTML, JavaScript,
 
 ## Video: Using components
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y7JH20HkAWg?list=PLibNgo_CBeuujvRV26_uLTksm1ezh7oGd" frameborder="0" allowfullscreen style="margin-top:.25rem"></iframe>
+<div class="video-wrapper">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/y7JH20HkAWg?list=PLibNgo_CBeuujvRV26_uLTksm1ezh7oGd" frameborder="0" allowfullscreen></iframe>
+</div>
 
 ## Walkthrough: Using components
 
@@ -101,4 +103,6 @@ Predix UI Web App Starter is a web application starter kit that can be copied, e
 
 Get started with [the "Understanding and Install the Predix Web App Starter" tutorial](https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=2101&tag=All%20Guides&journey=All%20Guides).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9d6XzgAnyHI?list=PLibNgo_CBeuujvRV26_uLTksm1ezh7oGd" frameborder="0" allowfullscreen=""></iframe>
+<div class="video-wrapper">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/9d6XzgAnyHI?list=PLibNgo_CBeuujvRV26_uLTksm1ezh7oGd" frameborder="0" allowfullscreen=""></iframe>
+</div>
