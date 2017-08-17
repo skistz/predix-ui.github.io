@@ -254,7 +254,8 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
         'package.json',
         'sass/*.*',
         'yarn.lock',
-        'bower_components/leaflet/docs/*'];
+        'bower_components/leaflet/docs/*',
+        '/_*/'];
 
     gitIgnore.forEach((val) =>{
       execSync(`echo "${val}" >> .gitignore`);
@@ -341,6 +342,7 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/manifest.json',
                        rootDir + '/img/**',
                        rootDir + '/type/**',
+                       rootDir + '!/pages/_*',
                        rootDir + '/pages/**',
                        rootDir + '/elements/**/*.{html,json}',
                        rootDir + '/css/**',
