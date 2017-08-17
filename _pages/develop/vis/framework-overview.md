@@ -28,13 +28,13 @@ There are 3 different ways of using the px-vis platform
 Px-vis offers an ever-expanding selection of charts.
 
 Currently, you can use
-* [Parallel Coordinates](https://www.predix-ui.com/#/components/px-vis-parallel-coordinates/)
-* [Pie Chart](https://www.predix-ui.com/#/components/px-vis-pie-chart/)
-* [Polar Chart](https://www.predix-ui.com/#/components/px-vis-polar/)
-* [Radar](https://www.predix-ui.com/#/components/px-vis-radar/)
-* [Spark](https://www.predix-ui.com/#/components/px-vis-spark/)
-* [Timeseries](https://www.predix-ui.com/#/components/px-vis-timeseries/)
-* [XY](https://www.predix-ui.com/#/components/px-vis-xy-chart/)
+* [Parallel Coordinates](#/components/px-vis-parallel-coordinates)
+* [Pie Chart](#/components/px-vis-pie-chart)
+* [Polar Chart](#/components/px-vis-polar)
+* [Radar](#/components/px-vis-radar)
+* [Spark](#/components/px-vis-spark)
+* [Timeseries](#/components/px-vis-timeseries)
+* [XY](#/components/px-vis-xy-chart)
 
 ### Build Your Own Charts
 If you decide to create a chart from scratch, the bare minimum you will need is a workspace, a scale, and a drawing tool. You can read more about all of these tools below.
@@ -121,7 +121,7 @@ You can choose one of the 2 main options, or a 1 hybrid option
 
 ### Canvas
 Canvas provides a rasterized (flattened) version of a workspace – it has the advantage of loading things much faster than SVG, but you pay the price by exchanging speed with quality – canvas lines and text are not as crisp as SVG and providing interactions with things drawn on canvas is more difficult, and Canvas is best suited for large quantities of data where speed of data rendering is a key requirement.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-canvas)
 
 
 ### Svg
@@ -130,7 +130,7 @@ It works best when you need higher quality images, with more details, and provid
 The more points/lines/paths you add into your svg workspace, the slower your chart is going to load.
 
 When using svg in the workspace, working with elements may require more extensive handling, e.g. pinpointing the cursor’s exact position. To help you with this, the px-vis framework offers the px-vis-interaction-space interaction tool.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-svg)
 
 
 ### Svg-canvas
@@ -140,7 +140,7 @@ This is a hybrid of both Svg and Canvas, using the best features of each.
 * canvas layer in the middle(canvasContext): Used to draw the data efficiently.
 * A secondary svg layer on the bottom(svgLower): Used to hold gridlines, background images, etc.
 
-[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+[API Documentation](#/components/px-vis-svg-canvas)
 
 
 ### Data Binding Exports
@@ -191,15 +191,15 @@ All 3 types translate data to pixel coordinates, and pixel coordinates back into
 
 ### Scale
 This component provides two scales – an X (independent axis) and Y (dependent axis). Scale is available as either a behavior or a component (Polymer HTML elements).
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-scale)
 
 ### Multi Scale
 This component provides a single ordinal X axis and multiple independent continuous Y axes. This scale is only available as a component.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-multi-scale)
 
 ### Radial Scale
 This component provides an X and Y - similar to scale, but the scale accepts polar data and returns Cartesian pixel coordinates, creating a polar plot. This scale is only available as a component.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-radial-scale)
 
 
 ### Scale data Binding Exports
@@ -224,98 +224,98 @@ Px-vis has many tools for you to use to draw different shapes/lines in your char
 
 ### Axis
 Draws an axis line with tick marks. Can be vertical or horizontal and can be positioned on any edge of the chart
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-axis)
 
 
 ### Clip Path
 Draws an SVG rectangular clipPath, preventing SVG from drawing anything outside of the clip rectangle. Does not work with Canvas.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-clip-path)
 
 
 ### Clip path complex area
 Draws an SVG compound polygonal clipPath, preventing SVG from drawing anything outside of the clip shape. Does not work with Canvas.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-clip-path-complex-area)
 
 
 ### Event
 Used for marking an event occurrence. Draws an icon and line vertically.
 The icon includes a tooltip, which can contain the X value, event name and event ID.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-event)
 
 
-### Grid lines
+### Gridlines
 Draws horizontal or vertical grid lines in your chart, depending the passed in configuration.  Helps in the association of axes values and data points.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-gridlines)
 
 
 ### Highlight Line Canvas
 Similar to line-canvas, draws lines to highlight specific data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-highlight-line-canvas)
 
 
 ### Highlight Line
 Similar to line-svg, draws lines to highlight specific data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-highlight-line)
 
 
 ### Highlight Scatter Canvas
 Similar to scatter-canvas, draws scatters to highlight specific data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+<!--</br>[API Documentation](#/components/px-vis-highlight-scatter-canvas)-->
 
 
 ### Highlight Scatter
 Similar to scatter-svg, draws scatters to highlight specific data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+<!--</br>[API Documentation](#/components/px-vis-highlight-scatter)-->
 
 
 ### Interactive Axis
 Draws an axis with integrated user interactivity, such as brush and drag.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-interactive-axis)
 
 
 ### Line Canvas
 Draws a line representation of data, using Canvas. Can either draw single or multiple lines depending on configuration and data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-line-canvas)
 
 
 ### Line SVG
 Draws a line representation of your data, using SVG. Can either draw single or multiple lines depending on configuration and data.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-line-svg)
 
 
 ### Multi Axis
 Draws multiple Axes positioned ordinally. Each axis can have an individual or shared scale. Can be radial or horizontal.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-multi-axis)
 
 
 ### Pie
 Draws a pie or donut representation of your data, using SVG. Includes a tooltip and popover. The colors need to be included in the data set, through a colorIndex property.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-pie)
 
 
 ### Radar Grid
 Creates polygonal grid lines. Used as a background for radar charts.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-radar-grid)
 
 
 ### Radial gridlines
 Creates circular grid lines. Used as a background for polar charts.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-radial-gridlines)
 
 
 ### Scatter
 Draws symbols which represents your data using SVG. The symbols can be customized using markerSymbol; the default is a circle.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-scatter)
 
 
 ### Striping
 Draws striped areas on the chart.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-striping)
 
 
 ### Threshold
 Creates a horizontal line to indicate a predefined threshold level.  Threshold attributes are set through threshold-config which can contain a title, line color and type.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-threshold)
 
 
 
@@ -325,9 +325,9 @@ Creates a horizontal line to indicate a predefined threshold level.  Threshold a
 
 The end user can click, hover or manipulate the data by performing an action.
 
-### Axis Brush
+### Axis Interaction Space
 A drawn box used to select a range on an axis. Usually drawn by a mouse, although the box can be drawn programmatically. To enable the brush, you have to select the axis so the cursor is triggered, then drag to draw the rectangle which will then remove all other data points outside of the brushed area. This brush can also be deleted programmatically or through a user interaction by clicking off the brush.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-axis-interaction-space)
 
 
 ### Axis Drag
@@ -337,39 +337,39 @@ Provides drag behavior to an axis, allowing the user to reposition the axis usin
 
 ### Brush
 A drawn box used to select range on a 1-dimensional region. Usually drawn by a mouse, although the box can be drawn programmatically. It always has visible handles and the brushed (selected) area always stays visible. While using the mouse, you are confined to the visible portion of the workspace.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-brush)
 
 
 ### Chart Navigator
 This component provides a way to filter your data –with a brush - based on the time domain.
 The chart navigator is a small chart accompanying the main chart or charts, intended to display the entire data set for the provided series.
 When tied to a timeseries chart, the filtering results in zooming and panning. In non-timeseries charts, it filters the displayed data based on the time domain.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-chart-navigator)
 
 
 ### Dynamic Menu
 A configurable dropdown menu, used inside a register. Can be used to hook custom functions, fire events, and define actions which pertain to a particular series.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-dynamic-menu)
 
 
 ### Interaction Space
 Interaction Space is an invisible rectangle overlaid on the chart which captures mouse interactions and performs calculations for zooming, panning and tooltip functionality.
 
 Can be configured for custom interactions on the chart through actionContext.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-interaction-space)
 
 
 ### Register
 An HTML element which can be used to display the series names, colors, values, and timestamps.
 Each register can include dynamic menus that can be configured to interact with a particular series.  Includes px-vis-register-item, px-vis-register-item-pie and px-vis-register-datetime.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-register)
 
 
 ### Toolbar
 A configurable element enabling direct interaction with the chart.
 There are sample interactions provided as "out of the box" examples in chart demos; however, the toolbar is fully configurable and can be customized to any application requirements that requires direct interaction with the chart.
 Each main row button can have a defined sub row – either one of which can trigger events or/and function calls. The toolbar can return an actionContext property, used by px-vis-interaction-space, to define custom mouse interactions on the chart.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-toolbar)
 
 
 
@@ -380,18 +380,18 @@ Your user cannot click or change anything on the element – it is a read-only e
 
 ### Cursor
 A tool used to highlight data points using a configurable circles and lines. Typically used to draw attention to a particular data point.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-cursor)
 
 
 ### Cursor-Line
 A tool used to highlight data points using a line. Typically used to draw attention to a particular data point.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-cursor-line)
 
 
 ### Tooltip
 A floating version of the register which can follow the mouse, or be triggered on hover over data points, displaying the same information as the register. The tooltip does not have any interactions with the dynamic menu and only contains informational data values.
 Use of the tooltip is not recommended since it covers the data beneath it.
-</br>[API Documentation](https://www.predix-ui.com/#/components/px-vis/)
+</br>[API Documentation](#/components/px-vis-tooltip)
 
 
 
