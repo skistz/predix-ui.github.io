@@ -30,6 +30,7 @@ $px-catalog-nav-width-large: 300px;
 
 :host {
   display: block;
+  width: 100%;
 }
 
 /*******************************************************************************
@@ -60,12 +61,14 @@ $px-catalog-nav-width-large: 300px;
  ******************************************************************************/
 
 .catalog-page {
-  display: flex;
+  display: block;
   position: absolute;
   top: $px-catalog-header-size-small;
   left: 0;
   right: 0;
   bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   @include px-media-query($px-catalog-screen-tablet-up) {
     top: $px-catalog-header-size-large;
