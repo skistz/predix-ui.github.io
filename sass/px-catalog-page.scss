@@ -66,12 +66,15 @@ $px-catalog-page-padding-horizontal: 50px;
   box-sizing: border-box;
   display: block;
   overflow: hidden;
-  padding: {
-    top: $px-catalog-page-padding-vertical;
-    bottom: $px-catalog-page-padding-vertical;
-    right: $px-catalog-page-padding-horizontal;
-    left: $px-catalog-page-padding-horizontal;
-  };
+  padding: 30px;
+  @include media-query(lap-and-up) {
+    padding: {
+      top: $px-catalog-page-padding-vertical;
+      bottom: $px-catalog-page-padding-vertical;
+      right: $px-catalog-page-padding-horizontal;
+      left: $px-catalog-page-padding-horizontal;
+    };
+  }
   background-color: var(--px-catalog-page-background-color, white);
   color: var(--px-catalog-page-text-color, black);
   color: var(--px-catalog-page-text-color, black);
