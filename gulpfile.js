@@ -230,7 +230,7 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
  ******************************************************************************/
 
  gulp.task('gitStuff', function() {
-
+   var commit = execSync(`git rev-parse HEAD`, {encoding:'utf8'}).trim();
    gitSync.checkout('master',{args : '--orphan', cwd : '.'}, (err) => {
      if (err) {
        console.log('git checkout error:' + err);
@@ -262,7 +262,7 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
     });
 
      execSync(`git add --all`);
-     execSync(`git commit -m 'master rebuild'`);
+     execSync(`git commit -m '[TravisCI] Rebuilding master for commit ${commit||'???'}'`);
      execSync(`git push origin master --force`);
 
 
