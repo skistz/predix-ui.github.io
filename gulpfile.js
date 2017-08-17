@@ -351,7 +351,6 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/bower_components/polymer/polymer*.html',
                        rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.js',
                        rootDir + '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
-                       rootDir + '/bower_components/hydrolysis/hydrolysis.*',
                        rootDir + '/bower_components/app-route/app-*.html',
                        rootDir + '/bower_components/iron-ajax/iron-*.html',
                        rootDir + '/bower_components/iron-location/iron-*.html',
@@ -369,7 +368,7 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
-     templateFilePath: rootDir + '/sw.tmpl',
+    //  templateFilePath: rootDir + '/sw.tmpl',
      navigateFallback: '/index.html',
      navigateFallbackWhitelist: ['/index.html']
    }, callback);
