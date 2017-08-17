@@ -90,18 +90,19 @@ $px-catalog-page-padding-horizontal: 50px;
 .page-anchors {
   display: none;
 
-  @include px-media-query($px-catalog-screen-tablet-up) {
+  @include media-query(lap-and-up) {
     display: block;
     width: $px-catalog-page-toc-width;
     position: absolute;
     top: $px-catalog-page-padding-vertical;
     right: $px-catalog-page-padding-horizontal;
+    padding-left: calculateRem(30px);
   }
 }
 
 .page-content {
-  @include px-media-query($px-catalog-screen-tablet-up) {
-    margin-right: $px-catalog-page-toc-width + 30px;
+  @include media-query(lap-and-up) {
+    width: calc(100% - 300px);
   }
 }
 
@@ -152,7 +153,7 @@ $px-catalog-page-padding-horizontal: 50px;
 }
 
 /*******************************************************************************
- * COMPONENT: TOC
+ * COMPONENT: TOC (Table of Contents)
  ******************************************************************************/
 
 .toc {
