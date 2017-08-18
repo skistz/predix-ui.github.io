@@ -9,8 +9,7 @@ When starting to work with vis or the charts the terminology might be a bit conf
 
 Let's start by deconstructing the components in this timeseries chart.
 
-<catalog-picture img-src="../../pages/develop/vis/vis-resources/TS_basic" img-alt="Simple Timeseries" style="border:none;" caption="Simple Timeseries Chart">
-</catalog-picture>
+<catalog-picture img-src="../../pages/develop/vis/vis-resources/TS_basic" img-alt="Simple Timeseries" style="border:none;" caption="Simple Timeseries Chart"></catalog-picture>
 
 
 

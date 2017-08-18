@@ -7,6 +7,7 @@ const defaultTemplate = ({ content, anchors, metadata }) => `
   <link defer rel="import" href="${metadata.pathToRoot}css/px-catalog-page-styles.html" />
   <link defer rel="import" href="${metadata.pathToRoot}css/px-catalog-theme-styles.html" />
   <link defer rel="import" href="${metadata.pathToRoot}css/px-catalog-code-styles.html" />
+  ${metadata.otherImports || ''}
 
   <dom-module id="${metadata.moduleName}">
     <template>
@@ -27,8 +28,11 @@ const defaultTemplate = ({ content, anchors, metadata }) => `
     <script>
       Polymer({
         is: '${metadata.moduleName}',
-        behaviors: [PxCatalogBehavior.Page]
+        behaviors: [PxCatalogBehavior.Page],
+        ${metadata.script || ''}
+
       });
+
     </script>
   </dom-module>
 `;
