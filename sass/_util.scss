@@ -13,6 +13,12 @@ $px-catalog-nav-background: rgb(27,42,51); /* #1b2a33 */
 $px-catalog-screen-landscape-up: 450px; /* mobile landscape -> tablet */
 $px-catalog-screen-tablet-up: 719px; /* tablet -> desktop */
 $px-catalog-screen-desktop-up: 1024px; /* desktop -> anything */
+// These variables are shared between the catalog shell SCSS, to give the
+// shell elements their sizes, and other SCSS files to position elements
+// on the page in relation to the shell.
+$px-catalog-header-size-small: 45px;
+$px-catalog-header-size-large: 80px;
+$px-catalog-nav-width-large: 300px;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MIXINS/HELPERS

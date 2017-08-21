@@ -1,12 +1,11 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-util.html"/>
 
-<dom-module id="px-catalog-page">
+<dom-module id="px-catalog-page-viewer">
   <template>
     <style>
       :host {
-        display: flex;
-        flex: 1 1 auto;
+        position: relative;
         background-color: var(--px-catalog-page-background-color, white);
       }
 
@@ -29,7 +28,7 @@
   </template>
   <script>
     Polymer({
-      is: 'px-catalog-page',
+      is: 'px-catalog-page-viewer',
       properties: {
         activeModule: {
           type: String,
@@ -42,15 +41,79 @@
         },
         _activeModuleEl: {
           type: HTMLElement
+        },
+        _scrollTop: {
+          type: Number,
+          value: null
         }
       },
       observers: [
-        '_applyTheme(_activeModuleEl, darkTheme)'
+        '_applyTheme(_activeModuleEl, darkTheme)',
+        '_checkVisibleAnchor(activeModule, _activeModuleEl, _scrollTop)'
       ],
+      listeners: {
+        'px-catalog-page-attached': '_handleLocalPageAttached',
+        'px-catalog-page-detached': '_handleLocalPageDetached'
+      },
       created: function() {
         this._modules = {};
+
+        // Checks if passive scroll handler is supported. If it isn't (e.g. in
+        // old browsers) the anchor navigation links will not be updated as
+        // the user scrolls. This test is from https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+        var passiveScrollSupported = false;
+        try {
+          var options = Object.defineProperty({}, "passive", {
+            get: function() {
+              passiveScrollSupported = true;
+            }
+          });
+
+          window.addEventListener("test", null, options);
+        } catch(err) {}
+        this._passiveScrollSupported = passiveScrollSupported;
+      },
+      attached: function() {
+        if (this._passiveScrollSupported) {
+          this._scrollHandler = this._handleScroll.bind(this);
+          this.addEventListener('scroll', this._scrollHandler, { passive: true });
+        }
+      },
+      detached: function() {
+        if (this._passiveScrollSupported && this._scrollHandler) {
+          this.removeEventListener('scroll', this._scrollHandler, { passive: true });
+        }
+      },
+      _handleScroll: function(evt) {
+        this.debounce('handle-scroll', function() {
+          this._scrollTop = this.scrollTop;
+        }, 100);
+      },
+      _checkVisibleAnchor: function(viewName, viewEl, scroll) {
+        if (viewName.slice(0,5) !== 'view-' || typeof scroll !== 'number' || !(viewEl instanceof HTMLElement) || !viewEl.hasAttribute('has-anchors')) {
+          return;
+        }
+
+        var anchors = viewEl.anchors;
+        var closest;
+        for (var i=0; i<anchors.length; i++) {
+          if (anchors[i].offsetTop > scroll) {
+            closest = i>0 ? anchors[i-1] : anchors[0];
+            break;
+          }
+        }
+        if (closest) {
+          viewEl.activeAnchor = '#' + closest.id;
+        }
+      },
+      _handleLocalPageAttached: function(evt) {
+        // ... local page attached ...
+      },
+      _handleLocalPageDetached: function(evt) {
+        // ... local page detached ...
       },
       _activeModuleChanged: function(newModuleName, oldModuleName) {
+        this.scrollTop = 0;
         var lastActive = Polymer.dom(this.$.pages).querySelector('.active');
         if (lastActive !== null) {
           lastActive.classList.remove('active');
