@@ -26,7 +26,7 @@
 
 <!-- Import local dependencies -->
 <link async rel="import" href="px-catalog-theme-switcher.html" />
-<link async rel="import" href="px-catalog-page.html" />
+<link async rel="import" href="px-catalog-page-viewer.html" />
 <link async rel="import" href="../px-catalog-treenav/px-catalog-treenav.html" />
 
 <dom-module id="px-catalog">
@@ -121,12 +121,18 @@
       </div>
 
       <!-- CATALOG PAGE -->
-      <div class="catalog-page">
+      <px-catalog-page-viewer
+          class="catalog-page"
+          active-module="[[activeModule]]"
+          dark-theme="[[darkTheme]]"
+          show-spinner="[[spinnerActive]]">
+      </px-catalog-page-viewer>
+      <!-- <div class="catalog-page">
         <div class="catalog-page__spinner" active$="[[spinnerActive]]">
           <px-spinner size="150"></px-spinner>
         </div>
         <px-catalog-page active-module="[[activeModule]]" dark-theme="[[darkTheme]]"></px-catalog-page>
-      </div>
+      </div> -->
 
       <!-- CATALOG NAV -->
       <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">

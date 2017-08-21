@@ -66,15 +66,6 @@ $px-catalog-page-padding-horizontal: 50px;
   box-sizing: border-box;
   display: block;
   overflow: hidden;
-  padding: 30px;
-  @include media-query(lap-and-up) {
-    padding: {
-      top: $px-catalog-page-padding-vertical;
-      bottom: $px-catalog-page-padding-vertical;
-      right: $px-catalog-page-padding-horizontal;
-      left: $px-catalog-page-padding-horizontal;
-    };
-  }
   background-color: var(--px-catalog-page-background-color, white);
   color: var(--px-catalog-page-text-color, black);
   color: var(--px-catalog-page-text-color, black);
@@ -88,6 +79,15 @@ $px-catalog-page-padding-horizontal: 50px;
   display: block;
   margin-bottom: 4rem;
   max-width: 1200px;
+  padding: 30px;
+  @include media-query(lap-and-up) {
+    padding: {
+      top: $px-catalog-page-padding-vertical;
+      bottom: $px-catalog-page-padding-vertical;
+      right: $px-catalog-page-padding-horizontal;
+      left: $px-catalog-page-padding-horizontal;
+    };
+  }
 }
 
 .page-anchors {
@@ -96,8 +96,8 @@ $px-catalog-page-padding-horizontal: 50px;
   @include media-query(lap-and-up) {
     display: block;
     width: $px-catalog-page-toc-width;
-    position: absolute;
-    top: $px-catalog-page-padding-vertical;
+    position: fixed;
+    top: $px-catalog-page-padding-vertical + $px-catalog-header-size-large;
     right: $px-catalog-page-padding-horizontal;
     padding-left: calculateRem(30px);
   }
@@ -178,7 +178,6 @@ a.toc__item__link {
   color: var(--px-catalog-page-anchor-color, black);
   text-decoration: none;
 }
-
 a.toc__item__link:hover {
   color: var(--px-catalog-page-anchor-color--hover, blue);
 }
@@ -186,6 +185,18 @@ a.toc__item__link:hover {
 // Nested tocs links have a lighter color
 .toc__item > .toc a.toc__item__link {
   color: var(--px-catalog-page-anchor-color--light, gray);
+}
+
+// Active link
+a.toc__item__link--active,
+.toc__item > .toc a.toc__item__link--active {
+  color: var(--px-catalog-page-selected-color, blue);
+  text-decoration: none;
+  font-weight: 700;
+
+  &:hover {
+    color: var(--px-catalog-page-selected-color--hover, blue);
+  }
 }
 
 /*******************************************************************************

@@ -35,6 +35,8 @@
   --px-catalog-page-anchor-color             : $gray10;
   --px-catalog-page-anchor-color--light      : $gray10;
   --px-catalog-page-anchor-color--hover      : $primary-default;
+  --px-catalog-page-selected-color           : $primary-default;
+  --px-catalog-page-selected-color--hover    : $primary-hover;
 
   // animation theme
   --animation-img-background-color     : #EBEFF1;
@@ -77,6 +79,8 @@
   --px-catalog-page-anchor-color             : $gray10;
   --px-catalog-page-anchor-color--light      : $gray10;
   --px-catalog-page-anchor-color--hover      : $d-actionable-default;
+  --px-catalog-page-selected-color           : $select-default;
+  --px-catalog-page-selected-color--hover    : $select-hover;
 
     // animation theme
   --animation-img-background-color     : #1d2b34;
