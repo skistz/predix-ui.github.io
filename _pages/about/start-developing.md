@@ -48,10 +48,11 @@ The installed component will now be available in your app's directory under the 
 Next, import the Predix UI component by using the link tag in your HTML code. Here's an example of how to import the px-spinner component:
 
 ```html
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
 ```
 
-Link tags let the browser recognize a potential shared resource, which means that if another component requests the same component you just imported, the code can just be re-used, and does not need to be fetched again. [For more info, check out this StackOverflow answer.](https://stackoverflow.com/questions/22135095/polymer-element-with-javascript-dependencies)
+Link tags let the browser recognize a potential shared resource, which means that if another component requests the same component you just imported, the code can just be re-used, and does not need to be fetched again. [For more info, check out this StackOverflow answer.](https://stackoverflow.com/questions/22135095/polymer-element-with-javascript-dependencies) Note that we also include the webcomponents-lite polyfill, which ensures that web components will function in older browsers that do not natively support them.
 
 ### Step 3: Use the tag
 
