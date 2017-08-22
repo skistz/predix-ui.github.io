@@ -47,7 +47,7 @@ At the moment, the only charts building quadtrees are px-vis-xy-chart and px-vis
 </div>
 
 # Configuration
-To do its job, the web worker must be able to load its code and the d3.js library. When you configure your production app build, you MUST include the px-vis-worker-scale.js and px-vis-worker.js files from px-vis as well as d3.min.js file from the pxd3 folder (which is a dependency of px-d3-imports, itself a dependency of px-vis).
+To do its job, the web worker must be able to load its code and the d3.js library. When you configure your production app **build**, you MUST make sure that your build result includes the px-vis-worker-scale.js and px-vis-worker.js files from px-vis as well as d3.min.js file from the pxd3 folder (which is a dependency of px-d3-imports, itself a dependency of px-vis). You don't need to manually import those files in your app.
 
 By default, the web worker scheduler will search for px-vis-worker-scale.js and px-vis-worker.js in the same folder as the px-vis code. The px-vis-worker.js path can be customized through the global window variable `Px.vis.workerUrl`, which expects the full path including the file name. The other file will be searched in the same folder.
 
@@ -66,3 +66,71 @@ The web workers currently bring us faster spatial search as well as offloading o
 We still tried to give the option of disabling webworker for a chart through `preventWebWorkerSynchronization`, with the caveat of not being able to use the new crosshair feature. This might be useful in some specific scenarios such as a lot of small chart with minimal interactions.
 
 But maybe more importantly even though the cloned data is used for only a couple of features right now, it opens the door for us to build more features on the web worker with the data always available.
+
+# Opening the web workers to external use
+
+We recently opened the vis web workers to be used by an app with the 2.1.0 vis release. This means that it is now possible to both register custom scripts to run any kind of functions in a web worker as well as access the chartData being stored in the web workers.
+
+## Load a custom script
+
+One can register a custom script by running the `Px.vis.registerCustomScript` method. This method accepts three parameters:
+* `scriptUrl` defines where the script is, relatively to the px-vis-worker.js file
+* `successCallback` is a function that will be run once the script has been successfully registered on all web workers
+* `errorCallback`. is a function that will be run if any error occurs while registering the script (`successCallback` won't be called)
+
+The script should define one or several global objects and register all functions on one of those objects. For example a very small custom script could be:
+
+```js
+var myScript = {};
+
+myScript.addition = function(data, chartId) {
+  return data.x + data.y;
+};
+
+myScript.dataLength = function(data, chartId) {
+  return this.dataMapping[chartId].length;
+};
+
+myScript.returnData = function(data, chartId) {
+  return this.dataMapping[chartId];
+}
+```
+
+Each function always has two parameters:
+* `data` is an object that you will be able to provide when invoking one of those function, usually containing data and context on what to perform.
+* `chartId` is also provided when requesting the invocation of this function. It is usually helpfull to fetch chartData that has already been resgistered in the web worker (usually by vis, but can also be done by the app).
+
+Two global objects are also available:
+* `dataMapping` is an object holding chartData for every chart that has been registered against this web worker. The data can be accessed by using the `chartId` as the key. Please note that the `chartData` might have been filtered, for example when using a navigator on a px-is-xy-chart then the filtered data is being updated in the webworker
+* `quadtrees` is similar to `dataMapping` but holds the [d3 quadtrees](https://github.com/d3/d3-quadtree) that have been built for the charts needing it.
+
+## Requesting work from the webworker
+
+It is possible to invoke some work from the web workers (including invoking a function from a custom script) by running the `Px.vis.scheduler.process(context)` function.
+
+The context object can have the following properties:
+* `action`: action to be run in the webworker. See below for list of actions
+* `originatorName`: arbitrary string representing who sent the request
+* `chartId`: Id of the chart this request relates to. Used to identify which webworker to use and what dataset to use in the webworker
+* `successCallback` (optional): callback after successfully running an action in the webworker. The callback will have one parameter holding the result of that action
+* `errorCallback` (optional): Callback after an error has been fired in the webworker.
+* data: used when running a custoim function. Should include `functionName` and `objectName` to identify which function to run and can include another `data` object that will be passed to the function itself as the first parameter (as seen in paragraph above)
+
+Please note successCallback and errorCallback are mutually exclusive:
+one will be called or the other. If both are defined you are guaranteed
+to have feedback on your request
+
+Each request is uniquely identified through the triplet "action
+originatorName chartId". When a webworker is busy and a request comes
+in for this webworker then the request will be queued. If another
+request with the same triplet identifier comes in it will trump the
+previously queued request: the request initially queued will be
+destroyed and the new one will be queued
+
+The current list of significant actions is as follows (more can be
+found by inspecting px-vis-worker.js but are usually meant to be used
+internally):
+* runCustomFunction: used to run a function on a custom script that you
+ explicitely loaded in the web workers through `Px.vis.registerCustomScript`. Pass `functionName`, `objectName` and `data` in the `data` object of the context
+* updateData: register a new dataset or update a dataset in the web worker. It will be stored in the dataMapping object, the key being chartId and the value the dataset. pass `chartData` in the data object
+
