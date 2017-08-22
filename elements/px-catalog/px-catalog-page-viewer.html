@@ -93,17 +93,31 @@
         if (viewName.slice(0,5) !== 'view-' || typeof scroll !== 'number' || !(viewEl instanceof HTMLElement) || !viewEl.hasAttribute('has-anchors')) {
           return;
         }
-
         var anchors = viewEl.anchors;
-        var closest;
+
+        const offsetPadding = 75;
+        const firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
+        const anchorsLength = anchors.length
+        const lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
+
+        //scroll is above the first anchor point
+        if (scroll === 0 || scroll < firstAnchorOffset){ viewEl.activeAnchor = '';}
+
         for (var i=0; i<anchors.length; i++) {
-          if (anchors[i].offsetTop > scroll) {
-            closest = i>0 ? anchors[i-1] : anchors[0];
-            break;
+          let topRange = anchors[i].offsetTop - offsetPadding;
+          let bottomRange;
+
+          // find bottom range of i's anchor point
+          // if i is the last anchor point set the bottom range to the scroll height
+          if(i < anchors.length-1){
+            bottomRange = anchors[i+1].offsetTop - offsetPadding;
+          }else if (scroll > firstAnchorOffset && bottomRange === undefined){
+            bottomRange = this.scrollHeight;
           }
-        }
-        if (closest) {
-          viewEl.activeAnchor = '#' + closest.id;
+
+          if (scroll > topRange && scroll < bottomRange ){
+            viewEl.activeAnchor = '#' + anchors[i].id; break;
+          }
         }
       },
       _handleLocalPageAttached: function(evt) {
