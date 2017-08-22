@@ -302,15 +302,15 @@
         if (typeof route !== 'string' || typeof appData !== 'object') {
           return;
         }
-
-        var redirectTo = appData.redirects[route];
+        var routeWithoutSlash = route[route.length-1] === '/' ? route.slice(0,route.length-1) : route;
+        var redirectTo = appData.redirects[routeWithoutSlash];
         if (redirectTo) {
           // This path is redirected, rewrite path to the new destination
           this.path = redirectTo;
           return;
         }
 
-        var pageInfo = appData.routes[route];
+        var pageInfo = appData.routes[routeWithoutSlash];
         if (!pageInfo) {
           // This path is not defined, fall back to the homepage
           this.path = '/home';
