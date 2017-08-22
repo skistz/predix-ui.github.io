@@ -95,17 +95,17 @@
         }
         var anchors = viewEl.anchors;
 
-        const offsetPadding = 75;
-        const firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
-        const anchorsLength = anchors.length
-        const lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
+        var offsetPadding = 75;
+        var firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
+        var anchorsLength = anchors.length
+        var lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
 
         //scroll is above the first anchor point
         if (scroll === 0 || scroll < firstAnchorOffset){ viewEl.activeAnchor = '';}
 
         for (var i=0; i<anchors.length; i++) {
-          let topRange = anchors[i].offsetTop - offsetPadding;
-          let bottomRange;
+          var topRange = anchors[i].offsetTop - offsetPadding;
+          var bottomRange;
 
           // find bottom range of i's anchor point
           // if i is the last anchor point set the bottom range to the scroll height
