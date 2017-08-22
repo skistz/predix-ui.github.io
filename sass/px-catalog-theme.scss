@@ -82,7 +82,13 @@
   --px-catalog-page-selected-color           : $select-default;
   --px-catalog-page-selected-color--hover    : $select-hover;
 
-    // animation theme
+  /* home page */
+  --px-home-hero-image-background-color : #1d2b34;
+  --px-home-tertiary-background--hover:  $gray14;
+  --px-home-tertiary-background--pressed:  $gray10;
+  --px-home-hr-border: $gray8;
+
+  /* animation theme */
   --animation-img-background-color     : #1d2b34;
   --animation-banner-color             : #10171b;
   --animation-banner-corner-color      : #132027;

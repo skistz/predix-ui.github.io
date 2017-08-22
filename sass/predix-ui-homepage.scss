@@ -15,6 +15,9 @@
 
 // Generic
 @import "px-normalize-design/_generic.normalize.scss";
+:host {
+  color: var(--px-catalog-page-text-color, $gray15);
+}
 @import "px-box-sizing-design/_generic.box-sizing.scss";
 
 //internal
@@ -35,11 +38,13 @@ $inuit-enable-btn--tertiary : true;
 
 // *** CUSTOM BUTTON COLORS ** //
 :root{
-  --px-btn-tertiary-color: $select-default;
-  --px-btn-tertiary-color--hover: $select-default;
-  --px-btn-tertiary-color--pressed: $select-pressed;
-  --px-btn-tertiary-background: $white;
-  --px-btn-tertiary-border-color: $select-default;
+  --px-btn-tertiary-color: var(--px-home-btn-tertiary-color, $select-default);
+  --px-btn-tertiary-color--hover: var(--px-home-btn-tertiary-color--hover, $select-default);
+  --px-btn-tertiary-color--pressed: var(--px-home-btn-tertiary-color--pressed, $select-pressed);
+  --px-btn-tertiary-background: var(--px-home-btn-tertiary-background, transparent);
+  --px-btn-tertiary-background--hover: var(--px-home-tertiary-background--hover,  $gray4);
+  --px-btn-tertiary-background--pressed: var(--px-home-tertiary-background--pressed,  $gray7);
+  --px-btn-tertiary-border-color: var(--px-home-btn-tertiary-border-color, $select-default);
 }
 
 .home-wrapper {
@@ -56,7 +61,7 @@ $inuit-enable-btn--tertiary : true;
 
 .home-hr {
   border: 0;
-  border-top: 1px solid $px-catalog-gray;
+  border-top: 1px solid var(--px-home-hr-border, $px-catalog-gray);
   margin-bottom: 2rem;
 }
 
@@ -70,15 +75,10 @@ $inuit-enable-btn--tertiary : true;
  ******************************************************************************/
 .hero-image {
   display: block;
-  background-color: #ebeff1;
+  background-color: var(--px-home-hero-image-background-color, #ebeff1);
 
   @include px-media-query($px-catalog-screen-tablet-up) {
     min-height: 350px;
-  }
-}
-:host([dark-theme]) {
-  .hero {
-    background-color: #1a2a35;
   }
 }
 
@@ -90,11 +90,11 @@ $inuit-enable-btn--tertiary : true;
   padding: $inuit-base-spacing-unit 5%;
 }
 .refresh-banner p {
-  color: white;
+  color: var(--px-home-refresh-banner-a-tag, white);
   margin: 0;
 }
 .refresh-banner a {
-  color: white !important;
+  color: var(--px-home-refresh-banner-p-tag, white) !important;
   text-decoration: underline !important;
 }
 
