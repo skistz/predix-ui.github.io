@@ -29,7 +29,7 @@
   --px-catalog-page-accent-color--secondary  : $gray15; // .io color: #c0002a
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
-  --px-catalog-page-code-background-color    : $gray2;
+  --px-catalog-page-code-background-color    : $gray1;
   --px-catalog-page-link-color               : $primary-default;
   --px-catalog-page-link-color--hover        : $primary-hover;
   --px-catalog-page-anchor-color             : $gray10;
@@ -106,6 +106,14 @@
 
 
   /* Code */
-  --px-code-default: $gray5;
-  --px-code-property: #df277c;
+  // --px-code-default: $gray5;
+  // --px-code-property: #df277c;
+  --px-code-default: #e6e9ed;
+  --px-code-comment: #656d78;
+  --px-code-property: #ed5565;
+  --px-code-string: #ffce54;
+  --px-code-number: #f99157;
+  --px-code-operator: #ed5565;
+  --px-code-keyword: #4fc1e9;
+  --px-code-function: #c9c;
 }
