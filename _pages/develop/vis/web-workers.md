@@ -120,8 +120,8 @@ Please note successCallback and errorCallback are mutually exclusive:
 one will be called or the other. If both are defined you are guaranteed
 to have feedback on your request
 
-Each request is uniquely identified through the triplet "action
-originatorName chartId". When a webworker is busy and a request comes
+Each request is uniquely identified through the triplet "`action`
+`originatorName` `chartId`" which is always required. When a webworker is busy and a request comes
 in for this webworker then the request will be queued. If another
 request with the same triplet identifier comes in it will trump the
 previously queued request: the request initially queued will be
