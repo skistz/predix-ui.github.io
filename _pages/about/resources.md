@@ -9,7 +9,7 @@ layout: default
 
 * [What you need to know about Predix UI, Bower, and SemVer](https://www.predix.io/blog/article.html?article_id=2261)
 * [Predix Design System: Components that work in your framework and everywhere else too](https://medium.com/ge-design/predix-design-system-components-that-work-everywhere-97b774028b37)
-* [GE’s data visualization framework for IoT](https://medium.com/ge-design/introducing-ges-data-visualization-framework-for-iot-27c350b02c04Introducing)
+* [GE’s data visualization framework for IoT](https://medium.com/ge-design/introducing-ges-data-visualization-framework-for-iot-27c350b02c04)
 
 # Tutorials
 
