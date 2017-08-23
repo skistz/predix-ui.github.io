@@ -3,7 +3,15 @@ const mdContainer = require('markdown-it-container');
 const mdAnchor = require('markdown-it-anchor');
 const mdFrontmatter = require('markdown-it-front-matter');
 const yaml = require('js-yaml');
-const prism = require('prismjs');
+const Prism = require('prismjs');
+// load prism languages we need, Prism is weird so it will
+// automatically assign the languages required below
+// to Prism.languages.[LANGUAGE-NAME] in the global scope
+// (that's why we don't assign require to a var)
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-sass');
+require('prismjs/components/prism-scss');
+require('prismjs/components/prism-bash');
 
 const md = require('markdown-it')({
   html: true
@@ -84,7 +92,7 @@ md.renderer.rules.heading_close = function(tokens, idx, options, env, self) {
  * PLUGIN: CODE BLOCKS
  * Run code blocks through our own highlighter.
  */
-
+var logged = false;
 md.renderer.rules.fence = function(tokens, idx, options, env, self) {
   // if (headerTags[tokens[idx].markup]) {
   // tokens[idx].tag = headerTags[tokens[idx].markup];
@@ -98,8 +106,13 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
     langName = info.split(/\s+/g)[0];
   }
 
-  if (langName !== "" && prism.languages.hasOwnProperty(langName)) {
-    highlighted = prism.highlight(token.content, prism.languages[langName])
+  if(!logged){
+  console.log(Object.keys(Prism.languages).join(", ") );
+  logged = true;
+  }
+
+  if (langName !== "" && Prism.languages.hasOwnProperty(langName)) {
+    highlighted = Prism.highlight(token.content, Prism.languages[langName])
     return '<pre class="code-block"><code class="language-'+ langName +'">'+ highlighted +'</code></pre>';
   }
   else {

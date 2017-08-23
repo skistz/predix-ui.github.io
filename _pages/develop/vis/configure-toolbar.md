@@ -222,7 +222,7 @@ config = {
 
 the predefined configurations use the exact same pattern, the following code illustrates how the advancedZoom predefined configuration is defined internally:
 
-```js
+```json
 'advancedZoom': {
   'tooltipLabel': 'Zoom',
   'icon': 'px-nav:search',
