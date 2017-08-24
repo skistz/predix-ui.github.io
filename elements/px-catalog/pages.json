@@ -251,6 +251,12 @@
         ]
       },
       {
+        "path": "contribution",
+        "label": "Contribution",
+        "module": "view-develop-contribution",
+        "entrypoint": "/pages/develop/contribution.html"
+      },
+      {
         "path": "internationalization",
         "label": "Internationalization",
         "module": "view-develop-internationalization",
