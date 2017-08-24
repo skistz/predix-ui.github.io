@@ -6,14 +6,21 @@
     <style>
       :host {
         display: block;
-        padding: .75rem;
-        border: 1px solid var(--px-catalog-page-border-color, lightgray);
+        padding: 1rem;
         margin-bottom: 1rem;
       }
       .caption {
         margin: 1rem 0 0 0;
         font-style: italic;
         color: var(--px-catalog-page-text-color--light, gray);
+      }
+      .title {
+        display: block;
+        margin-top: 0;
+        padding-bottom:.5em;
+        margin-bottom: .75em;
+        color: var(--px-catalog-picture-title-color--light, gray);
+        border-bottom: 1px solid var(--px-catalog-picture-title-color--light, gray);
       }
       picture, img {
         max-width: 100%;
@@ -25,6 +32,7 @@
     </style>
 
     <picture>
+      <template is="dom-if" if="[[title]]"><p class="title">[[title]]</p></template>
       <source srcset$="[[imgSrc]].webp" type="image/webp">
       <source srcset$="[[imgSrc]].png" type="image/png">
       <img src$="[[imgSrc]].png" alt$="[[imgAlt]]">
@@ -37,7 +45,8 @@
       properties: {
         imgSrc: String,
         imgAlt: String,
-        caption: String
+        caption: String,
+        title: String
       }
     });
   </script>
