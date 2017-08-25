@@ -83,6 +83,15 @@
     "label": "Design Guidelines",
     "pages": [
       {
+        "path": "design-principles",
+        "label": "Design Principles",
+        "module": "design-principles",
+        "entrypoint": "/pages/design/design-principles.html",
+        "redirects": [
+          "/guidelines/design-principles"
+        ]
+      },
+      {
         "path": "navigation",
         "label": "Navigation",
         "module": "view-design-navigation",
@@ -2150,6 +2159,24 @@
           "input",
           "attach",
           "attachment"
+        ]
+      },
+      {
+        "path": "px-heatmap-grid",
+        "label": "Heatmap Grid",
+        "module": "px-heatmap-grid-demo",
+        "entrypoint": "/bower_components/px-heatmap-grid/demo/px-heatmap-grid-demo.html",
+        "redirects": [
+          "/components/px-heatmap-grid",
+          "/modules/px-heatmap-grid"
+        ],
+        "keywords": [
+          "px-heatmap-grid",
+          "thermogram",
+          "graph",
+          "chart",
+          "table",
+          "visualization"
         ]
       },
       {
