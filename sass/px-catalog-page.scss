@@ -267,3 +267,36 @@ a.toc__item__link--active,
     color: var(--px-catalog-page-text-color--light, gray);
     padding-bottom: 0.75rem;
   }
+
+
+/*******************************************************************************
+ * Table
+ ******************************************************************************/
+table {
+	width: 95%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+th {
+	border-bottom: 1px solid $gray6;
+	text-align: left;
+	font-weight: normal;
+}
+
+td {
+	border-bottom: 1px solid $gray2;
+	padding: calculateRem(10px) 0;
+	vertical-align: top;
+}
+td + td {
+	padding-left: calculateRem(20px);
+}
+
+
+// table.datavis {
+// 	width: 80%;
+// 	margin: auto;
+// }
+
