@@ -2153,6 +2153,24 @@
         ]
       },
       {
+        "path": "px-heatmap-grid",
+        "label": "Heatmap Grid",
+        "module": "px-heatmap-grid-demo",
+        "entrypoint": "/bower_components/px-heatmap-grid/demo/px-heatmap-grid-demo.html",
+        "redirects": [
+          "/components/px-heatmap-grid",
+          "/modules/px-heatmap-grid"
+        ],
+        "keywords": [
+          "px-heatmap-grid",
+          "thermogram",
+          "graph",
+          "chart",
+          "table",
+          "visualization"
+        ]
+      },
+      {
         "path": "px-icon-set",
         "label": "Icons",
         "module": "px-icon-set-demo",
