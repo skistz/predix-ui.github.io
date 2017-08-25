@@ -129,7 +129,6 @@
         var offsetPadding = 75;
         var firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
         var anchorsLength = anchors.length
-        var lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
 
         //scroll is above the first anchor point
         if (scroll === 0 || scroll < firstAnchorOffset) {
@@ -141,11 +140,11 @@
           var bottomRange;
 
           // find bottom range of i's anchor point
-          // if i is the last anchor point set the bottom range to the scroll height
           if (i < anchors.length-1) {
             bottomRange = anchors[i+1].offsetTop - offsetPadding;
           }
-          else if (scroll > firstAnchorOffset && bottomRange === undefined) {
+          // if i is the last anchor point set the bottom range to the scroll height
+          else if (scroll > firstAnchorOffset) {
             bottomRange = this.scrollHeight;
           }
 
@@ -166,10 +165,8 @@
         }
         if (activeAnchor !== this.visibleAnchor) {
           // The active anchor isn't visible, scroll to it
-          console.log('Scrolling to active anchor: ' + activeAnchor);;
           this._scrollToAnchorPath(this._activeModuleEl, activeAnchor);
         }
-        console.log('Setting active anchor: ' + activeAnchor);
         this._activeModuleEl.activeAnchor = activeAnchor;
       },
       _handleAnchorTapped: function(evt) {
@@ -184,7 +181,7 @@
         else if (el.hasAttribute('has-anchors')) {
           // Element is a markdown page, jump to the requested anchor
           var anchorEl = Polymer.dom(el.root).querySelector(activeAnchor);
-          var offset = anchorEl ? (anchorEl.offsetTop-5) : 0;
+          var offset = anchorEl ? (anchorEl.offsetTop-30) : 0;
           this.scrollTop = offset;
         }
         else if (/^px\-.+\-demo$/.test(el.is)) {
