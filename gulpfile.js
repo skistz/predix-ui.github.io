@@ -200,6 +200,11 @@ gulp.task('serve', ['sass', 'docs', 'generate-api'], function() {
   gulp.watch(['css/*-styles.html', '*.html', 'pages/**/*.html']).on('change', browserSync.reload);
 });
 
+gulp.task('serve:serverless', ['sass', 'docs', 'generate-api'], function() {
+  gulp.watch(['_pages/**/*.md', '_pages/**/*.html', 'elements/px-catalog/pages.json'], ['docs']);
+  gulp.watch(['sass/*.scss'], ['sass']);
+});
+
 gulp.task('serve:sass', ['sass'], function() {
   gulp.watch(['sass/*.scss'], ['sass']);
 });
