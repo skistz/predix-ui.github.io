@@ -26,6 +26,7 @@
     "px-actionable-design": "^2.0.1",
     "px-alert-label": "^2.0.3",
     "px-alert-message": "^1.0.2",
+    "px-api-viewer": "^2.0.3",
     "px-app-helpers": "^1.1.2",
     "px-app-nav": "^2.0.3",
     "px-box-design": "^1.0.0",
@@ -66,6 +67,7 @@
     "px-functions-design": "^2.0.0",
     "px-gauge": "^2.0.0",
     "px-headings-design": "^1.0.0",
+    "px-heatmap-grid": "^1.0.5",
     "px-helpers-design": "^1.0.0",
     "px-icon-set": "^2.0.0",
     "px-iconography-design": "^1.0.0",
@@ -130,7 +132,6 @@
     "px-widths-design": "^1.0.0",
     "px-widths-responsive-design": "^1.0.0",
     "px-widths-tools-design": "^1.0.0",
-    "px-api-viewer": "^2.0.3",
     "iron-doc-viewer": "^3.0.0"
   },
   "resolutions": {
