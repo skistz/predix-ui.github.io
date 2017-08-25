@@ -22,9 +22,25 @@
       #pages > ::slotted(:not(.active)) {
         display: none;
       }
+
+      .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
     <!-- Pages will be distributed here -->
     <div id="pages"></div>
+    <template is="dom-if" if="[[spinnerActive]]">
+      <div class="spinner">
+        <px-spinner size="150"></px-spinner>
+      </div>
+    </template>
   </template>
   <script>
     Polymer({
@@ -38,6 +54,10 @@
           type: Boolean,
           value: false,
           reflectToAttribute: true
+        },
+        spinnerActive: {
+          type: Boolean,
+          value: false
         },
         _activeModuleEl: {
           type: HTMLElement
