@@ -249,6 +249,15 @@
             ]
           },
           {
+            "path": "icons",
+            "label": "Using Icons",
+            "module": "view-develop-migrate-icons",
+            "entrypoint": "/pages/develop/migrate/icons.html",
+            "redirects": [
+              "/migration/using-icons"
+            ]
+          },
+          {
             "path": "vis",
             "label": "Data Visualization Migration",
             "module": "view-develop-migrate-vis",
