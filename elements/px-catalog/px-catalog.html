@@ -124,15 +124,10 @@
       <px-catalog-page-viewer
           class="catalog-page"
           active-module="[[activeModule]]"
+          anchor-path="[[_anchorPath]]"
           dark-theme="[[darkTheme]]"
-          show-spinner="[[spinnerActive]]">
+          spinner-active="[[spinnerActive]]">
       </px-catalog-page-viewer>
-      <!-- <div class="catalog-page">
-        <div class="catalog-page__spinner" active$="[[spinnerActive]]">
-          <px-spinner size="150"></px-spinner>
-        </div>
-        <px-catalog-page active-module="[[activeModule]]" dark-theme="[[darkTheme]]"></px-catalog-page>
-      </div> -->
 
       <!-- CATALOG NAV -->
       <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">

@@ -1,5 +1,6 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-util.html"/>
+<link defer rel="import" href="../../bower_components/iron-pages/iron-pages.html"/>
 
 <dom-module id="px-catalog-page-viewer">
   <template>
@@ -19,12 +20,29 @@
         padding: 0;
       }
 
-      #pages > ::slotted(:not(.active)) {
-        display: none;
+      .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     </style>
     <!-- Pages will be distributed here -->
-    <div id="pages"></div>
+    <iron-pages
+        id="pages"
+        attr-for-selected="module-name"
+        selected="[[activeModule]]"
+        selected-item="{{_activeModuleEl}}">
+    </iron-pages>
+    <template is="dom-if" if="[[spinnerActive]]">
+      <div class="spinner">
+        <px-spinner size="150"></px-spinner>
+      </div>
+    </template>
   </template>
   <script>
     Polymer({
@@ -34,10 +52,22 @@
           type: String,
           observer: '_activeModuleChanged'
         },
+        activeAnchor: {
+          type: String,
+          observer: '_handleActiveAnchorChanged'
+        },
+        visibleAnchor: {
+          type: String,
+          observer: '_handleVisibleAnchorChanged'
+        },
         darkTheme: {
           type: Boolean,
           value: false,
           reflectToAttribute: true
+        },
+        spinnerActive: {
+          type: Boolean,
+          value: false
         },
         _activeModuleEl: {
           type: HTMLElement
@@ -49,11 +79,12 @@
       },
       observers: [
         '_applyTheme(_activeModuleEl, darkTheme)',
-        '_checkVisibleAnchor(activeModule, _activeModuleEl, _scrollTop)'
+        '_watchVisibleAnchor(activeModule, _activeModuleEl, _scrollTop)'
       ],
       listeners: {
         'px-catalog-page-attached': '_handleLocalPageAttached',
-        'px-catalog-page-detached': '_handleLocalPageDetached'
+        'px-catalog-page-detached': '_handleLocalPageDetached',
+        'px-catalog-page-anchor-tapped': '_handleAnchorTapped'
       },
       created: function() {
         this._modules = {};
@@ -89,7 +120,7 @@
           this._scrollTop = this.scrollTop;
         }, 100);
       },
-      _checkVisibleAnchor: function(viewName, viewEl, scroll) {
+      _watchVisibleAnchor: function(viewName, viewEl, scroll) {
         if (viewName.slice(0,5) !== 'view-' || typeof scroll !== 'number' || !(viewEl instanceof HTMLElement) || !viewEl.hasAttribute('has-anchors')) {
           return;
         }
@@ -101,7 +132,9 @@
         var lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
 
         //scroll is above the first anchor point
-        if (scroll === 0 || scroll < firstAnchorOffset){ viewEl.activeAnchor = '';}
+        if (scroll === 0 || scroll < firstAnchorOffset) {
+          this.visibleAnchor = '';
+        }
 
         for (var i=0; i<anchors.length; i++) {
           var topRange = anchors[i].offsetTop - offsetPadding;
@@ -109,15 +142,61 @@
 
           // find bottom range of i's anchor point
           // if i is the last anchor point set the bottom range to the scroll height
-          if(i < anchors.length-1){
+          if (i < anchors.length-1) {
             bottomRange = anchors[i+1].offsetTop - offsetPadding;
-          }else if (scroll > firstAnchorOffset && bottomRange === undefined){
+          }
+          else if (scroll > firstAnchorOffset && bottomRange === undefined) {
             bottomRange = this.scrollHeight;
           }
 
           if (scroll > topRange && scroll < bottomRange ){
-            viewEl.activeAnchor = '#' + anchors[i].id; break;
+            this.visibleAnchor = '#' + anchors[i].id;
+            break;
           }
+        }
+      },
+      _handleVisibleAnchorChanged: function(visibleAnchor) {
+        if (this.activeAnchor !== visibleAnchor) {
+          this.activeAnchor = visibleAnchor;
+        }
+      },
+      _handleActiveAnchorChanged: function(activeAnchor) {
+        if (!this._activeModuleEl) {
+          return;
+        }
+        if (activeAnchor !== this.visibleAnchor) {
+          // The active anchor isn't visible, scroll to it
+          console.log('Scrolling to active anchor: ' + activeAnchor);;
+          this._scrollToAnchorPath(this._activeModuleEl, activeAnchor);
+        }
+        console.log('Setting active anchor: ' + activeAnchor);
+        this._activeModuleEl.activeAnchor = activeAnchor;
+      },
+      _handleAnchorTapped: function(evt) {
+        if (evt.detail.anchor) {
+          this.activeAnchor = evt.detail.anchor;
+        }
+      },
+      _scrollToAnchorPath: function(el, activeAnchor, retries) {
+        if (!el || !el.is) {
+          console.log('Element not yet defined');
+        }
+        else if (el.hasAttribute('has-anchors')) {
+          // Element is a markdown page, jump to the requested anchor
+          var anchorEl = Polymer.dom(el.root).querySelector(activeAnchor);
+          var offset = anchorEl ? (anchorEl.offsetTop-5) : 0;
+          this.scrollTop = offset;
+        }
+        else if (/^px\-.+\-demo$/.test(el.is)) {
+          // Element is a component demo, jump to the right api viewer section
+
+          // var demoApiViewer = Polymer.dom(el.root).querySelector('px-demo-api-viewer');
+          // if (!demoApiViewer) return;
+          // var apiViewer = Polymer.dom(demoApiViewer.root).querySelector('px-api-viewer');
+          // if (!apiViewer) return;
+          // var doc = apiViewer.$.doc;
+          // if (!doc) return;
+          // doc.scrollToAnchor(activeAnchor);
         }
       },
       _handleLocalPageAttached: function(evt) {
@@ -127,25 +206,11 @@
         // ... local page detached ...
       },
       _activeModuleChanged: function(newModuleName, oldModuleName) {
-        this.scrollTop = 0;
-        var lastActive = Polymer.dom(this.$.pages).querySelector('.active');
-        if (lastActive !== null) {
-          lastActive.classList.remove('active');
-          if (lastActive.hasAttribute('dark-theme')) {
-            lastActive.removeAttribute('dark-theme');
-          }
-        }
         if (newModuleName && !this._modules[newModuleName]) {
           var el = document.createElement(newModuleName);
+          el.setAttribute('module-name', newModuleName);
           Polymer.dom(this.$.pages).appendChild(el);
           this._modules[newModuleName] = el;
-        }
-        if (newModuleName) {
-          this._modules[newModuleName].classList.add('active');
-          if (this.darkTheme && !this._modules[newModuleName].hasAttribute('darkTheme')) {
-            this._modules[newModuleName].setAttribute('dark-theme', '');
-          }
-          this._activeModuleEl = this._modules[newModuleName];
         }
       },
       _applyTheme: function(el, darkTheme, retry) {
@@ -153,9 +218,9 @@
         if (!el) {
           return;
         }
-        if (!el.is && retry < 100) {
+        if ((!el.is || typeof el.updateStyles !== 'function') && retry < 100) {
           var retries = (retry+1);
-          var timeout = (retries > 10) ? 10 : 100;
+          var timeout = (retries < 10) ? 10 : 1000;
           this.async(this._applyTheme.bind(this, el, darkTheme, retries), timeout);
           return;
         }
