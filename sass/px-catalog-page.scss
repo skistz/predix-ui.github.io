@@ -275,6 +275,7 @@ a.toc__item__link--active,
 table {
 	width: 95%;
 	margin: 0px;
+  margin-bottom: calculateRem(20px);
 	padding: 0px;
 	border-collapse: collapse;
 }
@@ -283,6 +284,9 @@ th {
 	border-bottom: 1px solid $gray6;
 	text-align: left;
 	font-weight: normal;
+}
+th + th {
+	padding-left: calculateRem(20px);
 }
 
 td {
