@@ -5,6 +5,8 @@ moduleName: view-develop-vis-framework-overview
 pathToRoot: ../../../
 ---
 
+# Introduction
+
 Px-vis a charting platform, developed by the Predix UI team. It relies on the open source d3 library, and provides wrappers around a lot of features and functionalities offered in D3.
 Please note that you do not need to know any d3 to use px-vis, but if you do, you can make modifications with d3 on top of the charts.
 

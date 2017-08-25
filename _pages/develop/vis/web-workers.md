@@ -5,6 +5,8 @@ moduleName: view-develop-vis-web-workers
 pathToRoot: ../../../
 ---
 
+# Introduction
+
 Increasingly, the px-vis framework has to do more heavy processing as we add new features and support charts with hundreds of thousands of datapoints. User interactions in particular, such as a user hovering over a chart and displaying the closest datapoints in the register, must be highly performant and feel instantaneous. In order to support this and many other processing intensive features, we’ve introduced web workers into px-vis.
 
 # Background

@@ -59,6 +59,8 @@ script: |
     }
 ---
 
+# Introduction
+
 Each chart can embed a toolbar element which consists of a main row of items and an optional subrow of items. The subrow usually represents a context of an item of the main row, i.e clicking an item of the main row brings more options.
 
 <catalog-picture img-src="../../pages/develop/vis/vis-resources/toolbar" img-alt="toolbar subpart" style="border:none;" caption="Toolbar with the 'zoom' main item selected"></catalog-picture>
