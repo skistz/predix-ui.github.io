@@ -22,12 +22,6 @@
         type: String
       }
     },
-    _getTocLinkClassName: function(anchor, activeAnchor) {
-      if (activeAnchor && activeAnchor === anchor) {
-        return 'toc__item__link--active';
-      }
-      return '';
-    },
     attached: function() {
       var toc = Polymer.dom(this.root).querySelector('#toc');
       if (toc !== null) {
@@ -42,20 +36,16 @@
     detached: function() {
       this.fire('px-catalog-page-detached');
     },
-    scrollToAnchor: function(anchor) {
-      // if (!this._parentElement) {
-      //   return;
-      // }
-      // var el = Polymer.dom(this.root).querySelector(anchor);
-      // if (el) {
-      //   var elTop = el.getBoundingClientRect().top;
-      //   var contentTop = this.getBoundingClientRect().top;
-      //   var offset = elTop - contentTop;
-      //   this._parentElement.scrollTop = offset;
-      // }
+    _getTocLinkClassName: function(anchor, activeAnchor) {
+      if (activeAnchor && activeAnchor === anchor) {
+        return 'toc__item__link--active';
+      }
+      return '';
     },
     _handleAnchorTapped: function(evt) {
       evt.preventDefault();
+      var anchor = Polymer.dom(evt).rootTarget.getAttribute('anchor');
+      this.fire('px-catalog-page-anchor-tapped', {anchor:anchor});
     }
   };
 })();
