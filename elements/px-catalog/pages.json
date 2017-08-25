@@ -85,7 +85,7 @@
       {
         "path": "design-principles",
         "label": "Design Principles",
-        "module": "design-principles",
+        "module": "view-design-principles",
         "entrypoint": "/pages/design/design-principles.html",
         "redirects": [
           "/guidelines/design-principles"
