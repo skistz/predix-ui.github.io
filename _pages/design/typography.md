@@ -31,11 +31,11 @@ Suggested type sizes for applications are as follows:
 
 | Element | Usage | Size & Appearance |
 | ------- | ----- | ----------------- |
-Page Headers & Titles | <catalog-picture style="padding: 0; margin: 0;" img-src="../../../img/guidelines/page_header" img-alt="drop down nav"></catalog-picture> | 30px
-Section header | <catalog-picture style="padding: 0; margin: 0;" img-src="../../../img/guidelines/section_header" img-alt="drop down nav"></catalog-picture> | 20px Uppercase
-| Sub-section header | <catalog-picture style="padding: 0; margin: 0;" img-src="../../../img/guidelines/sub_section_header" img-alt="drop down nav"></catalog-picture> | 15px Uppercase
-| Body Copy | <catalog-picture style="padding: 0; margin: 0;" img-src="../../../img/guidelines/body_copy" img-alt="drop down nav"></catalog-picture> | 15px, 20 Line Spacing
-| Labels | <catalog-picture style="padding: 0; margin: 0;" img-src="../../../img/guidelines/label" img-alt="drop down nav"></catalog-picture> | 12px Uppercase
+Page Headers & Titles | <span class="heading--page">Page Header<span> | 30px
+Section header | <span class="heading--section">Section Header<span> | 20px Uppercase
+| Sub-section header | <span class="heading--subsection">Subsection Header<span> | 15px Uppercase
+| Body Copy | <span>Lorem ipsum dolor sit amet<span> | 15px, 20 Line Spacing
+| Labels | <span class="label">label<span> | 12px Uppercase
 
 </br>
 In total, there are seven font sizZes available ranging from 12px to 75px. Font sizes above 30px are reserved for use on dashboard widgets.
