@@ -9,18 +9,18 @@
 <link rel="import" href="../../bower_components/px-icon-set/px-icon-set.html" />
 <link rel="import" href="../../bower_components/px-icon-set/px-icon.html" />
 <!-- Styles -->
-<link rel="import" href="../../css/predix-ui-styles.html" />
-<link rel="import" href="../../css/px-catalog-version-finder-styles.html" />
+<link rel="import" href="../../css/px-catalog-page-styles.html" />
+  <link rel="import" href="../../css/px-catalog-version-finder-styles.html" />
 
 <dom-module id="px-catalog-version-finder">
   <template>
     <style include="px-theme-styles"></style>
-    <style include="predix-ui-styles"></style>
+    <style include="px-catalog-page-styles"></style>
     <style include="px-catalog-version-finder-styles"></style>
 
     <iron-ajax auto url="versions.json" last-response="{{versions}}"></iron-ajax>
 
-    <section class="main">
+    <section class="page">
       <h2 class="selected">Version Finder</h2>
       <p>The Predix Design System recently underwent a major upgrade. All components were refreshed to follow the new, more user-friendly design system styles. Many component APIs were also changed.</p>
       <p><strong>Teams building a new web apps should use the post-refresh components. Teams maintaining an existing web app that uses pre-refresh Predix Design System components or CSS modules will need to research the changes in the refreshed components and upgrade all components as soon as possible.</strong></p>
