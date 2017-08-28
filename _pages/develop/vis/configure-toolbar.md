@@ -9,9 +9,9 @@ otherImports: |
     <link defer rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 script: |
   ready: function () {
-      var modal = document.getElementById('modal'),
-        holder = document.getElementById('holder'),
-        chart = document.getElementById('chart'),
+      var modal = Polymer.dom(this.root).querySelector('#modal'),
+        holder = Polymer.dom(this.root).querySelector('#holder'),
+        chart = Polymer.dom(this.root).querySelector('#chart'),
         modalConfig = {
           "config": {
             "advancedZoom": true,

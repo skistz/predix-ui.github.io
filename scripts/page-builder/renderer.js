@@ -120,6 +120,14 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
   }
 };
 
+md.renderer.rules.code_inline = function (tokens, idx, options, env, slf) {
+  var token = tokens[idx];
+
+  return  '<code class="code code--inline"' + slf.renderAttrs(token) + '>' +
+          md.utils.escapeHtml(tokens[idx].content) +
+          '</code>';
+};
+
 var lastTag;
 md.use(mdContainer, 'element', {
   render: function (tokens, idx) {
