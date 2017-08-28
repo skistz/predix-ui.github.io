@@ -28,7 +28,7 @@ Upgrading the charts should be mostly seamless. The big items are colors and ico
 * If you assign `seriesColorOrder` and `dataVisColors` on your chart, you'll now have to assign `seriesColorList` instead
 * If you assign chart colors via CSS variables, there is no change
 
-## Icons:
+## Icons
 * Everywhere that was a font awesome icon now has to be upgraded
 * All font awesome icons were replaced with custom px icons. The list of available icons can be found [here](https://www.predix-ui.com/#/components/px-icon-set/)
 * For Events, you just have to update the name of the icon being used and the "type"
@@ -41,7 +41,7 @@ Note that default colors for the charts are blacks and greys. If you see this, y
 
 # List of breaking changes and what this means:
 
-## Colors:
+## Colors
 * All components load with default black and white colors unless a theme is loaded. The theme colors are loaded via CSS variables.
 * dataVisColors and seriesColorOrder properties have been removed and replaced with seriesColorList.
   * seriesColorList is just an array of rgb colors rather than names and needed a lookup as before with dataVisColors and seriesColorOrder
@@ -54,7 +54,7 @@ Note that default colors for the charts are blacks and greys. If you see this, y
     2) Pass in a seriesColorOrder property to the chart
     3) Pass in a custom color into the seriesConfig (for every series )
 
-## Icons:
+## Icons
 ### General
 * px-polymer-font-awesome has been removed as a repo from Predix UI and replaced with px-icon-set
   * FontAwesome is no longer natively supported in any Predix UI component
@@ -78,7 +78,7 @@ Note that default colors for the charts are blacks and greys. If you see this, y
   * Icon name must include the set prefix
 * The demo has been updated, so you can see the updated configs for events, toolbar, and dynamic menus
 
-## Canvas Rendering:
+## Canvas Rendering
 * There is a new internal renderer for canvas which is much smoother, but looks different
   * renderer automatically adjust the number of points per frame rendered. This number will be adjusted every frame based on how long previous frame took, which should make the rendering smooth on different browsers and different hardware
   * It will now render "series per series" rather than a batch of several series for each frame, i.e it won't move to rendering the second series until the first series has been completely rendered
@@ -100,7 +100,7 @@ Note that default colors for the charts are blacks and greys. If you see this, y
   * px-vis-chart-canvas-rendering-started
   * px-vis-chart-canvas-rendering-ended
 
-## Misc:
+## Misc
 * removed redrawElement function from highlightPoint and highlightLine
 * Changed inert property on register to inertRegister so as to not conflict with w3c spec
 * Removed canvasContextTop
