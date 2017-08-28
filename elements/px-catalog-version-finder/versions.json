@@ -523,7 +523,7 @@
   },
   {
     "name": "px-tree",
-    "postRefreshRange": "^1.0.0",
+    "postRefreshRange": "^2.0.0",
     "preRefreshRange": "n/a",
     "preRefreshRangeExact": "n/a"
   },
