@@ -18,7 +18,6 @@ Component | latest version
  px-vis-spark | v2
  px-simple-area | v2
 
---------------------------------------------------------------------------------
 
 # Upgrading
 Upgrading the charts should be mostly seamless. The big items are colors and icons, but these highly depend on your configuration.
