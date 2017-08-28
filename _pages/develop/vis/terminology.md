@@ -5,6 +5,8 @@ moduleName: view-develop-vis-terminology
 pathToRoot: ../../../
 ---
 
+# Introduction
+
 When starting to work with vis or the charts the terminology might be a bit confusing in terms of what to call each subpart of a chart. A timeseries chart is a good example because it has most of the available components.
 
 Let's start by deconstructing the components in this timeseries chart.

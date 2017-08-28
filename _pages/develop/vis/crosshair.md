@@ -5,6 +5,8 @@ moduleName: view-develop-vis-crosshair
 pathToRoot: ../../../
 ---
 
+# Introduction
+
 Starting with version 2.0.0 of px-vis, the new crosshair feature became available. Crosshair provides users the ability to highlight corresponding data points, i.e. points which share the same timestamp - though not necessarily the same exact dataset - across multiple charts on a page.
 
 

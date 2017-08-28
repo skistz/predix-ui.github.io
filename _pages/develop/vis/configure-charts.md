@@ -5,11 +5,13 @@ pathToRoot: ../../../
 layout: default
 ---
 
+# Introduction
+
 The vis framework and charts keep growing as we add new features while also improving performance and ease of use. We've always worked with the philosophy that the charts should use "appropriate defaults" out of the box, in other words, you shouldn't have to know about all the available features and the chart should work with minimum configuration. However, because the charts can be used in a variety of different environments, each feature has to be fully configurable, which has lead to our demos becoming quite daunting for a new developer.
 
 This article aims at giving a new developer the most important configuration options and how to use them.
 
-## ChartData
+# ChartData
 The two most important properties that each chart needs are chartData and seriesConfig. ChartData holds the data in the format needed by the chart: an array of objects where each object holds the data related to one or several assets, usually for a specific time. For example a dataset for 3 assets could look like:
 
 ```json
@@ -36,7 +38,7 @@ The two most important properties that each chart needs are chartData and series
 
 Notice that each point doesn't need to have a definition for each asset. If you get your data from the Predix Timeseries service you can use px-vis-data-converter to transform the data into the appropriate format.
 
-## SeriesConfig
+# SeriesConfig
 If ChartData represents the data the chart needs to display then seriesConfig tells the chart how to interpret and visualize it.
 
 In the vis framework a series is a visual representation of a set of points related to each other, by plotting a set of values (Y) against another (X). In real life this usually translates to the visual representation of some asset's performance metrics, usually gathered by a sensor: temperature over time, gas consumption vs speed, wind turbine speed over time etc... In simple terms think of one series as one line on your chart, or a set of scatter points with the same visual representation (blue dots for example).
@@ -132,7 +134,7 @@ In this example, all three series would get the default 'x' definition from the 
 
 Internally seriesConfig and defaultSeriesConfig will be processed to form completeSeriesConfig which is the object actually used by the chart.
 
-<h4 class="u-pt u-mb++">ChartExtents</h4>
+# ChartExtents
 In addition to the chartData and seriesConfig, another very useful property to be aware of is the chartExtents. ChartExtents is used by the chart to determine the extents (min and max values) of each X and Y scale used by the axes. For example, a single Y axis XY chart can be configured to have its Y axis range from 0 to 10 and its X axis from -5 to 5:
 
 <div class="flex flex--justify">
@@ -245,7 +247,7 @@ If chartExtents is not defined then the chart will default to dynamic search on 
 
 Please note, in case of the Radar chart, although it has several axes, it only has one scale. This means that setting the 'y' part of chartExtents for the Radar chart will have it applied to all axes automatically and that it is not possible to have separate extents for each axis. Also, Parallel Coordinates charts currently do not support developer set chartExtents. This is a future enhancement.
 
-## Chart sub components
+# Chart sub components
 
 Each chart is built with a set of vis framework components, and most of those components are usually configurable. This makes the chart flexible in terms of configuration, but could also end up being a nightmare to maintain: imagine having to expose and propagate every configurable property of every subcomponent! The chart would end up with hundreds of configuration options with obscure names.
 
@@ -263,7 +265,7 @@ This also means that every time a new feature/property is added to a sub compone
 
 The downside is that some of the configuration is hidden at first sight, in particular for developers that use vis for the first time. In general, the documentation of the chart will mention all the config objects available and the developer will then have to go to [the appropriate vis component API](#/elements/vis/px-vis/px-vis) to find all the options available.
 
-## PreventResize
+# PreventResize
 
 By default each chart tries to fit its container and will resize itself when the container size changes. This means that by default if your container already has a size of its own the chart doesn't need to have a width and height defined. However if your container has no height (an empty div for example) you might have to either force the container height or set the height property on the chart.
 
