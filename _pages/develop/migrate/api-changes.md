@@ -10,8 +10,21 @@ layout: default
 * You should include px-theme or px-dark-theme in your application, or create and include your own theme, to style the Px components accordingly. See the documentation [here](#/develop/migrate/theme) for more information.
 * Px-localize-behavior has been deprecated. All of the localized components will ship with English translations by default, but applications should provide their own resources object as necessary in order to localize components for non-English languages.
 
-## px-accordion (v1)
-* New
+# New Components
+## px-accordion
+* The px-accordion component provides expandable and collapsible subsection headers for a page. [API Documentation](#/elements/px-accordion)
+
+## px-heatmap-grid
+* The px-heatmap-grid is a highly visual and flexible interactive component for visualizing a data set based on a heat map scale of colors. [API Documentation](#/elements/px-heatmap-grid)
+
+## px-key-value-pair
+* The px-key-value-pair component allows you to prominently display information in a dashboard. [API Documentation](#/elements/px-key-value-pair)
+
+## px-tree
+* The px-tree component provides an expandable and selectable tree. The contents are controlled primarily through a structured object of branch and leaf nodes. [API Documentation](#/elements/tree/px-tree)
+
+
+# Existing Components
 
 ## px-alert-label (v2)
 * New boolean property `badge` has been added for enabling the alert/severity badges currently used in `px-alert-message` and `px-inbox` - the `type` property determines what color and shape will appear, whereas the `label` property can be repurposed for the (single-digit) numeric indicator
@@ -67,9 +80,6 @@ layout: default
 * A new boolean property called `disableAutoSelect` has been added which will prevent the inbox from automatically selecting the first item in the list ([#7](https://github.com/PredixDev/px-inbox/issues/7)). A check was also added so that when a `selectedItem` is passed into the component, it will not be overridden by this behavior.
 * Both ascending and descending sort are now possible using either the `sortOrder` property or the arrow icon next to the sort dropdown ([#6](https://github.com/PredixDev/px-inbox/issues/6)).
 
-## px-input-group-design (N/A)
-* Deprecated.
-
 ## px-list-ui-design (v2)
 * Similar to `px-tables-design`, the styling for the top/bottom borders and interior borders have been separated to enable the new design. The CSS variables have been separated accordingly to distinguish between `--px-list-ui-border-color` (top/bottom borders) and `--px-list-ui-separator-color` (interior borders).
 
@@ -89,5 +99,8 @@ layout: default
 ## px-tooltip (v1)
 * The `tooltip-style` property has been removed. See the [theming documentation](#/develop/migrate/theme) for more information on using the light and dark theme, or use the provided CSS variables to override the style of the component.
 
-## px-tree (v1)
-* New
+# Deprecated Components
+#### px-drawer
+#### px-input-group-design
+#### px-localize-behavior
+#### px-sample-cards
