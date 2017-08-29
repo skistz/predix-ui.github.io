@@ -451,12 +451,12 @@ function analyzeRepo(elementDir, analyzer) {
         // No .html files found, likely a -design repo
         return Promise.reject('NO_HTML_FILE');
       }
-      // console.log(`Analyzing ${elementName} files: ${files.join(', ')}`)
+      console.log(`Analyzing ${elementName} files: ${files.join(', ')}`)
       return analyzer.analyze(files);
     })
     .then(analysis => {
       analysis = filterAnalysis(generateAnalysis(analysis, './bower_components'), elementName);
-      // console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
+      console.log(`Writing API output to ${elementName}/${elementName}-api.json`);
       return fse.outputFile(`bower_components/${elementName}/${elementName}-api.json`, JSON.stringify(analysis));
     })
     .catch(e => {
@@ -486,7 +486,11 @@ function getFilesForRepo(elementDir, elementName) {
     var globPattern;
     if (elementName === 'px-app-helpers') {
       globPattern = `${elementDir}px-*/px-*.html`;
-    } else {
+    }
+    else if (elementName === 'px-card') {
+      globPattern = `${elementDir}px-*.html`;
+    }
+    else {
       globPattern = `${elementDir}${elementName}*.html`;
     }
     glob(globPattern, (err, files) => {
