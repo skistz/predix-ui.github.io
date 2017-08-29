@@ -231,6 +231,15 @@
         "label": "Design Refresh Migration",
         "pages": [
           {
+            "path": "api-changes",
+            "label": "Release Notes & API Changes",
+            "module": "view-develop-api-changes",
+            "entrypoint": "/pages/develop/migrate/api-changes.html",
+            "redirects": [
+              "/migration/api-changes"
+            ]
+          },
+          {
             "path": "theme",
             "label": "Apply Themes",
             "module": "view-develop-migrate-theme",

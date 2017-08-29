@@ -5,6 +5,8 @@
  * @author Lea Verou
  */
 $inuit-enable-code--inline  : true;
+$inuit-code-background : transparent;
+$inuit-base-spacing-unit--tiny : 0; //set padding to 0
 @import 'px-code-design/_base.code.scss';
 
 code[class*="language-"],
