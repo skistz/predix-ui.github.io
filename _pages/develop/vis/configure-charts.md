@@ -45,89 +45,83 @@ In the vis framework a series is a visual representation of a set of points rela
 
 If the chart is very simple and no specific configuration is required then the "includeAllSeries" property can be set to true on the chart for it to dynamically create the configuration from the data. It will try to understand the data structure and appropriately draw each series available in the data. However in general more precise control is required, which is where seriesConfig kicks in.
 
-<div class="flex flex--col vis__horizontal-center" style="width: 479px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/include_all_series.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/include_all_series.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/include_all_series.png" alt="wrench">
-</picture>
-<h5>Simple Timeseries example with includeAllSeries. We still had to define what value the chart interpret as X through defaultSeriesConfig (see below)</h5>
-</div>
+  <catalog-picture
+    img-src="/pages/develop/vis/vis-resources/include_all_series"
+    img-alt="Simple Timeseries example with includeAllSeries"
+    caption="Simple Timeseries example with includeAllSeries. We still had to define what value the chart interpret as X through defaultSeriesConfig (see below)">
+  </catalog-picture>
+
 
 SeriesConfig is an object where each sub-object is a definition for one series. Each definition's key needs to be unique and each value will contain information on what to render and how to render it. For example, a seriesConfig for rendering the previous chartData as a timeseries chart could be:
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/conf_chart_1"
+    img-alt="Custom seriesConfig"
+    caption="Custom seriesConfig. Note that we could have drawnonly two series by adding only 2 definitions.">
+  </catalog-picture>
 
-```json
-{
- "uniqueSeriesId1": {
-   "x": "Timestamp",
-   "y": "asset1",
-   "name": "Asset 1",
-   "type": "scatter"
- },
- "uniqueSeriesId2": {
-   "x": "Timestamp",
-   "y": "asset2",
-   "name": "Asset 2",
-   "type": "scatter"
- },
- "uniqueSeriesId3": {
-   "x": "Timestamp",
-   "y": "asset3",
-   "name": "Asset 3",
-   "type": "line"
- }
-}
-```
+  ```json
+  {
+    "uniqueSeriesId1": {
+      "x": "Timestamp",
+      "y": "asset1",
+      "name": "Asset 1",
+      "type": "scatter"
+    },
+    "uniqueSeriesId2": {
+      "x": "Timestamp",
+      "y": "asset2",
+      "name": "Asset 2",
+      "type": "scatter"
+    },
+    "uniqueSeriesId3": {
+      "x": "Timestamp",
+      "y": "asset3",
+      "name": "Asset 3",
+      "type": "line"
+    }
+  }
+  ```
 
-<div class="flex flex--col" style="width: 483px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/conf_chart_1.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/conf_chart_1.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/conf_chart_1.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center">Custom seriesConfig. Note that we could have drawnonly two series by adding only 2 definitions.</h5>
-</div>
 </div>
 
 'x' and 'y' define how each series relates to the dataset, so for a series on the XY Chart they could respectively be 'asset1' and 'asset2' but for a Timeseries chart each series should have the timestamp as its X value. Each series definition in seriesConfig has a lot more options that can be added such as the X and Y units, color, marker shape/size/opacity/stroke, interpolation function for lines, dash pattern, and an Axis definition if using multiple Y axis (Timeseries and XY charts only). The options will be listed in the <a href="https://www.predix-ui.com/#/components/px-vis-timeseries/" target="_top">API of a chart</a> under the seriesConfig property and more feature can be added over time.
 
 When all series need to have the same subset of configuration, for example the timestamp definition for x for a timeseries or all/the majority of series should be scatter, you can use the defaultSeriesConfig object. This default object properties will be applied to each series definition in seriesConfig if this property doesn't already exit in the seriesConfig series definition. The previous example would become:
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/conf_chart_1"
+    img-alt="Same Custom seriesConfig"
+    caption="Same chart as above with a defaultSeriesConfig">
+  </catalog-picture>
 
-```js
-seriesConfig = {
- 'uniqueSeriesId1': {
-   'y': 'asset1',
-   'name': 'Asset 1',
- },
- 'uniqueSeriesId2': {
-   'y': 'asset2',
-   'name': 'Asset 2',
- },
- 'uniqueSeriesId3': {
-   'y': 'asset3',
-   'name': 'Asset 3',
-   'type': 'line'
- }
-}
+  ```js
+  seriesConfig = {
+    'uniqueSeriesId1': {
+      'y': 'asset1',
+      'name': 'Asset 1',
+    },
+    'uniqueSeriesId2': {
+      'y': 'asset2',
+      'name': 'Asset 2',
+    },
+    'uniqueSeriesId3': {
+      'y': 'asset3',
+      'name': 'Asset 3',
+      'type': 'line'
+    }
+  }
 
-defaultSeriesConfig = {
- 'x': 'Timestamp',
- 'type': 'scatter'
-}
-```
+  defaultSeriesConfig = {
+    'x': 'Timestamp',
+    'type': 'scatter'
+  }
+  ```
 
-<div class="flex flex--col" style="width: 483px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/conf_chart_1.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/conf_chart_1.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/conf_chart_1.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center">Same chart as above with a defaultSeriesConfig</h5>
-</div>
 </div>
 
 In this example, all three series would get the default 'x' definition from the default, and 'uniqueSeriesId1' and 'uniqueSeriesId2' would get the default 'scatter' 'type', since they don't have a local definition. 'uniqueSeriesId3' would keep its 'line' 'type'.
@@ -137,112 +131,97 @@ Internally seriesConfig and defaultSeriesConfig will be processed to form comple
 # ChartExtents
 In addition to the chartData and seriesConfig, another very useful property to be aware of is the chartExtents. ChartExtents is used by the chart to determine the extents (min and max values) of each X and Y scale used by the axes. For example, a single Y axis XY chart can be configured to have its Y axis range from 0 to 10 and its X axis from -5 to 5:
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/extents_1"
+    img-alt="Basic Chart Extents example">
+  </catalog-picture>
 
-```js
-{
- "x": [-5, 5],
- "y": [0, 10]
-}
-```
+  ```js
+  {
+  "x": [-5, 5],
+  "y": [0, 10]
+  }
+  ```
 
-<div class="flex flex--col" style="width: 482px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/extents_1.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/extents_1.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/extents_1.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center"></h5>
-</div>
 </div>
 
 It is also possible to pass "dynamic" instead of a value, in which case the chart will parse the data to find the extents of each axis. This is more computationally intensive so pass the extents to the charts if you already have them!
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/extents_y_dynamic"
+    img-alt="Dynamic Y Chart Extents example">
+  </catalog-picture>
 
-```js
-{
- "x": [-5, 5],
- "y": ["dynamic", "dynamic"]
-}
-```
+  ```json
+  {
+    "x": [-5, 5],
+    "y": ["dynamic", "dynamic"]
+  }
+  ```
 
-<div class="flex flex--col" style="width: 482px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/extents_y_dynamic.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/extents_y_dynamic.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/extents_y_dynamic.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center"></h5>
-</div>
 </div>
 
 For timeseries or XY charts with multiple Y axis, each axis can get its own extents by adding a property to chartExtents with the axisId as the key and the extents as the value. The `y` property will still be applied to axis that don't have a specific extents defined. For example for an XY chart with 3 axis, "axis 1", "axis 2" and "axis 3":
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/extents_multi"
+    img-alt="Chart Extents example each axis">
+  </catalog-picture>
 
-```js
-//Axis 1 will range from -10 to 10
-//axis 2 and axis 3 will dynamically
-//search for their extents:
-{
- "x": [0 ,10],
- "y": ["dynamic", "dynamic"],
- "axis1": [-10,10]
-}
-```
+  ```js
+  //Axis 1 will range from -10 to 10
+  //axis 2 and axis 3 will dynamically
+  //search for their extents:
+  {
+  "x": [0 ,10],
+  "y": ["dynamic", "dynamic"],
+  "axis1": [-10,10]
+  }
+  ```
 
-<div class="flex flex--col" style="width: 463px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/extents_multi.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/extents_multi.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/extents_multi.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center"></h5>
-</div>
 </div>
 
 In the case where a scale is ordinal then a set of values can be passed in the chart extents:
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/ordinal_extents"
+    img-alt="Dynamic Chart Extents example">
+  </catalog-picture>
 
-```js
-//ordinal x scale
-{
- "x": ["low", "medium", "high"],
- "y": [-100, 100]
-}
-```
+  ```js
+  //ordinal x scale
+  {
+  "x": ["low", "medium", "high"],
+  "y": [-100, 100]
+  }
+  ```
 
-<div class="flex flex--col" style="width: 477px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/ordinal_extents.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/ordinal_extents.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/ordinal_extents.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center"></h5>
-</div>
 </div>
 
 If chartExtents is not defined then the chart will default to dynamic search on X, 0 for for the minimum Y and dynamic search for the maximum Y, which would be equivalent to:
 
-<div class="flex flex--justify">
+<div class="picture-code">
+  <catalog-picture
+    style="margin: 0; padding: 0"
+    img-src="/pages/develop/vis/vis-resources/extents_default"
+    img-alt="Dynamic Chart Extents example">
+  </catalog-picture>
 
-```js
-{
- "x": ["dynamic", "dynamic"],
- "y": [0, "dynamic"]
-}
-```
+  ```js
+  {
+  "x": ["dynamic", "dynamic"],
+  "y": [0, "dynamic"]
+  }
+  ```
 
-<div class="flex flex--col" style="width: 482px">
-<picture>
-<source srcset="/pages/develop/vis/vis-resources/extents_default.webp" type="image/webp">
-<source srcset="/pages/develop/vis/vis-resources/extents_default.png" type="image/png">
-<img src="/pages/develop/vis/vis-resources/extents_default.png" alt="wrench">
-</picture>
-<h5 class="vis__horizontal-center"></h5>
-</div>
 </div>
 
 Please note, in case of the Radar chart, although it has several axes, it only has one scale. This means that setting the 'y' part of chartExtents for the Radar chart will have it applied to all axes automatically and that it is not possible to have separate extents for each axis. Also, Parallel Coordinates charts currently do not support developer set chartExtents. This is a future enhancement.
