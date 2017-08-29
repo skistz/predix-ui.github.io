@@ -10,7 +10,7 @@ layout: default
 * You should include px-theme or px-dark-theme in your application, or create and include your own theme, to style the Px components accordingly. See the documentation [here](#/develop/migrate/theme) for more information.
 * Px-localize-behavior has been deprecated. All of the localized components will ship with English translations by default, but applications should provide their own resources object as necessary in order to localize components for non-English languages.
 
-## px-accordian
+## px-accordion (v1)
 * New
 
 ## px-alert-label (v2)
