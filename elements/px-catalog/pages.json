@@ -55,6 +55,18 @@
         ]
       },
       {
+        "path": "sample-app",
+        "label": "Sample Application",
+        "module": "view-about-sample-app",
+        "entrypoint": "/pages/about/sample-app.html",
+        "keywords": [
+          "application",
+          "seed",
+          "example",
+          "starter"
+        ]
+      },
+      {
         "path": "resources",
         "label": "Additional Resources",
         "module": "view-about-resources",
