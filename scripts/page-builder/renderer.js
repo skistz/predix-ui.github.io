@@ -107,8 +107,7 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
   }
 
   if(!logged){
-  console.log(Object.keys(Prism.languages).join(", ") );
-  logged = true;
+    logged = true;
   }
 
   if (langName !== "" && Prism.languages.hasOwnProperty(langName)) {
@@ -118,6 +117,14 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
   else {
     return '<pre class="code-block"><code>' + md.utils.escapeHtml(token.content) + '</pre></code>';
   }
+};
+
+md.renderer.rules.code_inline = function (tokens, idx, options, env, slf) {
+  var token = tokens[idx];
+
+  return  '<code class="code code--inline"' + slf.renderAttrs(token) + '>' +
+          md.utils.escapeHtml(tokens[idx].content) +
+          '</code>';
 };
 
 var lastTag;

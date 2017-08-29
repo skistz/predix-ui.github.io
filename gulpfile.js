@@ -347,9 +347,15 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/type/**',
                        rootDir + '/pages/**',
                        rootDir + '/elements/**/*.{html,json}',
-                       rootDir + '/css/**',
+                       rootDir + '/css/*.html',
                        rootDir + '/bower_components/px-theme/**/*.html',
-                       rootDir + '/bower_components/px-demo/*.html',
+                       rootDir + '/bower_components/app-layout/app-drawer/app-drawer.html',
+                       rootDir + '/bower_components/app-localize-behavior/app-localize-behavior.html',
+                       rootDir + '/bower_components/iron-media-query/iron-media-query.html',
+                       rootDir + '/bower_components/px-alert-message/**/*.html',
+                       rootDir + '/bower_components/px-dark-theme/**/*.html',
+                       rootDir + '/bower_components/px-dark-demo-theme/**/*.html',
+                       rootDir + '/bower_components/px-demo/*.{html, png}',
                        rootDir + '/bower_components/px-demo/css/*.html',
                        rootDir + '/bower_components/px-spinner/**/*.html',
                        rootDir + '/bower_components/polymer/polymer*.html',
@@ -358,6 +364,7 @@ gulp.task('prodBuild', function(callback) {
                        rootDir + '/bower_components/app-route/app-*.html',
                        rootDir + '/bower_components/iron-ajax/iron-*.html',
                        rootDir + '/bower_components/iron-location/iron-*.html',
+                       rootDir + '/bower_components/iron-selector/iron-*.html',
                        rootDir + '/bower_components/iron-collapse/iron-collapse.html',
                        rootDir + '/bower_components/iron-label/iron-label.html',
                        rootDir + '/bower_components/iron-checked-element-behavior/iron-checked-element-behavior.html',
@@ -389,7 +396,7 @@ gulp.task('compress-images', function(){
   ];
 
   imgFolders.forEach((folder) =>{
-    console.log(folder)
+    // console.log(folder)
     imagemin([`${folder}/*.png`], folder, {
       plugins: [webp({
         lossless: true // Losslessly encode images
@@ -477,7 +484,11 @@ function getFilesForRepo(elementDir, elementName) {
     var globPattern;
     if (elementName === 'px-app-helpers') {
       globPattern = `${elementDir}px-*/px-*.html`;
-    } else {
+    }
+    else if (elementName === 'px-card') {
+      globPattern = `${elementDir}px-*.html`;
+    }
+    else {
       globPattern = `${elementDir}${elementName}*.html`;
     }
     glob(globPattern, (err, files) => {

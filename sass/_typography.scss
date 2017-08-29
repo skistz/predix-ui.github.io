@@ -42,32 +42,6 @@ h3, h4, .text-accent--secondary {
   color: var(--px-catalog-page-accent-color--secondary, blue);
 }
 
-// *** CUSTOM BUTTON COLORS ** //
-
-.catalog-button {
-  display: inline-block;
-  margin: 0;
-  padding: .625rem 1rem;
-  transition: all .5s;
-  border-radius: 3px;
-  color: $white;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1em;
-  text-align: center;
-  cursor: pointer;
-  overflow: visible;
-  vertical-align: middle;
-  border: 1px solid $primary-default;
-  background-color: $primary-default;
-
-  &:hover {
-    border: 1px solid $primary-hover;
-    background-color: $primary-hover;
-  }
-}
-
 // *** LINK COLORS *** //
 a {
   text-decoration: none;
@@ -81,4 +55,20 @@ a {
   &:hover{
     color: var(--px-catalog-page-link-color--hover, navy);
   }
+}
+
+// *** CUSTOM BUTTON COLORS ** //
+:root{
+  --px-btn-primary-color: var(--px-hero-btn-primary-color, $white);
+  --px-btn-primary-background: var(--px-hero-btn-primary-background, $select-default);
+  --px-btn-primary-background--hover: var(--px-hero-btn-primary-background--hover, $select-hover);
+  --px-btn-primary-background--pressed: var(--px-hero-btn-primary-background--pressed, $select-pressed);
+
+  --px-btn-tertiary-color: var(--px-home-btn-tertiary-color, $select-default);
+  --px-btn-tertiary-color--hover: var(--px-home-btn-tertiary-color--hover, $select-default);
+  --px-btn-tertiary-color--pressed: var(--px-home-btn-tertiary-color--pressed, $select-pressed);
+  --px-btn-tertiary-background: var(--px-home-btn-tertiary-background, transparent);
+  --px-btn-tertiary-background--hover: var(--px-home-tertiary-background--hover,  $gray4);
+  --px-btn-tertiary-background--pressed: var(--px-home-tertiary-background--pressed,  $gray7);
+  --px-btn-tertiary-border-color: var(--px-home-btn-tertiary-border-color, $select-default);
 }

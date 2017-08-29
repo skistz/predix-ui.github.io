@@ -75,6 +75,14 @@
         _scrollTop: {
           type: Number,
           value: null
+        },
+        _isRICScheduled: {
+          type: Boolean,
+          value: false
+        },
+        _scrollCausedByAnchorClick: {
+          type: Boolean,
+          value: false
         }
       },
       observers: [
@@ -115,11 +123,34 @@
           this.removeEventListener('scroll', this._scrollHandler, { passive: true });
         }
       },
+
       _handleScroll: function(evt) {
-        this.debounce('handle-scroll', function() {
-          this._scrollTop = this.scrollTop;
-        }, 100);
+        // clicking an anchor triggers a scroll, but want to leave the clicked on anchor as the highlighted anchor, so just escape
+        if (this._scrollCausedByAnchorClick) {
+          this._scrollCausedByAnchorClick = false;
+          return;
+        }
+
+        // If we've already schduled a requestIdleCallback, dont do again
+        if (this._isRICScheduled) { return; }
+
+        this._isRICScheduled = true;
+
+        if ('requestIdleCallback' in window) {
+          //can adjust timeout depending on if we want the scroll to more more up-to-date based on position during a fast scroll or more performant
+          requestIdleCallback(this._rAFScroll.bind(this), { timeout: 100 });
+        } else {
+          this.debounce('handle-scroll', this._rAFScroll, 100);
+        }
       },
+
+      _rAFScroll: function() {
+        requestAnimationFrame(function() {
+          this._scrollTop = this.scrollTop;
+          this._isRICScheduled = false;
+        }.bind(this));
+      },
+
       _watchVisibleAnchor: function(viewName, viewEl, scroll) {
         if (viewName.slice(0,5) !== 'view-' || typeof scroll !== 'number' || !(viewEl instanceof HTMLElement) || !viewEl.hasAttribute('has-anchors')) {
           return;
@@ -129,7 +160,6 @@
         var offsetPadding = 75;
         var firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
         var anchorsLength = anchors.length
-        var lastAnchorOffset = anchors[anchorsLength-1].offsetTop - offsetPadding;
 
         //scroll is above the first anchor point
         if (scroll === 0 || scroll < firstAnchorOffset) {
@@ -141,11 +171,11 @@
           var bottomRange;
 
           // find bottom range of i's anchor point
-          // if i is the last anchor point set the bottom range to the scroll height
           if (i < anchors.length-1) {
             bottomRange = anchors[i+1].offsetTop - offsetPadding;
           }
-          else if (scroll > firstAnchorOffset && bottomRange === undefined) {
+          // if i is the last anchor point set the bottom range to the scroll height
+          else if (scroll > firstAnchorOffset) {
             bottomRange = this.scrollHeight;
           }
 
@@ -166,10 +196,9 @@
         }
         if (activeAnchor !== this.visibleAnchor) {
           // The active anchor isn't visible, scroll to it
-          console.log('Scrolling to active anchor: ' + activeAnchor);;
           this._scrollToAnchorPath(this._activeModuleEl, activeAnchor);
+          this._scrollCausedByAnchorClick = true;
         }
-        console.log('Setting active anchor: ' + activeAnchor);
         this._activeModuleEl.activeAnchor = activeAnchor;
       },
       _handleAnchorTapped: function(evt) {
@@ -184,7 +213,7 @@
         else if (el.hasAttribute('has-anchors')) {
           // Element is a markdown page, jump to the requested anchor
           var anchorEl = Polymer.dom(el.root).querySelector(activeAnchor);
-          var offset = anchorEl ? (anchorEl.offsetTop-5) : 0;
+          var offset = anchorEl ? (anchorEl.offsetTop-30) : 0;
           this.scrollTop = offset;
         }
         else if (/^px\-.+\-demo$/.test(el.is)) {

@@ -83,15 +83,6 @@
     "label": "Design Guidelines",
     "pages": [
       {
-        "path": "design-principles",
-        "label": "Design Principles",
-        "module": "design-principles",
-        "entrypoint": "/pages/design/design-principles.html",
-        "redirects": [
-          "/guidelines/design-principles"
-        ]
-      },
-      {
         "path": "navigation",
         "label": "Navigation",
         "module": "view-design-navigation",
@@ -1119,7 +1110,7 @@
           },
           {
             "path": "px-context-browser-trigger",
-            "label": "Context Browser",
+            "label": "Context Browser Trigger",
             "module": "px-context-browser-trigger-demo",
             "entrypoint": "/bower_components/px-context-browser/demo/px-context-browser-trigger-demo.html",
             "redirects": [
