@@ -107,8 +107,7 @@ md.renderer.rules.fence = function(tokens, idx, options, env, self) {
   }
 
   if(!logged){
-  console.log(Object.keys(Prism.languages).join(", ") );
-  logged = true;
+    logged = true;
   }
 
   if (langName !== "" && Prism.languages.hasOwnProperty(langName)) {

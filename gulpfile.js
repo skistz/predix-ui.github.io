@@ -269,8 +269,6 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
      execSync(`git add --all`);
      execSync(`git commit -m '[TravisCI] Rebuilding master for commit ${commit||'???'}'`);
      execSync(`git push origin master --force`);
-
-
      });
  });
 
@@ -398,7 +396,7 @@ gulp.task('compress-images', function(){
   ];
 
   imgFolders.forEach((folder) =>{
-    console.log(folder)
+    // console.log(folder)
     imagemin([`${folder}/*.png`], folder, {
       plugins: [webp({
         lossless: true // Losslessly encode images
@@ -486,7 +484,11 @@ function getFilesForRepo(elementDir, elementName) {
     var globPattern;
     if (elementName === 'px-app-helpers') {
       globPattern = `${elementDir}px-*/px-*.html`;
-    } else {
+    }
+    else if (elementName === 'px-card') {
+      globPattern = `${elementDir}px-*.html`;
+    }
+    else {
       globPattern = `${elementDir}${elementName}*.html`;
     }
     glob(globPattern, (err, files) => {
@@ -584,6 +586,23 @@ gulp.task('docs:copy-non-md', function(){
     .pipe(gulp.dest('./pages/'));
 });
 
+/*
+ * Creates a data file with build info that can be viewed by typing build into
+ * the search sidebar.
+ */
+gulp.task('docs:generate-build-data', function(cb){
+  var commit = execSync(`git rev-parse HEAD`, {encoding:'utf8'}).trim();
+  fse.outputFile(path.join(__dirname, 'pages', 'build-data.json'), JSON.stringify({
+    commit: commit,
+    shortCommit: commit.slice(0,7),
+    commitUrl: `https://github.com/predix-ui/predix-ui.github.io/commit/${commit}`,
+    time: new Date().toLocaleString()
+  }))
+  .then(() => cb())
+  .catch(e => console.error(`The build data could not be generated: ${e}`));
+});
+
+
 gulp.task('docs', function(callback) {
-  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:pages-json')(callback);
+  gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:pages-json', 'docs:generate-build-data')(callback);
 });

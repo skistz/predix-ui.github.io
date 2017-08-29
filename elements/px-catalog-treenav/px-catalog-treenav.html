@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link rel="import" href="../../css/px-catalog-theme-styles.html" />
 <link rel="import" href="../../css/px-catalog-treenav-styles.html" />
 <link rel="import" href="px-catalog-treenav-link.html" />
@@ -7,6 +8,15 @@
   <template>
   <style include="px-catalog-theme-styles"></style>
   <style include="px-catalog-treenav-styles"></style>
+  <style>
+    .easter-egg-build-info {
+      color: white;
+    }
+    .easter-egg-build-info p {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+  </style>
 
     <div class="search">
       <div class="input">
@@ -18,6 +28,15 @@
       </template>
     </div>
     <div class="tree">
+      <template is="dom-if" if="[[_showBuildInfo(searchKeyword)]]">
+        <div class="easter-egg-build-info">
+          <iron-ajax auto url="/pages/build-data.json" last-response="{{buildData}}">
+          </iron-ajax>
+          <p><strong>Build info</strong></p>
+          <p>Commit: <a href="[[buildData.commitUrl]]" target="_blank">[[buildData.shortCommit]]</a></p>
+          <p>Time: [[buildData.time]]</p>
+        </div>
+      </template>
       <template is="dom-repeat" items="[[pages]]" as="item">
         <px-catalog-treenav-link
             top-level-link
@@ -114,6 +133,10 @@
 
       _resetSearch: function() {
         this.searchKeyword = '';
+      },
+
+      _showBuildInfo: function(keyword) {
+        return keyword && keyword === 'build';
       }
     });
   </script>
