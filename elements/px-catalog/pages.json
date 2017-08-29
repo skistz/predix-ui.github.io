@@ -1110,7 +1110,7 @@
           },
           {
             "path": "px-context-browser-trigger",
-            "label": "Context Browser",
+            "label": "Context Browser Trigger",
             "module": "px-context-browser-trigger-demo",
             "entrypoint": "/bower_components/px-context-browser/demo/px-context-browser-trigger-demo.html",
             "redirects": [
