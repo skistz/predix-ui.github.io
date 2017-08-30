@@ -117,6 +117,12 @@
         "label": "Materiality",
         "module": "view-design-materiality",
         "entrypoint": "/pages/design/materiality.html",
+        "keywords": [
+          "layering",
+          "layers",
+          "z-index",
+          "shadows"
+        ],
         "redirects": [
           "/guidelines/materiality"
         ]
@@ -162,6 +168,12 @@
         "label": "Mobile",
         "module": "view-design-mobile",
         "entrypoint": "/pages/design/mobile.html",
+        "keywords": [
+          "responsive",
+          "tablet",
+          "phone",
+          "device"
+        ],
         "redirects": [
           "/guidelines/mobile"
         ]
@@ -171,6 +183,12 @@
         "label": "Gallery",
         "module": "view-design-gallery",
         "entrypoint": "/pages/design/gallery.html",
+        "keywords":[
+          "examples",
+          "showcase",
+          "layouts",
+          "use cases"
+        ],
         "redirects": [
           "/guidelines/gallery"
         ]
@@ -223,6 +241,10 @@
             "label": "Web Workers",
             "module": "view-develop-vis-web-workers",
             "entrypoint": "/pages/develop/vis/web-workers.html",
+            "keywords": [
+              "performance",
+              "optimize"
+            ],
             "redirects": [
               "/guides/vis-guides-introducing-web-workers"
             ]
@@ -232,6 +254,13 @@
             "label": "Crosshair",
             "module": "view-develop-vis-crosshair",
             "entrypoint": "/pages/develop/vis/crosshair.html",
+            "keywords": [
+              "sync",
+              "chart",
+              "graph",
+              "tooltip",
+              "register"
+            ],
             "redirects": [
               "/guides/vis-guides-crosshair"
             ]
@@ -247,6 +276,13 @@
             "label": "Release Notes & API Changes",
             "module": "view-develop-api-changes",
             "entrypoint": "/pages/develop/migrate/api-changes.html",
+            "keywords": [
+              "broken",
+              "new",
+              "release",
+              "updates",
+              "design refresh"
+            ],
             "redirects": [
               "/migration/api-changes"
             ]
@@ -256,6 +292,11 @@
             "label": "Apply Themes",
             "module": "view-develop-migrate-theme",
             "entrypoint": "/pages/develop/migrate/theme.html",
+            "keywords": [
+              "colors",
+              "monochrome",
+              "branding"
+            ],
             "redirects": [
               "/migration/applying-theme"
             ]
@@ -265,6 +306,12 @@
             "label": "Using Icons",
             "module": "view-develop-migrate-icons",
             "entrypoint": "/pages/develop/migrate/icons.html",
+            "keywords": [
+              "iconography",
+              "px-icon-set",
+              "font awesome",
+              "iron-icon"
+            ],
             "redirects": [
               "/migration/using-icons"
             ]
@@ -284,7 +331,11 @@
         "path": "contribution",
         "label": "Contribution",
         "module": "view-develop-contribution",
-        "entrypoint": "/pages/develop/contribution.html"
+        "entrypoint": "/pages/develop/contribution.html",
+        "keywords": [
+          "contributing",
+          "contribute"
+        ]
       },
       {
         "path": "internationalization",
@@ -309,7 +360,13 @@
         "path": "mobile",
         "label": "Mobile",
         "module": "view-develop-mobile",
-        "entrypoint": "/pages/develop/mobile.html"
+        "entrypoint": "/pages/develop/mobile.html",
+        "keywords": [
+          "responsive",
+          "tablet",
+          "phone",
+          "device"
+        ]
       }
     ]
   },
@@ -890,7 +947,6 @@
           "px-accordion",
           "collapse",
           "expand",
-          "accordion",
           "accordian"
         ]
       },
