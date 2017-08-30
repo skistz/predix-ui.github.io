@@ -43,16 +43,18 @@ bower install px-spinner --save
 
 The installed component will now be available in your app's directory under the bower_components/px-spinner directory. [Be sure to read more about bower to make full use of this powerful tool.](https://bower.io/)
 
+Since all of the Predix components are still using Polymer v1.9.0, you will likely be presented with a dependency conflict for the webcomponentsjs dependency. This polyfill ensures that web components will function in older browsers that do not natively support them. The compatible version should be `^0.7.0` (which resolves to `0.7.24` at the time of this writing). You can use `!` to persist this resolution in your bower.json to avoid seeing the conflict in the future.
+
 ### Step 2: Import the link
 
-Next, import the Predix UI component by using the link tag in your HTML code. Here's an example of how to import the px-spinner component:
+Next, import the Predix UI component and the webcomponents-lite polyfill by using link tags in your HTML code. Here's an example of how to import the px-spinner component:
 
 ```html
 <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
 ```
 
-Link tags let the browser recognize a potential shared resource, which means that if another component requests the same component you just imported, the code can just be re-used, and does not need to be fetched again. [For more info, check out this StackOverflow answer.](https://stackoverflow.com/questions/22135095/polymer-element-with-javascript-dependencies) Note that we also include the webcomponents-lite polyfill, which ensures that web components will function in older browsers that do not natively support them.
+Link tags let the browser recognize a potential shared resource, which means that if another component requests the same component you just imported, the code can just be re-used, and does not need to be fetched again. [For more info, check out this StackOverflow answer.](https://stackoverflow.com/questions/22135095/polymer-element-with-javascript-dependencies)
 
 ### Step 3: Use the tag
 
