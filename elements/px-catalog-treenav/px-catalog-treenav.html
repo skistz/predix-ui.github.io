@@ -33,7 +33,7 @@
           <iron-ajax auto url="/pages/build-data.json" last-response="{{buildData}}">
           </iron-ajax>
           <p><strong>Build info</strong></p>
-          <p>Commit: <a href="[[buildData.commitUrl]]" target="_blank">[[buildData.shortCommit]]</a></p>
+          <p>Commit: <a href="[[buildData.commitUrl]]" target="_blank" rel="noopener">[[buildData.shortCommit]]</a></p>
           <p>Time: [[buildData.time]]</p>
         </div>
       </template>
