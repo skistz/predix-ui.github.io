@@ -45,7 +45,7 @@ The components are framework agnostic and can fit into many existing JavaScript 
 
 The second part of the Design System is a set of CSS modules written in Sass using the powerful BEM (Block-Element-Modifier) and OOCSS (Object-Oriented CSS) code patterns, ensuring your CSS codebase can grow quickly and still be easy to maintain.
 
-Components consume the CSS, but you can also choose to use the CSS independently to create the base typography, layout, and content design of your application. [The CSS starter kit has everything you need to get going.](https://github.com/predixdev/px-getting-started/)
+Components consume the CSS, but you can also choose to use the CSS independently to create the base typography, layout, and content design of your application. [The CSS starter kit has everything you need to get going.](/#/css/px-starter-kit-design)
 
 --------------------------------------------------------------------------------
 
