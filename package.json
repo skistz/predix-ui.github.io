@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "merge-stream": "^1.0.1",
-    "polymer-analyzer": "^2.2.2"
+    "polymer-analyzer": "^2.2.2",
+    "polymer-cli": "^1.5.2"
   }
 }

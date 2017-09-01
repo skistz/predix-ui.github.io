@@ -43,6 +43,9 @@ const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
 const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
+const exec = require('child_process').exec;
+
+
 
 /*******************************************************************************
  * SETTINGS
@@ -147,44 +150,6 @@ gulp.task('bump:major', function(){
   .pipe(bump({type:'major'}))
   .pipe(gulp.dest('./'));
 });
-
-/*******************************************************************************
- * COPY FILES INTO DIST
- * This task loops through an array of all the files that need to be in the dist folder, merges them into a stream, and returns that.
- * @usage Run `gulp copyFilesIntoDist` to copy files into the dist folder.
- * files/folders:
- * index.html
- * the pages folder (html files only)
- * the elements folder (html and json)
- * the css folder
- * the img folder
- * the type folder
- * the bower_components
- ******************************************************************************/
-
-gulp.task('copyFilesIntoDist', ['sass'], function() {
-    //the full array of what we want to end up in the dist folder/
-   let copyFrom = src;
-
-   //loop through our array to add each stream into the mergeStream process.
-   copyFrom.forEach((fileOrFolder) => {
-     let current;
-     //do we have globbing? if not, just use the file/folder name.
-     if (fileOrFolder.indexOf('*') > -1) {
-      let firstIndex = fileOrFolder.indexOf('/');
-      let copyName = fileOrFolder.substr(0, firstIndex);
-      current = gulp.src([copyName + '/**/*.*']).pipe(gulp.dest('./dist/' + copyName));
-     } else {
-       current = gulp.src([fileOrFolder]).pipe(gulp.dest('./dist/'));
-     }
-     //add the current file/folder to the stream
-     stream.add(current);
-   });
-
-   //and make sure it's not empty before we return it.
-   return stream.isEmpty() ? null : stream;
-});
-
 
 /*******************************************************************************
  * DEVELOPMENT SERVE PIPELINE
@@ -294,6 +259,45 @@ gulp.task('resetCloudflareCache', function() {
     });
 });
 
+function flattenObject(ob){
+	var toReturn = [];
+
+	for (var i in ob) {
+
+		if (!ob.hasOwnProperty(i)) continue;
+
+		if ((typeof ob[i]) == 'object') {
+			var flatObject = flattenObject(ob[i]);
+			for (var x in flatObject) {
+				if (!flatObject.hasOwnProperty(x)) continue;
+
+				toReturn = toReturn.concat(flatObject[x]);
+			}
+		} else {
+      if (i === 'entrypoint' & ob[i].includes('bower_components')){
+        toReturn.push(ob[i].replace('/bower_components', 'bower_components'));
+      }
+		}
+	}
+	return toReturn;
+};
+
+gulp.task('polymerBuild', function (cb) {
+
+  const routes = flattenObject(require('./elements/px-catalog/pages.json'));
+  var buildConf = require('./polymer.json');
+
+  buildConf.fragments = routes;
+
+  fs.writeFileSync('polymer.json', JSON.stringify(buildConf, null, 2));
+
+  exec('node_modules/.bin/polymer build', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+})
+
 /*******************************************************************************
  * LOCAL BUILD PIPELINE
  *
@@ -301,7 +305,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'generate-api', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'polymerBuild')(callback);
 });
 
 /*******************************************************************************
