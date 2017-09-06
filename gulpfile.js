@@ -274,7 +274,7 @@ function flattenObject(ob){
 				toReturn = toReturn.concat(flatObject[x]);
 			}
 		} else {
-      if (i === 'entrypoint' & ob[i].includes('bower_components')){
+      if (i === 'entrypoint' && ob[i].includes('bower_components')){
         toReturn.push(ob[i].replace('/bower_components', 'bower_components'));
       }
 		}
@@ -294,8 +294,10 @@ gulp.task('polymerBuild', function (cb) {
   exec('node_modules/.bin/polymer build', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
+    fse.copySync('bower_components/pxd3/d3.min.js', 'build/default/bower_components/pxd3/d3.min.js')
     cb(err);
   });
+
 })
 
 /*******************************************************************************
