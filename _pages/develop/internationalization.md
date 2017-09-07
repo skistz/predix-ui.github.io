@@ -47,6 +47,8 @@ The d3.js library supports two different types of localization: date/time format
 
 **Important note: in order to load the date/time and number locales, you need to make sure your build includes the `timeLocale` and `numberLocale` folders from px-d3-imports.** By default, the locales will be searched for in the `px-d3-imports` folder, but the paths can be overridden through the `Px.d3.timeLocaleURL` and `Px.d3.numberLocaleURL` properties.
 
+**Important note: if you use custom d3 formatter (d3.timeFormat() or d3.format()) then those will need to be recreated after changing the related locale (timeLocale for timeFormat and numberLocale for format). You also need to make sure you use Px.d3.timeFormat and Px.d3.format, or you wil have to also manually localize d3.**
+
 To load a locale, just pass one of the following supported locales and an optional callback to the appropriate convenience function (which will be called after the locale has been successfully loaded).
 
 Example:
