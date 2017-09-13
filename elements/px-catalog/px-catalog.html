@@ -65,16 +65,27 @@
     <px-catalog-theme-switcher global dark-theme="[[darkTheme]]"></px-catalog-theme-switcher>
 
     <!-- Bind alert messages -->
-    <template is="dom-if" if="[[updateAvailable]]">
-      <div class="alert-message-container">
+    <div class="alert-message-container">
+      <template is="dom-if" if="[[updateAvailable]]">
         <px-alert-message
             message-title="This site has been updated. Refresh your browser to get the newest information."
             auto-dismiss="30000"
             hide-badge
             action="acknowledge">
         </px-alert-message>
-      </div>
-    </template>
+      </template>
+      <template is="dom-if" if="[[_404path]]" restamp>
+        <px-alert-message
+            message-title="Page not found"
+            message="[[_get404Message(_404path)]]"
+            auto-dismiss="30000"
+            hide-badge
+            type="error"
+            action="acknowledge"
+            on-px-alert-message-hidden="_handle404MessageHidden">
+        </px-alert-message>
+      </template>
+    </div>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
@@ -250,6 +261,16 @@
         updateAvailable: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * If the last URL route was not found and the user was redirected to
+         * home, the missing path will be set here to show a 404 error message
+         * to the user.
+         */
+        _404path: {
+          type: String,
+          value: null
         }
       },
 
@@ -307,9 +328,15 @@
 
         var pageInfo = appData.routes[routeWithoutSlash];
         if (!pageInfo) {
+          this._404path = route;
           // This path is not defined, fall back to the homepage
           this.path = '/home';
           return;
+        }
+
+        if (this._404path && route !== '/home' && route !== '/home/') {
+          // Clear the 404
+          this._404path = null;
         }
 
         // Load and/or show the module for this path
@@ -402,6 +429,14 @@
       _handleDarkThemeChanged: function(newValue) {
         this.toggleClass('dark-theme', newValue, this.$.spinner);
         this.fire('px-dark-theme-changed', {"darkTheme": newValue});
+      },
+
+      _get404Message: function(path) {
+        return 'The page at https://www.predix-ui.com/#'+ path +' could not be found. Try searching in the sidebar.'
+      },
+
+      _handle404MessageHidden: function() {
+        this._404path = null;
       }
     });
   </script>

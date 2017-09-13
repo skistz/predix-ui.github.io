@@ -22,7 +22,7 @@ Consistency is a principle of the design system and it applies to type. Your app
 
 
 # Type Family
-GE Inspira Sans is the only typeface used in Predix applications. For design purposes, it's included in multiple formats in the [Design Starter Kit](https://github.com/PredixDev/px-design-stencils"). Additionally, it's included with and consumed by Predix UI Components.
+GE Inspira Sans is the only typeface used in Predix applications. For design purposes, it's included in multiple formats in the [Design Starter Kit](#/about/start-designing). Additionally, it's included with and consumed by Predix UI Components.
 
 While it is available in regular, bold, italic and bold italic forms, we discourage the use of GE Inspira Sans Bold and Bold Italic on Web and UI applications.
 
