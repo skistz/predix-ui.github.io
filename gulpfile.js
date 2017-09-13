@@ -39,6 +39,8 @@ const execSync = require('child_process').execSync;
 var request = require('request');
 const imagemin = require("imagemin");
 const webp = require("imagemin-webp");
+const upng = require('imagemin-upng');
+const optipng = require('imagemin-optipng');
 const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
@@ -390,17 +392,23 @@ gulp.task('compress-images', function(){
   let imgFolders = [
     './img',
     './pages/guides/vis-resources',
+    './img/component-gallery',
     './img/gallery',
     './img/guidelines',
     './pages/migration/img'
   ];
 
   imgFolders.forEach((folder) =>{
-    // console.log(folder)
+    imagemin([`img/component-gallery/*.png`], `img/component-gallery`, {
+      plugins: [
+        upng({ cnum: 64 }), // reduce to 64 bit-depth
+      ]
+    });
     imagemin([`${folder}/*.png`], folder, {
-      plugins: [webp({
-        lossless: true // Losslessly encode images
-      })]
+      plugins: [
+        webp({ lossless: true }), // Losslessly encode images
+        optipng() //png optimizer
+      ]
     });
     imagemin([`${folder}/*.jpg`], folder, {
       plugins: [webp({

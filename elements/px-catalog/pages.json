@@ -935,6 +935,12 @@
     "label": "Components",
     "pages": [
       {
+        "path": "component-gallery",
+        "label": "Component Gallery",
+        "module": "view-component-gallery",
+        "entrypoint": "/pages/component-gallery.html"
+      },
+      {
         "path": "px-accordion",
         "label": "Accordion",
         "module": "px-accordion-demo",

@@ -35,6 +35,8 @@
     "gulp-sym": "1.0.2",
     "imagemin": "^5.3.1",
     "imagemin-webp": "^4.0.0",
+    "imagemin-optipng": "^5.2.1",
+    "imagemin-upng": "^1.1.0",
     "js-yaml": "^3.9.1",
     "lazypipe": "^1.0.1",
     "markdown-it": "^8.3.2",

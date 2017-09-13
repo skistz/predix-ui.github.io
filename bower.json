@@ -132,7 +132,8 @@
     "px-widths-design": "^1.0.0",
     "px-widths-responsive-design": "^1.0.0",
     "px-widths-tools-design": "^1.0.0",
-    "iron-doc-viewer": "^3.0.0"
+    "iron-doc-viewer": "^3.0.0",
+    "px-tile": "^1.0.1"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",

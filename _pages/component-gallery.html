@@ -1,0 +1,58 @@
+<link defer rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/promise-polyfill/promise-polyfill-lite.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html" />
+
+<link defer rel="import" href="../bower_components/px-theme/px-theme-styles.html">
+<link defer rel="import" href="../css/component-gallery-styles.html" />
+<link defer rel="import" href="../bower_components/px-tile/px-tile.html">
+<link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+
+
+<dom-module id="view-component-gallery">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="px-theme-styles"></style>
+    <style include="component-gallery-styles"></style>
+
+    <iron-ajax auto url="tile-data.json" last-response="{{tileData}}"></iron-ajax>
+
+    <div class="page">
+
+      <p class="heading--page u-m0">Component Gallery</p>
+      <p class="u-mt0">The Predix UI library of components.</p>
+      <hr class="hr">
+
+      <div class="layout">
+        <template is="dom-repeat" items="[[tileData]]">
+          <px-tile
+            class="layout__item"
+            title="{{item.title}}"
+            description="{{item.description}}"
+            hoverable>
+            <picture  slot="thumbnail">
+              <source srcset="{{item.imageUrl}}.webp" type="image/webp">
+              <img src="{{item.imageUrl}}.png" srcset="{{item.imageUrl}}@2x.png"  alt="Github Predix Seed">
+            </picture>
+          </px-tile>
+        </template>
+      </div>
+
+    </div>
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </template>
+  <script>
+    Polymer({
+      is: 'view-component-gallery',
+      properties: {
+        tileData: {
+          type: Array
+        }
+      },
+
+    });
+  </script>
+</dom-module>
+
+<!--Use window.requestIdleCallback() to append tiles to the dom and when the users scroll measure
+how far they have scroll and append more tiles. -->
