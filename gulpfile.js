@@ -294,7 +294,8 @@ gulp.task('polymerBuild', function (cb) {
   exec('node_modules/.bin/polymer build', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    fse.copySync('bower_components/pxd3/d3.min.js', 'build/default/bower_components/pxd3/d3.min.js')
+    fse.copySync('bower_components/pxd3/d3.min.js', 'build/default/bower_components/pxd3/d3.min.js');
+    fse.copySync('bower_components/px-demo-snippet/px-demo-snippet.html', 'build/default/bower_components/px-demo-snippet/px-demo-snippet.html');
     cb(err);
   });
 
