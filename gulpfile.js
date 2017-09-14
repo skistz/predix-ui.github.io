@@ -227,7 +227,7 @@ This task now does the following:
 
 And... you probably want to run \`gulp serve\` instead of this task. :)
     `);
-  gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -274,6 +274,18 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
      });
  });
 
+gulp.task('gitRepos', function(cb) {
+  request({
+    uri: 'https://api.github.com/orgs/PredixDev/repos',
+    method: 'GET',
+    headers: {
+      "User-Agent" : "predix-ui.github.io"
+    }
+  }, function(err, res, body) {
+    fs.writeFile('_pages/repo-data.json', res.body, cb);
+  });
+});
+
 gulp.task('resetCloudflareCache', function() {
   var cloudflare_zone_identifier = process.env.cloudflare_zone_identifier,
       cloudflare = process.env.cloudflare;
@@ -303,7 +315,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'generate-api', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -314,7 +326,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
