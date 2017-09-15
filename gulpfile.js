@@ -319,7 +319,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'polymerBuild', 'cleanRoot', 'moveBuildToRoot', 'cleanBuild', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
@@ -331,6 +331,24 @@ gulp.task('prodBuild', function(callback) {
  var isTravis = function() {
    return process.env.IS_TRAVIS && process.env.IS_TRAVIS.toString() === "true";
  };
+
+gulp.task('cleanRoot', function () {
+ return del([
+   '**',
+   '!build/'
+ ]);
+});
+
+gulp.task('cleanBuild', function () {
+ return del([
+   'build/'
+ ]);
+});
+
+gulp.task('moveBuildToRoot', function () {
+ return gulp.src("build/default/**/*")
+            .pipe(gulp.dest('.'));
+});
 
 /*******************************************************************************
  * SERVICE WORKER
