@@ -498,6 +498,12 @@
     "preRefreshRangeExact": "^v2.0.4"
   },
   {
+    "name": "px-tile",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
+  },
+  {
     "name": "px-timeline",
     "postRefreshRange": "^1.0.0",
     "preRefreshRange": "^0.3.0",
