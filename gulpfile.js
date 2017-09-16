@@ -335,7 +335,8 @@ gulp.task('prodBuild', function(callback) {
 gulp.task('cleanRoot', function () {
  return del([
    '**',
-   '!build/'
+   '!build/**/*',
+   '!node_modules/**/*'
  ]);
 });
 
