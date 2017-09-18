@@ -335,7 +335,10 @@ gulp.task('prodBuild', function(callback) {
 gulp.task('cleanRoot', function () {
   return del([
     '**',
+    '!gulpfile.js',
+    '!package.json',
     '!build/**',
+    '!scripts/**',
     '!node_modules/**'
   ]);
 });
