@@ -197,7 +197,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
  * the browser when files are updated.
  ******************************************************************************/
 
-gulp.task('serve', ['sass', 'docs', 'generate-api', 'gallery-json'], function() {
+gulp.task('serve', ['sass', 'docs', 'generate-api'], function() {
   browserSync.init(browserSyncOptions);
   gulp.watch(['_pages/**/*.md', '_pages/**/*.html', 'elements/px-catalog/pages.json'], ['docs']);
   gulp.watch(['sass/*.scss'], ['sass']);
@@ -402,6 +402,7 @@ gulp.task('prodBuild', function(callback) {
  });
 
 gulp.task('compress-images', function(){
+  console.log("compress-image will take a couple of minutes to complete");
 
   let imgFolders = [
     './img',
@@ -638,14 +639,14 @@ gulp.task('docs', function(callback) {
 //scrape pages.json
 gulp.task('gallery-json:component-data', function(callback){
   const componentDataFunc = createPagesFilter(require('./elements/px-catalog/pages.json'));
-  fs.writeFileSync('./pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
+  fs.writeFileSync('./_pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
   callback();
 });
 
 // title-data
 gulp.task('gallery-json:tile-data', function(callback){
-  const titleDataFunc = createComponentsInfo(require('./pages/component-gallery/component-data.json'));
-  fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
+  const titleDataFunc = createComponentsInfo(require('./_pages/component-gallery/component-data.json'));
+  fs.writeFileSync('./_pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
   callback();
 });
 
