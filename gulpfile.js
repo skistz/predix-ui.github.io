@@ -36,7 +36,7 @@ const stream = require('merge-stream')();
 const del = require('del');
 const gitSync = require('gulp-git');
 const execSync = require('child_process').execSync;
-var request = require('request');
+var   request = require('request');
 const imagemin = require("imagemin");
 const webp = require("imagemin-webp");
 const upng = require('imagemin-upng');
@@ -45,6 +45,7 @@ const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
 const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
+const createComponentsInfo = require('./scripts/json-builder/createComponentsInfo.js');
 
 /*******************************************************************************
  * SETTINGS
@@ -315,7 +316,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'generate-tile-json', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -625,4 +626,11 @@ gulp.task('docs:generate-build-data', function(cb){
 
 gulp.task('docs', function(callback) {
   gulpSequence('docs:clean', 'docs:copy-non-md', 'docs:md', 'docs:pages-json', 'docs:generate-build-data')(callback);
+});
+
+
+gulp.task('generate-tile-json', function(callback){
+  const whateverIAm = createComponentsInfo(path.join(__dirname, 'bower_components'));
+  fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(whateverIAm, null,2));
+  callback();
 });

@@ -938,7 +938,7 @@
         "path": "component-gallery",
         "label": "Component Gallery",
         "module": "view-component-gallery",
-        "entrypoint": "/pages/component-gallery.html"
+        "entrypoint": "/pages/component-gallery/component-gallery.html"
       },
       {
         "path": "px-accordion",

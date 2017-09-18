@@ -43,17 +43,10 @@ const componentsToExclude = [
   "px-vis-demos"
 ];
 
-//grab all the file paths of the component only
-const subdirs = getDirectories(__dirname).filter(function(filePath){
-  if(MATCHES_PX_RE.test(filePath) && !MATCHES_PX_DESIGN_RE.test(filePath)){ return true;}
-});
-
-
 //If the component has a file in the demo folder that is the
 //component's name plus -demo return that other wise return index.html
 function returnDemoFile(listDemoFiles, componentName){
   var demoFileName;
-
   listDemoFiles.forEach(function (individualDemoFilePath) {
     var hasDemo = individualDemoFilePath.indexOf(componentName + "-demo.html") > -1;
     if (hasDemo) {
@@ -63,10 +56,8 @@ function returnDemoFile(listDemoFiles, componentName){
   return demoFileName || "index.html";
 }
 
-
 // PARCE FILE
 var FIND_COMPONENT_DESCRIPTION_RE = /\<px-demo-header[\S\s]*description\=[\'\"]([\S\s]*)[\'\"][\S\s]*\>\s*\<\/px-demo-header\>/;
-
 function collectDescription(demoFileToRead){
   var content = fs.readFileSync(demoFileToRead, "utf8");
   const componentDescription = content.match(FIND_COMPONENT_DESCRIPTION_RE);
@@ -75,8 +66,6 @@ function collectDescription(demoFileToRead){
     return componentDescription[1];
   }
 }
-
-
 
 // CREATE tile-data.json
 function convertName(componentNameDashes){
@@ -96,29 +85,40 @@ function createComponentObj(componentNameSpace, componentNameDashes, description
 }
 
 
-// LOOP OVER EACH FILE
-const allComponentsInfoObj = [];
 
-subdirs.forEach(function(arrayItem){
-  const demoFilePath = path.join(arrayItem, "demo");
-  const componentNameDashes = arrayItem.match(FIND_PX_END_RE)[1];
-  const componentNameSpace = convertName(componentNameDashes);
 
-  if(fs.existsSync(demoFilePath)){
-    const listDemoFiles = getFiles(demoFilePath);
-    const demoFileName = returnDemoFile(listDemoFiles, componentNameDashes);
-    const demoFileToRead = path.join(demoFilePath, demoFileName);
-    const description =  collectDescription(demoFileToRead);
-    let   descriptionCondensed =  description.replace(/\n/g,'').replace(/\s\s/g,'').replace(/\t/g,' '); //remove line breaks, extra spaces, and tabs
+// MAIN FUNCTION
+exports = module.exports = function (bowerPath) {
+  //grab all the file paths of the component only
+  console.log(bowerPath);
 
-    let componentInfoObj = createComponentObj(componentNameSpace, componentNameDashes, descriptionCondensed);
-    if(!componentsToExclude.includes(componentNameDashes)){
-      allComponentsInfoObj.push(componentInfoObj);
-    } else {
-      console.log("excluding " + componentNameDashes);
+  const subdirs = getDirectories(bowerPath).filter(function (filePath) {
+    if (MATCHES_PX_RE.test(filePath) && !MATCHES_PX_DESIGN_RE.test(filePath)) { return true; }
+  });
+
+  // LOOP OVER EACH FILE
+  const allComponentsInfoObj = [];
+
+  subdirs.forEach(function (arrayItem) {
+    const demoFilePath = path.join(arrayItem, "demo");
+    const componentNameDashes = arrayItem.match(FIND_PX_END_RE)[1];
+    const componentNameSpace = convertName(componentNameDashes);
+
+    if (fs.existsSync(demoFilePath)) {
+      const listDemoFiles = getFiles(demoFilePath);
+      const demoFileName = returnDemoFile(listDemoFiles, componentNameDashes);
+      const demoFileToRead = path.join(demoFilePath, demoFileName);
+      const description = collectDescription(demoFileToRead);
+      let descriptionCondensed = description.replace(/\n/g, '').replace(/\s\s/g, '').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
+
+      let componentInfoObj = createComponentObj(componentNameSpace, componentNameDashes, descriptionCondensed);
+      if (!componentsToExclude.includes(componentNameDashes)) {
+        allComponentsInfoObj.push(componentInfoObj);
+      } else {
+        console.log("excluding " + componentNameDashes);
+      }
     }
-  }
-});
+  });
 
-fs.writeFileSync('./tile-data.json',JSON.stringify(allComponentsInfoObj, null,2));
-
+  return allComponentsInfoObj;
+};
