@@ -197,7 +197,7 @@ gulp.task('copyFilesIntoDist', ['sass'], function() {
  * the browser when files are updated.
  ******************************************************************************/
 
-gulp.task('serve', ['sass', 'docs', 'generate-api'], function() {
+gulp.task('serve', ['sass', 'docs', 'generate-api', 'gallery-json'], function() {
   browserSync.init(browserSyncOptions);
   gulp.watch(['_pages/**/*.md', '_pages/**/*.html', 'elements/px-catalog/pages.json'], ['docs']);
   gulp.watch(['sass/*.scss'], ['sass']);
@@ -317,7 +317,7 @@ gulp.task('resetCloudflareCache', function() {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'generate-tile-json', 'copyFilesIntoDist', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'gallery-json', 'copyFilesIntoDist', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -630,14 +630,25 @@ gulp.task('docs', function(callback) {
 });
 
 
-gulp.task('generate-tile-json', function(callback){
-// component-data
+
+/*
+ * GALLERY-JSON
+ * creates the json files used in the component gallery
+ */
+//scrape pages.json
+gulp.task('gallery-json:component-data', function(callback){
   const componentDataFunc = createPagesFilter(require('./elements/px-catalog/pages.json'));
   fs.writeFileSync('./pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
   callback();
+});
 
 // title-data
-  const titleDataFunc = createComponentsInfo(path.join(__dirname, 'bower_components'));
+gulp.task('gallery-json:tile-data', function(callback){
+  const titleDataFunc = createComponentsInfo(require('./pages/component-gallery/component-data.json'));
   fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
   callback();
+});
+
+gulp.task('gallery-json', function(callback){
+  gulpSequence('gallery-json:component-data', 'gallery-json:tile-data')(callback);
 });
