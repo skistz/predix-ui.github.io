@@ -333,11 +333,11 @@ gulp.task('prodBuild', function(callback) {
  };
 
 gulp.task('cleanRoot', function () {
- return del([
-   '**',
-   '!build/**/*',
-   '!node_modules/**/*'
- ]);
+  return del([
+    '**',
+    '!build/**',
+    '!node_modules/**'
+  ]);
 });
 
 gulp.task('cleanBuild', function () {
