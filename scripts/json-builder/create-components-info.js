@@ -86,11 +86,9 @@ function createComponentObj(componentNameSpace, componentNameDashes, description
 
 
 
-
 // MAIN FUNCTION
 exports = module.exports = function (bowerPath) {
-  //grab all the file paths of the component only
-  console.log(bowerPath);
+  // grab all the file paths of the component only
 
   const subdirs = getDirectories(bowerPath).filter(function (filePath) {
     if (MATCHES_PX_RE.test(filePath) && !MATCHES_PX_DESIGN_RE.test(filePath)) { return true; }
@@ -114,8 +112,6 @@ exports = module.exports = function (bowerPath) {
       let componentInfoObj = createComponentObj(componentNameSpace, componentNameDashes, descriptionCondensed);
       if (!componentsToExclude.includes(componentNameDashes)) {
         allComponentsInfoObj.push(componentInfoObj);
-      } else {
-        console.log("excluding " + componentNameDashes);
       }
     }
   });

@@ -45,7 +45,8 @@ const glob = require("glob");
 const fse = require('fs-extra');
 const md = require('./scripts/page-builder');
 const {Analyzer, FSUrlLoader, generateAnalysis} = require('polymer-analyzer');
-const createComponentsInfo = require('./scripts/json-builder/createComponentsInfo.js');
+const createComponentsInfo = require('./scripts/json-builder/create-components-info.js');
+const createPagesFilter = require('./scripts/json-builder/create-pages-filter.js');
 
 /*******************************************************************************
  * SETTINGS
@@ -630,7 +631,13 @@ gulp.task('docs', function(callback) {
 
 
 gulp.task('generate-tile-json', function(callback){
-  const whateverIAm = createComponentsInfo(path.join(__dirname, 'bower_components'));
-  fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(whateverIAm, null,2));
+// component-data
+  const componentDataFunc = createPagesFilter(require('./elements/px-catalog/pages.json'));
+  fs.writeFileSync('./pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
+  callback();
+
+// title-data
+  const titleDataFunc = createComponentsInfo(path.join(__dirname, 'bower_components'));
+  fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
   callback();
 });
