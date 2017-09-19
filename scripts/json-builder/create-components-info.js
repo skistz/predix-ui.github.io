@@ -34,70 +34,9 @@ const getFiles = source =>
 const MATCHES_PX_RE = /px\-[a-z\-]+/;
 const MATCHES_PX_DESIGN_RE = /\-design$/;
 const FIND_PX_END_RE = /\/(px\-[a-z\-]+)$/;
-const subComponentsArray = [
-  "px-card-behavior",
-  "px-dashboard",
-  "px-deck",
-  "px-context-browser-trigger",
-  "px-vis-area-svg",
-  "px-vis-axis",
-  "px-vis-axis-interaction-space",
-  "px-vis-bar-svg",
-  "px-vis-brush",
-  "px-vis-canvas",
-  "px-vis-chart-navigator",
-  "px-vis-clip-path",
-  "px-vis-clip-path-complex-area",
-  "px-vis-cursor",
-  "px-vis-cursor-line",
-  "px-vis-data-converter",
-  "px-vis-dynamic-menu",
-  "px-vis-event",
-  "px-vis-gridlines",
-  "px-vis-highlight-line-canvas",
-  "px-vis-highlight-line",
-  "px-vis-highlight-point-canvas",
-  "px-vis-highlight-point",
-  "px-vis-interactive-axis",
-  "px-vis-interaction-space",
-  "px-vis-line-canvas",
-  "px-vis-line-svg",
-  "px-vis-multi-axis",
-  "px-vis-multi-scale",
-  "px-vis-pie",
-  "px-vis-radar-grid",
-  "px-vis-radial-gridlines",
-  "px-vis-radial-scale",
-  "px-vis-register",
-  "px-vis-scale",
-  "px-vis-scatter",
-  "px-vis-scatter-canvas",
-  "px-vis-striping",
-  "px-vis-svg",
-  "px-vis-svg-canvas",
-  "px-vis-threshold",
-  "px-vis-toolbar",
-  "px-vis-tooltip",
-  "px-data-table-column",
-  "px-data-table-highlight",
-  "px-kpi-list",
-  "px-map-tile-layer",
-  "px-map-tile-layer-bing",
-  "px-map-layer-geojson",
-  "px-map-layer-group",
-  "px-map-control-locate",
-  "px-map-control-scale",
-  "px-map-control-zoom",
-  "px-map-marker-locate",
-  "px-map-marker-static",
-  "px-map-marker-symbol",
-  "px-map-marker-group",
-  "px-map-popup-info",
-  "px-map-popup-data",
-  "px-table-view-sortable-list",
-  "px-table-row",
-  "px-table-row-action-button",
-  "px-tree-node"
+const ExcludedComponentsArray = [
+  "px-app-route",
+  "px-number-formatter"
 ];
 
 
@@ -135,9 +74,9 @@ function createComponentObj(componentNameSpace, componentNameDashes, componentEn
 // MAIN FUNCTION
 exports = module.exports = function (componentDataFile) {
 
-  // filter out design repos and sub components
+  // filter out subcomponents, excluded components, and design components
   const filteredComponentObjs = componentDataFile.filter(function (componentObj) {
-    if (!MATCHES_PX_DESIGN_RE.test(componentObj.componentName) && !subComponentsArray.includes(componentObj.componentName)) { return true; }
+    if (!componentObj.subcomponent && !ExcludedComponentsArray.includes(componentObj.componentName) && !MATCHES_PX_DESIGN_RE.test(componentObj.componentName)) { return true; }
   });
 
   // LOOP OVER EACH FILE

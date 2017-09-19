@@ -35,13 +35,6 @@
     "entryPoint": "bower_components/px-app-nav/demo/px-app-nav-demo.html"
   },
   {
-    "title": "App Route",
-    "description": "The px-app-route component supports easy binding between various Predix UI components and a web application's URL. It helps keep UI state in sync with the URL, allowing users to bookmark or share views by copying their URL.\"parent-name=\"px-app-helpers",
-    "imageUrl": "../img/component-gallery/app-route",
-    "imageAlt": "App Route thumbnail",
-    "entryPoint": "bower_components/px-app-helpers/px-app-route/demo/px-app-route-demo.html"
-  },
-  {
     "title": "Branding Bar",
     "description": "A component providing a header area to contain title, logo and branding content.",
     "imageUrl": "../img/component-gallery/branding-bar",
@@ -313,13 +306,6 @@
     "imageUrl": "../img/component-gallery/modal",
     "imageAlt": "Modal thumbnail",
     "entryPoint": "bower_components/px-modal/demo/px-modal-demo.html"
-  },
-  {
-    "title": "Number Formatter",
-    "description": "The px-number-formatter component is a wrapper of numbrojsand creates a formatted string of a number and/or unformats a formatted string into a number.",
-    "imageUrl": "../img/component-gallery/number-formatter",
-    "imageAlt": "Number Formatter thumbnail",
-    "entryPoint": "bower_components/px-number-formatter/demo/px-number-formatter-demo.html"
   },
   {
     "title": "Overlay",

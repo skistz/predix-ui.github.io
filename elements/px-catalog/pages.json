@@ -312,6 +312,9 @@
               "font awesome",
               "iron-icon"
             ],
+            "tags": [
+              "visual"
+            ],
             "redirects": [
               "/migration/using-icons"
             ]
@@ -401,26 +404,17 @@
               "disabled",
               "icons",
               "link"
+            ],
+            "tags": [
+              "css",
+              "visual",
+              "buttons"
             ]
           },
           {
             "path": "buttons",
             "label": "Buttons",
             "pages": [
-              {
-                "path": "px-button-group-design",
-                "label": "Button Group",
-                "module": "px-button-group-design-demo",
-                "entrypoint": "/bower_components/px-button-group-design/demo/px-button-group-design-demo.html",
-                "redirects": [
-                  "/css/px-button-group-design",
-                  "/modules/px-button-group-design"
-                ],
-                "keywords": [
-                  "px-button-group-design",
-                  "buttons"
-                ]
-              },
               {
                 "path": "px-buttons-design",
                 "label": "Buttons",
@@ -435,6 +429,30 @@
                   "icon",
                   "icons",
                   "disabled"
+                ],
+                "tags": [
+                  "css",
+                  "visual",
+                  "buttons"
+                ]
+              },
+              {
+                "path": "px-button-group-design",
+                "label": "Button Group",
+                "module": "px-button-group-design-demo",
+                "entrypoint": "/bower_components/px-button-group-design/demo/px-button-group-design-demo.html",
+                "redirects": [
+                  "/css/px-button-group-design",
+                  "/modules/px-button-group-design"
+                ],
+                "keywords": [
+                  "px-button-group-design",
+                  "buttons"
+                ],
+                "tags": [
+                  "css",
+                  "visual",
+                  "buttons"
                 ]
               },
               {
@@ -465,6 +483,10 @@
             "keywords": [
               "px-code-design",
               "pre"
+            ],
+            "tags": [
+              "css",
+              "visual"
             ]
           },
           {
@@ -480,6 +502,10 @@
               "px-colors-design",
               "light",
               "dark"
+            ],
+            "tags": [
+              "css",
+              "visual"
             ]
           },
           {
@@ -501,6 +527,10 @@
               "field",
               "textarea",
               "validation"
+            ],
+            "tags": [
+              "css",
+              "data input"
             ]
           },
           {
@@ -516,6 +546,10 @@
               "px-headings-design",
               "text",
               "typography"
+            ],
+            "tags": [
+              "css",
+              "layout"
             ]
           },
           {
@@ -534,6 +568,10 @@
               "pointer",
               "informative",
               "capitalize"
+            ],
+            "tags": [
+              "css",
+              "visual"
             ]
           },
           {
@@ -552,6 +590,10 @@
                 "keywords": [
                   "px-list-bare-design",
                   "lists"
+                ],
+                "tags": [
+                  "data display",
+                  "css"
                 ]
               },
               {
@@ -566,6 +608,10 @@
                 "keywords": [
                   "px-list-inline-design",
                   "lists"
+                ],
+                "tags": [
+                  "data display",
+                  "css"
                 ]
               },
               {
@@ -580,6 +626,10 @@
                 "keywords": [
                   "px-list-ui-design",
                   "lists"
+                ],
+                "tags": [
+                  "data display",
+                  "css"
                 ]
               },
               {
@@ -612,6 +662,10 @@
               "shadow",
               "shadows",
               "drop shadow"
+            ],
+            "tags": [
+              "css",
+              "visual"
             ]
           },
           {
@@ -627,6 +681,10 @@
               "px-tables-design",
               "rows",
               "columns"
+            ],
+            "tags": [
+              "data display",
+              "css"
             ]
           },
           {
@@ -641,6 +699,9 @@
             "keywords": [
               "px-toggle-design",
               "checkbox"
+            ],
+            "tags": [
+              "css"
             ]
           }
         ]
@@ -661,6 +722,9 @@
             "keywords": [
               "px-box-design",
               "container"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -675,6 +739,9 @@
             "keywords": [
               "px-flag-design",
               "image"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -691,6 +758,9 @@
               "flex",
               "layout",
               "grid"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -705,6 +775,10 @@
             "keywords": [
               "px-layout-design",
               "grid"
+            ],
+            "tags": [
+              "css",
+              "layout"
             ]
           },
           {
@@ -720,6 +794,9 @@
               "px-spacing-design",
               "margin",
               "padding"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -738,6 +815,9 @@
               "spacing",
               "responsive",
               "mobile"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -754,6 +834,9 @@
               "sizing",
               "layout",
               "grid"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -772,6 +855,9 @@
               "mobile",
               "layout",
               "grid"
+            ],
+            "tags": [
+              "css"
             ]
           },
           {
@@ -788,6 +874,9 @@
               "sizing",
               "layout",
               "grid"
+            ],
+            "tags": [
+              "css"
             ]
           }
         ]
@@ -909,6 +998,9 @@
               "type",
               "font",
               "inspira"
+            ],
+            "tags":[
+              "visual"
             ]
           },
           {
@@ -954,6 +1046,10 @@
           "collapse",
           "expand",
           "accordian"
+        ],
+        "tags": [
+          "mobile",
+          "layout"
         ]
       },
       {
@@ -969,6 +1065,10 @@
           "px-alert-label",
           "pill",
           "text"
+        ],
+        "tags": [
+          "mobile",
+          "alerts"
         ]
       },
       {
@@ -984,6 +1084,9 @@
           "px-alert-message",
           "notification",
           "toast"
+        ],
+        "tags": [
+          "alerts"
         ]
       },
       {
@@ -1001,7 +1104,8 @@
           "page",
           "layout",
           "scroll"
-        ]
+        ],
+        "tags": ["navigation"]
       },
       {
         "path": "px-app-nav",
@@ -1017,6 +1121,10 @@
           "navigation",
           "nav",
           "sidebar"
+        ],
+        "tags": [
+          "navigation",
+          "mobile"
         ]
       },
       {
@@ -1051,6 +1159,9 @@
           "header",
           "logo",
           "title"
+        ],
+        "tags":[
+          "layout"
         ]
       },
       {
@@ -1067,6 +1178,10 @@
           "bread",
           "crumbs",
           "breadcrumbs"
+        ],
+        "tags": [
+          "navigation",
+          "mobile"
         ]
       },
       {
@@ -1079,6 +1194,10 @@
             "keywords": [
               "px-card",
               "card"
+            ],
+            "tags": [
+              "mobile",
+              "layout"
             ],
             "pages": [
               {
@@ -1099,7 +1218,8 @@
                 "redirects": [
                   "/components/px-card-behavior",
                   "/modules/px-card-behavior"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-dashboard",
@@ -1109,7 +1229,8 @@
                 "redirects": [
                   "/components/px-dashboard",
                   "/modules/px-dashboard"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-deck",
@@ -1119,7 +1240,8 @@
                 "redirects": [
                   "/components/px-deck",
                   "/modules/px-deck"
-                ]
+                ],
+                "subcomponent": true
               }
             ]
           },
@@ -1137,6 +1259,9 @@
               "deck",
               "dropdown",
               "drop-down"
+            ],
+            "tags": [
+              "mobile"
             ]
           },
           {
@@ -1152,6 +1277,9 @@
               "px-widget-cards",
               "card",
               "cards"
+            ],
+            "tags": [
+              "mobile"
             ]
           }
         ]
@@ -1169,6 +1297,10 @@
           "px-clipboard",
           "copy",
           "paste"
+        ],
+        "tags": [
+          "mobile",
+          "data input"
         ]
       },
       {
@@ -1179,6 +1311,9 @@
           "miller",
           "asset",
           "assets"
+        ],
+        "tags": [
+          "navigation"
         ],
         "pages": [
           {
@@ -1199,7 +1334,8 @@
             "redirects": [
               "/components/px-context-browser-trigger",
               "/modules/px-context-browser-trigger"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -1228,7 +1364,8 @@
                 "redirects": [
                   "/components/px-vis",
                   "/modules/px-vis"
-                ]
+                ],
+                "tags": "vis"
               },
               {
                 "path": "px-vis-area-svg",
@@ -1242,7 +1379,8 @@
                 "redirects": [
                   "/components/px-vis-area-svg",
                   "/modules/px-vis-area-svg"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-axis",
@@ -1256,7 +1394,8 @@
                 "redirects": [
                   "/components/px-vis-axis",
                   "/modules/px-vis-axis"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-axis-interaction-space",
@@ -1270,7 +1409,8 @@
                 "redirects": [
                   "/components/px-vis-axis-interaction-space",
                   "/modules/px-vis-axis-interaction-space"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-bar-svg",
@@ -1284,7 +1424,8 @@
                 "redirects": [
                   "/components/px-vis-bar-svg",
                   "/modules/px-vis-bar-svg"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-brush",
@@ -1298,7 +1439,8 @@
                 "redirects": [
                   "/components/px-vis-brush",
                   "/modules/px-vis-brush"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-canvas",
@@ -1312,7 +1454,8 @@
                 "redirects": [
                   "/components/px-vis-canvas",
                   "/modules/px-vis-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-chart-navigator",
@@ -1326,7 +1469,8 @@
                 "redirects": [
                   "/components/px-vis-chart-navigator",
                   "/modules/px-vis-chart-navigator"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-clip-path",
@@ -1340,7 +1484,8 @@
                 "redirects": [
                   "/components/px-vis-clip-path",
                   "/modules/px-vis-clip-path"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-clip-path-complex-area",
@@ -1354,7 +1499,8 @@
                 "redirects": [
                   "/components/px-vis-clip-path-complex-area",
                   "/modules/px-vis-clip-path-complex-area"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-cursor",
@@ -1368,7 +1514,8 @@
                 "redirects": [
                   "/components/px-vis-cursor",
                   "/modules/px-vis-cursor"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-cursor-line",
@@ -1382,7 +1529,8 @@
                 "redirects": [
                   "/components/px-vis-cursor-line",
                   "/modules/px-vis-cursor-line"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-data-converter",
@@ -1396,7 +1544,8 @@
                 "redirects": [
                   "/components/px-vis-data-converter",
                   "/modules/px-vis-data-converter"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-dynamic-menu",
@@ -1410,7 +1559,8 @@
                 "redirects": [
                   "/components/px-vis-dynamic-menu",
                   "/modules/px-vis-dynamic-menu"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-event",
@@ -1424,7 +1574,8 @@
                 "redirects": [
                   "/components/px-vis-event",
                   "/modules/px-vis-event"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-gridlines",
@@ -1438,7 +1589,8 @@
                 "redirects": [
                   "/components/px-vis-gridlines",
                   "/modules/px-vis-gridlines"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-highlight-line-canvas",
@@ -1452,7 +1604,8 @@
                 "redirects": [
                   "/components/px-vis-highlight-line-canvas",
                   "/modules/px-vis-highlight-line-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-highlight-line",
@@ -1466,7 +1619,8 @@
                 "redirects": [
                   "/components/px-vis-highlight-line",
                   "/modules/px-vis-highlight-line"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-highlight-point-canvas",
@@ -1480,7 +1634,8 @@
                 "redirects": [
                   "/components/px-vis-highlight-point-canvas",
                   "/modules/px-vis-highlight-point-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-highlight-point",
@@ -1494,7 +1649,8 @@
                 "redirects": [
                   "/components/px-vis-highlight-point",
                   "/modules/px-vis-highlight-point"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-interactive-axis",
@@ -1508,7 +1664,8 @@
                 "redirects": [
                   "/components/px-vis-interactive-axis",
                   "/modules/px-vis-interactive-axis"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-interaction-space",
@@ -1522,7 +1679,8 @@
                 "redirects": [
                   "/components/px-vis-interaction-space",
                   "/modules/px-vis-interaction-space"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-line-canvas",
@@ -1536,7 +1694,8 @@
                 "redirects": [
                   "/components/px-vis-line-canvas",
                   "/modules/px-vis-line-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-line-svg",
@@ -1550,7 +1709,8 @@
                 "redirects": [
                   "/components/px-vis-line-svg",
                   "/modules/px-vis-line-svg"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-multi-axis",
@@ -1564,7 +1724,8 @@
                 "redirects": [
                   "/components/px-vis-multi-axis",
                   "/modules/px-vis-multi-axis"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-multi-scale",
@@ -1578,7 +1739,8 @@
                 "redirects": [
                   "/components/px-vis-multi-scale",
                   "/modules/px-vis-multi-scale"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-pie",
@@ -1592,7 +1754,8 @@
                 "redirects": [
                   "/components/px-vis-pie",
                   "/modules/px-vis-pie"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-radar-grid",
@@ -1606,7 +1769,8 @@
                 "redirects": [
                   "/components/px-vis-radar-grid",
                   "/modules/px-vis-radar-grid"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-radial-gridlines",
@@ -1620,7 +1784,8 @@
                 "redirects": [
                   "/components/px-vis-radial-gridlines",
                   "/modules/px-vis-radial-gridlines"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-radial-scale",
@@ -1634,7 +1799,8 @@
                 "redirects": [
                   "/components/px-vis-radial-scale",
                   "/modules/px-vis-radial-scale"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-register",
@@ -1648,7 +1814,8 @@
                 "redirects": [
                   "/components/px-vis-register",
                   "/modules/px-vis-register"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-scale",
@@ -1662,7 +1829,8 @@
                 "redirects": [
                   "/components/px-vis-scale",
                   "/modules/px-vis-scale"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-scatter",
@@ -1676,7 +1844,8 @@
                 "redirects": [
                   "/components/px-vis-scatter",
                   "/modules/px-vis-scatter"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-scatter-canvas",
@@ -1690,7 +1859,8 @@
                 "redirects": [
                   "/components/px-vis-scatter-canvas",
                   "/modules/px-vis-scatter-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-striping",
@@ -1704,7 +1874,8 @@
                 "redirects": [
                   "/components/px-vis-striping",
                   "/modules/px-vis-striping"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-svg",
@@ -1718,7 +1889,8 @@
                 "redirects": [
                   "/components/px-vis-svg",
                   "/modules/px-vis-svg"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-svg-canvas",
@@ -1732,7 +1904,8 @@
                 "redirects": [
                   "/components/px-vis-svg-canvas",
                   "/modules/px-vis-svg-canvas"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-threshold",
@@ -1746,7 +1919,8 @@
                 "redirects": [
                   "/components/px-vis-threshold",
                   "/modules/px-vis-threshold"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-toolbar",
@@ -1760,7 +1934,8 @@
                 "redirects": [
                   "/components/px-vis-toolbar",
                   "/modules/px-vis-toolbar"
-                ]
+                ],
+                "subcomponent": true
               },
               {
                 "path": "px-vis-tooltip",
@@ -1774,7 +1949,8 @@
                 "redirects": [
                   "/components/px-vis-tooltip",
                   "/modules/px-vis-tooltip"
-                ]
+                ],
+                "subcomponent": true
               }
             ]
           },
@@ -1798,6 +1974,9 @@
               "axes",
               "profile",
               "comparative"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1827,6 +2006,9 @@
               "proportional",
               "wedge",
               "donut"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1845,6 +2027,9 @@
               "graph",
               "graphs",
               "viz"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1865,6 +2050,9 @@
               "viz",
               "spider",
               "star"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1888,6 +2076,9 @@
               "win",
               "loss",
               "kpi"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1909,6 +2100,9 @@
               "viz",
               "time series",
               "chronological"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1932,6 +2126,9 @@
               "line",
               "scatter",
               "sequence"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1951,6 +2148,10 @@
               "percent",
               "percentage",
               "gauge"
+            ],
+            "tags": [
+              "data vis",
+              "mobile"
             ]
           },
           {
@@ -1970,6 +2171,9 @@
               "percent",
               "percentage",
               "gauge"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -1988,6 +2192,9 @@
               "graphs",
               "area",
               "stacked"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -2006,6 +2213,9 @@
               "graphs",
               "bar",
               "column"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -2023,6 +2233,9 @@
               "graph",
               "graphs",
               "bar"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -2039,6 +2252,9 @@
               "charts",
               "graph",
               "graphs"
+            ],
+            "tags": [
+              "data vis"
             ]
           },
           {
@@ -2057,6 +2273,9 @@
               "graphs",
               "win",
               "loss"
+            ],
+            "tags": [
+              "data vis"
             ]
           }
         ]
@@ -2068,6 +2287,10 @@
           "px-data-table",
           "grid",
           "datagrid"
+        ],
+        "tags": [
+          "data display",
+          "mobile"
         ],
         "pages": [
           {
@@ -2088,7 +2311,8 @@
             "redirects": [
               "/components/px-data-table-column",
               "/modules/px-data-table-column"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-data-table-highlight",
@@ -2098,7 +2322,8 @@
             "redirects": [
               "/components/px-data-table-highlight",
               "/modules/px-data-table-highlight"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -2122,6 +2347,10 @@
               "day",
               "form",
               "input"
+            ],
+            "tags": [
+              "mobile",
+              "data input"
             ]
           },
           {
@@ -2137,6 +2366,9 @@
               "px-datetime-field",
               "form",
               "input"
+            ],
+            "tags":[
+              "data input"
             ]
           },
           {
@@ -2152,6 +2384,9 @@
               "px-datetime-picker",
               "form",
               "input"
+            ],
+            "tags":[
+              "data input"
             ]
           },
           {
@@ -2167,6 +2402,9 @@
               "px-datetime-range-field",
               "form",
               "input"
+            ],
+            "tags":[
+              "data input"
             ]
           },
           {
@@ -2182,6 +2420,9 @@
               "px-datetime-range-panel",
               "form",
               "input"
+            ],
+            "tags":[
+              "data input"
             ]
           },
           {
@@ -2198,6 +2439,9 @@
               "datetime",
               "form",
               "input"
+            ],
+            "tags":[
+              "data input"
             ]
           }
         ]
@@ -2216,6 +2460,11 @@
           "menu",
           "picker",
           "drop-down"
+        ],
+        "tags": [
+          "navigation",
+          "buttons",
+          "data input"
         ]
       },
       {
@@ -2233,6 +2482,10 @@
           "input",
           "attach",
           "attachment"
+        ],
+        "tags": [
+          "mobile",
+          "data input"
         ]
       },
       {
@@ -2251,6 +2504,9 @@
           "chart",
           "table",
           "visualization"
+        ],
+        "tags": [
+          "data display"
         ]
       },
       {
@@ -2268,6 +2524,9 @@
           "icons",
           "font awesome",
           "iconography"
+        ],
+        "tags": [
+          "mobile"
         ]
       },
       {
@@ -2288,6 +2547,10 @@
           "queue",
           "alerts",
           "cases"
+        ],
+        "tags": [
+          "mobile",
+          "layout"
         ]
       },
       {
@@ -2305,6 +2568,9 @@
           "value",
           "label",
           "dashboard"
+        ],
+        "tags": [
+          "data display"
         ]
       },
       {
@@ -2317,6 +2583,10 @@
           "widget",
           "spark",
           "numeric"
+        ],
+        "tags": [
+          "data display",
+          "mobile"
         ],
         "pages": [
           {
@@ -2337,7 +2607,8 @@
             "redirects": [
               "/components/px-kpi-list",
               "/modules/px-kpi-list"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -2356,6 +2627,10 @@
           "log in",
           "sign in",
           "sign-in"
+        ],
+        "tags": [
+          "navigation",
+          "mobile"
         ]
       },
       {
@@ -2370,6 +2645,9 @@
           "location",
           "geographic",
           "geography"
+        ],
+        "tags": [
+          "data display"
         ],
         "pages": [
           {
@@ -2390,7 +2668,8 @@
             "redirects": [
               "/components/px-map-tile-layer",
               "/modules/px-map-tile-layer"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-tile-layer-bing",
@@ -2400,7 +2679,8 @@
             "redirects": [
               "/components/px-map-tile-layer-bing",
               "/modules/px-map-tile-layer-bing"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-layer-geojson",
@@ -2410,7 +2690,8 @@
             "redirects": [
               "/components/px-map-layer-geojson",
               "/modules/px-map-layer-geojson"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-layer-group",
@@ -2420,7 +2701,8 @@
             "redirects": [
               "/components/px-map-layer-group",
               "/modules/px-map-layer-group"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-control-locate",
@@ -2430,7 +2712,8 @@
             "redirects": [
               "/components/px-map-control-locate",
               "/modules/px-map-control-locate"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-control-scale",
@@ -2440,7 +2723,8 @@
             "redirects": [
               "/components/px-map-control-scale",
               "/modules/px-map-control-scale"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-control-zoom",
@@ -2450,7 +2734,8 @@
             "redirects": [
               "/components/px-map-control-zoom",
               "/modules/px-map-control-zoom"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-marker-locate",
@@ -2460,7 +2745,8 @@
             "redirects": [
               "/components/px-map-marker-locate",
               "/modules/px-map-marker-locate"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-marker-static",
@@ -2470,7 +2756,8 @@
             "redirects": [
               "/components/px-map-marker-static",
               "/modules/px-map-marker-static"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-marker-symbol",
@@ -2480,7 +2767,8 @@
             "redirects": [
               "/components/px-map-marker-symbol",
               "/modules/px-map-marker-symbol"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-marker-group",
@@ -2490,7 +2778,8 @@
             "redirects": [
               "/components/px-map-marker-group",
               "/modules/px-map-marker-group"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-popup-info",
@@ -2500,7 +2789,8 @@
             "redirects": [
               "/components/px-map-popup-info",
               "/modules/px-map-popup-info"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-map-popup-data",
@@ -2510,7 +2800,8 @@
             "redirects": [
               "/components/px-map-popup-data",
               "/modules/px-map-popup-data"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -2528,6 +2819,10 @@
           "modal",
           "dialog",
           "dialogue"
+        ],
+        "tags": [
+          "messaging",
+          "alerts"
         ]
       },
       {
@@ -2559,6 +2854,9 @@
         "keywords": [
           "px-overlay",
           "transparency"
+        ],
+        "tags": [
+          "messaging"
         ]
       },
       {
@@ -2573,6 +2871,9 @@
         "keywords": [
           "px-popover",
           "pop-over"
+        ],
+        "tags": [
+          "messaging"
         ]
       },
       {
@@ -2587,6 +2888,10 @@
         "keywords": [
           "px-progress-bar",
           "loading"
+        ],
+        "tags": [
+          "status",
+          "mobile"
         ]
       },
       {
@@ -2603,6 +2908,10 @@
           "range",
           "form",
           "input"
+        ],
+        "tags": [
+          "mobile",
+          "data input"
         ]
       },
       {
@@ -2619,6 +2928,10 @@
           "wait",
           "loading",
           "load"
+        ],
+        "tags": [
+          "status",
+          "mobile"
         ]
       },
       {
@@ -2629,6 +2942,10 @@
           "table",
           "view",
           "table-view",
+          "mobile"
+        ],
+        "tags": [
+          "data display",
           "mobile"
         ],
         "pages": [
@@ -2650,7 +2967,8 @@
             "redirects": [
               "/components/px-table-view-sortable-list",
               "/modules/px-table-view-sortable-list"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-table-row",
@@ -2660,7 +2978,8 @@
             "redirects": [
               "/components/px-table-row",
               "/modules/px-table-row"
-            ]
+            ],
+            "subcomponent": true
           },
           {
             "path": "px-table-row-action-button",
@@ -2670,7 +2989,8 @@
             "redirects": [
               "/components/px-table-row-action-button",
               "/modules/px-table-row-action-button"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -2688,6 +3008,10 @@
           "navigation",
           "nav",
           "panel"
+        ],
+        "tags": [
+          "navigation",
+          "layout"
         ]
       },
       {
@@ -2708,6 +3032,10 @@
           "media",
           "activity",
           "comment"
+        ],
+        "tags": [
+          "data display",
+          "mobile"
         ]
       },
       {
@@ -2724,6 +3052,10 @@
           "switch",
           "checkbox",
           "tog"
+        ],
+        "tags": [
+          "mobile",
+          "data input"
         ]
       },
       {
@@ -2740,6 +3072,9 @@
           "hover",
           "help",
           "tip"
+        ],
+        "tags": [
+          "messaging"
         ]
       },
       {
@@ -2749,6 +3084,11 @@
           "px-tree",
           "tree",
           "treeview"
+        ],
+        "tags": [
+          "navigation",
+          "mobile",
+          "layout"
         ],
         "pages": [
           {
@@ -2769,7 +3109,8 @@
             "redirects": [
               "/components/px-tree-node",
               "/modules/px-tree-node"
-            ]
+            ],
+            "subcomponent": true
           }
         ]
       },
@@ -2788,6 +3129,10 @@
           "autocomplete",
           "dropdown",
           "drop-down"
+        ],
+        "tags": [
+          "mobile",
+          "data input"
         ]
       },
       {
@@ -2807,6 +3152,9 @@
           "input",
           "error",
           "help"
+        ],
+        "tags": [
+          "data input"
         ]
       },
       {
@@ -2824,6 +3172,11 @@
           "deck",
           "navigation",
           "nav"
+        ],
+        "tags": [
+          "navigation",
+          "mobile",
+          "layout"
         ]
       }
     ]

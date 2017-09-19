@@ -13,7 +13,13 @@ exports = module.exports = function getComponentAndEntrypoint(obj){
         } else {
 
           if (i === 'entrypoint' && obj[i].includes('bower_components')){
-            toReturn.push({'componentName' : obj.path, 'label': obj.label, 'tags': obj.tags, 'entryPoint' : obj[i].replace('/bower_components', 'bower_components')});
+            toReturn.push({
+              'componentName' : obj.path,
+              'label': obj.label,
+              'tags': obj.tags,
+              'subcomponent': obj.subcomponent,
+              'entryPoint' : obj[i].replace('/bower_components', 'bower_components')
+            });
           }
         }
     }

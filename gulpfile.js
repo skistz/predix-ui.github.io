@@ -640,16 +640,19 @@ gulp.task('docs', function(callback) {
 gulp.task('gallery-json:component-data', function(callback){
   const componentDataFunc = createPagesFilter(require('./elements/px-catalog/pages.json'));
   fs.writeFileSync('./_pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
+  fs.writeFileSync('./pages/component-gallery/component-data.json',JSON.stringify(componentDataFunc, null,2));
   callback();
 });
 
 // title-data
 gulp.task('gallery-json:tile-data', function(callback){
-  const titleDataFunc = createComponentsInfo(require('./_pages/component-gallery/component-data.json'));
+  const titleDataFunc = createComponentsInfo(require('./pages/component-gallery/component-data.json'));
   fs.writeFileSync('./_pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
+  fs.writeFileSync('./pages/component-gallery/tile-data.json',JSON.stringify(titleDataFunc, null,2));
   callback();
 });
 
 gulp.task('gallery-json', function(callback){
-  gulpSequence('gallery-json:component-data', 'gallery-json:tile-data')(callback);
+  // gulpSequence('gallery-json:component-data', 'gallery-json:tile-data')(callback);
+  gulpSequence('gallery-json:tile-data')(callback);
 });
