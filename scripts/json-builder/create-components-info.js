@@ -31,9 +31,8 @@ const getFiles = source =>
 
 
 //FINE DEMO FILE
-const MATCHES_PX_RE = /px\-[a-z\-]+/;
+const githubData = require('./../../pages/component-gallery/repo-data.json');
 const MATCHES_PX_DESIGN_RE = /\-design$/;
-const FIND_PX_END_RE = /\/(px\-[a-z\-]+)$/;
 const ExcludedComponentsArray = [
   "px-app-route",
   "px-number-formatter"
@@ -51,17 +50,21 @@ function collectDescription(demoFileToRead){
   }
 }
 
-function convertName(componentNameDashes){
-  var convertedName = componentNameDashes.slice(3); //remove 'px-'
-      convertedName = convertedName.replace(/\-/g,' '); //replace dashes with a spce
-      convertedName = convertedName.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}); //convert to title case
-  return convertedName;
+//Loop repo-data.json
+function gitInfo(name, key){
+  let a;
+  githubData.forEach(function (componentGitInfo){
+    if(componentGitInfo.name === name){
+        a = componentGitInfo[key];
+    }
+  });
+  return a;
 }
 
-
 // CREATE objects in tile-data.json
-function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentEntryPoint, componentTags){
+function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentEntryPoint, componentTags, gitPushedAt, gitCreatedAt){
   let componentInfoObj = {};
+
       componentInfoObj.name = componentNameDashes;
       componentInfoObj.title = componentNameSpace;
       componentInfoObj.description = descriptionCondensed;
@@ -69,6 +72,9 @@ function createComponentObj(componentNameSpace, descriptionCondensed, componentN
       componentInfoObj.imageAlt = componentNameSpace + " thumbnail";
       componentInfoObj.entryPoint = componentEntryPoint;
       componentInfoObj.tags = componentTags;
+      componentInfoObj.gitPushedAt = gitPushedAt;
+      componentInfoObj.gitCreatedAt = gitCreatedAt;
+
   return componentInfoObj;
 }
 
@@ -91,13 +97,19 @@ exports = module.exports = function (componentDataFile) {
     const entryPoint = filteredObjItem.entryPoint;
     const tags = filteredObjItem.tags;
 
+    const gitPushedAt = gitInfo(nameDashes, 'pushed_at');
+    const gitCreatedAt = gitInfo(nameDashes, 'created_at');
+
+    //get description
     const demoFileToRead = path.resolve(__dirname + '/../../' + demoFilePath);
     const description = collectDescription(demoFileToRead);
     let descriptionCondensed = description.replace(/\n/g, '').replace(/\s\s/g, '').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
 
-    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, entryPoint, tags);
+    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, entryPoint, tags, gitPushedAt, gitCreatedAt);
     allComponentsInfoObj.push(componentInfoObj);
   });
 
   return allComponentsInfoObj;
 };
+
+
