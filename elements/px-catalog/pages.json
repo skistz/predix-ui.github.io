@@ -3015,6 +3015,23 @@
         ]
       },
       {
+        "path": "px-tile",
+        "label": "Tile",
+        "module": "px-tile-demo",
+        "entrypoint": "/bower_components/px-tile/demo/px-tile-demo.html",
+        "redirects": [
+          "/components/px-tile",
+          "/modules/px-tile"
+        ],
+        "keywords": [
+          "px-tile",
+          "card",
+          "gallery",
+          "image",
+          "carousel"
+        ]
+      },
+      {
         "path": "px-timeline",
         "label": "Timeline",
         "module": "px-timeline-demo",
