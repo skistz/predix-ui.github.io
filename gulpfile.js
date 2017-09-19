@@ -284,7 +284,7 @@ gulp.task('gitRepos', function(cb) {
       "User-Agent" : "predix-ui.github.io"
     }
   }, function(err, res, body) {
-    fs.writeFile('_pages/repo-data.json', res.body, cb);
+    fs.writeFile('_pages/component-gallery/repo-data.json', res.body, cb);
   });
 });
 

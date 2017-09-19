@@ -109,7 +109,7 @@
     "px-tables-design": "^2.0.0",
     "px-tabs": "^2.0.0",
     "px-theme": "^3.0.0",
-    "px-tile": "^1.0.0",
+    "px-tile": "^1.0.1",
     "px-timeline": "^1.0.3",
     "px-toggle-design": "^2.0.0",
     "px-toggle": "^2.0.0",
@@ -134,7 +134,7 @@
     "px-widths-responsive-design": "^1.0.0",
     "px-widths-tools-design": "^1.0.0",
     "iron-doc-viewer": "^3.0.0",
-    "px-tile": "^1.0.1"
+    "iron-list": "^2.0.8"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",

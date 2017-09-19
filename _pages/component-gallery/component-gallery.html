@@ -6,6 +6,7 @@
 <link defer rel="import" href="../../css/component-gallery-styles.html" />
 <link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
 <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+<link defer rel="import" href="../../bower_components/px-dropdown/px-dropdown.html">
 
 
 <dom-module id="view-component-gallery">
@@ -20,10 +21,12 @@
 
       <p class="heading--page u-m0">Component Gallery</p>
       <p class="u-mt0">The Predix UI library of components.</p>
+      <label class="label" for="dropdown">Sort:</label>
+      <px-dropdown id="dropdown" display-value="Sort By" items='[{"key":"0", "val":"Alphabetical"},{"key":"1","val":"Random"}]' select-by="val" selected="{{sortMode}}"></px-dropdown>
       <hr class="hr">
 
       <div class="layout">
-        <template is="dom-repeat" items="[[tileData]]">
+        <template is="dom-repeat" items="[[tileData]]" sort="[[_computeSort(sortMode)]]">
           <a class="layout__item" href="#/components/{{item.name}}" style="text-decoration: none">
             <px-tile
               title="{{item.title}}"
@@ -48,8 +51,27 @@
       properties: {
         tileData: {
           type: Array
+        },
+        sortMode: {
+          type: String,
+          value: 'Alphabetical'
         }
       },
+      _computeSort: function(sortMode) {
+        if(sortMode === 'Alphabetical') {
+          return function(a, b) {
+            return (a.title > b.title) ? 1 : -1;
+          }
+        }
+        else if(sortMode === 'Random') {
+          return function(a, b) {
+            return 0.5 - Math.random();
+          }
+        }
+        else {
+          return null;
+        }
+      }
 
     });
   </script>
