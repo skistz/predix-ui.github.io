@@ -24,16 +24,17 @@
 
       <div class="layout">
         <template is="dom-repeat" items="[[tileData]]">
-          <px-tile
-            class="layout__item"
-            title="{{item.title}}"
-            description="{{item.description}}"
-            hoverable>
-            <picture  slot="thumbnail">
-              <source srcset="{{item.imageUrl}}_light.webp" type="image/webp">
-              <img src="{{item.imageUrl}}_light.png" srcset="{{item.imageUrl}}_light@2x.png"  alt="{{item.imageAlt}}">
-            </picture>
-          </px-tile>
+          <a class="layout__item" href="#/components/{{item.name}}" style="text-decoration: none">
+            <px-tile
+              title="{{item.title}}"
+              description="{{item.description}}"
+              hoverable>
+              <picture  slot="thumbnail">
+                <source srcset="{{item.imageUrl}}_light.webp" type="image/webp">
+                <img src="{{item.imageUrl}}_light.png" srcset="{{item.imageUrl}}_light@2x.png"  alt="{{item.imageAlt}}">
+              </picture>
+            </px-tile>
+          </a>
         </template>
       </div>
 

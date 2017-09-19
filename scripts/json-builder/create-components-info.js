@@ -51,7 +51,6 @@ function collectDescription(demoFileToRead){
   }
 }
 
-// CREATE tile-data.json
 function convertName(componentNameDashes){
   var convertedName = componentNameDashes.slice(3); //remove 'px-'
       convertedName = convertedName.replace(/\-/g,' '); //replace dashes with a spce
@@ -60,13 +59,16 @@ function convertName(componentNameDashes){
 }
 
 
-function createComponentObj(componentNameSpace, componentNameDashes, componentEntryPoint, descriptionCondensed){
+// CREATE objects in tile-data.json
+function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentEntryPoint, componentTags){
   let componentInfoObj = {};
+      componentInfoObj.name = componentNameDashes;
       componentInfoObj.title = componentNameSpace;
       componentInfoObj.description = descriptionCondensed;
       componentInfoObj.imageUrl = "../img/component-gallery/" + componentNameDashes.slice(3);
       componentInfoObj.imageAlt = componentNameSpace + " thumbnail";
       componentInfoObj.entryPoint = componentEntryPoint;
+      componentInfoObj.tags = componentTags;
   return componentInfoObj;
 }
 
@@ -87,12 +89,13 @@ exports = module.exports = function (componentDataFile) {
     const nameDashes = filteredObjItem.componentName;
     const nameSpace = filteredObjItem.label;
     const entryPoint = filteredObjItem.entryPoint;
+    const tags = filteredObjItem.tags;
 
     const demoFileToRead = path.resolve(__dirname + '/../../' + demoFilePath);
     const description = collectDescription(demoFileToRead);
     let descriptionCondensed = description.replace(/\n/g, '').replace(/\s\s/g, '').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
 
-    let componentInfoObj = createComponentObj(nameSpace, nameDashes, entryPoint, descriptionCondensed);
+    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, entryPoint, tags);
     allComponentsInfoObj.push(componentInfoObj);
   });
 
