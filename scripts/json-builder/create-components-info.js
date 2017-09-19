@@ -62,7 +62,7 @@ function gitInfo(name, key){
 }
 
 // CREATE objects in tile-data.json
-function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentEntryPoint, componentTags, gitPushedAt, gitCreatedAt){
+function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentTags, gitPushedAt, gitCreatedAt){
   let componentInfoObj = {};
 
       componentInfoObj.name = componentNameDashes;
@@ -70,7 +70,6 @@ function createComponentObj(componentNameSpace, descriptionCondensed, componentN
       componentInfoObj.description = descriptionCondensed;
       componentInfoObj.imageUrl = "../img/component-gallery/" + componentNameDashes.slice(3);
       componentInfoObj.imageAlt = componentNameSpace + " thumbnail";
-      componentInfoObj.entryPoint = componentEntryPoint;
       componentInfoObj.tags = componentTags;
       componentInfoObj.gitPushedAt = gitPushedAt;
       componentInfoObj.gitCreatedAt = gitCreatedAt;
@@ -105,7 +104,7 @@ exports = module.exports = function (componentDataFile) {
     const description = collectDescription(demoFileToRead);
     let descriptionCondensed = description.replace(/\n/g, '').replace(/\s\s/g, '').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
 
-    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, entryPoint, tags, gitPushedAt, gitCreatedAt);
+    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, tags, gitPushedAt, gitCreatedAt);
     allComponentsInfoObj.push(componentInfoObj);
   });
 
