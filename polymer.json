@@ -188,7 +188,9 @@
     "bower_components/px-code-editor/ace/worker-javascript.js",
     "bower_components/px-app-helpers/px-app-header/demo.html",
     "bower_components/px-validation/px-example-validator.html",
-    "bower_components/px-tile/turbine.jpg"
+    "bower_components/px-tile/turbine.jpg",
+    "bower_components/px-map/demo/px-map-layer-geojson-data.json"
+
   ],
   "builds": [
     {
