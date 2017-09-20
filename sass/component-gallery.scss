@@ -37,9 +37,24 @@
   border-color: #C5D1D8;
 }
 
-.layout > .layout__item {
+.layout {
+  margin: -2rem;
+}
+
+iron-list {
+  height: 80.4vh;
+  width: 100vw;
+}
+@media(max-width: 720px) {
+  iron-list {
+    height: 81.2vh
+  }
+}
+
+.layout .layout__item {
   padding: 15px;
   flex: 0 0 auto;
+  text-decoration: none;
 }
 
 
