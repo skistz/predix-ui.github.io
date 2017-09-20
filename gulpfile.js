@@ -278,7 +278,7 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
 
 gulp.task('gitRepos', function(cb) {
   request({
-    uri: 'https://api.github.com/orgs/PredixDev/repos',
+    uri: 'https://api.github.com/teams/1779164/repos?per_page=100&page=1',
     method: 'GET',
     headers: {
       "User-Agent" : "predix-ui.github.io"
