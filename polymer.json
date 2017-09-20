@@ -191,7 +191,8 @@
     "bower_components/px-tile/turbine.jpg",
     "bower_components/px-map/demo/px-map-layer-geojson-data.json",
     "bower_components/font-awesome/fonts/fontawesome-webfont.ttf",
-    "bower_components/font-awesome/fonts/fontawesome-webfont.woff"
+    "bower_components/font-awesome/fonts/fontawesome-webfont.woff",
+    "bower_components/font-awesome/fonts/fontawesome-webfont.woff2"
   ],
   "builds": [
     {
