@@ -1,5 +1,232 @@
 [
   {
+    "name": "px-actionable-design",
+    "title": "Actionable Text/Icons",
+    "description": "Predix UI Actionable module is a simple implementation of added button type behaviors to text. Actionable text allows the user to initiate an secondary action associated to the text string.",
+    "imageUrl": "../img/component-gallery/actionable-design",
+    "imageAlt": "Actionable Text/Icons thumbnail",
+    "tags": [
+      "css",
+      "visual",
+      "buttons"
+    ]
+  },
+  {
+    "name": "px-buttons-design",
+    "title": "Buttons",
+    "description": "The Predix UI Buttons module is a simple, robust, extensible baseline for building entire suites of buttons on.",
+    "imageUrl": "../img/component-gallery/buttons-design",
+    "imageAlt": "Buttons thumbnail",
+    "tags": [
+      "css",
+      "visual",
+      "buttons"
+    ]
+  },
+  {
+    "name": "px-button-group-design",
+    "title": "Button Group",
+    "description": "The Predix UI Button Group module is an implementation of button groups, either multiple or unique select.",
+    "imageUrl": "../img/component-gallery/button-group-design",
+    "imageAlt": "Button Group thumbnail",
+    "tags": [
+      "css",
+      "visual",
+      "buttons"
+    ]
+  },
+  {
+    "name": "px-code-design",
+    "title": "Code",
+    "description": "The Predix UI Code module provides styling for block and inline code snippets.",
+    "imageUrl": "../img/component-gallery/code-design",
+    "imageAlt": "Code thumbnail",
+    "tags": [
+      "css",
+      "visual"
+    ]
+  },
+  {
+    "name": "px-colors-design",
+    "title": "Colors",
+    "description": "The Colors module assigns Sass variables for the Predix UI default color palette.",
+    "imageUrl": "../img/component-gallery/colors-design",
+    "imageAlt": "Colors thumbnail",
+    "tags": [
+      "css",
+      "visual"
+    ]
+  },
+  {
+    "name": "px-forms-design",
+    "title": "Forms",
+    "description": "The Predix UI Forms module is a simple implementation of forms and form fields. Form layouts follow rhythmic spacing with simple numeric patterns. The distance between elements creates the grouping and the visual hierarchy.",
+    "imageUrl": "../img/component-gallery/forms-design",
+    "imageAlt": "Forms thumbnail",
+    "tags": [
+      "css",
+      "data input"
+    ]
+  },
+  {
+    "name": "px-headings-design",
+    "title": "Headings",
+    "description": "Headings gives you base-level text sizes in the form of easy-to-apply classes along with styled heading classes. Use its classes to style H1-H6 heading tags or other text elements. These type sizes are loose multiples of 15px as a basic unit. The sizes and styles follow a typographic rhythm, which makes the sizing distinct and gives the visual hierarchy emphasis.",
+    "imageUrl": "../img/component-gallery/headings-design",
+    "imageAlt": "Headings thumbnail",
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "name": "px-helpers-design",
+    "title": "Helpers",
+    "description": "A series of helper classes for use throughout Predix UI.",
+    "imageUrl": "../img/component-gallery/helpers-design",
+    "imageAlt": "Helpers thumbnail",
+    "tags": [
+      "css",
+      "visual"
+    ]
+  },
+  {
+    "name": "px-list-bare-design",
+    "title": "List Bare",
+    "description": "The Predix UI List Bare module simply removes bullets and indents from lists.",
+    "imageUrl": "../img/component-gallery/list-bare-design",
+    "imageAlt": "List Bare thumbnail",
+    "tags": [
+      "data display",
+      "css"
+    ]
+  },
+  {
+    "name": "px-list-inline-design",
+    "title": "List Inline",
+    "description": "The Predix UI List Inline module simply displays a list as a delimited horizontal row.",
+    "imageUrl": "../img/component-gallery/list-inline-design",
+    "imageAlt": "List Inline thumbnail",
+    "tags": [
+      "data display",
+      "css"
+    ]
+  },
+  {
+    "name": "px-list-ui-design",
+    "title": "List UI",
+    "description": "The Predix UI List UI module creates blocky, keyline-delimited list items.",
+    "imageUrl": "../img/component-gallery/list-ui-design",
+    "imageAlt": "List UI thumbnail",
+    "tags": [
+      "data display",
+      "css"
+    ]
+  },
+  {
+    "name": "px-shadows-design",
+    "title": "Shadows",
+    "description": "The Predix UI Shadows module provides a set of predefined shadow styles that give a visual rhythm to the design system.",
+    "imageUrl": "../img/component-gallery/shadows-design",
+    "imageAlt": "Shadows thumbnail",
+    "tags": [
+      "css",
+      "visual"
+    ]
+  },
+  {
+    "name": "px-tables-design",
+    "title": "Tables",
+    "description": "Predix UI has some useful helpers for common <table> patterns.",
+    "imageUrl": "../img/component-gallery/tables-design",
+    "imageAlt": "Tables thumbnail",
+    "tags": [
+      "data display",
+      "css"
+    ]
+  },
+  {
+    "name": "px-box-design",
+    "title": "Box",
+    "description": "The Box module simply boxes off content, with a variety of padding options.",
+    "imageUrl": "../img/component-gallery/box-design",
+    "imageAlt": "Box thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-flag-design",
+    "title": "Flag",
+    "description": "The Predix UI Flag module is similar in appearance to the classic OOCSS' media object, however it utilizes 'display: table-cell' to give us control over the vertical alignments of the text and image.",
+    "imageUrl": "../img/component-gallery/flag-design",
+    "imageAlt": "Flag thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-flexbox-design",
+    "title": "Flexbox",
+    "description": "Flexbox creates layout classes to give elements sizes and dynamically put elements in the right place. The flexbox module a wrapper around all of CSS flexbox's non-unit-based properties.",
+    "imageUrl": "../img/component-gallery/flexbox-design",
+    "imageAlt": "Flexbox thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-layout-design",
+    "title": "Layout",
+    "description": "The Predix UI Layout module defines the 'grid' for Predix UI. Layout items can be autosized, or given a specific width, and layouts reflow responsively on smaller viewports.",
+    "imageUrl": "../img/component-gallery/layout-design",
+    "imageAlt": "Layout thumbnail",
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "name": "px-spacing-design",
+    "title": "Spacing",
+    "description": "The Predix UI Spacing module is a collection of helper classes for spacings like margin and padding.",
+    "imageUrl": "../img/component-gallery/spacing-design",
+    "imageAlt": "Spacing thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-spacing-responsive-design",
+    "title": "Spacing (Responsive)",
+    "description": "The Predix UI Spacing Responsive module is an extension of the default px-spacing-design module and provides breakpoint-based classes for nudging margins and paddings around responsively.",
+    "imageUrl": "../img/component-gallery/spacing-responsive-design",
+    "imageAlt": "Spacing (Responsive) thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-widths-design",
+    "title": "Widths",
+    "description": "The Predix UI Widths module is a series of width helper classes that you can use to size things like grid systems.",
+    "imageUrl": "../img/component-gallery/widths-design",
+    "imageAlt": "Widths thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
+    "name": "px-widths-responsive-design",
+    "title": "Widths (Responsive)",
+    "description": "The Predix UI Widths Responsive module is an extension of the default px-widths-design module and provides breakpoint-based classes for widths on elements.",
+    "imageUrl": "../img/component-gallery/widths-responsive-design",
+    "imageAlt": "Widths (Responsive) thumbnail",
+    "tags": [
+      "css"
+    ]
+  },
+  {
     "name": "px-accordion",
     "title": "Accordion",
     "description": "The px-accordion component provides expandable and collapsible subsection headers for a page. An optional \"action\" icon on the right side will fire an event when pressed.",
@@ -19,9 +246,7 @@
     "tags": [
       "mobile",
       "alerts"
-    ],
-    "gitPushedAt": "2017-08-18T17:54:41Z",
-    "gitCreatedAt": "2015-09-24T17:17:45Z"
+    ]
   },
   {
     "name": "px-alert-message",
@@ -31,9 +256,7 @@
     "imageAlt": "Alert Message thumbnail",
     "tags": [
       "alerts"
-    ],
-    "gitPushedAt": "2017-08-29T16:17:14Z",
-    "gitCreatedAt": "2015-09-24T17:17:49Z"
+    ]
   },
   {
     "name": "px-app-header",
@@ -54,9 +277,7 @@
     "tags": [
       "navigation",
       "mobile"
-    ],
-    "gitPushedAt": "2017-09-07T15:21:45Z",
-    "gitCreatedAt": "2015-09-24T17:17:53Z"
+    ]
   },
   {
     "name": "px-branding-bar",
@@ -84,9 +305,7 @@
     "title": "Card Element",
     "description": "Cards consist of a header area and content area. The header canoptionally contain a descriptive icon in the top left corner and/or an actions area in the top right cornerfor settings or other action icons. Cards are incredibly flexible in terms of what content can beplaced in the main area of the card and how it's arranged. A few layout configurations are providedin the px-widget-cards component to help you organize content in a responsive grid within a card.",
     "imageUrl": "../img/component-gallery/card",
-    "imageAlt": "Card Element thumbnail",
-    "gitPushedAt": "2017-08-30T16:12:18Z",
-    "gitCreatedAt": "2015-09-24T17:17:56Z"
+    "imageAlt": "Card Element thumbnail"
   },
   {
     "name": "px-deck-selector",
@@ -96,9 +315,7 @@
     "imageAlt": "Deck Selector thumbnail",
     "tags": [
       "mobile"
-    ],
-    "gitPushedAt": "2017-08-10T23:11:21Z",
-    "gitCreatedAt": "2015-09-24T17:18:17Z"
+    ]
   },
   {
     "name": "px-widget-cards",
@@ -108,9 +325,7 @@
     "imageAlt": "Widget Cards thumbnail",
     "tags": [
       "mobile"
-    ],
-    "gitPushedAt": "2017-08-14T19:12:48Z",
-    "gitCreatedAt": "2015-09-24T17:19:11Z"
+    ]
   },
   {
     "name": "px-clipboard",
@@ -128,9 +343,7 @@
     "title": "Context Browser",
     "description": "The context browser allows the user to drill down through a hierarchical menu in order to switch the context of the overall view. Examples of possible contexts include specific locations organized geographically, physical assets organized by model or other classification, or employees organized by department or function. When a user clicks on the title or arrow, the expanded view of the context browser covers cards and other content on the page. Selecting an item in the context browser causes the children of that item to show up in the next panel over, and also causes a button to appear within that selected row that allows the user to submit/save that context, which also re-collapses the browser.",
     "imageUrl": "../img/component-gallery/context-browser",
-    "imageAlt": "Context Browser thumbnail",
-    "gitPushedAt": "2017-09-12T21:44:25Z",
-    "gitCreatedAt": "2015-09-24T17:18:10Z"
+    "imageAlt": "Context Browser thumbnail"
   },
   {
     "name": "px-vis",
@@ -249,9 +462,7 @@
     "imageAlt": "Simple Bar Chart thumbnail",
     "tags": [
       "data vis"
-    ],
-    "gitPushedAt": "2017-08-10T23:29:35Z",
-    "gitCreatedAt": "2015-09-24T17:18:43Z"
+    ]
   },
   {
     "name": "px-simple-horizontal-bar-chart",
@@ -271,9 +482,7 @@
     "imageAlt": "Simple Line Chart thumbnail",
     "tags": [
       "data vis"
-    ],
-    "gitPushedAt": "2017-08-10T23:35:37Z",
-    "gitCreatedAt": "2015-09-24T17:18:47Z"
+    ]
   },
   {
     "name": "px-simple-win-loss-chart",
@@ -290,9 +499,7 @@
     "title": "Data Table",
     "description": "The Data Table component is useful for displaying tabular data, and provides more functionality than a simple table. Users can sort ascending or descending on each column, filter within columns using simple search, select one or more rows, and edit data in-line with input validation. Rows are automatically paginated, but the user can select the number of rows to display in a single page. Cell borders can be configured by the developer to show up horizontally, vertically, or both.",
     "imageUrl": "../img/component-gallery/data-table",
-    "imageAlt": "Data Table thumbnail",
-    "gitPushedAt": "2017-09-14T16:25:59Z",
-    "gitCreatedAt": "2015-09-24T17:18:14Z"
+    "imageAlt": "Data Table thumbnail"
   },
   {
     "name": "px-calendar-picker",
@@ -353,9 +560,7 @@
     "imageAlt": "Rangepicker thumbnail",
     "tags": [
       "data input"
-    ],
-    "gitPushedAt": "2017-09-07T16:56:32Z",
-    "gitCreatedAt": "2015-09-24T17:18:36Z"
+    ]
   },
   {
     "name": "px-dropdown",
@@ -437,9 +642,7 @@
     "tags": [
       "navigation",
       "mobile"
-    ],
-    "gitPushedAt": "2017-08-04T20:51:28Z",
-    "gitCreatedAt": "2015-09-24T17:18:25Z"
+    ]
   },
   {
     "name": "px-map",
@@ -457,9 +660,7 @@
     "tags": [
       "messaging",
       "alerts"
-    ],
-    "gitPushedAt": "2017-08-30T22:35:50Z",
-    "gitCreatedAt": "2015-09-24T17:18:29Z"
+    ]
   },
   {
     "name": "px-overlay",
@@ -479,9 +680,7 @@
     "imageAlt": "Popover thumbnail",
     "tags": [
       "messaging"
-    ],
-    "gitPushedAt": "2017-08-10T23:26:27Z",
-    "gitCreatedAt": "2015-09-24T17:18:32Z"
+    ]
   },
   {
     "name": "px-progress-bar",
@@ -503,9 +702,7 @@
     "tags": [
       "mobile",
       "data input"
-    ],
-    "gitPushedAt": "2017-08-11T00:16:13Z",
-    "gitCreatedAt": "2015-09-24T17:18:52Z"
+    ]
   },
   {
     "name": "px-spinner",
@@ -516,9 +713,7 @@
     "tags": [
       "status",
       "mobile"
-    ],
-    "gitPushedAt": "2017-09-06T17:07:45Z",
-    "gitCreatedAt": "2015-09-24T17:18:55Z"
+    ]
   },
   {
     "name": "px-table-view",
@@ -536,9 +731,7 @@
     "tags": [
       "navigation",
       "layout"
-    ],
-    "gitPushedAt": "2017-08-30T21:15:42Z",
-    "gitCreatedAt": "2015-09-24T17:18:59Z"
+    ]
   },
   {
     "name": "px-timeline",
@@ -570,9 +763,7 @@
     "imageAlt": "Tooltip thumbnail",
     "tags": [
       "messaging"
-    ],
-    "gitPushedAt": "2017-08-30T19:15:48Z",
-    "gitCreatedAt": "2015-09-24T17:19:07Z"
+    ]
   },
   {
     "name": "px-tree",

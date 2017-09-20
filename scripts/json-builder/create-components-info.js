@@ -35,18 +35,39 @@ const githubData = require('./../../pages/component-gallery/repo-data.json');
 const MATCHES_PX_DESIGN_RE = /\-design$/;
 const ExcludedComponentsArray = [
   "px-app-route",
-  "px-number-formatter"
+  "px-number-formatter",
+  "px-box-sizing-design",
+  "px-clearfix-design",
+  "px-defaults-design",
+  "px-functions-design",
+  "px-iconography-design",
+  "px-mixins-design",
+  "px-normalize-design",
+  "px-typography-design",
+  "px-viewport-design",
+  "px-meta-buttons-design",
+  "px-meta-lists-design",
+  "px-toggle-design",
+  "px-widths-tools-design",
+  "px-starter-kit-design"
 ];
 
 
 // PARSE Description out of demo files
 var FIND_COMPONENT_DESCRIPTION_RE = /\<px-demo-header[\S\s]*description\=[\'\"]([\S\s]*)[\'\"][\S\s]*\>\s*\<\/px-demo-header\>/;
-function collectDescription(demoFileToRead){
+var FIND_DESIGN_DESCRIPTION_RE = /\<px-sass-doc[\S\s]*description\=[\'\"]([\S\s]*)[\'\"][\S\s]*\s*layer/;
+function collectDescription(nameDashes, demoFileToRead){
   var content = fs.readFileSync(demoFileToRead, "utf8");
-  const componentDescription = content.match(FIND_COMPONENT_DESCRIPTION_RE);
-  if (componentDescription === null) { return ""; }
+  let descriptionText;
+
+  if(MATCHES_PX_DESIGN_RE.test(nameDashes)){
+    descriptionText = content.match(FIND_DESIGN_DESCRIPTION_RE);
+  }else {
+    descriptionText = content.match(FIND_COMPONENT_DESCRIPTION_RE);
+  }
+  if (descriptionText === null) { return ""; }
   else {
-    return componentDescription[1];
+    return descriptionText[1];
   }
 }
 
@@ -62,7 +83,7 @@ function gitInfo(name, key){
 }
 
 // CREATE objects in tile-data.json
-function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentTags, gitPushedAt, gitCreatedAt){
+function createComponentObj(componentNameSpace, descriptionCondensed, componentNameDashes, componentTags){
   let componentInfoObj = {};
 
       componentInfoObj.name = componentNameDashes;
@@ -71,8 +92,6 @@ function createComponentObj(componentNameSpace, descriptionCondensed, componentN
       componentInfoObj.imageUrl = "../img/component-gallery/" + componentNameDashes.slice(3);
       componentInfoObj.imageAlt = componentNameSpace + " thumbnail";
       componentInfoObj.tags = componentTags;
-      componentInfoObj.gitPushedAt = gitPushedAt;
-      componentInfoObj.gitCreatedAt = gitCreatedAt;
 
   return componentInfoObj;
 }
@@ -83,7 +102,7 @@ exports = module.exports = function (componentDataFile) {
 
   // filter out subcomponents, excluded components, and design components
   const filteredComponentObjs = componentDataFile.filter(function (componentObj) {
-    if (!componentObj.subcomponent && !ExcludedComponentsArray.includes(componentObj.componentName) && !MATCHES_PX_DESIGN_RE.test(componentObj.componentName)) { return true; }
+    if (!componentObj.subcomponent && !ExcludedComponentsArray.includes(componentObj.componentName)) { return true; }
   });
 
   // LOOP OVER EACH FILE
@@ -96,15 +115,16 @@ exports = module.exports = function (componentDataFile) {
     const entryPoint = filteredObjItem.entryPoint;
     const tags = filteredObjItem.tags;
 
-    const gitPushedAt = gitInfo(nameDashes, 'pushed_at');
-    const gitCreatedAt = gitInfo(nameDashes, 'created_at');
+    // Excluding github info until we have correct repo-data
+    // const gitPushedAt = gitInfo(nameDashes, 'pushed_at');
+    // const gitCreatedAt = gitInfo(nameDashes, 'created_at');
 
     //get description
     const demoFileToRead = path.resolve(__dirname + '/../../' + demoFilePath);
-    const description = collectDescription(demoFileToRead);
+    const description = collectDescription(nameDashes, demoFileToRead);
     let descriptionCondensed = description.replace(/\n/g, '').replace(/\s\s/g, '').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
 
-    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, tags, gitPushedAt, gitCreatedAt);
+    let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, tags);
     allComponentsInfoObj.push(componentInfoObj);
   });
 
