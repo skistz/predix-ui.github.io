@@ -30,8 +30,20 @@ layout: default
 * New boolean property `badge` has been added for enabling the alert/severity badges currently used in `px-alert-message` and `px-inbox` - the `type` property determines what color and shape will appear, whereas the `label` property can be repurposed for the (single-digit) numeric indicator
 * The `type` value "info" was expanded to "information" in order to match the API of px-alert-message, however either value will work as expected.
 
-<!--## px-app-nav (v2)
-* DAVID-->
+## px-app-nav (v2)
+* The px-app-nav API, design, and usage was completely overhauled for the new version, [see the documentation for a full guide](https://www.predix-ui.com/#/components/px-app-nav).
+* Clicking on an item in px-app-nav no longer automatically navigates to the item's URL by setting the window.location. Instead, listen to the event `selected-changed` for updates when an item is selected and sync the state to the URL if you choose (e.g. by setting `window.location`, using a framework router, or using the new px-app-route helper element).
+* The `navItems` property has been renamed to `items`. The format of the navigation items object has also changed.
+* In `navItems`, child items were added to a parent item with the `subitems` key. In `items`, child items are added to a parent item with the `children` key.
+* In `navItems`, item paths were set with the `path` key. In `items`, item paths are set with the `id` key.
+* In `navItems`, item paths were set with the `path` key. In `items`, item paths are set with the `id` key.
+* In `navItems`, an `eventName` could be passed that would be fired when the item was tapped. That option has been removed from `items`. Instead, watch `selected-changed` for updates when a new item is selected (when tapped or through data binding).
+* All icon names used in `navItems` should be updated to use the new px-icon names. If you do not update to use the px-icon names, you will need to load the font awesome icons in your app. The font awesome icons will not be loaded with the px-app-nav component by default.
+* The `navContracting` and `naxExpanding` properties have been removed. See the `collapseOpened` property for an approximate replacement.
+* The `pathPrefix` property has been removed as px-app-nav no longer navigates the page directly when an item is clicked. You can implement this yourself by listening to `selected-changed` and setting the URL.
+* The `pathKey` property has been removed.
+* The `markSelected` method has been removed. Use the `select()` method to select an item by reference.
+* The nav is no longer configured to be vertical and toggle to open/close by default. There are now a variety of modes available (horizontal, vertical, collapsed) for different use cases. See the documentation for more information. To use the vertical mode, set the `vertical` property to true. The vertical mode is no longer meant to be used on mobile. The `collapsed` mode should be used on mobile instead.
 
 ## px-card (v1)
 * The `chevron` property has been removed, as it never really functioned as intended ([Forum Question](https://forum.predix.io/questions/21210/what-is-the-reason-for-the-chevron-button-on-the-p.html)). Instead, a content slot has been added so that anything included in a container of class "actions" will be displayed in the top right corner of the card in the header area. See the demo page for an example implementation.
@@ -41,8 +53,27 @@ layout: default
 ## px-colors-design (v1.0.1)
 * All of the sass variable names have changed to support the completely redesigned Predix UI color palette.
 
-<!--## px-context-browser (v2)
-* DAVID-->
+## px-context-browser (v2)
+* The px-context-browser API, design, and usage was completely overhauled for the new version, [see the documentation for a full guide](https://www.predix-ui.com/#/components/px-context-browser).
+* The `<px-context-browser></px-context-browser>` tag no longer places a button on the page. Use the px-context-browser tag together with a `<px-context-browser-trigger></px-context-browser-trigger>` tag show a button that opens the browser. See the documentation for more information on binding these two elements together.
+* The `browserContext` property has been renamed to `items`. The structure of the context browser items has been completely overhauled.
+* The `browserContext` property `name` has been replaced with `label`.
+* The `browserContext` property `identifier` has been replaced with `id`.
+* The `browserContext` property `isOpenable` has been removed.
+* The initial context and direct context modes have been removed. Set the `selected` property instead to select an item after loading the data.
+* The `disabled` property has been removed.
+* The `disableInfiniteScroll` property has been removed.
+* The `handlers` property has been removed. Listen to the event `px-app-asset-children-requested` to be notified when new children should be loaded. Listen to the event `selected-changed` to be notified when an item is selected (tapped or selected through data binding). See the documentation for more info. There is no event fired when an item is tapped but not selected as that interaction pattern has been removed.
+* The `idField` and `labelField` properties have been removed. Use the `keys` property to set both instead.
+* The `openedItemName` property has been removed. Listen to the event `selected-changed` to be notified when a new item is selected.
+* The `resize` property has been removed.
+* The `selectedItem` property has been renamed to `selected`. Its behaviors are also slightly different, see the documentation.
+* The `showChevron` property has been renamed to `showArrow`.
+* The `showColumnBrowser` property has been removed.
+* The `showColumnTypeahead` property has been removed. Use the `showFilter` property to show a filter field at the top of the column.
+* The `addParents` method has been removed. Instead, add items from the root of the graph using `addChildren`.
+* The `toggleColumnBrowser` method has been removed. Toggle the `collapsed` property to show or hide the context browser.
+* The events have changed completely. See the documentation for more details.
 
 ## px-data-table (v4)
 * The "rows per page" dropdown has been updated to use `px-dropdown` for cross-browser consistency ([#115](https://github.com/predixdev/px-data-table/issues/115)).
