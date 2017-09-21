@@ -351,7 +351,9 @@
     "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.\"     parent-name=\"px-vis",
     "imageUrl": "../img/component-gallery/vis",
     "imageAlt": "Vis Framework thumbnail",
-    "tags": "vis"
+    "tags": [
+      "data vis"
+    ]
   },
   {
     "name": "px-vis-parallel-coordinates",
@@ -732,6 +734,13 @@
       "navigation",
       "layout"
     ]
+  },
+  {
+    "name": "px-tile",
+    "title": "Tile",
+    "description": "The px-tile component has two states and a sliding animation.",
+    "imageUrl": "../img/component-gallery/tile",
+    "imageAlt": "Tile thumbnail"
   },
   {
     "name": "px-timeline",

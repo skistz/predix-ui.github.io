@@ -653,6 +653,5 @@ gulp.task('gallery-json:tile-data', function(callback){
 });
 
 gulp.task('gallery-json', function(callback){
-  // gulpSequence('gallery-json:component-data', 'gallery-json:tile-data')(callback);
-  gulpSequence('gallery-json:tile-data')(callback);
+  gulpSequence('gallery-json:component-data', 'gallery-json:tile-data')(callback);
 });

@@ -390,7 +390,9 @@
   {
     "componentName": "px-vis",
     "label": "Vis Framework",
-    "tags": "vis",
+    "tags": [
+      "data vis"
+    ],
     "entryPoint": "bower_components/px-vis/demo/px-vis-catalog.html"
   },
   {
@@ -1049,6 +1051,11 @@
       "layout"
     ],
     "entryPoint": "bower_components/px-tabs/demo/px-tabs-demo.html"
+  },
+  {
+    "componentName": "px-tile",
+    "label": "Tile",
+    "entryPoint": "bower_components/px-tile/demo/px-tile-demo.html"
   },
   {
     "componentName": "px-timeline",
