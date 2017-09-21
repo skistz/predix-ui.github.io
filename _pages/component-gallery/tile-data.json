@@ -240,7 +240,7 @@
   {
     "name": "px-alert-label",
     "title": "Alert Label",
-    "description": "Alert labels are used to draw attention to a particular piece of information on the screen. Each type oflabel (important, warning, error, information, healthy, and unknown) has its own distinctbackground color and appropriate font color for maximum visibility. The text within the label is configurable,but will always show up in all capital letters. Avoid using action verbs in an alert label, as users mayconfuse the label for a button.",
+    "description": "Alert labels are used to draw attention to a particular piece of information on the screen. Each type of     label (important, warning, error, information, healthy, and unknown) has its own distinct     background color and appropriate font color for maximum visibility. The text within the label is configurable,     but will always show up in all capital letters. Avoid using action verbs in an alert label, as users may     confuse the label for a button.",
     "imageUrl": "../img/component-gallery/alert-label",
     "imageAlt": "Alert Label thumbnail",
     "tags": [
@@ -251,7 +251,7 @@
   {
     "name": "px-alert-message",
     "title": "Alert Message",
-    "description": "Alert Messages appear in a queue within the message container. Each message consists of an icon, title,body, and action. See Alert Icons for more on the default icons available –- a custom icon can also be defined.The title appears in bold, whereas the message body text does not. The action on the right will appearas an “X” for dismissing the alert, an “OK” button for acknowledging it, or an “Open” button if a URL is specified.If Auto Dismiss is enabled, the alert will disappear on its own after a configurable delay period. Thetext on the alert messages should be kept short, ideally around three lines.",
+    "description": "Alert Messages appear in a queue within the message container. Each message consists of an icon, title,      body, and action. See Alert Icons for more on the default icons available –- a custom icon can also be defined.      The title appears in bold, whereas the message body text does not. The action on the right will appear      as an “X” for dismissing the alert, an “OK” button for acknowledging it, or an “Open” button if a URL is specified.      If Auto Dismiss is enabled, the alert will disappear on its own after a configurable delay period. The      text on the alert messages should be kept short, ideally around three lines.",
     "imageUrl": "../img/component-gallery/alert-message",
     "imageAlt": "Alert Message thumbnail",
     "tags": [
@@ -271,7 +271,7 @@
   {
     "name": "px-app-nav",
     "title": "App Nav",
-    "description": "The side navigation is the highest level of navigation, for navigating between major sections of the application.Navigation items can be nested, with sub-items. Each major navigation item should have a unique and descriptive icon.",
+    "description": "The side navigation is the highest level of navigation, for navigating between major sections of the application.       Navigation items can be nested, with sub-items. Each major navigation item should have a unique and descriptive icon.",
     "imageUrl": "../img/component-gallery/app-nav",
     "imageAlt": "App Nav thumbnail",
     "tags": [
@@ -292,7 +292,7 @@
   {
     "name": "px-breadcrumbs",
     "title": "Breadcrumbs",
-    "description": "Breadcrumb dropdown displays the navigational path of the user through a context browser.The breadcrumb links provide a way to see the path of navigation or contextual relationship between objects.It also provides a quick way to navigate backwards within a path or within a specific context.",
+    "description": "Breadcrumb dropdown displays the navigational path of the user through a context browser.     The breadcrumb links provide a way to see the path of navigation or contextual relationship between objects.     It also provides a quick way to navigate backwards within a path or within a specific context.",
     "imageUrl": "../img/component-gallery/breadcrumbs",
     "imageAlt": "Breadcrumbs thumbnail",
     "tags": [
@@ -303,7 +303,7 @@
   {
     "name": "px-card",
     "title": "Card Element",
-    "description": "Cards consist of a header area and content area. The header canoptionally contain a descriptive icon in the top left corner and/or an actions area in the top right cornerfor settings or other action icons. Cards are incredibly flexible in terms of what content can beplaced in the main area of the card and how it's arranged. A few layout configurations are providedin the px-widget-cards component to help you organize content in a responsive grid within a card.",
+    "description": "Cards consist of a header area and content area. The header can      optionally contain a descriptive icon in the top left corner and/or an actions area in the top right corner      for settings or other action icons. Cards are incredibly flexible in terms of what content can be      placed in the main area of the card and how it's arranged. A few layout configurations are provided      in the px-widget-cards component to help you organize content in a responsive grid within a card.",
     "imageUrl": "../img/component-gallery/card",
     "imageAlt": "Card Element thumbnail"
   },
@@ -330,7 +330,7 @@
   {
     "name": "px-clipboard",
     "title": "Clipboard",
-    "description": "Px-clipboard is used to quickly and easily cut/copy text onto the user's clipboard.The value to be cut/copied must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from.If the copy-from attribute does not exist, the data-clipboard-text property must be used.",
+    "description": "Px-clipboard is used to quickly and easily cut/copy text onto the user's clipboard.     The value to be cut/copied must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from.     If the copy-from attribute does not exist, the data-clipboard-text property must be used.",
     "imageUrl": "../img/component-gallery/clipboard",
     "imageAlt": "Clipboard thumbnail",
     "tags": [
@@ -348,10 +348,12 @@
   {
     "name": "px-vis",
     "title": "Vis Framework",
-    "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.\"parent-name=\"px-vis",
+    "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.\"     parent-name=\"px-vis",
     "imageUrl": "../img/component-gallery/vis",
     "imageAlt": "Vis Framework thumbnail",
-    "tags": "vis"
+    "tags": [
+      "data vis"
+    ]
   },
   {
     "name": "px-vis-parallel-coordinates",
@@ -457,7 +459,7 @@
   {
     "name": "px-simple-bar-chart",
     "title": "Simple Bar Chart",
-    "description": "Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart.Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionallyrepresenting a value. It uses the data visualization color palette by default, but this can be overridden with configuration. The height and width are configurable, as are the legend labels – if none are provided, the legend will not be shown. We recommend using the default settings as they are designed for proper performance.",
+    "description": "Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart.       Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally       representing a value.       It uses the data visualization color palette by default, but this can be overridden with configuration. The height and       width are configurable, as are the legend labels – if none are provided, the legend will not be shown.       We recommend using the default settings as they are designed for proper performance.",
     "imageUrl": "../img/component-gallery/simple-bar-chart",
     "imageAlt": "Simple Bar Chart thumbnail",
     "tags": [
@@ -467,7 +469,7 @@
   {
     "name": "px-simple-horizontal-bar-chart",
     "title": "Simple Horizontal Bar Chart",
-    "description": "The Simple Horizontal Bar Chart provides a quick way to visualize data in bars.Each series is represented by a sequence of verically aligned bars, the length ofeach proportionally representing a value.It uses the data visualization color palette by default, but this can be overridden with configuration. The height andwidth are configurable, as are the legend labels – if none are provided, the legend will not be shown.We recommend using the default settings as they are designed for proper performance.",
+    "description": "The Simple Horizontal Bar Chart provides a quick way to visualize data in bars.     Each series is represented by a sequence of verically aligned bars, the length of     each proportionally representing a value.     It uses the data visualization color palette by default, but this can be overridden with configuration. The height and     width are configurable, as are the legend labels – if none are provided, the legend will not be shown.     We recommend using the default settings as they are designed for proper performance.",
     "imageUrl": "../img/component-gallery/simple-horizontal-bar-chart",
     "imageAlt": "Simple Horizontal Bar Chart thumbnail",
     "tags": [
@@ -477,7 +479,7 @@
   {
     "name": "px-simple-line-chart",
     "title": "Simple Line Chart",
-    "description": "The Simple Line Chart provides a quick way to visualize linear data. Configuration options includesetting the minimum and maximum values for the Y-axis, whether or not to include a orange horizontal lineat a certain threshold value, setting the number of vertical and horizontal grid marks; and customizingthe labels of the min, max, and threshold.",
+    "description": "The Simple Line Chart provides a quick way to visualize linear data. Configuration options include     setting the minimum and maximum values for the Y-axis, whether or not to include a orange horizontal line     at a certain threshold value, setting the number of vertical and horizontal grid marks; and customizing     the labels of the min, max, and threshold.",
     "imageUrl": "../img/component-gallery/simple-line-chart",
     "imageAlt": "Simple Line Chart thumbnail",
     "tags": [
@@ -487,7 +489,7 @@
   {
     "name": "px-simple-win-loss-chart",
     "title": "Simple Win-Loss Chart",
-    "description": "Use this component to visualize a series of positive & negative values as a bar chart. The series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value.Positive values are represented above the x-axis in one color, and negative values are displayed below the axis, in a different color - these two colors are configurable. The width and height of the component are also configurable, or can be set to \"auto\" for a responsive layout.",
+    "description": "Use this component to visualize a series of positive & negative values as a bar chart. The series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value.       Positive values are represented above the x-axis in one color, and negative values are displayed below the axis, in a different color - these two colors are configurable. The width and height of the component are also configurable, or can be set to \"auto\" for a responsive layout.",
     "imageUrl": "../img/component-gallery/simple-win-loss-chart",
     "imageAlt": "Simple Win-Loss Chart thumbnail",
     "tags": [
@@ -515,7 +517,7 @@
   {
     "name": "px-datetime-field",
     "title": "Datetime Field",
-    "description": "This component allows the user to select a date and time precisely to the second or millisecond.The counter represents when the px-datetime-field event/date property of thefield is being fired/updated. The behavior depends on whether the field usesbuttons. If it has buttons, then it is fired when the user clicks the apply button AND the date/time is valid.If it doesn't have buttons, then it is fired every time a valid change is made to the date or time.",
+    "description": "This component allows the user to select a date and time precisely to the second or millisecond.      The counter represents when the px-datetime-field event/date property of the     field is being fired/updated. The behavior depends on whether the field uses     buttons. If it has buttons, then it is fired when the user clicks the apply button AND the date/time is valid.     If it doesn't have buttons, then it is fired every time a valid change is made to the date or time.",
     "imageUrl": "../img/component-gallery/datetime-field",
     "imageAlt": "Datetime Field thumbnail",
     "tags": [
@@ -535,7 +537,7 @@
   {
     "name": "px-datetime-range-field",
     "title": "Datetime Range Field",
-    "description": "The px-datetime-range-field component includes various elements used for structuring responsive layouts.This component allows the user to select a date and time range precisely to the second or millisecond.This counter represents when the px-datetime-range-field event/range property of therange fields are being fired/updated. The behavior depends on whether the range field usesbuttons. If it has buttons, then it is fired when the user clicks the apply button AND the date/time is valid.If it doesn't have buttons, then it is fired every time a valid change is made to the date or time.",
+    "description": "The px-datetime-range-field component includes various elements used for structuring responsive layouts.     This component allows the user to select a date and time range precisely to the second or millisecond.     This counter represents when the px-datetime-range-field event/range property of the     range fields are being fired/updated. The behavior depends on whether the range field uses     buttons. If it has buttons, then it is fired when the user clicks the apply button AND the date/time is valid.     If it doesn't have buttons, then it is fired every time a valid change is made to the date or time.",
     "imageUrl": "../img/component-gallery/datetime-range-field",
     "imageAlt": "Datetime Range Field thumbnail",
     "tags": [
@@ -545,7 +547,7 @@
   {
     "name": "px-datetime-range-panel",
     "title": "Datetime Range Panel",
-    "description": "The px-datetime-range-panel component includes various elements used for structuring responsive layouts.This component allows the user to select a date and time range precisely to the second or millisecond.The main use of this component is to be used in the px-rangepicker.",
+    "description": "The px-datetime-range-panel component includes various elements used for structuring responsive layouts.    This component allows the user to select a date and time range precisely to the second or millisecond.      The main use of this component is to be used in the px-rangepicker.",
     "imageUrl": "../img/component-gallery/datetime-range-panel",
     "imageAlt": "Datetime Range Panel thumbnail",
     "tags": [
@@ -555,7 +557,7 @@
   {
     "name": "px-rangepicker",
     "title": "Rangepicker",
-    "description": "The px-rangepicker component includes various elements used for structuring responsive layouts.This component allows the user to select a date and time range precisely to the second or millisecond.The main use case for the Rangepicker is to plot time series data, where the user needsto be able to select exactly what timeframe they would like to see.",
+    "description": "The px-rangepicker component includes various elements used for structuring responsive layouts.      This component allows the user to select a date and time range precisely to the second or millisecond.      The main use case for the Rangepicker is to plot time series data, where the user needs      to be able to select exactly what timeframe they would like to see.",
     "imageUrl": "../img/component-gallery/rangepicker",
     "imageAlt": "Rangepicker thumbnail",
     "tags": [
@@ -636,7 +638,7 @@
   {
     "name": "px-login",
     "title": "Login",
-    "description": "The px-login element provides a login/logout button that integrates nicely with Cloud Foundry's UAA.(Note that Sign In does not work in this demo page.You can set the User name property to simulate sign in here.)",
+    "description": "The px-login element provides a login/logout button that integrates nicely with Cloud Foundry's UAA. (Note that Sign In does not work in this demo page. You can set the User name property to simulate sign in here.)",
     "imageUrl": "../img/component-gallery/login",
     "imageAlt": "Login thumbnail",
     "tags": [
@@ -685,7 +687,7 @@
   {
     "name": "px-progress-bar",
     "title": "Progress Bar",
-    "description": "The basic progress bar indicates the progress of an activity with explicit start and end times, or known duration.The filled portion of the bar grows from left to right to indicate the percentage of progress.The infinite progress bar indicates an ongoing activity with an indefinite end, such as loading data. The animation hints atforward progress, but since an end time cannot be calculated, does not explicitly display the amount of progress.",
+    "description": "The basic progress bar indicates the progress of an activity with explicit start and end times, or known duration.      The filled portion of the bar grows from left to right to indicate the percentage of progress.      The infinite progress bar indicates an ongoing activity with an indefinite end, such as loading data. The animation hints at      forward progress, but since an end time cannot be calculated, does not explicitly display the amount of progress.",
     "imageUrl": "../img/component-gallery/progress-bar",
     "imageAlt": "Progress Bar thumbnail",
     "tags": [
@@ -707,7 +709,7 @@
   {
     "name": "px-spinner",
     "title": "Spinner",
-    "description": "The Spinner indicates an ongoing activity with an indefinite end, such as loading data. The sizeis configurable. Adding the \"finished\" attribute causes the spinner to disappear when the activity is complete.",
+    "description": "The Spinner indicates an ongoing activity with an indefinite end, such as loading data. The size      is configurable. Adding the \"finished\" attribute causes the spinner to disappear when the activity is complete.",
     "imageUrl": "../img/component-gallery/spinner",
     "imageAlt": "Spinner thumbnail",
     "tags": [
@@ -786,7 +788,7 @@
   {
     "name": "px-validation",
     "title": "Validation",
-    "description": "Px-validation is a component that provides one or more built-in or developer-supplied validation methods for form elements, data table entries, etc. This component only handles the validation logic and return success/error object - see px-forms-design or px-data-table to see how this logic is then handled by the UI of the individual components.Be sure to click the link below to view the API documentation for the child component, px-validator.",
+    "description": "Px-validation is a component that provides one or more built-in or developer-supplied validation methods for form elements, data table entries, etc. This component only handles the validation logic and return success/error object - see px-forms-design or px-data-table to see how this logic is then handled by the UI of the individual components.     Be sure to click the link below to view the API documentation for the child component, px-validator.",
     "imageUrl": "../img/component-gallery/validation",
     "imageAlt": "Validation thumbnail",
     "tags": [

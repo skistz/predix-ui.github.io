@@ -20,6 +20,7 @@
 
 //Objects
 @import "px-layout-design/_objects.layout.scss";
+@import "px-list-inline-design/_objects.list-inline.scss";
 
 // Component
 @import 'blocks';
@@ -33,28 +34,32 @@
   padding: 30px;
 }
 
+.dropdown {
+  display: inline-block;
+  margin-bottom: 0.33333rem;
+}
+
 .hr {
   border-color: #C5D1D8;
 }
 
 .layout {
-  margin: -2rem;
-}
-
-iron-list {
-  height: 80.4vh;
-  width: 100vw;
-}
-@media(max-width: 720px) {
-  iron-list {
-    height: 81.2vh
-  }
+  margin: -1rem;
 }
 
 .layout .layout__item {
   padding: 15px;
   flex: 0 0 auto;
   text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+}
+
+px-icon {
+  margin-right: 0.66667rem;
 }
 
 

@@ -1365,7 +1365,9 @@
                   "/components/px-vis",
                   "/modules/px-vis"
                 ],
-                "tags": "vis"
+                "tags": [
+                  "data vis"
+                ]
               },
               {
                 "path": "px-vis-area-svg",

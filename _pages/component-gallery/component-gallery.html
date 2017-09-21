@@ -7,7 +7,7 @@
 <link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
 <link async rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 <link defer rel="import" href="../../bower_components/px-dropdown/px-dropdown.html">
-<link defer rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link defer rel="import" href="../../bower_components/px-chip/px-chip.html">
 
 
 <dom-module id="view-component-gallery">
@@ -16,30 +16,43 @@
     <style include="px-theme-styles"></style>
     <style include="component-gallery-styles"></style>
 
-    <iron-ajax auto url="tile-data.json" last-response="{{tileData}}" on-response="sortArray"></iron-ajax>
+    <iron-ajax auto url="tile-data.json" last-response="{{tileData}}"></iron-ajax>
 
     <div class="page">
 
       <p class="heading--page u-m0">Component Gallery</p>
       <p class="u-mt0">The Predix UI library of components.</p>
+      Sort:
+      <px-dropdown class="dropdown" items='[{"key":"0","val":"Alphabetical"},{"key":"1","val":"Random"}]' select-by="val" selected="{{sortMode}}"></px-dropdown>
+      <br/>
+      Filter:
+      <template is="dom-repeat" items="{{tags}}">
+        <px-chip content="{{item.name}}" selected="{{item.selected}}"></px-chip>
+      </template>
       <hr class="hr">
 
       <div class="layout">
-        <iron-list items="[[tileData]]" as="item" grid>
-          <template>
-            <a class="layout__item" href="#/components/{{item.name}}">
-              <px-tile
-                title="{{item.title}}"
-                description="{{item.description}}"
-                hoverable>
-                <picture  slot="thumbnail">
-                  <source srcset="{{item.imageUrl}}_{{themeName}}.webp" type="image/webp">
-                  <img src="{{item.imageUrl}}_{{themeName}}.png" srcset="{{item.imageUrl}}_{{themeName}}@2x.png"  alt="{{item.imageAlt}}">
-                </picture>
-              </px-tile>
-            </a>
-          </template>
-        </iron-list>
+        <template is="dom-repeat" items="[[tileData]]" sort="{{_computeSort(sortMode)}}" filter="{{_computeFilter(tags.*)}}">
+          <a class="layout__item" href="#/components/{{item.name}}">
+            <px-tile
+              title="{{item.title}}"
+              description="{{item.description}}"
+              hoverable>
+              <picture  slot="thumbnail">
+                <source srcset="{{item.imageUrl}}_{{themeName}}.webp" type="image/webp">
+                <img src="{{item.imageUrl}}_{{themeName}}.png" srcset="{{item.imageUrl}}_{{themeName}}@2x.png"  alt="{{item.imageAlt}}">
+              </picture>
+              <div class="footer" slot="footer">
+                <px-icon icon="px-fea:tag"></px-icon>
+                <ul class="list-inline">
+                  <template is="dom-repeat" items="{{item.tags}}" as="tag">
+                    <li class="caps zeta">{{tag}}</li>
+                  </template>
+                </ul>
+              </div>
+            </px-tile>
+          </a>
+        </template>
       </div>
 
     </div>
@@ -64,6 +77,23 @@
           type: String,
           value: "light",
           computed: "_getThemeName(darkTheme)"
+        },
+        tags: {
+          type: Array,
+          value: [
+            {"name" : "Alerts", "selected" : false},
+            {"name" : "Buttons", "selected" : false},
+            {"name" : "CSS", "selected" : false},
+            {"name" : "Data Display", "selected" : false},
+            {"name" : "Data Input", "selected" : false},
+            {"name" : "Data Vis", "selected" : false},
+            {"name" : "Layout", "selected" : false},
+            {"name" : "Messaging", "selected" : false},
+            {"name" : "Mobile", "selected" : false},
+            {"name" : "Navigation", "selected" : false},
+            {"name" : "Status", "selected" : false},
+            {"name" : "Visual", "selected" : false}
+          ]
         }
       },
       _computeSort: function(sortMode) {
@@ -84,10 +114,30 @@
       _getThemeName(darkTheme){
         return darkTheme ? "dark" : "light";
       },
-      sortArray: function(e) {
-        this.tileData.sort(function(a,b) {
-          return a.title > b.title ? 1 : -1;
-        });
+      _computeFilter() {
+        var filteredTags = [];
+        for(var key in this.tags) {
+          if(this.tags.hasOwnProperty(key) && this.tags[key].selected) {
+            filteredTags.push(this.tags[key].name.toLowerCase());
+          }
+        }
+        if(filteredTags.length === 0) {
+          return null;
+        }
+        else {
+          return function(item) {
+            if(item.tags && item.tags.length) {
+              found = false;
+              for(var tag in item.tags) {
+                if(filteredTags.indexOf(item.tags[tag]) > -1) {
+                  found = true;
+                  break;
+                }
+              }
+              return found;
+            }
+          }
+        }
       }
 
     });
