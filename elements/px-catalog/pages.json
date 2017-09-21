@@ -1095,8 +1095,8 @@
         "module": "px-app-header-demo",
         "entrypoint": "/bower_components/px-app-helpers/px-app-header/demo/px-app-header-demo.html",
         "redirects": [
-          "/components/px-app-helpers/px-app-header",
-          "/modules/px-app-helpers/px-app-header"
+          "/components/px-app-header",
+          "/modules/px-app-header"
         ],
         "keywords": [
           "px-app-header",

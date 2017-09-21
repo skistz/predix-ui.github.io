@@ -10,6 +10,7 @@
 
 // Settings
 @import "px-defaults-design/_settings.defaults.scss";
+@import "px-colors-design/_settings.colors.scss";
 
 // Generic
 @import "px-normalize-design/_generic.normalize.scss";
@@ -25,8 +26,32 @@
 // Component
 @import 'blocks';
 
-:root {
-  --px-tile-thumbnail-background-color: white;
+:host {
+  --px-chip-text-color: $gray10;
+  --px-chip-text-color--selected: $gray3;
+  --px-chip-border-color: $gray10;
+  // --px-chip-border-color--hover:
+  --px-chip-border-color--selected: $select-hover;
+  --px-chip-background-color: transparent;
+  // --px-chip-background-color--hover:
+  --px-chip-background-color--selected: $select-default;
+}
+:host[dark-theme] {
+  --px-chip-text-color: $gray5;
+  --px-chip-text-color--selected: $gray3;
+  --px-chip-border-color: $gray5;
+  // --px-chip-border-color--hover:
+  --px-chip-border-color--selected: $select-hover;
+  --px-chip-background-color: slateblue;
+  // --px-chip-background-color--hover:
+  --px-chip-background-color--selected: $select-default;
+}
+
+px-tile {
+  --px-tile-thumbnail-background-color: $gray5;
+}
+px-tile[dark-theme] {
+  --px-tile-thumbnail-background-color: salmon;
 }
 
 .page {

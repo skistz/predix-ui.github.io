@@ -33,7 +33,7 @@
 
       <div class="layout">
         <template is="dom-repeat" items="[[tileData]]" sort="{{_computeSort(sortMode)}}" filter="{{_computeFilter(tags.*)}}">
-          <a class="layout__item" href="#/components/{{item.name}}">
+          <a class="layout__item" href="#/modules/{{item.name}}">
             <px-tile
               title="{{item.title}}"
               description="{{item.description}}"

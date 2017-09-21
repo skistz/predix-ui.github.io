@@ -122,7 +122,7 @@ exports = module.exports = function (componentDataFile) {
     //get description
     const demoFileToRead = path.resolve(__dirname + '/../../' + demoFilePath);
     const description = collectDescription(nameDashes, demoFileToRead);
-    let descriptionCondensed = description.replace(/\n/g, ' ').replace(/\s\s/g, ' ').replace(/\t/g, ' '); //remove line breaks, extra spaces, and tabs
+    let descriptionCondensed = description.replace(/\n/g, ' ').replace(/\t/g, ' ').replace(/\s\s/g, ' '); //remove line breaks, tabs, and extra spaces
 
     let componentInfoObj = createComponentObj(nameSpace, descriptionCondensed, nameDashes, tags);
     allComponentsInfoObj.push(componentInfoObj);

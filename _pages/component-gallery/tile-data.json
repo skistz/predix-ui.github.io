@@ -348,7 +348,7 @@
   {
     "name": "px-vis",
     "title": "Vis Framework",
-    "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.\"     parent-name=\"px-vis",
+    "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.",
     "imageUrl": "../img/component-gallery/vis",
     "imageAlt": "Vis Framework thumbnail",
     "tags": [
