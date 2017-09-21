@@ -127,14 +127,10 @@
         else {
           return function(item) {
             if(item.tags && item.tags.length) {
-              found = false;
               for(var tag in item.tags) {
-                if(filteredTags.indexOf(item.tags[tag]) > -1) {
-                  found = true;
-                  break;
-                }
+                if(filteredTags.indexOf(item.tags[tag]) > -1) return true;
               }
-              return found;
+              return false;
             }
           }
         }
