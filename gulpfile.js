@@ -319,7 +319,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker', 'polymerBuild', 'cleanRoot', 'moveBuildToRoot', 'cleanBuild', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'polymerBuild', 'cleanRoot', 'moveBuildToRoot', 'cleanBuild', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************
