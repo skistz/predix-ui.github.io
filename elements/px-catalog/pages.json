@@ -1151,6 +1151,24 @@
         ]
       },
       {
+        "path": "px-chip",
+        "label": "Chip",
+        "module": "px-chip-demo",
+        "entrypoint": "/bower_components/px-chip/demo/px-chip-demo.html",
+        "redirects": [
+          "/components/px-chip",
+          "/modules/px-chip"
+        ],
+        "keywords": [
+          "px-chip",
+          "token",
+          "pill",
+          "filter",
+          "tag",
+          "label"
+        ]
+      },
+      {
         "path": "px-clipboard",
         "label": "Clipboard",
         "module": "px-clipboard-demo",
