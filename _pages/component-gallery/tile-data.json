@@ -351,9 +351,7 @@
     "description": "px-vis is a Predix UI data visualization framework. It is the foundation for all vis charts.\"     parent-name=\"px-vis",
     "imageUrl": "../img/component-gallery/vis",
     "imageAlt": "Vis Framework thumbnail",
-    "tags": [
-      "data vis"
-    ]
+    "tags": "vis"
   },
   {
     "name": "px-vis-parallel-coordinates",
