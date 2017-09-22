@@ -26,36 +26,10 @@
 // Component
 @import 'blocks';
 
-:host {
-  --px-chip-text-color: $gray10;
-  --px-chip-text-color--selected: $gray3;
-  --px-chip-border-color: $gray10;
-  // --px-chip-border-color--hover:
-  --px-chip-border-color--selected: $select-hover;
-  --px-chip-background-color: transparent;
-  // --px-chip-background-color--hover:
-  --px-chip-background-color--selected: $select-default;
-}
-:host[dark-theme] {
-  --px-chip-text-color: $gray5;
-  --px-chip-text-color--selected: $gray3;
-  --px-chip-border-color: $gray5;
-  // --px-chip-border-color--hover:
-  --px-chip-border-color--selected: $select-hover;
-  --px-chip-background-color: slateblue;
-  // --px-chip-background-color--hover:
-  --px-chip-background-color--selected: $select-default;
-}
-
-px-tile {
-  --px-tile-thumbnail-background-color: $gray5;
-}
-px-tile[dark-theme] {
-  --px-tile-thumbnail-background-color: salmon;
-}
+//theming px-catalog-theme
 
 .page {
-  background-color: #D8E0E5;
+  background-color:  var(--comonent-gallery-background, #D8E0E5);
   padding: 30px;
 }
 
@@ -65,7 +39,7 @@ px-tile[dark-theme] {
 }
 
 .hr {
-  border-color: #C5D1D8;
+  border-color:  var(--comonent-gallery-hr-color, #C5D1D8);
 }
 
 .layout {
@@ -81,6 +55,12 @@ px-tile[dark-theme] {
 .footer {
   display: flex;
   align-items: center;
+}
+
+.chip {
+  margin-right: $inuit-base-spacing-unit;
+  margin-top: $inuit-base-spacing-unit--small;
+  display: inline-block;
 }
 
 px-icon {

@@ -29,7 +29,13 @@ const defaultTemplate = ({ content, anchors, metadata }) => `
       Polymer({
         is: '${metadata.moduleName}',
         behaviors: [PxCatalogBehavior.Page],
-        ${metadata.script || ''}
+        _dynamicTheme: ${metadata.dynamicTheme || false},
+        ready: function(){
+          if (this._dynamicTheme) {
+            this.setAttribute('dynamic-theme', '')
+          }
+          ${metadata.componentReadyCallBack || ''}
+        }
 
       });
 

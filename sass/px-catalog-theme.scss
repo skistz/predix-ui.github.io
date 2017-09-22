@@ -12,6 +12,9 @@
 @import 'util';
 
 :host {
+  --px-base-text-color       : $gray15;
+  --px-base-background-color : $white;
+
   /* App shell theme */
   --px-catalog-header-background-color       : $px-catalog-gray;
   --px-catalog-header-text-color             : $gray17;
@@ -26,7 +29,7 @@
   --px-catalog-page-text-color               : $gray15;
   --px-catalog-page-text-color--light        : $gray10;
   --px-catalog-page-accent-color--primary    : $select-default;
-  --px-catalog-page-accent-color--secondary  : $gray15; // .io color: #c0002a
+  --px-catalog-page-accent-color--secondary  : $gray15;
   --px-catalog-page-success-color            : $green6;
   --px-catalog-page-alert-color              : $red6;
   --px-catalog-page-code-background-color    : $gray1;
@@ -54,9 +57,14 @@
   --animation-chart-background-color   : #FFFFFF;
   --animation-chart-labels-color       : #D8E0E5;
   --animation-gauge-background-color   : #b6c3cc;
+
+  /* component gallery */
+  --comonent-gallery-background  : $gray3;
+  --comonent-gallery-hr-color    : $gray4;
 }
 
 :host([dark-theme]) {
+
   /* App shell theme */
   --px-catalog-header-background-color       : $gray20;
   --px-catalog-header-text-color             : $gray8;
@@ -84,10 +92,10 @@
   --px-catalog-page-selected-color--hover    : $select-hover;
 
   /* home page */
-  --px-home-hero-image-background-color : #1d2b34;
-  --px-home-tertiary-background--hover:  $gray14;
-  --px-home-tertiary-background--pressed:  $gray10;
-  --px-home-hr-border: $gray8;
+  --px-home-hero-image-background-color  :#1d2b34;
+  --px-home-tertiary-background--hover   : $gray14;
+  --px-home-tertiary-background--pressed : $gray10;
+  --px-home-hr-border                    : $gray8;
 
   /* animation theme */
   --animation-img-background-color     : #1d2b34;
@@ -109,12 +117,16 @@
   /* Code */
   // --px-code-default: $gray5;
   // --px-code-property: #df277c;
-  --px-code-default: #e6e9ed;
-  --px-code-comment: #656d78;
-  --px-code-property: #ed5565;
-  --px-code-string: #ffce54;
-  --px-code-number: #f99157;
-  --px-code-operator: #ed5565;
-  --px-code-keyword: #4fc1e9;
-  --px-code-function: #c9c;
+  --px-code-default   : #e6e9ed;
+  --px-code-comment   : #656d78;
+  --px-code-property  : #ed5565;
+  --px-code-string    : #ffce54;
+  --px-code-number    : #f99157;
+  --px-code-operator  : #ed5565;
+  --px-code-keyword   : #4fc1e9;
+  --px-code-function  : #c9c;
+
+  /* component gallery */
+  --comonent-gallery-background : $gray15;
+  --comonent-gallery-hr-color   : $gray12;
 }

@@ -51,14 +51,6 @@ $px-catalog-page-padding-vertical: 50px;
 $px-catalog-page-padding-horizontal: 50px;
 
 /*******************************************************************************
- * TEMPORARY DARK THEME HACK
- ******************************************************************************/
-
-:host([dark-theme]) img {
-  // background-color: white;
-}
-
-/*******************************************************************************
  * HOST
  ******************************************************************************/
 
@@ -68,7 +60,6 @@ $px-catalog-page-padding-horizontal: 50px;
   flex-direction: column;
   overflow: hidden;
   background-color: var(--px-catalog-page-background-color, white);
-  color: var(--px-catalog-page-text-color, black);
   color: var(--px-catalog-page-text-color, black);
   min-height: calc(100vh - #{$px-catalog-header-size-small});
   @include media-query(lap-and-up) {

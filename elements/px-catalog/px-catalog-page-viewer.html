@@ -256,20 +256,23 @@
 
         var componentDemoRe = /px\-[a-zA-Z0-9-]+-demo/;
         var isComponentDemo = componentDemoRe.test(el.nodeName.toLowerCase());
+        var needDyanmicTheme = isComponentDemo || el.hasAttribute("dynamic-theme");
 
-        if (darkTheme && isComponentDemo) {
+        if (darkTheme && needDyanmicTheme) {
+          el.setAttribute('dark-theme', '');
           var darkTheme = PxDemo.ThemeUtil.getDarkThemeProperties();
           el.updateStyles(darkTheme);
         }
-        else if (!darkTheme && isComponentDemo) {
+        else if (!darkTheme && needDyanmicTheme) {
+          el.removeAttribute('dark-theme');
           var defaultTheme = PxDemo.ThemeUtil.getDefaultThemeProperties();
           el.updateStyles(defaultTheme);
         }
-        else if (darkTheme && !isComponentDemo) {
+        else if (darkTheme && !needDyanmicTheme) {
           el.setAttribute('dark-theme', '');
           el.updateStyles();
         }
-        else if (!darkTheme && !isComponentDemo) {
+        else if (!darkTheme && !needDyanmicTheme) {
           el.removeAttribute('dark-theme');
           el.updateStyles();
         }

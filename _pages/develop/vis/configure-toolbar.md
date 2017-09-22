@@ -2,61 +2,60 @@
 title: Using and configuring the toolbar
 layout: default
 moduleName: view-develop-vis-configure-toolbar
+dynamicTheme: true
 pathToRoot: ../../../
 otherImports: |
     <link defer rel="import" href="../../../bower_components/px-vis-timeseries/px-vis-timeseries.html">
     <link defer rel="import" href="../../../bower_components/px-modal/px-modal.html">
     <link defer rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
-script: |
-  ready: function () {
-      var modal = Polymer.dom(this.root).querySelector('#modal'),
-        holder = Polymer.dom(this.root).querySelector('#holder'),
-        chart = Polymer.dom(this.root).querySelector('#chart'),
-        modalConfig = {
-          "config": {
-            "advancedZoom": true,
-            "pan": true,
-            "tooltip": true
+componentReadyCallBack: |
+  var modal = Polymer.dom(this.root).querySelector('#modal'),
+    holder = Polymer.dom(this.root).querySelector('#holder'),
+    chart = Polymer.dom(this.root).querySelector('#chart'),
+    modalConfig = {
+      "config": {
+        "advancedZoom": true,
+        "pan": true,
+        "tooltip": true
+      }
+    },
+    expandConfig = {
+      "config": {
+        "expand": {
+          "icon": "px-nav:expand",
+          "onClick": function () {
+            //remove chart from current page
+            holder.removeChild(this);
+            //set new toolbar config for interaction
+            this.set('toolbarConfig', modalConfig);
+            //make the chart bigger
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            this.set('width', w - 360);
+            this.set('height', h - 350);
+            //append chart in modal
+            Polymer.dom(modal).appendChild(this);
+            //open modal
+            modal.modalButtonClicked();
           }
-        },
-        expandConfig = {
-          "config": {
-            "expand": {
-              "icon": "px-nav:expand",
-              "onClick": function () {
-                //remove chart from current page
-                holder.removeChild(this);
-                //set new toolbar config for interaction
-                this.set('toolbarConfig', modalConfig);
-                //make the chart bigger
-                var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                this.set('width', w - 360);
-                this.set('height', h - 350);
-                //append chart in modal
-                Polymer.dom(modal).appendChild(this);
-                //open modal
-                modal.modalButtonClicked();
-              }
-            }
-          }
-        };
+        }
+      }
+    };
 
-      chart.set('toolbarConfig', expandConfig);
+  chart.set('toolbarConfig', expandConfig);
 
-      modal.addEventListener('btnModalNegativeClicked', function () {
-        //remove chart from modal
-        Polymer.dom(modal).removeChild(chart);
-        //restore "expand" toolbar config
-        chart.set('toolbarConfig', expandConfig);
-        chart.set('width', 550);
-        chart.set('height', 200);
-        //ensure we "clean" the sub row
-        chart.set('toolbarSubConfig', []);
-        //move chart back to the page
-        holder.appendChild(chart);
-      });
-    }
+  modal.addEventListener('btnModalNegativeClicked', function () {
+    //remove chart from modal
+    Polymer.dom(modal).removeChild(chart);
+    //restore "expand" toolbar config
+    chart.set('toolbarConfig', expandConfig);
+    chart.set('width', 550);
+    chart.set('height', 200);
+    //ensure we "clean" the sub row
+    chart.set('toolbarSubConfig', []);
+    //move chart back to the page
+    holder.appendChild(chart);
+  });
 ---
 
 # Introduction
