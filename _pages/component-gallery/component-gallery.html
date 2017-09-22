@@ -1,16 +1,16 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html" />
-<link rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
+<link defer rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 
 <!-- Styles -->
-<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-<link rel="import" href="../../css/px-catalog-theme-styles.html" />
-<link rel="import" href="../../css/component-gallery-styles.html" />
+<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
+<link defer rel="import" href="../../css/px-catalog-theme-styles.html" />
+<link defer rel="import" href="../../css/component-gallery-styles.html" />
 
-<link rel="import" href="../../bower_components/px-tile/px-tile.html">
-<link rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-<link rel="import" href="../../bower_components/px-dropdown/px-dropdown.html">
-<link rel="import" href="../../bower_components/px-chip/px-chip.html">
+<link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+<link defer rel="import" href="../../bower_components/px-dropdown/px-dropdown.html">
+<link defer rel="import" href="../../bower_components/px-chip/px-chip.html">
 
 
 <dom-module id="view-component-gallery">
@@ -27,14 +27,13 @@
 
       <p class="heading--page u-m0">Component Gallery</p>
       <p class="u-mv0">The Predix UI library of components.</p>
-      <px-dropdown class="dropdown hidden" items='[{"key":"0","val":"Alphabetical"},{"key":"1","val":"Random"}]' select-by="val" selected="{{sortMode}}"></px-dropdown>
       <template is="dom-repeat" items="{{tags}}">
         <px-chip class="chip" content="{{item.name}}" selected="{{item.selected}}" dark-theme$="[[darkTheme]]"></px-chip>
       </template>
       <hr class="hr">
 
       <div class="layout">
-        <template is="dom-repeat" items="[[tileData]]" sort="{{_computeSort(sortMode)}}" filter="{{_computeFilter(tags.*)}}">
+        <template is="dom-repeat" initial-count="2" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
           <a class="layout__item" href="#/modules/{{item.name}}">
             <px-tile
               dark-theme$="[[darkTheme]]"
@@ -108,11 +107,6 @@
         if(sortMode === 'Alphabetical') {
           return function(a, b) {
             return (a.title > b.title) ? 1 : -1;
-          }
-        }
-        else if(sortMode === 'Random') {
-          return function(a, b) {
-            return 0.5 - Math.random();
           }
         }
         else {

@@ -6,6 +6,12 @@
     "entrypoint": "/pages/home.html"
   },
   {
+    "path": "component-gallery",
+    "label": "Component Gallery",
+    "module": "view-component-gallery",
+    "entrypoint": "/pages/component-gallery/component-gallery.html"
+  },
+  {
     "path": "about",
     "label": "Getting Started",
     "pages": [
@@ -1026,12 +1032,6 @@
     "path": "elements",
     "label": "Components",
     "pages": [
-      {
-        "path": "component-gallery",
-        "label": "Component Gallery",
-        "module": "view-component-gallery",
-        "entrypoint": "/pages/component-gallery/component-gallery.html"
-      },
       {
         "path": "px-accordion",
         "label": "Accordion",
