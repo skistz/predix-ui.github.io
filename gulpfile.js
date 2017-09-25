@@ -299,7 +299,7 @@ gulp.task('polymerBuild', function (cb) {
     cb(err);
   });
 
-})
+});
 
 /*******************************************************************************
  * LOCAL BUILD PIPELINE
