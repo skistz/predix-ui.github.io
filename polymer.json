@@ -51,6 +51,7 @@
     "bower_components/px-card/demo/px-deck-demo.html",
     "bower_components/px-deck-selector/demo/px-deck-selector-demo.html",
     "bower_components/px-widget-cards/demo/px-widget-cards-demo.html",
+    "bower_components/px-chip/demo/px-chip-demo.html",
     "bower_components/px-clipboard/demo/px-clipboard-demo.html",
     "bower_components/px-context-browser/demo/px-context-browser-demo.html",
     "bower_components/px-context-browser/demo/px-context-browser-trigger-demo.html",
