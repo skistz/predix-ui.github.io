@@ -228,6 +228,15 @@
             ]
           },
           {
+            "path": "configure-axis",
+            "label": "Configure Axis",
+            "module": "view-develop-vis-configure-axis",
+            "entrypoint": "/pages/develop/vis/configure-axis.html",
+            "redirects": [
+              "/guides/vis-guides-axis"
+            ]
+          },
+          {
             "path": "configure-toolbar",
             "label": "Configure Toolbar",
             "module": "view-develop-vis-configure-toolbar",

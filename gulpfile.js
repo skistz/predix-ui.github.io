@@ -419,6 +419,7 @@ gulp.task('compress-images', function(){
   let imgFolders = [
     './img',
     './pages/guides/vis-resources',
+    './_pages/develop/vis/vis-resources',
     './img/gallery',
     './img/guidelines',
     './pages/migration/img'
