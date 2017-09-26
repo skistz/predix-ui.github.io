@@ -59,13 +59,15 @@
 }
 
 .chip {
-  margin-right: $inuit-base-spacing-unit;
+  margin-right: $inuit-base-spacing-unit--tiny;
   margin-top: $inuit-base-spacing-unit--small;
   display: inline-block;
 }
 
 px-icon {
   margin-right: 0.66667rem;
+  --iron-icon-height: calculateRem(22px);
+  --iron-icon-width: calculateRem(22px);
 }
 
 

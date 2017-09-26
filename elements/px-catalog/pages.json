@@ -6,8 +6,8 @@
     "entrypoint": "/pages/home.html"
   },
   {
-    "path": "component-gallery",
-    "label": "Component Gallery",
+    "path": "gallery",
+    "label": "Gallery",
     "module": "view-component-gallery",
     "entrypoint": "/pages/component-gallery/component-gallery.html"
   },
@@ -185,8 +185,8 @@
         ]
       },
       {
-        "path": "gallery",
-        "label": "Gallery",
+        "path": "page-layouts",
+        "label": "Page Layouts",
         "module": "view-design-gallery",
         "entrypoint": "/pages/design/gallery.html",
         "keywords":[
@@ -196,7 +196,8 @@
           "use cases"
         ],
         "redirects": [
-          "/guidelines/gallery"
+          "/guidelines/gallery",
+          "/design/gallery"
         ]
       }
     ]

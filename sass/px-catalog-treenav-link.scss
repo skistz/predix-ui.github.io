@@ -43,13 +43,13 @@ a.link__a {
   }
 }
 
-:host([selected]) > .link > .link__container > a.link__a {
-  color: var(--px-catalog-nav-text-color--selected, blue);
-}
 
 :host([top-level-link]) > .link > .link__container > a.link__a {
   font-size: 18px;
   color: var(--px-cataog-nav-text-color, white);
+}
+:host([selected]) > .link > .link__container > a.link__a {
+  color: var(--px-catalog-nav-text-color--selected, blue);
 }
 
 .link__container__arrow {

@@ -1,5 +1,5 @@
 ---
-title: Gallery
+title: Page Layouts
 layout: default
 moduleName: view-design-gallery
 pathToRoot: ../../
