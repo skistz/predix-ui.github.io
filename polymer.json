@@ -203,7 +203,7 @@
         "compile": true
       },
       "css": {
-        "minify": true
+        "minify": false
       }
     }
   ]
