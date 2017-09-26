@@ -14,8 +14,23 @@ layout: default
 ## px-accordion
 * The px-accordion component provides expandable and collapsible subsection headers for a page. [API Documentation](#/elements/px-accordion)
 
+<!--## px-app-header
+* The px-app-header component can be used as a wrapper for `px-branding-bar` and `px-app-nav`. It provides a container that stays fixed to the top of the screen.
+
+## px-app-route
+* The px-app-route component supports easy binding between various Predix UI components and a web application's URL. It helps keep UI state in sync with the URL, allowing users to bookmark or share views by copying their URL.
+
+## px-branding-bar
+* A component providing a header area to contain title, logo and branding content.
+
+## px-breadcrumb-->
+
+
 ## px-heatmap-grid
 * The px-heatmap-grid is a highly visual and flexible interactive component for visualizing a data set based on a heat map scale of colors. [API Documentation](#/elements/px-heatmap-grid)
+
+<!--## px-icon-set-->
+
 
 ## px-key-value-pair
 * The px-key-value-pair component allows you to prominently display information in a dashboard. [API Documentation](#/elements/px-key-value-pair)
