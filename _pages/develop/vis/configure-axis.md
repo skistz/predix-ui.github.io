@@ -351,3 +351,16 @@ Alternatively, depending on your ticks, you may want to change the tickFormat to
 
 **A:** You cannot customize just the ticks. The values are displayed as you provide them in the seriesConfig or chartExtents, so you would have to change these values.
 
+
+# D3 Documentation
+To read d3's documentation, please see:
+
+Scale:
+<a href="https://github.com/d3/d3-scale" target="_blank">https://github.com/d3/d3-scale</a>
+
+Axis:
+<a href="https://github.com/d3/d3-axis" target="_blank">https://github.com/d3/d3-axis</a>
+
+Formatting:
+Number: <a href="https://github.com/d3/d3-format" target="_blank">https://github.com/d3/d3-format</a>
+Date/Time: <a href="https://github.com/d3/d3-time-format" target="_blank">https://github.com/d3/d3-time-format</a>
