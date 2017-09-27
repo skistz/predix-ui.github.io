@@ -337,6 +337,18 @@
         ]
       },
       {
+        "path": "frameworks",
+        "label": "Use with JS frameworks",
+        "pages": [
+          {
+            "path": "vue",
+            "label": "Vue",
+            "module": "view-develop-frameworks-vue",
+            "entrypoint": "/pages/develop/frameworks/vue.html"
+          }
+        ]
+      },
+      {
         "path": "contribution",
         "label": "Contribution",
         "module": "view-develop-contribution",
