@@ -14,7 +14,7 @@ layout: default
 ## px-accordion
 * The px-accordion component provides expandable and collapsible subsection headers for a page. [API Documentation](#/elements/px-accordion)
 
-<!--## px-app-header
+## px-app-header
 * The px-app-header component can be used as a wrapper for `px-branding-bar` and `px-app-nav`. It provides a container that stays fixed to the top of the screen.
 
 ## px-app-route
@@ -23,13 +23,15 @@ layout: default
 ## px-branding-bar
 * A component providing a header area to contain title, logo and branding content.
 
-## px-breadcrumb-->
+## px-breadcrumb
+* Breadcrumb dropdown displays the navigational path of the user through a context browser. The breadcrumb links provide a way to see the path of navigation or contextual relationship between objects. It also provides a quick way to navigate backwards within a path or within a specific context.
 
 
 ## px-heatmap-grid
 * The px-heatmap-grid is a highly visual and flexible interactive component for visualizing a data set based on a heat map scale of colors. [API Documentation](#/elements/px-heatmap-grid)
 
-<!--## px-icon-set-->
+<!--## px-icon-set
+* Set of the Predix Icons. Wrapper for the Predix icons which leverages px-icon.-->
 
 
 ## px-key-value-pair
