@@ -131,13 +131,13 @@ layout: default
 * Keyboard support has been added for accessibility.
 
 ## px-forms-design (v2)
-* Many of the CSS variables for the form inputs have been removed, changed, or renamed based on the redesigned components. See [the API](#/css/visual/px-forms-design) for the full list of updated CSS variables.
+* Many of the CSS variables for the form inputs have been removed, changed, or renamed based on the redesigned components. See the [API](#/css/visual/px-forms-design) for the full list of updated CSS variables.
 
 ## px-headings-design (v1)
 * In addition to the six heading sizes previously available, new classes have been added to enable aspects of the Predix redesign. New heading styles include `heading--page` (large), `heading--section` (all caps), and `heading--subsection` (smaller, with a background). Additional styles have also been added for the label/value pairs often seen in Predix applications with the classes `label` and `value`.
 
 ## px-icon-set (v2)
-* The `px-polymer-font-awesome` repository has been renamed to `px-icon-set`, and all of the Font Awesome icons have been replaced with the custom Predix UI icons created during the redesign. The API has also  changed (`<px-icon icon="">` is now used), and all of the new icons fall into 3 different namespaces (`pxs:icon`, `pxm:icon`, and `pxl:icon` as opposed to the previous `fa:fa-icon`) and new icon names. Both `px-icon-set.html` and `px-icon.html` should be imported in your application. See [the API](#/modules/px-icon-set) page for the full icon list and cheat sheet.
+* The `px-polymer-font-awesome` repository has been renamed to `px-icon-set`, and all of the Font Awesome icons have been replaced with the custom Predix UI icons created during the redesign. The API has also  changed (`<px-icon icon="">` is now used), and all of the new icons fall into 3 different namespaces (`pxs:icon`, `pxm:icon`, and `pxl:icon` as opposed to the previous `fa:fa-icon`) and new icon names. Both `px-icon-set.html` and `px-icon.html` should be imported in your application. See the [API](#/modules/px-icon-set) page for the full icon list and cheat sheet.
 
 ## px-inbox (v2)
 * The `height` property has been removed in favor of the `--px-inbox-height` CSS variable, which defaults to 100vh. Also, a `--px-inbox-list-width` variable has been added, which defaults to 320px (previously the list was set to take up 1/3 of the total component.
@@ -170,14 +170,14 @@ layout: default
 
 
 # Deprecated Components
-#### px-drawer
-* Use the app-drawer element instead. [API Documentation](https://github.com/PolymerElements/app-localize-behavior)]
+### px-drawer
+* Use the app-drawer element instead. [API Documentation](https://github.com/PolymerElements/app-localize-behavior)
 
-#### px-input-group-design
+### px-input-group-design
 * No longer maintained going forward.
 
-#### px-localize-behavior
+### px-localize-behavior
 * The app-localize-behavior element is now used internally instead [API Documentation](https://github.com/PolymerElements/app-layout/tree/master/app-drawer)
 
-#### px-sample-cards
-* Use the Reference App instead [API Documentation](https://github.com/PolymerElements/app-localize-behavior)]
+### px-sample-cards
+* Use the Reference App instead [API Documentation](https://github.com/PolymerElements/app-localize-behavior)
