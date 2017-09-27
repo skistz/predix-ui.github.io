@@ -341,6 +341,12 @@
         "label": "Use with JS frameworks",
         "pages": [
           {
+            "path": "angular",
+            "label": "Angular",
+            "module": "view-develop-frameworks-angular",
+            "entrypoint": "/pages/develop/frameworks/angular.html"
+          },
+          {
             "path": "vue",
             "label": "Vue",
             "module": "view-develop-frameworks-vue",

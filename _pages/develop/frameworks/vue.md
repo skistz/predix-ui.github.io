@@ -23,7 +23,7 @@ Read more in our blog post: [Components that work in your framework and everywhe
 
 You’ve probably heard that our components are built with Polymer, Google’s library that helps make it easy to create web components and wire up styling, data-binding, and other convenient features. That’s true, and we’re big fans of using Polymer to build components. But if you’re developing an app using our components, you don’t need to worry very much about Polymer or learn how to build with it.
 
-Polymer can be used as a framework, like Vue or Angular, but that’s optional. You can of our components as interactive HTML tags configured via. attributes and properties that fire off rich events when they’re interacted with by users. You don’t have to build your app using Polymer as a framework . You can make the technical decisions that are right for your team and product.
+Polymer can be used as a framework, like Vue or Angular, but that’s optional. You can use our components as interactive HTML tags configured via attributes and properties that fire off rich events when they’re interacted with by users. You don’t have to build your app using Polymer as a framework. You can make the technical decisions that are right for your team and product.
 
 # Use our components in Vue
 
@@ -43,7 +43,7 @@ To install components:
 
 1. Install the bower CLI tool via npm in your shell of choice: `$ npm install -g bower`
 2. Open your app directory in your shell. Run `$ bower init` to create a `bower.json` file that lists your dependencies
-3. Add `bower_components` to your `.gitignore` file. Its recommended that you do not check in your bower components, and instead install them locally during development and add installation as a step in your CI/CD process for test, QA, and production environment. This helpers ensure your dependencies stay up-to-date as new patches and updates are made available.
+3. Add `bower_components` to your `.gitignore` file. Its recommended that you do not check in your bower components, and instead install them locally during development and add installation as a step in your CI/CD process for test, QA, and production environment. This helps ensure your dependencies stay up-to-date as new patches and updates are made available.
 4. Run `$ bower install --save px-[compononent-name]` to install components in your app, or `$ bower install —save-dev px-[css-name]` to install SCSS modules in your app.
 5. The resulting components will be placed in the `bower_components/` directory in the root of your app by default. Add a `.bowerrc` file to the root of your app with the following JSON to install components somewhere else:
 
@@ -140,7 +140,7 @@ To theme components, its recommended to create a single theme at the app level t
 </style>
 ```
 
-The design system provides two themes that can be installed via. bower and loaded to style all components at once, the [light theme](http://github.com/predixdev/px-theme) and [dark theme](https://github.com/predixdev/px-dark-theme). To use these themes, install the theme with bower, load the theme on the page, and add a style tag like this to the `index.html` of the app:
+The design system provides two themes that can be installed via bower and loaded to style all components at once, the [light theme](http://github.com/predixdev/px-theme) and [dark theme](https://github.com/predixdev/px-dark-theme). To use these themes, install the theme with bower, load the theme on the page, and add a style tag like this to the `index.html` of the app:
 
 ```
 <!-- Use this for light theme -->
