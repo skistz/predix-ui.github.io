@@ -32,7 +32,7 @@
 
       <div class="layout">
         <template is="dom-repeat" initial-count="2" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
-          <a class="layout__item" href="#/modules/{{item.name}}">
+          <a class="layout__item" href="#" on-tap="_handleLinkTapped">
             <px-tile
               dark-theme$="[[darkTheme]]"
               title="{{item.title}}"
@@ -134,7 +134,15 @@
             }
           }
         }
-      }
+      },
+      _handleLinkTapped: function(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        // Navigate the window and fire `location-changed` for app-location
+        window.history.pushState(null, null, '/#/elements/' + evt.model.item.name);
+        window.dispatchEvent(new CustomEvent('location-changed'));
+      },
 
     });
   </script>
