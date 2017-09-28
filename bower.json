@@ -134,7 +134,8 @@
     "px-widget-cards": "^3.0.2",
     "px-widths-design": "^1.0.0",
     "px-widths-responsive-design": "^1.0.0",
-    "px-widths-tools-design": "^1.0.0"
+    "px-widths-tools-design": "^1.0.0",
+    "iron-image": "^2.1.2"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
