@@ -111,10 +111,10 @@
           return null;
         }
       },
-      _getThemeName(darkTheme){
+      _getThemeName: function(darkTheme){
         return darkTheme ? "dark" : "light";
       },
-      _computeFilter() {
+      _computeFilter: function() {
         var filteredTags = [];
         for(var key in this.tags) {
           if(this.tags.hasOwnProperty(key) && this.tags[key].selected) {
@@ -140,7 +140,7 @@
         evt.stopPropagation();
 
         // Navigate the window and fire `location-changed` for app-location
-        window.history.pushState(null, null, '/#/elements/' + evt.model.item.name);
+        window.history.pushState(null, null, '/#/modules/' + evt.model.item.name);
         window.dispatchEvent(new CustomEvent('location-changed'));
       },
 

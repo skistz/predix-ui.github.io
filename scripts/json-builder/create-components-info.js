@@ -31,7 +31,8 @@ const getFiles = source =>
 
 
 //FINE DEMO FILE
-const githubData = require('./../../pages/component-gallery/repo-data.json');
+const githubData = path.resolve(__dirname + '/../../pages/component-gallery/repo-data.json');
+
 const MATCHES_PX_DESIGN_RE = /\-design$/;
 const ExcludedComponentsArray = [
   "px-app-route",
