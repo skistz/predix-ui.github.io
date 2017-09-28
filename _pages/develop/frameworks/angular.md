@@ -109,7 +109,7 @@ The same binding syntax as above can be used to pass data to a Predix Design Sys
 <px-data-table [tableData]="data"></px-data-table>
 ```
 
-*Note:* you may notice the `property="[[value]]"` or `property="{{value}}"` syntax in our documentation or code for a Predix web component. These are Polymer syntax for 1-way and 2-way data binding, respectively, and should not be confused with the Angular syntax of `[property]="value"` for property binding or the `{{value}}` syntax for template interpolation.
+*Note:* you may notice in the Predix code or documentation that the [Polymer syntax for property binding](https://www.polymer-project.org/1.0/docs/devguide/data-binding) is similar to the Angular syntax for interpolation. Be sure to use the correct Angular syntax for property binding as illustrated above.
 
 ## Respond to component events
 
