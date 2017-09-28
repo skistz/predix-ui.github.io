@@ -1,6 +1,7 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 <link defer rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link defer rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
+<link defer rel="import" href="../../bower_components/iron-image/iron-image.html" />
 
 <!-- Styles -->
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
@@ -40,7 +41,7 @@
               hoverable>
               <picture  slot="thumbnail">
                 <source srcset="{{item.imageUrl}}_{{themeName}}.webp" type="image/webp">
-                <img src="{{item.imageUrl}}_{{themeName}}.png" srcset="{{item.imageUrl}}_{{themeName}}@2x.png"  alt="{{item.imageAlt}}">
+                <iron-image src$="{{item.imageUrl}}_{{themeName}}.png" srcset="{{item.imageUrl}}_{{themeName}}@2x.png"  alt="{{item.imageAlt}}"></iron-image>
               </picture>
               <div class="footer" slot="footer">
                 <px-icon icon="px-fea:tag"></px-icon>
