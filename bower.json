@@ -141,7 +141,7 @@
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
     "promise-polyfill": "^2.0.0",
-    "iron-location": "1 - 2",
+    "iron-location": "https://github.com/PredixDev/iron-location",
     "px-api-viewer": "^2.0.3",
     "iron-doc-viewer": "^3.0.0",
     "px-code-editor": "^3.0.0",

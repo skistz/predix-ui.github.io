@@ -59,6 +59,9 @@ $inuit-enable-btn--tertiary : true;
   font-size: 30px;
 }
 
+.home-text-w-photo {
+  min-width: 200px;
+}
 
 /*******************************************************************************
  * HERO IMAGE
@@ -91,4 +94,5 @@ $inuit-enable-btn--tertiary : true;
 
 //trumps
 $inuit-enable-margins : true;
+$inuit-enable-margins--large : true;
 @import 'px-spacing-design/_trumps.spacing.scss';

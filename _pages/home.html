@@ -5,6 +5,7 @@
 <link defer rel="import" href="../css/predix-ui-homepage-styles.html" />
 <link defer rel="import" href="../bower_components/px-theme/px-theme-styles.html">
 <link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
+<link defer rel="import" href="../bower_components/iron-image/iron-image.html" />
 <link defer rel="import" href="../elements/px-hero-image/px-hero-image.html" />
 <link defer rel="import" href="../elements/px-lazy-load/px-lazy-load-behavior.html" />
 
@@ -33,19 +34,30 @@
         <div class="layout__item home-subsection">
           <span class="home-sub-header">Take a Tour</span>
           <div class="layout">
-            <p class="layout__item u-mr">Get a high level overview of the components and many of the style helpers offered by the Predix Design System.</p>
-            <img class="js-lazy-image" data-src="../img/gallery.png" alt="Gallery">
+            <div class="layout__item">
+              <p class="home-text-w-photo">Get a high level overview of the components and many of the style helpers offered by the Predix Design System.</p>
+              <a href="#/gallery"><button class="btn btn--tertiary">View the Gallery</button></a>
+            </div>
+            <picture class="u-mt+ u-ml">
+              <source srcset="../img/home-page/gallery_{{themeName}}.webp" type="image/webp">
+              <iron-image src="../img/home-page/gallery_{{themeName}}.png" srcset="../img/home-page/gallery_{{themeName}}@2x.png"  alt="application example"></iron-image>
+            </picture>
           </div>
-          <a href="#/gallery"><button class="btn btn--tertiary">View the Gallery</button></a>
         </div>
+
         <div class="layout__item home-subsection">
           <span class="home-sub-header">Design Starter Kit</span>
           <div class="layout">
-            <p class="layout__item u-mr">A Sketch file that contains core layouts, components, colors and fonts. The Design Starter Kit makes designing
-              a consistent app simple.</p>
-            <img class="js-lazy-image" data-src="../img/sketch_stencil.png" alt="Sketch Kit">
+            <div class="layout__item">
+              <p class="home-text-w-photo">A Sketch file that contains core layouts, components, colors and fonts. The Design Starter Kit makes designing
+                a consistent app simple.</p>
+              <a href="#/about/start-designing"><button class="btn btn--tertiary">Download the Starter Kit</button></a>
+            </div>
+            <picture class="u-mt+ u-ml">
+              <source srcset="../img/home-page/sketch_stencil.webp" type="image/webp">
+              <iron-image src="../img/home-page/sketch_stencil.png" srcset="../img/home-page/sketch_stencil@2x.png"  alt="application example"></iron-image>
+            </picture>
           </div>
-          <a href="#/about/start-designing"><button class="btn btn--tertiary">Download the Starter Kit</button></a>
         </div>
       </div>
 
@@ -57,7 +69,6 @@
           <div class="layout">
             <p class="layout__item u-mr">The Predix Design System is built using modern web component standards so developers can start using our building
               blocks with minimal ramp-up.</p>
-            <img class="js-lazy-image" data-src="../img/using_the_system.png" alt="Web Components">
           </div>
           <a href="#/about/start-developing"><button class="btn btn--tertiary">Start Developing</button></a>
         </div>
@@ -104,7 +115,12 @@
           type: Boolean,
           reflectToAttribute: true,
           observer: 'darkThemeChanged'
-        }
+        },
+        themeName:{
+          type: String,
+          value: "light",
+          computed: "_getThemeName(darkTheme)"
+        },
       },
 
       darkThemeChanged: function(isDarkTheme) {
@@ -119,6 +135,10 @@
         else if (isDarkTheme === false) {
           heroImageEl.removeAttribute('dark');
         }
+      },
+
+      _getThemeName: function(darkTheme){
+        return darkTheme ? "dark" : "light";
       }
     });
   </script>

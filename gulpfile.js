@@ -440,15 +440,16 @@ gulp.task('compress-images', function(){
     './_pages/develop/vis/vis-resources',
     './img/gallery',
     './img/guidelines',
+    './img/home-page',
     './pages/migration/img'
   ];
 
   imgFolders.forEach((folder) =>{
-    imagemin([`img/component-gallery/*.png`], `img/component-gallery`, {
-      plugins: [
-        upng({ cnum: 64 }), // reduce to 64 bit-depth
-      ]
-    });
+    // imagemin([`img/component-gallery/*.png`], `img/component-gallery`, {
+    //   plugins: [
+    //     upng({ cnum: 64 }), // reduce to 64 bit-depth
+    //   ]
+    // });
     imagemin([`${folder}/*.png`], folder, {
       plugins: [
         webp({ lossless: true }), // Losslessly encode images
