@@ -6,6 +6,8 @@
 <link defer rel="import" href="../bower_components/px-theme/px-theme-styles.html">
 <link async rel="import" href="../bower_components/px-demo/px-demo-footer.html" />
 <link defer rel="import" href="../elements/px-hero-image/px-hero-image.html" />
+<link defer rel="import" href="../elements/px-lazy-load/px-lazy-load-behavior.html" />
+
 
 
 <dom-module id="view-home">
@@ -33,11 +35,7 @@
           <div class="layout">
             <p class="layout__item u-mr">A Sketch file that contains core layouts, components, colors and fonts. The Design Starter Kit makes designing
               a consistent app simple.</p>
-            <picture class="layout__item u-mt">
-              <source srcset="../img/sketch_stencil.webp" type="image/webp">
-              <source srcset="../img/sketch_stencil.png" type="image/png">
-              <img src="../img/sketch_stencil.png" alt="Sketch Kit">
-            </picture>
+            <img class="js-lazy-image" data-src="../img/sketch_stencil.png" alt="Sketch Kit">
           </div>
           <a href="#/about/start-designing"><button class="btn btn--tertiary">Download the Starter Kit</button></a>
         </div>
@@ -46,11 +44,7 @@
           <div class="layout">
             <p class="layout__item u-mr">The Predix Design System is built using modern web component standards so developers can start using our building
               blocks with minimal ramp-up.</p>
-            <picture class="layout__item u-mt">
-              <source srcset="../img/using_the_system.webp" type="image/webp">
-              <source srcset="../img/using_the_system.png" type="image/png">
-              <img src="../img/using_the_system.png" alt="Web Components">
-            </picture>
+            <img class="js-lazy-image" data-src="../img/using_the_system.png" alt="Web Components">
           </div>
           <a href="#/about/start-developing"><button class="btn btn--tertiary">Start Developing</button></a>
         </div>
@@ -67,11 +61,7 @@
           <a href="https://github.com/predixDev/?utf8=%E2%9C%93&query=px" target="_blank" rel="noopener"><button class="btn btn--tertiary">Predix UI on GitHub </button></a>
         </div>
         <div class="layout__item home-subsection">
-          <picture>
-            <source srcset="../img/Github-seed-shot.webp" type="image/webp">
-            <source srcset="../img/Github-seed-shot.png" type="image/png">
-            <img src="../img/Github-seed-shot.png" alt="Github Predix Seed">
-          </picture>
+          <img class="js-lazy-image" data-src="../img/Github-seed-shot.png" alt="Github Predix Seed">
         </div>
       </div>
 
@@ -99,6 +89,7 @@
   <script>
     Polymer({
       is: 'view-home',
+      behaviors:[PxLazyLoadBehavior],
       properties: {
         darkTheme: {
           type: Boolean,

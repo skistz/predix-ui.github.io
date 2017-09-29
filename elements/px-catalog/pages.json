@@ -235,6 +235,15 @@
             ]
           },
           {
+            "path": "configure-axis",
+            "label": "Configure Axis",
+            "module": "view-develop-vis-configure-axis",
+            "entrypoint": "/pages/develop/vis/configure-axis.html",
+            "redirects": [
+              "/guides/vis-guides-axis"
+            ]
+          },
+          {
             "path": "configure-toolbar",
             "label": "Configure Toolbar",
             "module": "view-develop-vis-configure-toolbar",
@@ -334,6 +343,24 @@
             "redirects": [
               "/migration/vis-migration"
             ]
+          }
+        ]
+      },
+      {
+        "path": "frameworks",
+        "label": "Use with JS frameworks",
+        "pages": [
+          {
+            "path": "angular",
+            "label": "Angular",
+            "module": "view-develop-frameworks-angular",
+            "entrypoint": "/pages/develop/frameworks/angular.html"
+          },
+          {
+            "path": "vue",
+            "label": "Vue",
+            "module": "view-develop-frameworks-vue",
+            "entrypoint": "/pages/develop/frameworks/vue.html"
           }
         ]
       },
@@ -1283,6 +1310,24 @@
               "mobile"
             ]
           }
+        ]
+      },
+      {
+        "path": "px-chip",
+        "label": "Chip",
+        "module": "px-chip-demo",
+        "entrypoint": "/bower_components/px-chip/demo/px-chip-demo.html",
+        "redirects": [
+          "/components/px-chip",
+          "/modules/px-chip"
+        ],
+        "keywords": [
+          "px-chip",
+          "token",
+          "pill",
+          "filter",
+          "tag",
+          "label"
         ]
       },
       {

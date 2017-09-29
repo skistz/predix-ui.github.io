@@ -1,3 +1,7 @@
+v0.2.27
+==================
+* add chip to navigation
+
 v0.2.26
 ==================
 * add  heatmap grid to navigation

@@ -368,6 +368,11 @@
     "entryPoint": "bower_components/px-widget-cards/demo/px-widget-cards-demo.html"
   },
   {
+    "componentName": "px-chip",
+    "label": "Chip",
+    "entryPoint": "bower_components/px-chip/demo/px-chip-demo.html"
+  },
+  {
     "componentName": "px-clipboard",
     "label": "Clipboard",
     "tags": [

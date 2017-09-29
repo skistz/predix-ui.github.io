@@ -328,6 +328,13 @@
     ]
   },
   {
+    "name": "px-chip",
+    "title": "Chip",
+    "description": "A chip is a representation of an object or a series of information. For example, a chip can be used to represent a contact or a filter. Use a chip in order to represent complex information in a compact way.",
+    "imageUrl": "../img/component-gallery/chip",
+    "imageAlt": "Chip thumbnail"
+  },
+  {
     "name": "px-clipboard",
     "title": "Clipboard",
     "description": "Px-clipboard is used to quickly and easily cut/copy text onto the user's clipboard.     The value to be cut/copied must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from.     If the copy-from attribute does not exist, the data-clipboard-text property must be used.",

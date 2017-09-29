@@ -2,7 +2,7 @@
   "name": "px-demo-site",
   "author": "General Electric",
   "description": "A catalog of Px components",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "private": false,
   "extName": null,
   "repository": {
@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "merge-stream": "^1.0.1",
-    "polymer-analyzer": "^2.2.2"
+    "polymer-analyzer": "^2.2.2",
+    "polymer-cli": "^1.5.2"
   }
 }
