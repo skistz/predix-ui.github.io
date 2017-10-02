@@ -1,3 +1,7 @@
+v0.3.0
+==================
+* added component gallery
+
 v0.2.27
 ==================
 * add chip to navigation
