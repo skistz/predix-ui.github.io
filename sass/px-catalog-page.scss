@@ -87,6 +87,10 @@ $px-catalog-page-padding-horizontal: 50px;
   margin-bottom: auto;
 }
 
+.page--full-width {
+  max-width: 100%;
+}
+
 .page-anchors {
   display: none;
 
@@ -301,4 +305,3 @@ td {
 td + td {
 	padding-left: calculateRem(20px);
 }
-

@@ -5,11 +5,11 @@
 
 <!-- Styles -->
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
-<link defer rel="import" href="../../css/component-gallery-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-page-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-component-gallery-styles.html" />
 
 <link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
-<link defer rel="import" href="../../bower_components/px-dropdown/px-dropdown.html">
 <link defer rel="import" href="../../bower_components/px-chip/px-chip.html">
 
 
@@ -17,23 +17,24 @@
   <template>
     <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
     <style include="px-theme-styles"></style>
-    <style include="component-gallery-styles"></style>
+    <style include="px-catalog-page-styles"></style>
+    <style include="px-catalog-component-gallery-styles"></style>
 
 
     <iron-ajax auto url="tile-data.json" last-response="{{tileData}}"></iron-ajax>
 
-    <div class="page">
+    <div class="page page--full-width">
 
       <p class="heading--page u-m0">Gallery</p>
       <p class="u-m--">See below for some examples of the Predix Design System components and CSS modules that are available. Click an item below, or use the search bar and menu to the left for more information.</p>
       <template is="dom-repeat" items="{{tags}}">
-        <px-chip class="chip" content="{{item.name}}" selected="{{item.selected}}" dark-theme$="[[darkTheme]]"></px-chip>
+        <px-chip class="component-gallery__chip" content="{{item.name}}" selected="{{item.selected}}" dark-theme$="[[darkTheme]]"></px-chip>
       </template>
-      <hr class="hr">
+      <hr class="component-gallery__hr">
 
-      <div class="layout">
+      <div class="layout component-gallery__layout">
         <template is="dom-repeat" initial-count="2" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
-          <a class="layout__item" href$="/#/modules/{{item.name}}">
+          <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
             <px-tile
               dark-theme$="[[darkTheme]]"
               title="{{item.title}}"
