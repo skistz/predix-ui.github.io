@@ -194,7 +194,7 @@ This task now does the following:
 
 And... you probably want to run \`gulp serve\` instead of this task. :)
     `);
-  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'generate-service-worker')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'generate-service-worker')(callback);
 });
 
 /*******************************************************************************
@@ -241,17 +241,18 @@ And... you probably want to run \`gulp serve\` instead of this task. :)
      });
  });
 
-gulp.task('gitRepos', function(cb) {
-  request({
-    uri: 'https://api.github.com/teams/1779164/repos?per_page=100&page=1',
-    method: 'GET',
-    headers: {
-      "User-Agent" : "predix-ui.github.io"
-    }
-  }, function(err, res, body) {
-    fs.writeFile('_pages/component-gallery/repo-data.json', res.body, cb);
-  });
-});
+//Gets the api data from github
+// gulp.task('gitRepos', function(cb) {
+//   request({
+//     uri: 'https://api.github.com/teams/1779164/repos?per_page=100&page=1',
+//     method: 'GET',
+//     headers: {
+//       "User-Agent" : "predix-ui.github.io"
+//     }
+//   }, function(err, res, body) {
+//     fs.writeFile('_pages/component-gallery/repo-data.json', res.body, cb);
+//   });
+// });
 
 gulp.task('resetCloudflareCache', function() {
   var cloudflare_zone_identifier = process.env.cloudflare_zone_identifier,
@@ -324,7 +325,7 @@ gulp.task('polymerBuild', function (cb) {
  ******************************************************************************/
 
 gulp.task('localBuild', function(callback) {
-  gulpSequence('sass', 'docs', 'generate-api', 'gitRepos', 'gallery-json', 'generate-service-worker', 'polymerBuild')(callback);
+  gulpSequence('sass', 'docs', 'generate-api', 'gallery-json', 'generate-service-worker', 'polymerBuild')(callback);
 });
 
 /*******************************************************************************
@@ -335,7 +336,7 @@ gulp.task('localBuild', function(callback) {
  ******************************************************************************/
 
 gulp.task('prodBuild', function(callback) {
-   gulpSequence('sass', 'docs', 'generate-api', 'polymerBuild', 'cleanRoot', 'moveBuildToRoot', 'cleanBuild', 'gitRepos', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
+   gulpSequence('sass', 'docs', 'generate-api', 'polymerBuild', 'cleanRoot', 'moveBuildToRoot', 'cleanBuild', 'generate-service-worker', 'gitStuff', 'resetCloudflareCache')(callback);
 });
 
 /*******************************************************************************

@@ -10,6 +10,7 @@
 
 // Settings
 @import "px-defaults-design/_settings.defaults.scss";
+@import "px-helpers-design/_generic.helpers.scss";
 
 // Component
 :host {
@@ -25,9 +26,10 @@
   margin: -1rem;
 }
 
-.component-gallery__layout .component-gallery__layout__item {
+//need to overwrite the px-layout-design flex styles with !important
+.component-gallery__layout .component-gallery__layout__item{
   padding: 15px;
-  flex: 0 0 auto;
+  flex: 0 0 auto !important;
   text-decoration: none;
   min-width: 300px;
 }
@@ -38,8 +40,13 @@
   display: inline-block;
 }
 
-px-icon {
+.component-gallery_icon {
   margin-right: 0.66667rem;
   --iron-icon-height: calculateRem(22px);
   --iron-icon-width: calculateRem(22px);
+}
+
+.component-gallery_tile-footer {
+  display: flex;
+  align-items: center;
 }

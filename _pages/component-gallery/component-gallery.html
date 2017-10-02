@@ -1,7 +1,6 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 <link defer rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link defer rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
-<link defer rel="import" href="../../bower_components/iron-image/iron-image.html" />
 
 <!-- Styles -->
 <link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html">
@@ -33,7 +32,7 @@
       <hr class="component-gallery__hr">
 
       <div class="layout component-gallery__layout">
-        <template is="dom-repeat" initial-count="2" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
+        <template is="dom-repeat" initial-count="3" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
           <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
             <px-tile
               dark-theme$="[[darkTheme]]"
@@ -42,10 +41,10 @@
               hoverable>
               <picture  slot="thumbnail">
                 <source srcset$="[[_computeImageUrlWebp(item.imageUrl, themeName)]]" type="image/webp">
-                <img src$="[[_computeImageUrlPng(item.imageUrl, themeName)]]" alt="image" style="width:300px; height:175px" sizing="cover"></img>
+                <img src$="[[_computeImageUrlPng(item.imageUrl, themeName)]]" srcset$="[[_computeImageUrlPng2x(item.imageUrl, themeName)]]" alt="image"></img>
               </picture>
-              <div class="footer" slot="footer">
-                <px-icon icon="px-fea:tag"></px-icon>
+              <div class="component-gallery_tile-footer" slot="footer">
+                <px-icon class="component-gallery_icon" icon="px-fea:tag"></px-icon>
                 <ul class="list-inline">
                   <template is="dom-repeat" items="{{item.tags}}" as="tag">
                     <li class="caps zeta">{{tag}}</li>
@@ -109,6 +108,11 @@
         }
       },
       _computeImageUrlPng: function(url, theme) {
+        if (typeof url === 'string' && typeof theme === 'string') {
+          return url + '_' + theme + '.png';
+        }
+      },
+      _computeImageUrlPng2x: function(url, theme) {
         if (typeof url === 'string' && typeof theme === 'string') {
           return url + '_' + theme + '@2x.png';
         }
