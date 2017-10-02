@@ -40,8 +40,8 @@
               description="{{item.description}}"
               hoverable>
               <picture  slot="thumbnail">
-                <source srcset="{{item.imageUrl}}_{{themeName}}.webp" type="image/webp">
-                <iron-image src="{{item.imageUrl}}_{{themeName}}@2x.png" alt="image" style="width:300px; height:175px" sizing="cover"></iron-image>
+                <source srcset$="[[_computeImageUrlWebp(item.imageUrl, themeName)]]" type="image/webp">
+                <img src$="[[_computeImageUrlPng(item.imageUrl, themeName)]]" alt="image" style="width:300px; height:175px" sizing="cover"></img>
               </picture>
               <div class="footer" slot="footer">
                 <px-icon icon="px-fea:tag"></px-icon>
@@ -100,6 +100,16 @@
           type: Boolean,
           value: true,
           reflectToAttribute: true
+        }
+      },
+      _computeImageUrlWebp: function(url, theme) {
+        if (typeof url === 'string' && typeof theme === 'string') {
+          return url + '_' + theme + '.webp';
+        }
+      },
+      _computeImageUrlPng: function(url, theme) {
+        if (typeof url === 'string' && typeof theme === 'string') {
+          return url + '_' + theme + '@2x.png';
         }
       },
       _computeSort: function(sortMode) {
