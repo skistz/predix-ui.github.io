@@ -41,7 +41,7 @@
               hoverable>
               <picture  slot="thumbnail">
                 <source srcset="{{item.imageUrl}}_{{themeName}}.webp" type="image/webp">
-                <iron-image src$="{{item.imageUrl}}_{{themeName}}.png" srcset="{{item.imageUrl}}_{{themeName}}@2x.png"  alt="{{item.imageAlt}}"></iron-image>
+                <iron-image src="{{item.imageUrl}}_{{themeName}}@2x.png" alt="image" style="width:300px; height:175px" sizing="cover"></iron-image>
               </picture>
               <div class="footer" slot="footer">
                 <px-icon icon="px-fea:tag"></px-icon>
@@ -135,15 +135,7 @@
             }
           }
         }
-      },
-      _handleLinkTapped: function(evt) {
-        // evt.preventDefault();
-        // evt.stopPropagation();
-
-        // // Navigate the window and fire `location-changed` for app-location
-        // window.history.pushState(null, null, '/#/modules/' + evt.model.item.name);
-        // window.dispatchEvent(new CustomEvent('location-changed'));
-      },
+      }
 
     });
   </script>

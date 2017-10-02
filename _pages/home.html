@@ -40,7 +40,7 @@
             </div>
             <picture class="u-mt+ u-ml">
               <source srcset="../img/home-page/gallery_{{themeName}}.webp" type="image/webp">
-              <iron-image src="../img/home-page/gallery_{{themeName}}.png" srcset="../img/home-page/gallery_{{themeName}}@2x.png"  alt="application example"></iron-image>
+              <img src="../img/home-page/gallery_{{themeName}}.png" srcset="../img/home-page/gallery_{{themeName}}@2x.png"  width="300" alt="application example"></img>
             </picture>
           </div>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <picture class="u-mt+ u-ml">
               <source srcset="../img/home-page/sketch_stencil.webp" type="image/webp">
-              <iron-image src="../img/home-page/sketch_stencil.png" srcset="../img/home-page/sketch_stencil@2x.png"  alt="application example"></iron-image>
+              <iron-image src="../img/home-page/sketch_stencil.png" alt="application example"></iron-image>
             </picture>
           </div>
         </div>
@@ -109,7 +109,6 @@
   <script>
     Polymer({
       is: 'view-home',
-      behaviors:[PxLazyLoadBehavior],
       properties: {
         darkTheme: {
           type: Boolean,
@@ -120,7 +119,7 @@
           type: String,
           value: "light",
           computed: "_getThemeName(darkTheme)"
-        },
+        }
       },
 
       darkThemeChanged: function(isDarkTheme) {
