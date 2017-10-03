@@ -7,7 +7,7 @@ layout: default
 
 # Q2 2017 Release
 
-Introducing the Predix Design System refresh which brings a more contemporary and sophisticated visual style to the Predix Design System and more diversity of design patterns.
+Introducing Cirrus the new aesthetic for the Predix Design System which brings a more contemporary and sophisticated visual style to and more diversity of design patterns.
 
 Included in this release is:
 * New visual language for all components
@@ -28,19 +28,19 @@ We’re really excited about the new designs, and very much appreciative of all 
 
 # FAQ
 
-### Q: Why release a Refresh to the Predix Design System?
+### Q: Why release a new aesthetic to the Predix Design System?
 A: The previous Predix Design System was over 2 years old. Based on learnings and feedback from our users, we were excited to collaborate with our community to release a more contemporary and sophisticated visual style.
 
-### Q: I’m using a pre-Refresh Predix UI component, can I still use this version and make a fix or enhancement to it myself?
-A: Yes you can but you should also make the fix/enhancement in the Design Refresh version of the component.
+### Q: I’m using a pre-Cirrus Predix UI component, can I still use this version and make a fix or enhancement to it myself?
+A: Yes you can but you should also make the fix/enhancement in the Cirrus version of the component.
 
-### Q: I need the Predix UI team to make an enhancement to a component or chart. Can you do this on the pre-Refresh component?
-A: No. We are maintaining and enhancing only the Design Refresh version of the components going forward. Please contact the Predix UI team if there is an urgent business case for your request.
+### Q: I need the Predix UI team to make an enhancement to a component or chart. Can you do this on the pre-Cirrus component?
+A: No. We are maintaining and enhancing only the Cirrus version of the components going forward. Please contact the Predix UI team if there is an urgent business case for your request.
 
-### Q: Can I take one of the Design Refresh components or charts without upgrading all of my components?
-A: No –there are dependencies between components, so this is not recommended. You should upgrade your app to be in sync and have a harmonious user experience.
+### Q: Can I take one of the Cirrus components or charts without upgrading all of my components?
+A: No. There are dependencies between components, so this is not recommended. You should upgrade your app to be in sync and have a harmonious user experience.
 
-### Q: I have other non-Predix UI components mixed in with Predix UI components in my application, how do I apply Refresh to these?
+### Q: I have other non-Predix UI components mixed in with Predix UI components in my application, how do I apply Cirrus to these?
 A: There are Design Guidelines to help your designers to redesign these components and Predix UI designers have internal office hours to support.
 
 ### Q: I have a need for a design that is not part of the Predix Design System? How can I get this included?

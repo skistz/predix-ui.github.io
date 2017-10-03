@@ -285,7 +285,7 @@
       },
       {
         "path": "migrate",
-        "label": "Design Refresh Migration",
+        "label": "Cirrus Migration",
         "pages": [
           {
             "path": "api-changes",
@@ -297,7 +297,8 @@
               "new",
               "release",
               "updates",
-              "design refresh"
+              "design refresh",
+              "Cirrus"
             ],
             "redirects": [
               "/migration/api-changes"

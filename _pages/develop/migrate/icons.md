@@ -8,9 +8,9 @@ layout: default
 This guide addresses how to use icons in the Predix Design System.
 
 # <px-icon icon="px-fea:alerts"></px-icon> What changed
-Before the design refresh, Predix Design System relied on Font Awesome icons. Font Awesome was both shipped as part of the design system and many components had customization options where developers could specify Font Awesome icon names to get them to display in the component.
+Before Cirrus, the Predix Design System relied on Font Awesome icons. Font Awesome was both shipped as part of the design system and many components had customization options where developers could specify Font Awesome icon names to get them to display in the component.
 
-Now, the design refresh introduced several beautiful sets of custom icons which have been designed specifically for industrial applications and equipment. The native use of Font Awesome icons in Predix Design System components has been deprecated. When dealing with components, now you will need to specify PX Icon names instead of Font Awesome icon names.
+Now, Cirrus introduced several beautiful sets of custom icons which have been designed specifically for industrial applications and equipment. The native use of Font Awesome icons in Predix Design System components has been deprecated. When dealing with components, now you will need to specify PX Icon names instead of Font Awesome icon names.
 
 <div class="guidelines">
   <px-icon icon="px-obj:rail-yard"></px-icon>
