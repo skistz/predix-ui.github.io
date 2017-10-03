@@ -8,9 +8,9 @@ layout: default
 This guide addresses how to apply a theme to your page.
 
 # What changed
-Before the design refresh, Predix Design System components shipped with built in Predix Design System colors, fonts, etc as defaults. We've allowed end developers to apply custom themes for a while, but you didnt have to.
+Before Cirrus, the Predix Design System components shipped with built in Predix Design System colors, fonts, etc as defaults. We've allowed end developers to apply custom themes for a while, but you didnt have to.
 
-Now, as part of the design refresh, you MUST apply a theme. The components no longer ship with Predix defaults, so if you do not apply a theme, the components will have generic colors and fonts.
+Now, as part of Cirrus, you MUST apply a theme. The components no longer ship with Predix defaults, so if you do not apply a theme, the components will have generic colors and fonts.
 
 <div class="halves guidelines">
   <catalog-picture title="chart-unthemed" img-src="/pages/develop/migrate/img/chart-unthemed" caption="Example of a chart unthemed">
