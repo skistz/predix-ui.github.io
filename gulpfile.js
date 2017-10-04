@@ -313,6 +313,7 @@ gulp.task('polymerBuild', function (cb) {
     console.log(stderr);
     fse.copySync('bower_components/pxd3/d3.min.js', 'build/default/bower_components/pxd3/d3.min.js');
     fse.copySync('bower_components/px-demo-snippet/px-demo-snippet.html', 'build/default/bower_components/px-demo-snippet/px-demo-snippet.html');
+    fse.copySync('bower_components/px-app-helpers/px-app-header/demo.html', 'build/default/bower_components/px-app-helpers/px-app-header/demo.html');
     cb(err);
   });
 
@@ -399,7 +400,12 @@ gulp.task('moveBuildToRoot', function () {
                        rootDir + '/bower_components/app-localize-behavior/app-localize-behavior.html',
                        rootDir + '/bower_components/iron-media-query/iron-media-query.html',
                        rootDir + '/bower_components/px-alert-message/**/*.html',
+                       rootDir + '/bower_components/px-alert-label/**/*.html',
                        rootDir + '/bower_components/px-dark-theme/**/*.html',
+                       rootDir + '/bower_components/iron-form-element-behavior/iron-form-element-behavior.html',
+                       rootDir + '/bower_components/iron-validatable-behavior/iron-validatable-behavior.html',
+                       rootDir + '/bower_components/iron-pages/iron-pages.html',
+                       rootDir + '/bower_components/intl-messageformat/dist/intl-messageformat.min.js',
                        rootDir + '/bower_components/px-dark-demo-theme/**/*.html',
                        rootDir + '/bower_components/px-demo/*.{html, png}',
                        rootDir + '/bower_components/px-demo/css/*.html',
@@ -422,7 +428,8 @@ gulp.task('moveBuildToRoot', function () {
                        rootDir + '/bower_components/iron-flex-layout/iron-flex-layout.html',
                        rootDir + '/bower_components/iron-resizable-behavior/iron-resizable-behavior.html',
                        rootDir + '/bower_components/px-icon-set/*.html',
-                       rootDir + '/bower_components/px-toggle/**/*.{html, js}'],
+                       rootDir + '/bower_components/px-demo/monogram-wdmk.png',
+                       rootDir + '/bower_components/px-toggle/**/*.{html,js}'],
      stripPrefix: rootDir,
      maximumFileSizeToCacheInBytes: 6000000, //this needed so hydrolysis is cached...
     //  templateFilePath: rootDir + '/sw.tmpl',
