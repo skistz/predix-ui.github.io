@@ -37,10 +37,7 @@
               <p class="home-text-w-photo">Get a high level overview of the components and many of the style helpers offered by the Predix Design System.</p>
               <a href="#/gallery"><button class="btn btn--tertiary">View the Gallery</button></a>
             </div>
-            <picture class="u-mt+ u-ml">
-              <source srcset="../img/home-page/gallery_{{themeName}}.webp" type="image/webp">
-              <img src="../img/home-page/gallery_{{themeName}}.png" srcset="../img/home-page/gallery_{{themeName}}@2x.png"  width="300" alt="application example"></img>
-            </picture>
+            <img class="js-lazy-image home-image-scale u-mt+ u-ml" data-src="[[_computeGalleryImage(themeName)]]" alt="Gallery">
           </div>
         </div>
 
@@ -52,10 +49,7 @@
                 a consistent app simple.</p>
               <a href="#/about/start-designing"><button class="btn btn--tertiary">Download the Starter Kit</button></a>
             </div>
-            <picture class="u-mt+ u-ml">
-              <source srcset="../img/home-page/design-starter-kit_{{themeName}}.webp" type="image/webp">
-              <img src="../img/home-page/design-starter-kit_{{themeName}}.png" srcset="../img/home-page/design-starter-kit_{{themeName}}@2x.png"  width="300" alt="mockup in sketch"></img>
-            </picture>
+            <img class="js-lazy-image home-image-scale u-mt+ u-ml" data-src="[[_computeStarterKitImage(themeName)]]" alt="Mockup in sketch">
           </div>
         </div>
       </div>
@@ -108,6 +102,7 @@
   <script>
     Polymer({
       is: 'view-home',
+      behaviors: [PxLazyLoadBehavior],
       properties: {
         darkTheme: {
           type: Boolean,
@@ -117,8 +112,35 @@
         themeName:{
           type: String,
           value: "light",
-          computed: "_getThemeName(darkTheme)"
+          computed: "_getThemeName(darkTheme)",
+          observer: '_resetLazyLoad'
         }
+      },
+      attached: function(){
+        this._runLazyLoad();
+      },
+      _computeGalleryImage: function(theme) {
+        if (typeof theme === 'string') {
+          return '../img/home-page/gallery_' + theme + '.png';
+        }
+      },
+      _computeStarterKitImage: function(theme) {
+        if (typeof theme === 'string') {
+          return '../img/home-page/design-starter-kit_' + theme + '.png';
+        }
+      },
+      /*
+       * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
+       */
+      _runLazyLoad: function(){
+        this._setIntersectionObserver();
+      },
+      /*
+       * `_resetImages` defined inside PxLazyLoadBehavior
+       */
+      _resetLazyLoad: function(){
+        this._resetImages();
+        this._runLazyLoad();
       },
 
       darkThemeChanged: function(isDarkTheme) {

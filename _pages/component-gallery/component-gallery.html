@@ -10,6 +10,7 @@
 <link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
 <link defer rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
 <link defer rel="import" href="../../bower_components/px-chip/px-chip.html">
+<link defer rel="import" href="../../elements/px-lazy-load/px-lazy-load-behavior.html" />
 
 
 <dom-module id="view-component-gallery">
@@ -32,17 +33,14 @@
       <hr class="component-gallery__hr">
 
       <div class="layout component-gallery__layout">
-        <template is="dom-repeat" initial-count="3" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
+        <template is="dom-repeat" id="tileRepeat" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
           <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
             <px-tile
               dark-theme$="[[darkTheme]]"
               title="{{item.title}}"
               description="{{item.description}}"
               hoverable>
-              <picture  slot="thumbnail">
-                <source srcset$="[[_computeImageUrlWebp(item.imageUrl, themeName)]]" type="image/webp">
-                <img src$="[[_computeImageUrlPng(item.imageUrl, themeName)]]" srcset$="[[_computeImageUrlPng2x(item.imageUrl, themeName)]]" alt="image"></img>
-              </picture>
+              <img slot="thumbnail" class="js-lazy-image" data-src="[[_computeImageUrlPng(item.imageUrl, themeName)]]" alt="">
               <div class="component-gallery_tile-footer" slot="footer">
                 <px-icon class="component-gallery_icon" icon="px-fea:tag"></px-icon>
                 <ul class="list-inline">
@@ -63,6 +61,7 @@
   <script>
     Polymer({
       is: 'view-component-gallery',
+      behaviors: [PxLazyLoadBehavior],
       properties: {
         tileData: {
           type: Array
@@ -77,7 +76,8 @@
         themeName:{
           type: String,
           value: "light",
-          computed: "_getThemeName(darkTheme)"
+          computed: "_getThemeName(darkTheme)",
+          observer: '_resetLazyLoad'
         },
         tags: {
           type: Array,
@@ -102,19 +102,28 @@
           reflectToAttribute: true
         }
       },
-      _computeImageUrlWebp: function(url, theme) {
-        if (typeof url === 'string' && typeof theme === 'string') {
-          return url + '_' + theme + '.webp';
-        }
+      attached: function(){
+        this.listen(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+      },
+      detached: function(){
+        this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+      },
+      /*
+       * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
+       */
+      _runLazyLoad: function(){
+        this._setIntersectionObserver();
+      },
+      /*
+       * `_resetImages` defined inside PxLazyLoadBehavior
+       */
+      _resetLazyLoad: function(){
+        this._resetImages();
+        this._runLazyLoad();
       },
       _computeImageUrlPng: function(url, theme) {
         if (typeof url === 'string' && typeof theme === 'string') {
           return url + '_' + theme + '.png';
-        }
-      },
-      _computeImageUrlPng2x: function(url, theme) {
-        if (typeof url === 'string' && typeof theme === 'string') {
-          return url + '_' + theme + '@2x.png';
         }
       },
       _computeSort: function(sortMode) {

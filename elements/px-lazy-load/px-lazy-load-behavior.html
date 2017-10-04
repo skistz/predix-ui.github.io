@@ -17,10 +17,16 @@
             return false;
           }
         }
+      },
+      _isRetina: {
+        type: Boolean,
+        value: function(){
+          return (window.devicePixelRatio > 1) ? true : false;
+        }
       }
     },
 
-    ready: function() {
+    _setIntersectionObserver: function(){
       // Get all of the images that are marked up to lazy load
       this._images = Polymer.dom(this.root).querySelectorAll('.js-lazy-image');
       this._config = {
@@ -41,10 +47,6 @@
         // foreach() is not supported in IE
         for (let i = 0; i < this._images.length; i++) {
           let image = this._images[i];
-          if (image.classList.contains('js-lazy-image--handled')) {
-            continue;
-          }
-
           this._observer.observe(image);
         }
       }
@@ -68,15 +70,30 @@
      * @param {object} image
      */
     _preloadImage: function(image) {
-      let src = image.dataset.src;
+      let src = image.dataSrc;
       if (!src) {
         return;
       }
+      src = this._getImageType(src);
 
-      if(this._canUseWebP){
-        src = `${src.slice(0,src.lastIndexOf('.'))}.webp`;
-      }
+      // check to see if the image as already been loaded
+      // if (image.classList.contains('js-lazy-image--handled')) { return; }
+
       return this._fetchImage(src).then(() => { this._applyImage(image, src); });
+    },
+
+    /**
+     * Gets the file name then determines based on webp and retina support
+     * which file type should be appended.
+     */
+    _getImageType: function(src){
+      if(this._canUseWebP){
+        (this._isRetina) ? src = `${src.slice(0,src.lastIndexOf('.'))}@2x.webp` : src = `${src.slice(0,src.lastIndexOf('.'))}.webp`;
+      }
+      if(this._isRetina && !this._canUseWebP){
+        src = `${src.slice(0,src.lastIndexOf('.'))}@2x.png`;
+      }
+      return src;
     },
 
     /**
@@ -97,7 +114,6 @@
       if (!observer) {
         return;
       }
-
       this._observer.disconnect();
     },
 
@@ -105,7 +121,7 @@
      * On intersection
      * @param {array} entries
      */
-     _onIntersection: function(entries) {
+    _onIntersection: function(entries) {
       // Disconnect if we've already loaded all of the images
       if (this._imageCount === 0) {
         this._observer.disconnect();
@@ -135,6 +151,20 @@
       img.classList.add('js-lazy-image--handled');
       img.src = src;
       img.classList.add('fade-in');
+    },
+
+    /**
+     * Clears `js-lazy-image--handled` class from images
+     * Useful for light and dark theme images
+     */
+    _resetImages: function(){
+      this._images = Polymer.dom(this.root).querySelectorAll('.js-lazy-image');
+
+      // foreach() is not supported in IE
+      for (let i = 0; i < this._images.length; i++) {
+        let image = this._images[i];
+        this._images[i].classList.remove('js-lazy-image--handled')
+      }
     }
 
   };
