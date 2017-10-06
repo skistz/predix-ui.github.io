@@ -76,8 +76,7 @@
         themeName:{
           type: String,
           value: "light",
-          computed: "_getThemeName(darkTheme)",
-          observer: '_resetLazyLoad'
+          computed: "_getThemeName(darkTheme)"
         },
         tags: {
           type: Array,
@@ -106,14 +105,14 @@
       attached: function(){
         this.listen(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
       },
-      detached: function(){
-        this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
-      },
       /*
        * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
        */
       _runLazyLoad: function(){
-        this._setIntersectionObserver();
+        if(this.tileData){
+          this._setIntersectionObserver();
+          this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+        }
       },
       /*
        * `_resetImages` defined inside PxLazyLoadBehavior
@@ -138,6 +137,7 @@
         }
       },
       _getThemeName: function(darkTheme){
+        this._resetLazyLoad();
         return darkTheme ? "dark" : "light";
       },
       _computeFilter: function() {
