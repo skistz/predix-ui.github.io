@@ -1,9 +1,22 @@
 <script>
   PxLazyLoadBehavior = {
     properties: {
-      _images: {},
-      _imageCount:{},
-      _observer:{},
+      _images: {
+        type: Array,
+        value: () => {
+          return [];
+        }
+      },
+      _imageCount:{
+        type: Number,
+        value: 0
+      },
+      _observer:{
+        type: Object,
+        value: () => {
+          return {};
+        }
+      },
       _canUseWebP: {
         type: Boolean,
         value: function(){
@@ -135,7 +148,11 @@
           this._imageCount--;
 
           // Stop watching and load the image
-          this._observer.unobserve(entry.target);
+          try {
+            this._observer.unobserve(entry.target);
+          } catch (e) {
+            // edge causing noisy error here: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12577586/
+          }
           this._preloadImage(entry.target);
         }
       }
