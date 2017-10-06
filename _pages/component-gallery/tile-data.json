@@ -86,8 +86,7 @@
     "imageUrl": "../img/component-gallery/helpers-design",
     "imageAlt": "Helpers thumbnail",
     "tags": [
-      "css",
-      "visual"
+      "css"
     ]
   },
   {
@@ -265,7 +264,8 @@
     "imageUrl": "../img/component-gallery/app-header",
     "imageAlt": "App Header thumbnail",
     "tags": [
-      "navigation"
+      "layout",
+      "app navigation"
     ]
   },
   {
@@ -275,7 +275,7 @@
     "imageUrl": "../img/component-gallery/app-nav",
     "imageAlt": "App Nav thumbnail",
     "tags": [
-      "navigation",
+      "app navigation",
       "mobile"
     ]
   },
@@ -296,7 +296,8 @@
     "imageUrl": "../img/component-gallery/breadcrumbs",
     "imageAlt": "Breadcrumbs thumbnail",
     "tags": [
-      "navigation",
+      "app navigation",
+      "asset navigation",
       "mobile"
     ]
   },
@@ -305,7 +306,11 @@
     "title": "Card Element",
     "description": "Cards consist of a header area and content area. The header can      optionally contain a descriptive icon in the top left corner and/or an actions area in the top right corner      for settings or other action icons. Cards are incredibly flexible in terms of what content can be      placed in the main area of the card and how it's arranged. A few layout configurations are provided      in the px-widget-cards component to help you organize content in a responsive grid within a card.",
     "imageUrl": "../img/component-gallery/card",
-    "imageAlt": "Card Element thumbnail"
+    "imageAlt": "Card Element thumbnail",
+    "tags": [
+      "mobile",
+      "layout"
+    ]
   },
   {
     "name": "px-deck-selector",
@@ -332,7 +337,12 @@
     "title": "Chip",
     "description": "A chip is a representation of an object or a series of information. For example, a chip can be used to represent a contact or a filter. Use a chip in order to represent complex information in a compact way.",
     "imageUrl": "../img/component-gallery/chip",
-    "imageAlt": "Chip thumbnail"
+    "imageAlt": "Chip thumbnail",
+    "tags": [
+      "mobile",
+      "data display",
+      "data input"
+    ]
   },
   {
     "name": "px-clipboard",
@@ -350,7 +360,11 @@
     "title": "Context Browser",
     "description": "The context browser allows the user to drill down through a hierarchical menu in order to switch the context of the overall view. Examples of possible contexts include specific locations organized geographically, physical assets organized by model or other classification, or employees organized by department or function. When a user clicks on the title or arrow, the expanded view of the context browser covers cards and other content on the page. Selecting an item in the context browser causes the children of that item to show up in the next panel over, and also causes a button to appear within that selected row that allows the user to submit/save that context, which also re-collapses the browser.",
     "imageUrl": "../img/component-gallery/context-browser",
-    "imageAlt": "Context Browser thumbnail"
+    "imageAlt": "Context Browser thumbnail",
+    "tags": [
+      "app navigation",
+      "asset navigation"
+    ]
   },
   {
     "name": "px-vis",
@@ -508,7 +522,11 @@
     "title": "Data Table",
     "description": "The Data Table component is useful for displaying tabular data, and provides more functionality than a simple table. Users can sort ascending or descending on each column, filter within columns using simple search, select one or more rows, and edit data in-line with input validation. Rows are automatically paginated, but the user can select the number of rows to display in a single page. Cell borders can be configured by the developer to show up horizontally, vertically, or both.",
     "imageUrl": "../img/component-gallery/data-table",
-    "imageAlt": "Data Table thumbnail"
+    "imageAlt": "Data Table thumbnail",
+    "tags": [
+      "data display",
+      "mobile"
+    ]
   },
   {
     "name": "px-calendar-picker",
@@ -578,7 +596,7 @@
     "imageUrl": "../img/component-gallery/dropdown",
     "imageAlt": "Dropdown thumbnail",
     "tags": [
-      "navigation",
+      "app navigation",
       "buttons",
       "data input"
     ]
@@ -611,7 +629,8 @@
     "imageUrl": "../img/component-gallery/icon-set",
     "imageAlt": "Icons thumbnail",
     "tags": [
-      "mobile"
+      "mobile",
+      "visual"
     ]
   },
   {
@@ -640,7 +659,11 @@
     "title": "KPI",
     "description": "The px-kpi element is for displaying KPIs in a dashboard layout as a tile with one large number value.",
     "imageUrl": "../img/component-gallery/kpi",
-    "imageAlt": "KPI thumbnail"
+    "imageAlt": "KPI thumbnail",
+    "tags": [
+      "data display",
+      "mobile"
+    ]
   },
   {
     "name": "px-login",
@@ -649,7 +672,6 @@
     "imageUrl": "../img/component-gallery/login",
     "imageAlt": "Login thumbnail",
     "tags": [
-      "navigation",
       "mobile"
     ]
   },
@@ -658,7 +680,10 @@
     "title": "Map Base",
     "description": "The px-map component is a framework for creating maps in your application.",
     "imageUrl": "../img/component-gallery/map",
-    "imageAlt": "Map Base thumbnail"
+    "imageAlt": "Map Base thumbnail",
+    "tags": [
+      "data display"
+    ]
   },
   {
     "name": "px-modal",
@@ -729,7 +754,11 @@
     "title": "Table View",
     "description": "The px-table-view element creates a table-style list of items that can be interacted with by the user. It works the way users expect from a native mobile app, allowing swiping, tapping and re-ordering of list items. Use px-table-view to create list-style interfaces like menus or to display arbitrary sets of related data that can be acted on.",
     "imageUrl": "../img/component-gallery/table-view",
-    "imageAlt": "Table View thumbnail"
+    "imageAlt": "Table View thumbnail",
+    "tags": [
+      "data display",
+      "mobile"
+    ]
   },
   {
     "name": "px-tabs",
@@ -738,7 +767,7 @@
     "imageUrl": "../img/component-gallery/tabs",
     "imageAlt": "Tabs thumbnail",
     "tags": [
-      "navigation",
+      "app navigation",
       "layout"
     ]
   },
@@ -747,7 +776,12 @@
     "title": "Tile",
     "description": "The px-tile component has two states and a sliding animation.",
     "imageUrl": "../img/component-gallery/tile",
-    "imageAlt": "Tile thumbnail"
+    "imageAlt": "Tile thumbnail",
+    "tags": [
+      "mobile",
+      "data display",
+      "layout"
+    ]
   },
   {
     "name": "px-timeline",
@@ -757,7 +791,8 @@
     "imageAlt": "Timeline thumbnail",
     "tags": [
       "data display",
-      "mobile"
+      "mobile",
+      "layout"
     ]
   },
   {
@@ -786,7 +821,13 @@
     "title": "Tree",
     "description": "This component provides an expandable and selectable tree. The contents are controlled primarily through a structured object of branch and leaf nodes.",
     "imageUrl": "../img/component-gallery/tree",
-    "imageAlt": "Tree thumbnail"
+    "imageAlt": "Tree thumbnail",
+    "tags": [
+      "app navigation",
+      "asset navigation",
+      "mobile",
+      "layout"
+    ]
   },
   {
     "name": "px-typeahead",
@@ -816,7 +857,7 @@
     "imageUrl": "../img/component-gallery/view-header",
     "imageAlt": "View Header thumbnail",
     "tags": [
-      "navigation",
+      "app navigation",
       "mobile",
       "layout"
     ]

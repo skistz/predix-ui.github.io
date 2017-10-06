@@ -329,9 +329,6 @@
               "font awesome",
               "iron-icon"
             ],
-            "tags": [
-              "visual"
-            ],
             "redirects": [
               "/migration/using-icons"
             ]
@@ -605,8 +602,7 @@
               "capitalize"
             ],
             "tags": [
-              "css",
-              "visual"
+              "css"
             ]
           },
           {
@@ -1134,7 +1130,10 @@
           "layout",
           "scroll"
         ],
-        "tags": ["navigation"]
+        "tags": [
+          "layout",
+          "app navigation"
+          ]
       },
       {
         "path": "px-app-nav",
@@ -1152,7 +1151,7 @@
           "sidebar"
         ],
         "tags": [
-          "navigation",
+          "app navigation",
           "mobile"
         ]
       },
@@ -1209,7 +1208,8 @@
           "breadcrumbs"
         ],
         "tags": [
-          "navigation",
+          "app navigation",
+          "asset navigation",
           "mobile"
         ]
       },
@@ -1224,10 +1224,6 @@
               "px-card",
               "card"
             ],
-            "tags": [
-              "mobile",
-              "layout"
-            ],
             "pages": [
               {
                 "path": "px-card",
@@ -1237,6 +1233,10 @@
                 "redirects": [
                   "/components/px-card",
                   "/modules/px-card"
+                ],
+                "tags": [
+                  "mobile",
+                  "layout"
                 ]
               },
               {
@@ -1329,6 +1329,11 @@
           "filter",
           "tag",
           "label"
+        ],
+        "tags": [
+          "mobile",
+          "data display",
+          "data input"
         ]
       },
       {
@@ -1359,9 +1364,6 @@
           "asset",
           "assets"
         ],
-        "tags": [
-          "navigation"
-        ],
         "pages": [
           {
             "path": "px-context-browser",
@@ -1371,6 +1373,10 @@
             "redirects": [
               "/components/px-context-browser",
               "/modules/px-context-browser"
+            ],
+            "tags": [
+              "app navigation",
+              "asset navigation"
             ]
           },
           {
@@ -2337,10 +2343,6 @@
           "grid",
           "datagrid"
         ],
-        "tags": [
-          "data display",
-          "mobile"
-        ],
         "pages": [
           {
             "path": "px-data-table",
@@ -2350,6 +2352,10 @@
             "redirects": [
               "/components/px-data-table",
               "/modules/px-data-table"
+            ],
+            "tags": [
+              "data display",
+              "mobile"
             ]
           },
           {
@@ -2511,7 +2517,7 @@
           "drop-down"
         ],
         "tags": [
-          "navigation",
+          "app navigation",
           "buttons",
           "data input"
         ]
@@ -2575,7 +2581,8 @@
           "iconography"
         ],
         "tags": [
-          "mobile"
+          "mobile",
+          "visual"
         ]
       },
       {
@@ -2633,10 +2640,6 @@
           "spark",
           "numeric"
         ],
-        "tags": [
-          "data display",
-          "mobile"
-        ],
         "pages": [
           {
             "path": "px-kpi",
@@ -2646,6 +2649,10 @@
             "redirects": [
               "/components/px-kpi",
               "/modules/px-kpi"
+            ],
+            "tags": [
+              "data display",
+              "mobile"
             ]
           },
           {
@@ -2678,7 +2685,6 @@
           "sign-in"
         ],
         "tags": [
-          "navigation",
           "mobile"
         ]
       },
@@ -2695,9 +2701,6 @@
           "geographic",
           "geography"
         ],
-        "tags": [
-          "data display"
-        ],
         "pages": [
           {
             "path": "px-map",
@@ -2707,6 +2710,9 @@
             "redirects": [
               "/components/px-map",
               "/modules/px-map"
+            ],
+            "tags": [
+              "data display"
             ]
           },
           {
@@ -2902,7 +2908,8 @@
         ],
         "keywords": [
           "px-overlay",
-          "transparency"
+          "transparency",
+          "mobile"
         ],
         "tags": [
           "messaging"
@@ -2993,10 +3000,6 @@
           "table-view",
           "mobile"
         ],
-        "tags": [
-          "data display",
-          "mobile"
-        ],
         "pages": [
           {
             "path": "px-table-view",
@@ -3006,6 +3009,10 @@
             "redirects": [
               "/components/px-table-view",
               "/modules/px-table-view"
+            ],
+            "tags": [
+              "data display",
+              "mobile"
             ]
           },
           {
@@ -3059,7 +3066,7 @@
           "panel"
         ],
         "tags": [
-          "navigation",
+          "app navigation",
           "layout"
         ]
       },
@@ -3078,6 +3085,11 @@
           "gallery",
           "image",
           "carousel"
+        ],
+        "tags": [
+          "mobile",
+          "data display",
+          "layout"
         ]
       },
       {
@@ -3101,7 +3113,8 @@
         ],
         "tags": [
           "data display",
-          "mobile"
+          "mobile",
+          "layout"
         ]
       },
       {
@@ -3151,11 +3164,6 @@
           "tree",
           "treeview"
         ],
-        "tags": [
-          "navigation",
-          "mobile",
-          "layout"
-        ],
         "pages": [
           {
             "path": "px-tree",
@@ -3165,6 +3173,12 @@
             "redirects": [
               "/components/px-tree",
               "/modules/px-tree"
+            ],
+            "tags": [
+              "app navigation",
+              "asset navigation",
+              "mobile",
+              "layout"
             ]
           },
           {
@@ -3240,7 +3254,7 @@
           "nav"
         ],
         "tags": [
-          "navigation",
+          "app navigation",
           "mobile",
           "layout"
         ]
