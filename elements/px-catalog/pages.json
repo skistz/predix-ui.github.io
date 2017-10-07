@@ -2991,6 +2991,26 @@
         ]
       },
       {
+        "path": "px-steps",
+        "label": "Steps",
+        "module": "px-steps-demo",
+        "entrypoint": "/bower_components/px-steps/demo/px-steps-demo.html",
+        "redirects": [
+          "/components/px-steps",
+          "/modules/px-steps"
+        ],
+        "keywords": [
+          "px-steps",
+          "stepper",
+          "wizard",
+          "process"
+        ],
+        "tags": [
+          "app navigation",
+          "status"
+        ]
+      },
+      {
         "path": "table-view",
         "label": "Table View",
         "keywords": [
