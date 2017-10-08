@@ -32,7 +32,7 @@
       </template>
       <hr class="component-gallery__hr">
 
-      <div class="layout component-gallery__layout">
+      <div id="tileContainer" class="layout component-gallery__layout">
         <template is="dom-repeat" id="tileRepeat" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
           <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
             <px-tile
@@ -76,7 +76,8 @@
         themeName:{
           type: String,
           value: "light",
-          computed: "_getThemeName(darkTheme)"
+          computed: "_getThemeName(darkTheme)",
+          observer: '_resetLazyLoad'
         },
         tags: {
           type: Array,
@@ -102,24 +103,35 @@
           reflectToAttribute: true
         }
       },
+      /*
+       * `dom-change` will only fire once all it has ran through all the items
+       */
       attached: function(){
         this.listen(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+      },
+      detached: function(){
+        this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
       },
       /*
        * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
        */
       _runLazyLoad: function(){
-        if(this.tileData){
+        if(this.themeName){
+          console.log("_runLazyLoad")
           this._setIntersectionObserver();
-          this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
         }
       },
       /*
+       * Check that there are tiles on the page.
+       * The template dom repeat is a child therefore there is always at least 1.
        * `_resetImages` defined inside PxLazyLoadBehavior
        */
       _resetLazyLoad: function(){
-        this._resetImages();
-        this._runLazyLoad();
+        if(this.$.tileContainer.childElementCount > 1){
+          console.log("_resetLazyLoad")
+          this._resetImages();
+          this._runLazyLoad();
+        }
       },
       _computeImageUrlPng: function(url, theme) {
         if (typeof url === 'string' && typeof theme === 'string') {
@@ -137,7 +149,6 @@
         }
       },
       _getThemeName: function(darkTheme){
-        this._resetLazyLoad();
         return darkTheme ? "dark" : "light";
       },
       _computeFilter: function() {
