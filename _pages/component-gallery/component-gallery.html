@@ -117,7 +117,6 @@
        */
       _runLazyLoad: function(){
         if(this.themeName){
-          console.log("_runLazyLoad")
           this._setIntersectionObserver();
         }
       },
@@ -128,7 +127,6 @@
        */
       _resetLazyLoad: function(){
         if(this.$.tileContainer.childElementCount > 1){
-          console.log("_resetLazyLoad")
           this._resetImages();
           this._runLazyLoad();
         }

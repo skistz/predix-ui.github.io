@@ -1051,6 +1051,15 @@
     "entryPoint": "bower_components/px-spinner/demo/px-spinner-demo.html"
   },
   {
+    "componentName": "px-steps",
+    "label": "Steps",
+    "tags": [
+      "app navigation",
+      "status"
+    ],
+    "entryPoint": "bower_components/px-steps/demo/px-steps-demo.html"
+  },
+  {
     "componentName": "px-table-view",
     "label": "Table View",
     "tags": [
