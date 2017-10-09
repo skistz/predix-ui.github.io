@@ -148,6 +148,7 @@
     "bower_components/px-progress-bar/demo/px-progress-bar-demo.html",
     "bower_components/px-slider/demo/px-slider-demo.html",
     "bower_components/px-spinner/demo/px-spinner-demo.html",
+    "bower_components/px-steps/demo/px-steps-demo.html",
     "bower_components/px-table-view/demo/px-table-view-demo.html",
     "bower_components/px-table-view/demo/px-table-view-sortable-list-demo.html",
     "bower_components/px-table-view/demo/px-table-row-demo.html",

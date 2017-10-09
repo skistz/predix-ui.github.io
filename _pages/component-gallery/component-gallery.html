@@ -30,7 +30,7 @@
       </template>
       <hr class="component-gallery__hr">
 
-      <div class="layout component-gallery__layout">
+      <div id="tileContainer" class="layout component-gallery__layout">
         <template is="dom-repeat" id="tileRepeat" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
           <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
             <px-tile
@@ -81,6 +81,8 @@
           type: Array,
           value: [
             {"name" : "Alerts", "selected" : false},
+            {"name" : "App Navigation", "selected" : false},
+            {"name" : "Asset Navigation", "selected" : false},
             {"name" : "Buttons", "selected" : false},
             {"name" : "CSS", "selected" : false},
             {"name" : "Data Display", "selected" : false},
@@ -89,7 +91,6 @@
             {"name" : "Layout", "selected" : false},
             {"name" : "Messaging", "selected" : false},
             {"name" : "Mobile", "selected" : false},
-            {"name" : "Navigation", "selected" : false},
             {"name" : "Status", "selected" : false},
             {"name" : "Visual", "selected" : false}
           ]
@@ -100,6 +101,9 @@
           reflectToAttribute: true
         }
       },
+      /*
+       * `dom-change` will only fire once all it has ran through all the items
+       */
       attached: function(){
         this.listen(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
       },
@@ -110,14 +114,20 @@
        * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
        */
       _runLazyLoad: function(){
-        this._setIntersectionObserver();
+        if(this.themeName){
+          this._setIntersectionObserver();
+        }
       },
       /*
+       * Check that there are tiles on the page.
+       * The template dom repeat is a child therefore there is always at least 1.
        * `_resetImages` defined inside PxLazyLoadBehavior
        */
       _resetLazyLoad: function(){
-        this._resetImages();
-        this._runLazyLoad();
+        if(this.$.tileContainer.childElementCount > 1){
+          this._resetImages();
+          this._runLazyLoad();
+        }
       },
       _computeImageUrlPng: function(url, theme) {
         if (typeof url === 'string' && typeof theme === 'string') {

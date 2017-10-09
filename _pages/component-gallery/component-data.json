@@ -79,8 +79,7 @@
     "componentName": "px-helpers-design",
     "label": "Helpers",
     "tags": [
-      "css",
-      "visual"
+      "css"
     ],
     "entryPoint": "bower_components/px-helpers-design/demo/px-helpers-design-demo.html"
   },
@@ -293,7 +292,8 @@
     "componentName": "px-app-header",
     "label": "App Header",
     "tags": [
-      "navigation"
+      "layout",
+      "app navigation"
     ],
     "entryPoint": "bower_components/px-app-helpers/px-app-header/demo/px-app-header-demo.html"
   },
@@ -301,7 +301,7 @@
     "componentName": "px-app-nav",
     "label": "App Nav",
     "tags": [
-      "navigation",
+      "app navigation",
       "mobile"
     ],
     "entryPoint": "bower_components/px-app-nav/demo/px-app-nav-demo.html"
@@ -323,7 +323,8 @@
     "componentName": "px-breadcrumbs",
     "label": "Breadcrumbs",
     "tags": [
-      "navigation",
+      "app navigation",
+      "asset navigation",
       "mobile"
     ],
     "entryPoint": "bower_components/px-breadcrumbs/demo/px-breadcrumbs-demo.html"
@@ -331,6 +332,10 @@
   {
     "componentName": "px-card",
     "label": "Card Element",
+    "tags": [
+      "mobile",
+      "layout"
+    ],
     "entryPoint": "bower_components/px-card/demo/px-card-demo.html"
   },
   {
@@ -370,6 +375,11 @@
   {
     "componentName": "px-chip",
     "label": "Chip",
+    "tags": [
+      "mobile",
+      "data display",
+      "data input"
+    ],
     "entryPoint": "bower_components/px-chip/demo/px-chip-demo.html"
   },
   {
@@ -384,6 +394,10 @@
   {
     "componentName": "px-context-browser",
     "label": "Context Browser",
+    "tags": [
+      "app navigation",
+      "asset navigation"
+    ],
     "entryPoint": "bower_components/px-context-browser/demo/px-context-browser-demo.html"
   },
   {
@@ -750,6 +764,10 @@
   {
     "componentName": "px-data-table",
     "label": "Data Table",
+    "tags": [
+      "data display",
+      "mobile"
+    ],
     "entryPoint": "bower_components/px-data-table/demo/px-data-table-demo.html"
   },
   {
@@ -817,7 +835,7 @@
     "componentName": "px-dropdown",
     "label": "Dropdown",
     "tags": [
-      "navigation",
+      "app navigation",
       "buttons",
       "data input"
     ],
@@ -844,7 +862,8 @@
     "componentName": "px-icon-set",
     "label": "Icons",
     "tags": [
-      "mobile"
+      "mobile",
+      "visual"
     ],
     "entryPoint": "bower_components/px-icon-set/demo/px-icon-set-demo.html"
   },
@@ -868,6 +887,10 @@
   {
     "componentName": "px-kpi",
     "label": "KPI",
+    "tags": [
+      "data display",
+      "mobile"
+    ],
     "entryPoint": "bower_components/px-kpi/demo/px-kpi-demo.html"
   },
   {
@@ -880,7 +903,6 @@
     "componentName": "px-login",
     "label": "Login",
     "tags": [
-      "navigation",
       "mobile"
     ],
     "entryPoint": "bower_components/px-login/demo/px-login-demo.html"
@@ -888,6 +910,9 @@
   {
     "componentName": "px-map",
     "label": "Map Base",
+    "tags": [
+      "data display"
+    ],
     "entryPoint": "bower_components/px-map/demo/px-map-demo.html"
   },
   {
@@ -1026,8 +1051,21 @@
     "entryPoint": "bower_components/px-spinner/demo/px-spinner-demo.html"
   },
   {
+    "componentName": "px-steps",
+    "label": "Steps",
+    "tags": [
+      "app navigation",
+      "status"
+    ],
+    "entryPoint": "bower_components/px-steps/demo/px-steps-demo.html"
+  },
+  {
     "componentName": "px-table-view",
     "label": "Table View",
+    "tags": [
+      "data display",
+      "mobile"
+    ],
     "entryPoint": "bower_components/px-table-view/demo/px-table-view-demo.html"
   },
   {
@@ -1052,7 +1090,7 @@
     "componentName": "px-tabs",
     "label": "Tabs",
     "tags": [
-      "navigation",
+      "app navigation",
       "layout"
     ],
     "entryPoint": "bower_components/px-tabs/demo/px-tabs-demo.html"
@@ -1060,6 +1098,11 @@
   {
     "componentName": "px-tile",
     "label": "Tile",
+    "tags": [
+      "mobile",
+      "data display",
+      "layout"
+    ],
     "entryPoint": "bower_components/px-tile/demo/px-tile-demo.html"
   },
   {
@@ -1067,7 +1110,8 @@
     "label": "Timeline",
     "tags": [
       "data display",
-      "mobile"
+      "mobile",
+      "layout"
     ],
     "entryPoint": "bower_components/px-timeline/demo/px-timeline-demo.html"
   },
@@ -1091,6 +1135,12 @@
   {
     "componentName": "px-tree",
     "label": "Tree",
+    "tags": [
+      "app navigation",
+      "asset navigation",
+      "mobile",
+      "layout"
+    ],
     "entryPoint": "bower_components/px-tree/demo/px-tree-demo.html"
   },
   {
@@ -1120,7 +1170,7 @@
     "componentName": "px-view-header",
     "label": "View Header",
     "tags": [
-      "navigation",
+      "app navigation",
       "mobile",
       "layout"
     ],

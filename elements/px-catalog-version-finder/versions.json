@@ -474,6 +474,12 @@
     "preRefreshRangeExact": "^v0.7.7"
   },
   {
+    "name": "px-steps",
+    "postRefreshRange": "^1.0.0",
+    "preRefreshRange": "n/a",
+    "preRefreshRangeExact": "n/a"
+  },
+  {
     "name": "px-table-view",
     "postRefreshRange": "^3.0.0",
     "preRefreshRange": "^2.0.0",
