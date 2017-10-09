@@ -50,8 +50,7 @@ const ExcludedComponentsArray = [
   "px-meta-lists-design",
   "px-toggle-design",
   "px-widths-tools-design",
-  "px-starter-kit-design",
-  "px-steps"
+  "px-starter-kit-design"
 ];
 
 
