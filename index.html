@@ -11,7 +11,8 @@
 
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 
-    <link defer rel="preload" href="https://dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/2.0.0/GEInspiraSans.woff" as="font" type="font/woff2" crossorigin>
+    <link defer rel="preload" href="http://dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/2.0.0/GEInspiraSans.woff" as="font" type="font/woff2" crossorigin>
+    <link defer rel="preload" href="http://dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/2.0.0/GEInspiraSans-Bold.woff" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com/">
     <!--
       Fast bootstrapping of the webcomponents-lite library. Only loads the library
@@ -67,36 +68,38 @@
       Basic page styles.
     -->
     <link async rel="import" href="/bower_components/px-theme/px-theme-styles.html"/>
-    <style include="px-theme-styles" is="custom-style">
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden !important;
-      }
-      body.loading .splash__header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 45px;
-        width: 100vw;
-        background-color: #eaeaea;
-      }
-      @media screen and (min-width: 1024px) {
+    <custom-style>
+      <style is="custom-style" include="px-theme-styles">
+        html, body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden !important;
+        }
         body.loading .splash__header {
-          height: 80px;
-        }
-      }
-      @media screen and (min-width: 1024px) {
-        body.loading .splash__sidebar {
           position: fixed;
-          top: 80px;
+          top: 0;
           left: 0;
-          height: calc(100vh - 80px);
-          width: 300px;
-          background-color: #f0f0f0;
+          height: 45px;
+          width: 100vw;
+          background-color: #eaeaea;
         }
-      }
-    </style>
+        @media screen and (min-width: 1024px) {
+          body.loading .splash__header {
+            height: 80px;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          body.loading .splash__sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100vh - 80px);
+            width: 300px;
+            background-color: #f0f0f0;
+          }
+        }
+      </style>
+    </custom-style>
   </head>
 
   <!--
