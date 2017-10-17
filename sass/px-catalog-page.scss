@@ -1,0 +1,302 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+@import "px-headings-design/_base.headings.scss";
+@import "px-code-design/_base.code.scss";
+
+$inuit-enable-code--inline: true;
+@import "px-code-design/_base.code.scss";
+
+$actionable: true;
+$actionable--action: true;
+$actionable--large: true;
+$actionable--huge: true;
+@import "px-actionable-design/_objects.actionable.scss";
+$inuit-enable-btn--primary: true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+@import "px-layout-design/_objects.layout.scss";
+$inuit-enable-list-inline--delimited: true;
+$inuit-list-inline-delimit-character: "| ";
+@import "px-list-inline-design/_objects.list-inline.scss";
+@import "px-list-bare-design/_objects.list-bare.scss";
+
+// Component
+
+@import 'util';
+@import 'typography';
+@import 'blocks';
+@import 'layout';
+
+$px-catalog-page-toc-width: 300px;
+$px-catalog-page-padding-vertical: 50px;
+$px-catalog-page-padding-horizontal: 50px;
+
+/*******************************************************************************
+ * HOST
+ ******************************************************************************/
+
+:host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--px-catalog-page-background-color, white);
+  color: var(--px-catalog-page-text-color, black);
+  min-height: calc(100vh - #{$px-catalog-header-size-small});
+  @include media-query(lap-and-up) {
+    min-height: calc(100vh - #{$px-catalog-header-size-large});
+  }
+}
+
+/*******************************************************************************
+ * PAGE RULES
+ ******************************************************************************/
+
+.page {
+  display: block;
+  margin-bottom: 4rem;
+  max-width: 1200px;
+  padding: 30px;
+  @include media-query(lap-and-up) {
+    padding: {
+      top: $px-catalog-page-padding-vertical;
+      bottom: $px-catalog-page-padding-vertical;
+      right: $px-catalog-page-padding-horizontal;
+      left: $px-catalog-page-padding-horizontal;
+    };
+  }
+  margin-bottom: auto;
+}
+
+.page--full-width {
+  max-width: 100%;
+}
+
+.page-anchors {
+  display: none;
+
+  @include media-query(lap-and-up) {
+    display: block;
+    width: $px-catalog-page-toc-width;
+    position: fixed;
+    top: $px-catalog-page-padding-vertical + $px-catalog-header-size-large;
+    right: $px-catalog-page-padding-horizontal;
+    padding-left: calculateRem(30px);
+  }
+
+  //.page-anchors needs to slick to the left of the .page when it gets to its max width
+  @media (min-width: 1500px){
+    left: 1170px;
+    right: 0;
+  }
+}
+
+.page-content {
+  @include media-query(lap-and-up) {
+    width: calc(100% - 300px);
+  }
+}
+
+.page-title {
+  margin: 0;
+}
+
+/*******************************************************************************
+ * COMPONENT: GUIDELINE BOX
+ ******************************************************************************/
+
+.guideline-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--px-catalog-page-border-color, gray);
+  padding: .75rem;
+}
+
+.guideline-box__image {
+  flex: 1 1 auto;
+}
+
+.guideline-box__info {
+  margin-top: .5em;
+  margin-bottom: 0;
+  font-style: italic;
+  color: var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header {
+  display: block;
+  padding-bottom: .5rem;
+  margin-top: 0;
+  margin-bottom: .75rem;
+  font-weight: 700;
+  color: var(--px-catalog-page-text-color--light, gray);
+  border-bottom: 2px solid var(--px-catalog-page-text-color--light, gray);
+}
+
+.guideline-box__header--do {
+  color: var(--px-catalog-page-success-color, green);
+  border-bottom: 2px solid var(--px-catalog-page-success-color, green);
+}
+
+.guideline-box__header--dont {
+  color: var(--px-catalog-page-alert-color, red);
+  border-bottom: 2px solid var(--px-catalog-page-alert-color, red);
+}
+
+/*******************************************************************************
+ * COMPONENT: TOC (Table of Contents)
+ ******************************************************************************/
+
+.toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Nested tocs are set off left
+.toc__item > .toc {
+  padding-left: 1rem;
+}
+
+.toc__item {
+  margin-top: .35rem;
+}
+
+a.toc__item__link {
+  color: var(--px-catalog-page-anchor-color, black);
+  text-decoration: none;
+}
+a.toc__item__link:hover {
+  color: var(--px-catalog-page-anchor-color--hover, blue);
+}
+
+// Nested tocs links have a lighter color
+.toc__item > .toc a.toc__item__link {
+  color: var(--px-catalog-page-anchor-color--light, gray);
+}
+
+// Active link
+a.toc__item__link--active,
+.toc__item > .toc a.toc__item__link--active {
+  color: var(--px-catalog-page-selected-color, blue);
+  text-decoration: none;
+  font-weight: 700;
+
+  &:hover {
+    color: var(--px-catalog-page-selected-color--hover, blue);
+  }
+}
+
+/*******************************************************************************
+ * COMPONENT: CODE BLOCK
+ ******************************************************************************/
+
+.code-block {
+  background-color: var(--px-catalog-page-code-background-color, lightgray);
+  padding: 1rem;
+}
+
+.code-block code {
+  font-size: 1rem;
+}
+
+/*******************************************************************************
+ * HELPER: RESPONSIVE IFRAMES
+ *
+ * All iFrame videos embedded from Youtube or other sites should be wrapped
+ * in the .video-wrapper class defined below or they won't be properly
+ * responsive (they will be too large on mobile screens and cause the page
+ * to scroll horizontally). This code was taken from this article, which has
+ * details on the problem: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
+ *
+ * Example of how iFrame videos should look in HTML:
+ *
+ * ```
+ * <div class="video-wrapper">
+ *   <iframe width="560" height="315" src="..." frameborder="0" allowfullscreen></iframe>
+ * </div>
+ * ```
+ ******************************************************************************/
+
+.video-wrapper {
+  float: none;
+  clear: both;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 25px;
+  height: 0;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*******************************************************************************
+ * Caption
+ ******************************************************************************/
+.caption {
+    margin-top: 0;
+    font-style: italic;
+    color: var(--px-catalog-page-text-color--light, gray);
+    padding-bottom: 0.75rem;
+  }
+
+
+/*******************************************************************************
+ * Picture with code
+ ******************************************************************************/
+.picture-code {
+  margin: 2rem 1rem;
+}
+
+/*******************************************************************************
+ * Table
+ ******************************************************************************/
+table {
+	width: 95%;
+	margin: 0px;
+  margin-bottom: calculateRem(20px);
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+th {
+	border-bottom: 1px solid $gray6;
+	text-align: left;
+	font-weight: normal;
+}
+th + th {
+	padding-left: calculateRem(20px);
+}
+
+td {
+	border-bottom: 1px solid $gray2;
+	padding: calculateRem(10px) 0;
+	vertical-align: top;
+}
+td + td {
+	padding-left: calculateRem(20px);
+}

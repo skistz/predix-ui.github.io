@@ -1,0 +1,103 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+
+// Settings
+@import "px-defaults-design/_settings.defaults.scss";
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+:host {
+  color: var(--px-catalog-page-text-color, $gray15);
+}
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+//internal
+@import "util";
+@import "typography";
+
+// Objects
+$inuit-layout-min-width : 160px;
+@import 'px-layout-design/_objects.layout.scss';
+
+$inuit-enable-btn--tertiary : true;
+@import 'px-buttons-design/_objects.buttons.scss';
+
+// Component
+
+.layout__item {
+  max-width: 600px;
+}
+
+.home-wrapper {
+  padding: 30px;
+}
+
+.home-subsection {
+  margin-bottom: calculateRem(30px);
+
+  @include px-media-query($px-catalog-screen-tablet-up) {
+    margin-right: calculateRem(15px);
+  }
+}
+
+.home-hr {
+  border: 0;
+  border-top: 1px solid var(--px-home-hr-border, $px-catalog-gray);
+  margin-bottom: 2rem;
+}
+
+.home-sub-header {
+  font-size: 30px;
+}
+
+.home-text-w-photo {
+  min-width: 200px;
+}
+
+.home-image-scale {
+  width: calculateRem(275px);
+  height: 100%;
+}
+
+/*******************************************************************************
+ * HERO IMAGE
+ ******************************************************************************/
+.hero-image {
+  display: block;
+  background-color: var(--px-home-hero-image-background-color, #ebeff1);
+
+  @include px-media-query($px-catalog-screen-tablet-up) {
+    min-height: 350px;
+  }
+}
+
+/*******************************************************************************
+ * REFRESH-BANNER
+ ******************************************************************************/
+.refresh-banner {
+  background-color: $select-default;
+  padding: $inuit-base-spacing-unit 5%;
+}
+.refresh-banner p {
+  color: var(--px-home-refresh-banner-a-tag, white);
+  margin: 0;
+}
+.refresh-banner a {
+  color: var(--px-home-refresh-banner-p-tag, white) !important;
+  text-decoration: underline !important;
+}
+
+
+//trumps
+$inuit-enable-margins : true;
+$inuit-enable-margins--large : true;
+@import 'px-spacing-design/_trumps.spacing.scss';

@@ -1,0 +1,197 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../css/px-catalog-theme-styles.html" />
+<link rel="import" href="../../css/px-catalog-treenav-link-styles.html" />
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+
+<dom-module id="px-catalog-treenav-link">
+  <template>
+    <style include="px-catalog-theme-styles"></style>
+    <style include="px-catalog-treenav-link-styles"></style>
+
+    <div class="link">
+      <div class="link__container">
+        <div class$="[[_getArrowClasses(parent, opened)]]" on-tap="_handleArrowTapped"></div>
+        <a href$="/#[[route]]" class="link__a" on-tap="_handleLinkTapped">[[label]]</a>
+      </div>
+      <template is="dom-if" if="[[parent]]">
+        <iron-collapse opened="[[_isOpened(opened, searching, inSearchedRoutes)]]">
+          <ul class="sublinks">
+          <template is="dom-repeat" items="[[subpages]]" as="subitem">
+            <px-catalog-treenav-link
+                label="[[subitem.label]]"
+                route="[[subitem._route]]"
+                subpages="[[subitem.pages]]"
+                selected-route="[[selectedRoute]]"
+                searching="[[searching]]"
+                searched-routes="[[searchedRoutes]]">
+            </px-catalog-treenav-link>
+          </template>
+          </ul>
+        </iron-collapse>
+      </template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-catalog-treenav-link',
+      properties: {
+        label: String,
+        route: String,
+        subpages: Array,
+        selectedRoute: String,
+        searching: Boolean,
+        searchedRoutes: Array,
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+        selected: {
+          type: Boolean,
+          value: false,
+          readOnly: true,
+          reflectToAttribute: true,
+          computed: '_isSelected(route, selectedRoute)'
+        },
+        inSelectedRoute: {
+          type: Boolean,
+          value: false,
+          readOnly: true,
+          computed: '_isInSelectedRoute(route, selectedRoute)',
+          observer: '_openIfInSelectedRoute'
+        },
+        inSearchedRoutes: {
+          type: Boolean,
+          value: null,
+          readOnly: true,
+          computed: '_isInSearchedRoutes(searching, route, searchedRoutes)'
+        },
+        hidden: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+          readOnly: true,
+          computed: '_isHidden(searching, inSearchedRoutes)'
+        },
+
+        item: {
+          type: Object
+        },
+
+        parent: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+          computed: '_computeHasSubpages(subpages)'
+        },
+        path: {
+          type: String
+        },
+        searchedPaths: {
+          type: Array,
+          observer: '_handlePathSearched'
+        }
+      },
+      _isSelected: function(route, selectedRoute) {
+        return route === selectedRoute;
+      },
+      _isHidden: function(searching, inSearchedRoutes) {
+        if (searching && !inSearchedRoutes) {
+          return true;
+        }
+        return false;
+      },
+      _isOpened: function(opened, searching, inSearchedRoutes) {
+        if (!searching) {
+          return opened;
+        }
+        if (searching) {
+          return inSearchedRoutes;
+        }
+      },
+      _isInSelectedRoute: function(route, selectedRoute) {
+        if (selectedRoute && route !== selectedRoute && route.length <= selectedRoute.length && selectedRoute.slice(0,route.length) === route) {
+          return true;
+        }
+        return false;
+      },
+      _openIfInSelectedRoute: function(inSelectedRoute) {
+        if (inSelectedRoute) {
+          this.opened = true;
+        }
+      },
+      _isInSearchedRoutes: function(searching, route, searchedRoutes) {
+        if (!searching || !searchedRoutes) {
+          return null;
+        }
+
+        var found = false;
+        var len = route.length;
+        for (var i=0; i<searchedRoutes.length; i++) {
+          if (searchedRoutes[i] === route) {
+            found = true;
+            break;
+          }
+          if (len <= searchedRoutes[i].length && searchedRoutes[i].slice(0,len) === route) {
+            found = true;
+            break;
+          }
+        }
+        return found;
+      },
+      _computeHasSubpages: function(subpages) {
+        return (Array.isArray(subpages) && subpages.length > 0);
+      },
+      _handleLinkTapped: function(evt) {
+        if (evt.detail && evt.detail.sourceEvent && (evt.detail.sourceEvent.metaKey || evt.detail.sourceEvent.shiftKey || evt.detail.sourceEvent.ctrlKey)) {
+          // The user is trying to open the link in some special way, like
+          // opening in a background tab. Give up and let the browser
+          // handle this.
+          return;
+        }
+
+        evt.preventDefault();
+        if (this.parent) {
+          // Parent categories cannot be navigated to, just toggle the open state
+          this.opened = !this.opened;
+        }
+        else {
+          // Navigate the window and fire `location-changed` for app-location
+          window.history.pushState({}, null, '/#' + this.route);
+          window.dispatchEvent(new CustomEvent('location-changed'));
+        }
+      },
+      _handleArrowTapped: function(evt) {
+        this.opened = !this.opened;
+      },
+      _getArrowClasses: function(isParent, isOpened) {
+        var classNames = 'link__container__arrow';
+        if (isParent) {
+          classNames += ' link__container__arrow--visible';
+        }
+        if (isOpened) {
+          classNames += ' link__container__arrow--opened';
+        }
+        return classNames;
+      },
+      _handlePathSearched: function(paths) {
+        if (Array.isArray(paths) && paths.length > 0) {
+          var len = this.path.length;
+          for (var i=0; i<paths.length; i++) {
+            if (this.path === 'about') {
+              console.log(paths[i].slice(0,len));
+            }
+            if (len <= paths[i].length && paths[i].slice(0,len) === this.path) {
+              this.searched = true;
+              this.opened = true;
+              return;
+            }
+          }
+        }
+        this.searched = false;
+        this.opened = false;
+      }
+    });
+  </script>
+</dom-module>

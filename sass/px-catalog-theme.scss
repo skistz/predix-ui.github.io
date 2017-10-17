@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+@import "px-colors-design/_settings.colors.scss";
+@import 'util';
+
+:host {
+  --px-base-text-color       : $gray15;
+  --px-base-background-color : $white;
+
+  /* App shell theme */
+  --px-catalog-header-background-color       : $px-catalog-gray;
+  --px-catalog-header-text-color             : $gray17;
+  --px-catalog-nav-background-color          : $px-catalog-nav-background;
+  --px-catalog-nav-text-color                : white;
+  --px-catalog-nav-text-color--selected      : $select-default;
+  --px-catalog-nav-text-color--light         : $gray8;
+
+  /* Page theme */
+  --px-catalog-page-background-color         : white;
+  --px-catalog-page-border-color             : $gray2;
+  --px-catalog-page-text-color               : $gray15;
+  --px-catalog-page-text-color--light        : $gray10;
+  --px-catalog-page-accent-color--primary    : $select-default;
+  --px-catalog-page-accent-color--secondary  : $gray15;
+  --px-catalog-page-success-color            : $green6;
+  --px-catalog-page-alert-color              : $red6;
+  --px-catalog-page-code-background-color    : $gray1;
+  --px-catalog-page-link-color               : $primary-default;
+  --px-catalog-page-link-color--hover        : $primary-hover;
+  --px-catalog-page-anchor-color             : $gray10;
+  --px-catalog-page-anchor-color--light      : $gray10;
+  --px-catalog-page-anchor-color--hover      : $primary-default;
+  --px-catalog-page-selected-color           : $primary-default;
+  --px-catalog-page-selected-color--hover    : $primary-hover;
+  --px-catalog-picture-title-color--light    : $gray9;
+
+  // animation theme
+  --animation-img-background-color     : #EBEFF1;
+  --animation-banner-color             : #FFFFFF;
+  --animation-banner-corner-color      : #D8E0E5;
+  --animation-computer-stroke          : #677E8C;
+  --animation-computer-bar             : #002939;
+  --animation-computer-bottom-bar      : #EBEFF1;
+  --animation-kpi-color                : #2D414D;
+  --animation-kpi-arrow-color          : #6EA341;
+  --animation-chart-color-1            : #e18d26;
+  --animation-chart-color-2            : #a5d06b;
+  --animation-chart-color-3            : #9279b7;
+  --animation-chart-background-color   : #FFFFFF;
+  --animation-chart-labels-color       : #D8E0E5;
+  --animation-gauge-background-color   : #b6c3cc;
+
+  /* component gallery */
+  --comonent-gallery-background  : $gray3;
+  --comonent-gallery-hr-color    : $gray4;
+}
+
+:host([dark-theme]) {
+
+  /* App shell theme */
+  --px-catalog-header-background-color       : $gray20;
+  --px-catalog-header-text-color             : $gray8;
+  --px-catalog-nav-background-color          : $gray18;
+  --px-catalog-nav-text-color                : $gray5;
+  --px-catalog-nav-text-color--selected      : $gray8;
+  --px-cataog-nav-text-color--light          : $gray9;
+
+  /* Page theme */
+  --px-catalog-page-background-color         : $gray16;
+  --px-catalog-page-border-color             : $gray14;
+  --px-catalog-page-text-color               : $gray5;
+  --px-catalog-page-text-color--light        : $gray6;
+  --px-catalog-page-accent-color--primary    : $gray1;
+  --px-catalog-page-accent-color--secondary  : $gray2;
+  --px-catalog-page-success-color            : $green6;
+  --px-catalog-page-alert-color              : $red6;
+  --px-catalog-page-code-background-color    : $gray17;
+  --px-catalog-page-link-color               : $d-actionable-default;
+  --px-catalog-page-link-color--hover        : $d-actionable-hover;
+  --px-catalog-page-anchor-color             : $gray10;
+  --px-catalog-page-anchor-color--light      : $gray10;
+  --px-catalog-page-anchor-color--hover      : $d-actionable-default;
+  --px-catalog-page-selected-color           : $select-default;
+  --px-catalog-page-selected-color--hover    : $select-hover;
+
+  /* home page */
+  --px-home-hero-image-background-color  :#1d2b34;
+  --px-home-tertiary-background--hover   : $gray14;
+  --px-home-tertiary-background--pressed : $gray10;
+  --px-home-hr-border                    : $gray8;
+
+  /* animation theme */
+  --animation-img-background-color     : #1d2b34;
+  --animation-banner-color             : #10171b;
+  --animation-banner-corner-color      : #132027;
+  --animation-computer-stroke          : #4f6572;
+  --animation-computer-bar             : #0f171b;
+  --animation-computer-bottom-bar      : #0f171b;
+  --animation-kpi-color                : #c2cccf;
+  --animation-kpi-arrow-color          : #6EA341;
+  --animation-chart-color-1            : #df8c34;
+  --animation-chart-color-2            : #a6cf70;
+  --animation-chart-color-3            : #917ab5;
+  --animation-chart-background-color   : #24343e;
+  --animation-chart-labels-color       : #435662;
+  --animation-gauge-background-color   : $gray15;
+
+
+  /* Code */
+  // --px-code-default: $gray5;
+  // --px-code-property: #df277c;
+  --px-code-default   : #e6e9ed;
+  --px-code-comment   : #656d78;
+  --px-code-property  : #ed5565;
+  --px-code-string    : #ffce54;
+  --px-code-number    : #f99157;
+  --px-code-operator  : #ed5565;
+  --px-code-keyword   : #4fc1e9;
+  --px-code-function  : #c9c;
+
+  /* component gallery */
+  --comonent-gallery-background : $gray15;
+  --comonent-gallery-hr-color   : $gray12;
+}

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#2D2D30">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2D2D30" />
     <meta name="google-site-verification" content="ZAlgMkIFy6EuAkUdpvdFDOiPROG2FkqroFQ78Gry--s" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>Predix Design System</title>
 
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 
-    <link defer rel="preload" href="type/GEInspiraSans.woff" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://www.google-analytics.com/">
+    <link defer rel="preload" href="http://dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/2.0.0/GEInspiraSans.woff" as="font" type="font/woff2" crossorigin/>
+    <link defer rel="preload" href="http://dzlpbrbc7yvq0.cloudfront.net/predixdev/fonts/2.0.0/GEInspiraSans-Bold.woff" as="font" type="font/woff2" crossorigin/>
+    <link rel="preconnect" href="https://www.google-analytics.com/"/>
     <!--
       Fast bootstrapping of the webcomponents-lite library. Only loads the library
       if the browser doesn't natively support web components.
@@ -53,42 +56,50 @@
         async
         id="main-element-import"
         rel="import"
-        href="elements/px-catalog/px-catalog.html">
+        href="elements/px-catalog/px-catalog.html"/>
 
     <!--
       Load the app icon and manifest for Android devices.
     -->
     <link async rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link async rel="manifest" href="manifest.json">
+    <link async rel="manifest" href="manifest.json"/>
 
     <!--
       Basic page styles.
     -->
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow-y: hidden;
-      }
-      body.loading .splash__header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 80px;
-        width: 100vw;
-        background-color: #eaeaea;
-      }
-      body.loading .splash__sidebar {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        height: calc(100vh - 80px);
-        width: 300px;
-        background-color: #f0f0f0;
-      }
-    /*#spinner{position:absolute;z-index:999;width:100%;height:100%;background:#fff;}
-    #spinner px-spinner {margin:25% 36%;vertical-align: middle;}*/
-    </style>
+    <link async rel="import" href="/bower_components/px-theme/px-theme-styles.html"/>
+    <custom-style>
+      <style is="custom-style" include="px-theme-styles">
+        html, body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden !important;
+        }
+        body.loading .splash__header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 45px;
+          width: 100vw;
+          background-color: #eaeaea;
+        }
+        @media screen and (min-width: 1024px) {
+          body.loading .splash__header {
+            height: 80px;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          body.loading .splash__sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100vh - 80px);
+            width: 300px;
+            background-color: #f0f0f0;
+          }
+        }
+      </style>
+    </custom-style>
   </head>
 
   <!--
@@ -117,20 +128,7 @@
     </script>
     <script async src='https://www.google-analytics.com/analytics.js'></script>
 
-    <!--
-      Attempt to register a service worker with the correct scope. Fail quietly
-      if this doesn't work, but log the result to the console.
-    -->
-    <script async type="text/javascript">
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      }
-    </script>
+    <!-- Load service worker -->
+    <script async src="service-worker-registration.js"></script>
   </body>
 </html>

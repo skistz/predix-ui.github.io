@@ -1,35 +1,34 @@
 <!-- Dependencies -->
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
-<link rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
-<link rel="import" href="../../bower_components/px-tabs/px-tab-set.html" />
+<link rel="import" href="../../bower_components/px-tabs/px-tabs.html" />
 <link rel="import" href="../../bower_components/px-tabs/px-tab.html" />
 <link rel="import" href="../../bower_components/px-typeahead/px-typeahead.html" />
+<link rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link rel="import" href="../../bower_components/px-icon-set/px-icon-set.html" />
 <link rel="import" href="../../bower_components/px-icon-set/px-icon.html" />
 <!-- Styles -->
-<link rel="import" href="../../css/predix-ui-styles.html" />
+<link rel="import" href="../../css/px-catalog-page-styles.html" />
 <link rel="import" href="../../css/px-catalog-version-finder-styles.html" />
 
 <dom-module id="px-catalog-version-finder">
   <template>
-    <style include="px-theme-styles"></style>
-    <style include="predix-ui-styles"></style>
+    <style include="px-catalog-page-styles"></style>
     <style include="px-catalog-version-finder-styles"></style>
 
     <iron-ajax auto url="versions.json" last-response="{{versions}}"></iron-ajax>
 
-    <section class="main">
+    <section class="page">
       <h2 class="selected">Version Finder</h2>
-      <p>The Predix Design System recently underwent a major upgrade. All components were refreshed to follow the new, more user-friendly design system styles. Many component APIs were also changed.</p>
-      <p><strong>Teams building a new web apps should use the post-refresh components. Teams maintaining an existing web app that uses pre-refresh Predix Design System components or CSS modules will need to research the changes in the refreshed components and upgrade all components as soon as possible.</strong></p>
-      <p>Use the tool below to determine which version to use for each component (pre-refresh or post-refresh) depending on your needs. Components should be listed as dependencies in your app's bower.json file. The bower.json file should ONLY include pre-refresh or post-refresh components. The components should not be mixed. Copy the version ranges below into your bower file to ensure your builds are consistent.</p>
+      <p>The Predix Design System launched Cirrus. All components were updated to follow the new, more user-friendly design system styles. Many component APIs were also changed.</p>
+      <p><strong>Teams building a new web apps should use the post-Cirrus components. Teams maintaining any existing web app that uses pre-Cirrus Predix Design System components or CSS modules will need to research the changes in the Cirrus components and upgrade all components as soon as possible.</strong></p>
+      <p>Use the tool below to determine which version to use for each component (pre-Cirrus or post-Cirrus) depending on your needs. Components should be listed as dependencies in your app's bower.json file. The bower.json file should ONLY include pre-Cirrus or post-Cirrus components. The components should not be mixed. Copy the version ranges below into your bower file to ensure your builds are consistent.</p>
 
       <div class="version-finder">
         <div class="version-finder__tabs">
-          <px-tab-set selected="{{selectedTab}}">
+          <px-tabs selected="{{selectedTab}}">
             <px-tab>Search By Component</px-tab>
-          </px-tab-set>
+          </px-tabs>
         </div>
         <div class="version-finder__page">
 
@@ -48,8 +47,8 @@
             <div class="search-page__results">
               <div class="search-page-result-header">
                 <p class="search-page-result__name">Component Name</p>
-                <p class="search-page-result__pre">Pre-Refresh Bower Range</p>
-                <p class="search-page-result__post">Post-Refresh Bower Range</p>
+                <p class="search-page-result__pre">Pre-Cirrus Bower Range</p>
+                <p class="search-page-result__post">Cirrus Bower Range</p>
               </div>
               <template is="dom-repeat" items="[[filteredVersions]]">
                 <div class="search-page-result">

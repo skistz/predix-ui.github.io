@@ -1,0 +1,189 @@
+<script>
+  PxLazyLoadBehavior = {
+    properties: {
+      _images: {
+        type: Array,
+        value: () => {
+          return [];
+        }
+      },
+      _imageCount:{
+        type: Number,
+        value: 0
+      },
+      _observer:{
+        type: Object,
+        value: () => {
+          return {};
+        }
+      },
+      _canUseWebP: {
+        type: Boolean,
+        value: function(){
+          var elem = document.createElement('canvas');
+          if (!!(elem.getContext && elem.getContext('2d'))) {
+            // was able or not to get WebP representation
+            return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+          }
+          else {
+            // very old browser like IE 8, canvas not supported
+            return false;
+          }
+        }
+      },
+      _isRetina: {
+        type: Boolean,
+        value: function(){
+          return (window.devicePixelRatio > 1) ? true : false;
+        }
+      }
+    },
+
+    _setIntersectionObserver: function(){
+      // Get all of the images that are marked up to lazy load
+      this._images = Polymer.dom(this.root).querySelectorAll('.js-lazy-image');
+      this._config = {
+        // If the image gets within 50px in the Y axis, start the download.
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      };
+
+      this._imageCount = this._images.length;
+
+      // If we don't have support for intersection observer, loads the images immediately
+      // Edge 15 doesn't ever fire _onIntersection. Edge 16 will have some IntersectionObserver updates check back then
+      if (!('IntersectionObserver' in window) || window.navigator.userAgent.indexOf("Edge") > -1) {
+        this._loadImagesImmediately(this._images);
+      } else {
+        // It is supported, load the images
+        this._observer = new IntersectionObserver(this._onIntersection.bind(this), this._config);
+
+        // foreach() is not supported in IE
+        for (let i = 0; i < this._images.length; i++) {
+          let image = this._images[i];
+          this._observer.observe(image);
+        }
+      }
+    },
+
+    /**
+     * Fetchs the image for the given URL
+     * @param {string} url
+     */
+    _fetchImage: function(url) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.src = url;
+        image.onload = resolve;
+        image.onerror = reject;
+      });
+    },
+
+    /**
+     * Preloads the image
+     * @param {object} image
+     */
+    _preloadImage: function(image) {
+      let src = image.dataSrc;
+      if (!src) {
+        return;
+      }
+      src = this._getImageType(src);
+
+      // check to see if the image as already been loaded
+      // if (image.classList.contains('js-lazy-image--handled')) { return; }
+
+      return this._fetchImage(src).then(() => { this._applyImage(image, src); });
+    },
+
+    /**
+     * Gets the file name then determines based on webp and retina support
+     * which file type should be appended.
+     */
+    _getImageType: function(src){
+      if(this._canUseWebP){
+        (this._isRetina) ? src = `${src.slice(0,src.lastIndexOf('.'))}@2x.webp` : src = `${src.slice(0,src.lastIndexOf('.'))}.webp`;
+      }
+      if(this._isRetina && !this._canUseWebP){
+        src = `${src.slice(0,src.lastIndexOf('.'))}@2x.png`;
+      }
+      return src;
+    },
+
+    /**
+     * Load all of the images immediately
+     * @param {NodeListOf<Element>} images
+     */
+    _loadImagesImmediately: function(images) {
+      for (let i = 0; i < images.length; i++) {
+        let image = images[i];
+        this._preloadImage(image);
+      }
+    },
+
+    /**
+     * Disconnect the observer
+     */
+    _disconnect: function() {
+      if (!observer) {
+        return;
+      }
+      this._observer.disconnect();
+    },
+
+    /**
+     * On intersection
+     * @param {array} entries
+     */
+    _onIntersection: function(entries) {
+      // Disconnect if we've already loaded all of the images
+      if (this._imageCount === 0) {
+        this._observer.disconnect();
+      }
+
+      // Loop through the entries
+      for (let i = 0; i < entries.length; i++) {
+        let entry = entries[i];
+        // Are we in viewport?
+        if (entry.intersectionRatio > 0) {
+          this._imageCount--;
+
+          // Stop watching and load the image
+          try {
+            this._observer.unobserve(entry.target);
+          } catch (e) {
+            // edge causing noisy error here: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12577586/
+          }
+          this._preloadImage(entry.target);
+        }
+      }
+    },
+
+    /**
+     * Apply the image
+     * @param {object} img
+     * @param {string} src
+     */
+    _applyImage: function(img, src) {
+      // Prevent this from being lazy loaded a second time.
+      img.classList.add('js-lazy-image--handled');
+      img.src = src;
+      img.classList.add('fade-in');
+    },
+
+    /**
+     * Clears `js-lazy-image--handled` class from images
+     * Useful for light and dark theme images
+     */
+    _resetImages: function(){
+      this._images = Polymer.dom(this.root).querySelectorAll('.js-lazy-image');
+
+      // foreach() is not supported in IE
+      for (let i = 0; i < this._images.length; i++) {
+        let image = this._images[i];
+        this._images[i].classList.remove('js-lazy-image--handled')
+      }
+    }
+
+  };
+</script>

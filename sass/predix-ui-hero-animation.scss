@@ -1,0 +1,137 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Tools
+
+// Generic
+
+// Base
+
+// Meta
+
+// Objects
+
+// Component
+
+:host {
+  width: 900px;
+  height: 370px;
+}
+
+.img-background {
+  fill: var(--animation-img-background-color,#EBEFF1);
+}
+
+.banner-color {
+  fill: var(--animation-banner-color,#FFFFFF);
+}
+
+.banner-corner-color {
+  fill: var(--animation-banner-corner-color, #D8E0E5);
+}
+
+.chart-background-color {
+  fill: var(--animation-chart-background-color,#FFFFFF);
+}
+
+.chart-labels-color {
+  fill: var(--animation-chart-labels-color, #D8E0E5);
+}
+
+.computer-stroke {
+  fill: var(--animation-computer-stroke, #677E8C);
+}
+
+.computer-bar {
+  fill:var(--animation-computer-bar, #002939);
+}
+.computer-bottom-bar {
+  fill:var(--animation-computer-bottom-bar, #EBEFF1);
+}
+
+.computer-base {
+  fill: var(--animation-img-background-color,#EBEFF1);
+}
+.kpi {
+  fill:var(--animation-kpi-color, #2D414D);
+}
+.kpi-arrow {
+  fill:var(--animation-kpi-arrow-color, #6EA341);
+}
+
+.wrapper {
+  position: relative;
+}
+
+#clouds-large {
+  --animation-icon-stroke-width: 2;
+  position: absolute;
+  top: 0px;
+  left: 780px;
+}
+#clouds-small {
+  --animation-icon-stroke-width: 1.5;
+  position: absolute;
+  top: 130px;
+  left: 360px;
+}
+
+#large-turbine {
+  --animation-icon-stroke-width: 0.5;
+  position: absolute;
+  top: 195px;
+  left: 795px;
+}
+
+#small-turbine {
+  --animation-icon-stroke-width: 0.5;
+  position: absolute;
+  top: 205px;
+  left: 350px;
+}
+
+#airplane {
+  position: absolute;
+  top: 30px;
+  left: 375px;
+}
+
+#chart {
+  position: absolute;
+  top: 90px;
+  left: 450px;
+}
+
+#gauge1 {
+  position: absolute;
+  top: 135px;
+  left: 455px;
+  --start-angle: -45deg;
+}
+
+#gauge2 {
+  position: absolute;
+  top: 135px;
+  left: 538px;
+  --start-angle: -145deg;
+}
+
+  #gauge3 {
+  position: absolute;
+  top: 135px;
+  left: 620px;
+  --start-angle: -90deg;
+}
+
+// Trumps

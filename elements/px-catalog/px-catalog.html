@@ -2,11 +2,14 @@
 <link defer rel="import" href="../../bower_components/polymer/polymer.html" />
 
 <!-- Import style module -->
-<link defer rel="import" href="../../css/predix-ui-styles.html" />
-<link defer rel="import" href="../../bower_components/px-theme/px-theme-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-theme-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-theme/px-dark-theme-styles.html" />
+<link defer rel="import" href="../../bower_components/px-dark-demo-theme/px-dark-demo-theme-styles.html" />
 
 <!-- Import external dependencies -->
 <link async rel="import" href="../../bower_components/iron-collapse/iron-collapse.html" />
+<link async rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link async rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
 <link async rel="import" href="../../bower_components/app-route/app-route.html" />
 <link defer rel="import" href="../../bower_components/app-route/app-location.html" />
@@ -14,107 +17,134 @@
 <link async rel="import" href="../../bower_components/px-toggle/px-toggle.html" />
 <link defer rel="import" href="../../bower_components/px-icon-set/px-icon-set-navigation.html">
 <link defer rel="import" href="../../bower_components/px-icon-set/px-icon.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
+<link defer rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link defer rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-switcher.html">
+<link defer rel="import" href="../../bower_components/px-alert-message/px-alert-message.html" />
 
 <!-- Import local dependencies -->
-<link async rel="import" href="../px-catalog-router/px-catalog-router.html" />
-<link async rel="import" href="../px-catalog-sidebar/px-sb.html" />
+<link async rel="import" href="px-catalog-theme-switcher.html" />
+<link async rel="import" href="px-catalog-page-viewer.html" />
+<link async rel="import" href="../px-catalog-treenav/px-catalog-treenav.html" />
 
 <dom-module id="px-catalog">
   <template>
-    <style include="predix-ui-styles" is="custom-style"></style>
-    <style include="px-theme-styles" is="custom-style"></style>
+    <style include="px-catalog-theme-styles" is="custom-style"></style>
+    <style include="px-catalog-styles" is="custom-style"></style>
+
     <style>
-      #spinner {
+      .catalog__spinner {
         position: absolute;
         z-index: 999;
         width: 100%;
         height: 100%;
         background: #fff;
       }
+      .dark-theme {
+        background: #23343F;
+      }
       #spinner px-spinner {
         margin-left: auto;
         margin-right: auto;
       }
+      .alert-message-container {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1020;
+        height: 200px;
+        overflow-y: hidden;
+      }
     </style>
+
+    <!-- Communicates the state of dark theme toggle to child iframes -->
+    <!-- <px-demo-theme-switcher-parent origin="https://www.predix-ui.com" is-dark-theme="{{darkTheme}}" child-frame="{{childFrame}}"></px-demo-theme-switcher-parent> -->
+    <px-catalog-theme-switcher global dark-theme="[[darkTheme]]"></px-catalog-theme-switcher>
+
+    <!-- Bind alert messages -->
+    <div class="alert-message-container">
+      <template is="dom-if" if="[[updateAvailable]]">
+        <px-alert-message
+            message-title="This site has been updated. Refresh your browser to get the newest information."
+            auto-dismiss="30000"
+            hide-badge
+            action="acknowledge">
+        </px-alert-message>
+      </template>
+      <template is="dom-if" if="[[_404path]]" restamp>
+        <px-alert-message
+            message-title="Page not found"
+            message="[[_get404Message(_404path)]]"
+            auto-dismiss="30000"
+            hide-badge
+            type="error"
+            action="acknowledge"
+            on-px-alert-message-hidden="_handle404MessageHidden">
+        </px-alert-message>
+      </template>
+    </div>
 
     <!-- Load the navigation JSON file -->
     <iron-ajax
         auto
-        url="navigation.json"
-        last-response="{{navJSON}}">
+        url="/pages/app-data.json"
+        last-response="{{appData}}">
     </iron-ajax>
+
+    <!-- Media query to update the nav width on landscape-size screens. The
+         Shady DOM shim won't re-evaluate the --app-nav-width style variable
+         in a media query in our CSS; this query helps force an update. -->
+    <iron-media-query query="(min-width: 450px)" query-matches="{{isLandscapeUp}}"></iron-media-query>
+    <!-- Media query to fix nav open on desktop-up screens -->
+    <iron-media-query query="(min-width: 1024px)" query-matches="{{isDesktopUp}}"></iron-media-query>
 
     <!-- Catch the route and send it to `app-route` to munge the path -->
     <app-location
-        route="{{_route}}"
-        query-params="{{_queryParams}}"
-        path="{{_path}}"
+        route="{{route}}"
+        path="{{path}}"
+        query-params="{{query}}"
         use-hash-as-path>
     </app-location>
-    <!-- Fetch the base route information we need (type/name) and assign to `route` -->
-    <app-route
-        route="{{_route}}"
-        pattern="/:type/:name"
-        data="{{route}}"
-        tail="{{_routeTail}}">
-    </app-route>
-    <!-- Pass the routing data to the custom router to handle state and redirects -->
-    <px-catalog-router
-        raw-route="{{_route}}"
-        raw-path="{{_path}}"
-        query-params="{{_queryParams}}"
-        app-path="{{route}}"
-        app-tail="{{_routeTail.path}}"
-        active-name="{{activeName}}"
-        active-type="{{activeType}}"
-        frame-url="{{frameUrl}}"
-        nav-JSON="{{navJSON}}"
-        dark-theme="{{darkTheme}}">
-    </px-catalog-router>
 
-    <!-- App Header -->
-    <section class="gray-bar flex flex--row flex--middle flex--justify">
-      <span id="menu" class="menu">
-        <px-icon icon="px-nav:hamburger" class="menu__open-icon" id="menu__open-icon"></px-icon>
-        <px-icon icon="px-nav:close" class="menu__close-icon is__hidden" id="menu__close-icon"></px-icon>
-      </span>
-      <div class="flex__item flex flex--row flex--justify flex--middle">
-        <div class="flex__item">
-		      <picture>
-            <source srcset="../../img/px_logo.webp" type="image/webp">
-            <source srcset="../../img/px_logo.png" type="image/png">
-            <img src="../../img/px_logo.png" class="header-img" alt="Predix Design System">
+      <!-- CATALOG HEADER -->
+      <div class="catalog-header">
+        <!-- Menu button -->
+        <div class="menu-button" on-tap="toggleMenu">
+          <px-icon icon="[[_getMenuIcon(menuOpened)]]"></px-icon>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+          <picture class="logo__picture">
+            <source srcset="../../img/px-dev-logo.webp" class="logo__image" type="image/webp">
+            <source srcset="../../img/px-dev-logo.png"  class="logo__image" type="image/png">
+            <img src="../../img/px-dev-logo.png" class="logo__image" alt="Predix Developer Network">
+            <span class="logo__text">Predix Design System</span>
           </picture>
         </div>
-      </div>
-      <div class="flex flex--row flex--middle u-mr">
-        <small>Dark Theme</small>
-        <px-toggle size="small" class="u-ml--" checked="{{darkTheme}}"></px-toggle>
-      </div>
-    </section>
-
-    <!-- App Wrapper -->
-    <div class="wrapper wrapper--flex">
-      <!-- App Overlay -->
-      <div id="overlay" class="overlay"></div>
-
-      <!-- App Side Nav -->
-      <div id="side-nav" class="side-nav side-nav__default">
-        <px-sb initial-nav="[[navJSON]]" active-name="{{activeName}}" active-type="{{activeType}}"></px-sb>
-      </div>
-
-      <!-- App iFrame -->
-      <div class="iframe__container">
-        <div id="spinner" class="flex flex--row flex--center">
-          <div class="flex__item--middle ">
-            <px-spinner size="150"></px-spinner>
-          </div>
+        <!-- Theme toggle -->
+        <div class="theme-toggle">
+          <span class="theme-toggle__text">Dark Theme</span>
+          <px-toggle size="small" checked="{{darkTheme}}" role="button" aria-pressed="false"></px-toggle>
         </div>
-        <iframe src="../../pages/home.html" allowfullscreen name="iframe_a" class="iframe" id="frameEl" data-name$="[[name]]" data-type$="[[type]]" title="Main Documentation Content">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
       </div>
-    </div>
+
+      <!-- CATALOG PAGE -->
+      <px-catalog-page-viewer
+          class="catalog-page"
+          active-module="[[activeModule]]"
+          anchor-path="[[_anchorPath]]"
+          dark-theme="[[darkTheme]]"
+          spinner-active="[[spinnerActive]]">
+      </px-catalog-page-viewer>
+
+      <!-- CATALOG NAV -->
+      <app-drawer class="catalog-nav" align="left" disable-swipe opened="{{menuOpened}}" persistent="[[isDesktopUp]]">
+        <div class="catalog-nav__tree">
+          <px-catalog-treenav pages="[[appData.pages]]" routes="[[appData.routes]]" selected-route="[[path]]"></px-catalog-treenav>
+        </div>
+      </app-drawer>
+
   </template>
   <script>
     Polymer({
@@ -122,54 +152,17 @@
 
       properties: {
         /**
-         * The URL for the currently active iFrame. If nothing is set, defaults
-         * to the catalog homepage.
-         *
-         * @type {String}
-         */
-        frameUrl: {
-          type: String,
-          value: '../../pages/home.html',
-          observer: '_handleFrameUrlChanged'
-        },
-
-        /**
-         * Set to `true` when the menu should be visible. Set to `false` when
-         * it should be hidden.
-         *
-         * @type {Boolean}
-         */
-        menuIsVisible: {
-          type: Boolean,
-          value: false,
-          observer: '_handleMenuVisibilityChange'
-        },
-
-        /**
          * Set to `true` to show the spinner. Set to `false` to hide the spinner.
          *
          * @type {Boolean}
          */
-        spinnerIsActive: {
+        spinnerActive: {
           type: Boolean,
-          value: true,
-          observer: '_handleSpinnerVisibility'
-        },
-
-        /**
-         * The navigation represented as JSON, loaded by an `iron-ajax` element
-         * from the `navigation.json` file.
-         *
-         * @type {Object}
-         */
-        navJSON: {
-          type: Object
+          value: true
         },
 
         /**
          * The active page name, from the sidebar (e.g. 'px-sass-doc')
-         *
-         * @type {String}
          */
         activeName: {
           type: String,
@@ -177,37 +170,190 @@
         },
 
         /**
-         * The active page type, from the sidebar (e.g. 'component')
-         *
-         * @type {String}
+         * Whether to enable the dark theme for each component.
          */
-        activeType: {
-          type: String,
-          observer: '_updateTitle'
+        darkTheme: {
+          type: Boolean,
+          observer: '_handleDarkThemeChanged',
+          reflectToAttribute: true
         },
 
         /**
-         * Place to hang iframe loading poller
-         *
-         * @type {Object}
+         * Opens and closes the menu. The menu should remain open all the time
+         * on desktop-up viewports.
          */
-        _loadingPoller: {
+        menuOpened: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Automatically set to true when the viewport becomes larger than
+         * desktop size.
+         */
+        isDesktopUp: {
+          type: Boolean,
+          observer: '_desktopBreakpointHit'
+        },
+
+        /**
+         * Automatically set to true when the viewport becomes larger than
+         * mobile landscape size (when the phone is on its side).
+         */
+        isLandscapeUp: {
+          type: Boolean,
+          observer: '_landscapeBreakpointHit'
+        },
+
+        /**
+         * Name of the active demo element tag.
+         */
+        activeModule: {
+          type: String,
+          observer: '_handleNewModuleSelected'
+        },
+
+        /**
+         * Holds the pages, routes, and redirect data.
+         */
+        appData: {
           type: Object
         },
 
         /**
-         * Whether to enable the dark theme for each component.
+         * The URL hash `path` from app-location. This is read-write: observe
+         * to be notified of changes the URL, and set to change the URL.
          */
-        darkTheme: {
-          type: Boolean
+        path: {
+          type: String
+        },
+
+        /**
+         * The portion of the hash that precedes the ':' symbol. This is used to
+         * route to the correct view.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _pagePath would be '/elements/px-alert-message'
+         */
+        _pagePath: {
+          type: String,
+          computed: '_getPagePath(path)'
+        },
+
+        /**
+         * The portion of the hash that follows the ':' symbol, if any. This is
+         * used to route to jump to a section on the page.
+         *
+         * Example: for 'https://www.predix-ui.com/#/elements/px-alert-message:property-message'
+         * the _anchorPath would be 'property-message'
+         */
+        _anchorPath: {
+          type: String,
+          computed: '_getAnchorPath(path)'
+        },
+
+        /**
+         * Set to `true` when the service worker detects new content, shows an
+         * alert message so the user can refresh to get the updates.
+         */
+        updateAvailable: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * If the last URL route was not found and the user was redirected to
+         * home, the missing path will be set here to show a 404 error message
+         * to the user.
+         */
+        _404path: {
+          type: String,
+          value: null
         }
       },
 
-      listeners: {
-        'menu.tap' : '_handleMenuTapped',
-        'px-sb-list-selected-item-changed': '_handleListItemChanged',
-        'overlay.tap' : '_handleOverlayTapped',
-        'frameEl.load' : '_handleFrameLoad'
+      observers: [
+        '_routeChanged(_pagePath, appData)'
+      ],
+
+      created: function() {
+        this._loadedRoutes = [];
+      },
+
+      attached: function() {
+        this._swUpdatedHandler = this._swUpdated.bind(this);
+        window.addEventListener('service-worker-changes-available', this._swUpdatedHandler, false);
+        // If there is no hash URL when the page first loads, use the
+        // homepage route
+        if (window.location.hash === "") {
+          this.path = '/home';
+        }
+      },
+
+      detached: function() {
+        window.removeEventListener('service-worker-changes-available', this._swUpdatedHandler, false);
+      },
+
+      _swUpdated: function() {
+        this.updateAvailable = true;
+      },
+
+      _getPagePath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[0].trim();
+        }
+        return path;
+      },
+
+      _getAnchorPath: function(path) {
+        if (path.indexOf(':') > -1) {
+          return path.split(':')[1].trim();
+        }
+        return null;
+      },
+
+      _routeChanged: function(route, appData) {
+        if (typeof route !== 'string' || typeof appData !== 'object') {
+          return;
+        }
+        var routeWithoutSlash = route[route.length-1] === '/' ? route.slice(0,route.length-1) : route;
+        var redirectTo = appData.redirects[routeWithoutSlash];
+        if (redirectTo) {
+          // This path is redirected, rewrite path to the new destination
+          this.path = redirectTo;
+          return;
+        }
+
+        var pageInfo = appData.routes[routeWithoutSlash];
+        if (!pageInfo) {
+          this._404path = route;
+          // This path is not defined, fall back to the homepage
+          this.path = '/home';
+          return;
+        }
+
+        if (this._404path && route !== '/home' && route !== '/home/') {
+          // Clear the 404
+          this._404path = null;
+        }
+
+        // Load and/or show the module for this path
+        this.spinnerActive = true;
+        if (this._loadedRoutes.indexOf(pageInfo.entrypoint) === -1) {
+          // Page entrypoint not yet loaded
+          var url = this.resolveUrl(pageInfo.entrypoint);
+          this.importHref(url, function() {
+            this.spinnerActive = false;
+            this._loadedRoutes.push(pageInfo.entrypoint);
+            window.dispatchEvent(new CustomEvent('page-loaded'));
+          }.bind(this), null, false);
+        }
+        else {
+          this.spinnerActive = false;
+        }
+
+        this.activeName = pageInfo.label;
+        this.activeModule = pageInfo.module;
       },
 
       /**
@@ -215,253 +361,80 @@
        */
       _updateTitle: function() {
         this.debounce('update-title', function() {
-          var type = this._formatType(this.activeType || '');
-          var name = this._formatName(this.activeName || '');
-          if (name || type) {
-            document.title = 'Predix Design System' + (type.length ? ' ' + type : '') + (name.length ? '  | ' + name : '');
+          if (this.activeName) {
+            document.title = 'Predix Design System | ' + this.activeName;
+          } else {
+            document.title = 'Predix Design System';
           }
         }, 100);
       },
 
       /**
-       * Takes a URL routing `type` value, splits and capitalizes words.
-       *
-       * For example:
-       * 'css' would become 'CSS'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
+       * If a new page is selected and the viewport is smaller than desktop,
+       * ensures the menu is closed.
        */
-      _formatType: function(type) {
-        if (!type || !type.length) {return '';}
-
-        // CSS is a special case, capitalize it and return
-        if (type === 'css') {return 'CSS';}
-
-        return type
-        // Split on '-' char
-          .split('-')
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
+      _handleNewModuleSelected: function() {
+        if (!this.isDesktopUp && this.menuOpened) {
+          this.menuOpened = false;
+        }
       },
 
       /**
-       * Takes a URL routing `name` value, cleans up the words and capitalizes.
-       *
-       * For example:
-       * 'px-app-nav' would become 'App Nav'
-       * 'components' would become 'Components'
-       * 'new-thing' would become 'New Thing'
-       *
-       * @param {String} type
-       * @return {String} Formatted string
+       * When the viewport expands to desktop-up, ensure the menu is opened.
+       * When the viewport shrinks to desktop-down, ensure the menu is closed.
        */
-      _formatName: function(name) {
-        if (!name || !name.length) {return '';}
-
-        return name
-        // Split on '-' char
-          .split('-')
-        // Remove 'px' (['px','app','nav'] -> ['app','nav'])
-          .filter(function(part){ return part !== 'px'; })
-        // Capitalize first letter
-          .map(function(part){ return this._capitalizeFirstLetter(part); }.bind(this))
-        // Join with a space
-          .join(' ');
+      _desktopBreakpointHit: function(isDesktopUp) {
+        if (isDesktopUp && !this.menuOpened) {
+          this.menuOpened = true;
+        }
+        else if (!isDesktopUp && this.menuOpened) {
+          this.menuOpened = false;
+        }
       },
 
       /**
-       * Capitalizes the first character of a string if it is a letter.
-       *
-       * @param {String} str - 'hello'
-       * @return {String} - 'Hello'
+       * A media query is used in the CSS to change the app-drawer component's
+       * --app-drawer-width style variable. In Shady DOM that variable will not
+       * be automatically re-evaluated when the screen size changes. When the
+       * screen moves above or below that breakpoint, the app-drawer will be
+       * forced to update its style variables.
        */
-      _capitalizeFirstLetter: function(str) {
-        return str.substring(0,1).toUpperCase() + str.substring(1);
-      },
-
-      /**
-       * When the URL the iFrame should show is updated, sync the new URL with
-       * the iFrame on the page.
-       */
-      _handleFrameUrlChanged: function(newUrl) {
-        var frame = this.$.frameEl;
-        if ((typeof newUrl === 'string') && frame) {
-          // Try to get the frame location
-          var frameLocation = window.frames['iframe_a'].location;
-          // If the location is blank, this is a first load and we can assume
-          // the current page is `iframe.src`'s normalized pathname'
-          var currentPath = (frameLocation.pathname !== 'blank') ? frameLocation.pathname : this._normalizePath(frame.src);
-          // Normalize the new path
-          var newPath = this._normalizePath(newUrl);
-
-          if (currentPath !== newPath) {
-            // Replace location like this so we don't add an entry to the
-            // history stack. The router will do that for us.
-            window.frames['iframe_a'].location.replace(newUrl);
-            // Activate the spinner
-            this.set('spinnerIsActive', true);
+      _landscapeBreakpointHit: function(newVal, oldVal) {
+        if (typeof newVal === 'boolean' && typeof oldVal === 'boolean') {
+          var drawer = Polymer.dom(this.root).querySelector('app-drawer');
+          if (drawer !== null && drawer.updateStyles) {
+            drawer.updateStyles();
           }
         }
       },
 
-      /**
-       * Given a relative or absolute URL, returns the normalized pathname.
-       *
-       * Example:
-       *
-       *     _normalizePath('../../pages/home.html');
-       *     //=> '/pages/home.html'
-       *
-       *     _normalizePath('http://predix-ui.com/px-component/px-component/')
-       *     //=> '/px-component/px-component/'
-       *
-       * @param {String} url
-       * @return {String}
-       */
-      _normalizePath: function(url) {
-        var linkTag = document.createElement('a');
-        linkTag.href = url;
-        return linkTag.pathname || '';
-      },
-
-      /**
-       * When the menu button is tapped, toggle the visibility of the menu.
-       * This should only fire during user interaction with the menu.
-       */
-      _handleMenuTapped: function() {
-        var currentMenuState = this.get('menuIsVisible');
-        this.set('menuIsVisible', !currentMenuState);
-      },
-
-      /**
-       * When the selected list item changes, ensure the menu is hidden.
-       * This event will fire on initial load so it doesn't always indicate
-       * user interaction.
-       */
-      _handleListItemChanged: function() {
-        if (this.get('menuIsVisible') !== false) {
-          this.set('menuIsVisible', false);
+      _getMenuIcon: function(menuOpened) {
+        if (menuOpened) {
+          return 'px-nav:close';
+        }
+        else {
+          return 'px-nav:hamburger';
         }
       },
 
-      /**
-       * When the overlay is tapped, ensure the menu is hidden.
-       */
-      _handleOverlayTapped: function() {
-        if (this.get('menuIsVisible') !== false) {
-          this.set('menuIsVisible', false);
-        }
+      toggleMenu: function() {
+        this.menuOpened = !this.menuOpened;
       },
 
       /**
-       * When the frame finishes loading, ensure the spinner is hidden.
-       */
-      _handleFrameLoad: function() {
-        var url = this.frameUrl;
-        var countNoOfTimesFailedToFindDemoEl = 0;
-        if(url.indexOf('/pages/') < 0){
-          clearInterval(this._loadingPoller);
-          this._loadingPoller = setInterval(checkComponentDemoAttached.bind(this), 250);
-          function checkComponentDemoAttached() {
-            var led = this.$.frameEl.contentDocument.body.querySelector('local-element-demo');
-            if(led && led.isAttached){
-              this._clearSpinner();
-              clearInterval(this._loadingPoller);
-            };
-            if(!led){
-              countNoOfTimesFailedToFindDemoEl += 1;
-              if (countNoOfTimesFailedToFindDemoEl === 10){
-                // we didn't find the demo element in 2.5 seconds clear the spinner anyway.
-                this._clearSpinner();
-                clearInterval(this._loadingPoller);
-              }
-            }
-          };
-        } else{
-          this._clearSpinner();
-        }
+      * Sets the background color of the spinner background based on the darkTheme toggle.
+      */
+      _handleDarkThemeChanged: function(newValue) {
+        this.toggleClass('dark-theme', newValue, this.$.spinner);
+        this.fire('px-dark-theme-changed', {"darkTheme": newValue});
       },
 
-      _clearSpinner: function(){
-        if (this.get('spinnerIsActive') !== false) {
-          this.set('spinnerIsActive', false);
-        }
-      },
-      /**
-       * When the `spinnerIsActive` property is updated, responds and attempts
-       * to hide or show the spinner.
-       */
-      _handleSpinnerVisibility: function(newVal, oldVal) {
-        if ((typeof newVal !== "undefined") && newVal) {
-          this._showSpinner();
-        }
-        if ((typeof newVal !== "undefined") && !newVal) {
-          this._hideSpinner();
-        }
+      _get404Message: function(path) {
+        return 'The page at https://www.predix-ui.com/#'+ path +' could not be found. Try searching in the sidebar.'
       },
 
-      /**
-       * When the visibility state of the menu changes, make updates to the DOM
-       * to reflect its state.
-       */
-      _handleMenuVisibilityChange: function(newState, oldState) {
-        if ((typeof newState !== "undefined") && newState) {
-          this._showMenu();
-        }
-        if ((typeof newState !== "undefined") && !newState) {
-          this._hideMenu();
-        }
-      },
-
-      /**
-       * Shows the menu by manipulating classes in the DOM.
-       */
-      _showMenu: function() {
-        var sideNav = this.$$("#side-nav");
-        var overlay = this.$$("#overlay");
-        var menuOpenIcon = this.$$("#menu__open-icon");
-        var menuCloseIcon = this.$$("#menu__close-icon");
-
-        if (sideNav.classList.contains('side-nav__default')) { sideNav.classList.remove('side-nav__default');   }
-        if (!overlay.classList.contains('overlay--visible'))   { overlay.classList.add('overlay--visible'); }
-        if (!menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.add('is__hidden');  }
-        if (menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.remove('is__hidden');    }
-      },
-
-      /**
-       * Hides the menu by manipulating classes in the DOM.
-       */
-      _hideMenu: function() {
-        var sideNav = this.$$("#side-nav");
-        var overlay = this.$$("#overlay");
-        var menuOpenIcon = this.$$("#menu__open-icon");
-        var menuCloseIcon = this.$$("#menu__close-icon");
-
-        if (!sideNav.classList.contains('side-nav__default')) { sideNav.classList.add('side-nav__default');   }
-        if (overlay.classList.contains('overlay--visible'))   { overlay.classList.remove('overlay--visible'); }
-        if (menuOpenIcon.classList.contains('is__hidden'))    { menuOpenIcon.classList.remove('is__hidden');  }
-        if (!menuCloseIcon.classList.contains('is__hidden'))  { menuCloseIcon.classList.add('is__hidden');    }
-      },
-
-      /**
-       * Shows the spinner by manipulating classes in the DOM.
-       */
-      _showSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.remove('is__hidden');
-      },
-
-      /**
-       * Hides the spinner by manipulating classes in the DOM.
-       */
-      _hideSpinner: function() {
-        var spinner = this.$$('#spinner');
-        spinner.classList.add('is__hidden');
+      _handle404MessageHidden: function() {
+        this._404path = null;
       }
     });
   </script>

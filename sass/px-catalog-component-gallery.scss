@@ -1,0 +1,52 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-defaults-design/_settings.defaults.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Component
+:host {
+  background-color:  var(--comonent-gallery-background, #D8E0E5);
+}
+
+.component-gallery__hr {
+  border-color:  var(--comonent-gallery-hr-color, #C5D1D8);
+  margin-top: $inuit-base-spacing-unit--large;
+}
+
+.component-gallery__layout {
+  margin: -1rem;
+}
+
+//need to overwrite the px-layout-design flex styles with !important
+.component-gallery__layout .component-gallery__layout__item{
+  padding: 15px;
+  flex: 0 0 auto !important;
+  text-decoration: none;
+  min-width: 300px;
+}
+
+.component-gallery__chip {
+  margin-right: $inuit-base-spacing-unit--tiny;
+  margin-top: $inuit-base-spacing-unit--small;
+  display: inline-block;
+}
+
+.component-gallery_icon {
+  margin-right: 0.66667rem;
+  --iron-icon-height: calculateRem(22px);
+  --iron-icon-width: calculateRem(22px);
+}
+
+.component-gallery_tile-footer {
+  display: flex;
+  align-items: center;
+}

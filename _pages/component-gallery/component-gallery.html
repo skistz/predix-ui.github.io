@@ -1,0 +1,174 @@
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
+<link defer rel="import" href="../../bower_components/iron-ajax/iron-ajax.html" />
+
+<!-- Styles -->
+<link defer rel="import" href="../../css/px-catalog-page-styles.html" />
+<link defer rel="import" href="../../css/px-catalog-component-gallery-styles.html" />
+
+<link defer rel="import" href="../../bower_components/px-tile/px-tile.html">
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-footer.html" />
+<link defer rel="import" href="../../bower_components/px-chip/px-chip.html">
+<link defer rel="import" href="../../elements/px-lazy-load/px-lazy-load-behavior.html" />
+
+
+<dom-module id="view-component-gallery">
+  <template>
+    <!-- Include the style modules in body to ensure they come after their imported code (which will be inlined at the end of <head> by vulcanize in production) -->
+    <style include="px-catalog-page-styles"></style>
+    <style include="px-catalog-component-gallery-styles"></style>
+
+
+    <iron-ajax auto url="tile-data.json" last-response="{{tileData}}"></iron-ajax>
+
+    <div class="page page--full-width">
+
+      <p class="heading--page u-m0">Gallery</p>
+      <p class="u-m--">See below for some examples of the Predix Design System components and CSS modules that are available. Click an item below, or use the search bar and menu to the left for more information.</p>
+      <template is="dom-repeat" items="{{tags}}">
+        <px-chip class="component-gallery__chip" content="{{item.name}}" selected="{{item.selected}}" dark-theme$="[[darkTheme]]"></px-chip>
+      </template>
+      <hr class="component-gallery__hr">
+
+      <div id="tileContainer" class="layout component-gallery__layout">
+        <template is="dom-repeat" id="tileRepeat" items="[[tileData]]" sort="{{_computeSort('Alphabetical')}}" filter="{{_computeFilter(tags.*)}}">
+          <a class="layout__item component-gallery__layout__item" href$="/#/modules/{{item.name}}">
+            <px-tile
+              dark-theme$="[[darkTheme]]"
+              title="{{item.title}}"
+              description="{{item.description}}"
+              hoverable>
+              <img slot="thumbnail" class="js-lazy-image" data-src="[[_computeImageUrlPng(item.imageUrl, themeName)]]" alt="">
+              <div class="component-gallery_tile-footer" slot="footer">
+                <px-icon class="component-gallery_icon" icon="px-fea:tag"></px-icon>
+                <ul class="list-inline">
+                  <template is="dom-repeat" items="{{item.tags}}" as="tag">
+                    <li class="caps zeta">{{tag}}</li>
+                  </template>
+                </ul>
+              </div>
+            </px-tile>
+          </a>
+        </template>
+      </div>
+
+    </div>
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+  </template>
+  <script>
+    Polymer({
+      is: 'view-component-gallery',
+      behaviors: [PxLazyLoadBehavior],
+      properties: {
+        tileData: {
+          type: Array
+        },
+        sortMode: {
+          type: String,
+          value: 'Alphabetical'
+        },
+        darkTheme:{
+          type: Boolean
+        },
+        themeName:{
+          type: String,
+          value: "light",
+          computed: "_getThemeName(darkTheme)",
+          observer: '_resetLazyLoad'
+        },
+        tags: {
+          type: Array,
+          value: [
+            {"name" : "Alerts", "selected" : false},
+            {"name" : "App Navigation", "selected" : false},
+            {"name" : "Asset Navigation", "selected" : false},
+            {"name" : "Buttons", "selected" : false},
+            {"name" : "CSS", "selected" : false},
+            {"name" : "Data Display", "selected" : false},
+            {"name" : "Data Input", "selected" : false},
+            {"name" : "Data Vis", "selected" : false},
+            {"name" : "Layout", "selected" : false},
+            {"name" : "Messaging", "selected" : false},
+            {"name" : "Mobile", "selected" : false},
+            {"name" : "Status", "selected" : false},
+            {"name" : "Visual", "selected" : false}
+          ]
+        },
+        dynamicTheme:{
+          type: Boolean,
+          value: true,
+          reflectToAttribute: true
+        }
+      },
+      /*
+       * `dom-change` will only fire once all it has ran through all the items
+       */
+      attached: function(){
+        this.listen(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+      },
+      detached: function(){
+        this.unlisten(this.$.tileRepeat, 'dom-change' , '_runLazyLoad');
+      },
+      /*
+       * `_setIntersectionObserver` defined inside PxLazyLoadBehavior
+       */
+      _runLazyLoad: function(){
+        if(this.themeName){
+          this._setIntersectionObserver();
+        }
+      },
+      /*
+       * Check that there are tiles on the page.
+       * The template dom repeat is a child therefore there is always at least 1.
+       * `_resetImages` defined inside PxLazyLoadBehavior
+       */
+      _resetLazyLoad: function(){
+        if(this.$.tileContainer.childElementCount > 1){
+          this._resetImages();
+          this._runLazyLoad();
+        }
+      },
+      _computeImageUrlPng: function(url, theme) {
+        if (typeof url === 'string' && typeof theme === 'string') {
+          return url + '_' + theme + '.png';
+        }
+      },
+      _computeSort: function(sortMode) {
+        if(sortMode === 'Alphabetical') {
+          return function(a, b) {
+            return (a.title > b.title) ? 1 : -1;
+          }
+        }
+        else {
+          return null;
+        }
+      },
+      _getThemeName: function(darkTheme){
+        return darkTheme ? "dark" : "light";
+      },
+      _computeFilter: function() {
+        var filteredTags = [];
+        for(var key in this.tags) {
+          if(this.tags.hasOwnProperty(key) && this.tags[key].selected) {
+            filteredTags.push(this.tags[key].name.toLowerCase());
+          }
+        }
+        if(filteredTags.length === 0) {
+          return null;
+        }
+        else {
+          return function(item) {
+            if(item.tags && item.tags.length) {
+              for(var tag in item.tags) {
+                if(filteredTags.indexOf(item.tags[tag]) > -1) return true;
+              }
+              return false;
+            }
+          }
+        }
+      }
+
+    });
+  </script>
+</dom-module>

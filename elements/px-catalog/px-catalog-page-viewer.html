@@ -1,0 +1,282 @@
+<link defer rel="import" href="../../bower_components/polymer/polymer.html" />
+<link defer rel="import" href="../../bower_components/px-demo/px-demo-theme-util.html"/>
+<link defer rel="import" href="../../bower_components/iron-pages/iron-pages.html"/>
+
+<dom-module id="px-catalog-page-viewer">
+  <template>
+    <style>
+      :host {
+        position: relative;
+        background-color: var(--px-catalog-page-background-color, white);
+      }
+
+      :host([dark-theme]) {
+        background-color: var(--px-catalog-page-background-color, black);
+      }
+
+      #pages {
+        flex: 1 1 auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    <!-- Pages will be distributed here -->
+    <iron-pages
+        id="pages"
+        attr-for-selected="module-name"
+        selected="[[activeModule]]"
+        selected-item="{{_activeModuleEl}}">
+    </iron-pages>
+    <template is="dom-if" if="[[spinnerActive]]">
+      <div class="spinner">
+        <px-spinner size="150"></px-spinner>
+      </div>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-catalog-page-viewer',
+      properties: {
+        activeModule: {
+          type: String,
+          observer: '_activeModuleChanged'
+        },
+        activeAnchor: {
+          type: String,
+          observer: '_handleActiveAnchorChanged'
+        },
+        visibleAnchor: {
+          type: String,
+          observer: '_handleVisibleAnchorChanged'
+        },
+        darkTheme: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        spinnerActive: {
+          type: Boolean,
+          value: false
+        },
+        _activeModuleEl: {
+          type: HTMLElement
+        },
+        _scrollTop: {
+          type: Number,
+          value: null
+        },
+        _isRICScheduled: {
+          type: Boolean,
+          value: false
+        },
+        _scrollCausedByAnchorClick: {
+          type: Boolean,
+          value: false
+        }
+      },
+      observers: [
+        '_applyTheme(_activeModuleEl, darkTheme)',
+        '_watchVisibleAnchor(activeModule, _activeModuleEl, _scrollTop)'
+      ],
+      listeners: {
+        'px-catalog-page-attached': '_handleLocalPageAttached',
+        'px-catalog-page-detached': '_handleLocalPageDetached',
+        'px-catalog-page-anchor-tapped': '_handleAnchorTapped'
+      },
+      created: function() {
+        this._modules = {};
+
+        // Checks if passive scroll handler is supported. If it isn't (e.g. in
+        // old browsers) the anchor navigation links will not be updated as
+        // the user scrolls. This test is from https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+        var passiveScrollSupported = false;
+        try {
+          var options = Object.defineProperty({}, "passive", {
+            get: function() {
+              passiveScrollSupported = true;
+            }
+          });
+
+          window.addEventListener("test", null, options);
+        } catch(err) {}
+        this._passiveScrollSupported = passiveScrollSupported;
+      },
+      attached: function() {
+        if (this._passiveScrollSupported) {
+          this._scrollHandler = this._handleScroll.bind(this);
+          this.addEventListener('scroll', this._scrollHandler, { passive: true });
+        }
+      },
+      detached: function() {
+        if (this._passiveScrollSupported && this._scrollHandler) {
+          this.removeEventListener('scroll', this._scrollHandler, { passive: true });
+        }
+      },
+
+      _handleScroll: function(evt) {
+        // clicking an anchor triggers a scroll, but want to leave the clicked on anchor as the highlighted anchor, so just escape
+        if (this._scrollCausedByAnchorClick) {
+          this._scrollCausedByAnchorClick = false;
+          return;
+        }
+
+        // If we've already schduled a requestIdleCallback, dont do again
+        if (this._isRICScheduled) { return; }
+
+        this._isRICScheduled = true;
+
+        if ('requestIdleCallback' in window) {
+          //can adjust timeout depending on if we want the scroll to more more up-to-date based on position during a fast scroll or more performant
+          requestIdleCallback(this._rAFScroll.bind(this), { timeout: 100 });
+        } else {
+          this.debounce('handle-scroll', this._rAFScroll, 100);
+        }
+      },
+
+      _rAFScroll: function() {
+        requestAnimationFrame(function() {
+          this._scrollTop = this.scrollTop;
+          this._isRICScheduled = false;
+        }.bind(this));
+      },
+
+      _watchVisibleAnchor: function(viewName, viewEl, scroll) {
+        if (viewName.slice(0,5) !== 'view-' || typeof scroll !== 'number' || !(viewEl instanceof HTMLElement) || !viewEl.hasAttribute('has-anchors')) {
+          return;
+        }
+        var anchors = viewEl.anchors;
+
+        var offsetPadding = 75;
+        var firstAnchorOffset = anchors[0].offsetTop - offsetPadding;
+        var anchorsLength = anchors.length
+
+        //scroll is above the first anchor point
+        if (scroll === 0 || scroll < firstAnchorOffset) {
+          this.visibleAnchor = '';
+        }
+
+        for (var i=0; i<anchors.length; i++) {
+          var topRange = anchors[i].offsetTop - offsetPadding;
+          var bottomRange;
+
+          // find bottom range of i's anchor point
+          if (i < anchors.length-1) {
+            bottomRange = anchors[i+1].offsetTop - offsetPadding;
+          }
+          // if i is the last anchor point set the bottom range to the scroll height
+          else if (scroll > firstAnchorOffset) {
+            bottomRange = this.scrollHeight;
+          }
+
+          if (scroll > topRange && scroll < bottomRange ){
+            this.visibleAnchor = '#' + anchors[i].id;
+            break;
+          }
+        }
+      },
+      _handleVisibleAnchorChanged: function(visibleAnchor) {
+        if (this.activeAnchor !== visibleAnchor) {
+          this.activeAnchor = visibleAnchor;
+        }
+      },
+      _handleActiveAnchorChanged: function(activeAnchor) {
+        if (!this._activeModuleEl) {
+          return;
+        }
+        if (activeAnchor !== this.visibleAnchor) {
+          // The active anchor isn't visible, scroll to it
+          this._scrollToAnchorPath(this._activeModuleEl, activeAnchor);
+          this._scrollCausedByAnchorClick = true;
+        }
+        this._activeModuleEl.activeAnchor = activeAnchor;
+      },
+      _handleAnchorTapped: function(evt) {
+        if (evt.detail.anchor) {
+          this.activeAnchor = evt.detail.anchor;
+        }
+      },
+      _scrollToAnchorPath: function(el, activeAnchor, retries) {
+        if (!el || !el.is) {
+          console.log('Element not yet defined');
+        }
+        else if (el.hasAttribute('has-anchors')) {
+          // Element is a markdown page, jump to the requested anchor
+          var anchorEl = Polymer.dom(el.root).querySelector(activeAnchor);
+          var offset = anchorEl ? (anchorEl.offsetTop-30) : 0;
+          this.scrollTop = offset;
+        }
+        else if (/^px\-.+\-demo$/.test(el.is)) {
+          // Element is a component demo, jump to the right api viewer section
+
+          // var demoApiViewer = Polymer.dom(el.root).querySelector('px-demo-api-viewer');
+          // if (!demoApiViewer) return;
+          // var apiViewer = Polymer.dom(demoApiViewer.root).querySelector('px-api-viewer');
+          // if (!apiViewer) return;
+          // var doc = apiViewer.$.doc;
+          // if (!doc) return;
+          // doc.scrollToAnchor(activeAnchor);
+        }
+      },
+      _handleLocalPageAttached: function(evt) {
+        // ... local page attached ...
+      },
+      _handleLocalPageDetached: function(evt) {
+        // ... local page detached ...
+      },
+      _activeModuleChanged: function(newModuleName, oldModuleName) {
+        if (newModuleName && !this._modules[newModuleName]) {
+          var el = document.createElement(newModuleName);
+          el.setAttribute('module-name', newModuleName);
+          Polymer.dom(this.$.pages).appendChild(el);
+          this._modules[newModuleName] = el;
+        }
+      },
+      _applyTheme: function(el, darkTheme, retry) {
+        retry = retry || 1;
+        if (!el) {
+          return;
+        }
+        if ((!el.is || typeof el.updateStyles !== 'function') && retry < 100) {
+          var retries = (retry+1);
+          var timeout = (retries < 10) ? 10 : 1000;
+          this.async(this._applyTheme.bind(this, el, darkTheme, retries), timeout);
+          return;
+        }
+
+        var componentDemoRe = /px\-[a-zA-Z0-9-]+-demo/;
+        var isComponentDemo = componentDemoRe.test(el.nodeName.toLowerCase());
+        var needDyanmicTheme = isComponentDemo || el.hasAttribute("dynamic-theme");
+
+        if (darkTheme && needDyanmicTheme) {
+          el.setAttribute('dark-theme', '');
+          var darkTheme = PxDemo.ThemeUtil.getDarkThemeProperties();
+          el.updateStyles(darkTheme);
+        }
+        else if (!darkTheme && needDyanmicTheme) {
+          el.removeAttribute('dark-theme');
+          var defaultTheme = PxDemo.ThemeUtil.getDefaultThemeProperties();
+          el.updateStyles(defaultTheme);
+        }
+        else if (darkTheme && !needDyanmicTheme) {
+          el.setAttribute('dark-theme', '');
+          el.updateStyles();
+        }
+        else if (!darkTheme && !needDyanmicTheme) {
+          el.removeAttribute('dark-theme');
+          el.updateStyles();
+        }
+      }
+    })
+  </script>
+</dom-module>

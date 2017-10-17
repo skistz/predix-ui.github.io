@@ -242,26 +242,29 @@ a component.
         var knownTypes;
         if (type && type !== '') {
           knownTypes = {
-            components: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+            elements: function(name) {
+              return 'bower_components/' + name + '/demo/' + name + '-demo.html';
             },
             css: function(name) {
-              return 'https://www.predix-ui.com/' + name + '/' + name + '/' + (tail.length ? tail : 'index.html');
+              return 'bower_components/' + name + '/demo/' + name + '-demo.html';
             },
             about: function(name) {
-              return '../../pages/about/' + name + '.html';
+              return 'pages/about/' + name + '.html';
             },
             guides: function(name) {
-              return '../../pages/guides/' + name + '.html';
+              return 'pages/guides/' + name + '.html';
+            },
+            migration: function(name) {
+              return 'pages/migration/' + name + '.html';
             },
             tools: function(name) {
-              return '../../pages/tools/' + name + '.html';
+              return 'pages/tools/' + name + '.html';
             },
             guidelines: function(name) {
-              return '../../pages/guidelines/' + name + '.html';
+              return 'pages/guidelines/' + name + '.html';
             },
             home: function() {
-              return '../../pages/home.html';
+              return 'pages/home.html';
             },
             external: function(name) {
               return 'https://github.com/predixdev/' + name;
@@ -272,9 +275,9 @@ a component.
 
           if (knownTypesKeys.indexOf(type) !== -1) {
             var url = knownTypes[type](name);
-			// If we're using dark theme, and URL has .html in it, replace with -dark.html
-            if (useDarkTheme && url.slice(-5) === '.html' && (type === 'components' || type === 'css' || type === 'home')) {
-              // turns `/path/foo.html` into `/path/foo-dark-theme.html`
+            // right now, only the px-vis-* components don't have runtime theming
+            // stick with the old trick to load 'index-dark-theme.html'
+            if (useDarkTheme && type === 'components' && name.slice(0,7) === 'px-vis') {
               url = url.slice(0,-5) + '-dark-theme.html';
             }
             return url;
@@ -453,8 +456,11 @@ a component.
                 // Otherwise, set the new `appPath` to update the URL
                 this.set('appPath', { type: foundType, name: name });
               }
+            } else if (type === 'components'){
+              // redirect all 'components' URLS onto 'elements'.
+              this.set('appPath', { type: 'elements', name: name });
             }
-          }, 100);
+          }, 1000);
         }
       },
 

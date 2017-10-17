@@ -1,3 +1,40 @@
+v0.3.0
+==================
+* added component gallery
+
+v0.2.27
+==================
+* add chip to navigation
+
+v0.2.26
+==================
+* add  heatmap grid to navigation
+
+v0.2.25
+==================
+* a few responsive usability tweaks
+
+v0.2.24
+==================
+* fix spinner issue
+
+v0.2.23
+==================
+* added px-hero-image component
+
+v0.2.22
+==================
+* made hero image responsive
+
+v0.2.21
+==================
+* Applied dark theme to side nav
+* Rebuilt sass to take forms design fixes
+
+v0.2.20
+==================
+* fix #64
+
 v0.2.19
 ==================
 * Ken's pr with animation and guidelines

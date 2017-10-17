@@ -1,0 +1,75 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+:host {
+  color: var(--px-catalog-page-text-color, $gray15);
+}
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+// Base
+$inuit-enable-btn--primary: true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+// Component
+@import 'util';
+
+:host {
+  display: block;
+  overflow: hidden;
+  z-index: 0;
+  position: relative;
+}
+
+.hero-picture--bg{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.hero-picture--fg{
+  display: block;
+  padding: 5%;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.hero__text {
+  padding: 30px;
+  max-width: 350px;
+  font-size: .9em;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__picture {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+:host([dark-theme]) {
+  .hero__text p {
+    color: $gray4;
+  }
+}
+
+@include px-media-query($px-catalog-screen-tablet-up) {
+  .wrapper {
+    height: 365px;
+  }
+}
