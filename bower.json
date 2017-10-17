@@ -58,7 +58,7 @@
     "px-datetime-range-panel": "^1.0.1",
     "px-deck-selector": "^2.0.1",
     "px-defaults-design": "^2.0.0",
-    "px-demo-data": "^0.0.21",
+    "px-demo-data": "~0.0.22",
     "px-demo-design": "^2.0.0",
     "px-demo-snippet": "^1.0.1",
     "px-demo": "polymer2.0-preview",
